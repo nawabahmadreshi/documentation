@@ -16,7 +16,6 @@ Here are some examples:
 
 * A user clicks on an ad for 20% off all purchases before the end of the week, and upon opening the app sees the coupon and has it automatically added to the shopping cart.
 * A user clicks on an ad for blue sneakers. You show him the blue sneakers as soon as he opens the app.
-* You run a massive ad campaign that drives a ton of new users to the app. You want create a funnel to see how many users signed up and/or completed purchases after clicking different ads (and the conversion rate).
 * You know that users clicking on your ads are already familiar with your product. So in your app you reduce the carousel shown to new users from 5 to 2 if they've come in through an ad.
 
 {% protip title="Branch links work even on first install!" %}
@@ -82,13 +81,9 @@ First, visit the marketing tab to see the performance of the individual link. Yo
 
 To view more details stats, click the _small button that looks like a bar chart_ on the far right. The first important note is that these stats are **limited to the date range** at the top. You can expand the range if you'd like.
 
-The first chart is what we call the _Click Flow_. From a Facebook installs perspective, this will just report for you the number of installs and reopens from the link. Currently, clicks is not accurate through this ad format.
+The chart is what we call the _Click Flow_. From a Facebook installs perspective, this will just report for you the number of installs and reopens from the link. Currently, clicks is not accurate through this ad format.
 
 {% image src='/img/recipes/deeplink_ads/click_flow_analytics.png' half nofloat alt='Facebook Example Ad' %}
-
-The second chart is for measuring conversion funnels for this ad. If you setup a conversion funnel here, you can measure the total number of down funnel events that have occurred from this link in particular. It's useful for calculating conversion rate by each ad.
-
-{% image src='/img/recipes/deeplink_ads/conversion_funnel.png' full nofloat alt='Facebook Example Ad' %}
 
 ## A note on testing
 
