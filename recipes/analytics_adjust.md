@@ -28,15 +28,6 @@ You'd set the **custom URL for Android** to _https://app.adjust.io/abc123_ and t
 {% endoverride %}
 {% endingredient %}
 
-## Customize deep link parameters
-
-Here is where you can specify the custom parameters to add to a link that will be deep linked into the app. You might want to put a coupon code or a page identifier here to route the user.
-
-In order to properly link the ad network to the measurement partner, you must configure the Branch link to pass through any additional query parameters through to the measurement partner.
-
-To do this, please add in the key **'$query_param_passthrough'** with the value of **'true'**. You can see an example below:
-{% image src='/img/recipes/double_third_party/query_param_passthrough.png' half center alt='deep link parameters' %}
-
 ## Provide link to advertiser
 
 Click save to generate the URL - it will appear in the list of links.

@@ -181,7 +181,7 @@ This is what our Universal Link settings look like after going through steps 1 -
 
 With your [Apple Developer Account](/recipes/branch_universal_links/#configure-developerapplecom), [Xcode project](/recipes/branch_universal_links/#add-the-entitlement-in-xcode) and [Branch dashboard](/recipes/branch_universal_links/#enable-universal-links-on-the-branch-dashboard) configured correctly, we will start using Universal Links for all non-aliased links. Then as soon as your users upgrade to iOS9, they will benefit from Universal Links.
 
-Note that Universal Links are of the form https://bnc.lt/[[four-letter-identifier]]/[[hash]] or https://your-domain.com/[[four-letter-identifier]]/[[hash]]. Existing links of the form https://bnc.lt/m/[[hash]] or https://bnc.lt/l/[[hash]] will continue to function normally as non-Universal Links.
+Note that Universal Links are of the form https://bnc.lt/<four-letter-identifier>/<link-hash> or https://your-domain.com/<four-letter-identifier>/<link-hash>. Existing links of the form https://bnc.lt/m/<link-hash> or https://bnc.lt/l/<link-hash> will continue to function normally as non-Universal Links.
 {% endif %}
 
 -----

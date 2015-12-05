@@ -27,7 +27,7 @@ Use our analytics tags to help _organize your data_. Track updates, run A/B test
 
 Every link that you create is completely customizable from a functionality perspective. Here are the key variables for customization.
 
-### Endpoint customization
+### App/Play Store fallback customization
 
 - **$fallback_url**: Change the redirect endpoint _all_ platforms - so you don't have to enable it by platform.
 
@@ -39,6 +39,12 @@ Every link that you create is completely customizable from a functionality persp
 
 - **$windows_phone_url**, **$blackberry_url**, **$fire_url**: Change the redirect endpoint for Windows OS, Blackberry OS, Amazon Fire OS. Default is set to the default URL set [on the dashboard](https://dashboard.branch.io/#/settings/link).
 
+### After click redirect
+
+Currently only supported on iOS, this lets you customize where Branch will redirect a user after opening up the app or app store. The alternative is that in some configs, we leave a white screen.
+
+- **$after_click_url**: Where to redirect to after the main click redirect has completed, so as to not leave a white screen.
+
 ### Deep link customization
 
 - **$deeplink_path**:  With this key, use value of the deep link path that you'd like us to append to your URI. For example, you could specify "$deeplink_path": "radio/station/456" and we'll open the app with the URI "yourapp://radio/station/456?link_click_id=branch-identifier". Default is 'open?link_click_id=1234'.
@@ -46,8 +52,6 @@ Every link that you create is completely customizable from a functionality persp
 - **duration**: Lets you control the fingerprinting match timeout (the time that a click will wait for an app open to match) also known as attribution window. Default is 2 hours.
 
 ### Advanced control parameters
-
-- **$query_param_passthrough**: Set value to 'true' so make sure that any query parameters appended to the Branch link will pass through to the redirect endpoint. Default is off.
 
 - **$always_deeplink**: A value to indicate if we should try to open up the app on mobile link click. Default is set to 'true'.
 

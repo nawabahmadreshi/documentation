@@ -10,8 +10,8 @@ There are many, many ways to create links!
 
 ## Mobile SDKs
 
-- [iOS documentation](https://github.com/BranchMetrics/iOS-Deferred-Deep-Linking-SDK#shortened-links)
-- [Android documentation](https://github.com/BranchMetrics/Android-Deferred-Deep-Linking-SDK#shortened-links)
+- [iOS documentation](https://github.com/BranchMetrics/iOS-Deferred-Deep-Linking-SDK#branch-universal-object-for-deep-links-content-analytics-and-indexing)
+- [Android documentation](https://github.com/BranchMetrics/Android-Deferred-Deep-Linking-SDK#branch-universal-object-for-deep-links-content-analytics-and-indexing)
 - [Cordova/Ionic documentation](https://github.com/BranchMetrics/Cordova-Ionic-PhoneGap-Deferred-Deep-Linking-SDK#linkdata-callback)
 - [Xamarin documentation](https://github.com/BranchMetrics/Xamarin-Deferred-Deep-Linking-SDK#shortened-links)
 - [Unity documentation](https://github.com/BranchMetrics/Unity-Deferred-Deep-Linking-SDK#shortened-links)
@@ -95,21 +95,21 @@ branchUniversalObject.getShortUrlWithLinkProperties(linkProperties,  andCallback
 
 ## Appending query parameters
 
-- [More detailed docs](https://github.com/BranchMetrics/Branch-Public-API#structuring-a-dynamic-deeplink)
+- [For link customizations, see here](https://dev.branch.io/link_configuration/)
 
 If you'd like to just build a Branch link by appending query parameters, we support that too. Here's an example of how to do that:
 
 1. Start with your Branch domain. http://bnc.lt (or your white labeled one).
 2. Append /a/your_Branch_key. *http://bnc.lt/a/your_branch_key*
 3. Append the start of query params '?'. *http://bnc.lt/a/your_branch_key?*
-4. [optional] Append the Branch analytics tag. *feature=marketing&channel=email&tags[]=drip1&tags[]=welcome*
+4. [optional] Append the Branch analytics tag to keep your data organized in the dashboard. ([list here](https://dev.branch.io/link_configuration/#analytics-labels-for-data-organization)) *feature=marketing&channel=email&tags[]=drip1&tags[]=welcome*
 5. [optional] Append any custom deep link parameters. *&user_id=4562&name=Alex&article_id=456*
-6. [optional] Append the data parameter (base64 encoded) filled with your Branch _$_ control parameters. *data=ew0KICAgICJoaSI6ImhlbGxvIg0KfQ==*
+6. [optional] Append your Branch control parameters - see [a full list of them here](https://dev.branch.io/link_configuration/#redirect-customization).
 
 Here's an example of a finalized one:
 
 {% highlight sh %}
-https://bnc.lt/a/key_live_jbgnjxvlhSb6PGH23BhO4hiflcp3y7ky?has_app=yes&channel=facebook&stage=level4&feature=affiliate&data=data=ew0KICAgICJoaSI6ImhlbGxvIg0KfQ==
+https://bnc.lt/a/key_live_jbgnjxvlhSb6PGH23BhO4hiflcp3y7ky?$deeplink_path=article%2Fjan%2F123&$fallback_url=https%3A%2F%2Fgoogle.com&channel=facebook&feature=affiliate
 {% endhighlight %}
 
 -----

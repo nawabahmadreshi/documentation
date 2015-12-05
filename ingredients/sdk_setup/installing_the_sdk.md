@@ -3,9 +3,9 @@
 {% endsection %}
 
 {% if page.ios %}
-For iOS, the easiest way to install the SDK is via Cocoapods. Add `pod "Branch"` to your podfile and run `pod install` from the command line.
+With extensive use, the iOS SDK footprint is **180 kb**.
 
-However, if you don't use Cocoapods, you can easily download and install our SDK.
+For iOS, the easiest way to install the SDK is via Cocoapods. Add `pod "Branch"` to your podfile and run `pod install` from the command line. However, if you don't use Cocoapods, you can easily download and install our SDK.
 
 - To download an open-source copy, [grab the zip here](https://github.com/BranchMetrics/Branch-ios-sdk) or [clone our repo here](https://github.com/BranchMetrics/branch-ios-sdk).
 - You will need to drag and drop the Branch.framework file that you downloaded into your project. Be sure that "Copy items if needed" is selected.
@@ -16,6 +16,8 @@ However, if you don't use Cocoapods, you can easily download and install our SDK
 
 
 {% if page.android %}
+With extensive use, the Android SDK footprint is **187 kb**.
+
 Just add `compile 'io.branch.sdk.android:library:1.+'` to the dependencies section of your `build.gradle` file.
 
 _alternative #1 - use our .jar:_ In case you'd like to use our .jar instead, here's a [link](https://s3-us-west-1.amazonaws.com/branchhost/Branch-Android-SDK.zip) that always points to our latest. 
