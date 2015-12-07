@@ -3,8 +3,6 @@
 
 One challenge aspect testing Branch's service is simulating a fresh install. We intentionally add a lot of restrictions to prevent 'install' events from being triggered on app updates or uninstall/reinstall. 
 
-To simulate a brand new user being referred from our perspective:
-
 {% if page.android %}
 1. Add the below to the Manifest near the Branch key. Remember to flip it to false before release!
 {% else %}

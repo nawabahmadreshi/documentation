@@ -14,11 +14,9 @@ platforms:
 - titanium
 ---
 
-A **Deepview** is a mobile web splash page combined with a deep link that will open the app if installed, and fall back to the appropriate app store if not. Here's an example flow:
+A **Deepview** is a mobile web splash page combined with a deep link that will open the app if installed, and fall back to the appropriate app store if not. Deepviews are discoverable in all search portals (Google, Apple Spotlight, Bing, etc), opening up new mechanisms for people to find your app. Plus, they drive much higher conversions to install instead of sending a user to the App/Play Store directly. Here's an example flow:
 
 {% image src='/img/deepviews/deepviews_allthecooks.gif' actual center alt='Deepviews example' %}
-
-Deepviews are discoverable in all search portals (Google, Apple Spotlight, Bing, etc), opening up new mechanisms for people to find your app. Plus, they drive much higher conversions to install instead of sending a user to the App/Play Store directly.
 
 -----
 
@@ -32,7 +30,7 @@ There are a few things to make sure you've done prior to leveraging deepviews
 
 -----
 
-## Enabling Deepviews
+## Enabling Deepviews for all links
 
 ### Enabling Deepviews for all links
 
@@ -42,15 +40,19 @@ There are a few things to make sure you've done prior to leveraging deepviews
 
 2) Select the **platform** you want to enable - options are desktop, Android and iOS.
 
-{% image src='/img/deepviews/deepviews_option.png' quarter center alt='Deepviews tab' %}
-
 3) Choose the template you want to enable and click **Enable**.
 
 {% image src='/img/deepviews/deepviews_enable.png' quarter center alt='Deepviews tab' %}
 
+#### Disabling Deepviews for one link
+
+If you've enabled deepviews universally, it's likely that you'll want to disable them now and again for specific use cases. It's simple, just follow the instructions for [_Enable Deepviews for one link_](/recipes/deepviews/ios/#enabling-deepviews-for-one-link) and set the value of one of those keys to `false`.
+
+For example: `$ios_deepview`: `false`
+
 -----
 
-### Enabling Deepviews per link
+### Enabling Deepviews for one link
 
 If you don't want to enable Deepviews globally, you can do it on a per link basis by inserting custom control parameters into the **data** dictionary.
 

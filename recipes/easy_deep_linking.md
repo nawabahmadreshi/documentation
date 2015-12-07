@@ -14,12 +14,6 @@ platforms:
 
 {% ingredient quickstart_preview/quickstart_preview %}{% endingredient %}
 
-iOS and Android both have championed the development of native apps through the process of _storyboarding_ out your views. A storyboard naturally has an entry point and and ending point. To route to the middle, you have to restructure a lot of aspects of your app to support it.
-
-It’s complicated. This guide will show you to how setup deep link routing in the simplest possible way.
-
-## Simple Deep Link Routing
-
 {% ingredient sdk_routing/auto_routing %}{% endingredient %}
 
 -----
