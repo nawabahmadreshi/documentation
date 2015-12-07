@@ -8,6 +8,9 @@ platforms:
 - ios
 - android
 ---
+
+{% image src='/img/recipes/universal_links/how_branch_improves.png' 3-quarters center alt='branch improves ulinks' %}
+
 {% if page.android %}
 App Links allow users visiting your website to route straight to your app if they have the app installed instead of first opening up the browser when a link is clicked. With Branch, you can enable Android App Links without all of the complicated server hosting. You simply need to add the correct intent strings.
 
@@ -48,9 +51,7 @@ In order to receive the App Links intent so that the Branch SDK can retrieve the
 {% endif %}
 
 {% if page.ios %}
-Universal Links allow users visiting your website to route straight to your app if they have the app installed instead of first opening up Safari when a link is clicked. 
-
-With Branch, you can enable Universal Links without all of the complicated server hosting and JSON signing. You simply need to add an entitlement to your app project.
+Universal Links allow users visiting your website to route straight to your app if they have the app installed instead of first opening up Safari when a link is clicked. With Branch, you can enable Universal Links without all of the complicated server hosting and JSON signing. You simply need to add an entitlement to your app project.
 
 -----
 

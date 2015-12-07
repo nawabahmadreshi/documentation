@@ -1,9 +1,11 @@
 
-Branch handle all the deep link routing for you if you leverage the automatic deeplinking functionality described below. Here's how to build on it:
+Branch will handle all the deep link routing for you if you leverage the automatic deeplinking functionality described below. Here's how to build on it:
+
+----
 
 {% if page.ios %}
 
-### Configure your UIViewController to as a delegate for BranchDeepLinkingController
+### Make your UIViewController a delegate for BranchDeepLinkingController
 
 The work in this section will take place in the view controller that you want to appear when a user clicks a link. For example, this could be a view to show a product.
 
@@ -108,7 +110,7 @@ func closePressed() {
 
 Lastly, you need to tell Branch which view controller you will use and which key to respond to. In this case we're using `product_picture` as above.
 
-**Note**: If you don't know what this key is, see [Creating Links](/recipes/quickstart_guide/{% section platform %}{{page.platform}}/#creating-links}{% endsection %})
+**Note**: If you don't know what this key is, see [Creating Links](/recipes/quickstart_guide/{% section platform %}{{page.platform}}/#creating-links{% endsection %})
 
 {% tabs %}
 {% tab objective-c %}
@@ -157,7 +159,7 @@ Most of the configuration for the auto deep link feature will happen in the Mani
 
 In your Manifest file, it's easy to specify which deep link keys you want to trigger the Activity to load. Just add this additional metadata for `io.branch.sdk.auto_link_keys` to the Activity you want to use. Let's use `product_picture` in this example
 
-**Note**: If you don't know what this key is, see [Creating Links](/recipes/quickstart_guide/{% section platform %}{{page.platform}}/#creating-links}{% endsection %})
+**Note**: If you don't know what this key is, see [Creating Links](/recipes/quickstart_guide/{% section platform %}{{page.platform}}/#creating-links{% endsection %})
 
 {% highlight xml %}
 <activity android:name="com.myapp.AutoDeepLinkExampleActivity">

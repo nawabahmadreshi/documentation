@@ -23,20 +23,8 @@ platforms:
 
 In order to use Branch you must first sign up for an acount. You can sign up for your own app id at [https://dashboard.branch.io](https://dashboard.branch.io)
 
-{% protip title="When to use Branch links?" %}
+## Basic tracking and link creation
 
-Ideally, you want to use our links any time you have an external link pointing to your app (share, invite, referral, etc) because:
-
-1. Our dashboard can tell you where your installs are coming from
-2. Our links are the highest possible converting channel to new downloads and users
-3. You can pass that shared data across install to give new users a custom welcome or show them the content they expect to see
-
-Our linking infrastructure will support anything you want to build. If it doesn't, we'll fix it so that it does: just reach out to alex@branch.io with requests.
-{% endprotip %}
-
-## Core functionality
-
-### Configuring your {{ page.platform_formatted }} app
 {% ingredient sdk_setup/installing_the_sdk %}{% endingredient %}
 
 -----
@@ -52,11 +40,6 @@ Our linking infrastructure will support anything you want to build. If it doesn'
 {% ingredient sdk_setup/handle_deep_link %}{% endingredient %}
 
 -----
-
-{% if page.web %}
-{% ingredient sdk_setup/web_sdk_features %}{% endingredient %}
-{% endif %}
-
 
 ### Creating links
 
@@ -84,11 +67,21 @@ You can also use the data to link directly to content! Instead of "property1": "
 
 -----
 
+{% ingredient sdk_setup/get_referring_params %}{% endingredient %}
+
+-----
+
 {% ingredient sdk_setup/identify_and_logout %}{% endingredient %}
 
 -----
 
 {% ingredient sdk_setup/pre_14_android %}{% endingredient %}
+
+{% if page.android %}
+
+-----
+
+{% endif %}
 
 {% ingredient sdk_setup/install_referrer %}{% endingredient %}
 
