@@ -12,11 +12,11 @@ If you're [creating links dynamically](/overviews/link_creation_guide/#appending
 
 #### SDK/API link control
 
-{% ingredient sdk_links/deepview_links %}
-{% override header %}{% endoverride %}
-{% override explanation %}{% endoverride %}
+{% ingredient sdk_links/deeplink_path_links %}
 {% endingredient %}
 
 #### Dashboard link control
 
 You can also control it for individual marketing links by inserting the keys and values into the deep link data section.
+
+{% image src='/img/ingredients/sdk_routing/deeplink_path.png' third center alt='deeplink path' %}

@@ -18,6 +18,12 @@ platforms:
 
 -----
 
+## Where to define your deep link keys
+
+{% ingredient sdk_links/buo_links %}{% endingredient %}
+
+-----
+
 ## Advanced: Supporting Existing Routes
 
 {% ingredient sdk_routing/support_existing_routes %}{% endingredient %}
