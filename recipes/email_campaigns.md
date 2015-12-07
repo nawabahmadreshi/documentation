@@ -43,7 +43,7 @@ This powerful link will now track clicks across platforms. Users who have the ap
 
 -----
 
-## Creating a many links
+## Creating many links
 
 {% ingredient http_api/structuring_dynamic_deeplink %}{% endingredient %}
 
