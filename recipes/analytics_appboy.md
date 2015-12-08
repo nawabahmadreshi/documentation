@@ -30,10 +30,12 @@ After [integrating the SDK](https://documentation.appboy.com/), you'll have ever
 
 Be sure to navigate to the **App Settings** section, and click **3rd Party Integrations**. From there, grab your API key (this'll be the same for all attribution partners listed on the page).
 
+Finally, ensure Appboy's SDK is collecting the IDGA, by following the instructions [here](https://documentation.appboy.com/iOS/#optional-idfa-collection).
+
 
 ## Configure Dashboard
 
-Now that you have all the required information, you'll need to navigate to our *Webhooks* tab. Click the Appboy button. Input your 3rd party API key from the previous step. 
+Now that you have all the required information, you'll need to navigate to our *Webhooks* tab. Click the Appboy button. Input your 3rd party API key from the previous step.
 
 ![branch-appboy-settings](/img/recipes/appboy/appboy-add.png)
 
@@ -54,3 +56,5 @@ Inside XCode's iOS Simulator, you'll want to simulate fresh installs by clicking
 Grab a Branch link from your dashboard, paste it in mobile safari, and hit go. Once the click is registered, run (Command+R) your application. This will allow Branch's SDK to match the "link-click" from earlier and confirm a Branch install just occurred (instead of another type of install).
 
 Navigate back to the *Webhooks* section of our dashboard, and click your Appboy webhook you're testing. If it worked, you'll notice a successful webhook sent, with a response code of `200`.
+
+Appboy's dashboard will indicate a Branch install hit their servers with a green button and a timestamp of the last successful install.
