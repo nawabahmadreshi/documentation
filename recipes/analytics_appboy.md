@@ -2,7 +2,7 @@
 type: recipe
 title: "Analytics: Appboy"
 page_title: Send Deep Link Install Data to Appboy
-description: We’ve partnered with AppBoy to provide an easy way to deliver Branch installs and attributions to your Appboy dashboard. Learn how to set it up.
+description: We’ve partnered with Appboy to provide an easy way to deliver Branch installs and attributions to your Appboy dashboard. Learn how to set it up.
 keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Analytics, Install Data, Appboy
 hide_platform_selector: true
 ---
