@@ -9,7 +9,7 @@ platforms:
 - android
 ---
 
-Google has been investing signficant resources into a project called App Indexing, where they will try to expose an 'app result' in Google Search. As the documentation is rather poor and ambiguous, and since we have a database of all of your deep links, we see this as a great opportunity to help you take advantage of App Indexing. This doc serves as education and instruction on how to configure your Branch integration for success.
+Google has been investing signficant resources into a project called App Indexing, where they will try to expose an 'app result' in Google Search. As the documentation is rather poor and ambiguous, and since we have a database of all of your deep links, we see this as a great opportunity to help you take advantage of App Indexing. This document serves as education and instruction on how to configure your Branch integration for success.
 
 ### What is Google App Indexing?
 
@@ -19,16 +19,16 @@ So, in order to benefit from App Indexing, you must have a website and it must b
 
 ### What Branch does for you
 
-Just because a lot of it is behind the scenes and there's no direct feedback, we want to make it clear how we help with App Indexing. In general, our goal is simple an twofold:
+A lot of what Branch does with App Indexing is behind the scenes and there's no direct feedback, so we want to make it clear how we help. Our goal is simple and twofold:
 
 - Flag your existing website for App Indexing so you don't have to *or* be the website for your content if you don't have one.
 - Improve your website's SEO so that your content is ranked higher.
 
 **1. All Branch links are configured for optimal SEO and App Indexing**
 
-If you let us host your content and metadata (and especially if you use [deepviews](https://dev.branch.io/recipes/deepviews/), we configure Branch links to 
+If you let us host your content and metadata (and especially if you use [Deepviews](https://dev.branch.io/recipes/deepviews/)), we configure Branch links to:
 
-1) We automatically insert the appropriate App Indexing headers.
+1) Automatically insert the appropriate App Indexing headers.
 
 When Google scrapes the Branch link, we return the properly configured app indexed header so they know this link should be flagged as an app result.
 
@@ -44,7 +44,7 @@ When Google scrapes the Branch link, we return the properly configured app index
 <body> … </body>
 {% endhighlight %}
 
-2) We'll use your canonical URL if you have one or create a unique one for you if not
+2) We'll use your canonical URL (see "canonical identifier" below) if you have one or create a unique one for you if you don't.
 
 {% highlight html %}
 <html>

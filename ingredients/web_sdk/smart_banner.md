@@ -16,7 +16,7 @@ That's all you need to add the smart banner to your website! The rest of this pa
 
 #### Advanced options and deep links
 
-Specifying them is optional, although you'll probably want to do so to tailor it to your needs.
+Specifying them is optional, although you'll probably want to do so to tailor it to your needs. You can customize the banner in lots of ways, including changing button text or color and adding ratings and review counts.
 
 {% highlight javascript %}
 
@@ -40,7 +40,15 @@ branch.banner(
     mobileSticky: false,                    // Determines whether the mobile banner will be set `position: fixed;` (sticky) or `position: absolute;`, defaults to false *this property only applies when the banner position is 'top'
     desktopSticky: true,                    // Determines whether the desktop banner will be set `position: fixed;` (sticky) or `position: absolute;`, defaults to true *this property only applies when the banner position is 'top'
     customCSS: '.title { color: #F00; }',   // Add your own custom styles to the banner that load last, and are gauranteed to take precedence, even if you leave the banner in an iframe
-    make_new_link: false                    // Should the banner create a new link, even if a link already exists?
+    make_new_link: false,                   // Should the banner create a new link, even if a link already exists?
+    rating: 5,                              // Number of stars (should be your store rating)
+    reviewCount: 1000,                      // Number of reviews that generate the rating (should be your store reviews)
+    theme: 'light',                         // Uses Branch's predetermined color scheme for the banner { 'light' || 'dark' }, default: 'light'
+    buttonBackgroundColor: css color,        // Overrides the theme's default colors
+    buttonFontColor: css color,
+    buttonBorderColorHover: css color,
+    buttonBackgroundColorHover: css color,
+    buttonFontColorHover: css color
 },
 
 // Here is where you define the deep link that you'd like to use
