@@ -44,10 +44,10 @@ branch.banner(
     rating: 5,                              // Number of stars (should be your store rating)
     reviewCount: 1000,                      // Number of reviews that generate the rating (should be your store reviews)
     theme: 'light',                         // Uses Branch's predetermined color scheme for the banner { 'light' || 'dark' }, default: 'light'
-    buttonBackgroundColor: css color        // Overrides the theme's default colors
-    buttonFontColor: css color
-    buttonBorderColorHover: css color
-    buttonBackgroundColorHover: css color
+    buttonBackgroundColor: css color,        // Overrides the theme's default colors
+    buttonFontColor: css color,
+    buttonBorderColorHover: css color,
+    buttonBackgroundColorHover: css color,
     buttonFontColorHover: css color
 },
 
