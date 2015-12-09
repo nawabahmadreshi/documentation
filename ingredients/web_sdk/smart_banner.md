@@ -16,7 +16,7 @@ That's all you need to add the smart banner to your website! The rest of this pa
 
 #### Advanced options and deep links
 
-Specifying them is optional, although you'll probably want to do so to tailor it to your needs. You can add ratings and 
+Specifying them is optional, although you'll probably want to do so to tailor it to your needs. You can customize the banner in lots of ways, including changing button text or color and adding ratings and review counts.
 
 {% highlight javascript %}
 
