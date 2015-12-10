@@ -10,7 +10,7 @@ android_keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, 
 hide_platform_selector: true
 ---
 
-{% image src='/img/ingredients/web_sdk/banner.png' half center alt='Facebook block' %}
+{% image src='/img/ingredients/web_sdk/banner2.png' half center alt='Facebook block' %}
 
 {% ingredient quickstart_preview/quickstart_preview %}{% endingredient %}
 
