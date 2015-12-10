@@ -56,7 +56,7 @@
         - advertising_google
         - advertising_twitter
         - analytics_adjust
-        - analytics_ga
+        - analytics_appboy
         - analytics_localytics
         - analytics_mixpanel
         - referrals_referral_saasquatch
