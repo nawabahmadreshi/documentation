@@ -18,6 +18,10 @@ That's all you need to add the smart banner to your website! The rest of this pa
 
 Specifying them is optional, although you'll probably want to do so to tailor it to your needs. You can customize the banner in lots of ways, including changing button text or color and adding ratings and review counts.
 
+
+
+{% image src='/img/ingredients/web_sdk/mobile_banners.png' half center alt='Facebook block' %}
+
 {% highlight javascript %}
 
 branch.banner(
@@ -63,6 +67,8 @@ branch.banner(
     }
 });
 {% endhighlight %}
+
+Note about ratings and reviews. Because the banner is designed to be cross-platform we don't pull reviews from the stores automatically. We strongly encourage developers to be transparent and honest with their users, and use review counts and store ratings that mirror their store ratings. Our repo is open source, and we welcome improvements to the banner!
 
 
 
