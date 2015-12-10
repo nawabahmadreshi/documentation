@@ -58,7 +58,7 @@ Universal Links allow users visiting your website to route straight to your app 
 ## Prerequisites for using Universal Links
 
 - Setup your Branch account and link routing for your app at [start.branch.io](https://start.branch.io).
-- You must have created your account at developers.apple.com and enabled Associated Domains. You can see [how to do this below](/recipes/branch_universal_links/#configure-developerapplecom). 
+- You must have created your account at developer.apple.com and enabled Associated Domains. You can see [how to do this below](/recipes/branch_universal_links/#configure-developerapplecom). 
 - [optional] Configure deep linking {% if page.ios || page.android %}[with our simple guide](/recipes/easy_deep_linking/{{page.platform}}/){% else %}[with our simple guide](/recipes/easy_deep_linking/ios/){% endif %}.
 
 -----
@@ -69,9 +69,9 @@ In order to enable your app for Universal Links, you'll need to register your bu
 
 If you have done this already, please click [here](/recipes/branch_universal_links/#add-the-entitlement-in-xcode) to skip to the next section.
 
-### Register your app on developers.apple.com
+### Register your app on developer.apple.com
 
-First, head to developers.apple.com and login. Then click on `Certificate, Identifiers & Profiles`, and then click on `Identifiers`. 
+First, head to developer.apple.com and login. Then click on `Certificate, Identifiers & Profiles`, and then click on `Identifiers`. 
 
 {% image src='/img/recipes/universal_links/background_certificates.png' half center alt='apple certificates' %}
 
@@ -85,7 +85,7 @@ You can retrieve this by looking at the `General` tab of your Xcode project for 
 
 {% image src='/img/recipes/universal_links/background_bundle_xcode.png' half center alt='bundle identifier xcode' %}
 
-### Enable Associated Domains for your app on developers.apple.com
+### Enable Associated Domains for your app on developer.apple.com
 
 For your pre-existing or work-in-progress _App Identifier_, scroll down to the last section and check the `Associated Domains` services.
 
@@ -129,7 +129,13 @@ For this example, we've whitelabeled our Branch links with `link.customapp.com`,
 
 ##### Support TLS with your DNS
 
-We recommend you use Cloudflare and head to the Crypo section of your dashboard there. Make your Crypto settings match this screenshot.
+We recommend you use Cloudflare and head to the Crypo section of your dashboard there. You basically need to allow passthrough of HTTPS traffic to the Branch service. Cloudflare can do this with the push of a couple buttons.
+
+First, make sure your DNS passes through the SSL. With Cloudflare, this is done by clicking the cloud with the arrow to make it _orange_. In other DNS, it should be properly configured out to the box.
+
+{% image src='/img/recipes/universal_links/orange_cloud.png' 3-quarters center alt='cloudflare TLS' %}
+
+Then, make your Crypto settings match this screenshot. This is enabling SSL on the domain/subdomain.
 
 {% image src='/img/recipes/universal_links/ssl.png' third center alt='cloudflare TLS' %}
 
