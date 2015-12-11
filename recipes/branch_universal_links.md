@@ -77,7 +77,7 @@ First, head to developer.apple.com and login. Then click on `Certificate, Identi
 
 If you don’t have a registered _App Identifier_ already, you’ll need to create one by clicking the **+** sign. If you do have one, skip ahead to the next section.
 
-You need to fill out 2 fields here: **name** and **bundle ID**. For name, you basically enter whatever you want. For bundle ID, you’ll fill in the value of the bundle identifer.
+You need to fill out 2 fields here: **name** and **bundle ID**. For name, you enter whatever you want. For bundle ID, you’ll fill in the value of the bundle identifer.
 
 {% image src='/img/recipes/universal_links/background_bundle.png' half center alt='bundle identifier' %}
 
@@ -114,11 +114,18 @@ If you see an error like this, make sure:
 
 ### Step 2: Add in your Branch link domains
 
-In the domains section, add the appropriate domain tags for `bnc.lt` as well as your `white label domain` if you use one. You must prefix it with `applinks:`.
+In the `Domains` section, add the appropriate domain tags for `bnc.lt` as well as your `white label domain` if you use one. You must prefix it with `applinks:`.
+
+#### Non white label domains
+
+If you're just using `bnc.lt` for all of your Branch links, you only need to add a single domain:
+
+- `applinks:bnc.lt`
 
 #### White label domains
 
-##### Add in both domains
+##### Support TLS with your DNS
+**If you have a white label domain, follow [the instructions below](/recipes/branch_universal_links/ios/#advanced-support-ssltls-with-your-dns) to ensure that it is configured for Universal Links.**
 
 For this example, we've whitelabeled our Branch links with `link.customapp.com`, so we need to add two domains:
 
@@ -126,36 +133,6 @@ For this example, we've whitelabeled our Branch links with `link.customapp.com`,
 - `applinks:link.customapp.com`
 
 {% image src='/img/recipes/universal_links/add_domains.png' half center alt='xcode add domains' %}
-
-##### Support TLS with your DNS
-
-We recommend you use Cloudflare and head to the Crypo section of your dashboard there. You basically need to allow passthrough of HTTPS traffic to the Branch service. Cloudflare can do this with the push of a couple buttons.
-
-First, make sure your DNS passes through the SSL. With Cloudflare, this is done by clicking the cloud with the arrow to make it _orange_. In other DNS, it should be properly configured out to the box.
-
-{% image src='/img/recipes/universal_links/orange_cloud.png' 3-quarters center alt='cloudflare TLS' %}
-
-Then, make your Crypto settings match this screenshot. This is enabling SSL on the domain/subdomain.
-
-{% image src='/img/recipes/universal_links/ssl.png' third center alt='cloudflare TLS' %}
-
-##### Troubleshooting 
-
-The following error message will appear in your OS-level logs if your domain doesn't have TLS set up properly:
-
-{% highlight javascript %}
-Sep 21 14:27:01 Derricks-iPhone swcd[2044] <Notice>: 2015-09-21 02:27:01.878907 PM [SWC] ### Rejecting URL 'https://examplecustomdomain.com/apple-app-site-association' for auth method 'NSURLAuthenticationMethodServerTrust': -6754/0xFFFFE59E kAuthenticationErr
-{% endhighlight %}
-
-These logs can be found for physical devices connected to Xcode by navigating to Window > Devices > choosing your device and then clicking the "up" arrow in the bottom left corner of the main view.
-
-Note that you have to delete the app and reinstall to trigger the iOS scrape of the apple-app-site-association file—re-running an installed app doesn't trigger the scrape.
-
-#### Non white label
-
-If you're just using `bnc.lt` for all of your Branch links, you only need to add a single domain:
-
-- `applinks:bnc.lt`
 
 ### Step 3: Make sure entitlements file is included
 
@@ -189,6 +166,9 @@ This is what our Universal Link settings look like after going through steps 1 -
 With your [Apple Developer Account](/recipes/branch_universal_links/#configure-developerapplecom), [Xcode project](/recipes/branch_universal_links/#add-the-entitlement-in-xcode) and [Branch dashboard](/recipes/branch_universal_links/#enable-universal-links-on-the-branch-dashboard) configured correctly, we will start using Universal Links for all non-aliased links. Then as soon as your users upgrade to iOS9, they will benefit from Universal Links.
 
 Note that Universal Links are of the form https://bnc.lt/<<four-letter-identifier>>/<<link-hash>> or https://your-domain.com/<<four-letter-identifier>>/<<link-hash>>. Existing links of the form https://bnc.lt/m/<<link-hash>> or https://bnc.lt/l/<<link-hash>> will continue to function normally as non-Universal Links.
+
+{% ingredient dashboard_setup/cloudflare_tls_setup %}{% endingredient %}
+
 {% endif %}
 
 -----
