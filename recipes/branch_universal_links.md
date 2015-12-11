@@ -169,6 +169,16 @@ Note that Universal Links are of the form https://bnc.lt/<<four-letter-identifie
 
 {% ingredient dashboard_setup/cloudflare_tls_setup %}{% endingredient %}
 
+-----
+
+## Troubleshooting Universal Links
+
+1. **Is it definitely a Universal Link?** Universal Links are in the form https://bnc.lt/abcd/[link_id]. If there is a four letter code between two slashes, then it's a Universal Link. If it isn't a Universal Link, follow the above instructions to enable Universal Links, and double check that your Branch Dashboard Settings > Link Settings for iOS have "Enable Universal Links" checked. 
+2. **Are you testing by manually entering into Safari?** Universal Links don't work properly when entered into Safari. Use Notes or iMessage for testing.
+3. **Are your applinks entitlements correct?** [Check XCode](/recipes/branch_universal_links/ios/#add-the-entitlement-in-xcode) for the correct setup.
+4. **Do your Team ID & Bundle ID match those on your dashboard?** You can find them in the Dashboard under Settings > Link Settings, in the iOS section next to "Enable Universal Links." They should match your Team ID and Bundle ID. Team ID can be found here [https://developer.apple.com/membercenter/index.action#accountSummary](https://developer.apple.com/membercenter/index.action#accountSummary). Your Bundle ID is found in Xcode, in the `General` tab for the correct build target.
+5. **Using a custom domain?** There are known issues with HTTPS traffic and whitelabeled domains. You can try and [resolve them here](/recipes/branch_universal_links/ios/#advanced-support-ssltls-with-your-dns)) or wait until December 17th when we should have a fix. In the meantime, leave Universal Links off, and your Branch links will simply fall back to the App Store for devices on iOS 9.2.
+
 {% endif %}
 
 -----
