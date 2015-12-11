@@ -1,12 +1,12 @@
 ### ADVANCED: Support SSL/TLS with your domain for Universal Links
 
-[By December 17th we hope to simplify this flow dramatically. Here are the steps to enable Universal Links with custom domains/subdomains at the moment.]
+[By December 17th we hope to simplify this flow dramatically, and you will not need to use CloudFlare or do other SSL configuration for custom subdomains. However, here are the steps to enable Universal Links with custom domains/subdomains at the moment.]
 
 Universal Links require HTTPS URLs. For your subdomain to work with Universal Links and Branch, you need to terminate SSL ahead of the Branch service.
 
-This is actually pretty easy if you use CloudFlare, it's just a couple of button clicks. 
+This is actually pretty easy if you use CloudFlare, it's just a couple of button clicks. [Here's how to set up a CNAME](https://support.cloudflare.com/hc/en-us/articles/200169046-How-do-I-add-a-CNAME-record-) with CloudFlare if you're new to it. 
 
- _Step 1._ Make sure your traffic is proxied to Branch. With CloudFlare, this is done by clicking the cloud with the arrow to make it _orange_.
+ _Step 1._ Make sure your traffic is proxied to the domain 'bnc.lt'. With CloudFlare, this is done by clicking the cloud with the arrow to make it _orange_.
 
 {% image src='/img/recipes/universal_links/orange_cloud.png' 3-quarters center alt='cloudflare TLS' %}
 
