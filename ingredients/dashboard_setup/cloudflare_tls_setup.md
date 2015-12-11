@@ -14,6 +14,10 @@ This is actually pretty easy if you use CloudFlare, it's just a couple of button
 
 {% image src='/img/recipes/universal_links/ssl.png' third center alt='cloudflare TLS' %}
 
+#### Test your link 
+
+You can verify if it's all set up correctly by using this tool: [https://limitless-sierra-4673.herokuapp.com/](https://limitless-sierra-4673.herokuapp.com/) (credit to [ShortStuffSushi](https://github.com/shortstuffsushi)). Ignore the IPA file upload and just paste your custom domain link in "Domain". 
+
 #### Issues with SSL 
 
 The following error message will appear in your OS-level logs if your domain doesn't have SSL set up properly:
