@@ -1,9 +1,8 @@
-{% section header %}### Identifying Your Users{% endsection %}
-
+{% section header %}### Identifying your users{% endsection %}
 
 {% section pre_explanation %}{% endsection %}
 
-Branch automatically tracks unique devices. However, to make full use of our powerful API, you should also identify users with whichever form of unique identification your app uses, especially for multi-device experiences. We recommend you call `setIdentity` prior to awarding credits/codes/referrals/links (etc). setIdentity will retroactively associate any previously recorded events from the current device only the first time this method is ever called with the supplied unique user id.
+Identifying your users will help you associate all activities and links created to a particular person. This is important for identifying which of your users are the most influential.
 
 {% if page.ios %}
 
@@ -172,3 +171,5 @@ branch.logout(
 );
 {% endhighlight %}
 {% endif %}
+
+Note that setIdentity will retroactively associate any previously recorded events from the current device only the first time this method is ever called with the supplied unique user id.

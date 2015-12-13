@@ -71,10 +71,6 @@ You can also use the data to link directly to content! Instead of "property1": "
 
 -----
 
-{% ingredient sdk_setup/identify_and_logout %}{% endingredient %}
-
------
-
 {% ingredient sdk_setup/pre_14_android %}{% endingredient %}
 
 {% if page.android %}
