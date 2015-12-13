@@ -57,7 +57,6 @@ To start collecting statistics regarding installs, opens, referred installs -- a
 
 ## What's next
 
-{% ingredient recipe_preview/easy_deep_linking %}{% endingredient %}
 {% ingredient recipe_preview/app_download_banner %}{% endingredient %}
 {% ingredient recipe_preview/personalized_welcome %}{% endingredient %}
 {% ingredient recipe_preview/influencers %}{% endingredient %}

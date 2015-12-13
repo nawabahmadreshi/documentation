@@ -1,6 +1,6 @@
 {% section intro %}
 
-This section will describe a routing example in an abstract way. In case you want the simple version, Branch can handle routing for you automatically. Just check out the section on [**simplified deep link routing**](/recipes/easy_deep_linking/{% section platform %}{{page.platform}}{% endsection %}).
+This section will describe a routing example in an abstract way. In case you want the simple version, Branch can handle routing for you automatically. Just check out the section on [**simplified deep link routing**](/recipes/setup_deep_linking/{% section platform %}{{page.platform}}{% endsection %}).
 {% endsection %}
 
 {% if page.ios %}

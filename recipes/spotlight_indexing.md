@@ -106,7 +106,7 @@ func application(application: UIApplication, continueUserActivity: userActivity,
 What's more delightful than searching for a particular something on your phone, and then clicking it to open the app immediately. You'll need to setup deep linking to allow for this.
 
 1. Add a custom key in your Branch dictionary to deeplink from when click (`picture_id`, `article_id`, etc)
-2. Let Branch open the view controller automatically when the key is detected. [**Here's how to set it up.**](/recipes/easy_deep_linking/ios)
+2. Let Branch open the view controller automatically when the key is detected. [**Here's how to set it up.**](/recipes/setup_deep_linking/ios)
 
 ### Use deepviews for user acquisition
 

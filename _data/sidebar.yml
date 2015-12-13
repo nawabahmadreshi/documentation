@@ -14,13 +14,12 @@
     - type: recipe
       title: Getting started with Branch
       pages:
-        - your_first_marketing_link
-        - quickstart_guide
+        - add_the_sdk
+        - setup_deep_linking
         - measuring_installs
     - type: recipe
       title: Deeplinked features
       pages:
-        - easy_deep_linking
         - content_sharing
         - personalized_welcome
         - deepviews

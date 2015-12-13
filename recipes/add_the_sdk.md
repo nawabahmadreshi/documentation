@@ -2,7 +2,7 @@
 type: recipe
 title: "Step 1: Add the SDK"
 page_title: Add the Branch SDK to your app
-description: The Branch Metrics dashboard shows you all the analytics for your iOS deep links. Track install attribution, measure marketing channels and ad campaigns.
+description: This page will tell you how to quickly add the Branch SDK to your Android, iOS, Cordova, Phonegap, Xamarin, Unity, Air or Titanium app.
 platforms:
 - ios
 - android
@@ -13,3 +13,12 @@ platforms:
 - titanium
 ---
 
+-----
+
+## What's next?
+
+### [Head to Step 2: Setup deep linking](/recipes/setup_deep_linking/{{page.platform}})
+
+-----
+
+{% ingredient recipe_preview/contact_us %}{%endingredient%}

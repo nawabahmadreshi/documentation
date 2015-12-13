@@ -19,7 +19,7 @@ App Links allow users visiting your website to route straight to your app if the
 ## Prerequisites for using Android App Links
 
 - Setup your Branch account and link routing for your app at [start.branch.io](https://start.branch.io). 
-- [optional] Configure deep linking {% if page.ios || page.android %}[with our simple guide](/recipes/easy_deep_linking/{{page.platform}}/){% else %}[with our simple guide](/recipes/easy_deep_linking/ios/){% endif %}.
+- [optional] Configure deep linking {% if page.ios || page.android %}[with our simple guide](/recipes/setup_deep_linking/{{page.platform}}/){% else %}[with our simple guide](/recipes/setup_deep_linking/ios/){% endif %}.
 
 ## Enable App Links on Dashboard
 
@@ -59,7 +59,7 @@ Universal Links allow users visiting your website to route straight to your app 
 
 - Setup your Branch account and link routing for your app at [start.branch.io](https://start.branch.io).
 - You must have created your account at developer.apple.com and enabled Associated Domains. You can see [how to do this below](/recipes/branch_universal_links/#configure-developerapplecom). 
-- [optional] Configure deep linking {% if page.ios || page.android %}[with our simple guide](/recipes/easy_deep_linking/{{page.platform}}/){% else %}[with our simple guide](/recipes/easy_deep_linking/ios/){% endif %}.
+- [optional] Configure deep linking {% if page.ios || page.android %}[with our simple guide](/recipes/setup_deep_linking/{{page.platform}}/){% else %}[with our simple guide](/recipes/setup_deep_linking/ios/){% endif %}.
 
 -----
 
@@ -214,7 +214,6 @@ Unfortunately, Universal Links don't work quite everywhere yet. We'll maintain t
 
 You've got the basics, but let's take your integration to the next level:
 
-{% ingredient recipe_preview/easy_deep_linking %}{% endingredient %}
 {% ingredient recipe_preview/content_sharing %}{% endingredient %}
 {% ingredient recipe_preview/personalized_welcome %}{% endingredient %}
 {% ingredient recipe_preview/referral_links_with_incentives %}{% endingredient %}

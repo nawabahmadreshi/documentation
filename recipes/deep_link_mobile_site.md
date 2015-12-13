@@ -106,7 +106,6 @@ There are various metrics to understand when deep linking from your mobile websi
 
 You've got the basics, but let's take your integration to the next level:
 
-{% ingredient recipe_preview/easy_deep_linking %}{% endingredient %}
 {% ingredient recipe_preview/content_sharing %}{% endingredient %}
 {% ingredient recipe_preview/personalized_welcome %}{% endingredient %}
 

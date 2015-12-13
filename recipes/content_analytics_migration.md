@@ -224,4 +224,4 @@ Here's an example of what you'll get!
 
 ## Step 4: Set Up Deep Linking
 
-You can head over to our [easy deep linking section](/recipes/easy_deep_linking/ios/) to see how to quickly set it up if you haven't already.
+You can head over to our [easy deep linking section](/recipes/setup_deep_linking/ios/) to see how to quickly set it up if you haven't already.

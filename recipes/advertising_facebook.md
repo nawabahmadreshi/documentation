@@ -21,6 +21,8 @@ Here are some examples:
 {% protip title="Branch links work even on first install!" %}
 With standard deeplinks, if a user doesn't have the app, the link fails. With Branch links, users without the app will be directed to the {% if page.ios %}App{% endif %}{% if page.android %}Play{% endif %} Store -- and upon opening the app can be deeplinked! Facebook calls this deferred deep linking, but Branch links do this plus way more and refer to the whole process as *contextual deep linking*.{% endprotip %}
 
+-----
+
 ## One time configuration
 
 In order for Branch to properly run a Facebook deeplinked ad campaign, you must first send Branch your app token. This is easy to get, and you can find the step by step instructions on how to do so below. 
@@ -35,6 +37,7 @@ In order for Branch to properly run a Facebook deeplinked ad campaign, you must 
 
 3. Press 'Authenticate'. That's it!
 
+-----
 
 ## Creating your Link
 
@@ -50,6 +53,7 @@ In order for Branch to properly run a Facebook deeplinked ad campaign, you must 
 
 {% ingredient dashboard_links/custom_data %}{% endingredient %}
 
+-----
 
 ## Creating a Branch powered Facebook ad
 
@@ -71,6 +75,8 @@ Paste the Branch link from the dashboard into the **Deep Link** field
 
 You're all set to go!
 
+-----
+
 ## View your data
 
 Now that you've set up your campaign and have everything all running, let's analyze the data! There are many changes in the works to the Branch dashboard, but if you'd like to see something, please send us a request.
@@ -84,6 +90,8 @@ To view more details stats, click the _small button that looks like a bar chart_
 The chart is what we call the _Click Flow_. From a Facebook installs perspective, this will just report for you the number of installs and reopens from the link. Currently, clicks is not accurate through this ad format.
 
 {% image src='/img/recipes/deeplink_ads/click_flow_analytics.png' half nofloat alt='Facebook Example Ad' %}
+
+-----
 
 ## A note on testing
 
@@ -111,8 +119,6 @@ The only way to test the deep linking functionality is outside of the actual ads
 
 {% ingredient dashboard_setup/facebook_auth_issues %}{% endingredient %}
 
-## What's next?
-
-{% ingredient recipe_preview/easy_deep_linking %}{% endingredient %}
+-----
 
 {% ingredient recipe_preview/contact_us %}{% endingredient %}
