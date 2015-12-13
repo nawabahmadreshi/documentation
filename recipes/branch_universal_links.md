@@ -179,6 +179,33 @@ Note that Universal Links are of the form https://bnc.lt/<<four-letter-identifie
 4. **Do your Team ID & Bundle ID match those on your dashboard?** You can find them in the Dashboard under Settings > Link Settings, in the iOS section next to "Enable Universal Links." They should match your Team ID and Bundle ID. Team ID can be found here [https://developer.apple.com/membercenter/index.action#accountSummary](https://developer.apple.com/membercenter/index.action#accountSummary). Your Bundle ID is found in Xcode, in the `General` tab for the correct build target.
 5. **Using a custom domain?** There are known issues with HTTPS traffic and whitelabeled domains. You can try and [resolve them here](/recipes/branch_universal_links/ios/#advanced-support-ssltls-with-your-dns)) or wait until December 17th when we should have a fix. In the meantime, leave Universal Links off, and your Branch links will simply fall back to the App Store for devices on iOS 9.2.
 
+-----
+
+## Which Apps/Browsers Support Universal Links
+
+Unfortunately, Universal Links don't work quite everywhere yet. We'll maintain this list and keep it up to date. *Last updated 12/12/15*.
+
+| **App/Browser** | **Status**
+| Messages | works
+| Slack | works
+| Mail | works
+| Safari | works conditionally *
+| Chrome | works conditionally *
+| Google | not working
+| Facebook | not working
+| Twitter | not working
+| Gmail | not working
+| Pinterest | not working
+| FB Messenger | not working
+| Inbox | not working
+
+* Note: Conditionally working means that it works some of the time:
+
+- Ulinks work with a user driven <a> tag click *across domains*. Example: google.com -> bnc.lt will trigger it.
+- Ulinks will not work with a user driven <a> tag click on the *same domain*. Example: pinterest.com -> pinterest.com will not trigger it.
+- Ulinks will not work if you paste the link into the browser URL field.
+- Ulinks cannot be triggerd via Javascript (in onload or via a click() call)
+
 {% endif %}
 
 -----
