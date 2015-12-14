@@ -45,11 +45,6 @@ In the `Domains` section, add the appropriate domain tags for `bnc.lt` as well a
 
 - `applinks:bnc.lt`
 
-**If you have a white label domain, follow [the instructions below](/recipes/branch_universal_links/ios/#advanced-support-ssltls-with-your-dns) to ensure that it is configured for Universal Links.** For this example, we've whitelabeled our Branch links with `link.customapp.com`, so we need to add two domains:
-
-- `applinks:bnc.lt`
-- `applinks:link.customapp.com`
-
 {% image src='/img/recipes/universal_links/add_domains.png' half center alt='xcode add domains' %}
 
 **Note: If you encounter any issues, please follow the [full instructions here](/recipes/branch_universal_links/ios/).**
@@ -175,11 +170,6 @@ In the `Domains` section, add the appropriate domain tags for `bnc.lt` as well a
 
 - `applinks:bnc.lt`
 
-**If you have a white label domain, follow [the instructions below](/recipes/branch_universal_links/ios/#advanced-support-ssltls-with-your-dns) to ensure that it is configured for Universal Links.** For this example, we've whitelabeled our Branch links with `link.customapp.com`, so we need to add two domains:
-
-- `applinks:bnc.lt`
-- `applinks:link.customapp.com`
-
 {% image src='/img/recipes/universal_links/add_domains.png' half center alt='xcode add domains' %}
 
 **Note: If you encounter any issues, please follow the [full instructions here](/recipes/branch_universal_links/ios/).**
@@ -288,11 +278,6 @@ If you see an error like this, make sure:
 In the `Domains` section, add the appropriate domain tags for `bnc.lt` as well as your `white label domain` if you use one. You must prefix it with `applinks:`. If you're just using `bnc.lt` for all of your Branch links, you only need to add a single domain:
 
 - `applinks:bnc.lt`
-
-**If you have a white label domain, follow [the instructions below](/recipes/branch_universal_links/ios/#advanced-support-ssltls-with-your-dns) to ensure that it is configured for Universal Links.** For this example, we've whitelabeled our Branch links with `link.customapp.com`, so we need to add two domains:
-
-- `applinks:bnc.lt`
-- `applinks:link.customapp.com`
 
 {% image src='/img/recipes/universal_links/add_domains.png' half center alt='xcode add domains' %}
 
