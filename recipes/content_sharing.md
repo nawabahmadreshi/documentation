@@ -28,7 +28,7 @@ platforms:
 {% protip title="Data is for Deeplinking" %}
 You use the data to link directly to content! Instead of "property1": "blue", you could pass in "{% if page.ios %}pictureId{% endif %}{% if page.android %}picture_id{% endif %}": "1234", then when a user clicks on a link you can open the app straight to picture with Id 1234. Keep reading...
 {% endprotip %}
-{% if page.ios or page.android %}
+{% if page.ios or page.android or page.unity %}
 
 {% ingredient sdk_links/tracking_views %}{% endingredient %}
 

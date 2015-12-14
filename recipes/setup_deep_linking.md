@@ -17,11 +17,29 @@ Deep linking is an incredibly important part of building your app, and essential
 
 ## Create your deep link
 
+{% ingredient sdk_links/creating_links %}{% override header %}{% endoverride %}{% endingredient %}
+
+-----
+
 ## Alternate 1: Easy deep link routing
+
+{% ingredient sdk_routing/auto_routing %}{% endingredient %}
+
+-----
+
+### Where to define your deep link keys
+
+{% ingredient sdk_links/buo_links %}{% endingredient %}
 
 ## Alternate 2: Handle routing yourself in the Branch callback
 
+{% ingredient sdk_routing/routing %}{% endingredient %}
+
+-----
+
 ## Supporting existing routes
+
+{% ingredient sdk_routing/support_existing_routes %}{% endingredient %}
 
 -----
 

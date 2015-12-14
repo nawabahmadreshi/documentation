@@ -37,12 +37,6 @@ In order to use Branch you must first sign up for an acount. You can sign up for
 
 {% endif %}
 
-## What's next?
-
-### [Head to Step 2: Setup deep linking](/recipes/setup_deep_linking/{{page.platform}})
-
------
-
 ## Advanced functionality
 
 {% ingredient sdk_setup/callback_params %}{% endingredient %}
@@ -68,6 +62,14 @@ In order to use Branch you must first sign up for an acount. You can sign up for
 {% if page.android or page.xamarin %}
 
 -----
+
+
+## What's next?
+
+### [Head to Step 2: Setup deep linking](/recipes/setup_deep_linking/{{page.platform}}/)
+
+-----
+
 
 {% endif %}
 

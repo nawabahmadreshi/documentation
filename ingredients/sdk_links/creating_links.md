@@ -2,13 +2,10 @@
 
 {% section explanation %}
 
-{% if page.ios or page.android %}
-`BranchUniversalObject` is the best way of tracking and sharing content with Branch. It provides convenient methods for sharing, deeplinking, and tracking how often that content is viewed. This information is then used to provide you with powerful content analytics. Most importantly, it makes it easy to:
+{% if page.ios or page.android or page.unity %}
+`BranchUniversalObject` is the best way of tracking and sharing content with Branch. It provides convenient methods for sharing, deeplinking, and tracking how often that content is viewed. This information is then used to provide you with powerful content analytics. 
 
-- Embed key/value deep link metadata. We'll make sure this gets delivered to the app with the clicking user
-- Label feature and channel for analytics on the dashboard
-
-Here's how to create your own Branch Links. In order to share these links, we've built a _native share sheet for Android_ and implemented a simple way to use _UIActivityViewController on iOS_. 
+Below is how to create your own Branch Links. In order to share these links, we've built a _native share sheet for Android_ and implemented a simple way to use _UIActivityViewController on iOS_. 
 {% section learn-more %} Check out the section on [**content sharing**](/recipes/content_sharing/{% section platform %}{{page.platform}}{% endsection %}).{% endsection %}
 {% else %}
 Links are the foundation to everything Branch offers. There are many different aspects to creating links but the most important are:
@@ -190,19 +187,38 @@ public void ReceivedUrl (Uri uri)
 {% endif %}
 
 {% if page.unity %}
-{% highlight c# %}
-Dictionary<string, object> parameters = new Dictionary<string, object>
-{
-	{ "article_id", "1234" },
-	{ "$og_title", "Hot off the presses!" },
-	{ "$og_image_url", "mysite.com/image.png" },
-	{ "$desktop_url", "mysite.com/article1234" }
-}
+First create the object that you'd like to link to:
 
-string channel = "sms";
-string feature = "share";
-Branch.getShortURLWithTags(parameters, channel, feature, delegate(string url, string error) {
-    // show the link to the user or share it immediately
+{% highlight c# %}
+BranchUniversalObject universalObject = new BranchUniversalObject();
+universalObject.canonicalIdentifier = "id12345";
+universalObject.title = "id12345 title";
+universalObject.contentDescription = "My awesome piece of content!";
+universalObject.imageUrl = "https://s3-us-west-1.amazonaws.com/branchhost/mosaic_og.png";
+universalObject.metadata.Add("foo", "bar");
+{% endhighlight %}
+
+Then define the properties of the link you'd like to create.
+
+{% highlight c# %}
+BranchLinkProperties linkProperties = new BranchLinkProperties();
+linkProperties.tags.Add("tag1");
+linkProperties.tags.Add("tag2");
+linkProperties.feature = "invite";
+linkProperties.channel = "Twitter";
+linkProperties.stage = "2";
+linkProperties.controlParams.Add("$desktop_url", "http://example.com");
+{% endhighlight %}
+
+Lastly, create the link by referencing the universal object.
+
+{% highlight c# %}
+Branch.getShortURL(universalObject, linkProperties, (url, error) => {
+    if (error != null) {
+        Debug.LogError("Branch.getShortURL failed: " + error);
+    } else {
+        Debug.Log("Branch.getShortURL shared params: " + url);
+    }
 });
 {% endhighlight %}
 {% endif %}
