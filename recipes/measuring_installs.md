@@ -1,11 +1,18 @@
 ---
 type: recipe
-title: "Step 3: Attribution and analytics"
+title: "Step 3: Attribution/analytics"
 page_title: App attribution and analytics for iOS and Android
 description: The Branch Metrics dashboard shows you all the analytics for your iOS deep links. Track install attribution, measure marketing channels and ad campaigns.
 keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Attribution, Analytics, Dashboard, App Install, App Open, Conversion, iOS, objective-c, swift
 android_keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Attribution, Analytics, Dashboard, App Install, App Open, Conversion, Android
-hide_platform_selector: true
+platforms:
+- ios
+- android
+- cordova
+- xamarin
+- unity
+- adobe
+- titanium
 ---
 
 It's time to dive into your data with the [Branch Dashboard](https://dashboard.branch.io). It's the perfect tool for measing growth and engagement.
@@ -23,6 +30,8 @@ As you most likely saw on the [link creation documentation page](/link_creation_
 * **campaign** :Use this field to organize the links by actual campaign. For example, if you launched a new feature or product and want to run a campaign around that.
 * **stage**: Use this to categorize the progress or category of a user when the link was generated. For example, if you had an invite system accessible on level 1, level 3 and 5, you could differentiate links generated at each level with this parameter
 * **tags**: This is more a free form entry with unlimited values. Use it to organize your link data with labels that don't fit within the bounds of the above.
+
+Here's an example from the click flows on the summary page, where you can filter by these tags.
 
 {% image src='/img/ingredients/analytics_and_custom_events/analytics_labels.png' 3-quarters center alt='the goal' %}
 

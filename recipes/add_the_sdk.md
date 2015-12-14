@@ -63,14 +63,12 @@ In order to use Branch you must first sign up for an acount. You can sign up for
 
 -----
 
+{% endif %}
 
 ## What's next?
 
 ### [Head to Step 2: Setup deep linking](/recipes/setup_deep_linking/{{page.platform}}/)
 
 -----
-
-
-{% endif %}
 
 {% ingredient recipe_preview/contact_us %}{%endingredient%}
