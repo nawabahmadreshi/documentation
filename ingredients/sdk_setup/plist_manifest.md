@@ -45,9 +45,7 @@ In the `Domains` section, add the appropriate domain tags for `bnc.lt` as well a
 
 - `applinks:bnc.lt`
 
-**If you have a white label domain, follow [the instructions below](/recipes/branch_universal_links/ios/#advanced-support-ssltls-with-your-dns) to ensure that it is configured for Universal Links.**
-
-For this example, we've whitelabeled our Branch links with `link.customapp.com`, so we need to add two domains:
+**If you have a white label domain, follow [the instructions below](/recipes/branch_universal_links/ios/#advanced-support-ssltls-with-your-dns) to ensure that it is configured for Universal Links.** For this example, we've whitelabeled our Branch links with `link.customapp.com`, so we need to add two domains:
 
 - `applinks:bnc.lt`
 - `applinks:link.customapp.com`
@@ -177,9 +175,7 @@ In the `Domains` section, add the appropriate domain tags for `bnc.lt` as well a
 
 - `applinks:bnc.lt`
 
-**If you have a white label domain, follow [the instructions below](/recipes/branch_universal_links/ios/#advanced-support-ssltls-with-your-dns) to ensure that it is configured for Universal Links.**
-
-For this example, we've whitelabeled our Branch links with `link.customapp.com`, so we need to add two domains:
+**If you have a white label domain, follow [the instructions below](/recipes/branch_universal_links/ios/#advanced-support-ssltls-with-your-dns) to ensure that it is configured for Universal Links.** For this example, we've whitelabeled our Branch links with `link.customapp.com`, so we need to add two domains:
 
 - `applinks:bnc.lt`
 - `applinks:link.customapp.com`
@@ -252,7 +248,7 @@ For a full example of the `*-app.xml` please refer to the [demo](https://github.
 
 In your project's `*-app.xml` file, you can register your app to respond to direct deep links (yourapp:// in a mobile browser) by adding a URI scheme. Also, make sure to change *yourApp* to a unique string that represents your app name.
 
-#### on iOS
+#### on iOS with URIs
 
 {% highlight xml %}
 <key>CFBundleURLTypes</key>
@@ -265,6 +261,43 @@ In your project's `*-app.xml` file, you can register your app to respond to dire
     </dict>
 </array>
 {% endhighlight %}
+
+#### on iOS with Universal Links
+
+### Support Universal Linking (iOS 9)
+
+Configuring your app for Branch's Universal Links is very simple. At a high level, you just need to go in and add in the selected `Associated Domains` to your Xcode project.
+
+**Step 1.** Enable Associated Domains in Xcode
+
+First, double check that provisioning profiles in your app belong to the same team that you are going to use throughout the Universal Link configuration process with Branch. Using provisioning profiles from a different team will cause Universal Links to fail and fall back to normal Branch links. Then go to the `Capabilities` tab of your project file.
+
+Scroll down and enable `Associated Domains` so that the accordion expands.
+
+{% image src='/img/recipes/universal_links/enable_ass_domains.png' half center alt='xcode ass domains' %}
+
+If you see an error like this, make sure:
+
+- that you have the right team selected
+- your Bundle Identifier of your Xcode project matches the one used to register the App Identifier
+
+[Full instructions here](/recipes/branch_universal_links/ios/#configure-developerapplecom).
+
+**Step 2:** Add in your Branch link domains
+
+In the `Domains` section, add the appropriate domain tags for `bnc.lt` as well as your `white label domain` if you use one. You must prefix it with `applinks:`. If you're just using `bnc.lt` for all of your Branch links, you only need to add a single domain:
+
+- `applinks:bnc.lt`
+
+**If you have a white label domain, follow [the instructions below](/recipes/branch_universal_links/ios/#advanced-support-ssltls-with-your-dns) to ensure that it is configured for Universal Links.** For this example, we've whitelabeled our Branch links with `link.customapp.com`, so we need to add two domains:
+
+- `applinks:bnc.lt`
+- `applinks:link.customapp.com`
+
+{% image src='/img/recipes/universal_links/add_domains.png' half center alt='xcode add domains' %}
+
+**Note: If you encounter any issues, please follow the [full instructions here](/recipes/branch_universal_links/ios/).**
+
 
 #### on Android
 
