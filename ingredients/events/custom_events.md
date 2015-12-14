@@ -1,5 +1,5 @@
 
-### Custom Events
+{% section header %}### Custom Events{% endsection %}
 
 You can track any custom user actions you wish. You can then be notified via a postback to your server every time that an event happens. Visit the [Webhooks](/recipes/webhooks_and_exporting_data/) page for more information on receiving postbacks.
 
@@ -7,7 +7,7 @@ Examples of what you may want to track:
 
 * sign up
 * purchases
-* content shares
+* shares
 
 To track custom events, you can make a simple call to the SDK.
 

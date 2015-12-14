@@ -1,5 +1,9 @@
 You spent a bunch of time already setting up deeplink paths before you heard of Branch and now you want the Branch links to leverage them? No problem at all. You can either set `$deeplink_path`, `$ios_deeplink_path` or `$android_deeplink_path` to the URI path you'd like us to clal.
 
+{% if page.ios %}
+**Note that Universal Links and Spotlight on iOS do not support URI paths**
+{% endif %}
+
 All of the examples below will cause Branch to trigger `myapp://content/1234`:
 
 #### Dynamic link control

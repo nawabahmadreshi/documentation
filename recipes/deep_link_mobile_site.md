@@ -102,11 +102,22 @@ There are various metrics to understand when deep linking from your mobile websi
 
 -----
 
+## Troubleshooting
+
+### Calls to bnc.lt blocked
+
+Please make sure to add `bnc.lt` to the CSP header for your pages. We've seen some browsers that attempt to block it outright. You can deliver this in an HTTP header from your web server or you can add a simple metatag to your site like so:
+
+{% highlight html %}
+<meta http-equiv="Content-Security-Policy" content="default-src https://bnc.lt; child-src 'none'; object-src 'none'"> 
+{% endhighlight %}
+
+-----
+
 ## What's next?
 
 You've got the basics, but let's take your integration to the next level:
 
-{% ingredient recipe_preview/easy_deep_linking %}{% endingredient %}
 {% ingredient recipe_preview/content_sharing %}{% endingredient %}
 {% ingredient recipe_preview/personalized_welcome %}{% endingredient %}
 

@@ -1,6 +1,10 @@
 
 Branch will handle all the deep link routing for you if you leverage the automatic deeplinking functionality described below. Here's how to build on it:
 
+{% if page.unity or page.xamarin or page.cordova or page.titanium or page.adobe %}
+**Unfortunately, auto routing is only supported by native iOS and Android. If you'd like to extend your platform's repo, just head to our [Github page](https://github.com/BranchMetrics).**
+{% endif %}
+
 ----
 
 {% if page.ios %}

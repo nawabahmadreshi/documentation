@@ -1,9 +1,7 @@
 {% tabs %}
 {% tab objective-c %}
 {% highlight objc %}
-- (BOOL)application:(UIApplication *)application
-continueUserActivity:(NSUserActivity *)userActivity
- restorationHandler:(void (^)(NSArray *restorableObjects))restorationHandler {
+- (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray *restorableObjects))restorationHandler {
     BOOL handledByBranch = [[Branch getInstance] continueUserActivity:userActivity];
     
     return handledByBranch;

@@ -189,7 +189,6 @@ You can see more about how to [setup content sharing here.](https://dev.branch.i
 
 What's next?
 
-{% ingredient recipe_preview/easy_deep_linking %}{% endingredient %}
 {% ingredient recipe_preview/content_sharing %}{% endingredient %}
 {% ingredient recipe_preview/web_to_app %}{% endingredient %}
 {% ingredient recipe_preview/deepviews %}{% endingredient %}

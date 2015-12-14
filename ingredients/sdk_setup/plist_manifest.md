@@ -10,7 +10,7 @@ Your app key can be retrieved on the [Settings](https://dashboard.branch.io/#/se
 1. In the newly added row, fill in `branch_key` for its key, leave type as String, and enter your app key obtained in above steps in its value column.
 1. Save the plist file.
 
-#### Configure for deep linking
+#### Configure for URI-based deep linking
 
 To set up your URI Scheme, you'll need to open your project in XCode and complete the following.
 
@@ -20,6 +20,39 @@ To set up your URI Scheme, you'll need to open your project in XCode and complet
 
 {% image src='/img/ingredients/configuring_the_client/ios_uri_scheme.png' half center alt='URI in plist' %}
 
+#### Configure for Universal Links
+
+Configuring your app for Branch's Universal Links is very simple. At a high level, you just need to go in and add in the selected `Associated Domains` to your Xcode project.
+
+**Step 1.** Enable Associated Domains in Xcode
+
+First, double check that provisioning profiles in your app belong to the same team that you are going to use throughout the Universal Link configuration process with Branch. Using provisioning profiles from a different team will cause Universal Links to fail and fall back to normal Branch links. Then go to the `Capabilities` tab of your project file.
+
+Scroll down and enable `Associated Domains` so that the accordion expands.
+
+{% image src='/img/recipes/universal_links/enable_ass_domains.png' half center alt='xcode ass domains' %}
+
+If you see an error like this, make sure:
+
+- that you have the right team selected
+- your Bundle Identifier of your Xcode project matches the one used to register the App Identifier
+
+[Full instructions here](/recipes/branch_universal_links/ios/#configure-developerapplecom).
+
+**Step 2:** Add in your Branch link domains
+
+In the `Domains` section, add the appropriate domain tags for `bnc.lt` as well as your `white label domain` if you use one. You must prefix it with `applinks:`. If you're just using `bnc.lt` for all of your Branch links, you only need to add a single domain:
+
+- `applinks:bnc.lt`
+
+**If you have a white label domain, follow [the instructions below](/recipes/branch_universal_links/ios/#advanced-support-ssltls-with-your-dns) to ensure that it is configured for Universal Links.** For this example, we've whitelabeled our Branch links with `link.customapp.com`, so we need to add two domains:
+
+- `applinks:bnc.lt`
+- `applinks:link.customapp.com`
+
+{% image src='/img/recipes/universal_links/add_domains.png' half center alt='xcode add domains' %}
+
+**Note: If you encounter any issues, please follow the [full instructions here](/recipes/branch_universal_links/ios/).**
 
 {% endif %}
 <!---       /iOS-specific Branch Key -->
@@ -100,17 +133,12 @@ Note: Auto session tracking is only available for `minSdkVersion` 14 or above.
 {% endif %}
 <!---       /Android-specific Branch Key -->
 
-{% if page.unity %}
-### Add your Branch key
-
-To allow Branch to configure itself, you must add a BranchPrefab asset to your scene. Simply drag into your scene, and then specify your APP_KEY in the properties.
-
-{% image src='/img/ingredients/sdk_setup/unity_branch_key.png' half center alt='unity plugins' %}
-
-{% endif %}
-
 {% if page.cordova or page.xamarin or page.unity or page.titanium %}
-### Configure iOS for deep linking
+### Configure iOS for URI based deep linking
+
+{% if page.unity %}
+**Note this is only if you want to change it manually, but this is automatically configured for you.**
+{% endif %}
 
 To set up your URI Scheme, you'll need to open your project in XCode and complete the following.
 
@@ -120,7 +148,49 @@ To set up your URI Scheme, you'll need to open your project in XCode and complet
 
 {% image src='/img/ingredients/configuring_the_client/ios_uri_scheme.png' half center alt='URI in plist' %}
 
+-----
+
+### Configure iOS for Universal Links
+
+Configuring your app for Branch's Universal Links is very simple. At a high level, you just need to go in and add in the selected `Associated Domains` to your Xcode project.
+
+#### Step 1. Enable Associated Domains in Xcode
+
+First, double check that provisioning profiles in your app belong to the same team that you are going to use throughout the Universal Link configuration process with Branch. Using provisioning profiles from a different team will cause Universal Links to fail and fall back to normal Branch links. Then go to the `Capabilities` tab of your project file.
+
+Scroll down and enable `Associated Domains` so that the accordion expands.
+
+{% image src='/img/recipes/universal_links/enable_ass_domains.png' half center alt='xcode ass domains' %}
+
+If you see an error like this, make sure:
+
+- that you have the right team selected
+- your Bundle Identifier of your Xcode project matches the one used to register the App Identifier
+
+[Full instructions here](/recipes/branch_universal_links/ios/#configure-developerapplecom).
+
+#### Step 2: Add in your Branch link domains
+
+In the `Domains` section, add the appropriate domain tags for `bnc.lt` as well as your `white label domain` if you use one. You must prefix it with `applinks:`. If you're just using `bnc.lt` for all of your Branch links, you only need to add a single domain:
+
+- `applinks:bnc.lt`
+
+**If you have a white label domain, follow [the instructions below](/recipes/branch_universal_links/ios/#advanced-support-ssltls-with-your-dns) to ensure that it is configured for Universal Links.** For this example, we've whitelabeled our Branch links with `link.customapp.com`, so we need to add two domains:
+
+- `applinks:bnc.lt`
+- `applinks:link.customapp.com`
+
+{% image src='/img/recipes/universal_links/add_domains.png' half center alt='xcode add domains' %}
+
+**Note: If you encounter any issues, please follow the [full instructions here](/recipes/branch_universal_links/ios/).**
+
+-----
+
 ### Configure Android for deep linking
+
+{% if page.unity %}
+**Note this is only if you want to change it manually, but this is automatically configured for you.**
+{% endif %}
 
 Find the Activity you want to open up when a link is clicked (normally your splash Activity) and do the following:
 
@@ -178,7 +248,7 @@ For a full example of the `*-app.xml` please refer to the [demo](https://github.
 
 In your project's `*-app.xml` file, you can register your app to respond to direct deep links (yourapp:// in a mobile browser) by adding a URI scheme. Also, make sure to change *yourApp* to a unique string that represents your app name.
 
-#### on iOS
+#### on iOS with URIs
 
 {% highlight xml %}
 <key>CFBundleURLTypes</key>
@@ -191,6 +261,43 @@ In your project's `*-app.xml` file, you can register your app to respond to dire
     </dict>
 </array>
 {% endhighlight %}
+
+#### on iOS with Universal Links
+
+### Support Universal Linking (iOS 9)
+
+Configuring your app for Branch's Universal Links is very simple. At a high level, you just need to go in and add in the selected `Associated Domains` to your Xcode project.
+
+**Step 1.** Enable Associated Domains in Xcode
+
+First, double check that provisioning profiles in your app belong to the same team that you are going to use throughout the Universal Link configuration process with Branch. Using provisioning profiles from a different team will cause Universal Links to fail and fall back to normal Branch links. Then go to the `Capabilities` tab of your project file.
+
+Scroll down and enable `Associated Domains` so that the accordion expands.
+
+{% image src='/img/recipes/universal_links/enable_ass_domains.png' half center alt='xcode ass domains' %}
+
+If you see an error like this, make sure:
+
+- that you have the right team selected
+- your Bundle Identifier of your Xcode project matches the one used to register the App Identifier
+
+[Full instructions here](/recipes/branch_universal_links/ios/#configure-developerapplecom).
+
+**Step 2:** Add in your Branch link domains
+
+In the `Domains` section, add the appropriate domain tags for `bnc.lt` as well as your `white label domain` if you use one. You must prefix it with `applinks:`. If you're just using `bnc.lt` for all of your Branch links, you only need to add a single domain:
+
+- `applinks:bnc.lt`
+
+**If you have a white label domain, follow [the instructions below](/recipes/branch_universal_links/ios/#advanced-support-ssltls-with-your-dns) to ensure that it is configured for Universal Links.** For this example, we've whitelabeled our Branch links with `link.customapp.com`, so we need to add two domains:
+
+- `applinks:bnc.lt`
+- `applinks:link.customapp.com`
+
+{% image src='/img/recipes/universal_links/add_domains.png' half center alt='xcode add domains' %}
+
+**Note: If you encounter any issues, please follow the [full instructions here](/recipes/branch_universal_links/ios/).**
+
 
 #### on Android
 

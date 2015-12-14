@@ -126,7 +126,6 @@ A: With full numbers, you are required to use the "+" and the country code. If y
 
 ## What's next
 
-{% ingredient recipe_preview/easy_deep_linking %}{% endingredient %}
 {% ingredient recipe_preview/personalized_welcome %}{% endingredient %}
 
 -----

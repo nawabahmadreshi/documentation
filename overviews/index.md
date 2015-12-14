@@ -25,7 +25,7 @@ You can build custom solutions with our links, or start deep linking right away 
 
 In less than 15 minutes you'll have your own Branch link with the ability to **redirect users** to your app, the App/Play Store or your website and **get powerful click, install and open metrics** by campaign and platform.
 
-1. [**Your first link**](/recipes/your_first_marketing_link/) -- create smart deep link for click analytics
-2. [**Integrate the SDK**](/recipes/quickstart_guide/) -- basic install tracking and deeplinking through install
-3. [**Link and install attribution**](/recipes/measuring_installs/) -- a dashboard introduction
+1. [**Add the SDK**](/recipes/add_the_sdk/) -- Add the SDK to your your Android, iOS, Cordova, Phonegap, Xamarin, Unity, Air or Titanium app
+2. [**Setup deep linking**](/recipes/setup_deep_linking/) -- Create a Branch link and wire up deep link routing
+3. [**Attribution and analytics**](/recipes/measuring_installs/) -- Learn how install and custom event attribution works
 

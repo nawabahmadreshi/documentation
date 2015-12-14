@@ -134,7 +134,7 @@ If you are create links one off, you can control the OG tags and deepview conten
 
 ## Set up deep link routing
 
-Please head over to the [Easy Deep Link Routing](/recipes/easy_deep_linking/ios/) guide for instructions on how to easily set up deep linking for Android and iOS.
+Please head over to the [Easy Deep Link Routing](/recipes/setup_deep_linking/ios/) guide for instructions on how to easily set up deep linking for Android and iOS.
 
 -----
 
@@ -198,7 +198,6 @@ You already have a website and you'd prefer to host the mobile web preview of th
 
 You've got the basics, but let's take your integration to the next level:
 
-{% ingredient recipe_preview/easy_deep_linking %}{% endingredient %}
 {% ingredient recipe_preview/content_sharing %}{% endingredient %}
 {% ingredient recipe_preview/personalized_welcome %}{% endingredient %}
 {% ingredient recipe_preview/referral_links_with_incentives %}{% endingredient %}
