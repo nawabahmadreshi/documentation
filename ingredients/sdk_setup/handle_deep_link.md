@@ -28,7 +28,9 @@ func application(application: UIApplication, openURL url: NSURL, sourceApplicati
 {% endtab %}
 {% endtabs %}
 
-Additionally, in iOS9, if you list content in Spotlight with Branch, you'll want to receive those parameters in this App Delegate callback.
+### Continue User Activity
+
+Additionally, in iOS9, for Universal Links and Spotlight listings, you'll want to receive those parameters in this App Delegate callback.
 
 {% ingredient sdk_setup/ios9_restoration_handler %}{% endingredient %}
 

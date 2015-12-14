@@ -100,17 +100,12 @@ Note: Auto session tracking is only available for `minSdkVersion` 14 or above.
 {% endif %}
 <!---       /Android-specific Branch Key -->
 
-{% if page.unity %}
-### Add your Branch key
-
-To allow Branch to configure itself, you must add a BranchPrefab asset to your scene. Simply drag into your scene, and then specify your APP_KEY in the properties.
-
-{% image src='/img/ingredients/sdk_setup/unity_branch_key.png' half center alt='unity plugins' %}
-
-{% endif %}
-
 {% if page.cordova or page.xamarin or page.unity or page.titanium %}
 ### Configure iOS for deep linking
+
+{% if page.unity %}
+**Note this is only if you want to change it manually, but this is automatically configured for you.
+{% endif %}
 
 To set up your URI Scheme, you'll need to open your project in XCode and complete the following.
 
@@ -121,6 +116,10 @@ To set up your URI Scheme, you'll need to open your project in XCode and complet
 {% image src='/img/ingredients/configuring_the_client/ios_uri_scheme.png' half center alt='URI in plist' %}
 
 ### Configure Android for deep linking
+
+{% if page.unity %}
+**Note this is only if you want to change it manually, but this is automatically configured for you.
+{% endif %}
 
 Find the Activity you want to open up when a link is clicked (normally your splash Activity) and do the following:
 

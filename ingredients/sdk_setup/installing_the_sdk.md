@@ -1,5 +1,5 @@
 {% section header %}
-### Installing the SDK files
+## Installing the SDK files
 {% endsection %}
 
 {% if page.ios %}
@@ -91,26 +91,34 @@ The Branch Xamarin SDK is available as a [NuGet package](https://www.nuget.org/p
 
 - You can download the package from our [filehost on S3 here](https://s3-us-west-1.amazonaws.com/branchhost/BranchUnityWrapper.unitypackage). Or clone [our repository](https://github.com/BranchMetrics/Unity-Deferred-Deep-Linking-SDK) and access the package from there.
 
-After acquiring the `BranchUnityWrapper.unityPackage` through one of these choices, you can import it into your project by clicking `Assets -> Import Package`.
+After acquiring the `BranchUnityWrapper.unitypackage` through one of these choices, you can import it into your project by clicking `Assets -> Import Package`.
 
-## Move Plugins Folder
-Due to Unity requirements, our UnityPackage file must have all of its contents in a single folder. This means that you'll have to manually move the `Plugins` folder out of our `Branch` folder, and into the root of your `Assets` folder. If you have an existing Plugins folder, just merge our contents into it.
+#### Configure the package and add Branch key
 
-{% image src='/img/ingredients/sdk_setup/unity_plugins_move.gif' half center alt='unity plugins' %}
+To allow Branch to configure itself, you must add a BranchPrefab asset to your scene. Simply drag into your scene, and then specify your `APP_KEY` and `APP_URI` in the properties.
+
+* `APP_KEY`: This is your Branch key from the dashboard
+* `APP_URI`: This is the URI scheme you would like to use to open the app. This must be the same value as you entered in [the Branch link settings](https://dashboard.branch.io/#/settings/link) as well.
+
+{% image src='/img/ingredients/sdk_setup/unity_branch_key.png' half center alt='unity plugins' %}
 
 #### iOS Note
 
-If you're creating an iOS app for your Unity project, you must enable Objective C exceptions in the Build Settings in order for Branch to compile.
+After building iOS project:
 
-{% image src='/img/ingredients/sdk_setup/unity_enable_exceptions.png' half center alt='unity enable exceptions' %}
+1. All required frameworks will be added automatically
+2. Objective C exceptions will be enabled automatically
+3. URI Scheme will be added into .plist automatically
 
 #### iOS + Unity 4.6
 
-There seem to be some issues with 4.6 pulling all of the Branch-SDK files into the Xcode project. A simple solution is to pull all of the files from the `Branch-SDK` folder directly into the `Assets/Plugins/iOS` folder as siblings to the `BranchiOSWrapper.mm` file.
+Branch requires ARC, and we don’t intend to add if checks thoughout the SDK to try to support pre-ARC. However, you can add flags to the project to compile the Branch files with ARC, which should work fine for you. Simply add **-fobjc-arc** to all Branch files.
 
-Additionally, the Xcode project template for Unity 4.6.x (tested with 4.6.1, but may be all the way up through 4.6.6) does not use ARC. Branch requires ARC, and we don't intend to add if checks thoughout the SDK to try to support pre-ARC. However, you can add flags to the project to compile the Branch files with ARC, which should work fine for you. Simple add `-fobjc-arc` to all Branch files in the `Compile Sources` region under `Build Phases` within your target.
+#### Android Note
 
-{% image src='/img/ingredients/sdk_setup/unity_ios_compile_source_flags.png' half center alt='unity plugins' %}
+Click button "Update Android Manifest" to change or add a android manifest for support deep linking, or you can change Android manifest by your hands. 
+
+*Note that we attempt to automatically add this flag, but check it before building.*
 {% endif %}
 
 {% if page.adobe %}
