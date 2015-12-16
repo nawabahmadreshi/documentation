@@ -1,10 +1,12 @@
-### ADVANCED: Support SSL/TLS with your domain for Universal Links
+### ADVANCED: Support SSL/TLS with your custom domain for Universal Links
 
-*[By December 17th we hope to simplify this flow dramatically, and you will not need to use CloudFlare or do other SSL configuration for custom subdomains. However, here are the steps to enable Universal Links with custom domains/subdomains at the moment. The release on the 17th will not require you to update your app at all. It will be a simple CNAME change. In the meantime, you can verify that the links work using a plain bnc.lt link.]*
+**If you use a custom subdomain** (e.g. go.branch.com): Point your CNAME for the subdomain to 'custom.bnc.lt' and verify it under Settings > Link Settings > Custom Link Domain. You should see a message telling you the status of your domain under the custom domain field. If you don't, please type your domain in again and save. That's it!
 
-Universal Links require HTTPS URLs. For your subdomain to work with Universal Links and Branch, you need to terminate SSL ahead of the Branch service.
+{% image src='/img/recipes/universal_links/custom-domain-success.png' 3-quarters center alt='successful custom domain' %}
 
-This is actually pretty easy if you use CloudFlare, it's just a couple of button clicks. [Here's how to set up a CNAME](https://support.cloudflare.com/hc/en-us/articles/200169046-How-do-I-add-a-CNAME-record-) with CloudFlare if you're new to it. 
+**If you use a root domain** (e.g. branch.com) then follow the steps below to enable SSL on your custom domain:
+
+It's actually pretty easy if you use CloudFlare, it's just a couple of button clicks. [Here's how to set up a CNAME](https://support.cloudflare.com/hc/en-us/articles/200169046-How-do-I-add-a-CNAME-record-) with CloudFlare if you're new to it. 
 
  _Step 1._ Make sure your traffic is proxied to the domain 'bnc.lt'. With CloudFlare, this is done by clicking the cloud with the arrow to make it _orange_.
 

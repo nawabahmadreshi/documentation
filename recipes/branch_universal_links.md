@@ -167,8 +167,6 @@ With your [Apple Developer Account](/recipes/branch_universal_links/#configure-d
 
 Note that Universal Links are of the form https://bnc.lt/<<four-letter-identifier>>/<<link-hash>> or https://your-domain.com/<<four-letter-identifier>>/<<link-hash>>. Existing links of the form https://bnc.lt/m/<<link-hash>> or https://bnc.lt/l/<<link-hash>> will continue to function normally as non-Universal Links.
 
-{% ingredient dashboard_setup/cloudflare_tls_setup %}{% endingredient %}
-
 -----
 
 ## Troubleshooting Universal Links
@@ -178,9 +176,16 @@ Note that Universal Links are of the form https://bnc.lt/<<four-letter-identifie
 3. **Are your applinks entitlements correct?** [Check Xcode](/recipes/branch_universal_links/ios/#add-the-entitlement-in-xcode) for the correct setup.
 4. **Do your Team ID & Bundle ID match those on your dashboard?** You can find them in the Dashboard under Settings > Link Settings, in the iOS section next to "Enable Universal Links." They should match your Team ID and Bundle ID. Team ID can be found here [https://developer.apple.com/membercenter/index.action#accountSummary](https://developer.apple.com/membercenter/index.action#accountSummary). Your Bundle ID is found in Xcode, in the `General` tab for the correct build target.
 5. Universal Links can be disabled, unfortunately. If you are successfully taken into your app via a Universal Link, you'll see "bnc.lt" (or your domain) and a forward button in the top right corner of the status bar. If you click that button, Apple will no longer activate Universal Links in the future. To re-enable Universal Links, long press on the link and choose 'Open in <<App>>'.
-6. **Using a custom domain?** There are known issues with HTTPS traffic and whitelabeled domains. You can try and [resolve them here](/recipes/branch_universal_links/ios/#advanced-support-ssltls-with-your-dns)) or wait until December 17th when we should have a fix. In the meantime, leave Universal Links off, and your Branch links will simply fall back to the App Store for devices on iOS 9.2.
+6. **Using a custom domain?** You'll need to update your whitelabeled domain. 
+
+If you're using a custom subdomain: update your CNAME to point to 'custom.bnc.lt' and check your Link Settings in the Dashboard.
+
+If you're using a custom root domain: you'll need to use CloudFlare to proxy the traffic to Branch.
+
+{% ingredient dashboard_setup/cloudflare_tls_setup %}{% endingredient %}
 
 -----
+
 
 ## Which Apps/Browsers Support Universal Links
 
