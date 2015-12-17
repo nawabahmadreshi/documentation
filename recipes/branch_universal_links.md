@@ -9,7 +9,7 @@ platforms:
 - android
 ---
 
-{% image src='/img/recipes/universal_links/how_branch_improves.png' 3-quarters center alt='branch improves ulinks' %}
+{% image src='/img/recipes/universal_links/how_branch_improves.png' 3-quarters center alt='branch improves universal links' %}
 
 {% if page.android %}
 App Links allow users visiting your website to route straight to your app if they have the app installed instead of first opening up the browser when a link is clicked. With Branch, you can enable Android App Links without all of the complicated server hosting. You simply need to add the correct intent strings.
@@ -205,12 +205,12 @@ Unfortunately, Universal Links don't work quite everywhere yet. We'll maintain t
 | FB Messenger | not working
 | Inbox | not working
 
-* Note: Conditionally working means that it works some of the time:
+*Note: Conditionally working means that it works (i.e., opens the app) some of the time:*
 
-- Ulinks work with a user driven <a> tag click *across domains*. Example: google.com -> bnc.lt will trigger it.
-- Ulinks will not work with a user driven <a> tag click on the *same domain*. Example: pinterest.com -> pinterest.com will not trigger it.
-- Ulinks will not work if you paste the link into the browser URL field.
-- Ulinks cannot be triggerd via Javascript (in onload or via a click() call)
+- Universal Links will not work if you paste the link into the browser URL field.
+- Universal Links work with a user driven `<a href="...">` element click *across domains*. Example: if there is a Universal Link on google.com pointing to bnc.lt, it will open the app.
+- Universal Links will not work with a user driven `<a href="...">` element click on the *same domain*. Example: if there is a Universal Link on google.com pointing to a different Universal Link on google.com, it will not open the app.
+- Universal Links cannot be triggered via Javascript (in `window.onload` or via a `.click()` call on an `<a>` element), unless it is part of a user action.
 
 {% endif %}
 
