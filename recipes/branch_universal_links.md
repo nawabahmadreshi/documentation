@@ -118,7 +118,7 @@ In the `Domains` section, add the appropriate domain tags for `bnc.lt` as well a
 
 #### Non white label domains
 
-If you're just using `bnc.lt` for all of your Branch links, you only need to add a single domain:
+If you're just using `bnc.lt` for all of your Branch links, you only need to add a single domain as show below. Note that aliased (bnc.lt/download) links won't work with Universal Links. You'll need to setup a custom domain to leverage these.
 
 - `applinks:bnc.lt`
 
