@@ -175,8 +175,9 @@ Note that Universal Links are of the form https://bnc.lt/<<four-letter-identifie
 2. **Are you testing by manually entering into Safari?** Universal Links don't work properly when entered into Safari. Use Notes or iMessage for testing.
 3. **Are your applinks entitlements correct?** [Check Xcode](/recipes/branch_universal_links/ios/#add-the-entitlement-in-xcode) for the correct setup.
 4. **Do your Team ID & Bundle ID match those on your dashboard?** You can find them in the Dashboard under Settings > Link Settings, in the iOS section next to "Enable Universal Links." They should match your Team ID and Bundle ID. Team ID can be found here [https://developer.apple.com/membercenter/index.action#accountSummary](https://developer.apple.com/membercenter/index.action#accountSummary). Your Bundle ID is found in Xcode, in the `General` tab for the correct build target.
-5. Universal Links can be disabled, unfortunately. If you are successfully taken into your app via a Universal Link, you'll see "bnc.lt" (or your domain) and a forward button in the top right corner of the status bar. If you click that button, Apple will no longer activate Universal Links in the future. To re-enable Universal Links, long press on the link and choose 'Open in <<App>>'.
-6. **Using a custom domain?** You'll need to update your whitelabeled domain. 
+5. Have you deleted the app and reinstalled it? iOS does not re-scrape the apple-app-site-association file unless you delete and reinstall the app. (The only exception to this is App Store updates. iOS does rescrape on every update. This means that when users update to a version of your app with the applinks entitlement, Universal Links will start working for them.)
+6. Universal Links can be disabled, unfortunately. If you are successfully taken into your app via a Universal Link, you'll see "bnc.lt" (or your domain) and a forward button in the top right corner of the status bar. If you click that button, Apple will no longer activate Universal Links in the future. To re-enable Universal Links, long press on the link and choose 'Open in <<App>>'.
+7. **Using a custom domain?** You'll need to update your whitelabeled domain. 
 
 If you're using a custom subdomain: update your CNAME to point to 'custom.bnc.lt' and check your Link Settings in the Dashboard.
 
