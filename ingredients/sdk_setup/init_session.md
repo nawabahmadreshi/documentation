@@ -64,7 +64,7 @@ branch.initSessionWithLaunchOptions(launchOptions, andRegisterDeepLinkHandler: {
 
 **NOTE** If you are seeing a "Branch.h file not found" error but you've imported the SDK, or it's breaking during compiling--and you're **using Xcode 6.3 or newer**--[click here](https://support.branch.io/discussions/topics/6000008855).
 
-{% protip title="Cookie-base matching using SFSafariViewController" %}If you want to enable cookie-based matching no iOS 9+, please add the SFSafariServices framework to your app. Then we will automatically start using this method. Please test to make sure the invisible SFSafariViewController does not alter your view controller stack. Delete the app and reinstall to trigger the invisible SFSafariViewController to be presented on first launch.
+{% protip title="Cookie-base matching using SFSafariViewController" %}If you want to enable cookie-based matching no iOS 9+, please add the SafariServices framework to your app. Then we will automatically start using this method. Please test to make sure the invisible SFSafariViewController does not alter your view controller stack. Delete the app and reinstall to trigger the invisible SFSafariViewController to be presented on first launch.
 {% endprotip %}
 
 {% endif %}
