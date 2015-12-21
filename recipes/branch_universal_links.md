@@ -53,6 +53,10 @@ In order to receive the App Links intent so that the Branch SDK can retrieve the
 {% if page.ios %}
 Universal Links allow users visiting your website to route straight to your app if they have the app installed instead of first opening up Safari when a link is clicked. With Branch, you can enable Universal Links without all of the complicated server hosting and JSON signing. You simply need to add an entitlement to your app project.
 
+{% protip title='On custom domains, all links are Universal Links' %}
+We recently made a large backend change that turns all Branch links into Universal Links if you're using a custom (i.e. non-bnc.lt) domain. On custom domains, you are not restricted to links of the form form https://bnc.lt/<<four-letter-identifier>>/<<link-hash>> or https://your-domain.com/<<four-letter-identifier>>/<<link-hash>> or https://bnc.lt/a/<<branch-key>>.
+{% endprotip %}
+
 -----
 
 ## Prerequisites for using Universal Links
@@ -165,7 +169,7 @@ This is what our Universal Link settings look like after going through steps 1 -
 
 With your [Apple Developer Account](/recipes/branch_universal_links/#configure-developerapplecom), [Xcode project](/recipes/branch_universal_links/#add-the-entitlement-in-xcode) and [Branch dashboard](/recipes/branch_universal_links/#enable-universal-links-on-the-branch-dashboard) configured correctly, we will start using Universal Links for all non-aliased links. Then as soon as your users upgrade to iOS9, they will benefit from Universal Links.
 
-Note that Universal Links are of the form https://bnc.lt/<<four-letter-identifier>>/<<link-hash>> or https://your-domain.com/<<four-letter-identifier>>/<<link-hash>>. Existing links of the form https://bnc.lt/m/<<link-hash>> or https://bnc.lt/l/<<link-hash>> will continue to function normally as non-Universal Links.
+Note that if you're using bnc.lt as your domain, Universal Links are of the form https://bnc.lt/<<four-letter-identifier>>/<<link-hash>> or https://your-domain.com/<<four-letter-identifier>>/<<link-hash>>. Existing links of the form https://bnc.lt/m/<<link-hash>> or https://bnc.lt/l/<<link-hash>> will continue to function normally as non-Universal Links.
 
 -----
 
