@@ -96,9 +96,19 @@ import io.branch.indexing.BranchUniversalObject;
 {% endhighlight %}
 {% endif %}
 {% if page.ios %}
+{% tabs %}
+{% tab objective-c %}
 {% highlight objective-c %}
 #import "BranchUniversalObject.h"
 {% endhighlight %}
+{% endtab %}
+{% tab swift %}
+{% highlight swift %}
+#import <Branch/Branch.h>
+#import <Branch/BranchUniversalObject.h>
+{% endhighlight %}
+{% endtab %}
+{% endtabs %}
 {% endif %}
 
 Below are the properties of `BranchUniversalObject`.
@@ -131,10 +141,21 @@ Below are the properties of `BranchUniversalObject`.
 {% endif %}
 
 {% if page.ios %}
+{% tabs %}
+{% tab objective-c %}
 {% highlight objective-c %}
 #import "BranchUniversalObject.h"
 #import "BranchLinkProperties.h"
 {% endhighlight %}
+{% endtab %}
+{% tab swift %}
+{% highlight swift %}
+#import <Branch/Branch.h>
+#import <Branch/BranchUniversalObject.h>
+#import <Branch/BranchLinkProperties.h>
+{% endhighlight %}
+{% endtab %}
+{% endtabs %}
 
 First create the object that you'd like to link to:
 

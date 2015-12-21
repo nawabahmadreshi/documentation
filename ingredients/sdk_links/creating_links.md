@@ -20,10 +20,21 @@ Here's how to create your own Branch Links:
 <!--- iOS -->
 {% if page.ios %}
 
+{% tabs %}
+{% tab objective-c %}
 {% highlight objective-c %}
 #import "BranchUniversalObject.h"
 #import "BranchLinkProperties.h"
 {% endhighlight %}
+{% endtab %}
+{% tab swift %}
+{% highlight swift %}
+#import <Branch/Branch.h>
+#import <Branch/BranchUniversalObject.h>
+#import <Branch/BranchLinkProperties.h>
+{% endhighlight %}
+{% endtab %}
+{% endtabs %}
 
 First create the object that you'd like to link to:
 
