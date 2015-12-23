@@ -15,7 +15,7 @@ And you wanted to return that value-- `12345`--back to your back-end. When setti
 
 ![template webhook](/img/ingredients/webhooks/templates.png)
 
-Any query parameter you add to Branch Links will be captured and stored. You will need to follow this format: *session.link_click.query* and specify the key from the query string to pass through the value, as shown in the example above. So, if you had *?clickId=5&deviceId=7*, our database would save and webhook them as *session.link_click.query.clickId* and *session.link_click.query.deviceId*, respectively. 
+Any query parameter you add to Branch Links will be captured and stored. You will need to follow this format: *session.link_click.query* and specify the key from the query string to pass through the value, as shown in the example above. So, if you had *?clickId=5&deviceId=7*, our database would save and webhook them as *session.link_click.query.clickId* and *session.link_click.query.deviceId*, respectively.
 
 
 #### General templates without Query Parameters
@@ -46,11 +46,8 @@ These values are all pulled from our database and sent to you as a passthrough, 
 	session.link_click.date // date of link click that referred a session
 	session.link_click.query // query parameters appened to link when clicked
 
-	session.link.data // link data that user clicked
-	session.link.channel 
-	session.link.campaign
-	session.link.feature
-	session.link.tags
+	session.link_data.key 	// link data that user clicked. key can be ~id, ~creation_source, ~tags, ~campaign, ~channel, ~feature, ~stage,
+							// $one_time_use, $one_time_use_used, $identity_id, $match_duration, +url and any additional data set by link creator
 
 	session.referring_identity.id // unique identifier of your user as set be setIdentity
 	session.referring_device.hardware_id // device id that started session
@@ -63,11 +60,19 @@ These values are all pulled from our database and sent to you as a passthrough, 
 	identity.referring_identity.id // unique identifier of your user as set be setIdentity
 	identity.referring_device.hardware_id // device id of referrer
 
-	identity.link.data // link data that user clicked
-	identity.link.channel 
-	identity.link.campaign
-	identity.link.feature
-	identity.link.tags
+	identity.link_data 	// link data that user clicked.  key can be ~id, ~creation_source, ~tags, ~campaign, ~channel, ~feature, ~stage,
+						// $one_time_use, $one_time_use_used, $identity_id, $match_duration, +url and any additional data set by link creator
 
+	// click event
+
+	click.query
+	click.link_data // link data that user clicked.  key can be ~id, ~creation_source, ~tags, ~campaign, ~channel, ~feature, ~stage,
+					// $one_time_use, $one_time_use_used, $identity_id, $match_duration, +url and any additional data set by link creator
+	click.referring_identity.id  // unique identifier of your user as set be setIdentity
+	click.browser.branch_id // our branch id for a browser
+	click.browser.metadata.userAgent // user agent for browse
+	click.device.hardware_id // device id only available for universal link
+	click.device.metadata.os // os only available for universal link
+	click.device.metadata.os_version // os version only available for universal link
 
 **NOTE** This is the structure for sending `GET` requets, with dynamic URLs. In case you need this data to be in the body of a `POST`, then it would work the same.

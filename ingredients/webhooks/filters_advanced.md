@@ -27,7 +27,7 @@ The end product would look like this:
 
 ![filter webhook](/img/ingredients/webhooks/filters.png)
 
-For reference, Branch automatically tracks the **install**, **referred session** and **open** event, so if you're interested in something like only being notified when an install occurs based off of a Branch link, you can do that without using `userCompletedAction`. The filter, in this case, would simply be:
+For reference, Branch automatically tracks the **install**, **referred session**, **open** and **click** event, so if you're interested in something like only being notified when an install occurs based off of a Branch link, you can do that without using `userCompletedAction`. The filter, in this case, would simply be:
 
 `branch_data.event.metadata.referred`
 
