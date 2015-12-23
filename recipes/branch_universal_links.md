@@ -129,7 +129,7 @@ If you're just using `bnc.lt` for all of your Branch links, you only need to add
 #### White label domains
 
 ##### Support TLS with your DNS
-**If you have a white label domain, follow [the instructions below](/recipes/branch_universal_links/ios/#advanced-support-ssltls-with-your-dns) to ensure that it is configured for Universal Links.**
+**If you have a white label domain, follow [the instructions below](/recipes/branch_universal_links/ios/#advanced-support-ssltls-with-your-custom-domain-for-universal-links) to ensure that it is configured for Universal Links.**
 
 For this example, we've whitelabeled our Branch links with `link.customapp.com`, so we need to add two domains:
 
