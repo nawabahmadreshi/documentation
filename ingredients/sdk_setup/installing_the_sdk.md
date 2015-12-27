@@ -98,7 +98,7 @@ After acquiring the `BranchUnityWrapper.unitypackage` through one of these choic
 To allow Branch to configure itself, you must add a BranchPrefab asset to your scene. Simply drag into your scene, and then specify your `APP_KEY` and `APP_URI` in the properties.
 
 * `APP_KEY`: This is your Branch key from the dashboard
-* `APP_URI`: This is the URI scheme you would like to use to open the app. This must be the same value as you entered in [the Branch link settings](https://dashboard.branch.io/#/settings/link) as well.
+* `APP_URI`: This is the URI scheme you would like to use to open the app. This must be the same value as you entered in [the Branch link settings](https://dashboard.branch.io/#/settings/link) as well. Do *not* include the `://` characters.
 
 {% image src='/img/ingredients/sdk_setup/unity_branch_key.png' half center alt='unity plugins' %}
 
