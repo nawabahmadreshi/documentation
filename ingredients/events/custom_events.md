@@ -90,10 +90,11 @@ Branch.getInstance().userCompletedAction("purchase", withState: ["item" : "123-A
 <!--- /iOS -->
 
 {% if page.android %}
+{% highlight java %}
 JSONObject metaData = new JSONObject();
 metaData.put("key", "value");
 Branch.getInstance().userCompletedAction("custom_action_with_data", metaData);
-
+{% endhighlight %}
 {% endif %}
 <!--- /Android -->
 
