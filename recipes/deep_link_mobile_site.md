@@ -60,6 +60,8 @@ Here's an example calling the `deepviewCta` in a hyperlink form.
 <a id='downloadapp' onclick='branch.deepviewCta()'>View this in app</a>
 {% endhighlight %}
 
+Note: On non-mobile devices, this method call will redirect to your $desktop_url specified in the deepview() call, or fallback to your default web url in [link settings](https://dashboard.branch.io/#/settings/link).
+
 ### Use The Branch Banner
 
 If you don't want to build a custom call to action, you can use the Branch app banner to achieve the same results. Here's how you invoke it. Read more about the [banner here](https://dev.branch.io/recipes/app_download_banner/).

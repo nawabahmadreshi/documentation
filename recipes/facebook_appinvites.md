@@ -58,13 +58,13 @@ Every Branch link automatically comes packed with all of the AppLinks to automat
                                  andChannel:@"facebook"
                                  andFeature:@"app_invite"
                                 andCallback:^(NSString *url, NSError* error) {
-    if ([[FBSDKAppInviteDialog new] canShow]) {
-        FBSDKAppInviteContent *content =[[FBSDKAppInviteContent alloc] init];
-        content.appLinkURL = [NSURL URLWithString:url];
-        content.appInvitePreviewImageURL = [NSURL URLWithString:@"https://s3-us-west-1.amazonaws.com/host/zackspic.png"];
+    FBSDKAppInviteDialog *inviteDialog = [FBSDKAppInviteDialog new];
+    if ([inviteDialog canShow]) {
+        inviteDialog.content =[[FBSDKAppInviteContent alloc] init];
+        inviteDialog.content.appLinkURL = [NSURL URLWithString:url];
+        inviteDialog.content.appInvitePreviewImageURL = [NSURL URLWithString:@"https://s3-us-west-1.amazonaws.com/host/zackspic.png"];
                                         
-        [FBSDKAppInviteDialog showWithContent:content
-                                     delegate:self];
+        [inviteDialog show];
     }
 }];
 {% endhighlight %}
@@ -179,17 +179,15 @@ Here's how to build it:
 {% endhighlight %}
 
 {% highlight objc %}
-- (BOOL)application:(UIApplication *)application
+- (BOOL)application:(UIApplication *)app
             openURL:(NSURL *)url
-  sourceApplication:(NSString *)sourceApplication
-         annotation:(id)annotation {
+            options:(NSDictionary<NSString *,id> *)options {
     // NOTE: Branch must come first
     BOOL wasHandled = [[Branch getInstance] handleDeepLink:url];
     if (!wasHandled)
         [[FBSDKApplicationDelegate sharedInstance] application:application
                                                        openURL:url
-                                             sourceApplication:sourceApplication
-                                                    annotation:annotation];
+                                                       options:sourceApplication];
     return wasHandled;
 }
 
