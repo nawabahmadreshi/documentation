@@ -116,6 +116,8 @@ If you see an error like this, make sure:
 - that you have the right team selected
 - your Bundle Identifier of your Xcode project matches the one used to register the App Identifier
 
+Also, please make sure that depending on how you add Entitlements to your project, you make sure that your app is listed as a Target for the Entitlements. See [this Stackoverflow answer](http://stackoverflow.com/a/33304998) for more information.
+
 ### Step 2: Add in your Branch link domains
 
 In the `Domains` section, add the appropriate domain tags for `bnc.lt` as well as your `white label domain` if you use one. You must prefix it with `applinks:`.
