@@ -17,7 +17,7 @@ Here is a fully-functional web page that you can use as a template for your text
                     channel: 'Website',
                     feature: 'TextMeTheApp',
                     data: {
-                        "foo": "bar"
+                        'foo': 'bar'
                     }
                 };
                 var options = {};
