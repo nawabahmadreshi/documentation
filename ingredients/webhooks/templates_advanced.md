@@ -45,7 +45,7 @@ Click refers to click properties when a user clicks a Branch link.
 
 | Key | Description
 | --- | ---
-| click.query | refers to any key you have on the link. Ex: https://bnc.lt/test?param1=value1. To send value1, you would call this `click.param1`. 
+| click.query.key | refers to any key you have on the link. Ex: https://bnc.lt/test?param1=value1. To send value1, you would call this `click.query.param1`.
 | click.link_data.key | See possible values for [link](/recipes/webhooks_and_exporting_data/#link-filters-and-templates). Examples include click.link_data.~id, click.link_data.photo_id, etc.
 | click.referring_identity.id | Id you set of the user who generated this link, leading to consequent click.
 | click.browser. | See [browser](/recipes/webhooks_and_exporting_data/#browser-filters-and-templates) for values. Examples include click.browser.branch_id, etc.
