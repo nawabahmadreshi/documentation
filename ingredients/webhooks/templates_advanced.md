@@ -110,7 +110,7 @@ Session refers to the values driven by a Branch link click that are ongoing, reg
 
 | Key | Description
 | --- | ---
-| session.link_click. | See possible values for [click](/recipes/webhooks_and_exporting_data/#click-filters-and-templates)
+| session.link_click. | See possible values for [click](/recipes/webhooks_and_exporting_data/#click-filters-and-templates). Examples include session.link_click.date, etc.
 | session.link_data. | See possible values for [link](/recipes/webhooks_and_exporting_data/#link-filters-and-templates). Examples include session.link_data.~id, session.link_data.photo_id, etc.
 | session.referring_identity.id | ID you set of user who created a link that drove this new session
 | session.referring_device.hardware_id | device ID of user who created a link that drove this new session
