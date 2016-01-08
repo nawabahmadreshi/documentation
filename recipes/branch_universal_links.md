@@ -14,6 +14,24 @@ platforms:
 {% if page.android %}
 App Links allow users visiting your website to route straight to your app if they have the app installed instead of first opening up the browser when a link is clicked. With Branch, you can enable Android App Links without all of the complicated server hosting. You simply need to add the correct intent strings.
 
+
+-----
+
+## Understanding Changes in iOS 9 and 9.2
+
+Apple launched Universal Links in iOS 9.0, which moves the app routing into the OS so that developers don’t need to worry about doing the routing in Javascript. With iOS 9.2 Apple made it impossible to launch URI schemes in the conventional fashion. This guide in its entirity can help you migrate to Universal Links and solve these issues.
+
+We have published a number of resources that can help you understand the changes and how it impacts your app:
+
+* How to Setup Universal Links to Deep Link on Apple iOS 9 - [Original Blog Release](https://blog.branch.io/how-to-setup-universal-links-to-deep-link-on-apple-ios-9)
+
+* iOS 9.2 Update: [The Fall of URI Schemes](https://blog.branch.io/ios-9.2-redirection-update-uri-scheme-and-universal-links)
+
+* iOS 9.2 Transition Guide - [Original Blog](https://blog.branch.io/ios-9.2-deep-linking-guide-transitioning-to-universal-links)
+
+* Why You Should Use Branch for [Universal Links](https://blog.branch.io/why-you-should-use-branch-for-universal-links)
+
+
 -----
 
 ## Prerequisites for using Android App Links
@@ -56,6 +74,7 @@ Universal Links allow users visiting your website to route straight to your app 
 {% protip title='On custom domains, all links are Universal Links' %}
 We recently made a large backend change that turns all Branch links into Universal Links if you're using a custom (i.e. non-bnc.lt) domain. On custom domains, you are not restricted to links of the form form https://bnc.lt/<<four-letter-identifier>>/<<link-hash>> or https://your-domain.com/<<four-letter-identifier>>/<<link-hash>> or https://bnc.lt/a/<<branch-key>>.
 {% endprotip %}
+
 
 -----
 
@@ -187,6 +206,33 @@ Note that if you're using bnc.lt as your domain, Universal Links are of the form
 8. **Using a custom domain?** You'll need to update your whitelabeled domain. If you're using a custom subdomain: update your CNAME to point to `custom.bnc.lt` and check your Link Settings in the Dashboard. If you're using a custom root domain: you'll need to use CloudFlare to proxy the traffic to Branch.
 
 {% ingredient dashboard_setup/cloudflare_tls_setup %}{% endingredient %}
+
+-----
+
+
+## Receiving Universal Link URL in the App
+
+URI schemes received the deep link URL through ```openUrl``` in the App Delegate. Universal Links receive their data via a different code path: ```continueUserActivity```. This new delegate method is used for a number of app transitions, ranging from Spotlight to Universal Links, and will likely see a couple more use cases introduced in future OS versions.
+
+Below is a snippet of code that you can use to retrieve the full Universal Link URL that opened the app.
+
+{% ingredient sdk_setup/ios9_continue_user_activity.md %}{% endingredient %}
+
+<b>Warning:</b> Don’t go ripping out your URI scheme code just yet.
+
+Despite Apple’s aggressive move towards Universal Links, there are still a lot of edge cases which Universal Links does not support. See them below.
+
+-----
+
+
+## Using Your Old URI Paths
+
+In order to use your old URI paths you can grab the ```webpageUrl``` from the user acvitity and pass it to the handle routing. For example, let’s say that you previously had all of your routing in a method in the App Delegate named ```handleRouting```. Implement the following code block:
+
+{% ingredient sdk_setup/ios9_webpageurl_handler %}{% endingredient %}
+
+The URLs might be different from your traditional URI schemes, so you just need to have that logic split out in the handleRouting call.
+
 
 -----
 
