@@ -28,11 +28,11 @@ There are two options for frequency (as seen above). Either you can receive a we
 
 The first step is to register for which events you`d like to receive a webhook for. These can be tailored to:
 
-1. [Branch-provided events](/recipes/advanced_referral_incentives/{{page.platform}}#standard-events): `install`, `open`, `referred session`, and `web session start`
+1. [Branch-provided events](/recipes/advanced_referral_incentives/{{page.platform}}#standard-events): `click`, `install`, `open`, `referred session`, and `web session start`
 1. Specific, [custom events](/recipes/advanced_referral_incentives/{{page.platform}}#custom-events), like `purchase` or `share`
 1. a wildcard event `*` which will return every single event tracked through Branch
 
-(Branch automatically tracks `installs`, `opens`, `referred session` and `web session start` events as soon the native library is run on a device. Any other events will be recorded through the userCompletedAction function of the native library.)
+(Branch automatically tracks `clicks` as soon as a Branch link is clicked. `installs`, `opens`, `referred session` and `web session start` events are tracked as soon the native library is run on a device. Any other events will be recorded through the userCompletedAction function of the native library.)
 
 The example above shows a wildcard webhook with event name `*`.
 
