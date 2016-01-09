@@ -34,3 +34,83 @@ LinkProperties linkProperties = new LinkProperties()
 {% endhighlight %}
 
 {% endif %}
+
+<!--- Cordova -->
+
+{% if page.cordova %}
+
+{% highlight js %}
+branch.link({
+    channel: 'sms',
+    feature: 'share',
+    data: {
+		"article_id": "1234",
+		"$deeplink_path": "content/1234"
+    }
+}, function(err, link) {
+	if (!err) {
+    	console.log("Ready to share my " + link);
+	}
+});
+{% endhighlight %}
+{% endif %}
+
+<!--- Xamarin -->
+
+{% if page.xamarin %}
+{% highlight c# %}
+var data = new Dictionary<string, object>(); 
+data.Add("article_id", "1234");
+data.Add("$deeplink_path", "content/1234");
+
+Branch branch = Branch.GetInstance ();
+await branch.GetShortUrlAsync(this, data, "sms", "share");
+{% endhighlight %}
+{% endif %}
+
+<!--- Adobe -->
+
+{% if page.adobe %}
+
+{% highlight java %}
+var dataToInclude:Object = {
+	"article_id": "1234",
+	"$deeplink_path": "content/1234"
+};
+
+branch.getShortUrl(tags, "sms", BranchConst.FEATURE_TAG_SHARE, JSON.stringify(dataToInclude));
+{% endhighlight %}
+{% endif %}
+
+<!--- Titanium -->
+
+{% if page.titanium %}
+
+{% highlight js %}
+branchUniversalObject.generateShortUrl({
+  "feature" : "sample-feature",
+  "alias" : "sample-alias",
+  "channel" : "sample-channel",
+  "stage" : "sample-stage",
+}, {
+  "$deeplink_path" : "content/1234",
+});
+{% endhighlight %}
+
+{% endif %}
+
+<!--- Unity -->
+
+{% if page.unity %}
+
+{% highlight objective-c %}
+BranchLinkProperties linkProperties = new BranchLinkProperties();
+linkProperties.tags.Add("tag1");
+linkProperties.tags.Add("tag2");
+linkProperties.feature = "invite";
+linkProperties.channel = "Twitter";
+linkProperties.stage = "2";
+linkProperties.controlParams.Add("$deeplink_path", "content/1234");
+{% endhighlight %}
+
+{% endif %}
