@@ -20,7 +20,7 @@ We've found that content marketing is the best way to grow a mobile app. Users d
 
 ## Integration Checklist
 
-Prequisite: Integrate Branch SDK (see [docs here](/recipes/quickstart_guide/ios/) for guide)
+Prequisite: Integrate Branch SDK (see [docs here](/recipes/add_the_sdk/ios/) for guide)
 
 1. Define content object with Branch Universal Object
 1. Track views with registerView

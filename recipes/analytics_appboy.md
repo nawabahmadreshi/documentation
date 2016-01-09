@@ -11,7 +11,7 @@ hide_platform_selector: true
 
 We've partnered with Appboy to provide a push button way to deliver Branch installs and attributions to your Appboy dashboard. This allows you to analyze your users coming in from Branch deeplinked campaigns
 
-{% protip title="Still need to integrate Branch?" %}This guide assumes that you have already integrated Branch. If you need to integrate Branch still, jump to "[Integrating the SDK](/recipes/quickstart_guide/ios/)".
+{% protip title="Still need to integrate Branch?" %}This guide assumes that you have already integrated Branch. If you need to integrate Branch still, jump to "[Integrating the SDK](/recipes/add_the_sdk/ios/)".
 {% endprotip %}
 
 ## How It Works

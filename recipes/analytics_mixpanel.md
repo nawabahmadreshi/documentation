@@ -13,7 +13,7 @@ platforms:
 ---
 
 {% protip title="Do I need both SDKs integrated?" %}
-Yes, in order to have synchronization between Branch and Mixpanel, you need both SDKs integrated. In order to integrate Branch, follow [these instructions](/recipes/quickstart_guide/ios). In order to integrate Mixpanel, follow these [instructions](https://mixpanel.com/help/reference/ios).{% endprotip %}
+Yes, in order to have synchronization between Branch and Mixpanel, you need both SDKs integrated. In order to integrate Branch, follow [these instructions](/recipes/add_the_sdk/ios). In order to integrate Mixpanel, follow these [instructions](https://mixpanel.com/help/reference/ios).{% endprotip %}
 
 ## Getting Started
 
@@ -69,7 +69,7 @@ Mixpanel would then receive the Branch install event, and you would know Branch 
 
 Let's say you want to take it a step further and track Branch specific installs and users inside your segments for Mixpanel. We have support for that as well. The way to leverage that would be with the following:
 
-- After a successful Branch session, set an [identity](https://dev.branch.io/recipes/quickstart_guide/ios/#identifying-your-users).
+- After a successful Branch session, set an [identity](https://dev.branch.io/recipes/measuring_installs/ios/#influencer-tracking).
 - Set an identity in [Mixpanel](http://mixpanel.github.io/mixpanel-android/com/mixpanel/android/mpmetrics/MixpanelAPI.html#identify-java.lang.String-)
 - Track events.
 
