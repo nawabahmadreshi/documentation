@@ -143,9 +143,12 @@ branch.redeemRewards(5, "myBucket");
 
 {% if page.titanium %}
 {% highlight js %}
-branch.redeem(
-    5,          // Amount of credits to be redeemed
-    "myBucket"  // String of bucket name to redeem credits from
-);
+branch.redeemRewards(5);
+{% endhighlight %}
+
+Then register the callback on event `bio:redeemRewards`
+
+{% highlight js %}
+branch.addEventListener("bio:redeemRewards", $.onRedeemRewardFinished);
 {% endhighlight %}
 {% endif %}

@@ -197,6 +197,8 @@ public void ReceivedUrl (Uri uri)
 {% endhighlight %}
 {% endif %}
 
+<!--- Unity -->
+
 {% if page.unity %}
 First create the object that you'd like to link to:
 
@@ -234,6 +236,8 @@ Branch.getShortURL(universalObject, linkProperties, (url, error) => {
 {% endhighlight %}
 {% endif %}
 
+<!--- Adobe -->
+
 {% if page.adobe %}
 
 {% highlight java %}
@@ -260,22 +264,39 @@ branch.getShortUrl(tags, "sms", BranchConst.FEATURE_TAG_SHARE, JSON.stringify(da
 {% endhighlight %}
 {% endif %}
 
+<!--- Titanium -->
+
 {% if page.titanium %}
 
 {% highlight js %}
-branch.link({
-    channel: 'sms',
-    feature: 'share',
-    data: {
-		"article_id": "1234",
-		"$og_title": "Hot off the presses!",
-		"$og_image_url": "mysite.com/image.png",
-		"$desktop_url": "mysite.com/article1234"
-    }
-}, function(err, link) {
-	if (!err) {
-    	console.log("Ready to share my " + link);
-	}
+var branchUniversalObject = branch.createBranchUniversalObject({
+  "canonicalIdentifier" : "content/12345",
+  "title" : "My Content Title",
+  "contentDescription" : "My Content Description",
+  "contentImageUrl" : "https://example.com/mycontent-12345.png",
+  "contentIndexingMode" : "public",
+  "contentMetadata" : {
+      "product_picture" : "12345",
+      "user_id" : "6789"
+  },
 });
 {% endhighlight %}
+
+{% highlight js %}
+branchUniversalObject.generateShortUrl({
+  "feature" : "sample-feature",
+  "alias" : "sample-alias",
+  "channel" : "sample-channel",
+  "stage" : "sample-stage"
+}, {
+  "$desktop_url" : "http://desktop-url.com",
+});
+{% endhighlight %}
+
+To implement the callback, you must add a listener to the event `bio:generateShortUrl`. The event returns a string object containing the generated link.
+
+{% highlight js %}
+branchUniversalObject.addEventListener("bio:generateShortUrl", $.onGenerateUrlFinished);
+{% endhighlight %}
+
 {% endif %}

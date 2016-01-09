@@ -63,7 +63,7 @@ Currently not supported in the ANE
 
 {% if page.titanium %}
 {% highlight js %}
-branch.track("custom_action_1");
+branch.userCompletedAction("custom_action_1");
 {% endhighlight %}
 {% endif %}
 
@@ -136,11 +136,8 @@ Currently not supported in the ANE
 
 {% if page.titanium %}
 {% highlight js %}
-branch.track(
-    "purchase_event",
-    {
-    	"sku": "12346789"
-	}
-);
+branch.userCompletedAction("purchase_event", {
+	"sku": "12346789"
+});
 {% endhighlight %}
 {% endif %}

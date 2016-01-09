@@ -137,29 +137,20 @@ branch.logout();
 Invoke the `setIdentity` call whenever you create or login a user. This should be done after you have successfully initialized a session. Only call setIdentity when the user logs in initially. We will cache the identity for future sessions.
 
 {% highlight js %}
-branch.setIdentity(
-    "Your user identity",
-    callback (err, data)
-);
-{% endhighlight %}
-
-Structure of the callback `data` object:
-
-{% highlight js %}
-{
-	identity_id:             '12345',	// Server-generated ID of the user identity
-	link:                    'url',		// New link to use (replaces old stored link)
-	referring_data_parsed:    { },		// Returns the initial referring data for this identity, if exists, as a parsed object.
-	referring_identity:      '12345'	// Returns the initial referring identity for this identity, if exists.
-}
+branch.setIdentity("Your user identity", function(params, success) {
+    if (success) {
+        alert("identity set");
+    }
+    else {
+        alert("Set Identity FAILED");
+    }
+});
 {% endhighlight %}
 
 Add a `logout` call anywhere you allow the user to logout. `Logout` should only be called when the user logs out. Calling it at other times could lead to hard-to-discover errors. Failing to call `logout` can likewise lead to bugs if multiple users log in on the same device.
 
 {% highlight js %}
-branch.logout(
-    callback (err)
-);
+branch.logout();
 {% endhighlight %}
 {% endif %}
 

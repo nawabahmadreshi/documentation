@@ -51,3 +51,39 @@ branchUniversalObject.addMetadataKey("user_id", value: "6789")
 {% endhighlight %}
 
 {% endif %}
+
+<!--- Titanium -->
+
+{% if page.titanium %}
+
+{% highlight js %}
+var branchUniversalObject = branch.createBranchUniversalObject({
+  "canonicalIdentifier" : "content/12345",
+  "title" : "My Content Title",
+  "contentDescription" : "My Content Description",
+  "contentImageUrl" : "https://example.com/mycontent-12345.png",
+  "contentIndexingMode" : "public",
+  "contentMetadata" : {
+      "product_picture" : "12345",
+      "user_id" : "6789"
+  },
+});
+{% endhighlight %}
+
+{% endif %}
+
+<!--- Unity -->
+
+{% if page.unity %}
+
+{% highlight objective-c %}
+BranchUniversalObject universalObject = new BranchUniversalObject();
+universalObject.canonicalIdentifier = "content/12345";
+universalObject.title = "My Content Title";
+universalObject.contentDescription = "My awesome piece of content!";
+universalObject.imageUrl = "https://example.com/mycontent-12345.png";
+universalObject.metadata.Add("product_picture", "12345");
+universalObject.metadata.Add("user_id", "6789");
+{% endhighlight %}
+
+{% endif %}
