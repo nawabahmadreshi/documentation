@@ -551,118 +551,42 @@ Be sure to have the INIT_SUCCESSED event called, otherwise read the bEvt.informa
 {% endif %}
 
 {% if page.titanium %}
-The SDK can be initialized by calling `branch.init()`, just as with the Web SDK. A sample app can be found in `testbeds/Titanium`, that demonstrates this.
+The SDK can be initialized by calling `branch.getAutoInstance()`, just as with the Web SDK. A sample app can be found in [the Github repo here](https://github.com/BranchMetrics/Titanium-Deferred-Deep-Linking-SDK/blob/master/testbed/app/controllers/index.js), that demonstrates this.
 
-Initialize the session and register your deep link router. The callback here will contain the deeplink data associated with the link you clicked.
+Initialize the session and register your deep link router. The callback here will contain the deeplink data associated with the link you clicked. To implement the callback, you must add a listener to the event `bio:initSession`.
+
+{{% highlight js %}
+$.initialize = function(params) {
+    $.window.open();
+
+    $.initializeViews();
+    $.initializeHandlers();
+
+    Ti.API.info("start initSession");
+    branch.setDebug(true);
+    branch.getAutoInstance();
+    branch.addEventListener("bio:initSession", $.onInitSessionFinished);
+
+    if (OS_ANDROID) {
+        Ti.Android.currentActivity.addEventListener("newintent", function(e) {
+            Ti.API.info("inside newintent: " + e);
+            $.window.open();
+            branch.getAutoInstance();
+        });
+    }
+};
+{% endhighlight %}
+
+The deep link data will appear in the `data` dictionary of the callback function.
 
 {% highlight js %}
-branch.init("YOUR BRANCH KEY HERE", function(err, data) {
-    if (!err && data.data) {
-        var parsed_data = JSON.parse(data.data);
-        if (parsed_data['+clicked_branch_link']) {
-            // data are the deep linked params associated with the link that the user clicked -> was re-directed to this app
-            // data will be empty if no data found
-            // ... insert custom routing logic here ...
+$.onInitSessionFinished = function(data) {
+    Ti.API.info("inside onInitSessionFinished");
+    for (key in data) {
+        if ((key != "type" && key != "source" && key != "bubbles" && key != "cancelBubble") && data[key] != null) {
+            Ti.API.info(key + data["key"]);
         }
     }
-});
-{% endhighlight %}
-
-Structure of the callback `data_parsed` object:
-
-{% highlight js %}
-{
-    data_parsed: {
-        '+clicked_branch_link': true | false,
-        '+is_first_session': true | false,
-        // If the user was referred from a link, and the link has associated data, the data is passed in here.
-    },
-    referring_identity: '12345',      // If the user was referred from a link, and the link was created by a user with an identity, that identity is here.
 }
-{% endhighlight %}
-
-### Close the session
-
-Close session must be called whenever the app goes into the background, as it tells the native library that on the next app open, it should check if a new link had been clicked. If you don't call it, you'll notice that the deep link parameters will not be delivered reliably.
-
-{% highlight js %}
-branch.close(function(err) {
-  if (err) { console.log(err); }
-});
-{% endhighlight %}
-
-### Android and iOS differences for init and close
-
-Titanium life cycle events and callbacks differ between Android and iOS.  Since we want to initialize the branch session anytime the app starts up (either on open or when resuming from background) and close the session when the app goes into the background, init and close need to be handled differently for Android and iOS.
-
-Titanium generates a 'pause' and 'resume' event for iOS when the app goes into and returns from the background.  For iOS you can init the session and set event handlers on app startup.  This can be done in alloy.js for an Alloy app.  See the sample code below.
-
-{% highlight js %}
-
-// In the Android case, we get the URL used to open the app here
-// but we wait for the Titanium Window, which corresponds to an
-// activity, to open to start the session.
-if (Ti.Platform.osname === "android") {
-    Alloy.Globals.open_url = Ti.Android.currentActivity.intent.data;
-}
-
-// If this is not Android, we want to initialize the branch session
-// at app startup.  Close it when we go into the background and
-// open it again when the app comes back to the foreground.
-else if (Ti.Platform.osname.match(/i(os|p(hone|od|ad))/i)) {
-    var url = Ti.App.getArguments().url;
-    branch.init(BranchKey, { "isReferrable" : true, "url": url }, initDone);
-
-    Ti.App.addEventListener('resume', function(e) {
-        console.log("Resume");
-        branch.init(BranchKey, { isReferrable : true }, initDone);
-    });
-
-    Ti.App.addEventListener('pause', function(e) {
-        console.log("Pause");
-        branch.close(function(err) {
-            if (err) { console.log("Error with close: " + err.message); }
-            else { console.log("Close complete"); }
-        });
-    });
-}
-
-{% endhighlight %}
-
-In Android Titanium gives you access to the onStart and onStop Activity life cycle callbacks which are part of the Android environment.  In the Javascript for each Titanium Window, before the window is opened, you can set a callback for these.  You can init the session in onStart and close it in onStop.  The code below is an example from the testbed app.  Note that the SDK will handle detecting the case where these are called in an activity transition and ensure that the session stays open.
-
-{% highlight js %}
-
-// In Android, we start the branch session in onStart and close it
-// in onStop.  This should be done in every Window used in the app
-// since a Window corresponds to an Android Activity.  The
-// SDK will "smartly" handle the case where we are transitioning from
-// one activity to another and not send excess inits or close the session
-// accidentally.
-if (Ti.Platform.osname === "android") {
-    $.index.activity.onStart = function() {
-        branch.init('BRANCH KEY',
-        { "isReferrable" : true, "url": Alloy.Globals.open_url },
-        function(err, data) {
-            if (err != null) {
-                console.log("Init error: " + JSON.stringify(err));
-                Alloy.Globals.status = err.message;
-            } else {
-                console.log("Init successful: " + JSON.stringify(data));
-                Alloy.Globals.status = "Ok";
-            }
-            Ti.App.fireEvent("branch_init");
-        });
-    };
-
-    $.index.activity.onStop = function() {
-        branch.close(function(err) {
-            if (err) {
-                console.log("Error on close: " + err);
-            }
-        });
-    };
-}
-
 {% endhighlight %}
 {% endif %}

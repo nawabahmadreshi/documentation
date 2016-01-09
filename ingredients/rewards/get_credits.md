@@ -190,11 +190,12 @@ branch.getCredits("myBucket");
 
 {% if page.titanium %}
 {% highlight js %}
-branch.credits(function(err, data) {
-	if (!err) {
-		// will return the balance of the current user's credits
-    	var credits = data['myBucket'];
-	}
-});
+branch.loadRewards();
+{% endhighlight %}
+
+Then register the callback on event `bio:loadRewards`
+
+{% highlight js %}
+branch.addEventListener("bio:loadRewards", $.onLoadRewardFinished);
 {% endhighlight %}
 {% endif %}
