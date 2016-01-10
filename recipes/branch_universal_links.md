@@ -218,10 +218,6 @@ Below is a snippet of code that you can use to retrieve the full Universal Link 
 
 {% ingredient sdk_setup/ios9_continue_user_activity.md %}{% endingredient %}
 
-<b>Warning:</b> Don’t go ripping out your URI scheme code just yet.
-
-Despite Apple’s aggressive move towards Universal Links, there are still a lot of edge cases which Universal Links does not support. See them below.
-
 -----
 
 
