@@ -212,7 +212,7 @@ Note that if you're using bnc.lt as your domain, Universal Links are of the form
 
 ## Receiving Universal Link URL in the App
 
-URI schemes received the deep link URL through ```openUrl``` in the App Delegate. Universal Links receive their data via a different code path: ```continueUserActivity```. This new delegate method is used for a number of app transitions, ranging from Spotlight to Universal Links, and will likely see a couple more use cases introduced in future OS versions.
+URI schemes received the deep link URL through `openUrl` in the App Delegate. Universal Links receive their data via a different code path: `continueUserActivity`. This new delegate method is used for a number of app transitions, ranging from Spotlight to Universal Links, and will likely see a couple more use cases introduced in future OS versions.
 
 Below is a snippet of code that you can use to retrieve the full Universal Link URL that opened the app.
 
@@ -223,7 +223,7 @@ Below is a snippet of code that you can use to retrieve the full Universal Link 
 
 ## Using Your Old URI Paths
 
-In order to use your old URI paths you can grab the ```webpageUrl``` from the user acvitity and pass it to the handle routing. For example, let’s say that you previously had all of your routing in a method in the App Delegate named ```handleRouting```. Implement the following code block:
+In order to use your old URI paths you can grab the `webpageUrl` from the user acvitity and pass it to the handle routing. For example, let’s say that you previously had all of your routing in a method in the App Delegate named `handleRouting`. Implement the following code block:
 
 {% ingredient sdk_setup/ios9_webpageurl_handler %}{% endingredient %}
 
