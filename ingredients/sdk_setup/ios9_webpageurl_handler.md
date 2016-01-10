@@ -15,15 +15,27 @@
 }
 
 - (void)handleRouting:(NSURL *)url {
-
+....
 {% endhighlight %}
 {% endtab %}
 {% tab swift %}
 {% highlight swift %}
+func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
+    handleRouting(url)
 
+    return true
+}
 
+func application(application: UIApplication, continueUserActivity userActivity: NSUserActivity, restorationHandler: ([AnyObject]?) -> Void) -> Bool {
+    if (userActivity.activityType == NSUserActivityTypeBrowsingWeb) {
+    	handleRouting(userActivity.webpageUrl)
+	}
 
+    return true
+}
 
+func handleRouting(url: NSURL) {
+....
 
 {% endhighlight %}
 {% endtab %}

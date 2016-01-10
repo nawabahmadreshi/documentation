@@ -14,8 +14,14 @@
 {% endtab %}
 {% tab swift %}
 {% highlight swift %}
+func application(application: UIApplication, continueUserActivity userActivity: NSUserActivity, restorationHandler: ([AnyObject]?) -> Void) -> Bool {
+    if (userActivity.activityType == NSUserActivityTypeBrowsingWeb) {
+    	let linkUrl = userActivity.webpageUrl?.absoluteString
+    	// parse URL string or access query params
+	}
 
-
+    return true
+}
 {% endhighlight %}
 {% endtab %}
 {% endtabs %}
