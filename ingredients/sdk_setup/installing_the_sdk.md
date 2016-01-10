@@ -44,9 +44,7 @@ Or if you want to manage things in NPM, you can use our NPM module:
 `npm install branch-cordova-sdk`
 
 ### Running Cordova Testbed App
-This repo includes a sample app, t
-hat demonstrates all of the available methods in the Branch Cordova SDK.
-Building this app is very simple:
+This repo includes a sample app, that demonstrates all of the available methods in the Branch Cordova SDK. Building this app is very simple:
 
 1. Switch to the Cordova dir: `$ cd cordova-testbed`
 2. Run the init script to install all the required plugins
