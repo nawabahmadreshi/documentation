@@ -53,7 +53,7 @@ This powerful link will now track clicks across platforms. Users who have the ap
 
 It's that simple! You now have a link that will track clicks based on the channel, campaign and any other tags you create. The Dashboard's [Summary](https://dashboard.branch.io/#) page, specifically the "Click Flow" chart, now can show you meaningful results!
 
-To start collecting statistics regarding installs, opens, referred installs -- and to add powerful, deferred deep links -- You should [integrate the SDK](/recipes/quickstart_guide/{{page.platform}}/)
+To start collecting statistics regarding installs, opens, referred installs -- and to add powerful, deferred deep links -- You should [integrate the SDK](/recipes/add_the_sdk/{{page.platform}}/)
 
 ## What's next
 

@@ -76,7 +76,7 @@ If you're on PhoneGap, you'll need to use us NPM now:
 {% if page.xamarin %}
 The Branch Xamarin SDK is available as a [NuGet package](https://www.nuget.org/packages/Branch-Xamarin-Linking-SDK). You will need to add the package to your Android, iOS and Forms (if applicable) projects.
 
-- Right click on each project and select Add->Add NuGet Package or double click on the Packages folder to bring up the NuGet package dialog in Xamarin Studio.
+- Right click on each project and select `Add` -> `Add NuGet Package` or double click on the Packages folder to bring up the NuGet package dialog in Xamarin Studio.
 - Find the `Branch Xamarin Linking SDK` and select it. This will add the required assemblies to your projects. 
 - You need to do this for each project that will use Branch calls. This include the Android and iOS projects even if this is a Forms based app since an initialization call needs to be added to each of the platform specific projects.
 
@@ -128,63 +128,17 @@ Click button "Update Android Manifest" to change or add a android manifest for s
 {% endif %}
 
 {% if page.titanium %}
-#### Acquire the files
 
-All the files you need are included in [our repository](https://github.com/BranchMetrics/Titanium-Deferred-Deep-Linking-SDK), so go ahead and clone it.
+#### Android Module Installation
 
+1. Navigate to the `android/dist` folder (in the root directory of [our repo](https://github.com/BranchMetrics/Titanium-Deferred-Deep-Linking-SDK)) OR [download the zip file of the module](https://s3-us-west-1.amazonaws.com/branchhost/Branch-Titanium-Android-SDK.zip)
+2. Extract the contents
+3. Copy the `android` folder to your titanium `modules` folder.
 
-## Building the iOS and Android Branch SDK Modules in Appcelerator Studio
+#### iOS Module Installation
 
-**This tutorial assumes you are already familiar with the Titanium API, and Titanium modules**
+1. Navigate to the `iphone` folder (in the root directory of [our repo](https://github.com/BranchMetrics/Titanium-Deferred-Deep-Linking-SDK)) OR [download the zip file of the module](https://s3-us-west-1.amazonaws.com/branchhost/Branch-Titanium-iOS-SDK.zip)
+2. Extract the contents
+3. Copy the `iphone` folder to your titanium `modules` folder.
 
-The iOS and Android Branch SDK Titanium modules can be built from their respective `src/` directories:
-`src/titanium/BranchSDK/iphone`
-`src/titanium/BranchSDK/android`
-
-To build the modules in Appcelerator Studio, they must first be imported into your project, or into a new project.
-
-1. Open the App Explorer view on the left (Window -> Show View -> App Explorer), then click "Import Project".
-1. Appcelerator Studio will show a variety of import options. Open the "General" folder, and select "Existing Folder as New Project".
-1. Select the Branch Titanium SDK folder by clicking "Browse", and choose `src/titanium/BranchSDK/`, then click "Finish".
-1. Select the desired module (iOS or Android) in top left of the Appcelerator Studio, above the App Explorer, and click the green play button.
-1. Titanium modules can be built to 3 different output locations. The first option (Titanium SDK), publishes the module to your specific Titanium SDK location. Either wise, you can publish the module to an existing Mobile App project, or a specific location. Publishing the module to a specific location will produce a .zip file.
-
-## Installing the iOS and Android Branch SDK Modules
-
-1. Import the testbed app as an existing mobile project: File -> Import, then in the dialog open the "Appcelerator" folder and chose "Existing Mobile Project".
-1. The Branch Titanium testbed: `testbeds/titanium/Branch-Sdk-Testbed/`, requires the built Branch SDK modules prior to running. If you would like to add these to the testbed app, simply chose the testbed app or your local Titanium SDK as the output location (see above for building instructions).
-1. Browse to the testbed app directory: `testbeds/titanium/Branch-Sdk-Testbed/`, leave the default settings, and chose "Finish".
-1. To launch the testbed app simply select the Android or iOS simulator in the top left of Appcelerator studio, above the App Explorer, then click the green play button.
-
-This will build and launch the testbed app in the respective simulator, and log output to the Appcelerator console.
-
-{% endif %}
-
-{% if page.web %}
-### Quick Install (Web SDK)
-
-#### Manual installation
-
-_Be sure to replace `BRANCH KEY` with your actual Branch Key found in your [account dashboard](https://dashboard.branch.io/#/settings)._
-
-**[Formerly App ID](CHANGELOG.md)** Note that for the time being, initializing the Web SDK with an App ID will still work, it is strongly recomended you switch to using your live and test Branch Keys.
-
-{% highlight html %}
-<script type="text/javascript">
-
-	(function(b,r,a,n,c,h,_,s,d,k){if(!b[n]||!b[n]._q){for(;s<_.length;)c(h,_[s++]);d=r.createElement(a);d.async=1;d.src="https://cdn.branch.io/branch-v1.8.0.min.js";k=r.getElementsByTagName(a)[0];k.parentNode.insertBefore(d,k);b[n]=h}})(window,document,"script","branch",function(b,r){b[r]=function(){b._q.push([r,arguments])}},{_q:[],_v:1},"addListener applyCode banner closeBanner creditHistory credits data deepview deepviewCta first getCode init link logout redeem referrals removeListener sendSMS setIdentity track validateCode".split(" "), 0);
-
-	branch.init('BRANCH KEY', function(err, data) {
-    	// callback to handle err or data
-	});
-</script>
-{% endhighlight %}
-
-#### Bower or npm installation
-
-If you use Bower or npm, you can run `bower install branch-sdk` or `npm install branch-sdk` respectively to get the SDK.
-
-#### Common.JS and RequireJS compatibility
-
-In addition to working as a standalone library, the Branch SDK works great in CommonJS environments (browserify, webpack) as well as RequireJS environments (RequireJS/AMD). Just `require('branch')` or `define(['branch'], function(branch) { ... });` to get started!
 {% endif %}

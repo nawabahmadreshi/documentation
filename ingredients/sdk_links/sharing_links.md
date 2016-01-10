@@ -79,7 +79,8 @@ branchUniversalObject.showShareSheet(this,
 
 
 {% endif %}
-<!--- /Android -->
+
+<!--- Unity -->
 
 {% if page.unity %}
 We offer a custom `UIActivityItemProvider` and a custom Branch-built Android share sheet to make your life easier. This will automatically generate a link dynamically when the user presses a button to share.
@@ -107,5 +108,55 @@ Branch.shareLink(universalObject, linkProperties, "hello there with short url", 
     }
 });
 {% endhighlight %}
+{% endif %}
+
+
+<!--- Titanium -->
+
+{% if page.titanium %}
+
+{% highlight js %}
+var branchUniversalObject = branch.createBranchUniversalObject({
+  "canonicalIdentifier" : "content/12345",
+  "title" : "My Content Title",
+  "contentDescription" : "My Content Description",
+  "contentImageUrl" : "https://example.com/mycontent-12345.png",
+  "contentIndexingMode" : "public",
+  "contentMetadata" : {
+      "product_picture" : "12345",
+      "user_id" : "6789"
+  },
+});
+{% endhighlight %}
+
+{% highlight js %}
+branchUniversalObject.showShareSheet({
+  "feature" : "sample-feature",
+  "alias" : "sample-alias",
+  "channel" : "sample-channel",
+  "stage" : "sample-stage"
+}, {
+  "$desktop_url" : "http://desktop-url.com",
+});
+{% endhighlight %}
+
+`bio:shareLinkDialogLaunched`
+- The event fires when the share sheet is presented.
+
+`bio:shareLinkDialogDismissed`
+- The event fires when the share sheet is dismissed.
+
+`bio:shareLinkResponse`
+- The event returns a dictionary of the response data.
+
+`bio:shareChannelSelected`
+- The event fires a channel is selected.
+
+**Note:** Callbacks in iOS are ignored. There is no need to implement them as the events are handled by `UIActivityViewController`.
+
+{% highlight js %}
+branchUniversalObject.addEventListener("bio:shareLinkDialogDismissed", $.onShareLinkDialogDismissed);
+{% endhighlight %}
+
 {% endif %}
 
