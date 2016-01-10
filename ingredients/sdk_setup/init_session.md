@@ -121,28 +121,31 @@ public void onNewIntent(Intent intent) {
 
 {% if page.cordova %}
 
-Initialize the session and register your deep link router. You should call this when the ‘deviceready’ event fires and each time the ‘resume’ event fires. The callback here will contain the deeplink data associated with the link you clicked. You will need your Branch Key from the Branch dashboard.
+Initialize the session and register your deep link router. You should call this when the ‘deviceready’ event fires and each time the ‘resume’ event fires. The callback here will contain the deeplink data associated with the link you clicked. You will need your Branch Key from the Branch dashboard. Here's an example of a healthy integration:
 
 {% highlight js %}
-branch.init("YOUR BRANCH KEY HERE", function(err, data) {
-    if (!err && data.data) {
-        var parsed_data = JSON.parse(data.data);
-        if (parsed_data['+clicked_branch_link']) {
-            // data are the deep linked params associated with the link that the user clicked -> was re-directed to this app
-            // data will be empty if no data found
-            // ... insert custom routing logic here ...
-        }
-    }
-});
+onDeviceReady: function() {
+    branch.setDebug(true);
+    document.addEventListener('resume', app.onResume, false);
+    branch.init(app.branch_key, { isReferrable: true }, function(err, data) {
+        // call completion handler with data
+    });
+},
+
+onResume: function() {
+    branch.init(app.branch_key, { isReferrable: true }, function(err, data) {
+        // call completion handler with data.data
+    });
+},
 {% endhighlight %}
 
 If data is null and err contains a string denoting a request timeout then inspect your app's [content security policies](https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy) as they may block your app from communicating with Branch's servers.
 
-Structure of the callback `data_parsed` object:
+Structure of the callback `data.data` object:
 
 {% highlight js %}
 {
-    data_parsed: {
+    data: {
         '+clicked_branch_link': true | false,
         '+is_first_session': true | false,
         // If the user was referred from a link, and the link has associated data, the data is passed in here.
@@ -150,45 +153,7 @@ Structure of the callback `data_parsed` object:
     referring_identity: '12345',      // If the user was referred from a link, and the link was created by a user with an identity, that identity is here.
 }
 {% endhighlight %}
-
-
-**[Formerly `getInstance() and initSession()`](CORDOVA_UPGRADE_GUIDE.md)**
-
-Here is the location of the Branch Key that you will need for the `branch.init` call above (_formerly app id, which is now depreciated_):
-
-![app id](https://raw.githubusercontent.com/BranchMetrics/Smart-App-Banner-Deep-Linking-Web-SDK/master/resources/app_id.png)
-
-The session close will be sent automatically on any 'pause' event.
 {% endif %}
-
-{% if page.web %}
-### Initialization and Event Handling
-
-You should initialize the Branch SDK session once the 'deviceready' event fires and each time the 'resume' event fires.  See the example code below. You will need your Branch Key from the Branch dashboard.
-
-{% highlight js %}
-  branch.init("YOUR BRANCH KEY HERE", function(err, data) {
-    app.initComplete(err, data);
-  });
-{% endhighlight %}
-
-The session close will be sent automatically on any 'pause' event.
-{% endif %}
-
-{% if page.cordova or page.titanium or page.web %}
-
-### SDK Method Queue
-
-Initializing the SDK is an asynchronous method with a callback, so it may seem as though you would need to place any method calls that will execute immediately inside the `branch.init()` callback. We've made it even easier than that, by building in a queue to the SDK! The only thing that is required is that `branch.init()` is called prior to any other methods. All SDK methods called are guaranteed to: 1. be executed in the order that they were called, and 2. wait to execute until the previous SDK method finishes. Therefore, it is 100% allowable to do something like:
-
-```js
-branch.init(...);
-branch.banner(...);
-```
-
-If `branch.init()` fails, all subsequent branch methods will fail.
-{% endif %}
-
 
 {% if page.xamarin %}
 

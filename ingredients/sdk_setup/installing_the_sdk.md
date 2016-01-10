@@ -37,40 +37,22 @@ The Cordova SDK shares the same code base as the Branch Web SDK, and includes fu
 
 This Web SDK can also be used for Cordova/Phonegap applications.  It is provided as a plugin and can be installed with Cordova plugin or the Plugman tool.  Point the tool at this repositry, https://github.com/BranchMetrics/Cordova-Ionic-PhoneGap-Deferred-Deep-Linking-SDK.  For example:
 
-```sh
-cordova plugin add https://github.com/BranchMetrics/Cordova-Ionic-PhoneGap-Deferred-Deep-Linking-SDK
-```
+`cordova plugin add https://github.com/BranchMetrics/Cordova-Ionic-PhoneGap-Deferred-Deep-Linking-SDK`
 
-{% protip title="For Hybrid apps" %}
-Note that this SDK is meant for use with full Cordova/PhoneGap apps.  If you are building a hybrid app using an embedded web view and you want to access the Branch API from native code you will want to use the platform specific SDKs and pass data into Javascript if needed." {% endprotip %}
+Or if you want to manage things in NPM, you can use our NPM module:
+
+`npm install branch-cordova-sdk`
 
 ### Running Cordova Testbed App
-This repo includes a sample app, that demonstrates all of the available methods in the Branch Cordova SDK.
+This repo includes a sample app, t
+hat demonstrates all of the available methods in the Branch Cordova SDK.
 Building this app is very simple:
 
-Switch to the Cordova dir
-```js
-$ cd cordova-testbed
-```
-
-Run the init script to install all the required plugins
-```js
-$ ./init.sh
-```
-
-Build the Cordova app and launch in the iOS emulator
-```sh
-$ cordova emulate ios
-
-For Cordova/Ionic, the easiest way to install the SDK is via the Cordova plugin command line tool. 
-
-- cd into your project directory
-- Run `cordova plugin add https://github.com/BranchMetrics/Cordova-Ionic-PhoneGap-Deferred-Deep-Linking-SDK` from the command line
-
-If you're on PhoneGap, you'll need to use us NPM now:
-
-- cd into your project directory
-- Run `npm install branch-cordova-sdk` from the command line
+1. Switch to the Cordova dir: `$ cd cordova-testbed`
+2. Run the init script to install all the required plugins
+3. `$ ./init.sh`
+4. Build the Cordova app and launch in the iOS emulator
+5. `$ cordova emulate ios`
 {% endif %}
 
 {% if page.xamarin %}
