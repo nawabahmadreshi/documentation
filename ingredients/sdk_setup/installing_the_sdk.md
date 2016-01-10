@@ -76,7 +76,7 @@ If you're on PhoneGap, you'll need to use us NPM now:
 {% if page.xamarin %}
 The Branch Xamarin SDK is available as a [NuGet package](https://www.nuget.org/packages/Branch-Xamarin-Linking-SDK). You will need to add the package to your Android, iOS and Forms (if applicable) projects.
 
-- Right click on each project and select Add->Add NuGet Package or double click on the Packages folder to bring up the NuGet package dialog in Xamarin Studio.
+- Right click on each project and select `Add` -> `Add NuGet Package` or double click on the Packages folder to bring up the NuGet package dialog in Xamarin Studio.
 - Find the `Branch Xamarin Linking SDK` and select it. This will add the required assemblies to your projects. 
 - You need to do this for each project that will use Branch calls. This include the Android and iOS projects even if this is a Forms based app since an initialization call needs to be added to each of the platform specific projects.
 

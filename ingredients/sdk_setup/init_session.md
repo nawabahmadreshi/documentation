@@ -212,23 +212,11 @@ public class App : Application, IBranchSessionInterface
         branch.InitSessionAsync (this);
     }
 
-    protected override async void OnSleep ()
-    {
-        Branch branch = Branch.GetInstance ();
-        // Await here ensure the thread stays alive long enough to complete the close.
-        await branch.CloseSessionAsync ();
-    }
-
     #region IBranchSessionInterface implementation
 
     public void InitSessionComplete (Dictionary<string, object> data)
     {
         // Do something with the referring link data...
-    }
-
-    public void CloseSessionComplete ()
-    {
-        // Handle any additional cleanup after the session is closed
     }
 
     public void SessionRequestError (BranchError error)
@@ -254,8 +242,12 @@ public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsApplicat
         global::Xamarin.Forms.Forms.Init (this, savedInstanceState);
 
         BranchAndroid.Init (this, "your branch key here", Intent.Data);
+        
+        App app = new App ();
+        // Call this method to enable automatic session management
+        BranchAndroid.getInstance().SetLifeCycleHandlerCallback (this, app);
 
-        LoadApplication (new App ());
+        LoadApplication (app);
     }
 
     // Ensure we get the updated link identifier when the app is opened from the
@@ -283,7 +275,7 @@ public class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDe
             url = (NSUrl)launchOptions.ValueForKey (UIApplication.LaunchOptionsUrlKey);
         }
 
-        BranchIOS.Init ("your branch key here", url);
+        BranchIOS.Init ("your branch key here", url, true);
 
         LoadApplication (new App ());
         return base.FinishedLaunching (uiApplication, launchOptions);
@@ -296,188 +288,20 @@ public class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDe
         string sourceApplication,
         NSObject annotation)
     {
-        Console.WriteLine ("New URL: " + url.ToString ());
-        BranchIOS.getInstance ().SetNewUrl (url);
-        return true;
-    }
-}
-{% endhighlight %}
-
-Note that in both cases the first argument is the Branch key found in your app from the Branch dashboard (see the screenshot below).  The second argument allows the Branch SDK to recognize if the application was launched from a content URI.
-
-
-### Generic init with Forms
-
-The following code will make a request to the Branch servers to initialize a new session, and retrieve any referring link parameters if available. For example, If you created a custom link with your own custom dictionary data, you probably want to know when the user session init finishes, so you can check that data. Think of this callback as your "deep link router". If your app opens with some data, you want to route the user depending on the data you passed in. Otherwise, send them to a generic install flow.
-
-This deep link routing callback is called 100% of the time on init, with your link params or an empty dictionary if none present.
-
-{% highlight csharp %}
-public class App : Application, IBranchSessionInterface
-{
-    protected override void OnResume ()
-    {
-        Branch branch = Branch.GetInstance ();
-        branch.InitSessionAsync (this);
-    }
-    
-    protected override async void OnSleep ()
-    {
-        Branch branch = Branch.GetInstance ();
-        // Await here ensure the thread stays alive long enough to complete the close.
-        await branch.CloseSessionAsync ();
-    }
-    
-    #region IBranchSessionInterface implementation
-    
-    public void InitSessionComplete (Dictionary<string, object> data)
-    {
-        // Do something with the referring link data...
-    }
-
-    public void CloseSessionComplete ()
-    {
-        // Handle any additional cleanup after the session is closed
-    }
-
-    public void SessionRequestError (BranchError error)
-    {
-        // Handle the error case here
-    }
-
-    #endregion
-}
-{% endhighlight %}
-
-#### Close session
-
-Required: this call will clear the deep link parameters when the app is closed, so they can be refreshed after a new link is clicked or the app is reopened.
-
-In a Forms App CloseSession is done in the OnSleep method of your App class. See the example above.
-
-### Non-Forms Xamarin Setup
-
-The following code will make a request to the Branch servers to initialize a new session, and retrieve any referring link parameters if available. For example, If you created a custom link with your own custom dictionary data, you probably want to know when the user session init finishes, so you can check that data. Think of this callback as your "deep link router". If your app opens with some data, you want to route the user depending on the data you passed in. Otherwise, send them to a generic install flow.
-
-This deep link routing callback is called 100% of the time on init, with your link params or an empty dictionary if none present.
-
-#### iOS without Forms
-
-The iOS device specific code can register notification listeners to handle the init and close of sessions when the app is sent to the background or resumed.  The BranchIOS.Init call takes an optional third parameter that will enable this automatic close session behavior if the parameter is set to true.  If your iOS app is not a Forms app, use the following device specific init.
-
-{% highlight csharp %}
-[Register ("AppDelegate")]
-public class AppDelegate : UIApplicationDelegate, IBranchSessionInterface
-{
-    public override bool FinishedLaunching (UIApplication uiApplication, NSDictionary launchOptions)
-    {
-        NSUrl url = null;
-        if ((launchOptions != null) && launchOptions.ContainsKey(UIApplication.LaunchOptionsUrlKey)) {
-            url = (NSUrl)launchOptions.ValueForKey (UIApplication.LaunchOptionsUrlKey);
-        }
-
-        BranchIOS.Init ("your branch key here", url, true);
-        
-        Branch branch = Branch.GetInstance ();
-        branch.InitSessionAsync (this);
-
-        // Do your remaining launch stuff here...
-    }
-    
-    // Ensure we get the updated link identifier when the app is opened from the
-    // background with a new link.
-    public override bool OpenUrl(UIApplication application,
-        NSUrl url,
-        string sourceApplication,
-        NSObject annotation)
-    {
         BranchIOS.getInstance ().SetNewUrl (url);
         return true;
     }
 
-    #region IBranchSessionInterface implementation
-    
-    public void InitSessionComplete (Dictionary<string, object> data)
+    // For Universal Links
+    public override bool ContinueUserActivity (UIApplication application,
+        NSUserActivity userActivity,
+        UIApplicationRestorationHandler completionHandler)
     {
-        // Do something with the referring link data...
+        bool handledByBranch = BranchIOS.getInstance ().ContinueUserActivity (userActivity, app);
+        return handledByBranch;
     }
-
-    public void CloseSessionComplete ()
-    {
-        // Handle any additional cleanup after the session is closed
-    }
-
-    public void SessionRequestError (BranchError error)
-    {
-        // Handle the error case here
-    }
-
-    #endregion
 }
 {% endhighlight %}
-
-#### Android without Forms
-
-For Android add the call to the onCreate of either your Application class or the first Activity you start. This just creates the singleton object on Android with the appropriate Branch key but does not make any server requests
-
-{% highlight csharp %}
-public class MainActivity : Activity, IBranchSessionInterface
-{
-    protected override void OnCreate (Bundle savedInstanceState)
-    {
-        base.OnCreate (savedInstanceState);
-
-        global::Xamarin.Forms.Forms.Init (this, savedInstanceState);
-
-        BranchAndroid.Init (this, "your branch key here", Intent.Data);
-
-        Branch branch = Branch.GetInstance ();
-        branch.InitSessionAsync (this);
-
-        LoadApplication (new App ());
-    }
-
-    protected override void OnStop (Bundle savedInstanceState)
-    {
-        base.OnStop (savedInstanceState);
-
-        Branch branch = Branch.GetInstance ();
-        // Await here ensure the thread stays alive long enough to complete the close.
-        await branch.CloseSessionAsync ();
-    }
-    
-    // Ensure we get the updated link identifier when the app is opened from the
-    // background with a new link.
-    protected override void OnNewIntent(Intent intent) {
-        BranchAndroid.GetInstance().SetNewUrl(intent.Data);
-    }
-
-    #region IBranchSessionInterface implementation
-    
-    public void InitSessionComplete (Dictionary<string, object> data)
-    {
-        // Do something with the referring link data...
-    }
-
-    public void CloseSessionComplete ()
-    {
-        // Handle any additional cleanup after the session is closed
-    }
-
-    public void SessionRequestError (BranchError error)
-    {
-        // Handle the error case here
-    }
-
-    #endregion
-}
-{% endhighlight %}
-
-#### Close session
-
-Required: this call will clear the deep link parameters when the app is closed, so they can be refreshed after a new link is clicked or the app is reopened.
-
-For Android this should be done in OnStop. See the example above.
 
 {% endif %}
 
