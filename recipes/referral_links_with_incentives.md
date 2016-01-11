@@ -1,6 +1,6 @@
 ---
 type: recipe
-title: "Referral/Invite Links"
+title: "Referral Programs"
 ios_page_title: App Invites & Referral Links for iOS Apps
 android_page_title: App Invites & Referral Links for Android
 ios_description: How to set up App Invites, Referral Links and Reward Schemes for iOS apps using deep links. With objective-c and swift code snippets.
@@ -21,15 +21,10 @@ platforms:
 
 For a referral system, Branch provides:
 
-- _User attribution through a tracking, download URL._ In short, we tell you when an existing user--who you empower with a Branch link--drives a new install.
-
-- _(optional) Custom rewarding rules tied to events (install, signup, purchase, etc) in app._ We allow you to tie rewards to any events. You can reward users for referring users who not just install, but also signup, make purchases, etc.
-
-- _(optional) User reward tracking/storage (integer balance)._ We leave the actual user facing rewarding to you, but we store how many credits have been earned through our reward rules. This makes it easy so that you can just check the balance of credits in the app from us, give the user some reward, then clear the credit balance on our server.
-
-- _(optional) Credit transaction history._ At any time, via API or SDK, you can retrieve the full credit history of the user.
-
-Let's get started!
+- User attribution through a tracking, download URL.
+- Custom rewarding rules tied to events (install, signup, purchase, etc) in app.
+- User reward tracking/storage
+- Credit transaction history
 
 ## Generating Links
 
@@ -43,17 +38,16 @@ obj.put("referringUserName", "John");
 obj.put("referringUserId", "1234"));{% endif %}{% endoverride %}
 {% endingredient %}
 
-Again, it's not imperative that you attach any information to the link. As long as you made a `setIdentity` call, anytime this link is shared we will know whose link it is and when to attribute an install to him.
-
 {% ingredient sdk_links/sharing_teaser %}{% endingredient %}
 <!--- /Generating Links-->
 
+## Tracking Events
+
+{% ingredient events/standard_events %}{% endingredient %}
+{% ingredient events/custom_events %}{% endingredient %}
 
 ## Rewards
 {% ingredient rewards/overview %}
-	{% override header %}{% endoverride %}
-{% endingredient %}
-{% ingredient events/standard_events %}
 	{% override header %}{% endoverride %}
 {% endingredient %}
 {% ingredient rewards/reward_rule_basics %}
@@ -61,12 +55,9 @@ Again, it's not imperative that you attach any information to the link. As long 
 	{% override more %}{% endoverride %}
 {% endingredient %}
 {% ingredient rewards/reward_example %}{% endingredient %}
-{% ingredient sdk_setup/is_referrable_protip %}{% endingredient %}
-{% ingredient sdk_setup/testing_rewards_protip %}{% endingredient %}
-{% ingredient rewards/rewards_are_flexible %}{% endingredient %}
+{% ingredient rewards/testing_rewards_protip %}{% endingredient %}
 
 {% ingredient rewards/get_credits %}{% override different_bucket %}{% endoverride %}{% endingredient %}
-{% ingredient rewards/showing_referrals %}{% endingredient %}
 {% ingredient rewards/redeem_credits %}{% override different_bucket %}{% endoverride %}{% endingredient %}
 {% ingredient rewards/redeem_flow %}{% endingredient %}
 <!--- /Incentives: Tracking and Rewarding-->
@@ -82,7 +73,6 @@ This guide covered the basics. The following may be of interest to you, if you w
 {% ingredient recipe_preview/advanced_referral_incentives %}{% endingredient %}
 {% ingredient recipe_preview/personalized_welcome %}{% endingredient %}
 {% ingredient recipe_preview/influencers %}{% endingredient %}
-{% ingredient recipe_preview/channel_tags %}{% endingredient %}
 
 -----
 

@@ -11,20 +11,46 @@ android_keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, 
 hide_platform_selector: true
 ---
 
-The mobile web smart banner is a powerful tool--it brings users in from the web experience where they are more easily lost, to your native mobile experience. On desktop, the banner can even drive users to mobile via our text-me-the-app function.
+{% image src='/img/ingredients/web_sdk/banner2.png' half center alt='Facebook block' %}
 
-First, make sure you've configured your links on the Dashboard using the [Branch link configuration tool](https://start.branch.io/), then check out the code below.
-
-If you also want to pass data through the install process or deep link straight to content, check out the optional 2nd section, [Routing: passing information from the Banner](/recipes/app_download_banner/#optional-routing-passing-information-from-the-banner).
-
+{% ingredient quickstart_preview/quickstart_preview %}{% endingredient %}
 
 ## The Smart Banner
-{% ingredient web_sdk/smart_banner %}{% override header %}{% endoverride %}{% endingredient %}
-{% protip title="Deeplinking through Install" %}
-This data dictionary containing `foo: 'bar'` etc is where you put data that you want passed through install. This is discussed in the next section on [Routing](/recipes/app_download_banner/#optional-routing-passing-information-from-the-banner).
-{% endprotip %} 
 
-#### Styling the banner using the custom css property
+{% ingredient web_sdk/smart_banner %}{% endingredient %}
+
+----
+
+## Advanced: deep linking from the Banner
+
+You can pass custom parameters through the App/Play Store by specifying keys in the data dictionary. In the example below, when a user clicks on the Smart Banner on a mobile device, installs and opens the app, they will be taken straight to a view controller to see picture with id "12345".
+
+{% highlight javascript %}
+branch.banner(options, {
+	tags: ['page 3', 'signed in']
+	feature: 'smart banner'
+    data: {
+    	'$deeplink_path': 'picture/12345',
+        'picture_id': '12345',
+        'user_id': '45123'
+    }
+});
+{% endhighlight %}
+
+If you wanted to dynamically specify the deep link path depending on which page is loaded, it's simple. Here's an example:
+
+{% highlight javascript %}
+branch.banner(options, {
+    data: {
+    	'$deeplink_path': window.location.split('com/')[1],
+    }
+});
+{% endhighlight %}
+
+----
+
+## Advanced: Styling the banner using the custom css property
+
 Set the `iframe` property to false to inspect the Smart Banner's html structure and use the `customCSS` property to style its elements. 
 
 Property Syntax: 
@@ -33,37 +59,19 @@ Property Syntax:
 
 Examples:
 
-To set the color of title text to red use: `customCSS:'.title{ color: #F00; }'`
+To set the color of title text to red use:
+
+`customCSS:'.title{ color: #F00; }'`
 
 To set the background color of the entire Banner to green use: 
 
 `customCSS:'#branch-banner .content{background-color:green;}'`
 
-## (Optional) Routing: passing information from the Banner
+----
 
-Now that you've added routing to your app, you can add information to the Smart Banner. If you've used the example Smart Banner code [above](/recipes/app_download_banner/#the-smart-banner), you simply need to insert any key-value pairs you'd like into the data dictionary.
+## Advanced: Listening for Banner specific events
 
-Using our example of routing above with the PicVC, you'd simply need to change the Web Banner code to the following:
-
-{% highlight javascript %}
-branch.banner(options, {
-    phone: '9999999999',
-    type: 1,
-    data: {
-        'pictureId': '12345',
-    }
-});
-{% endhighlight %}
-
-Now when a user clicks on the Smart Banner on a mobile device, when they open your app they will be taken straight to a view controller to see picture with id "12345". It's that simple.
-
-Deep linking has countless possibilities and we'd be happy to brainstorm use cases for your specific app.
-
-## (Optional) Events: Listening for Banner specific events
-
-If you would like your app to listen for and react to Banner events, the Web SDK includes a simple event listener that currently only publishes events for Branch.banner() events.
-
-Available Branch.banner() Events include:
+If you would like your app to listen for and react to Banner events, the Web SDK includes a simple event listener that currently only publishes events for Branch.banner() events. Available branch.banner() events include:
 
 - **willShowBanner**
 - **willNotShowBanner**
@@ -85,9 +93,17 @@ branch.banner({
 }, {});
 {% endhighlight %}
 
-Now you can adjust your page's CSS when the Banner is about to be displayed. 
+----
 
-For more information on Banner events, please visit our [web guide](https://github.com/BranchMetrics/Web-SDK/blob/master/WEB_GUIDE.md#addlistenerevent-listener)!
+#### Advanced: Closing the app banner programmatically
+
+The App Banner includes a close button the user can click, but you may want to close the banner with a timeout, or via some other user interaction with your web app. In this case, closing the banner is very simple by calling `Branch.closeBanner()`.
+
+```js
+branch.closeBanner();
+```
+
+----
 
 ## FAQ
 
@@ -107,10 +123,10 @@ A: This occurs when a carrier filters you SMS out due to spam. We try our hardes
 
 A: With full numbers, you are required to use the "+" and the country code. If you know your users are only in a certain country, you could automatically append the + and the country code so that they only need to append their number without the country code.
 
+----
 
 ## What's next
 
-{% ingredient recipe_preview/easy_deep_linking %}{% endingredient %}
 {% ingredient recipe_preview/personalized_welcome %}{% endingredient %}
 
 -----

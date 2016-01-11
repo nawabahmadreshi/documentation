@@ -1,13 +1,13 @@
 ---
 type: recipe
-title: "Advertising: Facebook Ads"
+title: "Facebook Ads"
 page_title: "Advertising with Deep Links: Facebook Ads"
 description: Learn how to create Facebook ads that are powered by Branch Metrics deep links. It’s simple - configure the dashboard, generate links and set up your app.
 keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Advertising, Ads, Facebook Ads, Facebook Authentication
 hide_platform_selector: true
 ---
 
-{% protip title="Still need to integrate Branch?" %}This guide assumes that you have 1. already [integrated Branch](/recipes/quickstart_guide/ios/) and 2. configured your app to [send IDFA or GAID](/recipes/submitting_apps/ios/). These are prerequisites to install ads, so please do them first.
+{% protip title="Still need to integrate Branch?" %}This guide assumes that you have 1. already [integrated Branch](/recipes/add_the_sdk/ios/) and 2. configured your app to [send IDFA or GAID](/recipes/submitting_apps/ios/). These are prerequisites to install ads, so please do them first.
 {% endprotip %}
 
 Deeplinked ads are not a new breed--just a rare one. With Branch they're as easy as creating a link on the Dashboard and setting up your {{page.platform_formatted}} app to handle incoming deep links.
@@ -16,11 +16,12 @@ Here are some examples:
 
 * A user clicks on an ad for 20% off all purchases before the end of the week, and upon opening the app sees the coupon and has it automatically added to the shopping cart.
 * A user clicks on an ad for blue sneakers. You show him the blue sneakers as soon as he opens the app.
-* You run a massive ad campaign that drives a ton of new users to the app. You want create a funnel to see how many users signed up and/or completed purchases after clicking different ads (and the conversion rate).
 * You know that users clicking on your ads are already familiar with your product. So in your app you reduce the carousel shown to new users from 5 to 2 if they've come in through an ad.
 
 {% protip title="Branch links work even on first install!" %}
 With standard deeplinks, if a user doesn't have the app, the link fails. With Branch links, users without the app will be directed to the {% if page.ios %}App{% endif %}{% if page.android %}Play{% endif %} Store -- and upon opening the app can be deeplinked! Facebook calls this deferred deep linking, but Branch links do this plus way more and refer to the whole process as *contextual deep linking*.{% endprotip %}
+
+-----
 
 ## One time configuration
 
@@ -36,6 +37,7 @@ In order for Branch to properly run a Facebook deeplinked ad campaign, you must 
 
 3. Press 'Authenticate'. That's it!
 
+-----
 
 ## Creating your Link
 
@@ -51,6 +53,7 @@ In order for Branch to properly run a Facebook deeplinked ad campaign, you must 
 
 {% ingredient dashboard_links/custom_data %}{% endingredient %}
 
+-----
 
 ## Creating a Branch powered Facebook ad
 
@@ -72,6 +75,8 @@ Paste the Branch link from the dashboard into the **Deep Link** field
 
 You're all set to go!
 
+-----
+
 ## View your data
 
 Now that you've set up your campaign and have everything all running, let's analyze the data! There are many changes in the works to the Branch dashboard, but if you'd like to see something, please send us a request.
@@ -82,13 +87,11 @@ First, visit the marketing tab to see the performance of the individual link. Yo
 
 To view more details stats, click the _small button that looks like a bar chart_ on the far right. The first important note is that these stats are **limited to the date range** at the top. You can expand the range if you'd like.
 
-The first chart is what we call the _Click Flow_. From a Facebook installs perspective, this will just report for you the number of installs and reopens from the link. Currently, clicks is not accurate through this ad format.
+The chart is what we call the _Click Flow_. From a Facebook installs perspective, this will just report for you the number of installs and reopens from the link. Currently, clicks is not accurate through this ad format.
 
 {% image src='/img/recipes/deeplink_ads/click_flow_analytics.png' half nofloat alt='Facebook Example Ad' %}
 
-The second chart is for measuring conversion funnels for this ad. If you setup a conversion funnel here, you can measure the total number of down funnel events that have occurred from this link in particular. It's useful for calculating conversion rate by each ad.
-
-{% image src='/img/recipes/deeplink_ads/conversion_funnel.png' full nofloat alt='Facebook Example Ad' %}
+-----
 
 ## A note on testing
 
@@ -116,8 +119,6 @@ The only way to test the deep linking functionality is outside of the actual ads
 
 {% ingredient dashboard_setup/facebook_auth_issues %}{% endingredient %}
 
-## What's next?
-
-{% ingredient recipe_preview/easy_deep_linking %}{% endingredient %}
+-----
 
 {% ingredient recipe_preview/contact_us %}{% endingredient %}

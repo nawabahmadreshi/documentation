@@ -1,43 +1,106 @@
 {% section header %}### Creating links in your app{% endsection %}
 
 {% section explanation %}
+
+{% if page.ios or page.android or page.unity %}
+`BranchUniversalObject` is the best way of tracking and sharing content with Branch. It provides convenient methods for sharing, deeplinking, and tracking how often that content is viewed. This information is then used to provide you with powerful content analytics. 
+
+Below is how to create your own Branch Links. In order to share these links, we've built a _native share sheet for Android_ and implemented a simple way to use _UIActivityViewController on iOS_. 
+{% section learn-more %} Check out the section on [**content sharing**](/recipes/content_sharing/{% section platform %}{{page.platform}}{% endsection %}).{% endsection %}
+{% else %}
 Links are the foundation to everything Branch offers. There are many different aspects to creating links but the most important are:
 
-- Embed key/value deep link metadata. We'll make sure this gets delivered to the app with the clicking user
-- Label feature and channel for analytics on the dashboard
+Embed key/value deep link metadata. We'll make sure this gets delivered to the app with the clicking user.
 
-Here's how to create your own Branch Links. In order to share these links, we've built a _native share sheet for Android_ and implemented a simple way to use _UIActivityViewController on iOS_. Check out the section on [**content sharing**](/recipes/content_sharing/{% section platform %}{{page.platform}}{% endsection %}).
+Here's how to create your own Branch Links:
+{% endif %}
+
 {% endsection %}
 
 <!--- iOS -->
 {% if page.ios %}
 
-On iOS, it's a rather simple method call.
+{% tabs %}
+{% tab objective-c %}
+{% highlight objective-c %}
+#import "BranchUniversalObject.h"
+#import "BranchLinkProperties.h"
+{% endhighlight %}
+{% endtab %}
+{% tab swift %}
+{% highlight swift %}
+#import <Branch/Branch.h>
+#import <Branch/BranchUniversalObject.h>
+#import <Branch/BranchLinkProperties.h>
+{% endhighlight %}
+{% endtab %}
+{% endtabs %}
+
+First create the object that you'd like to link to:
+
+{% tabs %}
+{% tab objective-c %}
+{% highlight objective-c %}
+BranchUniversalObject *branchUniversalObject = [[BranchUniversalObject alloc] initWithCanonicalIdentifier:@"item/12345"];
+branchUniversalObject.title = @"My Content Title";
+branchUniversalObject.contentDescription = @"My Content Description";
+branchUniversalObject.imageUrl = @"https://example.com/mycontent-12345.png";
+[branchUniversalObject addMetadataKey:@"property1" value:@"blue"];
+[branchUniversalObject addMetadataKey:@"property2" value:@"red"];
+{% endhighlight %}
+{% endtab %}
+{% tab swift %}
+{% highlight swift %}
+let branchUniversalObject: BranchUniversalObject = BranchUniversalObject(canonicalIdentifier: "item/12345")
+branchUniversalObject.title = "My Content Title"
+branchUniversalObject.contentDescription = "My Content Description"
+branchUniversalObject.imageUrl = "https://example.com/mycontent-12345.png"
+branchUniversalObject.addMetadataKey("property1", value: "blue")
+branchUniversalObject.addMetadataKey("property2", value: "red")
+{% endhighlight %}
+{% endtab %}
+{% endtabs %}
+
+Then define the properties of the link you'd like to create.
 
 {% tabs %}
 {% tab objective-c %}
 {% highlight objc %}
-NSMutableDictionary *params = [NSMutableDictionary dictionary];
-params[@"article_id"] = @"1234";
-params[@"$og_title"] = @"MyApp is disrupting apps";
-params[@"$og_image_url"] = @"http://yoursite.com/pics/987666.png";
-params[@"$desktop_url"] = @"mysite.com/article1234";
+BranchLinkProperties *linkProperties = [[BranchLinkProperties alloc] init];
+linkProperties.feature = @"sharing";
+linkProperties.channel = @"facebook";
+[linkProperties addControlParam:@"$desktop_url" withValue:@"http://example.com/home"];
+[linkProperties addControlParam:@"$ios_url" withValue:@"http://example.com/ios"];
+{% endhighlight %}
+{% endtab %}
+{% tab swift %}
+{% highlight swift %}
+let linkProperties: BranchLinkProperties = BranchLinkProperties()
+linkProperties.feature = "sharing"
+linkProperties.channel = "facebook"
+linkProperties.addControlParam("$desktop_url", withValue: "http://example.com/home")
+linkProperties.addControlParam("$ios_url", withValue: "http://example.com/ios")
+{% endhighlight %}
+{% endtab %}
+{% endtabs %}
 
-[[Branch getInstance] getShortURLWithParams:params andChannel:@"sms" andFeature:BRANCH_FEATURE_TAG_SHARE andCallback:^(NSString *url, NSError *error) {
-    if (!error) NSLog(@"got my Branch link to share: %@", url);
+Lastly, create the link by referencing the universal object.
+
+{% tabs %}
+{% tab objective-c %}
+{% highlight objc %}
+[branchUniversalObject getShortUrlWithLinkProperties:linkProperties andCallback:^(NSString *url, NSError *error) {
+    if (!error) {
+        NSLog(@"success getting url! %@", url);
+    }
 }];
 {% endhighlight %}
 {% endtab %}
 {% tab swift %}
 {% highlight swift %}
-params["article_id"] = "1234"
-params["$og_title"] = "MyApp is disrupting apps"
-params["$og_image_url"] = "http://yoursite.com/pics/987666.png";
-params["$desktop_url"] = "mysite.com/article1234"
-
-Branch.getInstance().getShortURLWithParams(params, andChannel: "sms", andFeature: BRANCH_FEATURE_TAG_SHARE, andCallback: { (url: String?, error: NSError?) -> Void in
+branchUniversalObject.getShortUrlWithLinkProperties(linkProperties,  andCallback: { (url: String?, error: NSError?) -> Void in
     if error == nil {
-        NSLog(@"got my Branch link to share: %@", url!)
+        NSLog("got my Branch link to share: %@", url)
     }
 })
 {% endhighlight %}
@@ -51,40 +114,41 @@ Branch.getInstance().getShortURLWithParams(params, andChannel: "sms", andFeature
 <!--- Android -->
 {% if page.android %}
 
-When building a Branch link, we recommend you use our builder method to generate a Branch link. Generating a Branch link via our singleton is **deprecated**.
-
-**Generate a Branch link via our builder class:**
+First create the object that you'd like to link to:
 
 {% highlight java %}
-
-BranchShortLinkBuilder shortUrlBuilder = new BranchShortLinkBuilder(MainActivity.this)
-                        .addTag("tag1")
-                        .addTag("tag2")
-                        .setChannel("channel1")
-                        .setFeature("feature1")
-                        .setStage("1")
-                        .addParameters("name", "test name") // deeplink data - anything you want!
-                        .addParameters("message", "hello there with short url")
-                        .addParameters("$og_title", "this is a title")
-                        .addParameters("$og_description", "this is a description")
-                        .addParameters("$og_image_url", "https://imgurl.com/img.png");
-
-                // Get URL Asynchronously
-                shortUrlBuilder.generateShortUrl(new Branch.BranchLinkCreateListener() {
-                    @Override
-                    public void onLinkCreate(String url, BranchError error) {
-                        if (error != null) {
-                            Log.e("Branch Error", "Branch create short url failed. Caused by -" + error.getMessage());
-                        } else {
-                            Log.i("Branch", "Got a Branch URL " + url);
-                        }
-                    }
-                });
-                // OR Get the URL synchronously
-                String myUrl = shortUrlBuilder.getShortUrl();
-
+ BranchUniversalObject branchUniversalObject = new BranchUniversalObject()
+                .setCanonicalIdentifier("item/12345")
+                .setTitle("My Content Title")
+                .setContentDescription("My Content Description")
+                .setContentImageUrl("https://example.com/mycontent-12345.png")
+                .setContentIndexingMode(BranchUniversalObject.CONTENT_INDEX_MODE.PUBLIC)
+                .addContentMetadata("property1", "blue")
+                .addContentMetadata("property2", "red");
 {% endhighlight %}
 
+Then define the properties of the link you'd like to create.
+
+{% highlight java %}
+LinkProperties linkProperties = new LinkProperties()
+               .setChannel("facebook")
+               .setFeature("sharing")
+               .addControlParameter("$desktop_url", "http://example.com/home")
+               .addControlParameter("$ios_url", "http://example.com/ios");
+{% endhighlight %}
+
+Lastly, create the link by referencing the universal object.
+
+{% highlight java %}
+branchUniversalObject.generateShortUrl(this, linkProperties, new BranchLinkCreateListener() {
+    @Override
+    public void onLinkCreate(String url, BranchError error) {
+        if (error == null) {
+            Log.i("MyApp", "got my Branch link to share: " + url);
+        }
+    }
+});
+{% endhighlight %}
 {% endif %}
 <!--- /Android -->
 
@@ -133,23 +197,46 @@ public void ReceivedUrl (Uri uri)
 {% endhighlight %}
 {% endif %}
 
-{% if page.unity %}
-{% highlight c# %}
-Dictionary<string, object> parameters = new Dictionary<string, object>
-{
-	{ "article_id", "1234" },
-	{ "$og_title", "Hot off the presses!" },
-	{ "$og_image_url", "mysite.com/image.png" },
-	{ "$desktop_url", "mysite.com/article1234" }
-}
+<!--- Unity -->
 
-string channel = "sms";
-string feature = "share";
-Branch.getShortURLWithTags(parameters, channel, feature, delegate(string url, string error) {
-    // show the link to the user or share it immediately
+{% if page.unity %}
+First create the object that you'd like to link to:
+
+{% highlight c# %}
+BranchUniversalObject universalObject = new BranchUniversalObject();
+universalObject.canonicalIdentifier = "id12345";
+universalObject.title = "id12345 title";
+universalObject.contentDescription = "My awesome piece of content!";
+universalObject.imageUrl = "https://s3-us-west-1.amazonaws.com/branchhost/mosaic_og.png";
+universalObject.metadata.Add("foo", "bar");
+{% endhighlight %}
+
+Then define the properties of the link you'd like to create.
+
+{% highlight c# %}
+BranchLinkProperties linkProperties = new BranchLinkProperties();
+linkProperties.tags.Add("tag1");
+linkProperties.tags.Add("tag2");
+linkProperties.feature = "invite";
+linkProperties.channel = "Twitter";
+linkProperties.stage = "2";
+linkProperties.controlParams.Add("$desktop_url", "http://example.com");
+{% endhighlight %}
+
+Lastly, create the link by referencing the universal object.
+
+{% highlight c# %}
+Branch.getShortURL(universalObject, linkProperties, (url, error) => {
+    if (error != null) {
+        Debug.LogError("Branch.getShortURL failed: " + error);
+    } else {
+        Debug.Log("Branch.getShortURL shared params: " + url);
+    }
 });
 {% endhighlight %}
 {% endif %}
+
+<!--- Adobe -->
 
 {% if page.adobe %}
 
@@ -177,22 +264,39 @@ branch.getShortUrl(tags, "sms", BranchConst.FEATURE_TAG_SHARE, JSON.stringify(da
 {% endhighlight %}
 {% endif %}
 
+<!--- Titanium -->
+
 {% if page.titanium %}
 
 {% highlight js %}
-branch.link({
-    channel: 'sms',
-    feature: 'share',
-    data: {
-		"article_id": "1234",
-		"$og_title": "Hot off the presses!",
-		"$og_image_url": "mysite.com/image.png",
-		"$desktop_url": "mysite.com/article1234"
-    }
-}, function(err, link) {
-	if (!err) {
-    	console.log("Ready to share my " + link);
-	}
+var branchUniversalObject = branch.createBranchUniversalObject({
+  "canonicalIdentifier" : "content/12345",
+  "title" : "My Content Title",
+  "contentDescription" : "My Content Description",
+  "contentImageUrl" : "https://example.com/mycontent-12345.png",
+  "contentIndexingMode" : "public",
+  "contentMetadata" : {
+      "product_picture" : "12345",
+      "user_id" : "6789"
+  },
 });
 {% endhighlight %}
+
+{% highlight js %}
+branchUniversalObject.generateShortUrl({
+  "feature" : "sample-feature",
+  "alias" : "sample-alias",
+  "channel" : "sample-channel",
+  "stage" : "sample-stage"
+}, {
+  "$desktop_url" : "http://desktop-url.com",
+});
+{% endhighlight %}
+
+To implement the callback, you must add a listener to the event `bio:generateShortUrl`. The event returns a string object containing the generated link.
+
+{% highlight js %}
+branchUniversalObject.addEventListener("bio:generateShortUrl", $.onGenerateUrlFinished);
+{% endhighlight %}
+
 {% endif %}

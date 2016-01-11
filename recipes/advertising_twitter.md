@@ -1,6 +1,6 @@
 ---
 type: recipe
-title: "Advertising: Twitter Ads"
+title: "Twitter Ads"
 hide_platform_selector: true
 ---
 

@@ -6,6 +6,8 @@ The Branch session starts every single time your app opens up, and checks if the
 
 We also bundle in a [bunch of other stuff](#branch-provided-data-parameters-in-callback) that you might find useful.
 
+### Initialize SDK And Register Deep Link Routing Function
+
 <!---    iOS -->
 {% if page.ios %}
 
@@ -27,7 +29,7 @@ func application(application: UIApplication, didFinishLaunchingWithOptions launc
 {% endtab %}
 {% endtabs %}
 
-and paste the following right below it:
+and paste the following:
 
 {% tabs %}
 {% tab objective-c %}
@@ -62,6 +64,9 @@ branch.initSessionWithLaunchOptions(launchOptions, andRegisterDeepLinkHandler: {
 
 **NOTE** If you are seeing a "Branch.h file not found" error but you've imported the SDK, or it's breaking during compiling--and you're **using Xcode 6.3 or newer**--[click here](https://support.branch.io/discussions/topics/6000008855).
 
+{% protip title="Cookie-based matching using SFSafariViewController" %}If you want to enable cookie-based matching on iOS 9+, please add the SafariServices framework to your app. Then we will automatically start using this method. Please test to make sure the invisible SFSafariViewController does not alter your view controller stack. Delete the app and reinstall to trigger the invisible SFSafariViewController to be presented on first launch.
+{% endprotip %}
+
 {% endif %}
 <!---    /iOS -->
 
@@ -77,7 +82,7 @@ public void onStart() {
 }
 {% endhighlight %}
 
-Initialize the session and register your deep link router. Take note of how the insatnce is retrieved. If you are **not** using automatic session management, then you will need to use `getInstance(Context context)`.
+Initialize the session and register your deep link router. Take note of how the instance is retrieved. If you are **not** using automatic session management, then you will need to use `getInstance(Context context)`.
 
 {% highlight java %}
 
@@ -116,28 +121,31 @@ public void onNewIntent(Intent intent) {
 
 {% if page.cordova %}
 
-Initialize the session and register your deep link router. You should call this when the ‘deviceready’ event fires and each time the ‘resume’ event fires. The callback here will contain the deeplink data associated with the link you clicked.
+Initialize the session and register your deep link router. You should call this when the ‘deviceready’ event fires and each time the ‘resume’ event fires. The callback here will contain the deeplink data associated with the link you clicked. You will need your Branch Key from the Branch dashboard. Here's an example of a healthy integration:
 
 {% highlight js %}
-branch.init("YOUR BRANCH KEY HERE", function(err, data) {
-    if (!err && data.data) {
-        var parsed_data = JSON.parse(data.data);
-        if (parsed_data['+clicked_branch_link']) {
-            // data are the deep linked params associated with the link that the user clicked -> was re-directed to this app
-            // data will be empty if no data found
-            // ... insert custom routing logic here ...
-        }
-    }
-});
+onDeviceReady: function() {
+    branch.setDebug(true);
+    document.addEventListener('resume', app.onResume, false);
+    branch.init(app.branch_key, { isReferrable: true }, function(err, data) {
+        // call completion handler with data.data
+    });
+},
+
+onResume: function() {
+    branch.init(app.branch_key, { isReferrable: true }, function(err, data) {
+        // call completion handler with data.data
+    });
+},
 {% endhighlight %}
 
 If data is null and err contains a string denoting a request timeout then inspect your app's [content security policies](https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy) as they may block your app from communicating with Branch's servers.
 
-Structure of the callback `data_parsed` object:
+Structure of the callback `data.data` object:
 
 {% highlight js %}
 {
-    data_parsed: {
+    data: {
         '+clicked_branch_link': true | false,
         '+is_first_session': true | false,
         // If the user was referred from a link, and the link has associated data, the data is passed in here.
@@ -148,6 +156,8 @@ Structure of the callback `data_parsed` object:
 {% endif %}
 
 {% if page.xamarin %}
+
+Before starting, it's important to understand that we require a generic Xamarin initialization in addition to the Android and iOS initialization. That initialization is different depending on whether you're using Xamarin Forms or not. Please click one of the following to be linked to the appropriate init path to follow:
 
 - [Click here](#generic-init-with-forms) if you're using Xamarin Forms
 - [Click here](#xamarin-without-forms) if you're not using Xamarin Forms
@@ -167,23 +177,11 @@ public class App : Application, IBranchSessionInterface
         branch.InitSessionAsync (this);
     }
 
-    protected override async void OnSleep ()
-    {
-        Branch branch = Branch.GetInstance ();
-        // Await here ensure the thread stays alive long enough to complete the close.
-        await branch.CloseSessionAsync ();
-    }
-
     #region IBranchSessionInterface implementation
 
     public void InitSessionComplete (Dictionary<string, object> data)
     {
         // Do something with the referring link data...
-    }
-
-    public void CloseSessionComplete ()
-    {
-        // Handle any additional cleanup after the session is closed
     }
 
     public void SessionRequestError (BranchError error)
@@ -209,8 +207,12 @@ public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsApplicat
         global::Xamarin.Forms.Forms.Init (this, savedInstanceState);
 
         BranchAndroid.Init (this, "your branch key here", Intent.Data);
+        
+        App app = new App ();
+        // Call this method to enable automatic session management
+        BranchAndroid.getInstance().SetLifeCycleHandlerCallback (this, app);
 
-        LoadApplication (new App ());
+        LoadApplication (app);
     }
 
     // Ensure we get the updated link identifier when the app is opened from the
@@ -238,7 +240,7 @@ public class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDe
             url = (NSUrl)launchOptions.ValueForKey (UIApplication.LaunchOptionsUrlKey);
         }
 
-        BranchIOS.Init ("your branch key here", url);
+        BranchIOS.Init ("your branch key here", url, true);
 
         LoadApplication (new App ());
         return base.FinishedLaunching (uiApplication, launchOptions);
@@ -251,16 +253,29 @@ public class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDe
         string sourceApplication,
         NSObject annotation)
     {
-        Console.WriteLine ("New URL: " + url.ToString ());
         BranchIOS.getInstance ().SetNewUrl (url);
         return true;
     }
+
+    // For Universal Links
+    public override bool ContinueUserActivity (UIApplication application,
+        NSUserActivity userActivity,
+        UIApplicationRestorationHandler completionHandler)
+    {
+        bool handledByBranch = BranchIOS.getInstance ().ContinueUserActivity (userActivity, app);
+        return handledByBranch;
+    }
 }
 {% endhighlight %}
+
 {% endif %}
 
 {% if page.unity %}
-Called when app first initializes a session, ideally in a *class that is initiated with the start of your scene*. The callback here will contain the deeplink data associated with the link you clicked. This deep link routing callback is called 100% of the time on init, with your link params or an empty dictionary if none present.
+Called when app first initializes a session, ideally in a *class that is initiated with the start of your scene*. 
+
+If you created a custom link with your own custom dictionary data, you probably want to know when the user session init finishes, so you can check that data. Think of this callback as your "deep link router". If your app opens with some data, you want to route the user depending on the data you passed in. Otherwise, send them to a generic install flow.
+
+This deep link routing callback is called 100% of the time on init, with your link params or an empty dictionary if none present.
 
 {% highlight c# %}
 using UnityEngine;
@@ -279,6 +294,8 @@ public class MyCoolBehaviorScript : MonoBehaviour {
     }
 }
 {% endhighlight %}
+
+
 {% endif %}
 
 {% if page.adobe %}
@@ -323,31 +340,42 @@ Be sure to have the INIT_SUCCESSED event called, otherwise read the bEvt.informa
 {% endif %}
 
 {% if page.titanium %}
-Initialize the session and register your deep link router. The callback here will contain the deeplink data associated with the link you clicked.
+The SDK can be initialized by calling `branch.initSession()`, just as with the Web SDK. A sample app can be found in [the Github repo here](https://github.com/BranchMetrics/Titanium-Deferred-Deep-Linking-SDK/blob/master/testbed/app/controllers/index.js), that demonstrates this.
+
+Initialize the session and register your deep link router. The callback here will contain the deeplink data associated with the link you clicked. To implement the callback, you must add a listener to the event `bio:initSession`.
 
 {% highlight js %}
-branch.init("YOUR BRANCH KEY HERE", function(err, data) {
-    if (!err && data.data) {
-        var parsed_data = JSON.parse(data.data);
-        if (parsed_data['+clicked_branch_link']) {
-            // data are the deep linked params associated with the link that the user clicked -> was re-directed to this app
-            // data will be empty if no data found
-            // ... insert custom routing logic here ...
-        }
+$.initialize = function(params) {
+    $.window.open();
+
+    $.initializeViews();
+    $.initializeHandlers();
+
+    Ti.API.info("start initSession");
+    branch.setDebug(true);
+    branch.initSession();
+    branch.addEventListener("bio:initSession", $.onInitSessionFinished);
+
+    if (OS_ANDROID) {
+        Ti.Android.currentActivity.addEventListener("newintent", function(e) {
+            Ti.API.info("inside newintent: " + e);
+            $.window.open();
+            branch.initSession();
+        });
     }
-});
+};
 {% endhighlight %}
 
-Structure of the callback `data_parsed` object:
+The deep link data will appear in the `data` dictionary of the callback function.
 
 {% highlight js %}
-{
-    data_parsed: {
-        '+clicked_branch_link': true | false,
-        '+is_first_session': true | false,
-        // If the user was referred from a link, and the link has associated data, the data is passed in here.
-    },
-    referring_identity: '12345',      // If the user was referred from a link, and the link was created by a user with an identity, that identity is here.
+$.onInitSessionFinished = function(data) {
+    Ti.API.info("inside onInitSessionFinished");
+    for (key in data) {
+        if ((key != "type" && key != "source" && key != "bubbles" && key != "cancelBubble") && data[key] != null) {
+            Ti.API.info(key + data["key"]);
+        }
+    }
 }
 {% endhighlight %}
 {% endif %}

@@ -1,14 +1,13 @@
 
 {% section header%}### Reward Rule Basics{% endsection %}
 
-{% image src='/img/ingredients/dashboard_credits_and_reward_rules/add_rule.png' half right alt='add rule' %}
-
 To award users for credits, you must set up a reward rule tied to a specific events.
 
 Reward rules can be based on [standard Branch-defined events](/recipes/advanced_referral_incentives/{{page.platform}}/#custom-events) like _install_, _open_ and _referred session_. They can also be based on [custom events](/recipes/advanced_referral_incentives/{{page.platform}}/#custom-events).
 
 To add a rule, go to the Dashboard Referrals page and click the [Rules tab](https://dashboard.branch.io/#/referrals/rules). Click the green "+ Add a new rule" button.
 
+{% image src='/img/ingredients/dashboard_credits_and_reward_rules/add_rule.png' half center alt='add rule' %}
 
 {% section more %}
 These allow you to tailor:

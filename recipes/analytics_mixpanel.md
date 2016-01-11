@@ -1,6 +1,6 @@
 ---
 type: recipe
-title: "Analytics: Mixpanel"
+title: "Mixpanel"
 ios_page_title: Sync Branch iOS data with Mixpanel
 android_page_title: Sync Branch Android data with Mixpanel
 ios_description: Learn how to synchronize your Branch iOS data with Mixpanel, for example to track in-app events, segment users from Branch installs and calculate LTV.
@@ -13,7 +13,7 @@ platforms:
 ---
 
 {% protip title="Do I need both SDKs integrated?" %}
-Yes, in order to have synchronization between Branch and Mixpanel, you need both SDKs integrated. In order to integrate Branch, follow [these instructions](/recipes/quickstart_guide/ios). In order to integrate Mixpanel, follow these [instructions](https://mixpanel.com/help/reference/ios).{% endprotip %}
+Yes, in order to have synchronization between Branch and Mixpanel, you need both SDKs integrated. In order to integrate Branch, follow [these instructions](/recipes/add_the_sdk/ios). In order to integrate Mixpanel, follow these [instructions](https://mixpanel.com/help/reference/ios).{% endprotip %}
 
 ## Getting Started
 
@@ -37,9 +37,9 @@ In this example, we'll take an instance of an install responsible by Branch. We 
 
     [branch initSessionWithLaunchOptions:launchOptions andRegisterDeepLinkHandler:^(NSDictionary *params, NSError *error) {
         if (!error) {
-        	if ([params[@"referred"]]) {
+            if ([params[BRANCH_INIT_KEY_CLICKED_BRANCH_LINK] boolValue]) {
             	// Add call here to let MP know a Branch-driven install occurred
-            	[Mixpanel track:@"install" properties:params];
+            	[[Mixpanel sharedInstance] track:@"install" properties:params];
             }
         }
 	}];
@@ -55,7 +55,7 @@ In this example, we'll take an instance of an install responsible by Branch. We 
         public void onInitFinished(JSONObject referringParams, Branch.BranchError error) {
             if (error == null) {
                 MixpanelAPI mp = MixpanelAPI.getInstance(getContext(), projectToken);
-                if (params.optBoolean("referred")) {
+                if (params.optBoolean("+clicked_branch_link")) {
                     mp.track("install", referringParams);
                 }
             }
@@ -69,7 +69,7 @@ Mixpanel would then receive the Branch install event, and you would know Branch 
 
 Let's say you want to take it a step further and track Branch specific installs and users inside your segments for Mixpanel. We have support for that as well. The way to leverage that would be with the following:
 
-- After a successful Branch session, set an [identity](https://dev.branch.io/recipes/quickstart_guide/ios/#identifying-your-users).
+- After a successful Branch session, set an [identity](https://dev.branch.io/recipes/measuring_installs/ios/#influencer-tracking).
 - Set an identity in [Mixpanel](http://mixpanel.github.io/mixpanel-android/com/mixpanel/android/mpmetrics/MixpanelAPI.html#identify-java.lang.String-)
 - Track events.
 

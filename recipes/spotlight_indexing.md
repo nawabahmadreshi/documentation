@@ -13,36 +13,65 @@ Note that some older devices cannot index content. iPad minis, for example, cann
 
 ## Listing your content
 
-Content can be added to Spotlight search with a single line of code. We'd recommend that you put this on every page that renders a piece of content for your users. This way, a user could rediscover a previous thing that they had viewed.
+Content can be added to Spotlight search with using the Branch Universal Object. We'd recommend that you put this on every page that renders a piece of content for your users. This way, a user could rediscover a previous thing that they had viewed.
+
+First, customize the content that you'd like to be listed by customizing the Branch Universal Object.
 
 {% tabs %}
 {% tab objective-c %}
-{% highlight objc %}
-Branch *branch = [Branch getInstance];
-[branch createDiscoverableContentWithTitle:@"Kindred"
-                               description:@"My app is disrupting apps"
-                              thumbnailUrl:[NSURL URLWithString:@"https://s3-us-west-1.amazonaws.com/branchhost/mosaic_og.png"]
-                                linkParams:@{@"object_id": @"1234",
-                              				 @"deeplink": @"data"}
-                         publiclyIndexable:YES];
+{% highlight objective-c %}
+BranchUniversalObject *branchUniversalObject = [[BranchUniversalObject alloc] initWithCanonicalIdentifier:@"item/12345"];
+branchUniversalObject.title = @"My Content Title";
+branchUniversalObject.contentDescription = @"My Content Description";
+branchUniversalObject.imageUrl = @"https://example.com/mycontent-12345.png";
+[branchUniversalObject addMetadataKey:@"property1" value:@"blue"];
+[branchUniversalObject addMetadataKey:@"property2" value:@"red"];
 {% endhighlight %}
 {% endtab %}
 {% tab swift %}
 {% highlight swift %}
-let branch: Branch = Branch.getInstance()
-branch.createDiscoverableContentWithTitle("Kindred",
-                              description: "My app is disrupting apps",
-                             thumbnailUrl: NSUrl.init("https://s3-us-west-1.amazonaws.com/branchhost/mosaic_og.png"),
-                               linkParams: ["deeplink": "data",
-                                            "object_id": "1234"],
-                        publiclyIndexable: true)
+let branchUniversalObject: BranchUniversalObject = BranchUniversalObject(canonicalIdentifier: "item/12345")
+branchUniversalObject.title = "My Content Title"
+branchUniversalObject.contentDescription = "My Content Description"
+branchUniversalObject.imageUrl = "https://example.com/mycontent-12345.png"
+branchUniversalObject.addMetadataKey("property1", value: "blue")
+branchUniversalObject.addMetadataKey("property2", value: "red")
 {% endhighlight %}
 {% endtab %}
 {% endtabs %}
 
+Then call the following method on the universal object. The callback will return the URL used to list the content for your own records.
+
+{% tabs %}
+{% tab objective-c %}
+{% highlight objc %}
+[branchUniversalObject listOnSpotlightWithCallback:^(NSString *url, NSError *error) {
+    if (!error) {
+        NSLog(@"success getting url! %@", url);
+    }
+}];
+{% endhighlight %}
+{% endtab %}
+{% tab swift %}
+{% highlight swift %}
+branchUniversalObject.listOnSpotlightWithCallback((url: String?, error: NSError?) -> Void in
+    if error == nil {
+        NSLog("got my Branch link to share: %@", url)
+    }
+})
+{% endhighlight %}
+{% endtab %}
+{% endtabs %}
+
+------
+
+{% ingredient sdk_links/tracking_views %}{% endingredient %}
+
+------
+
 ## Tracking clicks and deep linking
 
-This section assumes that you've already [setup the SDK](/recipes/quickstart_guide). In order to properly receive a click from Spotlight when your app is installed, just let Branch handle th complexity. Parameters associated with the deep link will appear in the **Deep Link Handler** that you registered in initSession.
+This section assumes that you've already [setup the SDK](/recipes/add_the_sdk/ios/). In order to properly receive a click from Spotlight when your app is installed, just let Branch handle th complexity. Parameters associated with the deep link will appear in the **Deep Link Handler** that you registered in initSession.
 
 {% tabs %}
 {% tab objective-c %}
@@ -68,6 +97,8 @@ func application(application: UIApplication, continueUserActivity: userActivity,
 {% endtab %}
 {% endtabs %}
 
+------
+
 ## Other tips and best practices
 
 ### Deep link from Spotlight
@@ -75,11 +106,13 @@ func application(application: UIApplication, continueUserActivity: userActivity,
 What's more delightful than searching for a particular something on your phone, and then clicking it to open the app immediately. You'll need to setup deep linking to allow for this.
 
 1. Add a custom key in your Branch dictionary to deeplink from when click (`picture_id`, `article_id`, etc)
-2. Let Branch open the view controller automatically when the key is detected. [**Here's how to set it up.**](/recipes/easy_deep_linking/ios)
+2. Let Branch open the view controller automatically when the key is detected. [**Here's how to set it up.**](/recipes/setup_deep_linking/ios)
 
 ### Use deepviews for user acquisition
 
 If the user doesn't have the app installed and finds your content through search, Spotlight will open up the browser. You can show a deepview, which is an automatically-generated, mobile web render of the app content. [**Here's how to set it up.**](/recipes/deepviews/ios)
+
+------
 
 ## Advanced: Further customizations
 

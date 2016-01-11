@@ -19,34 +19,31 @@ If you want to tailor how a link will appear on social media, you should make us
 {% tabs %}
 {% tab objective-c %}
 {% highlight objc %}
+BranchUniversalObject *branchUniversalObject = [[BranchUniversalObject alloc] initWithCanonicalIdentifier:@"item/12345"];
 // Facebook OG tags -- this will overwrite any defaults you set up on the Branch Dashboard
-NSMutableDictionary *params = [NSMutableDictionary dictionary];
-params[@"$og_title"] = @"MyApp is disrupting apps";
-params[@"$og_image_url"] = @"http://yoursite.com/pics/987666.png";
-params[@"$og_description"] = @"Out of all the apps disrupting apps, MyApp is without a doubt a leader. Check us out.";
+branchUniversalObject.title = @"My Content Title";
+branchUniversalObject.contentDescription = @"My Content Description";
+branchUniversalObject.imageUrl = @"https://example.com/mycontent-12345.png";
 
-[[Branch getInstance] getShortURLWithParams:params andCallback:^(NSString *url, NSError *error) {
-   // Now we can do something with the URL...
-   NSLog(@"url: %@", url);
-}];
+// Add any additional custom OG tags here
+[branchUniversalObject addMetadataKey:@"$og_video" value:@"http://mysite/video.mpg"];
 {% endhighlight %}
 {% endtab %}
 {% tab swift %}
 {% highlight swift %}
-params["$og_title"] = "MyApp is disrupting apps"
-params["$og_image_url"] = "http://yoursite.com/pics/987666.png";
-params["$og_description"] = "Out of all the apps disrupting apps, MyApp is without a doubt a leader. Check us out."
+let branchUniversalObject: BranchUniversalObject = BranchUniversalObject(canonicalIdentifier: "item/12345")
+// Facebook OG tags -- this will overwrite any defaults you set up on the Branch Dashboard
+branchUniversalObject.title = "My Content Title"
+branchUniversalObject.contentDescription = "My Content Description"
+branchUniversalObject.imageUrl = "https://example.com/mycontent-12345.png"
 
-Branch.getInstance().getShortURLWithParams(params, andCallback: { (url: String?, error: NSError?) -> Void in
-    if error == nil {
-        NSLog(@"got my Branch link to share: %@", url!)
-    }
-})
+// Add any additional custom OG tags here
+branchUniversalObject.addMetadataKey("$og_video", value: "http://mysite/video.mpg")
 {% endhighlight %}
 {% endtab %}
 {% endtabs %}
 
-
+Check out our [Content Sharing](/recipes/content_sharing/{{page.platform}}/) guide to see simple examples of complete a link from the Branch Universal Object.
 
 {% endif %}
 <!--- /iOS -->
@@ -55,32 +52,20 @@ Branch.getInstance().getShortURLWithParams(params, andCallback: { (url: String?,
 <!--- Android -->
 {% if page.android %}
 
-
 {% highlight java %}
-// This will OVERWRITE any defaults you have set on the Branch Dashboard
-JSONObject params = new JSONObject();
-try {
-    params.put("referringUsername", "Mario");
-    params.put("referringUserId", "1234");
+ BranchUniversalObject branchUniversalObject = new BranchUniversalObject()
+                .setCanonicalIdentifier("item/12345")
+// Facebook OG tags -- This will overwrite any defaults you have set on the Branch Dashboard
+                .setTitle("My Content Title")
+                .setContentDescription("My Content Description")
+                .setContentImageUrl("https://example.com/mycontent-12345.png")
 
-    // customize the display of the Branch link
-    params.put("$og_image_url", "http://yoursite.com/pics/987666.png");
-    params.put("$og_title", "Mario's Recent Picture");
-    params.put("$og_description", "The princess and the plumber");
-} catch (JSONException ex) { }
-
-Branch branch = Branch.getInstance(getApplicationContext());
-branch.getShortUrl("Facebook", "share", null, params, new BranchLinkCreateListener() {
-    @Override
-    public void onLinkCreate(String url, Branch.BranchError error) {
-        if (error == null) {
-            // show the link to the user or share it immediately
-        } else {
-            Log.i("MyApp", error.getMessage());
-        }
-    }
-});
+// Add any additional custom OG tags here
+                .addContentMetadata("$og_video", "http://mysite/video.mpg");
 {% endhighlight %}
+
+Check out our [Content Sharing](/recipes/content_sharing/{{page.platform}}/) guide to see simple examples of complete a link from the Branch Universal Object.
+
 {% endif %}
 <!--- /Android -->
 
@@ -176,19 +161,21 @@ branch.getShortUrl(tags, "sms", BranchConst.FEATURE_TAG_SHARE, JSON.stringify(da
 {% if page.titanium %}
 
 {% highlight js %}
-branch.link({
-    channel: 'sms',
-    feature: 'share',
-    data: {
-        "article_id": "1234",
-        "$og_title": "Hot off the presses!",
-        "$og_image_url": "http://yoursite.com/pics/987666.png",
-        "$og_description": "Out of all the apps disrupting apps, MyApp is without a doubt a leader. Check us out."
-    }
-}, function(err, link) {
-    if (!err) {
-        console.log("Ready to share my " + link);
-    }
+var branchUniversalObject = branch.createBranchUniversalObject({
+  "canonicalIdentifier" : "content/12345",
+
+// Facebook OG tags -- This will overwrite any defaults you have set on the Branch Dashboard
+  "title" : "My Content Title",
+  "contentDescription" : "My Content Description",
+  "contentImageUrl" : "https://example.com/mycontent-12345.png",
+
+  "contentIndexingMode" : "public",
+  "contentMetadata" : {
+      "product_picture" : "12345",
+      "user_id" : "6789"
+  },
 });
 {% endhighlight %}
+
+Check out our [Content Sharing](/recipes/content_sharing/{{page.platform}}/) guide to see simple examples of complete a link from the Branch Universal Object.
 {% endif %}

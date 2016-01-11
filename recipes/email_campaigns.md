@@ -1,6 +1,6 @@
 ---
 type: recipe
-title: Deeplink email campaigns
+title: Email campaigns
 ios_page_title: Email campaigns with deep links for iOS
 android_page_title: Email campaigns with Android deep links
 ios_description: How to create marketing links for email campaigns featuring your iOS app. Branch Links enable deep linking, install attribution, and in-depth analytics.
@@ -20,7 +20,7 @@ First, please visit the [Branch link configuration tool](https://start.branch.io
 
 {% ingredient dashboard_links/creating_links %}
 	{% override screenshot_description %}One example description if you want to treat this guide is: "Launch Email".{% endoverride %}
-	{% override screenshot %}{% image src='/img/ingredients/dashboard_links/add_email.png' half right alt='Description' %}
+	{% override screenshot %}{% image src='/img/ingredients/dashboard_links/add_email.png' half center alt='Description' %}
 	{% endoverride %}
 
 {% endingredient %}
@@ -28,7 +28,7 @@ First, please visit the [Branch link configuration tool](https://start.branch.io
 {% ingredient dashboard_links/tags %}
 	{% override deep_link_data_url %}For information of the form *[key]*: *[value]* such as "product": "shoes", we recommend adding them below--see [Deep Link Data (Optional)](/recipes/your_first_marketing_link/#deep-link-data).
     {% endoverride %}
-    {% override screenshot %}{% image src="/img/ingredients/dashboard_links/tags_email.png" half right alt="Link Tags" %}
+    {% override screenshot %}{% image src="/img/ingredients/dashboard_links/tags_email.png" half center alt="Link Tags" %}
 	{% endoverride %}
 
 {% endingredient %}
@@ -43,7 +43,7 @@ This powerful link will now track clicks across platforms. Users who have the ap
 
 -----
 
-## Creating a many links
+## Creating many links
 
 {% ingredient http_api/structuring_dynamic_deeplink %}{% endingredient %}
 
@@ -51,15 +51,15 @@ This powerful link will now track clicks across platforms. Users who have the ap
 
 ## Conclusion
 
-{% ingredient dashboard_links/no_sdk %}{% endingredient %}
+It's that simple! You now have a link that will track clicks based on the channel, campaign and any other tags you create. The Dashboard's [Summary](https://dashboard.branch.io/#) page, specifically the "Click Flow" chart, now can show you meaningful results!
+
+To start collecting statistics regarding installs, opens, referred installs -- and to add powerful, deferred deep links -- You should [integrate the SDK](/recipes/add_the_sdk/{{page.platform}}/)
 
 ## What's next
 
-{% ingredient recipe_preview/easy_deep_linking %}{% endingredient %}
 {% ingredient recipe_preview/app_download_banner %}{% endingredient %}
 {% ingredient recipe_preview/personalized_welcome %}{% endingredient %}
 {% ingredient recipe_preview/influencers %}{% endingredient %}
-{% ingredient recipe_preview/channel_tags %}{% endingredient %}
 
 -----
 

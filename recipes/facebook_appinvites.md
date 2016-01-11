@@ -11,12 +11,18 @@ platforms:
 - ios
 - android
 ---
-
 Facebook launched it's new App Invites feature as an alternative to sharing to the wall to help you grow your app. It's similar to a direct SMS as it's a private invite from 1 friend to another as opposed to a public post on the wall. The good news is that your Branch deep links that you've set up for SMS, email and Twitter shares work the exact same way for invites. Here's a simple guide on how to do it.
 
 {% image src='/img/recipes/appinvites/appinvite.png' third center alt='app invite' %}
 
-{% protip title="Still need to integrate Branch or Facebook?" %}This guide assumes that you have 1. already [integrated Branch](/recipes/quickstart_guide/ios/) and 2. configured your app to [send IDFA or GAID](/recipes/submitting_apps/ios/). These are prerequisites to install ads, so please do them first. If you need integrate Facebook, you can find instructions {% if page.ios %}[in this guide](https://developers.facebook.com/docs/ios/getting-started).{% endif %}{% if page.android %}[in this guide](https://developers.facebook.com/docs/android/getting-started).{% endif %}
+{% protip%}Facebook has noted that App Invites for iOS do not support Deep Linking and attribution.
+
+<code>This means that iOS App Invites and Branch Links will not work correctly together.</code>
+
+[App Invites for Android](/recipes/facebook_appinvites/android/) and Branch Links will continue to work as expected.
+{% endprotip %}
+
+{% protip title="Still need to integrate Branch or Facebook?" %}This guide assumes that you have 1. already [integrated Branch](/recipes/add_the_sdk/ios/) and 2. configured your app to [send IDFA or GAID](/recipes/submitting_apps/ios/). These are prerequisites to install ads, so please do them first. If you need integrate Facebook, you can find instructions {% if page.ios %}[in this guide](https://developers.facebook.com/docs/ios/getting-started).{% endif %}{% if page.android %}[in this guide](https://developers.facebook.com/docs/android/getting-started).{% endif %}
 {% endprotip %}
 
 ## One time configuration
@@ -52,13 +58,13 @@ Every Branch link automatically comes packed with all of the AppLinks to automat
                                  andChannel:@"facebook"
                                  andFeature:@"app_invite"
                                 andCallback:^(NSString *url, NSError* error) {
-    if ([[FBSDKAppInviteDialog new] canShow]) {
-        FBSDKAppInviteContent *content =[[FBSDKAppInviteContent alloc] init];
-        content.appLinkURL = [NSURL URLWithString:url];
-        content.appInvitePreviewImageURL = [NSURL URLWithString:@"https://s3-us-west-1.amazonaws.com/host/zackspic.png"];
+    FBSDKAppInviteDialog *inviteDialog = [FBSDKAppInviteDialog new];
+    if ([inviteDialog canShow]) {
+        inviteDialog.content =[[FBSDKAppInviteContent alloc] init];
+        inviteDialog.content.appLinkURL = [NSURL URLWithString:url];
+        inviteDialog.content.appInvitePreviewImageURL = [NSURL URLWithString:@"https://s3-us-west-1.amazonaws.com/host/zackspic.png"];
                                         
-        [FBSDKAppInviteDialog showWithContent:content
-                                     delegate:self];
+        [inviteDialog show];
     }
 }];
 {% endhighlight %}
@@ -173,17 +179,15 @@ Here's how to build it:
 {% endhighlight %}
 
 {% highlight objc %}
-- (BOOL)application:(UIApplication *)application
+- (BOOL)application:(UIApplication *)app
             openURL:(NSURL *)url
-  sourceApplication:(NSString *)sourceApplication
-         annotation:(id)annotation {
+            options:(NSDictionary<NSString *,id> *)options {
     // NOTE: Branch must come first
     BOOL wasHandled = [[Branch getInstance] handleDeepLink:url];
     if (!wasHandled)
         [[FBSDKApplicationDelegate sharedInstance] application:application
                                                        openURL:url
-                                             sourceApplication:sourceApplication
-                                                    annotation:annotation];
+                                                       options:sourceApplication];
     return wasHandled;
 }
 

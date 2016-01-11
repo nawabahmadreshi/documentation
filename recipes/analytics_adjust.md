@@ -1,6 +1,6 @@
 ---
 type: recipe
-title: "Analytics: Adjust"
+title: "Adjust"
 page_title: Double Sided Ad Measurement Integrations
 description: Learn what needs to be done in order to put a Branch deep link in between a third party ad network and a third party measurement service.
 keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Ad Measurement, third party ad measurement, ad network
@@ -27,15 +27,6 @@ _Ad network -> **Branch** -> measurement partner (Adjust, etc)_
 You'd set the **custom URL for Android** to _https://app.adjust.io/abc123_ and the **custom URL for iOS** to _https://app.adjust.io/abc123_. This would tell Branch where to send the user for the specific OS. Don't worry about the additional query parameters (the stuff after '?'). We'll carry that through Branch automatically.
 {% endoverride %}
 {% endingredient %}
-
-## Customize deep link parameters
-
-Here is where you can specify the custom parameters to add to a link that will be deep linked into the app. You might want to put a coupon code or a page identifier here to route the user.
-
-In order to properly link the ad network to the measurement partner, you must configure the Branch link to pass through any additional query parameters through to the measurement partner.
-
-To do this, please add in the key **'$query_param_passthrough'** with the value of **'true'**. You can see an example below:
-{% image src='/img/recipes/double_third_party/query_param_passthrough.png' half center alt='deep link parameters' %}
 
 ## Provide link to advertiser
 

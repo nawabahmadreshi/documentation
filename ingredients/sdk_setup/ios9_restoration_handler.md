@@ -1,9 +1,7 @@
 {% tabs %}
 {% tab objective-c %}
 {% highlight objc %}
-- (BOOL)application:(UIApplication *)application
-continueUserActivity:(NSUserActivity *)userActivity
- restorationHandler:(void (^)(NSArray *restorableObjects))restorationHandler {
+- (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray *restorableObjects))restorationHandler {
     BOOL handledByBranch = [[Branch getInstance] continueUserActivity:userActivity];
     
     return handledByBranch;
@@ -14,9 +12,8 @@ continueUserActivity:(NSUserActivity *)userActivity
 {% highlight swift %}
 func application(application: UIApplication, continueUserActivity userActivity: NSUserActivity, restorationHandler: ([AnyObject]?) -> Void) -> Bool {
     // pass the url to the handle deep link call
-    Branch.getInstance().continueUserActivity(userActivity);
 
-    return true
+    return Branch.getInstance().continueUserActivity(userActivity)
 }
 {% endhighlight %}
 {% endtab %}

@@ -1,6 +1,6 @@
 ---
 type: recipe
-title: "Analytics: Google Analytics"
+title: "Google Analytics"
 ios_page_title: Send iOS Deep Link Data to Google Analytics
 android_page_title: Use Android Link Data in Google Analytics
 ios_description: This guide teaches you how to find and send iOS deep link data to Google Analytics through your Branch Metrics implementation.
@@ -18,7 +18,7 @@ If you use a service like Google Analytics to track all mobile application analy
 
 Note, the simplest way to make Branch and Google Analytics work together is by allowing Branch to track events specific to users who come via a Branch link, and letting GA track the other events.
 
-{% protip title="Still need to integrate Branch?" %}This guide assumes that you have already integrated Branch. If you need to integrate Branch still, jump to "[Integrating the SDK](/recipes/quickstart_guide/ios/)".
+{% protip title="Still need to integrate Branch?" %}This guide assumes that you have already integrated Branch. If you need to integrate Branch still, jump to "[Integrating the SDK](/recipes/add_the_sdk/ios/)".
 {% endprotip %}
 
 ## How It Works

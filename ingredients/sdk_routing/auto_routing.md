@@ -1,9 +1,15 @@
 
-Branch handle all the deep link routing for you if you leverage the automatic deeplinking functionality described below. Here's how to build on it:
+Branch will handle all the deep link routing for you if you leverage the automatic deeplinking functionality described below. Here's how to build on it:
+
+{% if page.unity or page.xamarin or page.cordova or page.titanium or page.adobe %}
+**Unfortunately, auto routing is only supported by native iOS and Android. If you'd like to extend your platform's repo, just head to our [Github page](https://github.com/BranchMetrics).**
+{% endif %}
+
+----
 
 {% if page.ios %}
 
-### Configure your UIViewController to as a delegate for BranchDeepLinkingController
+### Make your UIViewController a delegate for BranchDeepLinkingController
 
 The work in this section will take place in the view controller that you want to appear when a user clicks a link. For example, this could be a view to show a product.
 
@@ -108,7 +114,7 @@ func closePressed() {
 
 Lastly, you need to tell Branch which view controller you will use and which key to respond to. In this case we're using `product_picture` as above.
 
-**Note**: If you don't know what this key is, see [Creating Links](/recipes/quickstart_guide/{% section platform %}{{page.platform}}/#creating-links}{% endsection %})
+**Note**: If you don't know what this key is, see [Creating Links](/recipes/setup_deep_linking/{% section platform %}{{page.platform}}/#creating-links{% endsection %})
 
 {% tabs %}
 {% tab objective-c %}
@@ -149,15 +155,15 @@ func application(application: UIApplication, didFinishLaunchingWithOptions launc
 
 {% if page.android %}
 
-### Register your Activity for a specific key
+### Register your Activity for a specific key or path
 
 Most of the configuration for the auto deep link feature will happen in the Manifest file, so let's start there.
 
-#### List the key you want
+#### Option 1: List the key you want
 
 In your Manifest file, it's easy to specify which deep link keys you want to trigger the Activity to load. Just add this additional metadata for `io.branch.sdk.auto_link_keys` to the Activity you want to use. Let's use `product_picture` in this example
 
-**Note**: If you don't know what this key is, see [Creating Links](/recipes/quickstart_guide/{% section platform %}{{page.platform}}/#creating-links}{% endsection %})
+**Note**: If you don't know what this key is, see [Creating Links](/recipes/setup_deep_linking/{% section platform %}{{page.platform}}/#creating-links{% endsection %})
 
 {% highlight xml %}
 <activity android:name="com.myapp.AutoDeepLinkExampleActivity">
@@ -166,6 +172,16 @@ In your Manifest file, it's easy to specify which deep link keys you want to tri
 </activity>
 {% endhighlight %}
 
+#### Option 2: Specify the deeplink path you want
+
+Alternatively to the key approach above, if you're using Branch's $deeplink_path to support previous URI routing, you can add this metadata name`io.branch.sdk.auto_link_path` with the values of the deeplink paths that you want to open up an activity.
+
+{% highlight xml %}
+<activity android:name="com.myapp.AutoDeepLinkExampleActivity">
+	<meta-data android:name="io.branch.sdk.auto_link_path" android:value="custom/path/*,another/path/" />
+	<!-- your other activity stuff -->
+</activity>
+{% endhighlight %}
 
 #### Optional: Add in a request code for tracking 
 

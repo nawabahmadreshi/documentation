@@ -9,4 +9,3 @@ hide_platform_selector: true
 ---
 
 {% reference %}
-

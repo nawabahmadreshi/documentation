@@ -1,1 +1,0 @@
-*  [**Link and install attribution**](/recipes/measuring_installs/) -- learn where every user is coming from

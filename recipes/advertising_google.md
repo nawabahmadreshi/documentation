@@ -1,17 +1,17 @@
 ---
 type: recipe
-title: "Advertising: Google Search Ads"
+title: "Google Search Ads"
 page_title: "Advertising with Deep Links: Google Ads - Search and Display"
 description: 
 hide_platform_selector: true
 ---
 
-{% protip title="Still need to integrate Branch?" %}This guide assumes that you have 1. already [integrated Branch](/recipes/quickstart_guide/ios/) and 2. configured your app to [send IDFA or GAID](/recipes/submitting_apps/ios/). These are prerequisites to install ads, so please do them first.
+{% protip title="Still need to integrate Branch?" %}This guide assumes that you have 1. already [integrated Branch](/recipes/add_the_sdk/ios/) and 2. configured your app to [send IDFA or GAID](/recipes/submitting_apps/ios/). These are prerequisites to install ads, so please do them first.
 {% endprotip %}
 
 ## Google Ads & Branch
 
-If you're running Google AdWords campaigns, whether they're of the Search or Display variety, Branch links can be placed inside your campaigns and deeplink a user through the install process. Imagine you're running a promo for 20% of your first purchae for new installs -- you can pass that data through Branch links and give people coming in from Google AdWords that experience!
+If you're running Google AdWords campaigns, whether they're of the Search or Display variety, Branch links can be placed inside your campaigns and deep link a user through the install process. Imagine you're running a promo for 20% of your first purchase for new installs -- you can pass that data through Branch links and give people coming in from Google AdWords that experience!
 
 ## Pre-req: Create a Branch Link
 
@@ -19,7 +19,7 @@ If you're running Google AdWords campaigns, whether they're of the Search or Dis
 
 ## Google AdWords Search Campaigns
 
-We'll walk you through the steps required to set up a Google AdWords campaign using Branch links. Because the *final URL* for your app install campaigns must match your domain, you can no longer put a Branch link in that box. However, capturing installs and deeplinking users through content is very straight forward.
+We'll walk you through the steps required to set up a Google AdWords campaign using Branch links. Because the *final URL* for your app install campaigns must match your domain, you can no longer put a Branch link in that box. However, capturing installs and deep linking users through content is very straightforward.
 
 First, grab your iTunes URL or Google Play Store URL, in addition to the Branch link you created from the earlier step.
 

@@ -1,7 +1,7 @@
 
 ## Testing
 
-{% image src='/img/ingredients/webhooks/requestbin_create.png' half right alt='requestbin create' %}
+{% image src='/img/ingredients/webhooks/requestbin_create.png' half center alt='requestbin create' %}
 
 ### Using RequestBin
 
@@ -33,11 +33,14 @@ Now every time someone opens the app, the webhook you've configured on Branch wi
 ### Testing Considerations and FAQs
 
 **Question** Why is my app not sending a device ID?
+
 **Answer** Check to see if you are in Test Mode with your SDK. If we are sending a fake ID to simulate installs, we will not send it inside a webhook.
 
 **Question** How can I ensure a webhook is from Branch?
+
 **Answer** Right now, we do not support a encryption method to verify requests come from Branch. If you save events through the Branch SDK, you can specify a secret key inside the event metadata, and pass that through inside the URL of the webhook itself. 
 
 **Question** I'm getting a first referring data and session referring data. What's the difference?
+
 **Answer** Because webhooks are event based, and tie back to a unique user, we will send you link data that first drove said user into your app. Then, if they click a branch link later, that will be session referring data. For an install event, these should be the same. For any consequent events, session referring data may be different.
 

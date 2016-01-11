@@ -1,6 +1,6 @@
 {% section intro %}
 
-This section will describe a routing example in an abstract way. In case you want the simple version, Branch can handle routing for you automatically. Just check out the section on [**simplified deep link routing**](/recipes/easy_deep_linking/{% section platform %}{{page.platform}}{% endsection %}).
+This section will describe a routing example in an abstract way. In case you want the simple version, Branch can handle routing for you automatically. Just check out the section on [**simplified deep link routing**](/recipes/setup_deep_linking/{% section platform %}{{page.platform}}{% endsection %}).
 {% endsection %}
 
 {% if page.ios %}
@@ -9,9 +9,10 @@ This section will describe a routing example in an abstract way. In case you wan
 Inside of the deepLinkHandler, you will want to examine the params dictionary to determine whether the user clicked on a link to content. Below is an example assuming that the links correspond to pictures.
 {% endsection %}
 
+{% tabs %}
+{% tab objective-c %}
 {% highlight objc %}
-- (BOOL)application:(UIApplication *)application
-    didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
   // initialize the session, setup a deep link handler
   [[Branch getInstance] initSessionWithLaunchOptions:launchOptions
@@ -21,6 +22,7 @@ Inside of the deepLinkHandler, you will want to examine the params dictionary to
     UINavigationController *navC = (UINavigationController *)self.window.rootViewController;
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UIViewController *nextVC;
+
     // If the key '{% section ios_key %}pictureId{% endsection %}' is present in the deep link dictionary
     {% section ios_comment %}// then load the picture screen with the appropriate picture{% endsection %}
     NSString *{% section ios_key %}pictureId{% endsection %} = [params objectForKey:@"{% section ios_key %}pictureId{% endsection %}"];
@@ -30,14 +32,34 @@ Inside of the deepLinkHandler, you will want to examine the params dictionary to
     } else {
       nextVC = [storyboard instantiateViewControllerWithIdentifier:@"MainVC"];
     }
+
+    // navigate!
     [navC setViewControllers:@[nextVC] animated:YES];
   }];
 
   return YES;
 }
 {% endhighlight %}
+{% endtab %}
+{% tab swift %}
+{% highlight swift %}
+func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    let branch: Branch = Branch.getInstance()
+    branch.initSessionWithLaunchOptions(launchOptions, true, andRegisterDeepLinkHandler: { params, error in
 
-
+        // If the key '{% section ios_key %}pictureId{% endsection %}' is present in the deep link dictionary
+        if (params["+clicked_branch_link"] && params["pictureId"]) {
+            NSLog("clicked picture link!")
+            // load the view to show the picture
+        } else {
+            // load your normal view
+        }
+    })
+    return true
+}
+{% endhighlight %}
+{% endtab %}
+{% endtabs %}
 {% endif %}
 
 {% if page.android %}
@@ -88,8 +110,8 @@ Inside the callback, when Branch is initialized, you will want to examine the di
 
 {% highlight js %}
 branch.init("YOUR BRANCH KEY HERE", function(err, data) {
-    if (!err && data.data_parsed['+clicked_branch_link']) {
-        if (data.data_parsed['picture_id']) {
+    if (!err && data.data['+clicked_branch_link']) {
+        if (data.data['picture_id']) {
             // load the view to show the picture
         } else {
             // load your normal view
@@ -163,14 +185,29 @@ Be sure to have the INIT_SUCCESSED event called, otherwise read the bEvt.informa
 Inside the callback, when Branch is initialized, you will want to examine the dictionary we pass to you from our callback. Below is an example assuming that the links correspond to pictures.
 
 {% highlight js %}
-branch.init("YOUR BRANCH KEY HERE", function(err, data) {
-    if (!err && data.data_parsed['+clicked_branch_link']) {
-        if (data.data_parsed['picture_id']) {
-            // load the view to show the picture
-        } else {
-            // load your normal view
+branch.getAutoSession();
+{% endhighlight %}
+
+To implement the callback, you must add a listener to the event `bio:initSession`.
+
+{% highlight js %}
+branch.addEventListener("bio:initSession", $.onInitSessionFinished);
+{% endhighlight %}
+
+{% highlight js %}
+$.onInitSessionFinished = function(data) {
+    Ti.API.info("inside onInitSessionFinished");
+    for (key in data) {
+        if ((key != "type" && key != "source" && key != "bubbles" && key != "cancelBubble") && data[key] != null) {
+            Ti.API.info(key + data["key"]);
         }
-    } 
-});
+    }
+
+    if (data["picture_id"]) {
+        // load the view to show the picture
+    } else {
+        // load your normal view
+    }
+}
 {% endhighlight %}
 {% endif %}

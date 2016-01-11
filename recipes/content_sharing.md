@@ -21,12 +21,16 @@ platforms:
 
 ## Creating links programmatically to share content
 
-{% ingredient sdk_links/creating_links %}{% override header %}{% endoverride %}{% endingredient %}
+{% ingredient sdk_links/creating_links %}{% override header %}{% endoverride %}{% override learn-more%}{% endoverride %}
+                                         
+{% endingredient %}
 
 {% protip title="Data is for Deeplinking" %}
-You use the data to link directly to content! Instead of "foo": "bar", you could pass in "{% if page.ios %}pictureId{% endif %}{% if page.android %}picture_id{% endif %}": "1234", then when a user clicks on a link you can open the app straight to picture with Id 1234. Keep reading...
+You use the data to link directly to content! Instead of "property1": "blue", you could pass in "{% if page.ios %}pictureId{% endif %}{% if page.android %}picture_id{% endif %}": "1234", then when a user clicks on a link you can open the app straight to picture with Id 1234. Keep reading...
 {% endprotip %}
-{% if page.ios or page.android %}
+{% if page.ios or page.android or page.unity %}
+
+{% ingredient sdk_links/tracking_views %}{% endingredient %}
 
 -----
 
@@ -47,7 +51,7 @@ You use the data to link directly to content! Instead of "foo": "bar", you could
 What's next?
 
 {% ingredient recipe_preview/advertising_facebook %}{%endingredient%}
-{% ingredient recipe_preview/app_download_banner %}{% endingredient %}
+{% ingredient recipe_preview/web_to_app %}{% endingredient %}
 {% ingredient recipe_preview/text_me_the_app_page %}{% endingredient %}
 
 -----

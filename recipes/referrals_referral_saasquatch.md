@@ -1,6 +1,6 @@
 ---
 type: recipe
-title: "Referrals: Referral Saasquatch"
+title: "Referral Saasquatch"
 platforms:
 - ios
 - android
@@ -213,5 +213,4 @@ You now have an incentivized referral program. Like many popular promo-code syst
 This guide covered the basics. The following may be of interest to you, if you want to:
 
 {% ingredient recipe_preview/personalized_welcome %}{% endingredient %}
-{% ingredient recipe_preview/channel_tags %}{% endingredient %}
 {% ingredient recipe_preview/contact_us %}{% endingredient %}

@@ -1,13 +1,26 @@
-You spent a bunch of time already setting up deeplink paths before you heard of Branch and now you want the Branch links to leverage them? No problem at all.
+You spent a bunch of time already setting up deeplink paths before you heard of Branch and now you want the Branch links to leverage them? No problem at all. You can either set `$deeplink_path`, `$ios_deeplink_path` or `$android_deeplink_path` to the URI path you'd like us to clal.
 
-To do so, you'll need to go to the [Dashboard's Link Settings](https://dashboard.branch.io/#/settings/link) page and choose "Support existing routing based on this URI scheme".
+{% if page.ios %}
+**Note that Universal Links and Spotlight on iOS do not support URI paths**
+{% endif %}
 
-Second, when creating Branch links you'll need to specify the deeplink path, aka where in your app a link should route to. You can either set `$deeplink_path`, `$ios_deeplink_path` or `$android_deeplink_path`. Note that this should not include the URI scheme. Here's a good example:
+All of the examples below will cause Branch to trigger `myapp://content/1234`:
 
-```
-{
-	'$ios_deeplink_path': '?content_id=1234'
-}
-```
+#### Dynamic link control
 
-Note that this has a downside: we have to rely on [digital fingerprinting](https://dev.branch.io/recipes/matching_accuracy/) for attributing a link click. This is because if you want to use your exisiting scheme we cannot pass through a unique identifier for the link click.
+If you're [creating links dynamically](/overviews/link_creation_guide/#appending-query-parameters), you simply need to append the parameters. For example:
+
+{% highlight javascript %}
+"https://bnc.lt/a/key_live_jbgnjxvlhSb6PGH23BhO4hiflcp3y7ky?$deeplink_path=content%2F1234"
+{% endhighlight %}
+
+#### SDK/API link control
+
+{% ingredient sdk_links/deeplink_path_links %}
+{% endingredient %}
+
+#### Dashboard link control
+
+You can also control it for individual marketing links by inserting the keys and values into the deep link data section.
+
+{% image src='/img/ingredients/sdk_routing/deeplink_path.png' third center alt='deeplink path' %}

@@ -1,8 +1,7 @@
-## Install versus Open
+Branch will _automatically_ create events on your behalf whenever a user accesses your site or your app with the Branch SDK installed. We measure installs, opens and web page visits with separate events. Here is a list of the auto-created ones:
 
-We measure installs and opens separately: 
-
-* An `install` is the very first time a user launches the app. 
-* An `open` is trigged any other time the user opens the app after the very first launch OR if a user reinstalls the app after uninstalling it.
-* A `web session start` is triggered when the user views a page that is utilizing the Branch web SDK.
-* A `referred session` is triggered _in addition_ to install and open when a user comes from a Branch link.
+| **Event** | **Description**
+| `install` | Triggered the first time a user launches your app
+| `open` | Trigged when the user opens the app after the very first launch OR if a user reinstalls the app after uninstalling it
+| `web session start` | Triggered when the user views a webpage using the Branch Web SDK.
+| `referred session` | Triggered _in addition_ to install, open or web session start if a user comes from a Branch link

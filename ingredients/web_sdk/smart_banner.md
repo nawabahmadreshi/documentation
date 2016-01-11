@@ -1,12 +1,4 @@
 
-{% section header %}### Mobile Web Smart Banner{% endsection %}
-
-{% image src='/img/ingredients/web_sdk/banner.png' half center alt='Facebook block' %}
-
-{% protip title="This just works!" %}
-This short snippet of code below is enough to add a web banner to both your desktop and mobile web pages! Of course, you'll want to configure it, so check out both the **Smart Banner Options** and **Link Options** below.
-{% endprotip %}
-
 Add the following code somewhere inside the `<head> </head>` tags on your website. Be sure to replace `YOUR-BRANCH-KEY` with your Branch Key inside the `init()` call. You can find your Branch Key on the Dashboard's [Settings page](https://dashboard.branch.io/#/settings).
 
 {% highlight html %}
@@ -22,21 +14,19 @@ branch.banner({
 
 That's all you need to add the smart banner to your website! The rest of this page covers advanced options.
 
-#### Closing the App Banner Programmatically
+#### Advanced options and deep links
 
-The App Banner includes a close button the user can click, but you may want to close the banner with a timeout, or via some other user interaction with your web app. In this case, closing the banner is very simple by calling `Branch.closeBanner()`.
+Specifying them is optional, although you'll probably want to do so to tailor it to your needs. You can customize the banner in lots of ways, including changing button text or color and adding ratings and review counts.
 
-```js
-branch.closeBanner();
-```
 
-#### Smart Banner Options, Link Options
 
-There are a lot of options here, but don't be scared. Specifying them is optional, although you'll probably want to do so to tailor it to your needs.
+{% image src='/img/ingredients/web_sdk/mobile_banners.png' half center alt='Facebook block' %}
 
 {% highlight javascript %}
 
-branch.banner({
+branch.banner(
+// These are the customizations to the banner itself
+{
     icon: 'http://icons.iconarchive.com/icons/wineass/ios7-redesign/512/Appstore-icon.png',
     title: 'Branch Demo App',
     description: 'The Branch demo app!',
@@ -54,17 +44,31 @@ branch.banner({
     mobileSticky: false,                    // Determines whether the mobile banner will be set `position: fixed;` (sticky) or `position: absolute;`, defaults to false *this property only applies when the banner position is 'top'
     desktopSticky: true,                    // Determines whether the desktop banner will be set `position: fixed;` (sticky) or `position: absolute;`, defaults to true *this property only applies when the banner position is 'top'
     customCSS: '.title { color: #F00; }',   // Add your own custom styles to the banner that load last, and are gauranteed to take precedence, even if you leave the banner in an iframe
-    make_new_link: false                    // Should the banner create a new link, even if a link already exists?
-}, {
+    make_new_link: false,                   // Should the banner create a new link, even if a link already exists?
+    rating: 5,                              // Number of stars (should be your store rating)
+    reviewCount: 1000,                      // Number of reviews that generate the rating (should be your store reviews)
+    theme: 'light',                         // Uses Branch's predetermined color scheme for the banner { 'light' || 'dark' }, default: 'light'
+    buttonBackgroundColor: css color,        // Overrides the theme's default colors
+    buttonFontColor: css color,
+    buttonBorderColorHover: css color,
+    buttonBackgroundColorHover: css color,
+    buttonFontColorHover: css color
+},
+
+// Here is where you define the deep link that you'd like to use
+{ 
     tags: ['version12', 'trial-b'],
     feature: 'smart_banner',
     stage: 'shoe_page'
     data: {
+        '$deeplink_path': 'content/page/12354',
         deeplink: 'data',
         username: 'Alex'
     }
 });
 {% endhighlight %}
+
+Note about ratings and reviews. Because the banner is designed to be cross-platform we don't pull reviews from the stores automatically. We strongly encourage developers to be transparent and honest with their users, and use review counts and store ratings that mirror their store ratings. Our repo is open source, and we welcome improvements to the banner!
 
 
 

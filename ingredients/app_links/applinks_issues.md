@@ -22,9 +22,14 @@ If the OG tag tester continues to report problems, we suggest that you:
 
 If your OG tags look fine and you're still getting errors, please reach out to support@branch.io immediately.
 
-#### Known issue with Country Restrictions
+#### Known issue with App Restrictions
 
-We recently discovered a bug within the Facebook system that prevents App Links from being read by the robot if _Country Restricted_ is set to _Yes_. Please **disable** _Country Restricted_ in your Advanced Facebook App Settings tab.
+We recently discovered a bug within the Facebook system that prevents App Links from being read by the robot if you change any of these values from the defaults in your Advanced Facebook App Settings tab. Please make sure
+
+- Contains Alcohol is set to **No**
+- Age Restriction is set to **Anyone (13+)**
+- Social Discovery is set to **Yes**
+- Country Restricted is set to **No**
 
 It cannot look like this:
-{% image src='/img/recipes/appinvites/country_restricted.png' third center alt='troubleshooting' %}
+{% image src='/img/recipes/appinvites/app_restrictions.png' third center alt='troubleshooting' %}

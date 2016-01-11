@@ -17,30 +17,25 @@ On iOS, it's a rather simple method call.
 {% tabs %}
 {% tab objective-c %}
 {% highlight objc %}
-NSMutableDictionary *params = [NSMutableDictionary dictionary];
-params[@"article_id"] = @"1234";
-params[@"$ios_deepview"] = @"default_template";
-params[@"$android_deepview"] = @"default_template";
-
-[[Branch getInstance] getShortURLWithParams:params andChannel:@"sms" andFeature:BRANCH_FEATURE_TAG_SHARE andCallback:^(NSString *url, NSError *error) {
-    if (!error) NSLog(@"got my Branch link to share: %@", url);
-}];
+BranchLinkProperties *linkProperties = [[BranchLinkProperties alloc] init];
+linkProperties.feature = @"sharing";
+linkProperties.channel = @"facebook";
+[linkProperties addControlParam:@"$ios_deepview" withValue:@"default_template"];
+[linkProperties addControlParam:@"$android_deepview" withValue:@"default_template"];
 {% endhighlight %}
 {% endtab %}
 {% tab swift %}
 {% highlight swift %}
-params["article_id"] = "1234"
-params["$ios_deepview"] = "default_template"
-params["$android_deepview"] = "default_template"
-
-Branch.getInstance().getShortURLWithParams(params, andChannel: "sms", andFeature: BRANCH_FEATURE_TAG_SHARE, andCallback: { (url: String?, error: NSError?) -> Void in
-    if error == nil {
-        NSLog(@"got my Branch link to share: %@", url!)
-    }
-})
+let linkProperties: BranchLinkProperties = BranchLinkProperties()
+linkProperties.feature = "sharing"
+linkProperties.channel = "facebook"
+linkProperties.addControlParam("$ios_deepview", withValue: "default_template")
+linkProperties.addControlParam("$android_deepview", withValue: "default_template")
 {% endhighlight %}
 {% endtab %}
 {% endtabs %}
+
+Check out our [Content Sharing](/recipes/content_sharing/{{page.platform}}/) guide to see simple examples of complete a link from the Branch Universal Object.
 
 {% endif %}
 <!--- /iOS -->
@@ -50,22 +45,14 @@ Branch.getInstance().getShortURLWithParams(params, andChannel: "sms", andFeature
 {% if page.android %}
 
 {% highlight java %}
-{% section params %}
-JSONObject obj = new JSONObject();
-try {
-    obj.put("article_id", "1234");
-    obj.put("$ios_deepview", "default_template");
-    obj.put("$android_deepview", "default_template");
-} catch (JSONException e) { }
-{% endsection %}
-
-branch.getShortUrl(obj, "sms", "share", new BranchLinkCreateListener() {
-	@Override
-	public void onLinkCreate(String url, BranchError error) {
-		Log.i(TAG, "Ready to share my link = " + url);
-	}
-});
+LinkProperties linkProperties = new LinkProperties()
+               .setChannel("facebook")
+               .setFeature("sharing")
+               .addControlParameter("$ios_deepview", "default_template")
+               .addControlParameter("$android_deepview", "default_template");
 {% endhighlight %}
+
+Check out our [Content Sharing](/recipes/content_sharing/{{page.platform}}/) guide to see simple examples of complete a link from the Branch Universal Object.
 
 {% endif %}
 <!--- /Android -->
@@ -158,18 +145,20 @@ branch.getShortUrl(tags, "sms", BranchConst.FEATURE_TAG_SHARE, JSON.stringify(da
 {% if page.titanium %}
 
 {% highlight js %}
-branch.link({
-    channel: 'sms',
-    feature: 'share',
-    data: {
-		"article_id": "1234",
-		"$ios_deepview": "default_template",
-		"$android_deepview": "default_template"
-    }
-}, function(err, link) {
-	if (!err) {
-    	console.log("Ready to share my " + link);
-	}
+branchUniversalObject.generateShortUrl({
+  "feature" : "sample-feature",
+  "alias" : "sample-alias",
+  "channel" : "sample-channel",
+  "stage" : "sample-stage"
+}, {
+  "$desktop_url" : "http://desktop-url.com",
+  "$ios_deepview": "default_template",
+  "$android_deepview": "default_template"
 });
 {% endhighlight %}
+
+{% highlight js %}
+branchUniversalObject.addEventListener("bio:generateShortUrl", $.onGenerateUrlFinished);
+{% endhighlight %}
+
 {% endif %}

@@ -15,11 +15,9 @@ platforms:
 - titanium
 ---
 
-A **Deepview** is a mobile web splash page combined with a deep link that will open the app if installed, and fall back to the appropriate app store if not. Here's an example flow:
+A **Deepview** is a mobile web splash page combined with a deep link that will open the app if installed, and fall back to the appropriate app store if not. Deepviews are discoverable in all search portals (Google, Apple Spotlight, Bing, etc), opening up new mechanisms for people to find your app. Plus, they drive much higher conversions to install instead of sending a user to the App/Play Store directly. Here's an example flow:
 
 {% image src='/img/deepviews/deepviews_allthecooks.gif' actual center alt='Deepviews example' %}
-
-Deepviews are discoverable in all search portals (Google, Apple Spotlight, Bing, etc), opening up new mechanisms for people to find your app. Plus, they drive much higher conversions to install instead of sending a user to the App/Play Store directly.
 
 -----
 
@@ -29,11 +27,11 @@ There are a few things to make sure you've done prior to leveraging deepviews
 
 - Setup your Branch account and link routing for your app at [start.branch.io](https://start.branch.io).
 - Make sure we've correctly pulled the app icon you want to use in the Social Media Display Customization section of the [settings tab](https://dashboard.branch.io/#/settings/link).
-- *optional* To power deep linking and get the install/open analytics, {% if page.ios || page.android %}[integrate the SDK](/recipes/quickstart_guide/{{page.platform}}/){% else %}[integrate the SDK](/recipes/quickstart_guide/ios/){% endif %}.
+- *optional* To power deep linking and get the install/open analytics, [integrate the SDK](/recipes/add_the_sdk/{{page.platform}}/).
 
 -----
 
-## Enabling Deepviews
+## Enabling Deepviews for all links
 
 ### Enabling Deepviews for all links
 
@@ -43,15 +41,19 @@ There are a few things to make sure you've done prior to leveraging deepviews
 
 2) Select the **platform** you want to enable - options are desktop, Android and iOS.
 
-{% image src='/img/deepviews/deepviews_option.png' quarter center alt='Deepviews tab' %}
-
 3) Choose the template you want to enable and click **Enable**.
 
 {% image src='/img/deepviews/deepviews_enable.png' quarter center alt='Deepviews tab' %}
 
+#### Disabling Deepviews for one link
+
+If you've enabled deepviews universally, it's likely that you'll want to disable them now and again for specific use cases. It's simple, just follow the instructions for [_Enable Deepviews for one link_](/recipes/deepviews/ios/#enabling-deepviews-for-one-link) and set the value of one of those keys to `false`.
+
+For example: `$ios_deepview`: `false`
+
 -----
 
-### Enabling Deepviews per link
+### Enabling Deepviews for one link
 
 If you don't want to enable Deepviews globally, you can do it on a per link basis by inserting custom control parameters into the **data** dictionary.
 
@@ -133,7 +135,7 @@ If you are create links one off, you can control the OG tags and deepview conten
 
 ## Set up deep link routing
 
-Please head over to the [Easy Deep Link Routing](/recipes/easy_deep_linking/ios/) guide for instructions on how to easily set up deep linking for Android and iOS.
+Please head over to the [Easy Deep Link Routing](/recipes/setup_deep_linking/ios/) guide for instructions on how to easily set up deep linking for Android and iOS.
 
 -----
 
@@ -155,15 +157,41 @@ Only users who do not have the app will go through this flow. You can view the t
 
 ## Advanced: Customizing the Deepview templates
 
-Coming soon!
+Along with enabling deepview templates across different platforms, you can also create new templates on the [dashboard](https://dashboard.branch.io/#/settings/deepviews).
+
+You can create a new deepview by duplicating the Branch public template, or creating a new one.
+
+{% image src='/img/deepviews/deepviews_enable.png' quarter center alt='Deepviews tab' %}
+
+#### Basic
+
+The first tab displays your new template and provides two sections:
+
+1. Deepview settings
+  - Title
+  - Key (The key that you will reference if you want to enable a specific tempalate in a [link](https://dev.branch.io/recipes/deepviews/#enabling-deepviews-per-link))
+2. App Settings (**Note:** These fields, when edited and saved, will become effective for your entire app)
+  - OG Title
+  - OG Description
+  - OG Image Url
+
+{% image src='/img/deepviews/deepviews_editor_basic.png' half center alt='Deepviews tab' %}
+
+#### Editor
+
+The second tab gives you an interface to edit the html and css for your template. The rendered template will update as you modify the markup.
+
+{% protip title="Javascript is not allowed on deepview templates" %}
+Before rendering the template, we sanitize the markup of Javascript for security reasons. This includes script tags and event attributes on tags.
+{% endprotip %}
+
+{% image src='/img/deepviews/deepviews_editor_code.png' half center alt='Deepviews tab' %}
 
 -----
 
 ## Advanced: Convert your mobile website into a Deepview
 
-You already have a website and you'd prefer to host the mobile web preview of the content. No problem! You can use the [Branch web SDK](https://github.com/BranchMetrics/Smart-App-Banner-Deep-Linking-Web-SDK/blob/master/WEB_GUIDE.md) to convert your mobile site into a deepview.
-
-{% ingredient web_sdk/smart_banner %}{% override header %}{% endoverride %}{% endingredient %}
+You already have a website and you'd prefer to host the mobile web preview of the content. No problem! Please see [this guide about deep linking from your mobile site.](https://dev.branch.io/recipes/deep_link_mobile_site/)
 
 -----
 
@@ -171,7 +199,6 @@ You already have a website and you'd prefer to host the mobile web preview of th
 
 You've got the basics, but let's take your integration to the next level:
 
-{% ingredient recipe_preview/easy_deep_linking %}{% endingredient %}
 {% ingredient recipe_preview/content_sharing %}{% endingredient %}
 {% ingredient recipe_preview/personalized_welcome %}{% endingredient %}
 {% ingredient recipe_preview/referral_links_with_incentives %}{% endingredient %}

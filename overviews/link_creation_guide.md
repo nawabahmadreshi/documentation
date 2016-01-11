@@ -10,8 +10,8 @@ There are many, many ways to create links!
 
 ## Mobile SDKs
 
-- [iOS documentation](https://github.com/BranchMetrics/iOS-Deferred-Deep-Linking-SDK#shortened-links)
-- [Android documentation](https://github.com/BranchMetrics/Android-Deferred-Deep-Linking-SDK#shortened-links)
+- [iOS documentation](https://github.com/BranchMetrics/iOS-Deferred-Deep-Linking-SDK#branch-universal-object-for-deep-links-content-analytics-and-indexing)
+- [Android documentation](https://github.com/BranchMetrics/Android-Deferred-Deep-Linking-SDK#branch-universal-object-for-deep-links-content-analytics-and-indexing)
 - [Cordova/Ionic documentation](https://github.com/BranchMetrics/Cordova-Ionic-PhoneGap-Deferred-Deep-Linking-SDK#linkdata-callback)
 - [Xamarin documentation](https://github.com/BranchMetrics/Xamarin-Deferred-Deep-Linking-SDK#shortened-links)
 - [Unity documentation](https://github.com/BranchMetrics/Unity-Deferred-Deep-Linking-SDK#shortened-links)
@@ -20,43 +20,96 @@ There are many, many ways to create links!
 
 Here is an example URL creation call in iOS. This would be called after using the initSession call with the appropriate app key to register the native library for your app.
 
+First create the object that you'd like to link to:
+
+{% tabs %}
+{% tab objective-c %}
+{% highlight objective-c %}
+BranchUniversalObject *branchUniversalObject = [[BranchUniversalObject alloc] initWithCanonicalIdentifier:@"item/12345"];
+branchUniversalObject.title = @"My Content Title";
+branchUniversalObject.contentDescription = @"My Content Description";
+branchUniversalObject.imageUrl = @"https://example.com/mycontent-12345.png";
+[branchUniversalObject addMetadataKey:@"property1" value:@"blue"];
+[branchUniversalObject addMetadataKey:@"property2" value:@"red"];
+{% endhighlight %}
+{% endtab %}
+{% tab swift %}
+{% highlight swift %}
+let branchUniversalObject: BranchUniversalObject = BranchUniversalObject(canonicalIdentifier: "item/12345")
+branchUniversalObject.title = "My Content Title"
+branchUniversalObject.contentDescription = "My Content Description"
+branchUniversalObject.imageUrl = "https://example.com/mycontent-12345.png"
+branchUniversalObject.addMetadataKey("property1", value: "blue")
+branchUniversalObject.addMetadataKey("property2", value: "red")
+{% endhighlight %}
+{% endtab %}
+{% endtabs %}
+
+Then define the properties of the link you'd like to create.
+
+{% tabs %}
+{% tab objective-c %}
 {% highlight objc %}
-NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+BranchLinkProperties *linkProperties = [[BranchLinkProperties alloc] init];
+linkProperties.feature = @"sharing";
+linkProperties.channel = @"facebook";
+[linkProperties addControlParam:@"$desktop_url" withValue:@"http://example.com/home"];
+[linkProperties addControlParam:@"$ios_url" withValue:@"http://example.com/ios"];
+{% endhighlight %}
+{% endtab %}
+{% tab swift %}
+{% highlight swift %}
+let linkProperties: BranchLinkProperties = BranchLinkProperties()
+linkProperties.feature = "sharing"
+linkProperties.channel = "facebook"
+linkProperties.addControlParam("$desktop_url", withValue: "http://example.com/home")
+linkProperties.addControlParam("$ios_url", withValue: "http://example.com/ios")
+{% endhighlight %}
+{% endtab %}
+{% endtabs %}
 
-[params setObject:@"1234" forKey:@"user_id"];
-[params setObject:@"https://s3-us-west-1.amazonaws.com/myapp/joes_pic.jpg" forKey:@"profile_pic" forKey:@"user_pic"];
+Lastly, create the link by referencing the universal object.
 
-[params setObject:@"Joe's referral link" forKey:@"$og_title"];
-[params setObject:@"https://s3-us-west-1.amazonaws.com/myapp/joes_pic.jpg" forKey:@"profile_pic" forKey:@"$og_image_url"];
-[params setObject:@"Joe likes long walks on the beach..." forKey:@"$og_description"];
-
-Branch *branch = [Branch getInstance:@"Your app key"];
-[branch getShortURLWithParams:params andChannel:@"sms" andFeature:BRANCH_FEATURE_TAG_SHARE andStage:@"added_to_cart" andCallback:^(NSString *url, NSError *error) {
-	if(!error) {
-		// embed the link into an SMS for sharing
-	}
+{% tabs %}
+{% tab objective-c %}
+{% highlight objc %}
+[branchUniversalObject getShortUrlWithLinkProperties:linkProperties andCallback:^(NSString *url, NSError *error) {
+    if (!error) {
+        NSLog(@"success getting url! %@", url);
+    }
 }];
 {% endhighlight %}
+{% endtab %}
+{% tab swift %}
+{% highlight swift %}
+branchUniversalObject.getShortUrlWithLinkProperties(linkProperties,  andCallback: { (url: String?, error: NSError?) -> Void in
+    if error == nil {
+        NSLog(@"got my Branch link to share: %@", url!)
+    }
+}];
+{% endhighlight %}
+{% endtab %}
+{% endtabs %}
 
 -----
 
 ## Appending query parameters
 
-- [More detailed docs](https://github.com/BranchMetrics/Branch-Public-API#structuring-a-dynamic-deeplink)
+- [For link customizations, see here](https://dev.branch.io/link_configuration/)
 
 If you'd like to just build a Branch link by appending query parameters, we support that too. Here's an example of how to do that:
 
 1. Start with your Branch domain. http://bnc.lt (or your white labeled one).
 2. Append /a/your_Branch_key. *http://bnc.lt/a/your_branch_key*
 3. Append the start of query params '?'. *http://bnc.lt/a/your_branch_key?*
-4. [optional] Append the Branch analytics tag. *feature=marketing&channel=email&tags[]=drip1&tags[]=welcome*
+4. [optional] Append the Branch analytics tag to keep your data organized in the dashboard. ([list here](https://dev.branch.io/link_configuration/#analytics-labels-for-data-organization)) *feature=marketing&channel=email&tags[]=drip1&tags[]=welcome*
 5. [optional] Append any custom deep link parameters. *&user_id=4562&name=Alex&article_id=456*
-6. [optional] Append the data parameter (base64 encoded) filled with your Branch _$_ control parameters. *data=ew0KICAgICJoaSI6ImhlbGxvIg0KfQ==*
+6. [optional] Append your Branch control parameters - see [a full list of them here](https://dev.branch.io/link_configuration/#redirect-customization).
 
 Here's an example of a finalized one:
 
-{% highlight javascript %}
-https://bnc.lt/a/key_live_jbgnjxvlhSb6PGH23BhO4hiflcp3y7ky?has_app=yes&channel=facebook&stage=level4&feature=affiliate&data=data=ew0KICAgICJoaSI6ImhlbGxvIg0KfQ==
+{% highlight sh %}
+https://bnc.lt/a/key_live_jbgnjxvlhSb6PGH23BhO4hiflcp3y7ky?$deeplink_path=article%2Fjan%2F123&$fallback_url=https%3A%2F%2Fgoogle.com&channel=facebook&feature=affiliate
 {% endhighlight %}
 
 -----
@@ -110,7 +163,8 @@ Here is an example CURL call to create a link with some example parameters. You 
 
     curl -X POST \
     -H "Content-Type: application/json" \
-    -d '{"branch_key":"key_live_jfdweptNITtAY5HVY3mBSojopgfGf8qQ", 
+    -d '{"branch_key":"key_live_jfdweptNITtAY5HVY3mBSojopgfGf8qQ",
+    "sdk":"api",
     "campaign":"announcement",
     "feature":"invite",
     "channel":"email",
