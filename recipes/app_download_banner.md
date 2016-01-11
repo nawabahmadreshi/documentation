@@ -1,5 +1,6 @@
 ---
 type: recipe
+directory: features
 title: App download banner
 ios_page_title: Smart App Download Banner for iOS Apps
 android_page_title: Smart App Download Banner for Android

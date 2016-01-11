@@ -1,20 +1,13 @@
 ---
 
-- title: What is Branch?
-  directory: recipes
-  children:
-    - supported_standards
-    - how_branch_links_work
-    - link_configuration
-    - link_creation_guide
 - title: Getting started
-  directory: recipes
+  directory: getting-started
   children:
     - add_the_sdk
     - setup_deep_linking
     - measuring_installs
 - title: Deep linked features
-  directory: recipes
+  directory: features
   children:
     - content_sharing
     - personalized_welcome
@@ -24,7 +17,14 @@
     - text_me_the_app_page
     - branch_universal_links
     - google_app_indexing
-    - universal_links_test
+    - title: Web to App Conversion
+      directory: web-to-app-conversion
+      children:
+        - universal_links_test
+        - ul_test_implementation-guide
+        - ul_test_overview
+        - ul_test_reference-material
+        - ul_test_support
 - title: Testing & releasing
   directory: recipes
   children:
@@ -41,7 +41,7 @@
     - dashboard_pro_tips
     - webhooks_and_exporting_data
 - title: Third-party integrations
-  directory: recipes
+  directory: third-party-integrations
   children:
     - ab_testing_apptimize
     - advertising_facebook

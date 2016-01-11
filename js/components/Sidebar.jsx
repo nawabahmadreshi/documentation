@@ -133,7 +133,7 @@ var Sidebar = React.createClass({
 				level={ 0 }
 				directory={ group.directory }
 				current_path={ this.props.current_path }
-				group_data={ this.props.site_map[group.directory.slice(0,-1)] }
+				group_data={ this.props.site_map[group.directory] }
 				platform={ this.state.platform } />);
 		}.bind(this));
 		return (<div className="sidebar-wrapper">

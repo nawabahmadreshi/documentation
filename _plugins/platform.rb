@@ -7,7 +7,8 @@ module Jekyll
       @base = base
       # set the type to empty if overview so that overview pages will be at root
       # types = if type != 'overview' then type + 's' else '' end
-      types = type + 's'
+      types = type
+      #directories = directory
 
       if platform != '' and !isDefault then
         @dir = File.join(types, page.name.split(".")[0])
@@ -17,7 +18,7 @@ module Jekyll
         @name = page.name.split(".")[0] + '.md'
       end
 
-      self.read_yaml(File.join(base, type + 's'), page.name)
+      self.read_yaml(File.join(base, 'recipes'), page.name)
       self.process(@name)
 
       formatted_platforms = {
@@ -42,16 +43,11 @@ module Jekyll
 
   class PlatformGenerator < Generator
     def buildSiteMap(site)
-      group_pages = site.pages.select { |page| ['features', 'sdk', 'getStarted', 'dashboard', 'integrations', 'api', 'recipe', 'overview'].include?(page.data['type']) }
+      group_pages = site.pages.select { |page| ['recipe', 'overview', 'domain', 'reference'].include?(page.data['type']) }
       site.data['site_map'] = {
         'features' => {},
-        'sdk' => {},
-        'getStarted' => {},
-        'dashboard' => {},
-        'integrations' => {},
-        'api' => {},
-        'recipe' => {},
-        'overview' => {},
+        'third-party-integrations' => {},
+        'getting-started' => {}
       }
 
       group_pages.each do |page|
@@ -60,29 +56,39 @@ module Jekyll
         path = page.name.split(".")[0]
         if path == 'index' then path = '' end
 
-        site.data['site_map'][page.data['type']][path] = {
-          'path' => path,
-          'title' => page.data['title'],
-          'weight' => page.data['weight'] || 0,
-          'platforms' => Hash[page_platforms.zip(page_platforms.map {|i| true })]
-        }
+        if page.data['directory']
+          site.data['site_map'][page.data['directory']][path] = {
+            'path' => path,
+            'title' => page.data['title'],
+            'weight' => page.data['weight'] || 0,
+            'platforms' => Hash[page_platforms.zip(page_platforms.map {|i| true })]
+          }
+        end
       end
     end
 
     def generate(site)
       buildSiteMap(site)
-      filtered_pages = site.pages.select { |page| ['features', 'sdk', 'overview', 'recipe'].include?(page.data['type']) }
+      filtered_pages = site.pages.select { |page| ['recipe', 'overview', 'domain', 'reference'].include?(page.data['type']) }
       site.pages.reject! { |page| page.data['type'] == 'ingredient' }
 
       filtered_pages.each do |page|
-        if page.data['platforms'] then
-          page.data['platforms'].each do |platform|
-            site.pages << PlatformPage.new(site, site.source, page.data['type'], page, platform, false)
+        if page.data['directory'] then
+          if page.data['platforms'] then
+            page.data['platforms'].each do |platform|
+              site.pages << PlatformPage.new(site, site.source, page.data['directory'], page, platform, false)
+            end
           end
+          # add a default page as the first value in the array
+          default_platform = if page.data['platforms'] then page.data['platforms'][0] else '' end
+          site.pages << PlatformPage.new(site, site.source, page.data['directory'], page, default_platform, true)
+          puts page.data['directory']
+          puts site
+          puts site.source
+          #puts page
+          puts default_platform
         end
-        # add a default page as the first value in the array
-        default_platform = if page.data['platforms'] then page.data['platforms'][0] else '' end
-        site.pages << PlatformPage.new(site, site.source, page.data['type'], page, default_platform, true)
+        puts "outside"
       end
 
     end
