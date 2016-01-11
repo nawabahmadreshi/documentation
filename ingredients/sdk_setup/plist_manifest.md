@@ -128,7 +128,7 @@ Note: Auto session tracking is only available for `minSdkVersion` 14 or above.
 {% endif %}
 <!---       /Android-specific Branch Key -->
 
-{% page.titanium %}
+{% if page.titanium %}
 ### Configure Android Manifest
 
 #### Android: Register a URI Scheme and add your Branch key

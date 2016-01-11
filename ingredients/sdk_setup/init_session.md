@@ -128,7 +128,7 @@ onDeviceReady: function() {
     branch.setDebug(true);
     document.addEventListener('resume', app.onResume, false);
     branch.init(app.branch_key, { isReferrable: true }, function(err, data) {
-        // call completion handler with data
+        // call completion handler with data.data
     });
 },
 
