@@ -216,7 +216,7 @@ URI schemes received the deep link URL through `openUrl` in the App Delegate. Un
 
 Below is a snippet of code that you can use to retrieve the full Universal Link URL that opened the app.
 
-{% ingredient sdk_setup/ios9_continue_user_activity.md %}{% endingredient %}
+{% ingredient sdk_setup/ios9_continue_user_activity %}{% endingredient %}
 
 -----
 
