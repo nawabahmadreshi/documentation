@@ -344,7 +344,7 @@ The SDK can be initialized by calling `branch.getAutoInstance()`, just as with t
 
 Initialize the session and register your deep link router. The callback here will contain the deeplink data associated with the link you clicked. To implement the callback, you must add a listener to the event `bio:initSession`.
 
-{{% highlight js %}
+{% highlight js %}
 $.initialize = function(params) {
     $.window.open();
 
