@@ -340,7 +340,7 @@ Be sure to have the INIT_SUCCESSED event called, otherwise read the bEvt.informa
 {% endif %}
 
 {% if page.titanium %}
-The SDK can be initialized by calling `branch.getAutoInstance()`, just as with the Web SDK. A sample app can be found in [the Github repo here](https://github.com/BranchMetrics/Titanium-Deferred-Deep-Linking-SDK/blob/master/testbed/app/controllers/index.js), that demonstrates this.
+The SDK can be initialized by calling `branch.initSession()`, just as with the Web SDK. A sample app can be found in [the Github repo here](https://github.com/BranchMetrics/Titanium-Deferred-Deep-Linking-SDK/blob/master/testbed/app/controllers/index.js), that demonstrates this.
 
 Initialize the session and register your deep link router. The callback here will contain the deeplink data associated with the link you clicked. To implement the callback, you must add a listener to the event `bio:initSession`.
 
@@ -353,14 +353,14 @@ $.initialize = function(params) {
 
     Ti.API.info("start initSession");
     branch.setDebug(true);
-    branch.getAutoInstance();
+    branch.initSession();
     branch.addEventListener("bio:initSession", $.onInitSessionFinished);
 
     if (OS_ANDROID) {
         Ti.Android.currentActivity.addEventListener("newintent", function(e) {
             Ti.API.info("inside newintent: " + e);
             $.window.open();
-            branch.getAutoInstance();
+            branch.initSession();
         });
     }
 };
