@@ -6,7 +6,8 @@ module Jekyll
       @site = site
       @base = base
       # set the type to empty if overview so that overview pages will be at root
-      types = if type != 'overview' then type else '' end
+      # types = if type != 'overview' then type + 's' else '' end
+      types = type + 's'
 
       if platform != '' and !isDefault then
         @dir = File.join(types, page.name.split(".")[0])
@@ -16,7 +17,7 @@ module Jekyll
         @name = page.name.split(".")[0] + '.md'
       end
 
-      self.read_yaml(File.join(base, type), page.name)
+      self.read_yaml(File.join(base, type + 's'), page.name)
       self.process(@name)
 
       formatted_platforms = {
@@ -41,14 +42,16 @@ module Jekyll
 
   class PlatformGenerator < Generator
     def buildSiteMap(site)
-      group_pages = site.pages.select { |page| ['features', 'sdk', 'getStarted', 'dashboard', 'integrations', 'api'].include?(page.data['type']) }
+      group_pages = site.pages.select { |page| ['features', 'sdk', 'getStarted', 'dashboard', 'integrations', 'api', 'recipe', 'overview'].include?(page.data['type']) }
       site.data['site_map'] = {
         'features' => {},
         'sdk' => {},
         'getStarted' => {},
         'dashboard' => {},
         'integrations' => {},
-        'api' => {}
+        'api' => {},
+        'recipe' => {},
+        'overview' => {},
       }
 
       group_pages.each do |page|
@@ -68,7 +71,7 @@ module Jekyll
 
     def generate(site)
       buildSiteMap(site)
-      filtered_pages = site.pages.select { |page| ['features', 'sdk'].include?(page.data['type']) }
+      filtered_pages = site.pages.select { |page| ['features', 'sdk', 'overview', 'recipe'].include?(page.data['type']) }
       site.pages.reject! { |page| page.data['type'] == 'ingredient' }
 
       filtered_pages.each do |page|

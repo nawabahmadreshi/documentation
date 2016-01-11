@@ -22,6 +22,7 @@ var LinkInternal = React.createClass({
 		var props = this.props,
 			page_key = props.page_key;
 		if (!props.group_data || !props.group_data[page_key]) {
+			//console.log(page_key + " pagekey");
 			return (<a href="#">{ page_key }</a>);
 		}
 		var page = props.group_data[page_key],
@@ -30,6 +31,7 @@ var LinkInternal = React.createClass({
 		if (page.platforms[props.platform]) {
 			path.push(props.platform);
 		}
+		//console.log(props.group_data);
 		return (<a href={ '/' + path.join('/') } className={ isCurrentPath ? 'sidebar-link-selected' : '' }>{ page.title }</a>);
 	}
 });
@@ -42,6 +44,7 @@ var LinkGroup = React.createClass({
 		};
 	},
 	_toggle: function() {
+		console.log(this);
 		this.setState({
 			expand: !this.state.expand
 		});
@@ -130,7 +133,7 @@ var Sidebar = React.createClass({
 				level={ 0 }
 				directory={ group.directory }
 				current_path={ this.props.current_path }
-				group_data={ this.props.site_map[group.directory] }
+				group_data={ this.props.site_map[group.directory.slice(0,-1)] }
 				platform={ this.state.platform } />);
 		}.bind(this));
 		return (<div className="sidebar-wrapper">

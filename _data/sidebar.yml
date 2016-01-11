@@ -1,51 +1,54 @@
 ---
 
-- title: Recipes
-  directory: recipe
+- title: What is Branch?
+  directory: recipes
   children:
-    - deepviews2
-- title: Get Started
-  directory: getStarted
+    - supported_standards
+    - how_branch_links_work
+    - link_configuration
+    - link_creation_guide
+- title: Getting started
+  directory: recipes
   children:
-    - What is Branch
-    - User Branch
-    - Connect Branch
-- title: Features
-  directory: features
+    - add_the_sdk
+    - setup_deep_linking
+    - measuring_installs
+- title: Deep linked features
+  directory: recipes
   children:
-    - title: Branch Links
-      directory: branch_links
-      children:
-        - Overview
-        - deepviews
-        - What's in a link?
-        - Customizing Links
-        - Link Creation Guide
-        - iOS Universal Links
-        - Google App Invites
-        - Facebook App Invites
-        - Testing
-    - Personalized onboarding
-    - title: Content Sharing & Indexing
-      directory: content_sharing
-      children:
-        - Content sharing
-        - Branch Content Insights
-        - Apple Spotlight
-        - Google App Indexing
-- title: SDK
-  directory: sdk
+    - content_sharing
+    - personalized_welcome
+    - deepviews
+    - deep_link_mobile_site
+    - app_download_banner
+    - text_me_the_app_page
+    - branch_universal_links
+    - google_app_indexing
+    - universal_links_test
+- title: Testing & releasing
+  directory: recipes
   children:
-    - deepviews3
-- title: API
-  directory: api
+    - testing_your_integration
+    - submitting_apps
+- title: Customize your integration
+  directory: recipes
   children:
-    - children
-- title: Dashboard
-  directory: dashboard
+    - matching_accuracy
+    - email_campaigns
+    - spotlight_indexing
+    - referral_links_with_incentives
+    - facebook_appinvites
+    - dashboard_pro_tips
+    - webhooks_and_exporting_data
+- title: Third-party integrations
+  directory: recipes
   children:
-    - children
-- title: Integrations
-  directory: integrations
-  children:
-    - children
+    - ab_testing_apptimize
+    - advertising_facebook
+    - advertising_google
+    - advertising_twitter
+    - analytics_adjust
+    - analytics_appboy
+    - analytics_localytics
+    - analytics_mixpanel
+    - referrals_referral_saasquatch

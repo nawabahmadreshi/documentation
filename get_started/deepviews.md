@@ -1,5 +1,5 @@
 ---
-type: features
+type: 
 title: "Deepviews"
 page_title: "Deepviews - Mobile Web Splash Pages"
 description: Learn how to create a mobile web deepview using Branch links.
