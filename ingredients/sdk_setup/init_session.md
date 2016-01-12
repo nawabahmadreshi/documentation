@@ -206,9 +206,10 @@ public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsApplicat
 
         global::Xamarin.Forms.Forms.Init (this, savedInstanceState);
 
-        BranchAndroid.Init (this, "your branch key here", Intent.Data);
+        BranchAndroid.Init (this, "your branch key here", Intent.Data, Intent.Extras);
         
         App app = new App ();
+        
         // Call this method to enable automatic session management
         BranchAndroid.getInstance().SetLifeCycleHandlerCallback (this, app);
 
@@ -218,7 +219,7 @@ public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsApplicat
     // Ensure we get the updated link identifier when the app is opened from the
     // background with a new link.
     protected override void OnNewIntent(Intent intent) {
-        BranchAndroid.GetInstance().SetNewUrl(intent.Data);
+        BranchAndroid.getInstance().SetNewUrl(intent.Data);
     }
 }
 {% endhighlight %}
