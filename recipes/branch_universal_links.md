@@ -241,10 +241,10 @@ Unfortunately, Universal Links don't work quite everywhere yet. We'll maintain t
 | Messages | works
 | Slack | works
 | Mail | works
+| Facebook | works
 | Safari | works conditionally *
 | Chrome | works conditionally *
 | Google | not working
-| Facebook | not working
 | Twitter | not working
 | Gmail | not working
 | Pinterest | not working
