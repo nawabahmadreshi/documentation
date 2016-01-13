@@ -128,8 +128,128 @@ Note: Auto session tracking is only available for `minSdkVersion` 14 or above.
 {% endif %}
 <!---       /Android-specific Branch Key -->
 
-{% if page.cordova or page.xamarin or page.unity or page.titanium %}
-### Configure iOS for URI based deep linking
+{% if page.titanium %}
+### Configure Android Manifest
+
+#### Android: Register a URI Scheme and add your Branch key
+
+In your project's `tiapp.xml` file, you can register your app to respond to direct deep links (`yourapp://` in a mobile
+browser) by adding the second intent filter block. Also, make sure to change `yourapp` to a unique string that
+represents your app name.
+
+Secondly, make sure that this activity is launched as a singleTask. This is important to handle proper deep linking
+from other apps like Facebook.
+
+{% highlight xml %}
+<activity
+    android:name=".TestbedActivity"
+    android:label="@string/app_name"
+    <!-- Make sure the activity is launched as "singleTask" -->
+    android:launchMode="singleTask">
+    <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
+    </intent-filter>
+
+    <!-- Add this intent filter below, and change yourapp to your app name -->
+    <intent-filter>
+        <data android:scheme="yourapp" android:host="open" />
+        <action android:name="android.intent.action.VIEW" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <category android:name="android.intent.category.BROWSABLE" />
+    </intent-filter>
+</activity>
+{% endhighlight %}
+
+After you register your app, your Branch key can be retrieved on the Settings page of the dashboard. Add it
+(them, if you want to do it for both your live and test apps) to your project's manifest file as a meta data.
+
+Edit your manifest file to have the following items:
+
+{% highlight xml %}
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="io.branch.sample"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application>
+        <!-- Other existing entries -->
+
+        <!-- Add this meta-data below, and change "key_live_xxxxxxx" to your actual live Branch key -->
+        <meta-data android:name="io.branch.sdk.BranchKey" android:value="key_live_xxxxxxx" />
+
+        <!-- For your test app, if you have one; Again, use your actual test Branch key -->
+        <meta-data android:name="io.branch.sdk.BranchKey.test" android:value="key_test_yyyyyyy" />
+    </application>
+</manifest>
+{% endhighlight %}
+
+### Configure the iOS Plist and Entitlements
+
+#### iOS: Register a URI Scheme and add your Branch key
+
+In your project's `tiapp.xml` file, you can register your app to respond to direct deep links (`yourapp://` in a mobile browser) by adding `CFBundleURLTypes` block. Also, make sure to change `yourapp` to a unique string that represents your app name. 
+In https://dashboard.branch.io/#/settings/link, tick `I have an iOS App` checkbox and enter your URI Scheme (e.g.: `yourapp://`) into the text box.
+
+{% highlight xml %}
+  <ios>
+    <plist>
+      <dict>
+        <!-- Add branch key as key-value pair -->
+        <key>branch_key</key>
+        <string>key_live_xxxxxxxxxxxxxxx</string>
+        <!-- Add unique string for direct deep links -->
+        <key>CFBundleURLTypes</key>
+        <array>
+          <dict>
+            <key>CFBundleURLSchemes</key>
+            <array>
+              <string>yourapp</string>
+            </array>
+          </dict>
+        </array>
+      </dict>
+    </plist>
+  </ios>
+{% endhighlight %}
+
+#### iOS: Enable Universal Links
+
+In iOS 9.2, Apple dropped support for URI scheme redirects. You must enable Universal Links if you want Branch-generated links to work in your iOS app. To do this:
+
+1. enable `Associated Domains` capability on the Apple Developer portal when you create your app's bundle identifier. 
+2. In https://dashboard.branch.io/#/settings/link, tick the `Enable Universal Links` checkbox and provide the Bundle Identifier and Apple Team ID in the appropriate boxes. 
+3. Finally, create a new file named `Entitlements.plist` in the same directory as your Titanium app's `tiapp.xml` with the `associated-domains` key like below. You may add more entitlement keys if you have any.
+
+{% highlight xml %}
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>com.apple.developer.associated-domains</key>
+    <array>
+        <string>applinks:bnc.lt</string>
+    </array>
+</dict>
+</plist>
+{% endhighlight %}
+
+{% endif %}
+
+{% if page.cordova or page.xamarin or page.unity %}
+
+### iOS: Add your Branch key
+
+Your app key can be retrieved on the [Settings](https://dashboard.branch.io/#/settings) page of the dashboard. Now you need to add it to YourProject-Info.plist (Info.plist for Swift).
+
+1. In plist file, mouse hover "Information Property List" which is the root item under the Key column.
+1. After about half a second, you will see a "+" sign appear. Click it.
+1. In the newly added row, fill in `branch_key` for its key, leave type as String, and enter your app key obtained in above steps in its value column.
+1. Save the plist file.
+
+### iOS: Configure for URI based deep linking
 
 {% if page.unity %}
 **Note this is only if you want to change it manually, but this is automatically configured for you.**
@@ -145,7 +265,7 @@ To set up your URI Scheme, you'll need to open your project in XCode and complet
 
 -----
 
-### Configure iOS for Universal Links
+### iOS: Configure for Universal Links
 
 Configuring your app for Branch's Universal Links is very simple. At a high level, you just need to go in and add in the selected `Associated Domains` to your Xcode project.
 
@@ -171,6 +291,21 @@ In the `Domains` section, add the appropriate domain tags for `bnc.lt` as well a
 - `applinks:bnc.lt`
 
 {% image src='/img/recipes/universal_links/add_domains.png' half center alt='xcode add domains' %}
+
+The file should look like this:
+
+{% highlight xml %}
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>com.apple.developer.associated-domains</key>
+    <array>
+        <string>applinks:bnc.lt</string>
+    </array>
+</dict>
+</plist>
+{% endhighlight %}
 
 **Note: If you encounter any issues, please follow the [full instructions here](/recipes/branch_universal_links/ios/).**
 

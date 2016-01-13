@@ -55,7 +55,7 @@ obj.put("referringUserId", "1234"));{% endif %}{% endoverride %}
 	{% override more %}{% endoverride %}
 {% endingredient %}
 {% ingredient rewards/reward_example %}{% endingredient %}
-{% ingredient sdk_setup/testing_rewards_protip %}{% endingredient %}
+{% ingredient rewards/testing_rewards_protip %}{% endingredient %}
 
 {% ingredient rewards/get_credits %}{% override different_bucket %}{% endoverride %}{% endingredient %}
 {% ingredient rewards/redeem_credits %}{% override different_bucket %}{% endoverride %}{% endingredient %}

@@ -14,6 +14,7 @@ Previously, Branch did not return any information to the app if `initSession` wa
 | ~campaign | The campaign the link is associated with, specified at link creation time
 | ~stage | The stage, specified at link creation time
 | ~creation_source | Where the link was created ('API', 'Dashboard', 'SDK', 'iOS SDK', 'Android SDK', or 'Web SDK')
+| ~referring_link | The referring link that drove the install/open if present
 | +match_guaranteed | True or false as to whether the match was made with 100% accuracy
 | +referrer | The referrer for the link click, if a link was clicked
 | +phone_number | The phone number of the user, if the user texted himself/herself the app

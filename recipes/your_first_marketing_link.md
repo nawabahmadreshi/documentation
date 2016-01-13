@@ -54,7 +54,7 @@ First, please visit the [Branch link configuration tool](https://start.branch.io
 
 ## What's next?
 
-### [Head to Step 2: integrating the SDK](/recipes/quickstart_guide/{{page.platform}})
+### [Head to Step 2: integrating the SDK](/recipes/add_the_sdk/{{page.platform}})
 
 -----
 

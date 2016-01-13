@@ -54,7 +54,7 @@ var sessionParams:String = branch.getLatestReferringParams();
 
 {% if page.titanium %}
 {% highlight js %}
-var params = branch.data();
+var sessionParams = branch.getLatestReferringParams();
 {% endhighlight %}
 {% endif %}
 
@@ -110,6 +110,6 @@ var installParams:String = branch.getFirstReferringParams();
 
 {% if page.titanium %}
 {% highlight js %}
-Unfortunately not supported on this plaform.
+var installParams = branch.getFirstReferringParams();
 {% endhighlight %}
 {% endif %}

@@ -15,7 +15,7 @@ We've partnered with Apptimize to seamlessly provide different onboarding flows 
 
 Have a theory that users clicking Branch links right into a product page convert better than users clicking Branch links but must authenticate first? With our integration, you can define, measure, and prove your hypothesis!
 
-{% protip title="Still need to integrate Branch?" %}This guide assumes that you have already integrated Branch. If you need to integrate Branch still, jump to "[Integrating the SDK](/recipes/quickstart_guide/ios/)".
+{% protip title="Still need to integrate Branch?" %}This guide assumes that you have already integrated Branch. If you need to integrate Branch still, jump to "[Integrating the SDK](/recipes/add_the_sdk/ios/)".
 {% endprotip %}
 
 ## How It Works

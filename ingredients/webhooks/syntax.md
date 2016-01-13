@@ -1,7 +1,7 @@
 
 ## Webhook Syntax Specification
 
-Here is the format of what we post to you
+Here is the format of what we post to you for all events other than `click`
 
 
 	POST
@@ -39,6 +39,41 @@ Here is the format of what we post to you
 	    campaign: ‘campaign label’
 	    feature: ‘feature label’
 	    channel: ‘channel label’
+	    tags: [tags array]
+	    stage: ‘stage label’
+	}
+
+### Webhook Syntax Specification for click events
+
+Below is the format of what we send you for all `click` events
+
+	POST
+	User-agent: Branch Metrics API
+	Content-Type: application/json
+	{
+	    metadata: ‘event metadata’ - specified in userCompletedAction withState
+	    event_timestamp: 'time stamp for the event'
+	    os: 'iOS' | 'Android'
+	    os_version: 'the OS version'
+	    query: 'any query string you have on the link'
+	    link_data: { link data dictionary - see below }
+	    event: 'click'
+	    event_timestamp: 'link click timestamp'
+	}
+
+	// link data dictionary example
+	{
+	    data: { deep link dictionary }
+	    date_ms: 'link click date with millisecond'
+	    date_sec: 'link click date with second'
+	    date: 'click date'
+	    campaign: ‘campaign label’
+	    feature: ‘feature label’
+	    branch_id: 'branch ID for user's unique browser'
+	    domain: 'domain label'
+	    channel: ‘channel label’
+	    state: 'state label'
+	    href: 'href label'
 	    tags: [tags array]
 	    stage: ‘stage label’
 	}

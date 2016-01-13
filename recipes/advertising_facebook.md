@@ -7,7 +7,7 @@ keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplink
 hide_platform_selector: true
 ---
 
-{% protip title="Still need to integrate Branch?" %}This guide assumes that you have 1. already [integrated Branch](/recipes/quickstart_guide/ios/) and 2. configured your app to [send IDFA or GAID](/recipes/submitting_apps/ios/). These are prerequisites to install ads, so please do them first.
+{% protip title="Still need to integrate Branch?" %}This guide assumes that you have 1. already [integrated Branch](/recipes/add_the_sdk/ios/) and 2. configured your app to [send IDFA or GAID](/recipes/submitting_apps/ios/). These are prerequisites to install ads, so please do them first.
 {% endprotip %}
 
 Deeplinked ads are not a new breed--just a rare one. With Branch they're as easy as creating a link on the Dashboard and setting up your {{page.platform_formatted}} app to handle incoming deep links.

@@ -71,7 +71,7 @@ branchUniversalObject.listOnSpotlightWithCallback((url: String?, error: NSError?
 
 ## Tracking clicks and deep linking
 
-This section assumes that you've already [setup the SDK](/recipes/quickstart_guide). In order to properly receive a click from Spotlight when your app is installed, just let Branch handle th complexity. Parameters associated with the deep link will appear in the **Deep Link Handler** that you registered in initSession.
+This section assumes that you've already [setup the SDK](/recipes/add_the_sdk/ios/). In order to properly receive a click from Spotlight when your app is installed, just let Branch handle th complexity. Parameters associated with the deep link will appear in the **Deep Link Handler** that you registered in initSession.
 
 {% tabs %}
 {% tab objective-c %}

@@ -110,8 +110,8 @@ Inside the callback, when Branch is initialized, you will want to examine the di
 
 {% highlight js %}
 branch.init("YOUR BRANCH KEY HERE", function(err, data) {
-    if (!err && data.data_parsed['+clicked_branch_link']) {
-        if (data.data_parsed['picture_id']) {
+    if (!err && data.data['+clicked_branch_link']) {
+        if (data.data['picture_id']) {
             // load the view to show the picture
         } else {
             // load your normal view
@@ -185,14 +185,29 @@ Be sure to have the INIT_SUCCESSED event called, otherwise read the bEvt.informa
 Inside the callback, when Branch is initialized, you will want to examine the dictionary we pass to you from our callback. Below is an example assuming that the links correspond to pictures.
 
 {% highlight js %}
-branch.init("YOUR BRANCH KEY HERE", function(err, data) {
-    if (!err && data.data_parsed['+clicked_branch_link']) {
-        if (data.data_parsed['picture_id']) {
-            // load the view to show the picture
-        } else {
-            // load your normal view
+branch.getAutoSession();
+{% endhighlight %}
+
+To implement the callback, you must add a listener to the event `bio:initSession`.
+
+{% highlight js %}
+branch.addEventListener("bio:initSession", $.onInitSessionFinished);
+{% endhighlight %}
+
+{% highlight js %}
+$.onInitSessionFinished = function(data) {
+    Ti.API.info("inside onInitSessionFinished");
+    for (key in data) {
+        if ((key != "type" && key != "source" && key != "bubbles" && key != "cancelBubble") && data[key] != null) {
+            Ti.API.info(key + data["key"]);
         }
-    } 
-});
+    }
+
+    if (data["picture_id"]) {
+        // load the view to show the picture
+    } else {
+        // load your normal view
+    }
+}
 {% endhighlight %}
 {% endif %}

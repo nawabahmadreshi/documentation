@@ -161,19 +161,21 @@ branch.getShortUrl(tags, "sms", BranchConst.FEATURE_TAG_SHARE, JSON.stringify(da
 {% if page.titanium %}
 
 {% highlight js %}
-branch.link({
-    channel: 'sms',
-    feature: 'share',
-    data: {
-        "article_id": "1234",
-        "$og_title": "Hot off the presses!",
-        "$og_image_url": "http://yoursite.com/pics/987666.png",
-        "$og_description": "Out of all the apps disrupting apps, MyApp is without a doubt a leader. Check us out."
-    }
-}, function(err, link) {
-    if (!err) {
-        console.log("Ready to share my " + link);
-    }
+var branchUniversalObject = branch.createBranchUniversalObject({
+  "canonicalIdentifier" : "content/12345",
+
+// Facebook OG tags -- This will overwrite any defaults you have set on the Branch Dashboard
+  "title" : "My Content Title",
+  "contentDescription" : "My Content Description",
+  "contentImageUrl" : "https://example.com/mycontent-12345.png",
+
+  "contentIndexingMode" : "public",
+  "contentMetadata" : {
+      "product_picture" : "12345",
+      "user_id" : "6789"
+  },
 });
 {% endhighlight %}
+
+Check out our [Content Sharing](/recipes/content_sharing/{{page.platform}}/) guide to see simple examples of complete a link from the Branch Universal Object.
 {% endif %}

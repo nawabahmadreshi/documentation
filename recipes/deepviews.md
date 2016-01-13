@@ -26,7 +26,7 @@ There are a few things to make sure you've done prior to leveraging deepviews
 
 - Setup your Branch account and link routing for your app at [start.branch.io](https://start.branch.io).
 - Make sure we've correctly pulled the app icon you want to use in the Social Media Display Customization section of the [settings tab](https://dashboard.branch.io/#/settings/link).
-- *optional* To power deep linking and get the install/open analytics, {% if page.ios || page.android %}[integrate the SDK](/recipes/quickstart_guide/{{page.platform}}/){% else %}[integrate the SDK](/recipes/quickstart_guide/ios/){% endif %}.
+- *optional* To power deep linking and get the install/open analytics, [integrate the SDK](/recipes/add_the_sdk/{{page.platform}}/).
 
 -----
 
