@@ -5,13 +5,18 @@
 	{% webasset navbar branch_base='{{site.branch_base}}' subtitle='docs' sub_href='https://dev.branch.io' hide_options='true' no_fixed='true' width='1200' %}
   <body>
 	<div class="container inner container-height">
-		<div class="col-sm-3 inner__sidebar">
+		<div class="inner__sidebar">
 			<div class="inner__sidebar__fixed">
 				{% sidebar %}
 			</div>
 		</div>
-		<div class="col-sm-9 inner__content">
+		<div class="inner__content">
 			{% breadcrumbs %}
+			{% section_selector %}
+			<h1> {{ page.title }} </h1>
+			<div class="platform_selector">
+				{% if page.hide_platform_selector != true %}{% platform_selector %}{% endif %}
+			</div>
 			{{ content | toc_generate:"Steps" }}
 		</div>
 	</div>

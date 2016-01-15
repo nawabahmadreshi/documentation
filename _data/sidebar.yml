@@ -1,54 +1,61 @@
 ---
 
-- title: Getting started
+- title: Getting Started
   directory: getting-started
   children:
     - add_the_sdk
     - setup_deep_linking
     - measuring_installs
-- title: Deep linked features
+    - title: Customize
+      children:
+        - branch_universal_links
+        - testing_your_integration
+        - submitting_apps
+        - dashboard_pro_tips
+        - webhooks_and_exporting_data
+        - matching_accuracy
+- title: Features
   directory: features
   children:
-    - content_sharing
-    - personalized_welcome
-    - deepviews
-    - deep_link_mobile_site
-    - app_download_banner
-    - text_me_the_app_page
-    - branch_universal_links
-    - google_app_indexing
-    - title: Web to App Conversion
-      directory: web-to-app-conversion
+    - title: Content Indexing
       children:
-        - universal_links_test
-        - ul_test_implementation-guide
+        - google_app_indexing
+        - spotlight_indexing
+    - title: Personalized Sharing
+      children:
+        - content_sharing
+        - personalized_welcome
+    - title: Web to App Conversion
+      children:
+        - deepviews
+        - deepviews_test
+        - deep_link_mobile_site
+        - app_download_banner
+        - text_me_the_app_page
+    - title: Marketing for Mobile
+      children:
+        - email_campaigns
+        - referral_links_with_incentives
+        - facebook_appinvites
+        - advertising_facebook
+        - advertising_google
+        - advertising_twitter
+    - title: Universal Links Test
+      children:
         - ul_test_overview
+        - ul_test_implementation-guide
         - ul_test_reference-material
         - ul_test_support
-- title: Testing & releasing
-  directory: recipes
-  children:
-    - testing_your_integration
-    - submitting_apps
-- title: Customize your integration
-  directory: recipes
-  children:
-    - matching_accuracy
-    - email_campaigns
-    - spotlight_indexing
-    - referral_links_with_incentives
-    - facebook_appinvites
-    - dashboard_pro_tips
-    - webhooks_and_exporting_data
-- title: Third-party integrations
+- title: Third-party Integrations
   directory: third-party-integrations
   children:
-    - ab_testing_apptimize
-    - advertising_facebook
-    - advertising_google
-    - advertising_twitter
-    - analytics_adjust
-    - analytics_appboy
-    - analytics_localytics
-    - analytics_mixpanel
-    - referrals_referral_saasquatch
+    - title: Growth Tools
+      children:
+        - ab_testing_apptimize
+        - referrals_referral_saasquatch
+        - analytics_appboy
+    - title: Measurement Platforms
+      children:
+        - analytics_adjust
+        - analytics_localytics
+        - analytics_mixpanel

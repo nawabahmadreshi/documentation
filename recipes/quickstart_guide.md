@@ -16,6 +16,10 @@ platforms:
 - unity
 - adobe
 - titanium
+sections:
+- overview
+- guide
+- support
 ---
 # SDK Integration Guide
 

@@ -1,5 +1,6 @@
 ---
 type: recipe
+directory: getting-started
 title: "2 - Set up deep linking"
 page_title: Set up deep linking in your Android or iOS app
 description: This page will tell you how to setup your Android, iOS, Cordova, Phonegap, Xamarin, Unity, Air or Titanium app for deep linking.
@@ -11,6 +12,10 @@ platforms:
 - unity
 - adobe
 - titanium
+sections:
+- overview
+- guide
+- support
 ---
 
 Deep linking is an incredibly important part of building your app, and essential for delivering a high quality user experience. When a user clicks a link, you should take them to the exact thing they clicked on. Here's how to do it.

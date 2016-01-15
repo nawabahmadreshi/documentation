@@ -1,7 +1,7 @@
 ---
 type: recipe
 directory: features
-title: "Deepviews"
+title: "Deepviews Test"
 page_title: "Deepviews - Mobile Web Splash Pages"
 description: Learn how to create a mobile web deepview using Branch links.
 keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views
@@ -19,11 +19,13 @@ sections:
 - support
 ---
 
+{% if page.overview %}
+
 A **Deepview** is a mobile web splash page combined with a deep link that will open the app if installed, and fall back to the appropriate app store if not. Deepviews are discoverable in all search portals (Google, Apple Spotlight, Bing, etc), opening up new mechanisms for people to find your app. Plus, they drive much higher conversions to install instead of sending a user to the App/Play Store directly. Here's an example flow:
 
 {% image src='/img/deepviews/deepviews_allthecooks.gif' actual center alt='Deepviews example' %}
 
------
+{% endif %}
 
 ## Pre-requisites
 

@@ -30,7 +30,6 @@ var PlatformSelector = React.createClass({
 	render: function() {
 		var self = this;
 		var platforms = R.map(function(platform) {
-			//console.log(platform);
 			classes = {
 				'btn btn-default': true,
 				'btn-inactive': self.state.platform != platform.key
@@ -47,7 +46,7 @@ var PlatformSelector = React.createClass({
 		});
 
 		return (
-			<div className="text-center platform-selector">
+			<div className="row text-center platform-selector">
 				<div className="btn-group">
 					{ platforms(this.props.platforms) }
 				</div>

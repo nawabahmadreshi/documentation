@@ -1,5 +1,32 @@
 .platform_selector {
-	float: left;
-	margin-top:5px;
-	margin-left: 15px;
+  .btn-group {
+    display: inline-flex;
+    padding: 0;
+    border-left: 1px solid #eeeeee;
+    border-top: 1px solid #eeeeee;
+
+    .col-xs-1point5 {
+      @extend .col-xs-1;
+      width: 12.5%;
+      &:nth-child(3) {
+        @extend .col-xs-3
+      }
+    }
+    .btn-default {
+      margin: 0;
+      color: #1cadce;
+      border: none;
+      border-right: 1px solid #eeeeee;
+      border-bottom: 1px solid #eeeeee;
+      border-radius: 0;
+      padding: 5px 15px;
+      font-weight: bold;
+      font-size: 12px;
+      background-color: #eeeeee;
+    }
+    .btn-inactive {
+      font-weight: normal;
+      background-color: #ffffff;
+    }
+  }
 }

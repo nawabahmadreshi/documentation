@@ -1,5 +1,6 @@
 ---
 type: recipe
+directory: features
 title: "Google App Indexing"
 page_title: "Index and track your content with Google's App Indexing"
 description: Learn how to list your content in Google's App Index.
@@ -7,6 +8,10 @@ keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplink
 platforms:
 - ios
 - android
+sections:
+- overview
+- guide
+- support
 ---
 
 Google has been investing signficant resources into a project called App Indexing, where they will try to expose an 'app result' in Google Search. As the documentation is rather poor and ambiguous, and since we have a database of all of your deep links, we see this as a great opportunity to help you take advantage of App Indexing. This document serves as education and instruction on how to configure your Branch integration for success.

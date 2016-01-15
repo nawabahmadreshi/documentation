@@ -1,5 +1,6 @@
 ---
 type: recipe
+directory: features
 title: "Content sharing"
 ios_page_title: iOS Deep Links for Content Sharing
 android_page_title: Android Deep Links for Content Sharing
@@ -15,6 +16,10 @@ platforms:
 - unity
 - adobe
 - titanium
+sections:
+- overview
+- guide
+- support
 ---
 
 {% ingredient quickstart_preview/quickstart_preview %}{% endingredient %}

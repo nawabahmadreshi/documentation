@@ -8,6 +8,10 @@ keywords: abtesting, apptimize
 platforms:
 - ios
 - android
+sections:
+- overview
+- guide
+- support
 ---
 
 # Apptimize and Branch

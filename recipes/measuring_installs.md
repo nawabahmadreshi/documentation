@@ -1,5 +1,6 @@
 ---
 type: recipe
+directory: getting-started
 title: "3 - Attribution/analytics"
 page_title: App attribution and analytics for iOS and Android
 description: The Branch Metrics dashboard shows you all the analytics for your iOS deep links. Track install attribution, measure marketing channels and ad campaigns.
@@ -13,6 +14,10 @@ platforms:
 - unity
 - adobe
 - titanium
+sections:
+- overview
+- guide
+- support
 ---
 
 It's time to dive into your data with the [Branch Dashboard](https://dashboard.branch.io). It's the perfect tool for measing growth and engagement.

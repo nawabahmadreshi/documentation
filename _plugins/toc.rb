@@ -15,7 +15,8 @@ module Jekyll
             nested_toc = _nested_toc(toc)
 
             toc_title = title.length > 0 ? '<h4 class="toc-title"> ' + title + ' </h4>' : ''
-            "<hr/>" + toc_title + _render_toc(nested_toc, 1) + "<hr />" + html
+            #"<hr/>" + toc_title + _render_toc(nested_toc, 1) + "<hr />" + html
+            html
         end
         def _render_toc(toc, level)
             if toc.length > 0 then

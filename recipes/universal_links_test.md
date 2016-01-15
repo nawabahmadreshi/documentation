@@ -8,6 +8,10 @@ keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplink
 platforms:
 - ios
 - android
+sections:
+- overview
+- guide
+- support
 ---
 
 # In This Guide

@@ -1,13 +1,17 @@
 ---
 type: recipe
 directory: features
-title: "iOS9/6.0 Universal/App Links TEST overview"
+title: "Support"
 page_title: How To Setup iOS9 or Android Universal App Links With Branch
 description: "Learn how to enable iOS9 Universal Links on your Branch deeplinks for tracking and deep linking."
 keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Android App Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Dashboard, iOS9
 platforms:
 - ios
 - android
+sections:
+- overview
+- guide
+- support
 ---
 
 | [Overview](overview.md) | [Implementation Guide](implementation-guide.md) | [Reference Material](reference-material.md) | Support | 

@@ -8,7 +8,8 @@ var Breadcrumb = React.createClass({
 			return (<li>{ this.props.label }</li>);
 		}
 		else {
-			return (<li><a href={ this.props.href }>{ this.props.label }</a><i className="fa fa-chevron-right"></i></li>);
+			// return (<li><a href={ this.props.href }>{ this.props.label }</a><i className="fa fa-chevron-right"></i></li>);
+			return (<li>{ this.props.label }<i className="fa fa-chevron-right"></i></li>);
 		}
 	}
 });
@@ -47,9 +48,10 @@ var Breadcrumbs = React.createClass({
 		if (breadcrumbs) {
 			breadcrumbs = breadcrumbs.reverse();
 			var breadcrumbsCount =  breadcrumbs.length;
+			var page_title = this.props.page_title;
 			breadcrumbs.forEach(function(link, index) {
 				if (index == breadcrumbsCount - 1) {
-					links.push(<Breadcrumb label={ link } />);
+					links.push(<Breadcrumb label={ page_title } />);
 				}
 				else {
 					links.push(<Breadcrumb label={ link } href="#" />);

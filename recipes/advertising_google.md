@@ -1,9 +1,14 @@
 ---
 type: recipe
+directory: features
 title: "Google Search Ads"
 page_title: "Advertising with Deep Links: Google Ads - Search and Display"
 description: 
 hide_platform_selector: true
+sections:
+- overview
+- guide
+- support
 ---
 
 {% protip title="Still need to integrate Branch?" %}This guide assumes that you have 1. already [integrated Branch](/recipes/add_the_sdk/ios/) and 2. configured your app to [send IDFA or GAID](/recipes/submitting_apps/ios/). These are prerequisites to install ads, so please do them first.

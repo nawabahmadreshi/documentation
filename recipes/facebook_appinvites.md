@@ -1,5 +1,6 @@
 ---
 type: recipe
+directory: features
 title: "Facebook App Invites"
 ios_page_title: Set up Facebook App Invites for iOS Apps
 android_page_title: Facebook App Invites for Android Apps
@@ -10,6 +11,10 @@ android_keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, 
 platforms:
 - ios
 - android
+sections:
+- overview
+- guide
+- support
 ---
 Facebook launched it's new App Invites feature as an alternative to sharing to the wall to help you grow your app. It's similar to a direct SMS as it's a private invite from 1 friend to another as opposed to a public post on the wall. The good news is that your Branch deep links that you've set up for SMS, email and Twitter shares work the exact same way for invites. Here's a simple guide on how to do it.
 

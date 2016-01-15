@@ -1,5 +1,6 @@
 ---
 type: recipe
+directory: getting-started
 title: "Universal/App Links"
 page_title: How To Setup iOS9 or Android Universal App Links With Branch
 description: "Learn how to enable iOS9 Universal Links on your Branch deeplinks for tracking and deep linking."
@@ -7,6 +8,10 @@ keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplink
 platforms:
 - ios
 - android
+sections:
+- overview
+- guide
+- support
 ---
 
 {% image src='/img/recipes/universal_links/how_branch_improves.png' 3-quarters center alt='branch improves universal links' %}

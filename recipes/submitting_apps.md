@@ -1,5 +1,6 @@
 ---
 type: recipe
+directory: getting-started
 title: Submitting apps
 ios_page_title: How to submit apps to the iOS App Store
 android_page_title: Submitting Android apps to the Play Store
@@ -10,6 +11,10 @@ android_keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, 
 platforms:
 - ios
 - android
+sections:
+- overview
+- guide
+- support
 ---
 
 

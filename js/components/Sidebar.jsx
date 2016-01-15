@@ -22,7 +22,7 @@ var LinkInternal = React.createClass({
 		var props = this.props,
 			page_key = props.page_key;
 		if (!props.group_data || !props.group_data[page_key]) {
-			//console.log(page_key + " pagekey");
+			/*console.log(page_key + " pagekey");*/
 			return (<a href="#">{ page_key }</a>);
 		}
 		var page = props.group_data[page_key],
@@ -31,7 +31,7 @@ var LinkInternal = React.createClass({
 		if (page.platforms[props.platform]) {
 			path.push(props.platform);
 		}
-		//console.log(props.group_data);
+		/*console.log(props.group_data);*/
 		return (<a href={ '/' + path.join('/') } className={ isCurrentPath ? 'sidebar-link-selected' : '' }>{ page.title }</a>);
 	}
 });
@@ -83,16 +83,18 @@ var LinkGroup = React.createClass({
 			var selectedClass = '',
 				groupClass = 'sidebar-group',
 				arrowClass = 'fa fa-caret-right';
+				plusContent = '+'
 			if (this.state.expand) {
 				groupClass += ' sidebar-group--expand';
 				arrowClass = 'fa fa-caret-down';
+				plusContent = '-'
 			}
 			if (this.state.selected) {
 				selectedClass += 'sidebar-group-selected';
 			}
 			return (<div className={ selectedClass }>
 				<h4 className="sidebar-group-title" onClick={ this._toggle }>
-					{ props.level == 0 ? <i className={ arrowClass } /> : null} { props.group.title }
+					{ props.level == 0 ? <i className={ arrowClass } /> : <span className="plus-minus">{ plusContent }</span> } { props.group.title }
 				</h4>
 				<ul className={ groupClass }>{ links(props.group.children) }</ul>
 			</div>);
@@ -114,12 +116,21 @@ var LinkGroup = React.createClass({
 
 var Sidebar = React.createClass({
 	getInitialState: function() {
-		return getStateFromStore();
+		//return getStateFromStore();
+	  var storeState = getStateFromStore();
+	  //storeState.push({windowWidth: window.innerWidth});
+	  console.log(storeState);
+	  return storeState;
+		//return {windowWidth: window.innerWidth, storeState};
 	},
+	handleScroll: function(e) {
+  },
 	componentDidMount: function() {
+		window.addEventListener('scroll', this.handleResize);
 		PlatformStore.listen(this._onChange);
 	},
 	componentWillUnmount: function() {
+		window.removeEventListener('scroll', this.handleResize);
 		PlatformStore.unlisten(this._onChange);
 	},
 	_onChange: function() {

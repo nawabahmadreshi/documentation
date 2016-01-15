@@ -1,5 +1,5 @@
 .sidebar-wrapper {
-	padding-left:20px;
+	//padding-left:20px;
 }
 
 .sidebar-group {
@@ -16,36 +16,42 @@
 	color:#ffffff;
 	font-weight:bold;
 	font-size:20px;
+	margin: 25px 0 0 0;
+	display: flex;
+}
+
+.sidebar-group-title .fa, .sidebar-group-title .plus-minus {
+	width:12px;
+	margin-right: 10px;
+	text-align: center;
 }
 
 .sidebar-group-title .fa {
-	width:12px;
+	font-size: 14px;
+  padding-top: 3px;
 }
 
 .sidebar-group-title:hover {
 	cursor: pointer;
 }
 
-.sidebar-wrapper .sidebar-group .sidebar-group-title { /* titles of 2nd level or more */
+.sidebar-wrapper .sidebar-group .sidebar-group-title, .sidebar-group li a, .sidebar-group li a:hover { /* titles of 2nd level or more */
 	font-size:14px;
 	font-weight:normal;
+	color: #cecece;
+	text-decoration: none;
+	line-height: 19px;
 }
-
 .sidebar-group li a {
-	color:#e1e1e1;
-	font-size:14px;
+	padding-left: 22px;
+	display: block
 }
 
-.sidebar-wrapper .sidebar-group-selected .sidebar-group-title {
-	color:#ffffff;
-	font-weight:bold !important;
-}
-
-.sidebar-link-selected {
+.sidebar-group li a.sidebar-link-selected, .sidebar-group li .sidebar-group-selected .sidebar-group-title  {
 	color:#ffffff;
 	font-weight:bold;
 }
 
 .sidebar-group li {
-	padding-top:6px;
+	margin-top: 20px;
 }

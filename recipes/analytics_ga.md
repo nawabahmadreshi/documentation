@@ -10,6 +10,10 @@ android_keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, 
 platforms:
 - ios
 - android
+sections:
+- overview
+- guide
+- support
 ---
 
 # Sending Branch Data to Google Analytics

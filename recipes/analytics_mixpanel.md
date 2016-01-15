@@ -1,5 +1,6 @@
 ---
 type: recipe
+directory: third-party-integrations
 title: "Mixpanel"
 ios_page_title: Sync Branch iOS data with Mixpanel
 android_page_title: Sync Branch Android data with Mixpanel
@@ -10,6 +11,10 @@ android_keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, 
 platforms:
 - ios
 - android
+sections:
+- overview
+- guide
+- support
 ---
 
 {% protip title="Do I need both SDKs integrated?" %}

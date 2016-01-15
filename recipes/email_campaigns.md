@@ -1,5 +1,6 @@
 ---
 type: recipe
+directory: features
 title: Email campaigns
 ios_page_title: Email campaigns with deep links for iOS
 android_page_title: Email campaigns with Android deep links
@@ -8,6 +9,10 @@ android_description: How to create deep links for email campaigns featuring your
 ios_keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, email campaigns, marketing links
 android_keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views,email campaigns, marketing links, Android
 hide_platform_selector: true
+sections:
+- overview
+- guide
+- support
 ---
 
 This guide will get you started so that you can create links for emails that will properly redirect into the app or fallback to the appstore.
