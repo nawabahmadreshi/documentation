@@ -116,12 +116,12 @@ var LinkGroup = React.createClass({
 
 var Sidebar = React.createClass({
 	getInitialState: function() {
-		//return getStateFromStore();
+		/*return getStateFromStore();*/
 	  var storeState = getStateFromStore();
-	  //storeState.push({windowWidth: window.innerWidth});
+	  /*storeState.push({windowWidth: window.innerWidth});*/
 	  console.log(storeState);
 	  return storeState;
-		//return {windowWidth: window.innerWidth, storeState};
+		/*return {windowWidth: window.innerWidth, storeState};*/
 	},
 	handleScroll: function(e) {
   },
