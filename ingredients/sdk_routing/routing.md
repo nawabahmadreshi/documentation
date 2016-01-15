@@ -135,7 +135,7 @@ public class App : Application, IBranchSessionInterface
             // load your normal view
         }
     }
-}
+}Which Apps/Browsers Support Universal Links
 {% endhighlight %}
 
 {% endif %}

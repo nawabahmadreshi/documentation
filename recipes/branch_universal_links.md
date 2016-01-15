@@ -180,7 +180,7 @@ For the final and easiest part of the configuration process:
 1. Navigate to [Link Settings](https://dashboard.branch.io/#/settings/link) in Dashboard.
 2. Enable Universal Links from iOS redirects.
 3. Type in your App's Bundle Identifier.
-4. Type in your Apple Team ID (found from Organization Profile > Account Summary on Apple's Developer Portal).
+4. Type in your Apple App Prefix (found from App IDs on Apple's Developer Portal).
 5. Scroll down and click on the Save button.
 
 This is what our Universal Link settings look like after going through steps 1 - 5:
