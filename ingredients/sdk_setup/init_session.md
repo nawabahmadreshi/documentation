@@ -139,7 +139,7 @@ onResume: function() {
 },
 {% endhighlight %}
 
-If data is null and err contains a string denoting a request timeout then inspect your app's [content security policies](https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy) as they may block your app from communicating with Branch's servers.
+*Note* If data is null and err contains a string denoting a request timeout then inspect your app's [content security policies](https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy) as they may block your app from communicating with Branch's servers. Make sure to whitelist `api.branch.io` and `bnc.lt` in your CSP if so.
 
 Structure of the callback `data.data` object:
 
