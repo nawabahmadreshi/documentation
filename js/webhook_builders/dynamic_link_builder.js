@@ -12,7 +12,8 @@ function createDynamicLink() {
 	console.log(domain.length)
 	if (domain.length > 0) {
 		var link = link + domain;
-	} else {
+	}
+	else {
 		var link = link + 'bnc.lt/';}
 
 	// Add API /a/ link syntax.
@@ -84,23 +85,23 @@ function createDynamicLink() {
 	if (miscQueryParams1.length > 0) {
 		var link = link + '&' + miscQueryParams1;}
 	if (miscQueryParams2.length > 0) {
-		var link = link +'&'+ miscQueryParams2;}
+		var link = link + '&' + miscQueryParams2;}
 	if (miscQueryParams3.length > 0) {
-		var link = link +'&'+ miscQueryParams3;}
+		var link = link + '&' + miscQueryParams3;}
 	if (miscQueryParams4.length > 0) {
-		var link = link +'&'+ miscQueryParams4;}
+		var link = link + '&' + miscQueryParams4;}
 	if (miscQueryParams5.length > 0) {
-		var link = link +'&'+ miscQueryParams5;}
+		var link = link + '&' + miscQueryParams5;}
 	if (miscQueryParams6.length > 0) {
-		var link = link +  miscQueryParams6;}
+		var link = link + '&' + miscQueryParams6;}
 	if (miscQueryParams7.length > 0) {
-		var link = link +'&'+ miscQueryParams7;}
+		var link = link + '&' + miscQueryParams7;}
 	if (miscQueryParams8.length > 0) {
-		var link = link +'&'+ miscQueryParams8;}
+		var link = link + '&' + miscQueryParams8;}
 	if (miscQueryParams9.length > 0) {
-		var link = link +'&'+ miscQueryParams9;}
+		var link = link + '&' + miscQueryParams9;}
 	if (miscQueryParams10.length > 0) {
-		var link = link +'&'+ miscQueryParams10;}
+		var link = link + '&' + miscQueryParams10;}
 
 
 	// Add Branch Reserved Values
@@ -116,7 +117,7 @@ function createDynamicLink() {
 
 		// Deeplink Paths
 		alwaysDeeplink = window.document.getElementById('alwaysDeeplink').value;
-		deeplinkPath = window.document.getElementById('deeplinkPath').value; 
+		deeplinkPath = window.document.getElementById('deeplinkPath').value;
 		iosDeeplinkPath = window.document.getElementById('iosDeeplinkPath').value;
 		androidDeeplinkPath = window.document.getElementById('androidDeeplinkPath').value;
 
@@ -145,88 +146,87 @@ function createDynamicLink() {
 		twitterDescription  = window.document.getElementById('twitterDescription').value;
 		twitterSite  = window.document.getElementById('twitterSite').value;
 		twitterAppCountry  = window.document.getElementById('twitterAppCountry').value;
-	    
+
     var branchReservedData = {};
 
-    	// Url Redirects
-   		if (iosUrl.length > 0) {
-    		branchReservedData['$ios_url']=iosUrl;
-    	}
-    	 if (androidUrl.length > 0) {
-    		branchReservedData['$android_url']=androidUrl;}
+		// Url Redirects
+		if (iosUrl.length > 0) {
+			branchReservedData['$ios_url'] = iosUrl;}
+		if (androidUrl.length > 0) {
+				branchReservedData['$android_url'] = androidUrl;}
 		if (desktopUrl.length > 0) {
-    		branchReservedData['$deskto_url']=desktopUrl;}
+				branchReservedData['$deskto_url'] = desktopUrl;}
 		if (windowsUrl.length > 0) {
-			branchReservedData['$windows_url']=windowsUrl;}
+				branchReservedData['$windows_url'] = windowsUrl;}
 		if (blackberryUrl.length > 0) {
-			branchReservedData['$blackberry_url']=blackberryUrl;}
+				branchReservedData['$blackberry_url'] = blackberryUrl;}
 		if (fireUrl.length > 0) {
-			branchReservedData['$fire_url']=fireUrl;}
+				branchReservedData['$fire_url'] = fireUrl;}
 		if (fallbackUrl.length > 0) {
-			branchReservedData['$fallback_url']=fallbackUrl;}	
+				branchReservedData['$fallback_url'] = fallbackUrl;}
 		if (afterClickUrl.length > 0) {
-			branchReservedData['$after_click_url']=afterClickUrl;}
+				branchReservedData['$after_click_url'] = afterClickUrl;}
 
 		// Deeplink Paths
 		if (alwaysDeeplink.length > 0) {
-			branchReservedData['$always_deeplink']=alwaysDeeplink;}
+				branchReservedData['$always_deeplink'] = alwaysDeeplink;}
 		if (deeplinkPath.length > 0) {
-			branchReservedData['$deeplink_path']=deeplinkPath;}
+				branchReservedData['$deeplink_path'] = deeplinkPath;}
 		if (iosDeeplinkPath.length > 0) {
-			branchReservedData['$ios_deeplink_path']=iosDeeplinkPath;}
+				branchReservedData['$ios_deeplink_path'] = iosDeeplinkPath;}
 		if (androidDeeplinkPath.length > 0) {
-			branchReservedData['$android_deeplink_path']=androidDeeplinkPath;}
-		
+				branchReservedData['$android_deeplink_path'] = androidDeeplinkPath;}
+
 		// Timeouts
 		if (iosRedirectTimeout.length > 0) {
-			branchReservedData['$ios_redirect_timeout']=iosRedirectTimeout;}
+				branchReservedData['$ios_redirect_timeout'] = iosRedirectTimeout;}
 		if (androidRedirectTimeout.length > 0) {
-			branchReservedData['$android_redirect_timeout']=androidRedirectTimeout;}
+				branchReservedData['$android_redirect_timeout'] = androidRedirectTimeout;}
 
 		// Open Graph
 		if (ogTitle.length > 0) {
-			branchReservedData['$og-title']=ogTitle;}
+			branchReservedData['$og-title'] = ogTitle;}
 		if (ogDescription.length > 0) {
-			branchReservedData['$og-description']=ogDescription;}
+			branchReservedData['$og-description'] = ogDescription;}
 		if (ogImage.length > 0) {
-			branchReservedData['$og-image']=ogImage;}
+			branchReservedData['$og-image'] = ogImage;}
 		if (ogVideo.length > 0) {
-			branchReservedData['$og-video']=ogVideo;}
+			branchReservedData['$og-video'] = ogVideo;}
 		if (ogUrl.length > 0) {
-			branchReservedData['$og-url']=ogUrl;}
+			branchReservedData['$og-url'] = ogUrl;}
 		if (ogType.length > 0) {
-			branchReservedData['$og-type']=ogType;}
+			branchReservedData['$og-type'] = ogType;}
 		if (ogRedirect.length > 0) {
-			branchReservedData['$og-redirect']=ogRedirect;}
-		
+			branchReservedData['$og-redirect'] = ogRedirect;}
+
 		// Deepviews
 		if (deepview.length > 0) {
-			branchReservedData['$deepview']=deepview;}
+			branchReservedData['$deepview'] = deepview;}
 		if (iosDeepview.length > 0) {
-			branchReservedData['$ios_deepview']=iosDeepview;}
+			branchReservedData['$ios_deepview'] = iosDeepview;}
 		if (androidDeepview.length > 0) {
-			branchReservedData['$android_deepview']=androidDeepview;}
+			branchReservedData['$android_deepview'] = androidDeepview;}
 		if (desktopDeepview.length > 0) {
-			branchReservedData['$desktop_deepview']=desktopDeepview;}
+			branchReservedData['$desktop_deepview'] = desktopDeepview;}
 
 		// Twitter
 		if (twitterCard.length > 0) {
-			branchReservedData['$twitter_card']=twitterCard;}
+			branchReservedData['$twitter_card'] = twitterCard;}
 		if (twitterTitle.length > 0) {
-			branchReservedData['$twitter_title']=twitterTitle;}
+			branchReservedData['$twitter_title'] = twitterTitle;}
 		if (twitterDescription.length > 0) {
-			branchReservedData['$twitter_description']=twitterDescription;}
+			branchReservedData['$twitter_description'] = twitterDescription;}
 		if (twitterSite.length > 0) {
-			branchReservedData['$twitter_site']=twitterSite;}
+			branchReservedData['$twitter_site'] = twitterSite;}
 		if (twitterAppCountry.length > 0) {
-			branchReservedData['$twitter_app_country']=twitterAppCountry;}
+			branchReservedData['$twitter_app_country'] = twitterAppCountry;}
 
 	// JSON Convertion
-	JSON.stringify(branchReservedData);	
+	JSON.stringify(branchReservedData);
     console.log(branchReservedData);
 
 	// Base 64 Encoding
-    if (jQuery.isEmptyObject(branchReservedData) != true ) {
+    if (jQuery.isEmptyObject(branchReservedData) != true) {
 		var base64data = window.btoa(JSON.stringify(branchReservedData));
 		window.document.getElementById('encodedData').value = base64data;
 

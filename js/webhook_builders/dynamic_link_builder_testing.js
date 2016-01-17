@@ -18,7 +18,7 @@ var testValues = {
 	'tag4': 'email',
 	'tag5': 'test',
 	'iframeSrc': 'false',
-	'hasApp': 'true', 
+	'hasApp': 'true',
 	'debug': 'false',
 	'type': '0',
 	'duration': '10000',
@@ -51,7 +51,7 @@ var testValues = {
 	'twitterTitle': 'none',
 	'twitterDescription': 'none',
 	'twitterSite': 'none',
-	'twitterAppCountry': 'none' 
+	'twitterAppCountry': 'none'
 };
 
 window.onload = function() {
