@@ -1,7 +1,7 @@
 
 // TUNE Dynamic Link Generator Function
 
-function createTuneDynamicDeepLink () {
+function createTuneDynamicDeepLink() {
 	// Takes inputs and creates a link out of them.
 
 	// Create base link.
@@ -11,7 +11,7 @@ function createTuneDynamicDeepLink () {
 	var your_advertiser_id = window.document.getElementById('your_advertiser_id').value;
 	var site_id = window.document.getElementById('site_id').value;
 	var advertiser_id = window.document.getElementById('advertiser_id').value;
-	var action = window.document.getElementById('action').value;	
+	var action = window.document.getElementById('action').value;
 	var site_event_id = window.document.getElementById('site_event_id').value;
 	var site_event_name = window.document.getElementById('site_event_name').value;
 
@@ -22,8 +22,11 @@ function createTuneDynamicDeepLink () {
 	// Add Your Tune Advertiser Id to the link ('your_advertiser_id')
 	if (your_advertiser_id.length>0) {
 		link = link + your_advertiser_id;
-	} else { window.alert('Your Tune Advertiser ID is not filled in or is incorrect.');
-		return}
+	}
+	else {
+		window.alert('Your Tune Advertiser ID is not filled in or is incorrect.');
+		return
+	};
 
 	// Add Tune main string identifiers
 	link = link + '.measure.mobileapptracking.com/serve?sdk=server&response_format=json&ios_ifa={{device.hardware_id}}&google_aid={{device.metadata.google_advertising_id}}&created_at={{event.date}}&user_id={{identity}}&timestamp={{event.date}}&ios_ad_tracking_disabled=0&google_ad_tracking=1'
@@ -31,16 +34,20 @@ function createTuneDynamicDeepLink () {
 	// Add Tune Site Id (site_id)
 	if (site_id.length>0) {
 		var link = link + '&site_id=' + site_id;
-	} else { window.alert('Your Tune Site Id is not filled in or is incorrect.');
+	}
+	else {
+		window.alert('Your Tune Site Id is not filled in or is incorrect.');
 		return
-		};
+	};
 
 	// Add Tune Advertiser Id (advertiser_id)
 	if (advertiser_id.length>0) {
 		var link = link + '&advertiser_id=' + advertiser_id;
-	} else { window.alert('Your Tune Advertiser Id is not filled in or is incorrect.');
-		return 
-		};
+	}
+	else {
+		window.alert('Your Tune Advertiser Id is not filled in or is incorrect.');
+		return
+	};
 
 	// Verify at least one Event
 	if (action == "" && site_event_id == "" && site_event_name == "") {
@@ -49,11 +56,10 @@ function createTuneDynamicDeepLink () {
 	};
 
 	// Verify single Event Postback
-	if ( (action.length>0 && (site_event_id.length>0 || site_event_name.length>0)) || ( site_event_id.length>0 && (action.length>0 || site_event_name.length>0)) || ( site_event_name.length>0 && (action.length>0 || site_event_id.length>0)) ) {
-		
-		window.alert('Only ONE event per postback URL is allowed! Please adjust your settings to include either a Tune Pre-defined Event Name, a Tune Site Event Id, or a Tune Custom Event Id.')
+	if ((action.length>0 && (site_event_id.length>0 || site_event_name.length>0)) || (site_event_id.length>0 && (action.length>0 || site_event_name.length>0)) || (site_event_name.length>0 && (action.length>0 || site_event_id.length>0))) {
+		window.alert('Only ONE event per postback URL is allowed! Please adjust your settings to include either a Tune Pre-defined Event Name, a Tune Site Event Id, or a Tune Custom Event Id.');
 		return
-		};
+	};
 
 	// Add Tune Predefined Event Name (action)
 	if (action.length>0) {
@@ -85,25 +91,25 @@ function createTuneDynamicDeepLink () {
 	customQueryParams10 = window.document.getElementById('customQueryParams10').value;
 
 	if (customQueryParams1.length > 0) {
-		var link = link +'&'+ customQueryParams1;}
+		var link = link + '&' + customQueryParams1;}
 	if (customQueryParams2.length > 0) {
-		var link = link +'&'+ customQueryParams2;}
+		var link = link + '&' + customQueryParams2;}
 	if (customQueryParams3.length > 0) {
-		var link = link +'&'+ customQueryParams3;}
+		var link = link + '&' + customQueryParams3;}
 	if (customQueryParams4.length > 0) {
-		var link = link +'&'+ customQueryParams4;}
+		var link = link + '&' + customQueryParams4;}
 	if (customQueryParams5.length > 0) {
-		var link = link +'&'+ customQueryParams5;}
+		var link = link + '&' + customQueryParams5;}
 	if (customQueryParams6.length > 0) {
-		var link = link +'&'+ customQueryParams6;}
+		var link = link + '&' + customQueryParams6;}
 	if (customQueryParams7.length > 0) {
-		var link = link +'&'+ customQueryParams7;}
+		var link = link + '&' + customQueryParams7;}
 	if (customQueryParams8.length > 0) {
-		var link = link +'&'+ customQueryParams8;}
+		var link = link + '&' + customQueryParams8;}
 	if (customQueryParams9.length > 0) {
-		var link = link +'&'+ customQueryParams9;}
+		var link = link + '&' + customQueryParams9;}
 	if (customQueryParams10.length > 0) {
-		var link = link +'&'+ customQueryParams10;}
+		var link = link + '&' + customQueryParams10;}
 
 	console.log(link)
 	// Final Link Creation
