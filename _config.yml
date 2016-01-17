@@ -21,6 +21,7 @@ exclude:
 - js/stores
 - js/actions
 - js/support
+- js/webhook-builders
 - node_modules
 - package.json
 - node.txt

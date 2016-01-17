@@ -1,0 +1,105 @@
+
+
+	<script src="./js/webhook-builders/webhook-builder-tune-testing.js" type="text/javascript"></script>
+	<script src="./js/webhook-builders/webhook-builder-tune.js" type="text/javascript"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+	<table>
+		<!-- START OF REQUIRED TUNE INFORMATION -->
+		<tr><td><h3><b>Required Tune Information </b></h3></td></tr>
+	        <tr>
+	            <td><label>Your Advertiser ID</label></td>
+	            <td><input style="width:300px" id="your_advertiser_id" type="text" maxlength="30" placeholder="your_advertiser_id" required/></td>
+	        </tr>
+	        <tr>
+	            <td><label>Site ID</label></td>
+	            <td><input style="width:300px" id="site_id" type="text" maxlength="30" placeholder="site_id" required/></td>
+	        </tr>
+	        <tr>
+	            <td><label>Advertiser ID</label></td>
+	            <td><input style="width:300px" id="advertiser_id" type="text" maxlength="30" placeholder="advertiser_id" required/></td>
+	        </tr>
+
+	            <td><label>Pre-defined Event Name</label></td>
+	            <td><select style="width:300px" id="action">
+	            	<option value="" selected="">Pick an event or leave blank!</option>
+	            	<option value="registration">Registration</option>
+	            	<option value="login">Login</option>
+	            	<option value="add_to_wishlist">Add to Wishlist</option>
+	            	<option value="add_to_cart">Add to Cart</option>
+	            	<option value="added_payment_info">Added Payment Info</option>
+	            	<option value="reservation">Reservation</option>
+	            	<option value="checkout_initiated">Checkout Initiated</option>
+	            	<option value="purchase">Purchase</option>
+	            	<option value="searc">Search</option>
+	            	<option value="content_view">Content View</option>
+	            	<option value="tutorial_completed">Tutorial Completed</option>
+	            	<option value="level_achieved">Level Achieved</option>
+	            	<option value="achievement_unlocked">Achievement Unlocked</option>
+	            	<option value="spent_credit">Spent Credit</option>
+	            	<option value="invite">Invite</option>
+	            	<option value="rated">Rated</option>
+	            	<option value="share">Share</option>
+	            </select></td>
+	        </tr>
+	        <tr>
+	            <td><label>Site Event ID</label></td>
+	            <td><input style="width:300px" id="site_event_id" type="text" maxlength="30" placeholder="site_id" ></select></td>
+	        </tr>
+	        <tr>
+	            <td><label>Site Event Name</label></td>
+	            <td><input style="width:300px" id="site_event_name" type="text" maxlength="30" placeholder="custom_event_name"></select></td>
+	        </tr>
+	</table>
+			</br>
+			</br>
+
+	<table>
+		<!-- START OF CUSTOM QUERY PARAMETERS -->
+		<tr><td><h3><b>Custom Query Parameters </b></h3></td></tr>
+	       	<tr>
+	            <td><label>Custom Query Parameters<br><i>*Note* Format should be a string with <br>one item = another item. </i><br><b>Example:</b> user_id=JohnJoe</label></td>
+	        </tr>
+	        <tr>
+	            <td><input style="width:300px" id="customQueryParams1" type="text" maxlength="200" placeholder="format: param=sometext"/></td>
+	        </tr>
+			<tr>
+	            <td><input style="width:300px" id="customQueryParams2" type="text" maxlength="200" placeholder="format: param=sometext"/></td>
+	        </tr>
+	        <tr>
+	            <td><input style="width:300px" id="customQueryParams3" type="text" maxlength="200" placeholder="format: param=sometext"/></td>
+	        </tr>
+	        <tr>
+	  	        <td><input style="width:300px" id="customQueryParams4" type="text" maxlength="200" placeholder="format: param=sometext"/></td>          	
+	        </tr>
+	       	<tr>
+	            <td><input style="width:300px" id="customQueryParams5" type="text" maxlength="200" placeholder="format: param=sometext"/></td>
+	        </tr>
+	        	        <tr>
+	            <td><input style="width:300px" id="customQueryParams6" type="text" maxlength="200" placeholder="format: param=sometext"/></td>
+	        </tr>
+			<tr>
+	            <td><input style="width:300px" id="customQueryParams7" type="text" maxlength="200" placeholder="format: param=sometext"/></td>
+	        </tr>
+	        <tr>
+	            <td><input style="width:300px" id="customQueryParams8" type="text" maxlength="200" placeholder="format: param=sometext"/></td>
+	        </tr>
+	        <tr>
+	  	        <td><input style="width:300px" id="customQueryParams9" type="text" maxlength="200" placeholder="format: param=sometext"/></td>          	
+	        </tr>
+	       	<tr>
+	            <td><input style="width:300px" id="customQueryParams10" type="text" maxlength="200" placeholder="format: param=sometext"/></td>
+	        </tr>
+	</table>
+			</br>
+			</br>
+	
+	<button onclick="createTuneDynamicDeepLink()">Create Dynamic Link</button>
+			
+			</br>
+			</br>
+
+	<h3>Generated Dynamic Branch Link</h3>
+		<textarea style="height:100px; width:400px" id="generatedTuneDyanmicDeepLink" type="text"></textarea>
+			</br>
+			</br>
