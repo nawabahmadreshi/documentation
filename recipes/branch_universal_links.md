@@ -241,6 +241,7 @@ Unfortunately, Universal Links don't work quite everywhere yet. We'll maintain t
 | Messages | works
 | Slack | works
 | Mail | works
+| Whatsapp | works
 | Facebook | works conditionally *
 | FB Messenger | works conditionally *
 | Safari | works conditionally *
@@ -250,6 +251,8 @@ Unfortunately, Universal Links don't work quite everywhere yet. We'll maintain t
 | Gmail | not working
 | Pinterest | not working
 | Inbox | not working
+| Telegram | not working (uses SFSafariViewController)
+
 
 *Note: Conditionally working means that it works (i.e., opens the app) some of the time:*
 
