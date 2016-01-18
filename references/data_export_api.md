@@ -44,14 +44,14 @@ The response payload will be in JSON format and for each export it will have an 
 
 
 	{
-	 "links_export_url": ["https://branch-exports.s3.amazonaws.com/YOUR_APP_ID-2015-10-23-links[-OPTIONAL_FILE_NUMBER]-HASH.csv.gz"],
-	 "events_export_url": ["https://branch-exports.s3.amazonaws.com/YOUR_APP_ID-2015-10-23-events[-OPTIONAL_FILE_NUMBER]-HASH.csv.gz"],
-	 "clicks_export_url": ["https://branch-exports.s3.amazonaws.com/YOUR_APP_ID-2015-10-23-link_clicks[-OPTIONAL_FILE_NUMBER]-HASH.csv.gz"]
+	 "links_export_url": ["https://branch-exports.s3.amazonaws.com/YOUR_APP_ID-2015-10-23-link[-OPTIONAL_FILE_NUMBER]-v2-HASH.csv.gz"],
+	 "events_export_url": ["https://branch-exports.s3.amazonaws.com/YOUR_APP_ID-2015-10-23-event[-OPTIONAL_FILE_NUMBER]-v2-HASH.csv.gz"],
+	 "clicks_export_url": ["https://branch-exports.s3.amazonaws.com/YOUR_APP_ID-2015-10-23-click[-OPTIONAL_FILE_NUMBER]-v2-HASH.csv.gz"]
 	}
 
 
 {% protip title='Note:' %}
-A full day's files will be available on our S3 bucket at that location to download around 8:00am UTC. It will return an HTTP 400 from s3 until the UTC day is over and the data has been transfered to s3, therefore it is recommended you schedule any ETLs to fetch the data for the previous day around 8:00am UTC.
+A full day's files will be available on our S3 bucket at that location to download around 8:00am UTC. It will return a blank array from s3 for any empty files until the UTC day is over and the data has been transfered to s3, therefore it is recommended you schedule any ETLs to fetch the data for the previous day around 8:00am UTC.
 {% endprotip %}
 
 ####Time Limits
