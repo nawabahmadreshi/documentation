@@ -45,8 +45,8 @@ The response payload will be in JSON format and for each export it will have an 
 
 	{
 	 "links_export_url": ["https://branch-exports.s3.amazonaws.com/YOUR_APP_ID-2015-10-23-link[-OPTIONAL_FILE_NUMBER]-v2-HASH.csv.gz"],
-	 "events_export_url": ["https://branch-exports.s3.amazonaws.com/YOUR_APP_ID-2015-10-23-events[-OPTIONAL_FILE_NUMBER]-v2-HASH.csv.gz"],
-	 "clicks_export_url": ["https://branch-exports.s3.amazonaws.com/YOUR_APP_ID-2015-10-23-link_clicks[-OPTIONAL_FILE_NUMBER]-v2-HASH.csv.gz"]
+	 "events_export_url": ["https://branch-exports.s3.amazonaws.com/YOUR_APP_ID-2015-10-23-event[-OPTIONAL_FILE_NUMBER]-v2-HASH.csv.gz"],
+	 "clicks_export_url": ["https://branch-exports.s3.amazonaws.com/YOUR_APP_ID-2015-10-23-click[-OPTIONAL_FILE_NUMBER]-v2-HASH.csv.gz"]
 	}
 
 
