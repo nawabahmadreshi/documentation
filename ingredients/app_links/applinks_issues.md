@@ -31,5 +31,5 @@ We recently discovered a bug within the Facebook system that prevents App Links 
 - Social Discovery is set to **Yes**
 - Country Restricted is set to **No**
 
-It cannot look like this:
+It has to look like this **exactly**:
 {% image src='/img/recipes/appinvites/app_restrictions.png' third center alt='troubleshooting' %}
