@@ -186,6 +186,27 @@ Before rendering the template, we sanitize the markup of Javascript for security
 
 {% image src='/img/deepviews/deepviews_editor_code.png' half center alt='Deepviews tab' %}
 
+#### Usable Values for Deepviews
+
+Because you can customize your deepview template, you also have the ability to pass through data from the link and other things. Let's say inside your deeplink data you contain the username of the person who created the link, with the key of `user_name`, and wanted to expose that inside the Deepview itself. You'd use our liquid tags to do that, and it'd look something like:
+
+`{{link_data.user_name}}`
+
+Here's a full list of liquid tags available for you to expose:
+
+{% raw %}**{{app}}**{% endraw %} : App Object, which contains app data. Possible keys are: `branch_key`, `name`, `og_title`, `og_description`, and `og_image_url` (OG values are set in Settings > Link Settings > Social Media Display Customization).
+
+* Ex: if you want to expose your App Name (My Awesome App!) inside a deepview, you would exppose it like so: `<h1>Get {% raw %}{{app.name}}{% endraw %}</h1>`
+
+{% raw %}**{{link_data}}**{% endraw %} : Link Object, which contains data about link, including your deeplink values. If your link contains deep link data, use the keys to express the values inside your deepview.
+
+* Ex: if you want to expose a key value pair of 'welcome_message': 'Welcome to my App', you would do the following: `<h1>{% raw %}{{link_data.welcome_message}}{% endraw %}</h1>`, and this would render `Welcome to my App`.
+
+{% raw %}**{{action}}**{% endraw %} : The URL of the Branch link itself. If you create a new CTA, use this.
+
+* Ex: you create the CTA in the middle of the deepview: `<a href={% raw %}{{action}}{% endraw %}>Click</a>`.
+
+
 -----
 
 ## Advanced: Convert your mobile website into a Deepview
