@@ -47,7 +47,7 @@
         - facebook_appinvites
         - dashboard_pro_tips
         - webhooks_and_exporting_data
-        - dynamic_link_builder
+        # - dynamic_link_builder
     - type: recipe
       title: Third-Party Integrations
       pages:
