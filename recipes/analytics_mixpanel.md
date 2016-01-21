@@ -12,9 +12,7 @@ platforms:
 - ios
 - android
 sections:
-- overview
 - guide
-- support
 ---
 
 {% protip title="Do I need both SDKs integrated?" %}

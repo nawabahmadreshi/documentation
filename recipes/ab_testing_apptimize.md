@@ -9,9 +9,7 @@ platforms:
 - ios
 - android
 sections:
-- overview
 - guide
-- support
 ---
 
 # Apptimize and Branch

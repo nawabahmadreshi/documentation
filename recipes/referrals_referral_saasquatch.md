@@ -6,9 +6,7 @@ platforms:
 - ios
 - android
 sections:
-- overview
 - guide
-- support
 ---
 
 {% ingredient quickstart_preview/quickstart_preview %}{% endingredient %}

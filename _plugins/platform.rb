@@ -48,7 +48,7 @@ module Jekyll
       self.data['platform_formatted'] = formatted_platforms[platform] or platform
       self.data['default'] = isDefault
       self.data['layout'] = 'inner'
-      if platform != ''
+      if section == '' and isDefault == true
         self.data['section'] = 'guide'
         self.data['guide'] = true
       end

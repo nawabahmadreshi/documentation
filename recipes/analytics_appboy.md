@@ -7,9 +7,7 @@ description: We’ve partnered with Appboy to provide an easy way to deliver Bra
 keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Analytics, Install Data, Appboy
 hide_platform_selector: true
 sections:
-- overview
 - guide
-- support
 ---
 
 # Sending Branch Install Data to Appboy

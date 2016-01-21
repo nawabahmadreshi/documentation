@@ -124,6 +124,12 @@
   hr {
     margin-top: 55px;
   }
+  ol li::before {
+    font-weight: bold;
+    font-size: 18px;
+    background-color: #fafafa;
+    padding: 2px;
+  }
 	/*@media (min-width: $screen-sm-min) {
 		padding-left: 44px;
 	}

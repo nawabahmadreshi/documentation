@@ -14,9 +14,7 @@ platforms:
 - adobe
 - titanium
 sections:
-- overview
 - guide
-- support
 ---
 
 A **Deepview** is a mobile web splash page combined with a deep link that will open the app if installed, and fall back to the appropriate app store if not. Deepviews are discoverable in all search portals (Google, Apple Spotlight, Bing, etc), opening up new mechanisms for people to find your app. Plus, they drive much higher conversions to install instead of sending a user to the App/Play Store directly. Here's an example flow:

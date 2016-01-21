@@ -9,9 +9,7 @@ ios_keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deep
 android_keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views,Text-Me-The-App, landing page, SMS, text an app, Android
 hide_platform_selector: true
 sections:
-- overview
 - guide
-- support
 ---
 
 When users click your links on desktop, they have the option to text themselves the app. We provide this by default--just [create a test marketing link](https://dashboard.branch.io/#/marketing) and click it on your computer. You can also use the [code on this page](/recipes/text_me_the_app_page/#sendsms-example) to create your own fully-branded text-me-the-app page. 

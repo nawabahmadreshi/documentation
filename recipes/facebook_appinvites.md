@@ -12,9 +12,7 @@ platforms:
 - ios
 - android
 sections:
-- overview
 - guide
-- support
 ---
 Facebook launched it's new App Invites feature as an alternative to sharing to the wall to help you grow your app. It's similar to a direct SMS as it's a private invite from 1 friend to another as opposed to a public post on the wall. The good news is that your Branch deep links that you've set up for SMS, email and Twitter shares work the exact same way for invites. Here's a simple guide on how to do it.
 

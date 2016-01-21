@@ -6,9 +6,7 @@ description: Learn how to create white-labeled Branch accounts for your customer
 keywords: white-label, Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views
 hide_platform_selector: true
 sections:
-- overview
 - guide
-- support
 ---
 
 Branch Preferred Partner Integration Guide

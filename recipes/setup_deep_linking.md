@@ -13,9 +13,7 @@ platforms:
 - adobe
 - titanium
 sections:
-- overview
 - guide
-- support
 ---
 
 Deep linking is an incredibly important part of building your app, and essential for delivering a high quality user experience. When a user clicks a link, you should take them to the exact thing they clicked on. Here's how to do it.

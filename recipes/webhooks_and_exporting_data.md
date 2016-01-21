@@ -7,9 +7,7 @@ description: The Branch webhook system allows you to receive all install and dow
 keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Webhooks, data export, funnel, RequestBin, Filters, Tempting
 hide_platform_selector: true
 sections:
-- overview
 - guide
-- support
 ---
 
 {%ingredient webhooks/intro %}{% endingredient %}

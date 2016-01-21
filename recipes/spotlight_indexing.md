@@ -7,9 +7,7 @@ description: Learn how to list your content in Apple's new Spotlight search.
 keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, iOS9, iOS 9, Apple Spotlight Search
 hide_platform_selector: true
 sections:
-- overview
 - guide
-- support
 ---
 
 Listing your app content on Apple's new Spotlight search with Branch is easy. Note that this guide will list on both _cloud search_ in addition to _local spotlight search_.

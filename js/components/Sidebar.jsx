@@ -38,11 +38,11 @@ var LinkInternal = React.createClass({
 		/*if (page.platforms[props.platform]) {
 			path.push(props.platform);
 		}*/
-		if (page.sections[props.section]) {
-			path.push(props.section);
+		if (page.sections) {
+			path.push(Object.keys(page.sections)[0]);
 		}
 		/*console.log(props.group_data);*/
-		return (<a href={ '/' + path.join('/') } className={ isCurrentPath ? 'sidebar-link-selected' : '' } onClick={ self._handleClick('overview') }>{ page.title }</a>);
+		return (<a href={ '/' + path.join('/') } className={ isCurrentPath ? 'sidebar-link-selected' : '' } onClick={ self._handleClick(Object.keys(page.sections)[0]) }>{ page.title }</a>);
 	}
 });
 

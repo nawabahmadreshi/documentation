@@ -9,9 +9,7 @@ platforms:
 - ios
 - android
 sections:
-- overview
 - guide
-- support
 ---
 
 {% image src='/img/recipes/universal_links/how_branch_improves.png' 3-quarters center alt='branch improves universal links' %}

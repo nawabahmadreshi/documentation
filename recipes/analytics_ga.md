@@ -11,9 +11,7 @@ platforms:
 - ios
 - android
 sections:
-- overview
 - guide
-- support
 ---
 
 # Sending Branch Data to Google Analytics

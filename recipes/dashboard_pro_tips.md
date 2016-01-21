@@ -10,9 +10,7 @@ ios_keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deep
 android_keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Dashboard, custom link domain, conversion funnel, funnels, influencers
 hide_platform_selector: true
 sections:
-- overview
 - guide
-- support
 ---
 
 {% ingredient dashboard_setup/always_open_app %}{% endingredient %}

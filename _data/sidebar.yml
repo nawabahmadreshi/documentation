@@ -42,7 +42,7 @@
         - advertising_facebook
         - advertising_google
         - advertising_twitter
-    - title: Universal Links Test
+    - title: Test
       children:
         - ul_test_overview
         - ul_test_implementation-guide
@@ -62,3 +62,8 @@
         - analytics_localytics
         - analytics_mixpanel
 - title: Methods & Endpoints
+  directory: methods-endpoints
+  children:
+    - title: App SDKs
+    - title: Web SDK
+    - title: API

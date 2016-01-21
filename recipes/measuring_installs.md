@@ -15,9 +15,7 @@ platforms:
 - adobe
 - titanium
 sections:
-- overview
 - guide
-- support
 ---
 
 It's time to dive into your data with the [Branch Dashboard](https://dashboard.branch.io). It's the perfect tool for measing growth and engagement.

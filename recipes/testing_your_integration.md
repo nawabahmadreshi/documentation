@@ -17,9 +17,7 @@ platforms:
 - titanium
 - web
 sections:
-- overview
 - guide
-- support
 ---
 
 {%ingredient debug/intro %}{% endingredient %}
