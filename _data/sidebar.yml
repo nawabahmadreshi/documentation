@@ -6,7 +6,7 @@
     - add_the_sdk
     - setup_deep_linking
     - measuring_installs
-    - title: Customize
+    - title: Advanced
       children:
         - branch_universal_links
         - testing_your_integration
@@ -31,6 +31,8 @@
         - deepviews_test
         - deep_link_mobile_site
         - app_download_banner
+        - app_download_banner_3sections
+        - app_download_banner_4sections
         - text_me_the_app_page
     - title: Marketing for Mobile
       children:
@@ -46,7 +48,7 @@
         - ul_test_implementation-guide
         - ul_test_reference-material
         - ul_test_support
-- title: Third-party Integrations
+- title: Third-Party Integrations
   directory: third-party-integrations
   children:
     - title: Growth Tools
@@ -59,3 +61,4 @@
         - analytics_adjust
         - analytics_localytics
         - analytics_mixpanel
+- title: Methods & Endpoints

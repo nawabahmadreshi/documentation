@@ -1,7 +1,7 @@
 ---
 type: recipe
 directory: getting-started
-title: "1 - Add the SDK"
+title: "1. Add the SDK"
 page_title: Add the Branch SDK to your app
 description: This page will tell you how to quickly add the Branch SDK to your Android, iOS, Cordova, Phonegap, Xamarin, Unity, Air or Titanium app.
 platforms:
@@ -13,9 +13,7 @@ platforms:
 - adobe
 - titanium
 sections:
-- overview
 - guide
-- support
 ---
 
 ## Register for Branch

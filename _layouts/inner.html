@@ -12,12 +12,19 @@
 		</div>
 		<div class="inner__content">
 			{% breadcrumbs %}
-			{% section_selector %}
 			<h1> {{ page.title }} </h1>
-			<div class="platform_selector">
-				{% if page.hide_platform_selector != true %}{% platform_selector %}{% endif %}
-			</div>
-			{{ content | toc_generate:"Steps" }}
+			{% section_selector %}
+			{% if page.hide_platform_selector != true and page.overview != true and page.support != true %}
+			  {% platform_selector %}
+			{% endif %}
+
+			{% if page.guide %}
+			  {{ content | toc_generate:"number" }}
+			{% elsif page.advanced or page.support %}
+			  {{ content | toc_generate:"list" }}
+			{% else %}
+			  {{ content }}
+			{% endif %}
 		</div>
 	</div>
 

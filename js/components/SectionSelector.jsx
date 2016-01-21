@@ -12,8 +12,6 @@ function getSectionStateFromStore() {
 
 var SectionSelector = React.createClass({
   getInitialState: function() {
-    console.log('hello');
-    console.log(getSectionStateFromStore());
     return getSectionStateFromStore();
   },
 
@@ -32,10 +30,9 @@ var SectionSelector = React.createClass({
   render: function() {
     var self = this;
     var sections = R.map(function(section) {
-      console.log(section);
       classes = {
-        'btn btn-default': true,
-        'btn-inactive': self.state.section != section.key
+        'section': true,
+        'section-inactive': self.state.section != section.key
       }
       var section_path = utils.pageHasSection(self.props.site_map, self.props.current_path, section.key) ? section.key : '';
       return (
@@ -49,8 +46,8 @@ var SectionSelector = React.createClass({
     });
 
     return (
-      <div className="text-center section-selector">
-        <div className="btn-group">
+      <div className="section-selector">
+        <div className="section-group">
           { sections(this.props.sections) }
         </div>
       </div>);

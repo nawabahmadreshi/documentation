@@ -5,6 +5,10 @@ title: "Deepviews Test"
 page_title: "Deepviews - Mobile Web Splash Pages"
 description: Learn how to create a mobile web deepview using Branch links.
 keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views
+sections:
+- overview
+- guide
+- support
 platforms:
 - ios
 - android
@@ -13,10 +17,6 @@ platforms:
 - unity
 - adobe
 - titanium
-sections:
-- overview
-- guide
-- support
 ---
 
 {% if page.overview %}

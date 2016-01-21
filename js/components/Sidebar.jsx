@@ -5,6 +5,9 @@ var React = require('react'),
 var PlatformStore = require('../stores/PlatformStore'),
 	PlatformActions = require('../actions/PlatformActions');
 
+var SectionStore = require('../stores/SectionStore'),
+  SectionActions = require('../actions/SectionActions');
+
 function getStateFromStore() {
 	return PlatformStore.getState();
 }
@@ -18,7 +21,11 @@ var LinkInternal = React.createClass({
 			this.props.set_selected();
 		}
 	},
+  _handleClick: function(key) {
+    return function() { SectionActions.updateSection(key); }
+  },
 	render: function() {
+		var self = this;
 		var props = this.props,
 			page_key = props.page_key;
 		if (!props.group_data || !props.group_data[page_key]) {
@@ -28,11 +35,14 @@ var LinkInternal = React.createClass({
 		var page = props.group_data[page_key],
 			path = props.directory ? [ props.directory, page_key ] : [ page_key ],
 			isCurrentPath = props.current_path == path.join('/');
-		if (page.platforms[props.platform]) {
+		/*if (page.platforms[props.platform]) {
 			path.push(props.platform);
+		}*/
+		if (page.sections[props.section]) {
+			path.push(props.section);
 		}
 		/*console.log(props.group_data);*/
-		return (<a href={ '/' + path.join('/') } className={ isCurrentPath ? 'sidebar-link-selected' : '' }>{ page.title }</a>);
+		return (<a href={ '/' + path.join('/') } className={ isCurrentPath ? 'sidebar-link-selected' : '' } onClick={ self._handleClick('overview') }>{ page.title }</a>);
 	}
 });
 
@@ -44,7 +54,7 @@ var LinkGroup = React.createClass({
 		};
 	},
 	_toggle: function() {
-		console.log(this);
+		/*console.log(this);*/
 		this.setState({
 			expand: !this.state.expand
 		});
@@ -65,6 +75,7 @@ var LinkGroup = React.createClass({
 					           current_path={ props.current_path }
 					           group_data={ props.group_data }
 					           platform={ props.platform }
+					           section='overview'
 					           set_selected={this._setSelected} />
 				</li>);
 			}
@@ -74,6 +85,7 @@ var LinkGroup = React.createClass({
 					              page_key={link}
 					              group_data={props.group_data}
 					              platform={props.platform}
+					              section='overview'
 					              current_path={props.current_path}
 					              set_selected={this._setSelected} />
 				</li>);
@@ -106,6 +118,7 @@ var LinkGroup = React.createClass({
 					              page_key={props.group}
 					              group_data={props.group_data}
 					              platform={props.platform}
+					              section='overview'
 					              current_path={props.current_path}
 					              set_selected={this._setSelected} />
 				</li>
@@ -119,7 +132,7 @@ var Sidebar = React.createClass({
 		/*return getStateFromStore();*/
 	  var storeState = getStateFromStore();
 	  /*storeState.push({windowWidth: window.innerWidth});*/
-	  console.log(storeState);
+	  /*console.log(storeState);*/
 	  return storeState;
 		/*return {windowWidth: window.innerWidth, storeState};*/
 	},
@@ -145,7 +158,8 @@ var Sidebar = React.createClass({
 				directory={ group.directory }
 				current_path={ this.props.current_path }
 				group_data={ this.props.site_map[group.directory] }
-				platform={ this.state.platform } />);
+				platform={ this.state.platform }
+				section='overview' />);
 		}.bind(this));
 		return (<div className="sidebar-wrapper">
 			{ groups(this.props.layout) }

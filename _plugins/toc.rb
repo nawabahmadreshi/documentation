@@ -1,3 +1,5 @@
+
+
 module Jekyll
     module TOC
         def toc_generate(html, title)
@@ -10,19 +12,21 @@ module Jekyll
 
                 if levels.find_index(level) then toc.push({ :level => level, :id => id, :text => text, :children => [] }) end
 
-                '<h' + level.to_s + '><a class="anchor" name="' + id + '"></a><a href="#' + id + '">' + text + '</a></h' + level.to_s + '>'
+                '<h' + level.to_s + '><a class="anchor" name="' + id + '"></a><a href="#' + id + '"><i class="material-icons">link</i>' + text + '</a></h' + level.to_s + '>'
             }
             nested_toc = _nested_toc(toc)
-
-            toc_title = title.length > 0 ? '<h4 class="toc-title"> ' + title + ' </h4>' : ''
-            #"<hr/>" + toc_title + _render_toc(nested_toc, 1) + "<hr />" + html
-            html
+            toc_title = title.length > 0 ? '<h4 class="toc-title">Contents</h4>' : ''
+            toc_title + _render_toc(nested_toc, 1, title) + "<hr />" + html
         end
-        def _render_toc(toc, level)
-            if toc.length > 0 then
-                "<ol" + (level == 2 ? ' type="a"' : "") + ">\n" +
-                    toc.map { |item| '<li><a href="#' + item[:id] + '">' + item[:text] + _render_toc(item[:children], level + 1) + "</a></li>" }.join("\n") +
+        def _render_toc(toc, level, title)
+            if toc.length > 0 and title == 'number' then
+                "<ol class='toc-number'" + (level == 2 ? ' type="a"' : "") + ">\n" +
+                    toc.map { |item| '<li><a href="#' + item[:id] + '">' + item[:text] + _render_toc(item[:children], level + 1, title) + "</a></li>" }.join("\n") +
                     "</ol>\n"
+            elsif toc.length > 0 and title == 'list' then
+                "<div class='toc-list'" + (level == 2 ? ' type="a"' : "") + ">\n" +
+                    toc.map { |item| '<li><a href="#' + item[:id] + '">' + item[:text] + _render_toc(item[:children], level + 1, title) + "</a></li>" }.join("\n") +
+                    "</div>\n"
             else
                 ""
             end
