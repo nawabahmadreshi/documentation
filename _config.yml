@@ -28,6 +28,7 @@ exclude:
 - Gemfile.lock
 - circle.yml
 - s3_website.yml
+- pages
 
 sass:
     sass_dir: css
