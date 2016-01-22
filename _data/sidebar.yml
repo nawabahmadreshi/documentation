@@ -30,9 +30,7 @@
         - deepviews
         - deepviews_test
         - deep_link_mobile_site
-        - app_download_banner
-        - app_download_banner_3sections
-        - app_download_banner_4sections
+        - app-download-banner
         - text_me_the_app_page
     - title: Marketing for Mobile
       children:
