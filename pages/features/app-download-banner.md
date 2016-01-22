@@ -59,7 +59,7 @@ That’s all you need to add the smart banner to your website! Go to [Advanced](
 
 All properties are optional. You can customize the banner in lots of ways, including changing button text or color and adding ratings and review counts.
 
-{% image src='/img/pages/features/app-download-banner/mobile_banners.png' half center alt='App download banner on mobile devices' %}
+{% image src='/img/pages/features/app-download-banner/mobile-banners.png' half center alt='App download banner on mobile devices' %}
 
 {% highlight javascript %}
 branch.banner(
