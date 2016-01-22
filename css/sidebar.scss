@@ -1,28 +1,62 @@
-.sidebar {
-	background-color: #F4F4F4;
-	border-left: 3px solid #F4F4F4;
-	padding: 15px;
-	margin-bottom:15px;
-}
-
-.sidebar.sidebar-border-cornflower {
-	border-color: #83C8E4;
-}
-
-.sidebar.sidebar-border-hippie_blue {
-	border-color: #5691AD;
-}
-
-.sidebar.sidebar-border-blumine {
-	border-color: #205E72;
+.sidebar-wrapper {
+	//padding-left:20px;
 }
 
 .sidebar-group {
-	ul {
-		padding-left: 20px;
-		list-style-type: none;
-	}
-	li.active {
-		font-weight: 700;
-	}
+	display:none;
+	list-style:none;
+	padding-left:20px;
+}
+
+.sidebar-group--expand {
+	display:block;
+}
+
+.sidebar-group-title {
+	color:#ffffff;
+	font-weight:bold;
+	font-size:20px;
+	margin: 25px 0 0 0;
+	display: flex;
+}
+
+.sidebar-group-title .fa, .sidebar-group-title .plus-minus {
+	width:12px;
+	margin-right: 10px;
+	text-align: center;
+}
+
+.sidebar-group-title .fa {
+	font-size: 14px;
+  padding-top: 3px;
+}
+
+.sidebar-group-title:hover {
+	cursor: pointer;
+}
+
+.sidebar-wrapper .sidebar-group .sidebar-group-title, .sidebar-group li a, .sidebar-group li a:hover { /* titles of 2nd level or more */
+	font-size:14px;
+	font-weight:normal;
+	color: #cecece;
+	text-decoration: none;
+	line-height: 19px;
+}
+.sidebar-wrapper .sidebar-group .sidebar-group-title {
+	text-transform: uppercase;
+	font-weight: lighter;
+}
+
+.sidebar-group li a {
+	padding-left: 22px;
+	display: block
+}
+
+.sidebar-group li a.sidebar-link-selected, .sidebar-group li .sidebar-group-selected .sidebar-group-title  {
+	color:#ffffff;
+	font-weight:bold;
+}
+
+.sidebar-group li {
+	margin-top: 20px;
 }

@@ -1,96 +1,69 @@
 ---
--
-  settings:
-    className: sidebar-border-cornflower
-  navigation:
-    - type: overview
-      title: What is Branch?
-      pages:
-        - ''
-        - supported_standards
-        - how_branch_links_work
-        - link_configuration
-        - link_creation_guide
-    - type: recipe
-      title: Getting started with Branch
-      pages:
-        - add_the_sdk
-        - setup_deep_linking
-        - measuring_installs
-    - type: recipe
-      title: Deeplinked features
-      pages:
-        - content_sharing
-        - personalized_welcome
-        - deepviews
-        - deep_link_mobile_site
-        - app_download_banner
-        - text_me_the_app_page
+
+- title: Getting Started
+  directory: getting-started
+  children:
+    - add_the_sdk
+    - setup_deep_linking
+    - measuring_installs
+    - title: Advanced
+      children:
         - branch_universal_links
-        - google_app_indexing
-    - type: recipe
-      title: Testing and releasing
-      pages:
         - testing_your_integration
         - submitting_apps
--
-  settings:
-    className: sidebar-border-hippie_blue
-  navigation:
-    - type: recipe
-      title: Customize Your Integration
-      pages:
-        - matching_accuracy
-        - email_campaigns
-        - spotlight_indexing
-        - referral_links_with_incentives
-        - facebook_appinvites
         - dashboard_pro_tips
         - webhooks_and_exporting_data
-        # - dynamic_link_builder
-    - type: recipe
-      title: Third-Party Integrations
-      pages:
-        - ab_testing_apptimize
+        - matching_accuracy
+- title: Features
+  directory: features
+  children:
+    - title: Content Indexing
+      children:
+        - google_app_indexing
+        - spotlight_indexing
+    - title: Personalized Sharing
+      children:
+        - content_sharing
+        - personalized_welcome
+    - title: Web to App Conversion
+      children:
+        - deepviews
+        - deepviews_test
+        - deep_link_mobile_site
+        - app_download_banner
+        - app_download_banner_3sections
+        - app_download_banner_4sections
+        - text_me_the_app_page
+    - title: Marketing for Mobile
+      children:
+        - email_campaigns
+        - referral_links_with_incentives
+        - facebook_appinvites
         - advertising_facebook
         - advertising_google
         - advertising_twitter
-        - analytics_adjust
+    - title: Test
+      children:
+        - ul_test_overview
+        - ul_test_implementation-guide
+        - ul_test_reference-material
+        - ul_test_support
+- title: Third-Party Integrations
+  directory: third-party-integrations
+  children:
+    - title: Growth Tools
+      children:
+        - ab_testing_apptimize
+        - referrals_referral_saasquatch
         - analytics_appboy
+    - title: Measurement Platforms
+      children:
+        - analytics_adjust
         - analytics_localytics
         - analytics_mixpanel
-        - referrals_referral_saasquatch
-    # - type: recipe
-    #   title: Third-Party Webhook Builders
-    #   pages:
-    #     - webhook_builder_TUNE
-    - type: reference
-      title: API Reference
-      pages:
-        - ios_sdk
-        - android_sdk
-        - web_sdk
-        - xamarin_sdk
-        - cordova_phonegap_sdk
-        - unity_sdk
-        - adobe_air_sdk
-        - titanium_sdk
-        - http_api
--
-  settings:
-    className: sidebar-border-blumine
-  navigation:
-    - type: link
-      title: Contact
-      pages:
-        - label: Send us an email
-          href: mailto:support@branch.io
-        - label: Live Branch system status
-          href: http://status.branch.io
-          target: _blank
-        - label: Follow @BranchDevTeam
-          href: https://twitter.com/BranchDevTeam
-          target: _blank
-        - label: Get the latest SDK update news
-          href: https://groups.google.com/forum/#!forum/branch-sdk-releases
-          target: _blank
+- title: Methods & Endpoints
+  directory: methods-endpoints
+  children:
+    - title: App SDKs
+    - title: Web SDK
+    - title: API

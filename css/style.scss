@@ -14,6 +14,10 @@ $branch-font-path: "/font";
 @import "./toc";
 @import "./image";
 @import "./platform_selector";
+@import "./section_selector";
+@import "./homepage";
+@import "./inner";
+@import "./breadcrumbs";
 
 .btn-inactive {
 	border-color: white;
@@ -26,10 +30,6 @@ $branch-font-path: "/font";
 .main {
 	max-width: 1200px;
 	padding: 30px 15px;
-}
-
-.sidebar-group li {
-	padding-top: 6px;
 }
 
 .page-title {

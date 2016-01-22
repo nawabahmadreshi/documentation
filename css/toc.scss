@@ -4,6 +4,19 @@
 	display: block;
 }
 
+.inner__content h4.toc-title {
+  font-weight: lighter;
+  margin-top:0;
+  margin-bottom: 15px;
+}
+
+.toc-number {
+  padding-left: 20px;
+}
+.toc-list li {
+  display: block;
+}
+
 .toc-steps {
 	margin-top: 0px;
 }

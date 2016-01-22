@@ -1,7 +1,10 @@
 ---
 type: recipe
+directory: features
 title: "Twitter Ads"
 hide_platform_selector: true
+sections:
+- guide
 ---
 
 Below is the setup guide for Twitter install ads with Branch Links.  The configuration is very simple, the only trick is that you will actually be using their standard website click / conversion ads set to target mobile devices only, instead of their standard app install ad unit.  Below are the steps to setting up your campaign.

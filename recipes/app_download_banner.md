@@ -1,5 +1,6 @@
 ---
 type: recipe
+directory: features
 title: App download banner
 ios_page_title: Smart App Download Banner for iOS Apps
 android_page_title: Smart App Download Banner for Android
@@ -8,6 +9,8 @@ android_description: Insert this short code snippet to add a smart app download 
 ios_keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Smart Banner, App Download Banner, Banner
 android_keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views,Smart Banner, App Download Banner, Banner
 hide_platform_selector: true
+sections:
+- guide
 ---
 
 {% image src='/img/ingredients/web_sdk/banner2.png' half center alt='Facebook block' %}

@@ -1,0 +1,92 @@
+.homepage-header {
+	background-color:#313131;
+	padding:30px 0;
+}
+
+.homepage-header__title {
+	color:#ffffff;
+	font-weight:800;
+	font-size:34px;
+	margin-top:0;
+	font-family: "Open Sans", Helvetica, Arial;
+	-webkit-font-smoothing: antialiased;
+}
+
+.homepage-sidebar ul {
+	list-style:none;
+}
+
+
+/* Main */
+.homepage-section {
+	display:block;
+	text-align:center;
+	margin-bottom:15px;
+}
+
+.homepage-section:hover {
+	text-decoration:none;
+}
+
+.homepage-section__title {
+	font-size:20px;
+	color: #444444;
+	font-weight:bold;
+}
+
+.homepage-section:hover .homepage-section__title {
+	color: #2AADCC;
+}
+
+.homepage-section__content {
+	color: #444444;
+	font-size:14px;
+}
+
+@media (min-width: $screen-sm-min) {
+	.homepage-section {
+		padding:15px;
+	}
+
+	.homepage-section:hover {
+		-webkit-box-shadow: 0px 1px 3px 1px rgba(119,119,119,1);
+		-moz-box-shadow: 0px 1px 3px 1px rgba(119,119,119,1);
+		box-shadow: 0px 1px 3px 1px rgba(119,119,119,1);
+	}
+
+	.homepage-section__title {
+		font-size:24px;
+	}
+
+	.homepage-section__content {
+		color: #444444;
+		font-size:14px;
+		padding:15px 0;
+	}
+}
+
+
+
+/* Sidebar */
+.homepage-sidebar__link, .homepage-sidebar__link:hover {
+	display: block;
+	color: #444444;
+	font-size: 22px;
+	font-weight: bold;
+	padding: 20px 0;
+}
+
+.homepage-sidebar__link:hover {
+	color: #2AADCC;
+	text-decoration: none;
+}
+
+.homepage-sidebar__link i {
+	position: relative;
+	top: 2px;
+	width: 22px;
+	height: 22px;
+	font-size: 30px;
+	color: #2AADCC;
+	margin-right: 15px;
+}

@@ -10,6 +10,8 @@ android_keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, 
 platforms:
 - ios
 - android
+sections:
+- guide
 ---
 
 {% ingredient quickstart_preview/quickstart_preview %}{% endingredient %}

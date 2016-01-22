@@ -1,5 +1,6 @@
 ---
 type: recipe
+directory: third-party-integrations
 title: "Apptimize"
 page_title: Deep link users through install, and test the best user flow automatically.
 description: Branch has partnered with Apptimize to seamlessly A/B test user flows after a deeplink click from Branch. 
@@ -7,6 +8,8 @@ keywords: abtesting, apptimize
 platforms:
 - ios
 - android
+sections:
+- guide
 ---
 
 # Apptimize and Branch

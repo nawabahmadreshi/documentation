@@ -1,5 +1,6 @@
 ---
 type: recipe
+directory: features
 title: "Referral Programs"
 ios_page_title: App Invites & Referral Links for iOS Apps
 android_page_title: App Invites & Referral Links for Android
@@ -15,6 +16,8 @@ platforms:
 - unity
 - adobe
 - titanium
+sections:
+- guide
 ---
 
 {% ingredient quickstart_preview/quickstart_preview %}{% endingredient %}

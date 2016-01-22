@@ -1,10 +1,13 @@
 ---
 type: recipe
+directory: third-party-integrations
 title: "Localytics"
 page_title: Send Deep Link Install Data to Localytics
 description: We’ve partnered with Localytics to provide an easy way to deliver Branch installs and attributions to your Localytics dashboard. Learn how to set it up.
 keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Analytics, Install Data, Localytics
 hide_platform_selector: true
+sections:
+- guide
 ---
 
 # Sending Branch Install Data to Localytics

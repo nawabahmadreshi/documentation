@@ -1,9 +1,12 @@
 ---
 type: recipe
+directory: third-party-integrations
 title: "Referral Saasquatch"
 platforms:
 - ios
 - android
+sections:
+- guide
 ---
 
 {% ingredient quickstart_preview/quickstart_preview %}{% endingredient %}

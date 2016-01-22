@@ -1,5 +1,6 @@
 ---
 type: recipe
+directory: features
 title: Personalized welcome
 ios_page_title: Personalized Onboarding Flow for iOS Apps
 android_page_title: Personalized Onboarding for Android Apps
@@ -15,6 +16,8 @@ platforms:
 - unity
 - adobe
 - titanium
+sections:
+- guide
 ---
 
 {% ingredient quickstart_preview/quickstart_preview %}{% endingredient %}

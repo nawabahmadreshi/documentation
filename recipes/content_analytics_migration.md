@@ -7,6 +7,8 @@ keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplink
 platforms:
 - ios
 - android
+sections:
+- guide
 ---
 
 We've found that content marketing is the best way to grow a mobile app. Users download your app because they want to interact with a piece of content or product. Content insights will let you know which entities within your app are driving the most engagment and virality. Here's a sample of a video app:

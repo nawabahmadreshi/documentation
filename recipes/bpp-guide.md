@@ -5,6 +5,8 @@ page_title: Branch Preferred Partner Integration Guide
 description: Learn how to create white-labeled Branch accounts for your customers.  Give your clients best-in-class deep linking while keeping your branding intact! 
 keywords: white-label, Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views
 hide_platform_selector: true
+sections:
+- guide
 ---
 
 Branch Preferred Partner Integration Guide

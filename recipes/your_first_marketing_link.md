@@ -8,6 +8,8 @@ android_description: How to set up your first Android deep link on the Branch Da
 ios_keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Link configuration, Analytics, Custom Link, Deep Link Data, iOS, objective-c, swift
 android_keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Link configuration, Analytics, Custom Link, Deep Link Data, Android
 hide_platform_selector: true
+sections:
+- guide
 ---
 
 ## Link configuration

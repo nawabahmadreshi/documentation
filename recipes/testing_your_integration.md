@@ -1,5 +1,6 @@
 ---
 type: recipe
+directory: getting-started
 title: Testing your integration
 page_title: Testing your Branch deep link integration
 ios_description: Learn how to test your iOS Branch integration, debug individual deep links and simulate fresh app installs. Plus some advice on fraud protection.
@@ -15,6 +16,8 @@ platforms:
 - adobe
 - titanium
 - web
+sections:
+- guide
 ---
 
 {%ingredient debug/intro %}{% endingredient %}
