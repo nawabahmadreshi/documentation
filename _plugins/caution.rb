@@ -17,7 +17,7 @@ module Jekyll
       }
 
       icon = '<i class="fa ' + (data['icon'] or 'fa-exclamation-triangle') + '"></i> '
-      title = if data['title'] then '<h4 class="caution__title"> ' + icon + ' ' + data['title'] + '</h4>' else '' end
+      title = if data['title'] then '<h4 class="caution__title"> ' + icon + ' Caution: ' + data['title'] + '</h4>' else '<h4 class="caution__title">' + icon + ' Caution</h4>' end
       contents = Kramdown::Document.new(super).to_html
       '<blockquote class="caution">' + title + contents + '</blockquote>'
     end
