@@ -24,8 +24,6 @@ The Branch Smart Banner displays a fully-customizable banner at the top of your 
 
 The Download/Open button and SMS link both contain all the features of any other Branch link, including deeplinking directly to content, passing data across install, measuring clicks, and more.
 
-*Head over to the [Implementation Guide](../guide/) to get started!*
-
 {% elsif page.guide %}
 
 {% ingredient quickstart-prerequisite %}{% endingredient %}
@@ -47,7 +45,7 @@ Add the following code somewhere inside the `<head></head>` tags on your website
 </script>
 {% endhighlight %}
 
-{% protip %} Be sure to replace `YOUR-BRANCH-KEY` with your Branch Key inside the `init()` call. You can find your Branch Key on the Dashboard’s [Settings](https://dashboard.branch.io/#/settings) page. {% endprotip %}
+{% ingredient replace-branch-key %}{% endingredient %}
 
 ## Customizations
 
