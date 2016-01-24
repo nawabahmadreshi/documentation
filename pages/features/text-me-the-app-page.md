@@ -29,19 +29,20 @@ Branch uses Twilio to send SMS messages. Thanks to Twilio, users can text themse
 
 {% elsif page.guide %}
 
-{% protip title="You may already be done!" %}Branch hosts a basic text-me-the-app page for all of your links by default. These steps are only necessary if you want to use a custom page.{% endprotip %}
+{% ingredient quickstart-prerequisite %}{% endingredient %}
 
 ## Configure custom URL in Branch dashboard
 
 1. Visit the [Branch link configuration tool](https://start.branch.io/#/desktop-routing).
 1. Select Custom Landing Page, and enter the URL on your site that will include a text-me-the-app option.
 
-{% image src="/img/pages/features/text-me-the-app-page/desktop-routing.png" center alt="Default and custom SMS pages" %}
+{% image src="/img/pages/features/text-me-the-app-page/desktop-routing.png" 2-thirds center alt="Default and custom SMS pages" %}
+
+{% protip title="You may already be done!" %}Branch hosts a basic text-me-the-app page for all of your links by default: just select Branch Hosted SMS Landing Page to use it. These steps are only necessary if you want to use a custom page.{% endprotip %}
 
 ## Insert SendSMS() snippet into your page
 
-1. Create a new file at the URL above, and paste the following code snippet into it.
-   - This is a fully-functional web page that you can use as a template for your text-me-the-app page. Customize to your heart's content.
+Create a new file at the URL above, and paste the following code snippet into it. This is a fully-functional web page that you can use as a template for your text-me-the-app page. Customize to your heart's content.
 
 {% highlight html %}
 
@@ -50,8 +51,7 @@ Branch uses Twilio to send SMS messages. Thanks to Twilio, users can text themse
     <head>
         <meta charset="UTF-8">
         <script type="text/javascript">
-            (function(b,r,a,n,c,h,_,s,d,k){if(!b[n]||!b[n]._q){for(;s<_.length;)c(h,_[s++]);d=r.createElement(a);d.async=1;d.src="https://cdn.branch.io/branch-v1.8.8.min.js";k=r.getElementsByTagName(a)[0];k.parentNode.insertBefore(d,k);b[n]=h}})(window,document,"script","branch",function(b,r){b[r]=function(){b._q.push([r,arguments])}},{_q:[],_v:1},"addListener applyCode banner closeBanner creditHistory credits data deepview deepviewCta first getCode init link logout redeem referrals removeListener sendSMS setIdentity track validateCode".split(" "), 0);
-branch.init('YOUR-BRANCH-KEY');
+            {% ingredient web-sdk-initialization %}{% endingredient %}
             function sendSMS(form) {
                 var phone = form.phone.value;
                 var linkData = {
@@ -91,13 +91,13 @@ branch.init('YOUR-BRANCH-KEY');
 
 ## Customizations
 
-That’s all you need to add a custom text-me-the-app page to your website! Go to [Advanced](../advanced/) to read about more advanced implementations, or take a look at the [Method Reference]({{base.url}}/method-reference/web-sdk) for all available options.
+That’s all you need to add a custom text-me-the-app page to your website! Go to [Advanced](../advanced/) to read about more advanced implementations, or take a look at the [Method Reference](https://github.com/BranchMetrics/Smart-App-Banner-Deep-Linking-Web-SDK/blob/master/WEB_GUIDE.md#sendsmsphone-linkdata-options-callback) for all available options.
 
 {% elsif page.advanced %}
 
 ## Using a custom form with SendSMS()
 
-Add the following code somewhere inside the `<head> </head>` tags on your website. 
+Add the following code somewhere inside the `<head></head>` tags on your website. 
 
 {% highlight html %}
 <script type="text/javascript">
@@ -123,6 +123,8 @@ function sendSMS(form) {
 
 ### SendSMS() parameters.
 
+The `sendSMS()` method requires a phone number and a [link data dictionary](({{base.url}}/getting-started/link-configuration)). You may optionally specify configuration options and a callback.
+
 {% highlight javascript %}
 branch.sendSMS(
     phone,
@@ -132,7 +134,8 @@ branch.sendSMS(
 );
 {% endhighlight %}
 
-So, for example, your call to this method, once filled in with the user's phone number, could look like the following:
+{% example %}
+Your call to this method, once filled in with the user's phone number, could look like the following:
 
 {% highlight javascript %}
 branch.sendSMS(
@@ -150,8 +153,9 @@ branch.sendSMS(
     function(err) { console.log(err); }
 });
 {% endhighlight %}
+{% endexample%}
 
-_You can read more about the SendSMS() method in the [Method Reference]({{base.url}}/method-reference/web-sdk)_
+_You can read more about the SendSMS() method in the [Method Reference](https://github.com/BranchMetrics/Smart-App-Banner-Deep-Linking-Web-SDK/blob/master/WEB_GUIDE.md#sendsmsphone-linkdata-options-callback)_
 
 ## Using your own SMS service
 
@@ -183,17 +187,18 @@ You can define a special SMS message for each individual link. Whether you want 
 
 Use the *key* of **$custom\_sms\_text** and then enter your custom message in the value section. (Make sure to include the \{\{ link \}\} tag in your custom message!) 
 
-> #### Example:  
-> The developer of FlowerPower wants to customize the SMS messages based on the country of the recipient. For each Branch link, they would specify in the *deeplink data* a different custom message.  
-> 
-> For ads in France:  
-> **Cliquez pour télécharger FlowerPower ici \{\{ link \}\}**
->
-> For ads in Spain:  
-> **Haz click aquí para descargar FlowerPower \{\{ link \}\}**
-> 
-> For ads in Germany:  
-> **Klicken Sie auf das FlowerPower hier herunterladen \{\{ link \}\}**
+{% example%} 
+The developer of FlowerPower wants to customize the SMS messages based on the country of the recipient. For each Branch link, they would specify in the *deeplink data* a different custom message.  
+
+For ads in France:  
+**Cliquez pour télécharger FlowerPower ici \{\{ link \}\}**
+
+For ads in Spain:  
+**Haz click aquí para descargar FlowerPower \{\{ link \}\}**
+
+For ads in Germany:  
+**Klicken Sie auf das FlowerPower hier herunterladen \{\{ link \}\}**
+{% endexample%}
 
 ### 2. Custom default for all messages
 You can create your own custom default message that will be sent if the specific link someone clicks doesn't have a customized message itself. To do this, edit the form under the *Text me the app page* tab in the general settings area of the [Branch dashboard](https://dashboard.branch.io/#/settings).
@@ -208,15 +213,16 @@ You can access almost any value of your link's data dictionary by using liquid t
 - **\{\{ link.channel \}\}** and **\{\{ link.campaign \}\}** output the channel and campaign, if these were set when creating the link.
 - **\{\{ link.data.key \}\}** will output a parameter of your link's data dictionary, where `key` is the name of the parameter
 
-> #### Example: 
-> Dmitri is creating Branch links to deeplink to each of the different flowers in his app FlowerPower. He creates each link with a key/value pair of the key `flower` and the flower name. 
-> 
-> E.g. `Flower : Rose`, `Flower : Tulip`
-> 
-> He wants to customize his SMS messages based on name of the flower, so he sets his custom link messages as:  
->
-> **\{\{ link.data.flower \}\}**s on the mind? Click here to buy some for your home on FlowerPower! **\{\{ link \}\}**
-> {% image src="/img/pages/features/text-me-the-app-page/key-value.png" center half alt="Key/Value pairs" %} 
+{% example%}
+Dmitri is creating Branch links to deeplink to each of the different flowers in his app FlowerPower. He creates each link with a key/value pair of the key `flower` and the flower name. 
+
+E.g. `Flower : Rose`, `Flower : Tulip`
+
+He wants to customize his SMS messages based on name of the flower, so he sets his custom link messages as:  
+
+**\{\{ link.data.flower \}\}**s on the mind? Click here to buy some for your home on FlowerPower! **\{\{ link \}\}**
+{% image src="/img/pages/features/text-me-the-app-page/key-value.png" center half alt="Key/Value pairs" %} 
+{% endexample%}
 
 ### Setting default replacement values for liquid tags
 If a specific tag isn't always going to be filled, you can use a `|` character to specify a default to fallback on if the tag is missing from your link dictionary.

@@ -2,8 +2,7 @@
 type: recipe
 directory: features
 title: App Download Banner
-ios_page_title: Smart App Download Banner for iOS Apps
-android_page_title: Smart App Download Banner for Android
+page_title: Smart App Download Banner
 ios_description: Insert this short code snippet to add a smart app download banner to both your desktop and mobile web pages and drive iOS app downloads.
 android_description: Insert this short code snippet to add a smart app download banner to both your desktop and mobile web pages and drive Android app downloads.
 ios_keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Smart Banner, App Download Banner, Banner
@@ -20,7 +19,7 @@ sections:
 
 The Branch Smart Banner displays a fully-customizable banner at the top of your website, encouraging your mobile visitors to download the app (or open it, if already installed). Desktop visitors may enter their phone number to send themselves a link via SMS.
 
-{% image src='/img/pages/features/app-download-banner/banner2.png' half center alt='Smart Banner examples' %}
+{% image src='/img/pages/features/app-download-banner/banner2.png' 2-thirds center alt='Smart Banner examples' %}
 
 The Download/Open button and SMS link both contain all the features of any other Branch link, including deeplinking directly to content, passing data across install, measuring clicks, and more.
 
@@ -34,14 +33,12 @@ Add the following code somewhere inside the `<head></head>` tags on your website
 
 {% highlight javascript %}
 <script type="text/javascript">
-    (function(b,r,a,n,c,h,_,s,d,k){if(!b[n]||!b[n]._q){for(;s<_.length;)c(h,_[s++]);d=r.createElement(a);d.async=1;d.src="https://cdn.branch.io/branch-v1.8.8.min.js";k=r.getElementsByTagName(a)[0];k.parentNode.insertBefore(d,k);b[n]=h}})(window,document,"script","branch",function(b,r){b[r]=function(){b._q.push([r,arguments])}},{_q:[],_v:1},"addListener applyCode banner closeBanner creditHistory credits data deepview deepviewCta first getCode init link logout redeem referrals removeListener sendSMS setIdentity track validateCode".split(" "), 0);
-    branch.init('YOUR-BRANCH-KEY');
-        
-    branch.banner({
-        icon: 'http://icons.iconarchive.com/icons/wineass/ios7-redesign/512/Appstore-icon.png',
-        title: 'Branch Demo App',
-        description: 'The Branch demo app!'
-    }, {});
+{% ingredient web-sdk-initialization %}{% endingredient %}
+branch.banner({
+    icon: 'http://icons.iconarchive.com/icons/wineass/ios7-redesign/512/Appstore-icon.png',
+    title: 'Branch Demo App',
+    description: 'The Branch demo app!'
+}, {});
 </script>
 {% endhighlight %}
 
@@ -57,7 +54,7 @@ That’s all you need to add the smart banner to your website! Go to [Advanced](
 
 All properties are optional. You can customize the banner in lots of ways, including changing button text or color and adding ratings and review counts.
 
-{% image src='/img/pages/features/app-download-banner/mobile-banners.png' half center alt='App download banner on mobile devices' %}
+{% image src='/img/pages/features/app-download-banner/mobile-banners.png' 2-thirds center alt='App download banner on mobile devices' %}
 
 {% highlight javascript %}
 branch.banner(
@@ -106,19 +103,22 @@ branch.banner(
 
 ## Deeplinking from the banner
 
-Like all Branch deeplinks, you can pass custom parameters through the App/Play Store by specifying keys in the data dictionary. If you have enabled deeplink routing in your app, the example below will take the visitor straight to a picture with id “12345” after installing and opening the app.
+Like all Branch deeplinks, you can pass custom parameters through the App/Play Store by specifying keys in the link's [data dictionary]({{base.url}}/getting-started/link-configuration).
+
+{% example %}If you have enabled deeplink routing in your app, this example will take the visitor straight to a picture with id “12345” after installing and opening the app.
 
 {% highlight javascript %}
 branch.banner(options, {
     data: {
-      '$deeplink_path': 'picture/12345',
+        '$deeplink_path': 'picture/12345',
         'picture_id': '12345',
         'user_id': '45123'
     }
 });
 {% endhighlight %}
+{% endexample%}
 
-To dynamically specify the deep link path depending on which website page is loaded, use this example:
+{% example %}You can dynamically specify the deeplink path depending on which website page is loaded.
 
 {% highlight javascript %}
 branch.banner(options, {
@@ -127,18 +127,22 @@ branch.banner(options, {
     }
 });
 {% endhighlight %}
+{% endexample%}
 
-## Styling the banner using the custom css property
+## Styling the banner using custom CSS
 
-By default, the Smart Banner is encapsulated in an IFrame to protect against CSS conflicts. You can customize the Smart Banner's appearance with the `customCSS` property. To set the title text to red, use this example:
+You can customize elements of the Smart Banner's appearance with the `customCSS` property.
+
+{% example %}Set the title text to red.
 
 {% highlight javascript %}
 branch.banner({
     customCSS: '.title{ color: #F00; }'
 }, {});
 {% endhighlight %}
+{% endexample %}
 
-Alternatively, set the `iframe` property to false to apply your own CSS:
+By default, the Smart Banner is encapsulated in an IFrame to protect against CSS conflicts, but you can set the `iframe` property to false to apply your own CSS.
 
 {% highlight javascript %}
 branch.banner({
@@ -158,7 +162,7 @@ If you would like your app to listen for and react to Banner events, the Web SDK
 - **sendBannerSMSError**
 - **didSendBannerSMS**
 
-Here’s an example of listening for the willShowBanner event:
+{% example %}Listening for the willShowBanner event:
 
 {% highlight javascript %}
 var listener = function(event) { console.log(event); }
@@ -169,6 +173,7 @@ branch.banner({
     description: 'The Branch demo app!'
 }, {});
 {% endhighlight %}
+{% endexample %}
 
 ## Closing the app banner programmatically
 
@@ -192,7 +197,7 @@ A: Initially, if we’ve never determined a device has your application, we will
 
 #### Q: I’ve sent myself multiple texts just now and only received the first few, what’s going on?
 
-A: This occurs when a carrier filters you SMS out due to spam. We try our hardest to rate limit a specific user, however, if bypassed, carriers may block your SMS. The reason is that carriers will agressively block content if it’s similar and repeatedly sent to the same number. The solution is to wait 24-48 hours.
+A: This occurs when a carrier filters you SMS out due to spam. We try our hardest to rate limit a specific user, however, if bypassed, carriers may block your SMS. The reason is that carriers will aggressively block content if it’s similar and repeatedly sent to the same number. The solution is to wait 24-48 hours.
 
 #### Q: How come my (non US) phone number isn’t working?
 
