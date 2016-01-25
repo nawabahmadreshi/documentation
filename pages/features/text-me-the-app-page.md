@@ -227,7 +227,7 @@ He wants to customize his SMS messages based on name of the flower, so he sets h
 ### Setting default replacement values for liquid tags
 If a specific tag isn't always going to be filled, you can use a `|` character to specify a default to fallback on if the tag is missing from your link dictionary.
 
-E.g. {% raw %}**{{ link.data.author \| default:\"Alex\" }}**{% endraw %}
+E.g. `{% raw %}{{ link.data.author | default:"Alex" }}{% endraw %}`
 
 If the `link.data.author` information isn't found, the tag will just be replaced with _Alex_ instead of being replaced by an empty string.
 
