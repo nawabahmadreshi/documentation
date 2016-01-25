@@ -55,6 +55,7 @@
         - advertising_facebook
         - advertising_google
         - advertising_twitter
+        - branch_preferred_partners
         - analytics_adjust
         - analytics_appboy
         - analytics_localytics
