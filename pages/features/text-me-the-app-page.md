@@ -123,7 +123,7 @@ function sendSMS(form) {
 
 ### SendSMS() parameters.
 
-The `sendSMS()` method requires a phone number and a [link data dictionary](({{base.url}}/getting-started/link-configuration)). You may optionally specify configuration options and a callback.
+The `sendSMS()` method requires a phone number and a [link data dictionary]({{base.url}}/getting-started/link-configuration). You may optionally specify configuration options and a callback.
 
 {% highlight javascript %}
 branch.sendSMS(
@@ -176,7 +176,7 @@ branch.init('YOUR-BRANCH-KEY', function(err, data) {
 
 ## Customizing SMS message content
 
-The default text for SMS messages is **"Click here to download [App Name] \{\{ link \}\}"**
+The default text for SMS messages is **"Click here to download [App Name] {% raw %}{{ link }}{% endraw %}"**
 
 If you want to customize this, Branch offers two options for doing so:
 
@@ -185,19 +185,19 @@ You can define a special SMS message for each individual link. Whether you want 
 
 {% image src="/img/pages/features/text-me-the-app-page/deeplink-data.png" center half alt="Deeplink data attributes" %} 
 
-Use the *key* of **$custom\_sms\_text** and then enter your custom message in the value section. (Make sure to include the \{\{ link \}\} tag in your custom message!) 
+Use the *key* of {% raw %}**$custom_sms_text**{% endraw %} and then enter your custom message in the value section. (Make sure to include the {% raw %}{{ link }}{% endraw %} tag in your custom message!) 
 
 {% example%} 
 The developer of FlowerPower wants to customize the SMS messages based on the country of the recipient. For each Branch link, they would specify in the *deeplink data* a different custom message.  
 
 For ads in France:  
-**Cliquez pour télécharger FlowerPower ici \{\{ link \}\}**
+**Cliquez pour télécharger FlowerPower ici {% raw %}{{ link }}{% endraw %}**
 
 For ads in Spain:  
-**Haz click aquí para descargar FlowerPower \{\{ link \}\}**
+**Haz click aquí para descargar FlowerPower {% raw %}{{ link }}{% endraw %}**
 
 For ads in Germany:  
-**Klicken Sie auf das FlowerPower hier herunterladen \{\{ link \}\}**
+**Klicken Sie auf das FlowerPower hier herunterladen {% raw %}{{ link }}{% endraw %}**
 {% endexample%}
 
 ### 2. Custom default for all messages
@@ -209,9 +209,9 @@ You can create your own custom default message that will be sent if the specific
 
 You can access almost any value of your link's data dictionary by using liquid tags. The customization options are only limited to your imagination.
 
-- The tag **\{\{ link \}\}** is replaced with your Branch link
-- **\{\{ link.channel \}\}** and **\{\{ link.campaign \}\}** output the channel and campaign, if these were set when creating the link.
-- **\{\{ link.data.key \}\}** will output a parameter of your link's data dictionary, where `key` is the name of the parameter
+- The tag **{% raw %}{{ link }}{% endraw %}** is replaced with your Branch link
+- **{% raw %}{{ link.channel }}{% endraw %}** and **{% raw %}{{ link.campaign }}{% endraw %}** output the channel and campaign, if these were set when creating the link.
+- **{% raw %}{{ link.data.key }}{% endraw %}** will output a parameter of your link's data dictionary, where `key` is the name of the parameter
 
 {% example%}
 Dmitri is creating Branch links to deeplink to each of the different flowers in his app FlowerPower. He creates each link with a key/value pair of the key `flower` and the flower name. 
@@ -220,14 +220,14 @@ E.g. `Flower : Rose`, `Flower : Tulip`
 
 He wants to customize his SMS messages based on name of the flower, so he sets his custom link messages as:  
 
-**\{\{ link.data.flower \}\}**s on the mind? Click here to buy some for your home on FlowerPower! **\{\{ link \}\}**
+**{% raw %}{{ link.data.flower }}{% endraw %}**s on the mind? Click here to buy some for your home on FlowerPower! **{% raw %}{{ link }}{% endraw %}**
 {% image src="/img/pages/features/text-me-the-app-page/key-value.png" center half alt="Key/Value pairs" %} 
 {% endexample%}
 
 ### Setting default replacement values for liquid tags
 If a specific tag isn't always going to be filled, you can use a `|` character to specify a default to fallback on if the tag is missing from your link dictionary.
 
-E.g. **\{\{ link.data.author \| default:\"Alex\" \}\}**
+E.g. {% raw %}**{{ link.data.author \| default:\"Alex\" }}**{% endraw %}
 
 If the `link.data.author` information isn't found, the tag will just be replaced with _Alex_ instead of being replaced by an empty string.
 

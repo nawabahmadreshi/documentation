@@ -22,11 +22,11 @@ If you maintain a mobile website, Branch allows you to deeplink mobile visitors 
 
 {% elsif page.guide %}
 
-## Initialize the Deepview SDK on page load
-
 {% ingredient quickstart-prerequisite %}{% endingredient %}
 
-Add the following code somewhere inside the `<head></head>` tags on your website and customize the [link data dictionary](({{base.url}}/getting-started/link-configuration)) to suit your needs. What this script does is move a lot of the Branch redirection logic to the Javascript on your own page, effectively 'clicking a Branch link' on page load.
+## Initialize the Deepview SDK on page load
+
+Add the following code somewhere inside the `<head></head>` tags on your website and customize the [link data dictionary]({{base.url}}/getting-started/link-configuration) to suit your needs. What this script does is move a lot of the Branch redirection logic to the Javascript on your own page, effectively 'clicking a Branch link' on page load.
 
 {% highlight javascript %}
 <script type="text/javascript">
@@ -71,7 +71,7 @@ branch.deepviewCta();
 {% endhighlight %}
 {% endexample %}
 
-## View the Analytics
+## View the analytics
 
 With your deep linking all set up, you can view conversions on the summary tab of [the Branch dashboard](https://dashboard.branch.io). It will look something like this:
 
@@ -83,6 +83,8 @@ There are various metrics to understand when deep linking from your mobile websi
 - **Clicks:** a user clicked on the Deepview CTA
 - **Installs:** a user installed the app for the first time
 - **Upgrades:** a user re-opened or upgraded the app from a previous version
+
+Only users who do not have the app will go through this flow. You can view the total counts and conversion rate from each step on this chart.
 
 {% elsif page.support %}
 
