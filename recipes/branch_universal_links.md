@@ -17,22 +17,6 @@ App Links allow users visiting your website to route straight to your app if the
 
 -----
 
-## Understanding Changes in iOS 9 and 9.2
-
-Apple launched Universal Links in iOS 9.0, which moves the app routing into the OS so that developers don’t need to worry about doing the routing in Javascript. With iOS 9.2 Apple made it impossible to launch URI schemes in the conventional fashion. This guide in its entirity can help you migrate to Universal Links and solve these issues.
-
-We have published a number of resources that can help you understand the changes and how it impacts your app:
-
-* How to Setup Universal Links to Deep Link on Apple iOS 9 - [Original Blog Release](https://blog.branch.io/how-to-setup-universal-links-to-deep-link-on-apple-ios-9)
-
-* iOS 9.2 Update: [The Fall of URI Schemes](https://blog.branch.io/ios-9.2-redirection-update-uri-scheme-and-universal-links)
-
-* iOS 9.2 Transition Guide - [Original Blog](https://blog.branch.io/ios-9.2-deep-linking-guide-transitioning-to-universal-links)
-
-* Why You Should Use Branch for [Universal Links](https://blog.branch.io/why-you-should-use-branch-for-universal-links)
-
-
------
 
 ## Prerequisites for using Android App Links
 
@@ -74,6 +58,23 @@ Universal Links allow users visiting your website to route straight to your app 
 {% protip title='On custom domains, all links are Universal Links' %}
 We recently made a large backend change that turns all Branch links into Universal Links if you're using a custom (i.e. non-bnc.lt) domain. On custom domains, you are not restricted to links of the form form https://bnc.lt/<<four-letter-identifier>>/<<link-hash>> or https://your-domain.com/<<four-letter-identifier>>/<<link-hash>> or https://bnc.lt/a/<<branch-key>>.
 {% endprotip %}
+
+
+-----
+
+## Understanding Changes in iOS 9 and 9.2
+
+Apple launched Universal Links in iOS 9.0, which moves the app routing into the OS so that developers don’t need to worry about doing the routing in Javascript. With iOS 9.2 Apple made it impossible to launch URI schemes in the conventional fashion. This guide in its entirity can help you migrate to Universal Links and solve these issues.
+
+We have published a number of resources that can help you understand the changes and how it impacts your app:
+
+* How to Setup Universal Links to Deep Link on Apple iOS 9 - [Original Blog Release](https://blog.branch.io/how-to-setup-universal-links-to-deep-link-on-apple-ios-9)
+
+* iOS 9.2 Update: [The Fall of URI Schemes](https://blog.branch.io/ios-9.2-redirection-update-uri-scheme-and-universal-links)
+
+* iOS 9.2 Transition Guide - [Original Blog](https://blog.branch.io/ios-9.2-deep-linking-guide-transitioning-to-universal-links)
+
+* Why You Should Use Branch for [Universal Links](https://blog.branch.io/why-you-should-use-branch-for-universal-links)
 
 
 -----
