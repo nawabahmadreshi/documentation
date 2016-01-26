@@ -1,43 +1,42 @@
 ---
 type: recipe
 title: "Adjust"
-page_title: Double Sided Ad Measurement Integrations
-description: Learn what needs to be done in order to put a Branch deep link in between a third party ad network and a third party measurement service.
+page_title: Adjust / Branch Integration Guide
+description:  Learn how to send your Branch data to your Adjust account so you can view Branch events alongside your other acquisiion channels.
 keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Ad Measurement, third party ad measurement, ad network
 hide_platform_selector: true
 ---
 
-# Double Sided Custom Ad Measurement Integrations
+# Branch / Adjust Integration Guide
 
-This section will describe exactly what needs to be done in order to put a Branch deep link in between a third party ad network and a third party measurement service. For example, this section applies to you if user flow chart looks like this:
+We recommend linking your Branch and Adjust accounts via webhook so you can view your Branch event data alongside your other acquisition channels.  This will allow you to take full advantage of Branch’s app routing and deep linking tech, while also sending data about 100% of the users clicking on your Branch links back to Adjust
 
-_Ad network -> **Branch** -> measurement partner (Adjust, etc)_
+The below guide will describe exactly how to use the accompanying URL creator and our webhooks section to send your Branch data to your Adjust account.
 
-{% ingredient dashboard_links/creating_links %}
-{% override title %}## Create a marketing link{% endoverride %}
-{% endingredient %}
+## Build your postback URL ##
 
-{% ingredient dashboard_links/custom_redirects %}
-{% override title %}## Customize the redirects to point to measurement partner{% endoverride %}
-{% override description %}In order to configure the links for this ad network integration, you'll need to point the Branch links to the measurement partner. To do this, you'll want to customize the endpoints for both Android and iOS. Let's take the example where you were previously using Adjust with the following template:
+The below webhook builder will allow you to input some basic information about your Adjust account and create a postback URL templated to link your Adjust and Branch accounts.  Below are the steps for using the webhook builder.
 
-1. **iOS:** _https://app.adjust.io/abc123??campaign={campaign_id}&adgroup={creative_id}_
-1. **Android:** _https://app.adjust.io/abc123?campaign={campaign_id}&adgroup={creative_id}_
+1. Input your Branch tracker token as provided by Adjust
 
-You'd set the **custom URL for Android** to _https://app.adjust.io/abc123_ and the **custom URL for iOS** to _https://app.adjust.io/abc123_. This would tell Branch where to send the user for the specific OS. Don't worry about the additional query parameters (the stuff after '?'). We'll carry that through Branch automatically.
-{% endoverride %}
-{% endingredient %}
+    Please note if you have both an iOS an Android app with Branch, you will need to create 2 webhooks, one using the site_id for your iOS app and one webhook the Adjust site_id for your Android app.  You’ll then have to set up separate webhooks with OS filters for those respective apps (see steps below).
 
-## Provide link to advertiser
+3. Add any optional query params you would like to include (such as query params required by your advertiser)
 
-Click save to generate the URL - it will appear in the list of links.
+4. Click the "Create Link" button at the bottom.
 
-Lastly, you need to deliver the proper link to the advertiser. To do this, you probably are used to sending the advertiser a link with the templated fields. For example, here is a typical link for Adjust:
+## Add Webhook to your Branch dashboard ##
 
-_https://app.adjust.io/abc123?campaign={campaign_id}&adgroup={creative_id}_
+Now that you've created your Adjust Postback URL, you'll want to use it to [create a webhook](https://dashboard.branch.io/#/webhook) in your Branch dashboard. 
 
-To create the link for the advertiser, you simply need to replace the base URL (everything before the '?'), with the Branch provided link. So, keeping with the same example, you would change 'https://app.adjust.io/8x54yn' with 'https://bnc.lt/l/125AdD-F' to make the link like so:
+1. Click the "Add a new webhook" button
+2. Insert the URL created in the previous section and paste it into the empty text box following the words "send a webhook to"
+3. Select the "Post" request type
+4. Select "every time" as the frequency for the postback
+5. Select "click" as your event
+6. In the "Filter (Advanced)" section, create an OS filter that corresponds to the OS of the app whose Adjust site_id you used to create the potsback URL.  The Key in this filter will be `OS`, while the value will be either `Android` or `iOS`.  Refer to the screenshot below.
 
-_https://bnc.lt/l/125AdD-F?campaign={campaign_id}&adgroup={creative_id}_
+That’s it!  Branch will now send relevant information about your Branch links and the app traffic they are responsible for to Adjust.
 
-This is the link to provide to the advertiser.
+For more information on Branch’s webhooks, view our webhooks guide in the dev portal.  
+
