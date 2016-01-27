@@ -278,7 +278,7 @@ public void onCreate() {
 If you don't know what a custom application class is, no need to worry: you most likely don't have one yet!
 {% endprotip %}
 
-The final step in setting up the Branch SDK is to register an `Application` class in your Manifest as follows:
+Register an `Application` class in your Manifest as follows:
 
 {% highlight xml %}
  <application
@@ -470,13 +470,14 @@ The Branch session starts every single time your app opens up to check if the us
 
 1. In Xcode, open your **App.Delegate.m** file.
 1. Add `#import "Branch.h"` at the top to import the Branch framework.
+1. Create the following new methods:
 1. Find the line beginning with:
 
 {% highlight objc %}
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:
 {% endhighlight %}
 
-Underneath this line, add the following snippet:
+- Underneath this line, add the following snippet:
 
 {% highlight objc %}
 Branch *branch = [Branch getInstance];
@@ -489,7 +490,6 @@ Branch *branch = [Branch getInstance];
     }
 }];
 {% endhighlight %}
-
 {% endtab %}
 {% tab swift %}
 
@@ -501,7 +501,7 @@ Branch *branch = [Branch getInstance];
 func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions:
 {% endhighlight %}
 
-Underneath this line, add the following snippet:
+- Underneath this line, add the following snippet:
 
 {% highlight swift %}
 let branch: Branch = Branch.getInstance()
@@ -517,12 +517,63 @@ branch.initSessionWithLaunchOptions(launchOptions, andRegisterDeepLinkHandler: {
 {% endtab %}
 {% endtabs %}
 
+{% tabs %}
+{% tab objective-c %}
+
+Finally, add these two new methods to your **AppDelegate.m** file. The first responds to URL scheme links. The second responds to Universal Links and Spotlight listings, but will not be active until you [configure Universal Links]({{base.url}}/features/universal-links).
+
+{% highlight objc %}
+// Respond to URL scheme links
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    // pass the url to the handle deep link call
+    [[Branch getInstance] handleDeepLink:url];
+
+    // do other deep link routing for the Facebook SDK, Pinterest SDK, etc
+    return YES;
+}
+
+// Respond to Universal Links
+- (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray *restorableObjects))restorationHandler {
+    BOOL handledByBranch = [[Branch getInstance] continueUserActivity:userActivity];
+    
+    return handledByBranch;
+}
+{% endhighlight %}
+
+{% endtab %}
+{% tab swift %}
+
+Finally, add these two new methods to your **AppDelegate.swift** file. The first responds to URL scheme links. The second responds to Universal Links and Spotlight listings, but will not be active until you [configure Universal Links]({{base.url}}/features/universal-links).
+
+{% highlight swift %}
+// Respond to URL scheme links
+func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
+    // pass the url to the handle deep link call
+    Branch.getInstance().handleDeepLink(url);
+
+    // do other deep link routing for the Facebook SDK, Pinterest SDK, etc
+    return true
+}
+
+// Respond to Universal Links
+func application(application: UIApplication, continueUserActivity userActivity: NSUserActivity, restorationHandler: ([AnyObject]?) -> Void) -> Bool {
+    // pass the url to the handle deep link call
+
+    return Branch.getInstance().continueUserActivity(userActivity)
+}
+{% endhighlight %}
+
+{% endtab %}
+{% endtabs %}
+
+
+
 {% endif %}
 <!---    /iOS -->
 
 {% if page.android %}
 
-Open the `Activity` for which you registered the `intent` in the previous section, and hook into the `onStart` and `onNewIntent` lifecycle methods:
+Open the `Activity` for which you registered the `intent` in the previous section, and hook into the `onStart` and `onNewIntent` lifecycle methods by adding these overrides:
 
 {% highlight java %}
 @Override
@@ -537,7 +588,7 @@ public void onNewIntent(Intent intent) {
 }
 {% endhighlight %}
 
-Add the following snippet:
+In the same `Activity`, add the following snippet:
 
 {% highlight java %}
 Branch branch = Branch.getInstance();
@@ -592,7 +643,7 @@ If `data` is null and `err` contains a string denoting a request timeout, make s
 
 {% if page.xamarin %}
 
-The Branch initialization process is different depending on whether you are using Xamarin Forms. Please make to follow the correct instructions!
+The Branch initialization process is different depending on whether you are using Xamarin Forms or not. Please make sure to follow the correct instructions!
 
 #### Generic Xamarin initialization
 
@@ -747,6 +798,14 @@ public class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDe
         return true;
     }
     
+    // For Universal Links
+    public override bool ContinueUserActivity (UIApplication application,
+        NSUserActivity userActivity,
+        UIApplicationRestorationHandler completionHandler)
+    {
+        bool handledByBranch = BranchIOS.getInstance ().ContinueUserActivity (userActivity, app);
+        return handledByBranch;
+    }
 }
 {% endhighlight %}
 
@@ -783,6 +842,15 @@ public class AppDelegate : UIApplicationDelegate, IBranchSessionInterface
         return true;
     }
 
+    // Support Universal Links
+    public override bool ContinueUserActivity (UIApplication application,
+        NSUserActivity userActivity,
+        UIApplicationRestorationHandler completionHandler)
+    {
+        bool handledByBranch = BranchIOS.getInstance ().ContinueUserActivity (userActivity, this);
+        return handledByBranch;
+    }
+    
     #region IBranchSessionInterface implementation
 
     public void InitSessionComplete (Dictionary<string, object> data)
