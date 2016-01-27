@@ -6,9 +6,9 @@
 
 **If you use a ROOT domain** (e.g. branch.com) then follow the steps below to enable SSL on your custom domain:
 
- _Step 0._ First setup your root domain to CNAME to `bnc.lt`. [Here's how to set up a CNAME](https://support.cloudflare.com/hc/en-us/articles/200169046-How-do-I-add-a-CNAME-record-) with CloudFlare if you're new to it. 
+ _Step 0._ First setup your root domain to CNAME to `custom.bnc.lt`. [Here's how to set up a CNAME](https://support.cloudflare.com/hc/en-us/articles/200169046-How-do-I-add-a-CNAME-record-) with CloudFlare if you're new to it. 
 
- _Step 1._ Make sure your traffic is proxied to the domain 'bnc.lt'. With CloudFlare, this is done by clicking the cloud with the arrow to make it _orange_.
+ _Step 1._ Make sure your traffic is proxied to the domain 'custom.bnc.lt'. With CloudFlare, this is done by clicking the cloud with the arrow to make it _orange_.
 
 {% image src='/img/recipes/universal_links/orange_cloud.png' 3-quarters center alt='cloudflare TLS' %}
 

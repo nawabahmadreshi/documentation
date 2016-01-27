@@ -20,22 +20,6 @@ App Links allow users visiting your website to route straight to your app if the
 
 -----
 
-## Understanding Changes in iOS 9 and 9.2
-
-Apple launched Universal Links in iOS 9.0, which moves the app routing into the OS so that developers don’t need to worry about doing the routing in Javascript. With iOS 9.2 Apple made it impossible to launch URI schemes in the conventional fashion. This guide in its entirity can help you migrate to Universal Links and solve these issues.
-
-We have published a number of resources that can help you understand the changes and how it impacts your app:
-
-* How to Setup Universal Links to Deep Link on Apple iOS 9 - [Original Blog Release](https://blog.branch.io/how-to-setup-universal-links-to-deep-link-on-apple-ios-9)
-
-* iOS 9.2 Update: [The Fall of URI Schemes](https://blog.branch.io/ios-9.2-redirection-update-uri-scheme-and-universal-links)
-
-* iOS 9.2 Transition Guide - [Original Blog](https://blog.branch.io/ios-9.2-deep-linking-guide-transitioning-to-universal-links)
-
-* Why You Should Use Branch for [Universal Links](https://blog.branch.io/why-you-should-use-branch-for-universal-links)
-
-
------
 
 ## Prerequisites for using Android App Links
 
@@ -77,6 +61,23 @@ Universal Links allow users visiting your website to route straight to your app 
 {% protip title='On custom domains, all links are Universal Links' %}
 We recently made a large backend change that turns all Branch links into Universal Links if you're using a custom (i.e. non-bnc.lt) domain. On custom domains, you are not restricted to links of the form form https://bnc.lt/<<four-letter-identifier>>/<<link-hash>> or https://your-domain.com/<<four-letter-identifier>>/<<link-hash>> or https://bnc.lt/a/<<branch-key>>.
 {% endprotip %}
+
+
+-----
+
+## Understanding Changes in iOS 9 and 9.2
+
+Apple launched Universal Links in iOS 9.0, which moves the app routing into the OS so that developers don’t need to worry about doing the routing in Javascript. With iOS 9.2 Apple made it impossible to launch URI schemes in the conventional fashion. This guide in its entirity can help you migrate to Universal Links and solve these issues.
+
+We have published a number of resources that can help you understand the changes and how it impacts your app:
+
+* How to Setup Universal Links to Deep Link on Apple iOS 9 - [Original Blog Release](https://blog.branch.io/how-to-setup-universal-links-to-deep-link-on-apple-ios-9)
+
+* iOS 9.2 Update: [The Fall of URI Schemes](https://blog.branch.io/ios-9.2-redirection-update-uri-scheme-and-universal-links)
+
+* iOS 9.2 Transition Guide - [Original Blog](https://blog.branch.io/ios-9.2-deep-linking-guide-transitioning-to-universal-links)
+
+* Why You Should Use Branch for [Universal Links](https://blog.branch.io/why-you-should-use-branch-for-universal-links)
 
 
 -----
@@ -238,22 +239,23 @@ The URLs might be different from your traditional URI schemes, so you just need 
 
 ## Which Apps/Browsers Support Universal Links
 
-Unfortunately, Universal Links don't work quite everywhere yet. We'll maintain this list and keep it up to date. *Last updated 12/12/15*.
+Unfortunately, Universal Links don't work quite everywhere yet. We'll maintain this list and keep it up to date. *Last updated 1/25/15*.
 
 | **App/Browser** | **Status**
 | Messages | works
-| Slack | works
 | Mail | works
 | Whatsapp | works
-| Facebook | works conditionally *
-| FB Messenger | works conditionally *
+| Slack | works, if it's set to open Safari, not in-app browser (uses SFSafariViewController)
 | Safari | works conditionally *
 | Chrome | works conditionally *
-| Google | not working
-| Twitter | not working
-| Gmail | not working
+| Google | works conditionally *
+| Gmail | if Chrome installed, opens link in Chrome (not Universal Link). Else, works conditionally *
+| Inbox | if Chrome installed, opens link in Chrome (not Universal Link). Else, works.
+| Twitter | works conditionally *
+| Facebook | works conditionally *
+| FB Messenger | works conditionally *
+| WeChat | works conditionally *
 | Pinterest | not working
-| Inbox | not working
 | Telegram | not working (uses SFSafariViewController)
 
 
@@ -263,7 +265,7 @@ Unfortunately, Universal Links don't work quite everywhere yet. We'll maintain t
 - Universal Links work with a user driven `<a href="...">` element click *across domains*. Example: if there is a Universal Link on google.com pointing to bnc.lt, it will open the app.
 - Universal Links will not work with a user driven `<a href="...">` element click on the *same domain*. Example: if there is a Universal Link on google.com pointing to a different Universal Link on google.com, it will not open the app.
 - Universal Links cannot be triggered via Javascript (in `window.onload` or via a `.click()` call on an `<a>` element), unless it is part of a user action.
-- Universal Links will only work with Facebook if clicked from a splash page or DeepView.
+- Google, Gmail, Inbox, Twitter, Facebook, FB Messenger, WeChat -- Universal Links only work when you have a webview already open. In other words, they do not work in-app from the feed / main views. Again, they also *must* be cross-domain, aka if your user is on yourapp.com and clicks a Universal Link also for yourapp.com, it will not work. However, clicking from yourapp.com to bnc.lt will trigger the link to function as a Universal Link and open your app directly.
 
 {% endif %}
 
