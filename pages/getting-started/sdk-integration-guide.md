@@ -29,14 +29,14 @@ With extensive use, the iOS SDK footprint is **180 kb**.
 
 #### Install with CocoaPods
 
-The recommended way to install the SDK is via CocoaPods.
+The recommended way to install the SDK is via CocoaPods:
 
-1. Add `pod "Branch"` to your podfile
+1. Add `pod "Branch"` to your podfile.
 1. Run `pod install` from the command line.
 
 #### Install Manually
 
-If you don't use CocoaPods, you can still install the SDK manually
+If you don't use CocoaPods, you can still install the SDK manually:
 
 1. [Grab the latest SDK version](https://s3-us-west-1.amazonaws.com/branchhost/Branch-iOS-SDK.zip), or [clone our open-source GitHub repo](https://github.com/BranchMetrics/branch-ios-sdk).
 1. Drag the `Branch.framework` file into your Xcode project. Be sure that "Copy items if needed" is selected.
@@ -98,20 +98,21 @@ To install the SDK via NPM, use the following command:
 
 #### Install as a NuGet Package
 
-The Branch Xamarin SDK is available as a [NuGet package](https://www.nuget.org/packages/Branch-Xamarin-Linking-SDK). You will need to add the package separately to each project that will use Branch calls. This includes Android and iOS projects, even for Forms based apps, since an initialization call needs to be added to each of the platform-specific projects.
+The Branch Xamarin SDK is available as a [NuGet package](https://www.nuget.org/packages/Branch-Xamarin-Linking-SDK). You need to add this package separately to each project in your solution so that the correct platform-specific initialization call can be made. For apps using Xamarin Forms, this means adding the package separately to iOS, Android, *and* Forms projects.
 
 1. Right click on each project and select `Add` -> `Add NuGet Package` or double click on the Packages folder to bring up the NuGet package dialog in Xamarin Studio.
-1. Find the `Branch Xamarin Linking SDK` and select it. This will add the required assemblies to your projects. 
+1. Find the `Branch Xamarin Linking SDK` and select it. This will add the required assemblies to your project.
+1. Repeat for other platform projects.
 
 #### Install Manually
 
 You can also build and reference the assemblies directly.
 
-1. [Clone our open-source GitHub repo](https://github.com/BranchMetrics/Xamarin-Deferred-Deep-Linking-SDK)
+1. [Clone our open-source GitHub repo](https://github.com/BranchMetrics/Xamarin-Deferred-Deep-Linking-SDK).
 1. Add the SDK assemblies to your solution and reference them from your projects:
-   - **For Android, iOS, and Forms:** add the `BranchXamarinSDK` assembly and reference it from your project.
-   - **For Android:** add the `BranchXamarinSDK.Droid` assembly and reference it from your Android project.
-   - **For iOS:** add the `BranchXamarinSDK.iOS` assembly and reference it from your iOS project.
+   - **Forms:** add the `BranchXamarinSDK` assembly and reference it from your project.
+   - **iOS (including iOS with Forms):** add the `BranchXamarinSDK` *and* `BranchXamarinSDK.iOS` assemblies and reference them from your iOS project.
+   - **Android (including Android with Forms):** add the `BranchXamarinSDK` *and* `BranchXamarinSDK.Droid` assemblies and reference them from your Android project.
 {% endif %}
 <!--- /Xamarin -->
 
@@ -127,7 +128,7 @@ You can also build and reference the assemblies directly.
 
 1. To allow Branch to configure itself, drag a **BranchPrefab** asset to your scene.
 1. Specify your `branchUri` and `branchKey` in the properties.
-   - `branchKey`: get your Branch key from [the Branch dashboard](https://dashboard.branch.io/#/settings)
+   - `branchKey`: get your Branch key from [the Branch dashboard](https://dashboard.branch.io/#/settings).
    - `branchUri`: this must be the same value as you entered in [the Branch link settings](https://dashboard.branch.io/#/settings/link). Do **not** include the `://` characters.
 
 {% image src='/img/pages/getting-started/sdk-integration-guide/unity_branch_key.png' 2-thirds center alt='Unity plugin installation' %}
@@ -136,9 +137,9 @@ You can also build and reference the assemblies directly.
 
 When building an iOS project:
 
-1. All required frameworks will be added automatically
-1. Objective C exceptions will be enabled automatically
-1. URI Scheme will be added into .plist automatically
+1. All required frameworks will be added automatically.
+1. Objective C exceptions will be enabled automatically.
+1. URI Scheme will be added into .plist automatically.
 
 #### iOS + Unity 4.6
 
@@ -155,9 +156,9 @@ We attempt to automatically add an Android manifest flag to support deeplinking,
 <!--- Adobe -->
 {% if page.adobe %}
 
-1. [Download the latest SDK version](https://github.com/BranchMetrics/Branch-AIR-ANE-SDK/archive/master.zip) or clone [our open-source GitHub repository](https://github.com/BranchMetrics/AIR-ANE-Deferred-Deep-Linking-SDK)
+1. [Download the latest SDK version](https://github.com/BranchMetrics/Branch-AIR-ANE-SDK/archive/master.zip) or clone [our open-source GitHub repository](https://github.com/BranchMetrics/AIR-ANE-Deferred-Deep-Linking-SDK).
 1. Import the `Branch.ane` file into your project. Depending your IDE you might need to import the `Branch.swc` as well.
-1. Inside your `*-app.xml`, add this line: `<extensionID>io.branch.nativeExtensions.Branch</extensionID>`
+1. Open your `*-app.xml` and add this line: `<extensionID>io.branch.nativeExtensions.Branch</extensionID>`
 
 {% endif %}
 <!--- /Adobe -->
@@ -165,23 +166,23 @@ We attempt to automatically add an Android manifest flag to support deeplinking,
 <!--- Titanium -->
 {% if page.titanium %}
 
-#### Android Module Installation
-
-1. [Download the latest SDK version](https://s3-us-west-1.amazonaws.com/branchhost/Branch-Titanium-Android-SDK.zip) or [clone our open-source GitHub repository](https://github.com/BranchMetrics/Titanium-Deferred-Deep-Linking-SDK) and locate the ZIP file inside the `android/dist` folder.
-1. Extract the contents.
-3. Copy the `android` folder to your Titanium `modules` folder.
-
 #### iOS Module Installation
 
 1. [Download the latest SDK version](https://s3-us-west-1.amazonaws.com/branchhost/Branch-Titanium-iOS-SDK.zip) or [clone our open-source GitHub repository](https://github.com/BranchMetrics/Titanium-Deferred-Deep-Linking-SDK) and locate the ZIP file inside the `iphone` folder.
 1. Extract the contents.
 3. Copy the `iphone` folder to your Titanium `modules` folder.
 
+#### Android Module Installation
+
+1. [Download the latest SDK version](https://s3-us-west-1.amazonaws.com/branchhost/Branch-Titanium-Android-SDK.zip) or [clone our open-source GitHub repository](https://github.com/BranchMetrics/Titanium-Deferred-Deep-Linking-SDK) and locate the ZIP file inside the `android/dist` folder.
+1. Extract the contents.
+3. Copy the `android` folder to your Titanium `modules` folder.
+
 {% endif %}
 <!--- /Titanium -->
 
 {% if page.ios or page.cordova or page.xamarin %}
-## Configure Xcode Project {% if page.cordova or page.xamarin %}(iOS){% endif %}
+## {% if page.cordova or page.xamarin %}iOS: {% endif %}Configure Xcode Project
 
 ### Add your Branch key
  
@@ -203,7 +204,7 @@ We attempt to automatically add an Android manifest flag to support deeplinking,
 
 Branch opens your app by using its URL scheme (`yourapp://`), which should be unique to your app.
 
-1. On the [Link Settings](https://dashboard.branch.io/#/settings/link) page of the Branch dashboard, ensure that _I have an iOS App_ is checked and _iOS URL Scheme_ is filled.
+1. On the [Link Settings](https://dashboard.branch.io/#/settings/link) page of the Branch dashboard, ensure that **I have an iOS App** is checked and **iOS URI Scheme** is filled.
 1. In Xcode, click your project in the Navigator (on the left side).
 1. Select the "Info" tab.
 1. Expand the "URL Types" section at the bottom.
@@ -215,7 +216,7 @@ Branch opens your app by using its URL scheme (`yourapp://`), which should be un
 <!---       /iOS-specific Branch Key -->
 
 {% if page.android or page.cordova or page.xamarin %}
-## Configure Manifest {% if page.cordova or page.xamarin %}(Android){% endif %}
+## {% if page.cordova or page.xamarin %}Android: {% endif %}Configure Manifest
 
 ### Add your Branch key
 
@@ -235,7 +236,7 @@ Branch opens your app by using its URL scheme (`yourapp://`), which should be un
 
 Branch opens your app by using its URL scheme (`yourapp://`), which should be unique to your app.
 
-1. On the [Link Settings](https://dashboard.branch.io/#/settings/link) page of the Branch dashboard, ensure that _I have an Android App_ is checked and _Android URL Scheme_ is filled.
+1. On the [Link Settings](https://dashboard.branch.io/#/settings/link) page of the Branch dashboard, ensure that **I have an Android App** is checked and **Android URI Scheme** is filled.
 1. Choose the `Activity` you want to open up when a link is clicked. This is typically your `SplashActivity` or a `BaseActivity` that all other activities inherit from.
 1. Inside your `AndroidManifest.xml`, locate where the selected `Activity` is defined.
 1. Within the `Activity` definition, insert the intent filter provided below.
@@ -312,7 +313,7 @@ protected void onStop() {
 ## Add your Branch key
 
 1. Retrieve your Branch Key on the [Settings](https://dashboard.branch.io/#/settings) page of the Branch dashboard.
-1. Open your project's `*-app.xml` file and add the following snippet:
+1. In your project's `*-app.xml` file, add the following platform-specific snippet(s):
 
 #### iOS Projects
 
@@ -342,8 +343,8 @@ protected void onStop() {
 
 Branch opens your app by using its URL scheme (`yourapp://`), which should be unique to your app.
 
-1. On the [Link Settings](https://dashboard.branch.io/#/settings/link) page of the Branch dashboard, ensure that _I have an iOS App_ and/or _I have an Android App_ is checked and _iOS URL Scheme_ and/or _Android URL Scheme_ is filled.
-1. In your project's `*-app.xml` file, insert the snippet below. Change `yourApp` to the URL scheme you've selected.
+1. On the [Link Settings](https://dashboard.branch.io/#/settings/link) page of the Branch dashboard, ensure that **I have an iOS App** and/or **I have an Android App** is checked and **iOS URI Scheme** and/or **Android URI Scheme** is filled.
+1. In your project's `*-app.xml` file, insert the platform-specific snippet(s) below. Change `yourApp` to the URL scheme you've selected.
 
 #### iOS Projects
 
@@ -384,7 +385,7 @@ Branch opens your app by using its URL scheme (`yourapp://`), which should be un
 Branch opens your app by using its URL scheme (`yourapp://`), which should be unique to your app.
 
 1. Retrieve your Branch Key on the [Settings](https://dashboard.branch.io/#/settings) page of the Branch dashboard.
-1. On the [Link Settings](https://dashboard.branch.io/#/settings/link) page of the Branch dashboard, ensure that _I have an iOS App_ is checked and _iOS URL Scheme_ and is filled.
+1. On the [Link Settings](https://dashboard.branch.io/#/settings/link) page of the Branch dashboard, ensure that **I have an iOS App** is checked and **iOS URI Scheme** and is filled.
 1. In your project's `tiapp.xml` file, insert the snippet below. Change `yourApp` to the URL scheme you've selected.
 
 {% highlight xml %}
@@ -429,7 +430,7 @@ Branch opens your app by using its URL scheme (`yourapp://`), which should be un
 
 Branch opens your app by using its URL scheme (`yourapp://`), which should be unique to your app.
 
-1. On the [Link Settings](https://dashboard.branch.io/#/settings/link) page of the Branch dashboard, ensure that _I have an Android App_ is checked and _Android URL Scheme_ is filled.
+1. On the [Link Settings](https://dashboard.branch.io/#/settings/link) page of the Branch dashboard, ensure that **I have an Android App** is checked and **Android URI Scheme** is filled.
 1. Choose the `Activity` you want to open up when a link is clicked. This is typically your `SplashActivity` or a `BaseActivity` that all other activities inherit from.
 1. Inside your `tiapp.xml`, locate where the selected `Activity` is defined.
 1. Within the `Activity` definition, insert the intent filter provided below.
@@ -685,7 +686,7 @@ The generic Xamarin initialization is not required for non-forms apps.
 {% endtab %}
 {% endtabs %}
 
-#### Xamarin Android initialization
+#### Android initialization
 
 Add calls to the `OnCreate` and `OnNewIntent` methods of either your Application class or the first Activity you start. Be sure to replace `branch_key` with your Branch key from the [Settings](https://dashboard.branch.io/#/settings) page of the Branch dashboard.
 
@@ -761,7 +762,7 @@ public class MainActivity: Activity, IBranchSessionInterface
 {% endtabs %}
 
 
-#### Xamarin iOS initialization
+#### iOS initialization
 
 Add these methods to your `AppDelegate.cs` file. Be sure to replace `branch_key` with your Branch key from the [Settings](https://dashboard.branch.io/#/settings) page of the Branch dashboard.
 
@@ -798,7 +799,7 @@ public class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDe
         return true;
     }
     
-    // For Universal Links
+    // Support Universal Links
     public override bool ContinueUserActivity (UIApplication application,
         NSUserActivity userActivity,
         UIApplicationRestorationHandler completionHandler)
@@ -941,7 +942,7 @@ Be sure to have the INIT_SUCCESSED event called, otherwise read the bEvt.informa
 {% endif %}
 
 {% if page.titanium %}
-The SDK can be initialized by inserting the following snippet into your `index.js` file:
+Initialize the SDK by inserting the following snippet into your `index.js` file:
  
 {% highlight js %}
 $.initialize = function(params) {
