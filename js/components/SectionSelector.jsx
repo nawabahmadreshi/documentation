@@ -19,9 +19,6 @@ function getStateFromStore() {
 
 var SectionSelector = React.createClass({
   getInitialState: function() {
-    /*console.log(getSectionStateFromStore());
-    return getSectionStateFromStore();*/
-    //console.log(getStateFromStore());
     return getStateFromStore();
   },
 
@@ -32,11 +29,9 @@ var SectionSelector = React.createClass({
     SectionStore.unlisten(this._onChange);
   },
   _onChange: function() {
-    //this.setState(getSectionStateFromStore());
     return;
   },
   _handleClick: function(key) {
-    //return function() { SectionActions.updateSection(key); }
     return;
   },
   render: function() {
@@ -51,7 +46,7 @@ var SectionSelector = React.createClass({
       var section_path = utils.pageHasSection(self.props.site_map, self.props.current_path, section.key) ? section.key : '';
       var platform_path = utils.pageHasPlatform(self.props.site_map, self.props.current_path, platform) ? platform : '';
 
-      if ( section.key == 'overview' ) {
+      if (section.key == 'overview') {
         platform_path = '';
       }
       else {
