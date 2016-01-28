@@ -94,7 +94,7 @@ branch.banner({
 
 ----
 
-## Advanced: Prepdending Country Codes to Phone Numbers
+## Advanced: Prepending Country Codes to Phone Numbers
 
 If your app audience belongs to one country, you can choose a specific country code to prepend to all phone numbers. You simply add the following code snippet to your `HTML` after the `branch.init()` call. Note that this will prepend the country code to whatever number is entered. You might need to do extra validation to ensure that the user didn't add the country code themselves. 
 
