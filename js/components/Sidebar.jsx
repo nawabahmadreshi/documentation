@@ -41,6 +41,9 @@ var LinkInternal = React.createClass({
 		if (page.sections) {
 			path.push(Object.keys(page.sections)[0]);
 		}
+		if ((page.platforms[props.platform]) && (Object.keys(page.sections)[0] != 'overview')) {
+			path.push(props.platform);
+		}
 		/*console.log(props.group_data);*/
 		return (<a href={ '/' + path.join('/') } className={ isCurrentPath ? 'sidebar-link-selected' : '' } onClick={ self._handleClick(Object.keys(page.sections)[0]) }>{ page.title }</a>);
 	}

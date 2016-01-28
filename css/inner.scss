@@ -52,10 +52,10 @@
 
 .inner__content {
 	margin-left: 300px;
-	padding: 45px;
+	padding: 95px 45px 0 45px;
   padding-top: 95px;
 	font-size: 14px;
-	line-height: 28px;
+	line-height: 2;
 	color: #444444;
 	h1 {
 		padding-bottom: 10px;
@@ -95,10 +95,11 @@
 		}
 	}
 
-	h2, h3, h4 {
+	h2, h3, h4 , h5 {
 		font-weight: lighter;
-		margin: 45px 0 30px 0;
-		a {
+		margin: 30px 0;
+    line-height: 1.4;
+		a:nth-child(2) {
 			color: #444444;
 			cursor: default;
 			display: flex;
@@ -106,29 +107,174 @@
 			&:hover {
 				color: #444444;
 			}
+
+      span {
+        font-weight: bold;
+        padding: 0 10px 0 45px;
+        position: relative;
+        left: -45px;
+        margin-right: -30px;
+        background-color: #eeeeee;
+      }
 		}
 	}
 	h2 {
-		font-size: 40px;
-    //margin-top: 40px;
+		font-size: 36px;
+    margin-top: 0px;
     //margin-bottom: 20px;
 	}
 	h3 {
-		font-size: 32px;
+		font-size: 26px;
 	}
 	h4 {
 		font-size: 16px;
 		text-transform: uppercase;
 		font-weight: bold;
 	}
+  h5 {
+    font-weight: bold;
+    margin: 15px 0;
+  }
+  p, ol, ul {
+    margin-bottom: 30px;
+  }
   hr {
     margin-top: 55px;
   }
-  ol li::before {
-    font-weight: bold;
-    font-size: 18px;
-    background-color: #fafafa;
-    padding: 2px;
+  li {
+    line-height: 1.5;
+    margin-bottom: 15px;
+  }
+  ol {
+    margin-left: 0;
+    padding-left: 30px;
+    padding-right: 0;
+    list-style-type: none;
+    li {
+      counter-increment: step-counter;
+    }
+    li::before {
+      content: counter(step-counter) '';
+      font-weight: bold;
+      font-size: 18px;
+      background-color: #EFF4F5;
+      padding: 0px 6px;
+      display: inline-block;
+      margin-right: 8px;
+      margin-left: -30px;
+    }
+  }
+
+  code, kbd, pre, samp {
+    font-family: Consolas, Menlo, Monaco, "Courier New", monospace;
+  }
+  code {
+    background-color: #eeeeee;
+    padding: 4px 4px 2px 4px;
+    font-size: 100%;
+    margin: 0 2px;
+  }
+
+  pre {
+    padding: 30px 35px;
+    background-color: #eeeeee;
+    border-radius: 0;
+    border: 0;
+    margin: 30px 0;
+  }
+
+  blockquote {
+    background: #FFFFFF;
+    box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.3);
+    padding: 30px;
+    margin: 30px 0;
+    border-left: 5px solid #1cadce;
+    h5 {
+      font-size: 13px;
+      margin-top: 0;
+    }
+    p {
+      font-size: 13px;
+    }
+  }
+
+  table > tbody {
+    > tr > td {
+      border-top: 1px solid #c7d4e4;
+      padding: 30px 15px;
+      &:first-child {
+        text-align: right;
+        white-space: nowrap;
+        //padding-right: 30px;
+      }
+    }
+    > tr:nth-child(odd) {
+      //background-color: #eeeeee;
+    }
+    > tr:nth-child(even) {
+      //background-color: #fafafa;
+    }
+    > tr:last-child td {
+      border-bottom: 1px solid #c7d4e4;
+    }
+  }
+
+  table > thead {
+    > tr th {
+      background-color: #c7d4e4;
+      font-weight: bold;
+      padding: 15px;
+      text-transform: uppercase;
+      border-top: none;
+      border-bottom: 1px solid #c7d4e4;
+      border-radius: 0 2px 0 0;
+      &:first-child {
+        text-align: right;
+        white-space: nowrap;
+        //padding-right: 30px;
+        border-radius: 2px 0 0 0;
+      }
+    }
+  }
+
+  div.panel {
+    background-color: #ffffff;
+    margin-left: -45px;
+    margin-right: -45px;
+    padding: 45px;
+    &.panel-dark {
+      background-color: #fafafa;
+    }
+  }
+  &.content-guide div.panel {
+    &.panel-dark {
+      &::before {
+        background-color: #eeeeee;
+      }
+      ol li::before {
+        background-color: #eeeeee;
+      }
+    }
+    counter-increment: step-count;
+    padding-top: 0;
+    &::before {
+      content: counter(step-count);
+      font-weight: bold;
+      padding: 0 10px 0 45px;
+      position: relative;
+      left: -45px;
+      margin-right: -30px;
+      background-color: #EFF4F5;
+      font-size: 36px;
+      position: relative;
+      top: 62px;
+    }
+    h2 {
+      padding-left: 50px;
+      .material-icons {
+        left: -70px;
+      }
+    }
   }
 	/*@media (min-width: $screen-sm-min) {
 		padding-left: 44px;

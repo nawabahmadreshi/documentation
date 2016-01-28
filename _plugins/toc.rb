@@ -1,8 +1,9 @@
 
-
 module Jekyll
     module TOC
         def toc_generate(html, title)
+            counter = false
+            first = true
             toc = []
             levels = [2]
             html.gsub!(/<h([0-9]) id="(.*)">(.*)<\/h\d>/) { |m, tag, header|
@@ -11,12 +12,32 @@ module Jekyll
                 text = Regexp.last_match[3]
 
                 if levels.find_index(level) then toc.push({ :level => level, :id => id, :text => text, :children => [] }) end
-
-                '<h' + level.to_s + '><a class="anchor" name="' + id + '"></a><a href="#' + id + '"><i class="material-icons">link</i>' + text + '</a></h' + level.to_s + '>'
+                #puts counter
+                if level.to_s == '2'
+                    
+                    counter ^= true
+                    if counter == true
+                        panel_class = 'panel' 
+                    else 
+                        panel_class = 'panel panel-dark'
+                    end
+                    
+                    if first == true
+                        panel_html = '<div class="' + panel_class + '">'
+                        first = false
+                    else
+                        panel_html = '</div><div class="' + panel_class + '">'
+                    end
+                    
+                    panel_html + '<h' + level.to_s + '><a class="anchor" name="' + id + '"></a><a href="#' + id + '"><i class="material-icons">link</i>' + text + '</a></h' + level.to_s + '>'
+                else
+                    '<h' + level.to_s + '><a class="anchor" name="' + id + '"></a><a href="#' + id + '"><i class="material-icons">link</i>' + text + '</a></h' + level.to_s + '>'
+                end
             }
             nested_toc = _nested_toc(toc)
             toc_title = title.length > 0 ? '<h4 class="toc-title">Contents</h4>' : ''
-            toc_title + _render_toc(nested_toc, 1, title) + "<hr />" + html
+            toc_title + _render_toc(nested_toc, 1, title) + html + "</div>"
+            #puts html
         end
         def _render_toc(toc, level, title)
             if toc.length > 0 and title == 'number' then

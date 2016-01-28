@@ -6,7 +6,7 @@ function getSectionState() {
   if (typeof localStorage !== 'undefined') {
     section = localStorage.getItem('section');
   }
-  return section || 'overview';
+  return section || 'guide';
 }
 
 var SectionStore = function() {

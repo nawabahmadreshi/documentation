@@ -1,17 +1,17 @@
 .anchor {
 	position: relative;
-	top: -20px;
+	top: -100px;
 	display: block;
 }
 
 .inner__content h4.toc-title {
   font-weight: lighter;
   margin-top:0;
-  margin-bottom: 15px;
+  margin-bottom: 25px;
 }
 
-.toc-number {
-  padding-left: 20px;
+.toc-number, .toc-list {
+  margin-bottom: 30px;
 }
 .toc-list li {
   display: block;

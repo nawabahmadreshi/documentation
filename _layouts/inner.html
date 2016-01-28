@@ -4,17 +4,17 @@
 
 	{% webasset navbar branch_base='{{site.branch_base}}' subtitle='docs' sub_href='https://dev.branch.io' hide_options='true' no_fixed='true' width='1200' %}
   <body>
-	<div class="container inner container-height">
-		<div class="inner__sidebar">
+	<div class="container inner container-height m-scene">
+		<div class="inner__sidebar scene_element scene_element--fadein">
 			<div class="inner__sidebar__fixed">
 				{% sidebar %}
 			</div>
 		</div>
-		<div class="inner__content">
+		<div class={% if page.guide %}"inner__content content-guide"{% else %}"inner__content"{% endif %}>
 			{% breadcrumbs %}
 			<h1> {{ page.title }} </h1>
 			{% section_selector %}
-			{% if page.hide_platform_selector != true and page.overview != true and page.support != true %}
+			{% if page.hide_platform_selector != true and page.overview != true %}
 			  {% platform_selector %}
 			{% endif %}
 
