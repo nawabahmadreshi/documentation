@@ -123,7 +123,7 @@ function sendSMS(form) {
 
 ### SendSMS() parameters.
 
-The `sendSMS()` method requires a phone number and a [link data dictionary]({{base.url}}/getting-started/link-configuration). You may optionally specify configuration options and a callback.
+The `sendSMS()` method requires a phone number and [link parameters]({{base.url}}/getting-started/link-configuration). You may optionally specify configuration options and a callback.
 
 {% highlight javascript %}
 branch.sendSMS(
@@ -207,7 +207,7 @@ You can create your own custom default message that will be sent if the specific
 
 ## Using liquid tags to access link data
 
-You can access almost any value of your link's data dictionary by using liquid tags. The customization options are only limited to your imagination.
+You can access almost any value of your link's parameters by using liquid tags. The customization options are only limited to your imagination.
 
 - The tag **{% raw %}{{ link }}{% endraw %}** is replaced with your Branch link
 - **{% raw %}{{ link.channel }}{% endraw %}** and **{% raw %}{{ link.campaign }}{% endraw %}** output the channel and campaign, if these were set when creating the link.

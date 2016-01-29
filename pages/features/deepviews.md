@@ -266,7 +266,7 @@ You **cannot** specify `$og_title`, `$og_description` and `$og_image_url` in the
 
 ## Enabling Deepviews for one link
 
-If you don't want to enable Deepviews globally, you can do it for each platform on a per link basis by inserting custom control parameters into a link's [data dictionary]({{base.url}}/getting-started/link-configuration).
+If you don't want to enable Deepviews globally, you can do it for each platform on a per link basis by inserting custom link control parameters [link control parameters]({{base.url}}/getting-started/link-configuration).
 
 - **$ios_deepview**: The name of the template to use for iOS. [default: `default_template`].
 - **$android_deepview**: The name of the template to use for Android. [default: `default_template`].
@@ -512,7 +512,7 @@ If you want to use your App Name (My Awesome App!) inside a Deepview, you would 
 {% endexample %}
 
 ####{% raw %}{{link_data}}{% endraw %}
-Link Object, which contains all the parameters of your link's data dictionary, including your deeplink values.
+Link Object, which contains all of your link's parameters, including your deeplink values.
 
 {% example %}
 If you want to expose a key value pair of 'welcome_message': 'Welcome to my App', you would do the following: `<h1>{% raw %}{{link_data.welcome_message}}{% endraw %}</h1>`, and this would render `Welcome to my App`.

@@ -469,7 +469,7 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
 ## Support existing deeplink routes
 
-If you spent a bunch of time setting up deeplink paths before you heard of Branch and you want to continue using them, you can set `$deeplink_path`, `$ios_deeplink_path` or `$android_deeplink_path` control parameters in the link data dictionary to the URI path you'd like to display.
+If you spent a bunch of time setting up deeplink paths before you heard of Branch and you want to continue using them, you can set the `$deeplink_path`, `$ios_deeplink_path` or `$android_deeplink_path` link control parameters to the URI path you'd like to display.
 
 {% if page.android %}
 
