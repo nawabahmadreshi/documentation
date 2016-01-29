@@ -3,7 +3,7 @@ type: recipe
 directory: getting-started
 title: Link creation
 page_title: How to create Branch links
-description: Learn how to create fully customized deeplinks for apps in Android and iOS and what properties and customizations are available when using Branch.
+description: Learn about the multiple ways to create Branch deeplinks for iOS and Android apps.
 keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Link Properties, Redirect Customization, Mobile SDK, Web SDK, HTTP API
 platforms:
 - ios

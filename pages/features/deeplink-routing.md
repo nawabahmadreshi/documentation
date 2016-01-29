@@ -465,7 +465,30 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
 {% endif %}
 
------
+## Branch-provided data parameters in callback
+
+In addition to any custom key/value pairs specified in the link data dictionary, Branch also returns some other useful parameters every time a session is initialized. Here is a list, and a description of what each represents.
+
+* `~` denotes analytics
+* `+` denotes information added by Branch
+* (for the curious, `$` denotes reserved keywords used for controlling how the Branch service behaves)
+
+
+| **Parameter** | **Meaning** |
+| ---: | --- |
+| **~channel** | The channel on which the link was shared, specified at link creation time
+| **~feature** | The feature, such as `invite` or `share`, specified at link creation time
+| **~tags** | Any tags, specified at link creation time
+| **~campaign** | The campaign the link is associated with, specified at link creation time
+| **~stage** | The stage, specified at link creation time
+| **~creation_source** | Where the link was created ('API', 'Dashboard', 'SDK', 'iOS SDK', 'Android SDK', or 'Web SDK')
+| **~referring_link** | The referring link that drove the install/open if present
+| **+match_guaranteed** | True or false as to whether the match was made with 100% accuracy
+| **+referrer** | The referrer for the link click, if a link was clicked
+| **+phone_number** | The phone number of the user, if the user texted himself/herself the app
+| **+is_first_session** | Denotes whether this is the first session (install) or any other session (open)
+| **+clicked_branch_link** | Denotes whether or not the user clicked a Branch link that triggered this session
+| **+click_timestamp** | Epoch timestamp of when the click occurred
 
 ## Support existing deeplink routes
 
@@ -632,5 +655,121 @@ You can specify the control parameters for individual marketing links by inserti
 {% image src='/img/pages/features/deeplink-routing/deeplink_path.png' half center alt='deeplink path' %}
 
 {% endexample %}
+
+## Retrieve deeplink params after initialization
+
+You can retrieve the deep link data at any time from the Branch singleton by calling one of the below methods.
+
+#### Get current referring params
+
+This returns the latest set of deeplink data from the most recent link that was clicked. If you minimize the app and reopen it, the session will be cleared and so will this data.
+
+{% if page.ios %}
+{% tabs %}
+{% tab objective-c %}
+{% highlight objc %}
+NSDictionary *params = [[Branch getInstance] getLatestReferringParams];
+{% endhighlight %}
+{% endtab %}
+{% tab swift %}
+{% highlight swift %}
+let sessionParams = Branch.getInstance().getLatestReferringParams()
+{% endhighlight %}
+{% endtab %}
+{% endtabs %}
+{% endif %}
+
+{% if page.android %}
+{% highlight java %}
+JSONObject sessionParams = Branch.getInstance().getLatestReferringParams();
+{% endhighlight %}
+{% endif %}
+
+{% if page.cordova %}
+{% highlight js %}
+var params = branch.data();
+{% endhighlight %}
+{% endif %}
+
+{% if page.xamarin %}
+{% highlight c# %}
+Branch branch = Branch.GetInstance ();
+Dictionary<string, object> sessionParams = branch.GetLatestReferringParams();
+{% endhighlight %}
+{% endif %}
+
+{% if page.unity %}
+{% highlight c# %}
+Dictionary<string, object> sessionParams = Branch.getLatestReferringParams();
+{% endhighlight %}
+{% endif %}
+
+{% if page.adobe %}
+{% highlight java %}
+var sessionParams:String = branch.getLatestReferringParams();
+{% endhighlight %}
+{% endif %}
+
+{% if page.titanium %}
+{% highlight js %}
+var sessionParams = branch.getLatestReferringParams();
+{% endhighlight %}
+{% endif %}
+
+#### Get first referring params
+
+This returns the first set of deeplink data the ever referred the user. Once it's been set for a given user, it can never be updated. This is useful for referral programs.
+
+{% if page.ios %}
+{% tabs %}
+{% tab objective-c %}
+{% highlight objc %}
+NSDictionary *params = [[Branch getInstance] getFirstReferringParams];
+{% endhighlight %}
+{% endtab %}
+{% tab swift %}
+{% highlight swift %}
+let firstParams = Branch.getInstance().getFirstReferringParams()
+{% endhighlight %}
+{% endtab %}
+{% endtabs %}
+{% endif %}
+
+{% if page.android %}
+{% highlight java %}
+JSONObject installParams = Branch.getInstance().getFirstReferringParams();
+{% endhighlight %}
+{% endif %}
+
+{% if page.cordova %}
+{% highlight js %}
+Unfortunately not supported on this plaform.
+{% endhighlight %}
+{% endif %}
+
+{% if page.xamarin %}
+{% highlight c# %}
+Branch branch = Branch.GetInstance ();
+Dictionary<string, object> installParams = branch.GetFirstReferringParams();
+{% endhighlight %}
+{% endif %}
+
+{% if page.unity %}
+{% highlight c# %}
+Dictionary<string, object> installParams = Branch.getFirstReferringParams();
+{% endhighlight %}
+{% endif %}
+
+{% if page.adobe %}
+{% highlight java %}
+var installParams:String = branch.getFirstReferringParams();
+{% endhighlight %}
+{% endif %}
+
+{% if page.titanium %}
+{% highlight js %}
+var installParams = branch.getFirstReferringParams();
+{% endhighlight %}
+{% endif %}
 
 {% endif %}

@@ -215,8 +215,8 @@ Branch opens your app by using its URL scheme (`yourapp://`), which should be un
 {% endif %}
 <!---       /iOS-specific Branch Key -->
 
-{% if page.android or page.cordova or page.xamarin %}
-## {% if page.cordova or page.xamarin %}Android: {% endif %}Configure Manifest
+{% if page.android %}
+## Configure Manifest
 
 ### Add your Branch key
 
@@ -231,6 +231,42 @@ Branch opens your app by using its URL scheme (`yourapp://`), which should be un
 
 </application>
 {% endhighlight %}
+
+{% protip title="Use Google Play Install Referrer to improve match accuracy" %}
+Google Play provides an install referrer that can be used to guarantee 100% accuracy of deeplinking through install *when Google Play delivers it in time*. It’s notoriously unreliable and currently unsupported when redirecting from Chrome. However, Branch can use it when available if register for the broadcast by adding this snippet to `AndroidManifest.xml`
+
+{% tabs %}
+{% tab common %}
+{% highlight xml %}
+<receiver android:name="io.branch.referral.InstallListener" android:exported="true">
+	<intent-filter>
+		<action android:name="com.android.vending.INSTALL_REFERRER" />
+	</intent-filter>
+</receiver>
+{% endhighlight %}
+{% endtab %}
+{% tab uncommon %}
+
+Google only allows one `BroadcastReceiver` class per application. If you already receive the install referrer for other purposes, you will need to create a custom receiver class:
+
+{% highlight xml %}
+<receiver android:name="com.myapp.CustomInstallListener" android:exported="true">
+	<intent-filter>
+		<action android:name="com.android.vending.INSTALL_REFERRER" />
+	</intent-filter>
+</receiver>
+{% endhighlight %}
+
+Then create an instance of `io.branch.referral.InstallListener` in `onReceive` and call this:
+
+{% highlight java %}
+InstallListener listener = new InstallListener();
+listener.onReceive(context, intent);
+{% endhighlight %}
+{% endtab %}
+{% endtabs %}
+
+{% endprotip %}
 
 ### Register a URL scheme
 
@@ -250,18 +286,6 @@ Branch opens your app by using its URL scheme (`yourapp://`), which should be un
 	<category android:name="android.intent.category.BROWSABLE" />
 </intent-filter>
 {% endhighlight %}
-
-{% caution %}
-To ensure proper deeplinking from other apps such as Facebook, this Activity must be launched in `singleTask` mode. This is done in the Activity definition as so:
-
-{% highlight xml %}
-<activity
-    android:name="com.yourapp.SplashActivity"
-    android:label="@string/app_name"
-    <!-- Make sure the activity is launched as "singleTask" -->
-    android:launchMode="singleTask">
-{% endhighlight %}
-{% endcaution %}
 
 ### Enable Auto Session Management
 
@@ -308,6 +332,27 @@ protected void onStop() {
 
 {% endif %}
 <!---       /Android-specific Branch Key -->
+
+{% if page.cordova or page.xamarin %}
+## Android: Register a URL scheme
+
+Branch opens your app by using its URL scheme (`yourapp://`), which should be unique to your app.
+
+1. On the [Link Settings](https://dashboard.branch.io/#/settings/link) page of the Branch dashboard, ensure that **I have an Android App** is checked and **Android URI Scheme** is filled.
+1. Choose the `Activity` you want to open up when a link is clicked. This is typically your `SplashActivity` or a `BaseActivity` that all other activities inherit from.
+1. Within the `Activity` definition, insert the intent filter provided below.
+   - Change `yourApp` under `android:scheme` to the URL scheme you've selected.
+
+{% highlight xml %}
+<intent-filter>
+	<data android:scheme="yourApp" android:host="open" />
+	<action android:name="android.intent.action.VIEW" />
+	<category android:name="android.intent.category.DEFAULT" />
+	<category android:name="android.intent.category.BROWSABLE" />
+</intent-filter>
+{% endhighlight %}
+
+{% endif %}
 
 {% if page.adobe %}
 ## Add your Branch key

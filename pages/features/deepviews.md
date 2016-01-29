@@ -70,7 +70,7 @@ This is all you need to do to enable Deepviews. For each link, Branch will attem
 
 ## Customizing Deepview content
 
-The default Deepview template simply displays the content of three parameters from the link's [data dictionary]({{base.url}}/getting-started/link-configuration). You can specify the content of these parameters when creating your link to control what will display in that link’s Deepview. If nothing is set for a particular link, we will gracefully fall back to the OG values set for your entire app in _Settings > Link Settings > Social Media Display Customization._
+The default Deepview template simply displays the content from three of the link's [control parameters]({{base.url}}/getting-started/link-configuration). You can specify the content of these parameters when creating your link to control what will display in that link’s Deepview. If nothing is set for a particular link, we will gracefully fall back to the OG values set for your entire app in _Settings > Link Settings > Social Media Display Customization._
 
 | Key | Value
 | --- | ---
@@ -79,7 +79,7 @@ The default Deepview template simply displays the content of three parameters fr
 | **$og_image_url** | The URL for the image you'd like to appear on the deepview
 
 {% protip title="Hosting your own OG tags" %}
-If you want to host your own OG tags, so that you can later customize them, leave these parameters empty and specify a **$og_redirect** or **$desktop_url** parameter when you create the link. Branch has a scraper that will populate the Deepview using the OG tags currently live at the URL you specify when the Deepview is shown to each visitor.
+If you want to use OG tags you host elsewhere, leave these parameters empty and specify a **$desktop_url** control parameter when you create the link. Branch will perform a one-time scrape to populate the Deepview using the OG tags from the URL you specify.
 {% endprotip %}
 
 {% example title="When creating links dynamically" %}
