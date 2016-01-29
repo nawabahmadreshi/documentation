@@ -221,18 +221,33 @@ Below is a snippet of code that you can use to retrieve the full Universal Link 
 
 -----
 
+## Handle Old URI Paths with Universal Links
 
-## Using Your Old URI Paths
+When you make the move to Universal Links, you might be wondering how to best harness your old URI paths for iOS 9.X users while keeping the experience the same for iOS 8.X and lower.
 
-In order to use your old URI paths you can grab the `webpageUrl` from the user acvitity and pass it to the handle routing. For example, let’s say that you previously had all of your routing in a method in the App Delegate named `handleRouting`. Implement the following code block:
+**iOS 9.X**:
 
-{% ingredient sdk_setup/ios9_webpageurl_handler %}{% endingredient %}
+1. Set a flag (**self.branchUniversalLink = YES**) to indicate that the user entered the App via a Branch Universal Link in
+`application:continueUserActivity:restorationHandler:`
 
-The URLs might be different from your traditional URI schemes, so you just need to have that logic split out in the handleRouting call.
+2. Use the **$deeplink_path** key (set at the time of Branch link creation) in the deep link handler callback to route users to the correct place in your App in `application:didFinishLaunchingWithOptions:launchOptions:`
+
+
+**iOS 8.X and lower**:
+
+1. Set a flag (**self.branchUniversalLink = NO**) to indicate that a user did not enter into the App via a Branch Universal Link in `application:openURL:sourceApplication:annotation:`
+
+2. Take users to the correct place in your app by harnessing the url passed as a parameter to `application:openURL:sourceApplication:annotation:`
+
+3. When Branch has finished initialization, in `application:didFinishLaunchingWithOptions:launchOptions:`, ensure that the user does not get routed to the wrong place by harnessing the flag set in 1.
+
+Here is the best way to accomplish this:
+
+{% ingredient sdk_setup/ios9_deep_link_path %}{% endingredient %}
+
 
 
 -----
-
 
 ## Which Apps/Browsers Support Universal Links
 
