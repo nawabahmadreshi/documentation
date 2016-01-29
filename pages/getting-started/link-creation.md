@@ -125,6 +125,40 @@ branchUniversalObject.getShortUrlWithLinkProperties(linkProperties,  andCallback
 {% endtab %}
 {% endtabs %}
 
+{% example title="Let Branch handle the details" %}
+
+Creating links is great, but creating a ton of different links up front for all the channels in `UIActivityViewController` is a pain. You can use our preconfigured `UIActivityItemProvider` to make life easier. Calling this method will automatically generate a Branch link with all the appropriate analytics tags when the user presses a button to share.
+
+{% image src='/img/pages/getting-started/link-creation/ios_share_sheet.jpg' actual center alt='ios share sheet' %}
+
+To implement it, use the following `showShareSheetWithLinkProperties` method instead of `getShortUrlWithLinkProperties` in the last step above:
+
+{% tabs %}
+{% tab objective-c %}
+{% highlight objc %}
+[branchUniversalObject showShareSheetWithLinkProperties:linkProperties
+                                           andShareText:@"Super amazing thing I want to share!"
+                                     fromViewController:self 
+                                            andCallback:^{
+    NSLog(@"finished presenting");
+}];
+{% endhighlight %}
+{% endtab %}
+
+{% tab swift %}
+{% highlight swift %}
+branchUniversalObject.showShareSheetWithLinkProperties(linkProperties, 
+                                        andShareText: "Super amazing thing I want to share!",
+                                        fromViewController: self,
+                                        andCallback: { () -> Void in
+    NSLog("done showing share sheet!")
+})
+{% endhighlight %}
+{% endtab %}
+{% endtabs %}
+
+{% endexample %}
+
 {% endif %}
 <!--- /iOS -->
 
@@ -167,6 +201,47 @@ branchUniversalObject.generateShortUrl(this, linkProperties, new BranchLinkCreat
     }
 });
 {% endhighlight %}
+
+{% example title="Let Branch handle the details" %}
+
+Android has very poor offerings for native share sheet functionality, so we built our own and bundled it into the core SDK. This share sheet is customizable and will automatically generate a link when the user selects a channel to share to.
+
+{% image src='/img/pages/getting-started/link-creation/android_share_sheet.png' third center alt='Android share sheet' %}
+
+To implement it, use the following `showShareSheet` method instead of `generateShortUrl` in the last step above:
+
+{% highlight java %}
+branchUniversalObject.showShareSheet(this, 
+                                      linkProperties,
+                                      shareSheetStyle,
+                                       new Branch.BranchLinkShareListener() {
+    @Override
+    public void onShareLinkDialogLaunched() {
+    }
+    @Override
+    public void onShareLinkDialogDismissed() {
+    }
+    @Override
+    public void onLinkShareResponse(String sharedLink, String sharedChannel, BranchError error) {
+    }
+    @Override
+    public void onChannelSelected(String channelName) {
+    }
+});
+{% endhighlight %}
+
+You can customize the styling with the ShareSheetStyle class:
+
+{% highlight java %}
+ShareSheetStyle shareSheetStyle = new ShareSheetStyle(MainActivity.this, "Check this out!", "This stuff is awesome: ")
+                        .setCopyUrlStyle(getResources().getDrawable(android.R.drawable.ic_menu_send), "Copy", "Added to clipboard")
+                        .setMoreOptionStyle(getResources().getDrawable(android.R.drawable.ic_menu_search), "Show more")
+                        .addPreferredSharingOption(SharingHelper.SHARE_WITH.FACEBOOK)
+                        .addPreferredSharingOption(SharingHelper.SHARE_WITH.EMAIL);
+{% endhighlight %}
+
+{% endexample %}
+
 {% endif %}
 <!--- /Android -->
 
