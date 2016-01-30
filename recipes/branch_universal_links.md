@@ -233,9 +233,9 @@ When the entry point is `application:continueUserActivity:restorationHandler:`
 
 When the entry point is `application:openURL:sourceApplication:annotation:`
 
-1. Take users to the correct place in your app by harnessing the url passed as a parameter.
+1. Take users to the correct place in your app by harnessing the url passed in as a parameter.
 
-2. When Branch has finished initialization, in `application:didFinishLaunchingWithOptions:launchOptions:`, ensure that the user does not get deeplinked 2x for non-Universal Links by harnessing **self.branchUniversalLink**.
+2. When Branch has finished initialization, in `application:didFinishLaunchingWithOptions:launchOptions:`, ensure that the user does not get deeplinked 2x for non-Universal Links by harnessing the value of **self.branchUniversalLink**.
 
 Here is the best way to accomplish this:
 
