@@ -233,7 +233,7 @@ Branch opens your app by using its URL scheme (`yourapp://`), which should be un
 {% endhighlight %}
 
 {% protip title="Use Google Play Install Referrer to improve match accuracy" %}
-Google Play provides an install referrer that can be used to guarantee 100% accuracy of deeplinking through install *when Google Play delivers it in time*. It’s notoriously unreliable and currently unsupported when redirecting from Chrome. However, Branch can use it when available if register for the broadcast by adding this snippet to `AndroidManifest.xml`
+Google Play provides an install referrer that can be used to guarantee 100% accuracy of deeplinking through install *when Google Play delivers it in time*. It’s notoriously unreliable and currently unsupported when redirecting from Chrome. However, Branch can use it when available if registered to receive the broadcast by adding this snippet to `AndroidManifest.xml`
 
 {% tabs %}
 {% tab common %}

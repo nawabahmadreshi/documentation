@@ -23,7 +23,7 @@ Every Branch link includes a dictionary for `key : value` pairs specified by you
 
 Use analytics tags to help _organize your data_. Track updates, run A/B tests and measure the effectiveness of different channels using these labels.
 
-| **Key** | **Usage**
+| **Label** | **Usage**
 | ---: | ---
 | **channel** | Use channel to tag the _route_ that your link reaches users. For example, tag links with ‘Facebook’ or ‘LinkedIn’ to help track clicks and installs through those paths separately.
 | **feature** | This is the feature of your app that the link might be associated with. For example, if you had built a referral program, you would label links with the feature ‘referral’.

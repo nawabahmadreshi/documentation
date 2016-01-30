@@ -658,7 +658,7 @@ You can specify the control parameters for individual marketing links by inserti
 
 ## Retrieve deeplink params after initialization
 
-You can retrieve the deep link data at any time from the Branch singleton by calling one of the below methods.
+You can retrieve the deeplink data at any time from the Branch singleton by calling one of the below methods.
 
 #### Get current referring params
 
@@ -718,7 +718,7 @@ var sessionParams = branch.getLatestReferringParams();
 
 #### Get first referring params
 
-This returns the first set of deeplink data the ever referred the user. Once it's been set for a given user, it can never be updated. This is useful for referral programs.
+This returns the first set of deeplink data that ever referred the user. Once it's been set for a given user, it can never be updated. This is useful for referral programs.
 
 {% if page.ios %}
 {% tabs %}
