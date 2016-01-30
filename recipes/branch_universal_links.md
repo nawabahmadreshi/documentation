@@ -225,21 +225,17 @@ Below is a snippet of code that you can use to retrieve the full Universal Link 
 
 When you make the move to Universal Links, you might be wondering how to best harness your old URI paths for iOS 9.X users while keeping the experience the same for iOS 8.X and lower.
 
-**iOS 9.X**:
+When the entry point is `application:continueUserActivity:restorationHandler:`
 
-1. Set a flag (**self.branchUniversalLink = YES**) to indicate that the user entered the App via a Branch Universal Link in
-`application:continueUserActivity:restorationHandler:`
+1. Set a flag (**self.branchUniversalLink = YES**) to indicate that the user entered the App via a Branch Universal Link.
 
-2. Use the **$deeplink_path** key (set at the time of Branch link creation) in the deep link handler callback to route users to the correct place in your App in `application:didFinishLaunchingWithOptions:launchOptions:`
+2. When Branch has finished initialization, in `application:didFinishLaunchingWithOptions:launchOptions:`, use the **$deeplink_path** key (set at the time of Branch link creation) to route users to the correct place in your App.
 
+When the entry point is `application:openURL:sourceApplication:annotation:`
 
-**iOS 8.X and lower**:
+1. Take users to the correct place in your app by harnessing the url passed as a parameter.
 
-1. Set a flag (**self.branchUniversalLink = NO**) to indicate that a user did not enter into the App via a Branch Universal Link in `application:openURL:sourceApplication:annotation:`
-
-2. Take users to the correct place in your app by harnessing the url passed as a parameter to `application:openURL:sourceApplication:annotation:`
-
-3. When Branch has finished initialization, in `application:didFinishLaunchingWithOptions:launchOptions:`, ensure that the user does not get routed to the wrong place by harnessing the flag set in 1.
+2. When Branch has finished initialization, in `application:didFinishLaunchingWithOptions:launchOptions:`, ensure that the user does not get deeplinked 2x for non-Universal Links by harnessing **self.branchUniversalLink**.
 
 Here is the best way to accomplish this:
 

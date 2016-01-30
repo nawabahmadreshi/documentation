@@ -27,7 +27,7 @@
     // ... your other logic here, such as ...
     [self routeUrl:url];
 
-    return self.branchUniversalLink;
+    return handledByBranch;
 }
 
 //Entry point for iOS 9.X users
@@ -37,7 +37,6 @@
     BOOL handledByBranch = [[Branch getInstance] continueUserActivity:userActivity];
     if (handledByBranch){
         self.branchUniversalLink = YES;
-        return self.branchUniversalLink;
     }
     // ... your other logic here ...
     return handledByBranch;
