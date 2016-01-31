@@ -80,7 +80,7 @@ Use these keys to set the value of the deeplink path that you'd like us to appen
 | **iframe_src** | Set to true when you are going to set an iFrame src to a Branch link. We need to issue 300s in order to properly redirect in this case. | `false`
 | **has_app** | Set to 'true' or 'false' in order to tell us whether you want us to try to open up the app for this particular link or not. | `true`
 | **debug** | Set to 'true' to route to a link debug page that shows the labels and configuration of a link | `false`
-| **type** | Set to 1 to make it a one-time use link | `0`
+| **type** | Set to 1 to make it a one-time use link (Marketing dashboard links are set to 2) | `0`
 
 ## Display customization
 
