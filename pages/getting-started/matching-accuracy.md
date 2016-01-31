@@ -22,7 +22,7 @@ For example, we'd call `myapp://open?link_click_id=123456` to open the app immed
 
 ### IDFA token matching across the Branch Network
 
-When a user clicks a Branch link for your app, and we've seen them click a link for another app on our network, we've already matched them up to a corresponding device identifier. This means that when they install the app, we know with 100% certainty that they just came from that link click.
+When a user clicks a Branch link for your app, and we've seen them click a link for another app on our partner network, we've already matched them up to a corresponding device identifier. This means that when they install the app, we know with 100% certainty that they just came from that link click.
 
 The fact that we have such a global network of apps with hundreds of millions of users clicking links, means that when you join the platform, you can benefit from the crowd-sourced accuracy gained through all our apps contributing the browser-app profiles. 
 
