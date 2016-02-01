@@ -3,37 +3,39 @@
 - title: Getting Started
   directory: getting-started
   children:
-    - add_the_sdk
-    - setup_deep_linking
-    - measuring_installs
+    - sdk-integration-guide
+    - analytics-events
+    - link-configuration
+    - link-creation
     - title: Advanced
       children:
-        - branch_universal_links
         - testing_your_integration
-        - submitting_apps
+        - submitting-apps
         - dashboard_pro_tips
-        - webhooks_and_exporting_data
-        - matching_accuracy
+        - webhooks
+        - matching-accuracy
 - title: Features
   directory: features
   children:
+    - app-links
+    - universal-links
+    - deeplink-routing
     - title: Content Indexing
       children:
         - google_app_indexing
         - spotlight_indexing
     - title: Personalized Sharing
       children:
-        - content_sharing
         - personalized_welcome
     - title: Web to App Conversion
       children:
         - deepviews
         - deepviews_test
-        - deep_link_mobile_site
-        - app_download_banner
+        - deeplink-mobile-site
+        - app-download-banner
         - app_download_banner_3sections
         - app_download_banner_4sections
-        - text_me_the_app_page
+        - text-me-the-app-page
     - title: Marketing for Mobile
       children:
         - email_campaigns

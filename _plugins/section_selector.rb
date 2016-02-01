@@ -38,16 +38,6 @@ module Jekyll
       current_path = context.environments.first['page']['current_path'] || '/'
       site_map = context.registers[:site].data['site_map']
       url_section = context.environments.first['page']['section'] || ''
-      #puts context.environments.first['page']
-      #puts 'section1='
-      #puts sections
-      puts current_path
-      puts url_section
-      #puts context.environments.first['page']['url']
-      #puts 'section2='
-      #puts context.environments.first['page']['sections']
-      #puts 'section3='
-      #puts context.environments.first['page']['section']
 
       return BranchUtils.instance.react(
         '<SectionSelector

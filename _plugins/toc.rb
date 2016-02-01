@@ -12,7 +12,7 @@ module Jekyll
                 text = Regexp.last_match[3]
 
                 if levels.find_index(level) then toc.push({ :level => level, :id => id, :text => text, :children => [] }) end
-                #puts counter
+
                 if level.to_s == '2'
                     
                     counter ^= true
@@ -37,7 +37,6 @@ module Jekyll
             nested_toc = _nested_toc(toc)
             toc_title = title.length > 0 ? '<h4 class="toc-title">Contents</h4>' : ''
             toc_title + _render_toc(nested_toc, 1, title) + html + "</div>"
-            #puts html
 
         end
         def _render_toc(toc, level, title)

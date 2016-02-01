@@ -23,13 +23,15 @@ module Jekyll
       else
         @dir = types
         @name = page.name.split(".")[0] + '.md'
-      else
-        @dir = File.join(types, page.name.split(".")[0])
-        @name = 'guide' + '.md'
       end
 
-      self.read_yaml(File.join(base, 'recipes'), page.name)
-      self.process(@name)
+      if File.exist?(File.join(base, 'pages', types, page.name))
+        self.read_yaml(File.join(base, 'pages', types), page.name)
+        self.process(@name)
+      else
+        self.read_yaml(File.join(base, 'recipes'), page.name)
+        self.process(@name)
+      end
 
       formatted_sections = {
         "overview" => "Overview",

@@ -29,22 +29,17 @@ var LinkInternal = React.createClass({
 		var props = this.props,
 			page_key = props.page_key;
 		if (!props.group_data || !props.group_data[page_key]) {
-			/*console.log(page_key + " pagekey");*/
 			return (<a href="#">{ page_key }</a>);
 		}
 		var page = props.group_data[page_key],
 			path = props.directory ? [ props.directory, page_key ] : [ page_key ],
 			isCurrentPath = props.current_path == path.join('/');
-		/*if (page.platforms[props.platform]) {
-			path.push(props.platform);
-		}*/
 		if (page.sections) {
 			path.push(Object.keys(page.sections)[0]);
 		}
 		if ((page.platforms[props.platform]) && (Object.keys(page.sections)[0] != 'overview')) {
 			path.push(props.platform);
 		}
-		/*console.log(props.group_data);*/
 		return (<a href={ '/' + path.join('/') } className={ isCurrentPath ? 'sidebar-link-selected scene_element scene_element--fadein' : 'scene_element scene_element--fadein' } onClick={ self._handleClick(Object.keys(page.sections)[0]) }>{ page.title }</a>);
 	}
 });
@@ -57,7 +52,6 @@ var LinkGroup = React.createClass({
 		};
 	},
 	_toggle: function() {
-		/*console.log(this);*/
 		this.setState({
 			expand: !this.state.expand
 		});
@@ -132,12 +126,8 @@ var LinkGroup = React.createClass({
 
 var Sidebar = React.createClass({
 	getInitialState: function() {
-		/*return getStateFromStore();*/
 	  var storeState = getStateFromStore();
-	  /*storeState.push({windowWidth: window.innerWidth});*/
-	  /*console.log(storeState);*/
 	  return storeState;
-		/*return {windowWidth: window.innerWidth, storeState};*/
 	},
 	handleScroll: function(e) {
   },
