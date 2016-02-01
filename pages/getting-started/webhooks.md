@@ -221,14 +221,14 @@ The picture below show cases what a webhook would look like with proper filters.
 
 {% protip title="Testing Branch Tracking Links" %}
 
-Once filters are correctly set, you will want to test using your device. Since installs are uniquely tracked per device, you must ensure that you are [in test mode]({{base.url}}/getting-started/testing-your-integration).
+Once filters are correctly set, you will want to test using your device. Since installs are uniquely tracked per device, you must ensure that you are [in debug mode]({{base.url}}/getting-started/testing-your-integration#use-debug-mode-to-simulate-fresh-installs).
 
-After test mode is enabled, do the following steps to verify your webhook works as expected:
+After debug mode is enabled, do the following steps to verify your webhook works as expected:
 
 1. Uninstall your app from your device
 1. On your device, open the Branch link you wish to test 
 1. Re-install your app
-1. Confirm an install event occurs by looking through the SDK's `initSession` callbacks and verifying `+clicked_branch_link` and `+is_first_session` both equal `1`.
+1. Confirm an install event occurs by looking through the SDK's session initialization callbacks and verifying `+clicked_branch_link` and `+is_first_session` both equal `1`.
 
 If all steps are met, your webhook will fire as expected.
 
