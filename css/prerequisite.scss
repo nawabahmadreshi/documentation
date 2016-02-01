@@ -1,0 +1,16 @@
+.prerequisite {
+	border-left-color: #FFEE00;
+	display: inline-block;
+	margin: 20px 0px;
+
+	.prerequisite__title {
+		font-weight: 600;
+		margin-top: 0px;
+
+
+		i {
+			color: #FFEE00;
+			margin-right: 5px;
+		}
+	}
+}
