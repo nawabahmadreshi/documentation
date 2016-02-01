@@ -63,7 +63,7 @@ Lastly, if you don't want us to host the metadata for your links, we'll gently 3
 
 **2. We create a sitemap of content [coming soon]**
 
-We're working with Google to ensure that we can properly transfer all of your links directly into their index. By the end of 2015, we'll be automatically uploading the list of links via a sitemap to Google on your behalf. Below is an example of the format we'll be using.
+We're working with Google to ensure that we can properly transfer all of your links directly into their index. By the end of Q1 of this year, we'll be automatically uploading the list of links via a sitemap to Google on your behalf. Below is an example of the format we'll be using.
 
 {% highlight xml %}
 <?xml version="1.0" encoding="UTF-8" ?>

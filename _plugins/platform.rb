@@ -23,6 +23,9 @@ module Jekyll
       else
         @dir = types
         @name = page.name.split(".")[0] + '.md'
+      else
+        @dir = File.join(types, page.name.split(".")[0])
+        @name = 'guide' + '.md'
       end
 
       self.read_yaml(File.join(base, 'recipes'), page.name)
@@ -100,6 +103,7 @@ module Jekyll
         if page.data['directory'] then
           if page.data['sections'] then
             page.data['sections'].each do |section|
+
               site.pages << PlatformPage.new(site, site.source, page.data['directory'], page, '', section, false, false)
             end
           end

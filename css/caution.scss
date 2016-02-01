@@ -1,0 +1,16 @@
+.caution {
+	border-left-color: #AD3631;
+	display: inline-block;
+	margin: 20px 0px;
+
+	.caution__title {
+		font-weight: 600;
+		margin-top: 0px;
+
+
+		i {
+			color: #AD3631;
+			margin-right: 5px;
+		}
+	}
+}

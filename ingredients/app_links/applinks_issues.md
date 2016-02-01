@@ -12,6 +12,10 @@ If Facebook is having trouble reading the AppLinks from the Branch link, you mig
 3. Examine errors regarding AppLinks from the output window.
 4. Click on the Fetch New Scrape Information button.
 
+You can further automate the rescraping process by using this command after you create a new link and before you use it for any ads: 
+ 
+<code>curl --insecure "https://graph.facebook.com/?id=[YOUR-URL-TO-SCRAPE]&scrape=true”</code>
+
 The last step typically resolves this problem if you are certain that your Branch Link Settings are correct. 
 
 If the OG tag tester continues to report problems, we suggest that you:
@@ -31,5 +35,5 @@ We recently discovered a bug within the Facebook system that prevents App Links 
 - Social Discovery is set to **Yes**
 - Country Restricted is set to **No**
 
-It cannot look like this:
+It has to look like this **exactly**:
 {% image src='/img/recipes/appinvites/app_restrictions.png' third center alt='troubleshooting' %}

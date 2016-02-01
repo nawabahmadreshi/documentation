@@ -129,13 +129,13 @@ public class App : Application, IBranchSessionInterface
 {
     public void InitSessionComplete (Dictionary<string, object> data)
     {
-        if (data.ContainsKey("picture_id") {
+        if (data.ContainsKey("picture_id")) {
             // load the view to show the picture
         } else {
             // load your normal view
         }
     }
-}
+}Which Apps/Browsers Support Universal Links
 {% endhighlight %}
 
 {% endif %}

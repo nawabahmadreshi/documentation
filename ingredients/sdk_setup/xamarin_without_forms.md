@@ -16,21 +16,16 @@ public class MainActivity: Activity, IBranchSessionInterface
     {
         base.OnCreate (savedInstanceState);
 
-        global::Xamarin.Forms.Forms.Init (this, savedInstanceState);
-
         BranchAndroid.Init (this, "your branch key here", Intent.Data);
 
-        App app = new App ();
         // Call this method to enable automatic session management and initialize
-        BranchAndroid.getInstance().SetLifeCycleHandlerCallback (this, app);
-
-        LoadApplication (app);
+        BranchAndroid.getInstance().SetLifeCycleHandlerCallback (this, this);
     }
 
     // Ensure we get the updated link identifier when the app is opened from the
     // background with a new link.
     protected override void OnNewIntent(Intent intent) {
-        BranchAndroid.GetInstance().SetNewUrl(intent.Data);
+        BranchAndroid.getInstance().SetNewUrl(intent.Data);
     }
 
     #region IBranchSessionInterface implementation

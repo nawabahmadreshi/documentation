@@ -139,7 +139,7 @@ onResume: function() {
 },
 {% endhighlight %}
 
-If data is null and err contains a string denoting a request timeout then inspect your app's [content security policies](https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy) as they may block your app from communicating with Branch's servers.
+*Note* If data is null and err contains a string denoting a request timeout then inspect your app's [content security policies](https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy) as they may block your app from communicating with Branch's servers. Make sure to whitelist `api.branch.io` and `bnc.lt` in your CSP if so.
 
 Structure of the callback `data.data` object:
 
@@ -206,9 +206,10 @@ public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsApplicat
 
         global::Xamarin.Forms.Forms.Init (this, savedInstanceState);
 
-        BranchAndroid.Init (this, "your branch key here", Intent.Data);
+        BranchAndroid.Init (this, "your branch key here", Intent.Data, Intent.Extras);
         
         App app = new App ();
+        
         // Call this method to enable automatic session management
         BranchAndroid.getInstance().SetLifeCycleHandlerCallback (this, app);
 
@@ -218,7 +219,7 @@ public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsApplicat
     // Ensure we get the updated link identifier when the app is opened from the
     // background with a new link.
     protected override void OnNewIntent(Intent intent) {
-        BranchAndroid.GetInstance().SetNewUrl(intent.Data);
+        BranchAndroid.getInstance().SetNewUrl(intent.Data);
     }
 }
 {% endhighlight %}
@@ -271,9 +272,9 @@ public class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDe
 {% endif %}
 
 {% if page.unity %}
-Called when app first initializes a session, ideally in a *class that is initiated with the start of your scene*. 
+Branch SDK will be initilized automatically, just add BranchPrefab to your scene and set parameters. We recommend to add BranchPrefab to your first scene, before any calling of Branch SDK API. Don't worry about several instances of Branch SDK even if your first scene is scene that will be launched several times (for example: content loading scene).
 
-If you created a custom link with your own custom dictionary data, you probably want to know when the user session init finishes, so you can check that data. Think of this callback as your "deep link router". If your app opens with some data, you want to route the user depending on the data you passed in. Otherwise, send them to a generic install flow.
+When you created a custom link with your own custom dictionary data, you probably want to know which data is sent to your app and then check that data. For example, if your app opens with some data, you want to route the user depending on the data you passed in. To catch sent data, you need to register a callback. Think of this callback as your "deep link router". Important note: your callback must be visible from all your scenes, if you plan to process data in each scene.
 
 This deep link routing callback is called 100% of the time on init, with your link params or an empty dictionary if none present.
 
@@ -283,14 +284,16 @@ using System.Collections.Generic;
 
 public class MyCoolBehaviorScript : MonoBehaviour {
     void Start () {
-        Branch.initSession(delegate(Dictionary<string, object> parameters, string error) {
-            if (error != null) {
-                System.Console.WriteLine("Oh no, something went wrong: " + error);
-            }
-            else if (parameters.Count > 0) {
-                System.Console.WriteLine("Branch initialization completed with the following params: " + parameters.Keys);
-            }
-        });
+        Branch.initSession(CallbackWithParams);
+    }
+    
+    void CallbackWithParams(Dictionary<string, object> parameters, string error) {
+        if (error != null) {
+            System.Console.WriteLine("Oh no, something went wrong: " + error);
+        }
+        else if (parameters.Count > 0) {
+            System.Console.WriteLine("Branch initialization completed with the following params: " + parameters.Keys);
+        }
     }
 }
 {% endhighlight %}

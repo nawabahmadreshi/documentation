@@ -1,0 +1,308 @@
+	
+<head>
+	<!-- This is only needed for testing -->
+	<!--<script src="{{base.url}}/js/webhook_builders/dynamic_link_builder_testing.js" type="text/javascript"></script>-->
+	<script src="{{base.url}}/js/webhook_builders/dynamic_link_builder.js" type="text/javascript"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+</head>
+
+<body>
+
+	<table>
+		<!-- START OF BASIC LINK INFORMATION -->
+		<tr><td><h3><b>Link Information </b></h3></td></tr>
+	        <tr>
+	            <td><label>Branch Domain</label></td>
+	            <td><input style="width:300px" id="domain" type="text" maxlength="20" required/></td>
+	        </tr>
+
+	        <tr>
+	            <td><label>Branch Key</label></td>
+	            <td><input style="width:300px" id="branchKey" type="text" maxlength="45" required/></td>
+	        </tr>
+	</table>
+			</br>
+			</br>
+		
+	<table>
+		<!-- START OF BRANCH ANALYTICS TAGS -->
+		<tr><td><h3><b>Analytics Tags </b></h3></td></tr>
+	       	<tr>
+	            <td><label>Channel</label></td>
+	            <td><input id="channel" type="text" maxlength="100"/></td>
+	        </tr>
+
+	       	<tr>
+	            <td><label>Feature</label></td>
+	            <td><input id="feature" type="text" maxlength="100"/></td>
+	        </tr>
+
+	        <tr>
+	            <td><label>Campaign</label></td>
+	            <td><input id="campaign" type="text" maxlength="100"/></td>
+	        </tr>
+
+	        <tr>
+	            <td><label>Stage</label></td>
+	            <td><input id="stage" type="text" maxlength="100"/></td>
+	        </tr>
+
+	        <tr>
+	            <td><label>Tags</label></td>
+	            <td><input style="width:300px" id="tag1" type="text" maxlength="200" placeholder="format: param=sometext"/></td>
+	        </tr>
+	        <tr>
+	        	<td><label>Tags</label></td>
+	            <td><input style="width:300px" id="tag2" type="text" maxlength="200" placeholder="format: param=sometext"/></td>
+	        </tr>
+	        <tr>
+	        	<td><label>Tags</label></td>
+	            <td><input style="width:300px" id="tag3" type="text" maxlength="200" placeholder="format: param=sometext"/></td>
+	        </tr>
+	        	<td><label>Tags</label></td>
+	            <td><input style="width:300px" id="tag4" type="text" maxlength="200" placeholder="format: param=sometext"/></td>
+	        </tr>
+	        <tr>
+	        	<td><label>Tags</label></td>
+	            <td><input style="width:300px" id="tag5" type="text" maxlength="200" placeholder="format: param=sometext"/></td>
+	        </tr>
+
+	        <tr>
+	            <td><label>iFrame Source</label></td>
+	            <td><input id="iframeSrc" type="text" maxlength="100" placeholder="True or False"/></td>
+	        </tr>
+
+	        <tr>
+	            <td><label>Has App</label></td>
+	            <td><input id="hasApp" type="text" maxlength="100" placeholder="True or False"/></td>
+	        </tr>
+
+	       	<tr>
+	            <td><label>Debug</label></td>
+	            <td><input id="debug" type="text" maxlength="100" placeholder="True or False"/></td>
+	        </tr>
+	
+			<tr>
+	            <td><label>Type</label></td>
+	            <td><input id="type" type="text" maxlength="100" placeholder="Default is 0. Set to 1 for one-time link."/></td>
+	        </tr>
+
+	        <tr>
+	            <td><label>Duration</label></td>
+	            <td><input id="duration" type="text" maxlength="100" placeholder="Milliseconds"/></td>
+	        </tr>
+
+	</table>
+			</br>
+			</br>
+
+	<table>
+		<!-- START OF CUSTOM QUERY PARAMETERS -->
+		<tr><td><h3><b>Custom Query Parameters </b></h3></td></tr>
+	       	<tr>
+	            <td><label>Custom Query Parameters<br><i>*Note* Format should be a string with <br>one item = another item. </i><br><b>Example:</b> user_id=JohnJoe</label></td>
+	        </tr>
+	        <tr>
+	            <td><input style="width:300px" id="miscQueryParams1" type="text" maxlength="200" placeholder="format: param=sometext"/></td>
+	        </tr>
+			<tr>
+	            <td><input style="width:300px" id="miscQueryParams2" type="text" maxlength="200" placeholder="format: param=sometext"/></td>
+	        </tr>
+	        <tr>
+	            <td><input style="width:300px" id="miscQueryParams3" type="text" maxlength="200" placeholder="format: param=sometext"/></td>
+	        </tr>
+	        <tr>
+	  	        <td><input style="width:300px" id="miscQueryParams4" type="text" maxlength="200" placeholder="format: param=sometext"/></td>          	
+	        </tr>
+	       	<tr>
+	            <td><input style="width:300px" id="miscQueryParams5" type="text" maxlength="200" placeholder="format: param=sometext"/></td>
+	        </tr>
+	        	        <tr>
+	            <td><input style="width:300px" id="miscQueryParams6" type="text" maxlength="200" placeholder="format: param=sometext"/></td>
+	        </tr>
+			<tr>
+	            <td><input style="width:300px" id="miscQueryParams7" type="text" maxlength="200" placeholder="format: param=sometext"/></td>
+	        </tr>
+	        <tr>
+	            <td><input style="width:300px" id="miscQueryParams8" type="text" maxlength="200" placeholder="format: param=sometext"/></td>
+	        </tr>
+	        <tr>
+	  	        <td><input style="width:300px" id="miscQueryParams9" type="text" maxlength="200" placeholder="format: param=sometext"/></td>          	
+	        </tr>
+	       	<tr>
+	            <td><input style="width:300px" id="miscQueryParams10" type="text" maxlength="200" placeholder="format: param=sometext"/></td>
+	        </tr>
+	</table>
+			</br>
+			</br>	
+
+	<table>
+		<!-- START OF PLATFORM URL VALUES -->
+		<tr><td><h3><b>Platform Redirect URLs</b></h3></td></tr>
+	       	<tr>
+	            <td><label>iOS URL</label></td>
+	            <td><textarea style="width:300px" id="iosUrl" type="text" maxlength="10000"></textarea></td>
+	        </tr>
+	       	<tr>
+	            <td><label>Android URL</label></td>
+	            <td><textarea style="width:300px" id="androidUrl" type="text" maxlength="10000"></textarea></td>
+	        </tr>
+	        <tr>
+	            <td><label>Desktop URL</label></td>
+	            <td><textarea style="width:300px" id="desktopUrl" type="text" maxlength="10000"></textarea></td>
+	        </tr>
+	        <tr>
+	            <td><label>Windows URL</label></td>
+	            <td><textarea style="width:300px" id="windowsUrl" type="text" maxlength="10000"></textarea></td>
+	        </tr>
+	        <tr>
+	            <td><label>Blackberry URL</label></td>
+	            <td><textarea style="width:300px" id="blackberryUrl" type="text" maxlength="10000"></textarea></td>
+	        </tr>
+	        <tr>
+	            <td><label>Fire URL</label></td>
+	            <td><textarea style="width:300px" id="fireUrl" type="text" maxlength="10000"></textarea></td>
+	        </tr>
+	        <tr>
+	            <td><label>Fallback URL</label></td>
+	            <td><textarea style="width:300px" id="fallbackUrl" type="text" maxlength="10000"></textarea></td>
+	        </tr>
+	        <tr>
+	            <td><label>After Click URL</label></td>
+	            <td><textarea style="width:300px" id="afterClickUrl" type="text" maxlength="10000"></textarea></td>
+	        </tr>
+	</table>
+			</br>
+			</br>
+	<table>		
+		<!-- START OF BRANCH RESERVED VALUES -->
+		<tr><td><h3><b>Branch Reserved Values</b></h3></td></tr>
+			<tr>
+	            <td><label>iOS Redirect Timeout</label></td>
+	            <td><textarea style="width:300px" id="iosRedirectTimeout" type="text" maxlength="10000" placeholder="Default 750 milliseconds"></textarea></td>
+	        </tr>
+	       	<tr>
+	            <td><label>Android Redirect Timeout</label></td>
+	            <td><textarea style="width:300px" id="androidRedirectTimeout" type="text" maxlength="10000" placeholder="Default 750 milliseconds"></textarea></td>
+	        </tr>
+	       	<tr>
+	            <td><label>Always Deeplink</label></td>
+	            <td><input style="width:300px" id="alwaysDeeplink" type="text" maxlength="10000" placeholder="True or False"></input></td>
+	        </tr>
+
+			<!-- DEEPLINK PATHS -->
+	        <tr>
+	            <td><label>Deeplink Path</label></td>
+	            <td><textarea style="width:300px" id="deeplinkPath" type="text" maxlength="10000"></textarea></td>
+	        </tr>
+	        <tr>
+	            <td><label>iOS Deeplink Path</label></td>
+	            <td><textarea style="width:300px" id="iosDeeplinkPath" type="text" maxlength="10000"></textarea></td>
+	        </tr>        
+	        <tr>
+	            <td><label>Android Deeplink Path</label></td>
+	            <td><textarea style="width:300px" id="androidDeeplinkPath" type="text" maxlength="10000"></textarea></td>
+	        </tr>
+
+			<!-- OPEN GRAPH -->
+	       	<tr>
+	            <td><label>OG Title</label></td>
+	            <td><textarea style="width:300px" id="ogTitle" type="text" maxlength="10000"></textarea></td>
+	        </tr>
+	        <tr>
+	            <td><label>OG Description</label></td>
+	            <td><textarea style="width:300px" id="ogDescription" type="text" maxlength="10000"></textarea></td>
+	        </tr>
+	        <tr>
+	            <td><label>OG Image</label></td>
+	            <td><textarea style="width:300px" id="ogImage" type="text" maxlength="10000"></textarea></td>
+	        </tr>
+	        <tr>
+	            <td><label>OG Video</label></td>
+	            <td><textarea style="width:300px" id="ogVideo" type="text" maxlength="10000"></textarea></td>
+	        </tr>
+	        <tr>
+	            <td><label>OG URL</label></td>
+	            <td><textarea style="width:300px" id="ogUrl" type="text" maxlength="10000"></textarea></td>
+	        </tr>
+	        <tr>
+	            <td><label>Og Type</label></td>
+	            <td><textarea style="width:300px" id="ogType" type="text" maxlength="10000"></textarea></td>
+	        </tr>
+	        <tr>
+	            <td><label>OG Redirect</label></td>
+	            <td><textarea style="width:300px" id="ogRedirect" type="text" maxlength="10000"></textarea></td>
+	        </tr>
+	
+		    <!-- DEEPVIEWS --> 
+	        <tr>
+	            <td><label>Deepview</label></td>
+	            <td><textarea style="width:300px" id="deepview" type="text" maxlength="10000" placeholder="True or False"></textarea></td>
+	        </tr>
+	        <tr>
+	            <td><label>iOS Deepview</label></td>
+	            <td><textarea style="width:300px" id="iosDeepview" type="text" maxlength="10000" placeholder="branch_default"></textarea></td>
+	        </tr>
+	        <tr>
+	            <td><label>Android Deepview</label></td>
+	            <td><textarea style="width:300px" id="androidDeepview" type="text" maxlength="10000" placeholder="branch_default"></textarea></td>
+	        </tr>
+	        <tr>
+	            <td><label>Desktop Deepview</label></td>
+	            <td><textarea style="width:300px" id="desktopDeepview" type="text" maxlength="10000" placeholder="branch_default"></textarea></td>
+	        </tr>
+	        
+	        <!-- TWITTER  -->
+	        <tr>
+	            <td><label>Twitter Card</label></td>
+	            <td><textarea style="width:300px" id="twitterCard" type="text" maxlength="10000" placeholder=""></textarea></td>
+	        </tr>
+	        <tr>
+	            <td><label>TwitterTitle</label></td>
+	            <td><textarea style="width:300px" id="twitterTitle" type="text" maxlength="10000" placeholder=""></textarea></td>
+	        </tr>
+	        <tr>
+	            <td><label>Twitter Description</label></td>
+	            <td><textarea style="width:300px" id="twitterDescription" type="text" maxlength="10000" placeholder=""></textarea></td>
+	        </tr>
+	        <tr>
+	            <td><label>Twitter Site</label></td>
+	            <td><textarea style="width:300px" id="twitterSite" type="text" maxlength="10000" placeholder=""></textarea></td>
+	        </tr>
+	        <tr>
+	            <td><label>Twitter App Country</label></td>
+	            <td><textarea style="width:300px" id="twitterAppCountry" type="text" maxlength="10000" placeholder=""></textarea></td>
+	        </tr>
+	</table>
+			</br>
+			</br>
+
+		<button onclick="createDynamicLink()">Create Dynamic Link</button>
+			
+			</br>
+			</br>
+
+	<h3>Generated Dynamic Branch Link</h3>
+		<textarea style="height:100px; width:400px" id="generatedDyanmicLink" type="text"></textarea>
+			</br>
+			</br>
+	<h3>Encoded Data Validation</h3>
+		<table>
+		    <tr>
+	            <td><label>Encoded Data</label></td>
+	            <td><textarea style="width:300px" id="encodedData" type="text"></textarea></td>
+	        </tr>
+
+	       	<tr>
+	            <td><label>Decoded Data</label></td>
+	            <td><textarea style="width:300px" id="decodedData" type="text"></textarea></td>
+	        </tr>
+	    </table>
+
+	    	</br>
+	    	</br>
+	    	</br>
+	    	</br>
+	    	</br>
+	    	</br>
+</body>
