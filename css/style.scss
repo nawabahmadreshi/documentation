@@ -88,7 +88,8 @@ a:hover, a:focus {
 .m-scene {
   /** Basic styles for an animated element */
   .scene_element {
-    animation-duration: 0.5s;
+    animation-duration: .2s;
+    animation-delay: .1s;
     transition-timing-function: ease-in;
     animation-fill-mode: both;
 

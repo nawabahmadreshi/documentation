@@ -45,7 +45,7 @@ var LinkInternal = React.createClass({
 			path.push(props.platform);
 		}
 		/*console.log(props.group_data);*/
-		return (<a href={ '/' + path.join('/') } className={ isCurrentPath ? 'sidebar-link-selected' : '' } onClick={ self._handleClick(Object.keys(page.sections)[0]) }>{ page.title }</a>);
+		return (<a href={ '/' + path.join('/') } className={ isCurrentPath ? 'sidebar-link-selected scene_element scene_element--fadein' : 'scene_element scene_element--fadein' } onClick={ self._handleClick(Object.keys(page.sections)[0]) }>{ page.title }</a>);
 	}
 });
 
@@ -108,7 +108,7 @@ var LinkGroup = React.createClass({
 				selectedClass += 'sidebar-group-selected';
 			}
 			return (<div className={ selectedClass }>
-				<h4 className="sidebar-group-title" onClick={ this._toggle }>
+				<h4 className="sidebar-group-title scene_element scene_element--fadein" onClick={ this._toggle }>
 					{ props.level == 0 ? <i className={ arrowClass } /> : <span className="plus-minus">{ plusContent }</span> } { props.group.title }
 				</h4>
 				<ul className={ groupClass }>{ links(props.group.children) }</ul>
