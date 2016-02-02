@@ -225,17 +225,15 @@ Below is a snippet of code that you can use to retrieve the full Universal Link 
 
 When you make the move to Universal Links, you might be wondering how to best harness your old URI paths for iOS 9.X users while keeping the experience the same for iOS 8.X and lower.
 
-When the entry point is `application:continueUserActivity:restorationHandler:`
-
-1. Set a flag (**self.branchUniversalLink = YES**) to indicate that the user entered the App via a Branch Universal Link.
-
-2. When Branch has finished initialization, in `application:didFinishLaunchingWithOptions:launchOptions:`, use the **$deeplink_path** key (set at the time of Branch link creation) to route users to the correct place in your App.
-
 When the entry point is `application:openURL:sourceApplication:annotation:`
 
-1. Take users to the correct place in your app by harnessing the url passed in as a parameter.
+1. Use a flag such as **self.ignoreDeeplinkPath** and set it to **YES** to ensure that users do not get deeplinked 2x for non-Universal Links in `application:didFinishLaunchingWithOptions:launchOptions:`
 
-2. When Branch has finished initialization, in `application:didFinishLaunchingWithOptions:launchOptions:`, ensure that the user does not get deeplinked 2x for non-Universal Links by harnessing the value of **self.branchUniversalLink**.
+2. Take users to the correct place in your app by harnessing the URL passed in as a parameter.
+
+When the entry point is `application:continueUserActivity:restorationHandler:`
+
+1. Harness the **$deeplink_path** key (set at the time of Branch link creation) and the default value of **self.ignoreDeeplinkPath** (**NO**) to route users to the correct place in your App after Branch has finished initialization in `application:didFinishLaunchingWithOptions:launchOptions:`.
 
 Here is the best way to accomplish this:
 
