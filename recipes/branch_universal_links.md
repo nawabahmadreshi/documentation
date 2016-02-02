@@ -211,16 +211,6 @@ Note that if you're using bnc.lt as your domain, Universal Links are of the form
 -----
 
 
-## Receiving Universal Link URL in the App
-
-URI schemes received the deep link URL through `openUrl` in the App Delegate. Universal Links receive their data via a different code path: `continueUserActivity`. This new delegate method is used for a number of app transitions, ranging from Spotlight to Universal Links, and will likely see a couple more use cases introduced in future OS versions.
-
-Below is a snippet of code that you can use to retrieve the full Universal Link URL that opened the app.
-
-{% ingredient sdk_setup/ios9_continue_user_activity %}{% endingredient %}
-
------
-
 ## How to Handle Old URI Paths with Universal Links
 
 When you make the move to Universal Links, you might be wondering how to best harness your old URI paths for iOS 9.X users while keeping the experience the same for iOS 8.X and lower.
