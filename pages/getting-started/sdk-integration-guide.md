@@ -221,7 +221,7 @@ Branch opens your app by using its URL scheme (`yourapp://`), which should be un
 ### Add your Branch key
 
 1. Retrieve your Branch Key on the [Settings](https://dashboard.branch.io/#/settings) page of the Branch dashboard.
-1. Open your `AndroidManifest.xml` and add the following `<meta-data>` tags:
+1. Open your `AndroidManifest.xml` and add the following `<meta-data>` tag:
 
 {% highlight xml %}
 <application>
@@ -334,7 +334,23 @@ protected void onStop() {
 <!---       /Android-specific Branch Key -->
 
 {% if page.cordova or page.xamarin %}
-## Android: Register a URL scheme
+## Android: Configure Manifest
+
+### Add your Branch key
+
+1. Retrieve your Branch Key on the [Settings](https://dashboard.branch.io/#/settings) page of the Branch dashboard.
+1. Open your `AndroidManifest.xml` and add the following `<meta-data>` tag:
+
+{% highlight xml %}
+<application>
+    <!-- Other existing entries -->
+
+    <meta-data android:name="io.branch.sdk.BranchKey" android:value="key_live_abc123" />
+
+</application>
+{% endhighlight %}
+
+### Register a URL scheme
 
 Branch opens your app by using its URL scheme (`yourapp://`), which should be unique to your app.
 
@@ -460,7 +476,7 @@ Branch opens your app by using its URL scheme (`yourapp://`), which should be un
 #### Add your Branch key
 
 1. Retrieve your Branch Key on the [Settings](https://dashboard.branch.io/#/settings) page of the Branch dashboard.
-1. Open your `tiapp.xml` and add the following `<meta-data>` tags:
+1. Open your `tiapp.xml` and add the following `<meta-data>` tag:
 
 {% highlight xml %}
 <application>
@@ -997,7 +1013,6 @@ $.initialize = function(params) {
     $.initializeHandlers();
 
     Ti.API.info("start initSession");
-    branch.setDebug(true);
     branch.initSession();
     branch.addEventListener("bio:initSession", $.onInitSessionFinished);
 
