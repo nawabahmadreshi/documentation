@@ -253,88 +253,77 @@ These logs can be found for physical devices connected to Xcode by navigating to
 
 {% endprotip %}
 
-## Retrieving a Universal Link URL inside the app
+## How to handle old URI paths with Universal Links
 
-Universal Links receive their data via `continueUserActivity`in the App Delegate. This is a break from traditional URL scheme links, which pass a deeplink URL (`yourapp://path/to/content`) directly through `openUrl`. The new delegate method is used for a number of app transitions including Spotlight to Universal Links, and will likely see a couple more use cases introduced in future OS versions.
+When you make the move to Universal Links, you might be wondering how to best harness your old URI paths for iOS 9.X users while keeping the experience the same for iOS 8.X and lower. The easiest way is to handle each link type separately via a conditional flag (such as **self.ignoreDeeplinkPath**) in `application:didFinishLaunchingWithOptions:launchOptions:`.
 
-The following snippet will allow you to retrieve the full Universal Link URL that opened the app:
+### Non-Universal Links
 
-{% tabs %}
-{% tab objective-c %}
+The entry point for this link type is `application:openURL:sourceApplication:annotation:`
+
+1. In `application:didFinishLaunchingWithOptions:launchOptions:`, set the **self.ignoreDeeplinkPath** to `YES` (to ensure that users do not get deeplinked twice).
+1. Route users to the correct place in your app by harnessing the URL passed in as a parameter.
+
+### Universal Links
+
+The entry point for this link type is `application:continueUserActivity:restorationHandler:`
+
+1. The default value of **self.ignoreDeeplinkPath** in `application:didFinishLaunchingWithOptions:launchOptions:` defaults to `NO`.
+1. Harness the **$deeplink_path** key (set at the time of Branch link creation) to route users to the correct place in your App after Branch has finished initialization.
+
+{% example %}
+
 {% highlight objc %}
 
-- (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray *))restorationHandler {
-    if ([userActivity.activityType isEqualToString:NSUserActivityTypeBrowsingWeb]) {
-        NSString *myUrl = [userActivity.webpageURL absoluteString];
-        // parse URL string or access query params
-    }
-    return YES;
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+
+	Branch *branch = [Branch getInstance];
+
+	[branch initSessionWithLaunchOptions:launchOptions andRegisterDeepLinkHandler:^(NSDictionary *params, NSError *error) {
+
+		if (!error) {
+			if (params[@"$deeplink_path"] && !self.ignoreDeeplinkPath) {
+				NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"your-uri-scheme://%@", params[@"$deeplink_path"]]];
+				// handle the URL!
+				[self routeUrl:url];
+			}
+		}
+		self.ignoreDeeplinkPath = NO;
+	}];
+	return YES;
 }
 
-{% endhighlight %}
-{% endtab %}
-{% tab swift %}
-{% highlight swift %}
-func application(application: UIApplication, continueUserActivity userActivity: NSUserActivity, restorationHandler: ([AnyObject]?) -> Void) -> Bool {
-    if (userActivity.activityType == NSUserActivityTypeBrowsingWeb) {
-    	let linkUrl = userActivity.webpageUrl?.absoluteString
-    	// parse URL string or access query params
+//Entry point for iOS 8.X users and lower 
+
+-(BOOL) application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+	BOOL handledByBranch = [[Branch getInstance] handleDeepLink:url];
+
+	self.ignoreDeeplinkPath = YES;
+
+	if (!handledByBranch) {
+		// ... your other logic here ...
+	}
+	
+	// ... your other logic here, such as ...
+	[self routeUrl:url];
+
+	return YES;
+}
+
+//Entry point for iOS 9.X users
+
+- (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray *restorableObjects))restorationHandler {
+
+	BOOL handledByBranch = [[Branch getInstance] continueUserActivity:userActivity];
+	
+	if (!handledByBranch) {
+		// ... your other logic here ...
 	}
 
-    return true
+	return YES;
 }
 {% endhighlight %}
-{% endtab %}
-{% endtabs %}
-
-{% example title="Deeplink routing using URL Paths" %}
-Let’s say that you already use URL paths for all of your deeplink routing, contained in a method in the App Delegate named `handleRouting`. You can tie Universal Links into this method by grabbing `webpageUrl` and feeding it to `handleRouting`.
-
-{% tabs %}
-{% tab objective-c %}
-{% highlight objc %}
-
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-    [self handleRouting:url];
-    return YES;
-}
-
-- (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray *))restorationHandler {
-    if ([userActivity.activityType isEqualToString:NSUserActivityTypeBrowsingWeb]) {
-        [self handleRouting:userActivity.webpageURL];
-    }
-    return YES;
-}
-
-- (void)handleRouting:(NSURL *)url {
-....
-{% endhighlight %}
-{% endtab %}
-{% tab swift %}
-{% highlight swift %}
-func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
-    handleRouting(url)
-
-    return true
-}
-
-func application(application: UIApplication, continueUserActivity userActivity: NSUserActivity, restorationHandler: ([AnyObject]?) -> Void) -> Bool {
-    if (userActivity.activityType == NSUserActivityTypeBrowsingWeb) {
-    	handleRouting(userActivity.webpageUrl)
-	}
-
-    return true
-}
-
-func handleRouting(url: NSURL) {
-....
-
-{% endhighlight %}
-{% endtab %}
-{% endtabs %}
-
-The resulting URLs might not perfectly match your existing in-app URL scheme, so you just need to have logic in the `handleRouting` call to split out any differences.
-
 {% endexample %}
 
 {% elsif page.support %}
