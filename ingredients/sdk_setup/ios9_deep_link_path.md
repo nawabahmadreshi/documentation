@@ -7,7 +7,7 @@
 	[branch initSessionWithLaunchOptions:launchOptions andRegisterDeepLinkHandler:^(NSDictionary *params, NSError *error) {
 
 		if (!error) {
-			if (params[@"$deeplink_path"] && self.ignoreDeeplinkPath == NO) {
+			if (params[@"$deeplink_path"] && !self.ignoreDeeplinkPath) {
 				NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"your-uri-scheme://%@", params[@"$deeplink_path"]]];
 				// handle the URL!
 				[self routeUrl:url];
@@ -26,10 +26,14 @@
 
 	self.ignoreDeeplinkPath = YES;
 
+	if (!handledByBranch) {
+		// ... your other logic here ...
+	}
+	
 	// ... your other logic here, such as ...
 	[self routeUrl:url];
 
-	return handledByBranch;
+	return YES;
 }
 
 //Entry point for iOS 9.X users
@@ -38,8 +42,10 @@
 
 	BOOL handledByBranch = [[Branch getInstance] continueUserActivity:userActivity];
 	
-	// ... your other logic here ...
+	if (!handledByBranch) {
+		// ... your other logic here ...
+	}
 
-	return handledByBranch;
+	return YES;
 }
 {% endhighlight %}

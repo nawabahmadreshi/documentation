@@ -221,7 +221,7 @@ Below is a snippet of code that you can use to retrieve the full Universal Link 
 
 -----
 
-## Handle Old URI Paths with Universal Links
+## How to Handle Old URI Paths with Universal Links
 
 When you make the move to Universal Links, you might be wondering how to best harness your old URI paths for iOS 9.X users while keeping the experience the same for iOS 8.X and lower.
 
