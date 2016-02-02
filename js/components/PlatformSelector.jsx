@@ -30,7 +30,7 @@ var PlatformSelector = React.createClass({
 	render: function() {
 		var self = this;
 		var platforms = R.map(function(platform) {
-			/*console.log(platform);*/
+
 			classes = {
 				'btn btn-default': true,
 				'btn-inactive': self.state.platform != platform.key
