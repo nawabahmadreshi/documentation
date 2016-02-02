@@ -1,10 +1,11 @@
 ---
 type: recipe
-directory: features
-title: "App Links"
+directory: getting-started
+title: "Android App Links"
 page_title: "Set up Android App Links with Branch"
 description: "Learn how to enable Android App Links on with Branch deeplinks for tracking and deep linking."
 keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Android App Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Dashboard, iOS9
+hide_platform_selector: true
 sections:
 - overview
 - guide
@@ -15,12 +16,12 @@ sections:
 App Links route directly to your app when opened, bypassing the web browser and URL scheme combination typically used for the redirection process. App Links were introduced with Android M, and enabling them results in a more seamless experience for your users.
 
 {% protip title="Looking for iOS support?" %}
-App Links are only available on Android. [Universal Links]({{base.url}}/features/universal-links) are the iOS equivalent.
+App Links are only available on Android. [Universal Links]({{base.url}}/getting-started/universal-links) are the iOS equivalent.
 {% endprotip %}
 
 Branch makes it simple to enable App Links, and even improves on them since you also get all the other benefits of Branch links when the visitor does not yet have your app installed:
 
-{% image src='/img/pages/features/app-links/how_branch_improves.png' 2-thirds center alt='branch improves universal links' %}
+{% image src='/img/pages/getting-started/app-links/how_branch_improves.png' 2-thirds center alt='branch improves universal links' %}
 
 {% elsif page.guide %}
 
@@ -38,7 +39,7 @@ Start by generating a SHA256 fingerprint of your app's signing certificate. This
 
 1. Head to the [Link Settings page](https://dashboard.branch.io/#/settings/link) on the Branch dashboard.
 1. Toggle the **Enable App Links** checkbox in the Android section.
-1. Paste the copied fingerprint value into the **SHA256 Cert Fingerprints** field that appears. {% image src='/img/pages/features/app-links/enable_app_links.png' 3-quarters center alt='enable app links' %}
+1. Paste the copied fingerprint value into the **SHA256 Cert Fingerprints** field that appears. {% image src='/img/pages/getting-started/app-links/enable_app_links.png' 3-quarters center alt='enable app links' %}
 1. Scroll down and click `Save`.
  
 {% protip title="Using multiple fingerprints" %}

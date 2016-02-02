@@ -1,10 +1,11 @@
 ---
 type: recipe
 directory: getting-started
-title:  Link configuration
+title:  Link Configuration
 page_title: Configuration options for Branch links
 description: Learn about the properties and customizations that are available when creating Branch links for iOS and Android apps.
 keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Documentation, Docs, How to, Standards, Web SDK, SDK
+hide_platform_selector: true
 sections:
 - guide
 ---

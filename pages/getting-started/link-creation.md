@@ -1,7 +1,7 @@
 ---
 type: recipe
 directory: getting-started
-title: Link creation
+title: Link Creation
 page_title: How to create Branch links
 description: Learn about the multiple ways to create Branch deeplinks for iOS and Android apps.
 keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Link Properties, Redirect Customization, Mobile SDK, Web SDK, HTTP API
@@ -433,7 +433,7 @@ The event listener `bio:generateShortUrl` returns a `string` object containing t
 You can build a Branch link dynamically by appending query parameters. This method is useful if you don't want to wait for a server callback, and don't need to display the resulting (long) link to the user.
 
 {% caution title="Incomplete support on iOS" %}
-[Universal Links]({{base.url}}/features/universal-links) and [Spotlight]({{base.url}}/features/spotlight-indexing) do not support dynamically generated links. 
+[Universal Links]({{base.url}}/getting-started/universal-links) and [Spotlight]({{base.url}}/features/spotlight-indexing) do not support dynamically generated links. 
 {% endcaution %}
 
 1. Start with the Branch link domain: **http://bnc.lt** (you can also use your custom domain/subdomain here).

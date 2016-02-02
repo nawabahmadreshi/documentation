@@ -64,7 +64,7 @@ Only users who do not have the app will go through this flow. You can view the t
 
 ## Customizations
 
-This is all you need to do to enable Deepviews. For each link, Branch will attempt to intelligently display the best content we have available. However, you can (and will probably want to!) what is shown. See the [Advanced](../advanced/) page for more information.
+This is all you need to do to enable Deepviews. For each link, Branch will attempt to intelligently display the best content we have available. However, you can (and will probably want to!) what is shown. See the [Advanced]({{base.url}}/features/deepviews/advanced/) page for more information.
 
 {% elsif page.advanced %}
 

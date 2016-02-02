@@ -1,6 +1,6 @@
 ---
 type: recipe
-directory: features
+directory: getting-started
 title: "Deeplink Routing"
 page_title: Set up deeplink routing in your Android or iOS app
 description: This page will tell you how to set up your Android, iOS, Cordova, Phonegap, Xamarin, Unity, Air or Titanium app for deeplink routing.
@@ -30,7 +30,7 @@ Deeplinks are an incredibly important part of delivering a high quality user exp
 
 {% ingredient quickstart-prerequisite %}{% endingredient %}
 {% protip title="Automatic vs. custom deeplink routing" %}
-This guide describes how to use the automatic routing functionality included in the Branch SDK. If you need more control, check out [this section of the Advanced page](../advanced#building-a-custom-deeplink-routing-method)
+This guide describes how to use the automatic routing functionality included in the Branch SDK. If you need more control, check out [this section of the Advanced page]({{base.url}}/getting-started/deeplink-routing/advanced#building-a-custom-deeplink-routing-method)
 {% endprotip %}
 
 {% elsif page.unity or page.xamarin or page.cordova or page.titanium or page.adobe %}
@@ -151,16 +151,8 @@ In your **AppDelegate.m** file, find the `didFinishLaunchingWithOptions` method 
     }
 }];
 {% endhighlight %}
-
-Remove it, and insert this snippet in the same place:
-
-{% highlight objc %}
-ExampleDeepLinkingController *controller = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"DeepLinkingController"];
-
-[branch registerDeepLinkController:controller forKey:@"product_picture"];
-[branch initSessionWithLaunchOptions:launchOptions automaticallyDisplayDeepLinkController:YES];
-{% endhighlight %}
 {% endtab %}
+
 {% tab swift %}
 
 In your **AppDelegate.swift** file, find the `didFinishLaunchingWithOptions` method you added in the [SDK Configuration Guide]({{base.url}}/getting-started/sdk-configuration-guide)):
@@ -175,9 +167,22 @@ branch.initSessionWithLaunchOptions(launchOptions, andRegisterDeepLinkHandler: {
     }
 })
 {% endhighlight %}
+{% endtab %}
+{% endtabs %}
 
 Remove it, and insert this snippet in the same place:
 
+{% tabs %}
+{% tab objective-c %}
+{% highlight objc %}
+ExampleDeepLinkingController *controller = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"DeepLinkingController"];
+
+[branch registerDeepLinkController:controller forKey:@"product_picture"];
+[branch initSessionWithLaunchOptions:launchOptions automaticallyDisplayDeepLinkController:YES];
+{% endhighlight %}
+{% endtab %}
+
+{% tab swift %}
 {% highlight swift %}
 var controller = UIStoryboard.init("Main", NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("DeepLinkingController")
 
@@ -192,7 +197,7 @@ Now whenever your app launches from a Branch link that has the `product_picture`
 {% endif %}
 {% if page.android %}
 
-### Configure Activity to accept deeplinks
+## Configure Activity to accept deeplinks
 
 Open the Activity that you want to appear when a user clicks a link. For example, this could be an Activity to show a product.
 
@@ -220,7 +225,7 @@ protected void onResume() {
 The example key `product_picture` is a parameter from the [data dictionary]({{base.url}}/getting-started/link-configuration) of the link that was clicked, and would have been defined when the link [was created]({{base.url}}/getting-started/link-creation).
 {% endprotip %} 
 
-### Register Activity for deeplink routing
+## Register Activity for deeplink routing
 
 Lastly, you need to tell Branch about the Activity you just configured, and which key it is using from the link's data dictionary.
 
@@ -506,7 +511,7 @@ In your app's Manifest, add this meta-data key to the definition of the Activity
 {% if page.ios %}
 
 {% caution title="Incomplete support on iOS" %}
-[Universal Links]({{base.url}}/features/universal-links) and [Spotlight]({{base.url}}/features/spotlight-indexing) do not support URI paths. We recommend avoiding this approach to deeplink routing if possible.
+[Universal Links]({{base.url}}/getting-started/universal-links) and [Spotlight]({{base.url}}/features/spotlight-indexing) do not support URI paths. We recommend avoiding this approach to deeplink routing if possible.
 {% endcaution %}
 
 {% endif %}
@@ -652,7 +657,7 @@ linkProperties.controlParams.Add("$deeplink_path", "content/1234");
 
 You can specify the control parameters for individual marketing links by inserting the keys and values into the _Deep Link Data (Advanced)_ section.
 
-{% image src='/img/pages/features/deeplink-routing/deeplink_path.png' half center alt='deeplink path' %}
+{% image src='/img/pages/getting-started/deeplink-routing/deeplink_path.png' half center alt='deeplink path' %}
 
 {% endexample %}
 
@@ -660,7 +665,7 @@ You can specify the control parameters for individual marketing links by inserti
 
 You can retrieve the deeplink data at any time from the Branch singleton by calling one of the below methods.
 
-#### Get current referring params
+### Get current referring params
 
 This returns the latest set of deeplink data from the most recent link that was clicked. If you minimize the app and reopen it, the session will be cleared and so will this data.
 
@@ -716,7 +721,7 @@ var sessionParams = branch.getLatestReferringParams();
 {% endhighlight %}
 {% endif %}
 
-#### Get first referring params
+### Get first referring params
 
 This returns the first set of deeplink data that ever referred the user. Once it's been set for a given user, it can never be updated. This is useful for referral programs.
 

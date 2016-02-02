@@ -46,7 +46,7 @@ branch.banner({
 
 ## Customizations
 
-That’s all you need to add the smart banner to your website! Go to [Advanced](../advanced/) to see some common customizations, or take a look at the [Method Reference]({{base.url}}/method-reference/web-sdk) for all available options.
+That’s all you need to add the smart banner to your website! Go to [Advanced]({{base.url}}/features/app-download-banner/advanced/) to see some common customizations, or take a look at the [Method Reference]({{base.url}}/method-reference/web-sdk) for all available options.
 
 {% elsif page.advanced %}
 

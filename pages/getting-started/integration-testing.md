@@ -1,7 +1,7 @@
 ---
 type: recipe
 directory: getting-started
-title: Testing your integration
+title: Integration Testing
 page_title: Testing your Branch deep link integration
 ios_description: Learn how to test your iOS Branch integration, debug individual deep links and simulate fresh app installs. Plus some advice on fraud protection.
 android_description: Learn how to test your Android Branch integration, debug individual deep links and simulate fresh app installs. Also, some advice on fraud protection.
@@ -30,7 +30,7 @@ Branch maintains both a **Live** environment and a **Test** sandbox for every ap
 
 Toggling between these two modes on the Branch dashboard is simple:
 
-{% image src="/img/pages/getting-started/testing-your-integration/dashboard-test-mode.png" actual center alt="environment toggle" %}
+{% image src="/img/pages/getting-started/integration-testing/dashboard-test-mode.png" actual center alt="environment toggle" %}
 
 {% protip title="Configuring the Test App" %}
 Since the **Test** and **Live** environments are completely separate, you will need check that your [Settings](https://dashboard.branch.io/#/settings)
@@ -55,7 +55,7 @@ For more advanced implementations, you may want to specify keys for both **Test*
 
 Open your **Info.plist** file in Xcode, change the `branch_key` entry to a Dictionary, and create two subentries for your keys:
 
-{% image src="/img/pages/getting-started/testing-your-integration/branch-multi-key-plist.png" actual center alt="environment toggle" %}
+{% image src="/img/pages/getting-started/integration-testingintegration-testing/branch-multi-key-plist.png" actual center alt="environment toggle" %}
 
 {% endif %}
 {% if page.android %}
@@ -79,7 +79,7 @@ and underneath it add:
 
 Open your **Info.plist** file in Xcode, change the `branch_key` entry a Dictionary, and create two subentries for your keys:
 
-{% image src="/img/pages/getting-started/testing-your-integration/branch-multi-key-plist.png" actual center alt="environment toggle" %}
+{% image src="/img/pages/getting-started/integration-testing/branch-multi-key-plist.png" actual center alt="environment toggle" %}
 
 #### Android Projects
 
@@ -180,7 +180,7 @@ and underneath it add:
 
 At any time after you create a link, you can see all the information about the that link by appending `?debug=1`. Make sure you are logged into the dashboard and are on the app and **Live** or **Test** environment associated with the link being inspected.
 
-{% image src='/img/pages/getting-started/testing-your-integration/question_mark_debug.png' 3-quarters center alt='dashboard debug' %}
+{% image src='/img/pages/getting-started/integration-testing/question_mark_debug.png' 3-quarters center alt='dashboard debug' %}
 
 ## Use debug mode to simulate fresh installs
 
@@ -353,11 +353,5 @@ After debug mode is enabled, do the following steps to verify your new installs 
 1. On your device, open any Branch link 
 1. Re-install your app
 1. Confirm an install event occurs by looking through the SDK's session initialization callbacks
-
-{% protip title="Referral Fraud Protection" %}
-Branch tracks the hardware ID and IDFA of every device we detect, and ties these to our concept of a user identity. When the `unique` property of a reward rule is set, this prevents the same user from triggering an event multiple times.
-
-However, this means that you may run into issues if you test repeatedly with the same devices. When testing referral programs and reward rules, you should consider using `setDebug`.
-{% endprotip %}
 
 {% endif %}

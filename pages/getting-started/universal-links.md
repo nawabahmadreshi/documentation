@@ -1,7 +1,7 @@
 ---
 type: recipe
-directory: features
-title: "Universal Links"
+directory: getting-started
+title: "iOS Universal Links"
 page_title: "Set up iOS 9 Universal Links with Branch"
 description: "Learn how to enable iOS 9 Universal Links on with Branch deeplinks for tracking and deep linking."
 keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Android App Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Dashboard, iOS9
@@ -24,12 +24,12 @@ sections:
 Universal Links route directly to your app when opened, instead of using Safari and a URL scheme for the redirection process. They were introduced with iOS 9, and became the only fully-functional deeplinking option on iOS after [Apple stopped supporting URL schemes for deeplinking in iOS 9.2](https://blog.branch.io/ios-9.2-redirection-update-uri-scheme-and-universal-links). **You must enable Universal Links before Branch can function correctly on iOS 9.2+!**
 
 {% protip title="Looking for Android support?" %}
-Universal Links are only available on iOS. [App Links]({{base.url}}/features/app-links) are the Android equivalent.
+Universal Links are only available on iOS. [App Links]({{base.url}}/getting-started/app-links) are the Android equivalent.
 {% endprotip %}
 
 Branch makes it simple to enable Universal Links, and even improves on them since you also get all the other benefits of Branch links when the visitor does not yet have your app installed:
 
-{% image src='/img/pages/features/universal-links/how_branch_improves.png' 2-thirds center alt='branch improves universal links' %}
+{% image src='/img/pages/getting-started/universal-links/how_branch_improves.png' 2-thirds center alt='branch improves universal links' %}
 
 {% elsif page.guide %}
 
@@ -45,21 +45,21 @@ Branch makes it simple to enable Universal Links, and even improves on them sinc
 
 #### If your app already has an App Identifier
 1. Select your app and press the `Edit` button.
-1. Check the box to enable `Associated Domains`. {% image src='/img/pages/features/universal-links/background_ass_domains_existing.png' half center alt='enable associated domains' %}
+1. Check the box to enable `Associated Domains`. {% image src='/img/pages/getting-started/universal-links/background_ass_domains_existing.png' half center alt='enable associated domains' %}
 1. Scroll down and click `Save`.
 
 #### If your app does not yet have an App Identifier
 
 1. Click the `+` button to begin the Register an App ID process.
 1. Enter whatever you wish in the `Name` field.
-1. Enter your app's Bundle Identifier in the `Bundle ID` field. {% image src='/img/pages/features/universal-links/background_bundle.png' half center alt='bundle identifier' %}
-1. In the App Services section, check the box to enable `Associated Domains`. {% image src='/img/pages/features/universal-links/background_ass_domains_new.png' half center alt='enable associated domains' %}
+1. Enter your app's Bundle Identifier in the `Bundle ID` field. {% image src='/img/pages/getting-started/universal-links/background_bundle.png' half center alt='bundle identifier' %}
+1. In the App Services section, check the box to enable `Associated Domains`. {% image src='/img/pages/getting-started/universal-links/background_ass_domains_new.png' half center alt='enable associated domains' %}
 1. Scroll down and click `Save`.
 
 {% protip title="Finding your Bundle Identifier" %}
 You can retrieve your app's Bundle Identifier under the `General` tab of your Xcode project.
 
-{% image src='/img/pages/features/universal-links/background_bundle_xcode.png' 3-quarters center alt='bundle identifier xcode' %}
+{% image src='/img/pages/getting-started/universal-links/background_bundle_xcode.png' 3-quarters center alt='bundle identifier xcode' %}
 {% endprotip %}
 
 ## Add the entitlement to your project
@@ -68,11 +68,11 @@ You can retrieve your app's Bundle Identifier under the `General` tab of your Xc
 ### Enable Associated Domains in Xcode
 
 1. Go to the `Capabilities` tab of your project file.
-1. Scroll down and enable `Associated Domains`. {% image src='/img/pages/features/universal-links/enable_ass_domains.png' half center alt='enable xcode associated domains' %}
+1. Scroll down and enable `Associated Domains`. {% image src='/img/pages/getting-started/universal-links/enable_ass_domains.png' half center alt='enable xcode associated domains' %}
 
 {% protip title="If you see an error after this step" %}
 
-{% image src='/img/pages/features/universal-links/enable_ass_domains_error.png' half center alt='xcode associated domains errors' %}
+{% image src='/img/pages/getting-started/universal-links/enable_ass_domains_error.png' half center alt='xcode associated domains errors' %}
 
 Please ensure...
 
@@ -82,7 +82,7 @@ Please ensure...
 
 ### Add your Branch link domains
 
-1. In the `Domains` section, click the `+` icon and add the following entry: `applinks:bnc.lt` {% image src='/img/pages/features/universal-links/add_domain.png' half center alt='xcode add domain' %}
+1. In the `Domains` section, click the `+` icon and add the following entry: `applinks:bnc.lt` {% image src='/img/pages/getting-started/universal-links/add_domain.png' half center alt='xcode add domain' %}
 
 {% protip title="Using a custom domain or subdomain?" %}
 If you use a custom domain or subdomain for your Branch links, you should also add an entry for `applinks:[mycustomdomainorsubdomain]` and then [see this section](../advanced/#using-a-custom-domain-or-subdomain) on the Advanced page.
@@ -91,7 +91,7 @@ If you use a custom domain or subdomain for your Branch links, you should also a
 ### Add entitlements file to the build target
 
 1. Select your `[projectname].entitlements` file in the Xcode navigator (left sidebar).
-1. Ensure that the correct build target is checked in the right sidebar. {% image src='/img/pages/features/universal-links/entitlements-build-target.png' quarter center alt='add entitlements to build target' %}
+1. Ensure that the correct build target is checked in the right sidebar. {% image src='/img/pages/getting-started/universal-links/entitlements-build-target.png' quarter center alt='add entitlements to build target' %}
 
 {% endif %}
 {% if page.titanium %}
@@ -213,15 +213,15 @@ Does this step occur on Titanium?
 1. Type in your Apple App Prefix (found by clicking your app on [this page](https://developer.apple.com/account/ios/identifiers/bundle/bundleList.action) in Apple's Developer Portal).
 1. Scroll down and click on the `Save` button.
 
-{% image src='/img/pages/features/universal-links/dashboard_enable_universal_links.png' 3-quarters center alt='enable Universal Links on Branch dashboard' %}
+{% image src='/img/pages/getting-started/universal-links/dashboard_enable_universal_links.png' 3-quarters center alt='enable Universal Links on Branch dashboard' %}
 
 ## Test your Universal Links implementation
 
 After completing this guide and installing a new build of your app on your testing device, you can verify Universal Links are working correctly by following these steps:
 
 1. [Create a new Marketing Link](https://dashboard.branch.io/#/marketing/new) on the Branch dashboard. Leave all configuration items at their default options.
-1. Open this link on your testing device via Messages, Mail, Notes, or one of the other apps listed as **works** on [this page](../support/#appsbrowsers-that-support-universal-links).
-1. If successful, your app should launch immediately without routing through Safari. If not, please check the [Troubleshooting section](../support/#troubleshooting-universal-links).
+1. Open this link on your testing device via Messages, Mail, Notes, or one of the other apps listed as **works** on [this page]({{base.url}}/getting-started/universal-links/support/#appsbrowsers-that-support-universal-links).
+1. If successful, your app should launch immediately without routing through Safari. If not, please check the [Troubleshooting section]({{base.url}}/getting-started/universal-links/support/#troubleshooting-universal-links).
 
 {% elsif page.advanced %}
 
@@ -233,15 +233,15 @@ After completing this guide and installing a new build of your app on your testi
 1. You should see a message telling you the status of your domain under the `Domain name` field. If you don't, please type your domain in again.
 1. Click the `Save` button.
 
-{% image src='/img/pages/features/universal-links/custom-domain-success.png' 3-quarters center alt='successful custom subdomain configuration' %}
+{% image src='/img/pages/getting-started/universal-links/custom-domain-success.png' 3-quarters center alt='successful custom subdomain configuration' %}
 
 #### Custom ROOT domain (branch.com)
 
 1. Follow [CloudFlare's instructions](https://support.cloudflare.com/hc/en-us/articles/200169046-How-do-I-add-a-CNAME-record-) to set up your root domain with a CNAME to `custom.bnc.lt`
-1. Using the CloudFlare control panel, proxy your traffic to the domain `custom.bnc.lt` by clicking the cloud with the arrow to make it _orange_. {% image src='/img/pages/features/universal-links/orange_cloud.png' 3-quarters center alt='cloudflare TLS configuration' %}
-1. Make your Crypto settings match this screenshot. This is done by enabling SSL. {% image src='/img/pages/features/universal-links/ssl.png' half center alt='cloudflare TLS' %}
+1. Using the CloudFlare control panel, proxy your traffic to the domain `custom.bnc.lt` by clicking the cloud with the arrow to make it _orange_. {% image src='/img/pages/getting-started/universal-links/orange_cloud.png' 3-quarters center alt='cloudflare TLS configuration' %}
+1. Make your Crypto settings match this screenshot. This is done by enabling SSL. {% image src='/img/pages/getting-started/universal-links/ssl.png' half center alt='cloudflare TLS' %}
 
-#### Troubleshooting SSL
+{% protip title="Troubleshooting SSL" %}
 
 The following error message will appear in your OS-level logs if your domain doesn't have SSL set up properly:
 
@@ -250,6 +250,8 @@ Sep 21 14:27:01 Derricks-iPhone swcd[2044] <Notice>: 2015-09-21 02:27:01.878907 
 {% endhighlight %}
 
 These logs can be found for physical devices connected to Xcode by navigating to Window > Devices > choosing your device and then clicking the "up" arrow in the bottom left corner of the main view.
+
+{% endprotip %}
 
 ## Retrieving a Universal Link URL inside the app
 
@@ -339,12 +341,12 @@ The resulting URLs might not perfectly match your existing in-app URL scheme, so
 
 ## What happens to existing links? 
 
-#### If you use bnc.lt as your domain
+### If you use bnc.lt as your domain
 Universal Links are of the form `https://bnc.lt/«four-letter-identifier»/«link-hash»`. Existing links created prior to enabling Universal Links are of the form `https://bnc.lt/m/«link-hash»` or `https://bnc.lt/l/«link-hash»` and will continue to function as non-Universal Links.
 
 Aliased links on the bnc.lt domain (e.g., `bnc.lt/download`) are not compatible with Universal Links.
 
-#### If you use a custom domain or subdomain
+### If you use a custom domain or subdomain
 Branch links with custom domains are always enabled for Universal Links, even if generated prior to when you enable the feature.
 
 ## Apps/browsers that support Universal Links
@@ -378,28 +380,28 @@ Unfortunately, Universal Links don't work quite everywhere yet. We'll maintain t
 
 ## Troubleshooting Universal Links
 
-#### Is it definitely a Universal Link?
+##### Is it definitely a Universal Link?
 Universal Links are in the form https://bnc.lt/<<four-letter-identifier>>/<<link-hash>>. If there is a four letter code between two slashes, then it's a Universal Link. If it isn't a Universal Link, follow the above instructions to enable Universal Links, and double check that your Branch Dashboard Settings > Link Settings for iOS have "Enable Universal Links" checked. Note that aliased links bnc.lt/<custom label> don't work unless you're using a white labeled domain. 
 
-#### Are you testing by manually entering into Safari?
+##### Are you testing by manually entering into Safari?
 Universal Links don't work properly when entered into Safari. Use Notes or iMessage for testing.
 
-#### Are your applinks entitlements correct?
+##### Are your applinks entitlements correct?
 Confirm the domains you configured in Xcode are correct
 
-#### Is the entitlements file included for your build target?
+##### Is the entitlements file included for your build target?
 It seems that Xcode, by default, will not include the `.entitlements` file in your build. You have to check the box in the right sidebar against the correct target to ensure it's included in your app.
 
-#### Do your Team ID & Bundle ID match those on your dashboard?
+##### Do your Team ID & Bundle ID match those on your dashboard?
 You can find them in the Dashboard under Settings > Link Settings, in the iOS section next to "Enable Universal Links." They should match your Team ID and Bundle ID. Team ID can be found here [https://developer.apple.com/membercenter/index.action#accountSummary](https://developer.apple.com/membercenter/index.action#accountSummary). Your Bundle ID is found in Xcode, in the `General` tab for the correct build target.
 
-#### Have you deleted the app and reinstalled it?
+##### Have you deleted the app and reinstalled it?
 iOS does not re-scrape the apple-app-site-association file unless you delete and reinstall the app. (The only exception to this is App Store updates. iOS does rescrape on every update. This means that when users update to a version of your app with the applinks entitlement, Universal Links will start working for them.)
 
-#### Universal Links can be disabled, unfortunately.
+##### Universal Links can be disabled, unfortunately.
 If you are successfully taken into your app via a Universal Link, you'll see "bnc.lt" (or your domain) and a forward button in the top right corner of the status bar. If you click that button, Apple will no longer activate Universal Links in the future. To re-enable Universal Links, long press on the link in Messages or Notes and choose 'Open in <<App>>'.
 
-#### Using a custom domain?
+##### Using a custom domain?
 Make sure it's configured correctly If you're using a custom subdomain,  your CNAME should point to `custom.bnc.lt` under [Link Settings](https://dashboard.branch.io/#/settings/link) in the Branch dashboard. If you're using a custom root domain, you need to use CloudFlare to proxy the traffic to Branch.
 
 ## What changed in iOS 9 and 9.2?

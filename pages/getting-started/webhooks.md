@@ -1,7 +1,7 @@
 ---
 type: recipe
 directory: getting-started
-title: Webhooks/exporting data
+title: Webhooks
 page_title: Webhooks and exporting funnel event data
 description: The Branch webhook system allows you to receive all install and down funnel event data, for install attribution or conversion funnels in your own database.
 keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Webhooks, data export, funnel, RequestBin, Filters, Tempting
@@ -23,7 +23,7 @@ The webhook system is very powerful and customizable. You can register to only r
 
 {% protip title="Creating and tracking events" %}
 
-For more information about event tracking, including events that Branch automatically tracks and custom events specified by you, see [Analytics event tracking]({{base.url}}/getting-started/analytics-events).
+For more information about event tracking, including events that Branch automatically tracks and custom events specified by you, see the [Events and Referrals]({{base.url}}/getting-started/events-referrals) page.
 {% endprotip %}
 
 {% elsif page.guide %}
@@ -55,7 +55,7 @@ You can choose to receive a webhook for every single event occurrence, or only f
 
 #### Event trigger
 
-Branch provides the following default events: 
+You may select between the following default events: 
 
 | **Event** | **Description**
 | ---: | ---
@@ -64,16 +64,11 @@ Branch provides the following default events:
 | `referred session` | Triggered *in addition* to install, open or web session start if a user comes from a Branch link
 | `web session start` | Triggered when the user views a webpage using the Branch Web SDK.
 | `click` | Triggered whenever a Branch link is clicked on any platform
-
-You can also [create events through the Branch SDK]({{base.url}}/getting-started/analytics-events#custom-analytics-events), like `purchase` or `share`, and enter them by selecting `-- other --`
-
-{% protip title="Wildcard matching" %}
-Insert a wildcard (`*`) under `-- other --` to return every single event tracked through Branch.
-{% endprotip %}
+| `-- other --` | Enter an event you [created through the Branch SDK]({{base.url}}/getting-started/events-referrals#custom-events), or a wildcard (`*`) to return every single event tracked through Branch.
 
 #### Filter (Advanced)
 
-See the [Advanced page](../advanced#filters) to read about customizing when events are sent.
+See the [Advanced page]({{base.url}}/getting-started/webhooks/advanced#filters) to read about customizing when events are sent.
 
 ## Testing
 
@@ -92,7 +87,7 @@ All postbacks are formatted the same way, except for those triggered by `click` 
 
 Here are example returns:
 
-#### Normal event format
+### Normal event format
 
 {% highlight js %}
 POST
@@ -135,7 +130,7 @@ Content-Type: application/json
 }
 {% endhighlight %}
 
-#### Click event format
+### Click event format
 
 {% highlight js %}
 POST
@@ -221,7 +216,7 @@ The picture below show cases what a webhook would look like with proper filters.
 
 {% protip title="Testing Branch Tracking Links" %}
 
-Once filters are correctly set, you will want to test using your device. Since installs are uniquely tracked per device, you must ensure that you are [in debug mode]({{base.url}}/getting-started/testing-your-integration#use-debug-mode-to-simulate-fresh-installs).
+Once filters are correctly set, you will want to test using your device. Since installs are uniquely tracked per device, you must ensure that you are [in debug mode]({{base.url}}/getting-started/integration-testing#use-debug-mode-to-simulate-fresh-installs).
 
 After debug mode is enabled, do the following steps to verify your webhook works as expected:
 
@@ -239,7 +234,7 @@ If all steps are met, your webhook will fire as expected.
 
 If your backend relies on a dynamic URL structure to receive events, then we can support you with our webhooks. This is typically used for marketing campaigns, where a unique parameter needs to be appended to each link-click, and consequently posted back to a URL. You can also expose data we collect on the URL itself, through our templates. Here are the two options for templates and webhooks:
 
-#### Query parameters on Branch links
+### Query parameters on Branch links
 
 Let's say you have created a Branch link in the Marketing tab specifically for SEM campaigns and want to track query parameters. Potentially something like this: **http://bnc.lt/my-sf-campaign?clickId=12345**
 
@@ -252,7 +247,7 @@ You want to return that value **clickId** value (`12345`) back to your backend. 
 Any query parameter you add to Branch Links will be captured in our database and available for you to use in this format: `session.link_click.query.[key]`. So, if you had `?clickId=5&deviceId=7` appended to the link URL, you could retrieve those values as `session.link_click.query.clickId` and `session.link_click.query.deviceId`.
 
 
-#### General templates without query parameters
+### General templates without query parameters
 
 If you want to add other parameters, you can configure your templates to use any [webhook keyword value](#webhook-keyword-values). For example, let's say you have an endpoint that accepts a GET with the required parameters `device.id`, and `event.name`. In this case, that would look like the following:
 
@@ -262,9 +257,9 @@ If you want to add other parameters, you can configure your templates to use any
 
 You can access a wide variety of data keys when building your filters and templates. Here are the various options:
 
-#### Event data
+### Event data
 
-These can be events [created by you]({{base.url}}/getting-started/analytics-events), or tracked by Branch automatically (`click`, `install`, `open`, `referred session`, and `web session start`).
+These can be events [created by you]({{base.url}}/getting-started/events-referrals), or tracked by Branch automatically (`click`, `install`, `open`, `referred session`, and `web session start`).
 
 | Key | Description
 | --- | ---
@@ -274,7 +269,7 @@ These can be events [created by you]({{base.url}}/getting-started/analytics-even
 | event.metadata.key | Data defined as `key` when creating a custom event 
 | event.date | Timestamp of when the event occurred
 
-#### Identity data
+### Identity data
 
 {% protip title="Identity vs. Session" %}
 Identity data is set **once**, the very first time Branch sees a user, and can never be changed afterwards. Session data refers to the most recent record Branch has for a user. For an initial `install` event, these should be the same. For any subsequent `open` events, session referring data may be different.
@@ -284,7 +279,7 @@ Identity data is unique for each user Branch tracks. The `identity.link_click` a
 
 | Key | Description
 | --- | ---
-| identity.id | User ID you set [using setIdentity]({{base.url}}/getting-started/analytics-events#identifying-users)
+| identity.id | User ID you set [using setIdentity]({{base.url}}/getting-started/events-referrals#identifying-users)
 | identity.click.query.key | Any key that was appended to the link when opened. To retrieve `value1` from **https://bnc.lt/test?param1=value1**, you would use `identity.click.query.param1`.
 | identity.click.referring_identity.id | ID you set for the user who created this link
 | identity.click.browser.branch_id | The Branch ID we have for a user's unique browser
@@ -310,7 +305,7 @@ Identity data is unique for each user Branch tracks. The `identity.link_click` a
 | identity.referring_identity.id | ID you set for the user who created the link that drove this user's event
 | identity.referring_device.hardware_id | Device ID of the user who created the link that drove this user's event
 
-#### Session data
+### Session data
 
 Session data refers to the **most recent** record Branch has for each user, regardless of whether it was initiated by an `install` or an `open` event. If a Branch link was opened to initiate the session, then the `session.link_data`  and `session.link_click` keys will be populated.
 
@@ -341,7 +336,7 @@ Session data refers to the **most recent** record Branch has for each user, rega
 | session.referring_identity.id | ID you set for the user who created the link that drove this user's session
 | session.referring_device.hardware_id | device ID of the user who created the link that drove this user's session
 
-#### Click data
+### Click data
 
 Click data are properties of the `click` event that occurs when a user opens a Branch link. You can access `link_data` keys for specific link that was opened.
 
@@ -370,7 +365,7 @@ Click data are properties of the `click` event that occurs when a user opens a B
 | click.device.metadata.os_version | The OS version
 | click.date | Time of link click.
 
-#### Browser data
+### Browser data
 
 Browser data is what we know about the browser of the user who clicked a Branch link.
 
@@ -379,7 +374,7 @@ Browser data is what we know about the browser of the user who clicked a Branch 
 | browser.branch_id | The Branch ID we have for a user's unique browser
 | browser.metadata.userAgent | The user agent of the browser
 
-#### Device data
+### Device data
 
 Device data is what we know about the unique device of a user who triggered an event.
 
@@ -390,7 +385,7 @@ Device data is what we know about the unique device of a user who triggered an e
 | device.metadata.os | The OS of the device
 | device.metadata.os_version | The OS version
 
-#### Link data
+### Link data
 
 Link data refers to the values of the Branch link that was opened, including any keys you specified in the link's [data dictionary]({{base.url}}/getting-started/link-configuration).
 
@@ -416,15 +411,15 @@ Link data refers to the values of the Branch link that was opened, including any
 
 ## FAQs
 
-#### Why is my app not sending a device ID?
+##### Why is my app not sending a device ID?
 
-Check to see if you are in [Test Mode]({{base.url}}/getting-started/testing-your-integration) with your SDK. If we are sending a fake ID to simulate installs, we will not send it inside a webhook.
+Check to see if you are in [Test Mode]({{base.url}}/getting-started/integration-testing) with your SDK. If we are sending a fake ID to simulate installs, we will not send it inside a webhook.
 
-#### How can I ensure a webhook is from Branch?
+##### How can I ensure a webhook is from Branch?
 
-Right now, we do not support a encryption method to verify requests come from Branch. As a workaround, if you [create events through the Branch SDK]({{base.url}}/getting-started/analytics-events#custom-analytics-events), you can specify a secret key inside the event metadata to pass through inside the URL of the webhook itself. 
+Right now, we do not support a encryption method to verify requests come from Branch. As a workaround, if you [create events through the Branch SDK]({{base.url}}/getting-started/events-referrals#custom-events), you can specify a secret key inside the event metadata to pass through inside the URL of the webhook itself. 
 
-#### What's the difference between first referring data and session referring data?
+##### What's the difference between first referring data and session referring data?
 
 Because webhooks are event based, and tie back to a unique user, we send you data from the link that first drove this unique user into your app. Then, if they click another Branch link later, we also send you session referring data from this second link. For an initial install event, these should be the same. For any subsequent events, session referring data may be different.
 

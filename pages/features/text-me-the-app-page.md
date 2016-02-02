@@ -91,7 +91,7 @@ Create a new file at the URL above, and paste the following code snippet into it
 
 ## Customizations
 
-That’s all you need to add a custom text-me-the-app page to your website! Go to [Advanced](../advanced/) to read about more advanced implementations, or take a look at the [Method Reference](https://github.com/BranchMetrics/Smart-App-Banner-Deep-Linking-Web-SDK/blob/master/WEB_GUIDE.md#sendsmsphone-linkdata-options-callback) for all available options.
+That’s all you need to add a custom text-me-the-app page to your website! Go to [Advanced]({{base.url}}/features/text-me-the-app-page/advanced/) to read about more advanced implementations, or take a look at the [Method Reference](https://github.com/BranchMetrics/Smart-App-Banner-Deep-Linking-Web-SDK/blob/master/WEB_GUIDE.md#sendsmsphone-linkdata-options-callback) for all available options.
 
 {% elsif page.advanced %}
 

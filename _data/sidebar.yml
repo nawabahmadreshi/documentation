@@ -4,22 +4,22 @@
   directory: getting-started
   children:
     - sdk-integration-guide
-    - analytics-events
-    - link-configuration
-    - link-creation
     - title: Advanced
       children:
-        - testing_your_integration
-        - submitting-apps
-        - dashboard_pro_tips
-        - webhooks
+        - universal-links
+        - app-links
+        - integration-testing
         - matching-accuracy
+    - title: Concept Overviews
+      children:
+        - deeplink-routing
+        - link-creation
+        - link-configuration
+        - events-referrals
+        - webhooks
 - title: Features
   directory: features
   children:
-    - app-links
-    - universal-links
-    - deeplink-routing
     - title: Content Indexing
       children:
         - google_app_indexing
