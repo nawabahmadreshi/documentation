@@ -16,8 +16,8 @@ module Jekyll
         data[m[0]] = Liquid::Template.parse(m[1]).render!(context)
       }
 
-      icon = '<i class="fa fa-check-square-o"></i> '
-      title = if data['title'] then '<h4 class="prerequisite__title"> ' + icon + ' Prerequisite: ' + data['title'] + '</h4>' else '<h4 class="prerequisite__title">' + icon + ' Prerequisites</h4>' end
+      icon = '<i class="material-icons">check box</i><i class="material-icons">check circle</i> '
+      title = if data['title'] then '<h5 class="prerequisite__title"> ' + icon + ' Prerequisite: ' + data['title'] + '</h5>' else '<h4 class="prerequisite__title">' + icon + ' Prerequisites</h4>' end
       contents = Kramdown::Document.new(super).to_html
       '<blockquote class="prerequisite">' + title + contents + '</blockquote>'
     end
