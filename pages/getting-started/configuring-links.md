@@ -1,7 +1,7 @@
 ---
 type: recipe
 directory: getting-started
-title:  Link Configuration
+title: Configuring Links
 page_title: Configuration options for Branch links
 description: Learn about the properties and customizations that are available when creating Branch links for iOS and Android apps.
 keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Documentation, Docs, How to, Standards, Web SDK, SDK
@@ -11,7 +11,7 @@ sections:
 ---
 
 {% protip title="Link Configuration vs. Link Creation" %}
-This page describes how to use the link data dictionary to define key/value pairs for deeplinking, and the various link analytics and control parameters Branch offers. You can read about how to actually create Branch links on the [Link Creation page]({{base.url}}/getting-started/link-creation).
+This page describes how to use the link data dictionary to define key/value pairs for deeplinking, and the various link analytics and control parameters Branch offers. You can read about how to actually create Branch links on the [Creating Links]({{base.url}}/getting-started/creating-links) page.
 {% endprotip %}
 
 Every Branch link that you create is completely customizable from a functionality perspective. Here are the key variables for customization.
@@ -22,7 +22,7 @@ Every Branch link includes a dictionary for `key : value` pairs specified by you
 
 ## Analytics labels
 
-Use analytics tags to help _organize your data_. Track updates, run A/B tests and measure the effectiveness of different channels using these labels.
+Use analytics labels to help _organize your data_. Track updates, run A/B tests and measure the effectiveness of different channels using these labels.
 
 | **Label** | **Usage**
 | ---: | ---

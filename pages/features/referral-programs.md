@@ -1,11 +1,13 @@
 ---
 type: recipe
-directory: getting-started
-title: "Events and Referrals"
-page_title: Using events to track analytics and power referrals with Branch
-description: The Branch dashboard shows you all the analytics for your deeplinks and create referral rewards from events. Track install attribution, measure marketing channels and ad campaigns.
-keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Attribution, Analytics, Dashboard, App Install, App Open, Conversion, iOS, objective-c, swift
-android_keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Attribution, Analytics, Dashboard, App Install, App Open, Conversion, Android
+directory: features
+title: "Referral Programs"
+ios_page_title: Creating referral programs for iOS apps
+android_page_title: Creating referral programs for iOS apps
+ios_description: How to set up Referral Links and Reward Schemes for iOS apps using deep links.
+android_description: How to set up App Invites, Referral Links and Reward Schemes for Android apps using deep links.
+ios_keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Referral Links, App Invites, Reward Schemes, Promotion codes, iOS, objective-c, swift
+android_keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Referral Links, App Invites, Reward Schemes, Promotion codes, Android
 platforms:
 - ios
 - android
@@ -18,313 +20,19 @@ sections:
 - guide
 ---
 
-## Automatic events
-
-Branch _automatically_ creates events whenever a user accesses your site or your app. We measure installs, opens and web page visits with separate events. Here is a list of the auto-created ones:
-
-| **Event** | **Description**
-| `install` | Triggered the first time a user launches your app
-| `open` | Trigged when the user opens the app after the very first launch OR if a user reinstalls the app after uninstalling it
-| `web session start` | Triggered when the user views a webpage using the Branch Web SDK.
-| `referred session` | Triggered _in addition_ to install, open or web session start if a user comes from a Branch link
-
-{% protip title="Receiving Postbacks" %}
-You can be notified via a postback to your server every time that an event occurs. Visit the [Webhooks](/getting-started/webhooks/) page for more information on configuring postbacks.
-{% endprotip %}
-
-## Custom events
-
-In addition the default Branch events, you can track any custom user action you wish. Examples of what you may want to track:
-
-- sign up
-- purchases
-- shares
-
-Recording a custom event in your app is accomplished via a simple call to the SDK:
-
-{% if page.ios %}
-
-{% tabs %}
-{% tab objective-c %}
-{% highlight objc %}
-[[Branch getInstance] userCompletedAction:@"customAction"];
-{% endhighlight %}
-{% endtab %}
-{% tab swift %}
-{% highlight swift %}
-Branch.getInstance().userCompletedAction("customAction")
-{% endhighlight %}
-{% endtab %}
-{% endtabs %}
-
-{% endif %}
-<!--- /iOS -->
-
-{% if page.android %}
-{% highlight java %}
-Branch.getInstance(getApplicationContext()).userCompletedAction("custom_action_1");
-{% endhighlight %}
-{% endif %}
-<!--- /Android -->
-
-{% if page.cordova %}
-{% highlight js %}
-branch.track("custom_action_1");
-{% endhighlight %}
-{% endif %}
-
-{% if page.xamarin %}
-{% highlight c# %}
-Branch branch = Branch.GetInstance ();
-await branch.UserCompletedActionAsync("custom_action_1");
-{% endhighlight %}
-{% endif %}
-
-{% if page.unity %}
-{% highlight c# %}
-Branch.userCompletedAction("custom_action_1");
-{% endhighlight %}
-{% endif %}
-
-{% if page.adobe %}
-{% highlight java %}
-Currently not supported in the ANE
-{% endhighlight %}
-{% endif %}
-
-{% if page.titanium %}
-{% highlight js %}
-branch.userCompletedAction("custom_action_1");
-{% endhighlight %}
-{% endif %}
-
-{% protip title="Appending custom metadata" %}
-
-You can also include additional information when creating a custom event:
-
-{% if page.ios %}
-
-{% tabs %}
-{% tab objective-c %}
-{% highlight objc %}
-[[Branch getInstance] userCompletedAction:@"purchase" withState:@{@"item":@"123-AB-456"}];
-{% endhighlight %}
-{% endtab %}
-{% tab swift %}
-{% highlight swift %}
-Branch.getInstance().userCompletedAction("purchase", withState: ["item" : "123-AB-456"])
-{% endhighlight %}
-{% endtab %}
-{% endtabs %}
-
-{% endif %}
-<!--- /iOS -->
-
-{% if page.android %}
-{% highlight java %}
-JSONObject metaData = new JSONObject();
-metaData.put("key", "value");
-Branch.getInstance().userCompletedAction("custom_action_with_data", metaData);
-{% endhighlight %}
-{% endif %}
-<!--- /Android -->
-
-{% if page.cordova %}
-{% highlight js %}
-branch.track(
-    "purchase_event",
-    {
-    	"sku": "12346789"
-	}
-);
-{% endhighlight %}
-{% endif %}
-
-{% if page.xamarin %}
-{% highlight c# %}
-Branch branch = Branch.GetInstance ();
-Dictionary<string, object> data = new Dictionary<string, object>();
-data.Add("sku", "123456789");
-await branch.UserCompletedActionAsync("purchase_event", data);
-{% endhighlight %}
-{% endif %}
-
-{% if page.unity %}
-{% highlight c# %}
-Dictionary<string, object> stateItems = new Dictionary<string, object>
-{
-    { "sku", "12346789" }
-};
-Branch.userCompletedAction("purchase_event", stateItems);
-{% endhighlight %}
-{% endif %}
-
-{% if page.adobe %}
-{% highlight java %}
-Currently not supported in the ANE
-{% endhighlight %}
-{% endif %}
-
-{% if page.titanium %}
-{% highlight js %}
-branch.userCompletedAction("purchase_event", {
-	"sku": "12346789"
-});
-{% endhighlight %}
-{% endif %}
-
-{% endprotip %}
-
-## Identifying users
-
-Identifying your users will help you associate all activities and links created to a particular person. This can show you which of your users are the most influential.
-
-{% if page.ios %}
-
-Add a `setIdentity` call wherever you create or login a user. This should be done after you have successfully initialized a Branch session. Only call `setIdentity` when the user first logs in. We will cache the identity for future sessions.
-
-{% tabs %}
-{% tab objective-c %}
-{% highlight objc %}
-// your app's userId, 127 chars or less
-[[Branch getInstance] setIdentity:@"your user id"];
-{% endhighlight %}
-{% endtab %}
-{% tab swift %}
-{% highlight swift %}
-// your app's userId, 127 chars or less
-Branch.getInstance().setIdentity("your user id")
-{% endhighlight %}
-{% endtab %}
-{% endtabs %}
-
-Add a `logout` call anywhere you allow the user to logout. `Logout` should only be called when the user logs out. Calling it at other times could lead to hard-to-discover errors. Failing to call `logout` can likewise lead to bugs if multiple users log in on the same device.
-
-{% tabs %}
-{% tab objective-c %}
-{% highlight objc %}
-[[Branch getInstance] logout];
-{% endhighlight %}
-{% endtab %}
-{% tab swift %}
-{% highlight swift %}
-Branch.getInstance().logout()
-{% endhighlight %}
-{% endtab %}
-{% endtabs %}
-
-{% endif %}
-<!--- iOS identify and logout -->
-
-{% if page.android %}
-Add a `setIdentity` call wherever you create or login a user. This should be done after you have successfully initialized a Branch session. Only call `setIdentity` when the user first logs in. We will cache the identity for future sessions.
-
-{% highlight java %}
-// your app's userId, 127 chars or less
-Branch.getInstance().setIdentity("your user id");
-{% endhighlight %}
-
-Add a `logout` call anywhere you allow the user to logout. `Logout` should only be called when the user logs out. Calling it at other times could lead to hard-to-discover errors. Failing to call `logout` can likewise lead to bugs if multiple users log in on the same device.
-
-{% highlight java %}
-Branch.getInstance().logout();
-{% endhighlight %}
-{% endif %}
-<!--- Android identify and logout -->
-
-{% if page.cordova %}
-
-Add a `setIdentity` call wherever you create or login a user. This should be done after you have successfully initialized a Branch session. Only call `setIdentity` when the user first logs in. We will cache the identity for future sessions.
-
-{% highlight js %}
-branch.setIdentity("your user id");
-{% endhighlight %}
-
-Add a `logout` call anywhere you allow the user to logout. `Logout` should only be called when the user logs out. Calling it at other times could lead to hard-to-discover errors. Failing to call `logout` can likewise lead to bugs if multiple users log in on the same device.
-
-{% highlight js %}
-branch.logout();
-{% endhighlight %}
-{% endif %}
-
-{% if page.xamarin %}
-
-Add a `SetIdentityAsync` call wherever you create or login a user. This should be done after you have successfully initialized a Branch session. Only call `SetIdentityAsync` when the user first logs in. We will cache the identity for future sessions.
-
-{% highlight c# %}
-Branch branch = Branch.GetInstance ();
-branch.SetIdentityAsync("your user id", this);
-{% endhighlight %}
-
-Add a `LogoutAsync` call anywhere you allow the user to logout. `LogoutAsync` should only be called when the user logs out. Calling it at other times could lead to hard-to-discover errors. Failing to call `LogoutAsync` can likewise lead to bugs if multiple users log in on the same device.
-
-{% highlight c# %}
-Branch.GetInstance(getApplicationContext()).LogoutAsync(this);
-{% endhighlight %}
-
-{% endif %}
-
-{% if page.unity %}
-Add a `setIdentity` call wherever you create or login a user. This should be done after you have successfully initialized a Branch session. Only call `setIdentity` when the user first logs in. We will cache the identity for future sessions.
-
-{% highlight c# %}
-Branch.setIdentity("your user id");
-{% endhighlight %}
-
-Add a `logout` call anywhere you allow the user to logout. `Logout` should only be called when the user logs out. Calling it at other times could lead to hard-to-discover errors. Failing to call `logout` can likewise lead to bugs if multiple users log in on the same device.
-
-{% highlight c# %}
-Branch.logout();
-{% endhighlight %}
-{% endif %}
-
-{% if page.adobe %}
-Add a `setIdentity` call wherever you create or login a user. This should be done after you have successfully initialized a Branch session. Only call `setIdentity` when the user first logs in. We will cache the identity for future sessions.
-
-{% highlight java %}
-branch.setIdentity("your user id");
-{% endhighlight %}
-
-Add a `logout` call anywhere you allow the user to logout. `Logout` should only be called when the user logs out. Calling it at other times could lead to hard-to-discover errors. Failing to call `logout` can likewise lead to bugs if multiple users log in on the same device.
-
-{% highlight java %}
-branch.logout();
-{% endhighlight %}
-{% endif %}
-
-{% if page.titanium %}
-Add a `setIdentity` call wherever you create or login a user. This should be done after you have successfully initialized a Branch session. Only call `setIdentity` when the user first logs in. We will cache the identity for future sessions.
-
-{% highlight js %}
-branch.setIdentity("your user id");
-{% endhighlight %}
-
-Add a `logout` call anywhere you allow the user to logout. `Logout` should only be called when the user logs out. Calling it at other times could lead to hard-to-discover errors. Failing to call `logout` can likewise lead to bugs if multiple users log in on the same device.
-
-{% highlight js %}
-branch.logout();
-{% endhighlight %}
-{% endif %}
-
-{% protip title="Retroactive event attribution" %}
-The **first** time `setIdentity` is called for each unique user ID, it will retroactively associate any previously recorded events from the current device with that user ID. This only occurs once.
-{% endprotip %}
-
-## Referral rewards
-
 Branch allows you reward users with credits, track those credits, and redeem them when appropriate. It is a unit-less currency available to your users without you having to build a system from scratch.
 
-With every event that is recorded in Branch, we check automatically if that event is eligible for credits based on the rules that you configured, then deposit the credits if so. Reward rules can be based on both automatic events and custom events.
+With every event that is recorded in Branch, we check automatically if that event is eligible for credits based on the rules that you configured, then deposit the credits if so. Reward rules can be based on both [automatic events](/getting-started/tracking-events#automatic-events) and [custom events](/getting-started/tracking-events#custom-events).
 
 {% protip title="Referral Fraud Protection" %}
 Branch tracks the hardware ID and IDFA of every device we detect, and ties these to our concept of a user identity. However, this means that you may run into issues if you test repeatedly with the same devices. When testing referral programs and reward rules, you should [use debug mode](/getting-started/integration-testing#use-debug-mode-to-simulate-fresh-installs).
 {% endprotip %}
 
-### Awarding credits
+## Awarding credits
 
 To add a rule, go to the Dashboard Referrals page and click the [Rules tab](https://dashboard.branch.io/#/referrals/rules). Click the green "+ Add a new rule" button. Once there, you can select between two options:
 
-#### Promo code
+### Promo code
 
 Properties you can define:
 
@@ -333,7 +41,7 @@ Properties you can define:
 1. Which `bucket` the credits go to
 1. Whether the reward occurs the first time or every time
 
-#### Give reward
+### Give reward
 
 Properties you can define:
 
@@ -346,7 +54,7 @@ Properties you can define:
 {% example %}
 Let's say you want to give 10 credits to each new user who signs up through a friend, and 5 credits to the friend who referred him or her. That can be done through a combination of two rules:
 
-#### Rule 1: rewarding the referred user 10 credits
+### Rule 1: rewarding the referred user 10 credits
 
 1. Who gets a reward: **"Referred acting users"**
 1. How many credits the reward is: **10**
@@ -354,9 +62,9 @@ Let's say you want to give 10 credits to each new user who signs up through a fr
 1. Whether the reward occurs the first time or every time: **the first time**
 1. Which event triggers the reward: **install**
 
-{% image src='/img/pages/getting-started/events-referrals/referred_rule.png' center 2-thirds alt='referred used' %}
+{% image src='/img/pages/features/referral-programs/referred_rule.png' center 2-thirds alt='referred used' %}
 
-#### Rule 2: rewarding the referring user 5 credits
+### Rule 2: rewarding the referring user 5 credits
 
 1. Who gets a reward: **"Referring users"**
 1. How many credits the reward is: **5**
@@ -364,11 +72,11 @@ Let's say you want to give 10 credits to each new user who signs up through a fr
 1. Whether the reward occurs the first time or every time: **every time**
 1. Which event triggers the reward: **install**
 
-{% image src='/img/pages/getting-started/events-referrals/referring_rule.png' center 2-thirds alt='referring user' %}
+{% image src='/img/pages/features/referral-programs/referring_rule.png' center 2-thirds alt='referring user' %}
 
 {% endexample %}
 
-### Viewing Credits
+## Viewing Credits
 
 Once users have credits, they should be able to redeem them.
 
@@ -569,7 +277,7 @@ branch.addEventListener("bio:loadRewards", $.onLoadRewardFinished);
 {% endhighlight %}
 {% endif %}
 
-### Redeeming Credits
+## Redeeming Credits
 
 When users spend credits, you can make a simple call to redeem their credits. On your dashboard, this will fall under the `default` bucket.
 

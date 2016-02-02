@@ -23,7 +23,7 @@ The webhook system is very powerful and customizable. You can register to only r
 
 {% protip title="Creating and tracking events" %}
 
-For more information about event tracking, including events that Branch automatically tracks and custom events specified by you, see the [Events and Referrals]({{base.url}}/getting-started/events-referrals) page.
+For more information about event tracking, including events that Branch automatically tracks and custom events specified by you, see the [Tracking Events]({{base.url}}/getting-started/tracking-events) page.
 {% endprotip %}
 
 {% elsif page.guide %}
@@ -64,7 +64,7 @@ You may select between the following default events:
 | `referred session` | Triggered *in addition* to install, open or web session start if a user comes from a Branch link
 | `web session start` | Triggered when the user views a webpage using the Branch Web SDK.
 | `click` | Triggered whenever a Branch link is clicked on any platform
-| `-- other --` | Enter an event you [created through the Branch SDK]({{base.url}}/getting-started/events-referrals#custom-events), or a wildcard (`*`) to return every single event tracked through Branch.
+| `-- other --` | Enter an event you [created through the Branch SDK]({{base.url}}/getting-started/tracking-events#custom-events), or a wildcard (`*`) to return every single event tracked through Branch.
 
 #### Filter (Advanced)
 
@@ -83,7 +83,7 @@ To test whether your webhook is configured correctly, you can use [requestb.in](
 
 ## Postback syntax
 
-All postbacks are formatted the same way, except for those triggered by `click` events. To read about the parameters in the link data dictionary, see the [link configuration page]({{base.url}}/getting-started/link-configuration)
+All postbacks are formatted the same way, except for those triggered by `click` events. To read about the parameters in the link data dictionary, see the [Configuring Links]({{base.url}}/getting-started/configuring-links) page.
 
 Here are example returns:
 
@@ -259,7 +259,7 @@ You can access a wide variety of data keys when building your filters and templa
 
 ### Event data
 
-These can be events [created by you]({{base.url}}/getting-started/events-referrals), or tracked by Branch automatically (`click`, `install`, `open`, `referred session`, and `web session start`).
+These can be events [created by you]({{base.url}}/getting-started/tracking-events), or tracked by Branch automatically (`click`, `install`, `open`, `referred session`, and `web session start`).
 
 | Key | Description
 | --- | ---
@@ -279,7 +279,7 @@ Identity data is unique for each user Branch tracks. The `identity.link_click` a
 
 | Key | Description
 | --- | ---
-| identity.id | User ID you set [using setIdentity]({{base.url}}/getting-started/events-referrals#identifying-users)
+| identity.id | User ID you set [using setIdentity]({{base.url}}/getting-started/setting-identities)
 | identity.click.query.key | Any key that was appended to the link when opened. To retrieve `value1` from **https://bnc.lt/test?param1=value1**, you would use `identity.click.query.param1`.
 | identity.click.referring_identity.id | ID you set for the user who created this link
 | identity.click.browser.branch_id | The Branch ID we have for a user's unique browser
@@ -387,7 +387,7 @@ Device data is what we know about the unique device of a user who triggered an e
 
 ### Link data
 
-Link data refers to the values of the Branch link that was opened, including any keys you specified in the link's [data dictionary]({{base.url}}/getting-started/link-configuration).
+Link data refers to the values of the Branch link that was opened, including any keys you specified in the link's [data dictionary]({{base.url}}/getting-started/configuring-links).
 
 **Note, you cannot use these keys by themselves**, because they are ambiguous without also specifying additional context. You must append them to [click](#click-data), [session](#session-data), or [identity](#identity-data), so the final filter or template value would be `click.link_data.~id`, `session.link_data.~id`, or `identity.link_data.~id`.
 
@@ -417,7 +417,7 @@ Check to see if you are in [Test Mode]({{base.url}}/getting-started/integration-
 
 ##### How can I ensure a webhook is from Branch?
 
-Right now, we do not support a encryption method to verify requests come from Branch. As a workaround, if you [create events through the Branch SDK]({{base.url}}/getting-started/events-referrals#custom-events), you can specify a secret key inside the event metadata to pass through inside the URL of the webhook itself. 
+Right now, we do not support a encryption method to verify requests come from Branch. As a workaround, if you [create events through the Branch SDK]({{base.url}}/getting-started/tracking-events#custom-events), you can specify a secret key inside the event metadata to pass through inside the URL of the webhook itself. 
 
 ##### What's the difference between first referring data and session referring data?
 

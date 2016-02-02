@@ -103,7 +103,7 @@ branch.banner(
 
 ## Deeplinking from the banner
 
-Like all Branch deeplinks, you can pass custom parameters through the App/Play Store by specifying keys in the link's [data dictionary]({{base.url}}/getting-started/link-configuration).
+Like all Branch deeplinks, you can pass custom parameters through the App/Play Store by specifying keys in the link's [data dictionary]({{base.url}}/getting-started/configuring-links).
 
 {% example %}If you have enabled deeplink routing in your app, this example will take the visitor straight to a picture with id “12345” after installing and opening the app.
 

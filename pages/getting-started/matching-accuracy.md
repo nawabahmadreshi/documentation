@@ -33,8 +33,8 @@ We've built out custom deep linking mechanisms that are specific to each platfor
 | Match Method | Implementation Details
 | :--- | ---
 | **Facebook deferred deep linking API** | We've built a custom integration with Facebook where if a user originates from an app invite or advertisement, we connect with Facebook's API to know with 100% certainty if the install originated from this source. You'll need to authenticate with Facebook on the Branch dash if you want to support this.
-| **Android Google Play referrer** | Google Play supports passing a referrer through the install process that we listen for. It's notoriously unreliable and currently unsupported when redirecting from Chrome. However, we'll use it when available.
-| **iOS 9 Safari cookie passthrough** | We built a custom technique into our latest iOS SDK that will guarantee 100% accuracy on iOS 9 when you include SafariServices.framework in your app.
+| **Android Google Play referrer** | Google Play supports passing a referrer through the install process that we listen for. It's notoriously unreliable and currently unsupported when redirecting from Chrome. However, we'll use it when available. Enabling this method is covered in the [SDK Integration Guide]({{base.url}}/getting-started/sdk-integration-guide/guide/android/#configure-manifest).
+| **iOS 9 Safari cookie passthrough** | We built a custom technique into our latest iOS SDK that will guarantee 100% accuracy on iOS 9 when you include SafariServices.framework in your app. This method is enabled by default when you complete the [SDK Integration Guide]({{base.url}}/getting-started/sdk-integration-guide).
 
 ## Methods without 100% matching accuracy
 
@@ -44,9 +44,9 @@ Branch collects information about devices both when a user is in the browser -- 
 
 When no 100% match method is available, we connect the unique fingerprint collected in the app to the unique fingerprint collected in the browser to determine where user originated.
 
-{% protip title="Controlling the matching process" %}
+{% protip title="Customize the fingerprint matching criteria" %}
 
-If you are concerned that users may potentially have the same fingerprint, you can choose to have us not match users if two identical fingerprints are outstanding. On the Dashboard's [Link Settings](https://dashboard.branch.io/#/settings/link) page, under advanced options, you should set **Match Type** to `Unique`. You can also modify the 7200 second (2 hour) default expiration for all links, or [configure it for individual links]({{base.url}}/getting-started/link-configuration) by using the `duration` control parameter.
+If you are concerned that users may potentially have the same fingerprint, you can choose to have us not match users if two identical fingerprints are outstanding. On the Dashboard's [Link Settings](https://dashboard.branch.io/#/settings/link) page, under advanced options, you should set **Match Type** to `Unique`. You can also modify the 7200 second (2 hour) default expiration for all links, or [configure it for individual links]({{base.url}}/getting-started/configuring-links) by using the `duration` control parameter.
 
 {% image src="/img/pages/getting-started/matching-accuracy/match_type.png" center 3-quarters alt="match_type" %}
 

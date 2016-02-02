@@ -26,7 +26,7 @@ If you maintain a mobile website, Branch allows you to deeplink mobile visitors 
 
 ## Initialize the Deepview SDK on page load
 
-Add the following code somewhere inside the `<head></head>` tags on your website and customize the [link parameters]({{base.url}}/getting-started/link-configuration) to suit your needs. What this script does is move a lot of the Branch redirection logic to the Javascript on your own page, effectively 'clicking a Branch link' on page load.
+Add the following code somewhere inside the `<head></head>` tags on your website and customize the [link parameters]({{base.url}}/getting-started/configuring-links) to suit your needs. What this script does is move a lot of the Branch redirection logic to the Javascript on your own page, effectively 'clicking a Branch link' on page load.
 
 {% highlight javascript %}
 <script type="text/javascript">

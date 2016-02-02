@@ -1,7 +1,7 @@
 ---
 type: recipe
 directory: getting-started
-title: Link Creation
+title: Creating Links
 page_title: How to create Branch links
 description: Learn about the multiple ways to create Branch deeplinks for iOS and Android apps.
 keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Link Properties, Redirect Customization, Mobile SDK, Web SDK, HTTP API
@@ -129,7 +129,7 @@ branchUniversalObject.getShortUrlWithLinkProperties(linkProperties,  andCallback
 
 Creating links is great, but creating a ton of different links up front for all the channels in `UIActivityViewController` is a pain. You can use our preconfigured `UIActivityItemProvider` to make life easier. Calling this method will automatically generate a Branch link with all the appropriate analytics tags when the user presses a button to share.
 
-{% image src='/img/pages/getting-started/link-creation/ios_share_sheet.jpg' actual center alt='ios share sheet' %}
+{% image src='/img/pages/getting-started/creating-links/ios_share_sheet.jpg' actual center alt='ios share sheet' %}
 
 To implement it, use the following `showShareSheetWithLinkProperties` method instead of `getShortUrlWithLinkProperties` in the last step above:
 

@@ -109,7 +109,7 @@ func configureControlWithData(data: [NSObject : AnyObject]!) {
 {% endtabs %}
 
 {% protip title="More about link data keys" %}
-The example key `product_picture` is a parameter from the [data dictionary]({{base.url}}/getting-started/link-configuration) of the link that was clicked, and would have been defined when the link [was created]({{base.url}}/getting-started/link-creation).
+The example key `product_picture` is a parameter from the [data dictionary]({{base.url}}/getting-started/configuring-links) of the link that was clicked, and would have been defined when the link [was created]({{base.url}}/getting-started/creating-links).
 {% endprotip %} 
 
 Since the view controller is displayed modally, you should add a close button:
@@ -222,7 +222,7 @@ protected void onResume() {
 {% endhighlight %}
 
 {% protip title="More about link data keys" %}
-The example key `product_picture` is a parameter from the [data dictionary]({{base.url}}/getting-started/link-configuration) of the link that was clicked, and would have been defined when the link [was created]({{base.url}}/getting-started/link-creation).
+The example key `product_picture` is a parameter from the [data dictionary]({{base.url}}/getting-started/configuring-links) of the link that was clicked, and would have been defined when the link [was created]({{base.url}}/getting-started/creating-links).
 {% endprotip %} 
 
 ## Register Activity for deeplink routing

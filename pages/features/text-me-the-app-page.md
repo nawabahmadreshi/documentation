@@ -123,7 +123,7 @@ function sendSMS(form) {
 
 ### SendSMS() parameters.
 
-The `sendSMS()` method requires a phone number and [link parameters]({{base.url}}/getting-started/link-configuration). You may optionally specify configuration options and a callback.
+The `sendSMS()` method requires a phone number and [link parameters]({{base.url}}/getting-started/configuring-links). You may optionally specify configuration options and a callback.
 
 {% highlight javascript %}
 branch.sendSMS(
