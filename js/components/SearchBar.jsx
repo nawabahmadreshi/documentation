@@ -68,7 +68,7 @@ var SearchBar = React.createClass({
 						<input
 							type="text"
 							name="search"
-							className="form-control"
+							className=""
 							autoComplete="off"
 							placeholder="Search"
 							onChange={this.inputChanged}
