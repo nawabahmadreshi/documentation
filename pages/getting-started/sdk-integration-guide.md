@@ -16,9 +16,9 @@ sections:
 - guide
 ---
 
-{% protip title="Integration Prerequisites" %}
+{% prerequisite %}
 Before using the Branch SDK, you must first [sign up for an account](https://dashboard.branch.io) and complete the [routing configuration wizard](https://start.branch.io/).
-{% endprotip %}
+{% endprerequisite %}
 
 ## Get the SDK files
 
@@ -27,32 +27,33 @@ Before using the Branch SDK, you must first [sign up for an account](https://das
 
 With extensive use, the iOS SDK footprint is **180 kb**.
 
-#### Install with CocoaPods
+### Install with CocoaPods
 
 The recommended way to install the SDK is via CocoaPods:
 
 1. Add `pod "Branch"` to your podfile.
 1. Run `pod install` from the command line.
 
-#### Install Manually
+{% protip title="Install Manually" %}
 
 If you don't use CocoaPods, you can still install the SDK manually:
 
 1. [Grab the latest SDK version](https://s3-us-west-1.amazonaws.com/branchhost/Branch-iOS-SDK.zip), or [clone our open-source GitHub repo](https://github.com/BranchMetrics/branch-ios-sdk).
 1. Drag the `Branch.framework` file into your Xcode project. Be sure that "Copy items if needed" is selected.
-1. Import the following frameworks under `Build Phases` for your app target:
+1. Import the following frameworks under **Build Phases** for your app target:
     - `AdSupport.framework`
     - `CoreTelephony.framework`
     - `CoreSpotlight.framework`
     - `MobileCoreServices.framework`
     - `SafariServices.framework`
+{% endprotip %}
 
 {% caution title="Considerations around using Frameworks" %}
 
-#### AdSupport.framework
-This framework allows us to use the IDFA to match your visitors across our entire network of apps, increasing matching accuracy. When you submit your app to the App Store, you need to [let Apple know that you use the IDFA]({{base.url}}/getting-started/matching-accuracy).
+##### AdSupport.framework
+This framework allows us to use the IDFA to match your visitors across our entire network of apps, increasing matching accuracy. When you submit your app to the App Store, you need to let Apple know that you use the IDFA.
 
-#### SafariServices.framework
+##### SafariServices.framework
 This framework enables cookie-based matching on iOS 9+, which allows us to [guarantee link matching with 100% accuracy]({{base.url}}/getting-started/matching-accuracy). Please test to make sure the invisible `SFSafariViewController` does not alter your view controller stack. Delete the app and reinstall to trigger the invisible SFSafariViewController to be presented on first launch.
 {% endcaution %}
 
@@ -64,13 +65,14 @@ This framework enables cookie-based matching on iOS 9+, which allows us to [guar
 
 With extensive use, the Android SDK footprint is **187 kb**.
 
-#### Install with Gradle
+### Install with Gradle
 
 Add `compile 'io.branch.sdk.android:library:1.+'` to the dependencies section of your `build.gradle` file.
 
-#### Install Manually
+{% protip title="Install Manually" %}
 
 You can also install the SDK manually by [downloading the latest version](https://s3-us-west-1.amazonaws.com/branchhost/Branch-Android-SDK.zip) or [cloning our open-source GitHub repo](https://github.com/BranchMetrics/branch-android-sdk).
+{% endprotip %}
 
 {% endif %}
 <!--- /Android -->
@@ -78,9 +80,9 @@ You can also install the SDK manually by [downloading the latest version](https:
 <!--- Cordova -->
 {% if page.cordova %}
 
-#### Install using Cordova Plugin or Plugman
+### Install using Cordova Plugin or Plugman
 
-The Cordova SDK can be installed with Cordova Plugin or the Plugman tool.  Point the tool at this repository, https://github.com/BranchMetrics/Cordova-Ionic-PhoneGap-Deferred-Deep-Linking-SDK. For example:
+The Cordova SDK can be installed with Cordova Plugin or the Plugman tool:
 
 `cordova plugin add https://github.com/BranchMetrics/Cordova-Ionic-PhoneGap-Deferred-Deep-Linking-SDK`
 
@@ -96,7 +98,7 @@ To install the SDK via NPM, use the following command:
 <!--- Xamarin -->
 {% if page.xamarin %}
 
-#### Install as a NuGet Package
+### Install as a NuGet Package
 
 The Branch Xamarin SDK is available as a [NuGet package](https://www.nuget.org/packages/Branch-Xamarin-Linking-SDK). You need to add this package separately to each project in your solution so that the correct platform-specific initialization call can be made. For apps using Xamarin Forms, this means adding the package separately to iOS, Android, *and* Forms projects.
 
@@ -104,7 +106,7 @@ The Branch Xamarin SDK is available as a [NuGet package](https://www.nuget.org/p
 1. Find the `Branch Xamarin Linking SDK` and select it. This will add the required assemblies to your project.
 1. Repeat for other platform projects.
 
-#### Install Manually
+{% protip title="Install Manually" %}
 
 You can also build and reference the assemblies directly.
 
@@ -113,18 +115,20 @@ You can also build and reference the assemblies directly.
    - **Forms:** add the `BranchXamarinSDK` assembly and reference it from your project.
    - **iOS (including iOS with Forms):** add the `BranchXamarinSDK` *and* `BranchXamarinSDK.iOS` assemblies and reference them from your iOS project.
    - **Android (including Android with Forms):** add the `BranchXamarinSDK` *and* `BranchXamarinSDK.Droid` assemblies and reference them from your Android project.
+{% endprotip %}
+
 {% endif %}
 <!--- /Xamarin -->
 
 <!--- Unity -->
 {% if page.unity %}
 
-#### Get the files
+### Get the files
 
 1. [Download the latest SDK version](https://s3-us-west-1.amazonaws.com/branchhost/BranchUnityWrapper.unitypackage) or [clone our open-source GitHub repository](https://github.com/BranchMetrics/Unity-Deferred-Deep-Linking-SDK).
 1. Import the `BranchUnityWrapper.unitypackage` into your project by clicking `Assets -> Import Package`.
 
-#### Configure the package and add Branch key
+### Configure the package and add Branch key
 
 1. To allow Branch to configure itself, drag a **BranchPrefab** asset to your scene.
 1. Specify your `branchUri` and `branchKey` in the properties.
@@ -166,13 +170,13 @@ We attempt to automatically add an Android manifest flag to support deeplinking,
 <!--- Titanium -->
 {% if page.titanium %}
 
-#### iOS Module Installation
+### iOS Module Installation
 
 1. [Download the latest SDK version](https://s3-us-west-1.amazonaws.com/branchhost/Branch-Titanium-iOS-SDK.zip) or [clone our open-source GitHub repository](https://github.com/BranchMetrics/Titanium-Deferred-Deep-Linking-SDK) and locate the ZIP file inside the `iphone` folder.
 1. Extract the contents.
 3. Copy the `iphone` folder to your Titanium `modules` folder.
 
-#### Android Module Installation
+### Android Module Installation
 
 1. [Download the latest SDK version](https://s3-us-west-1.amazonaws.com/branchhost/Branch-Titanium-Android-SDK.zip) or [clone our open-source GitHub repository](https://github.com/BranchMetrics/Titanium-Deferred-Deep-Linking-SDK) and locate the ZIP file inside the `android/dist` folder.
 1. Extract the contents.
@@ -192,11 +196,9 @@ We attempt to automatically add an Android manifest flag to support deeplinking,
 1. After about half a second, you will see a `+` sign appear. Click it.
 1. Add a new row with the following values:
 
-	| Key | Type | Value |
-	| --- | --- | --- |
-	| branch_key | String | [your Branch Key] |
-
-1. Save the plist file.
+| Key | Type | Value |
+| :--- | --- | --- |
+| branch_key | String | [your Branch Key] |
 
 ### Register a URL scheme
 
@@ -227,16 +229,19 @@ Branch opens your app by using its URL scheme (`yourapp://`), which should be un
 <application>
     <!-- Other existing entries -->
 
-    <meta-data android:name="io.branch.sdk.BranchKey" android:value="key_live_abc123" />
+    <meta-data android:name="io.branch.sdk.BranchKey" android:value="key_live_xxxxxxxxxxxxxxx" />
 
 </application>
 {% endhighlight %}
 
 {% protip title="Use Google Play Install Referrer to improve match accuracy" %}
-Google Play provides an install referrer that can be used to guarantee 100% accuracy of deeplinking through install *when Google Play delivers it in time*. It’s notoriously unreliable and currently unsupported when redirecting from Chrome. However, Branch can use it when available if registered to receive the broadcast by adding this snippet to `AndroidManifest.xml`
+Google Play provides an install referrer that can be used to guarantee 100% accuracy of deeplinking through install *when Google Play delivers it in time*. It’s notoriously unreliable and currently unsupported when redirecting from Chrome. However, Branch can use it when available if registered to receive the broadcast.
 
 {% tabs %}
 {% tab common %}
+
+To do so, add this snippet to your `AndroidManifest.xml`:
+
 {% highlight xml %}
 <receiver android:name="io.branch.referral.InstallListener" android:exported="true">
 	<intent-filter>
@@ -247,7 +252,7 @@ Google Play provides an install referrer that can be used to guarantee 100% accu
 {% endtab %}
 {% tab uncommon %}
 
-Google only allows one `BroadcastReceiver` class per application. If you already receive the install referrer for other purposes, you will need to create a custom receiver class:
+Google only allows one `BroadcastReceiver` class per application. If you already receive the install referrer for other purposes, you will need to create a custom receiver class in your `AndroidManifest.xml`:
 
 {% highlight xml %}
 <receiver android:name="com.myapp.CustomInstallListener" android:exported="true">
@@ -275,8 +280,7 @@ Branch opens your app by using its URL scheme (`yourapp://`), which should be un
 1. On the [Link Settings](https://dashboard.branch.io/#/settings/link) page of the Branch dashboard, ensure that **I have an Android App** is checked and **Android URI Scheme** is filled.
 1. Choose the `Activity` you want to open up when a link is clicked. This is typically your `SplashActivity` or a `BaseActivity` that all other activities inherit from.
 1. Inside your `AndroidManifest.xml`, locate where the selected `Activity` is defined.
-1. Within the `Activity` definition, insert the intent filter provided below.
-   - Change `yourApp` under `android:scheme` to the URL scheme you've selected.
+1. Within the `Activity` definition, insert the intent filter provided below. Change `yourApp` under `android:scheme` to the URL scheme you've selected.
 
 {% highlight xml %}
 <intent-filter>
@@ -289,7 +293,14 @@ Branch opens your app by using its URL scheme (`yourapp://`), which should be un
 
 ### Enable Auto Session Management
 
-{% protip title="If you already have an Application class" %}
+Register an `Application` class in your Manifest as follows:
+
+{% highlight xml %}
+ <application
+    android:name="io.branch.referral.BranchApp">
+{% endhighlight %}
+
+{% protip title="If you already have a custom Application class" %}
 
 Simply create a Branch instance in your `Application#onCreate()` method:
 
@@ -302,13 +313,6 @@ public void onCreate() {
 
 If you don't know what a custom application class is, no need to worry: you most likely don't have one yet!
 {% endprotip %}
-
-Register an `Application` class in your Manifest as follows:
-
-{% highlight xml %}
- <application
-    android:name="io.branch.referral.BranchApp">
-{% endhighlight %}
 
 {% protip title="What if I support pre-14 Android?" %}
 Auto session tracking is only available for `minSdkVersion` 14 or above. If you need to support pre-14, you should include Branch SDK methods in both `onStart()` and `onStop()` to avoid strange, difficult-to-diagnose behavior. Branch must know when the app opens or closes to properly handle the deep link parameters retrieval.
@@ -345,7 +349,7 @@ protected void onStop() {
 <application>
     <!-- Other existing entries -->
 
-    <meta-data android:name="io.branch.sdk.BranchKey" android:value="key_live_abc123" />
+    <meta-data android:name="io.branch.sdk.BranchKey" android:value="key_live_xxxxxxxxxxxxxxx" />
 
 </application>
 {% endhighlight %}
@@ -356,8 +360,7 @@ Branch opens your app by using its URL scheme (`yourapp://`), which should be un
 
 1. On the [Link Settings](https://dashboard.branch.io/#/settings/link) page of the Branch dashboard, ensure that **I have an Android App** is checked and **Android URI Scheme** is filled.
 1. Choose the `Activity` you want to open up when a link is clicked. This is typically your `SplashActivity` or a `BaseActivity` that all other activities inherit from.
-1. Within the `Activity` definition, insert the intent filter provided below.
-   - Change `yourApp` under `android:scheme` to the URL scheme you've selected.
+1. Within the `Activity` definition, insert the intent filter provided below. Change `yourApp` under `android:scheme` to the URL scheme you've selected.
 
 {% highlight xml %}
 <intent-filter>
@@ -376,23 +379,23 @@ Branch opens your app by using its URL scheme (`yourapp://`), which should be un
 1. Retrieve your Branch Key on the [Settings](https://dashboard.branch.io/#/settings) page of the Branch dashboard.
 1. In your project's `*-app.xml` file, add the following platform-specific snippet(s):
 
-#### iOS Projects
+### iOS Projects
 
 {% highlight xml %}
 <iPhone><InfoAdditions><![CDATA[
     <!-- other stuff -->
     <key>branch_key</key>
-    <string>key_live_dcixJiAqOixZkdkLxgiTLkeovycqdUPp</string>
+    <string>key_live_xxxxxxxxxxxxxxx</string>
 ]]></InfoAdditions></iPhone>
 {% endhighlight %}
 
-#### Android Projects
+### Android Projects
 
 {% highlight xml %}
 <android><manifestAdditions><![CDATA[
     <!-- other stuff -->
     <application>
-        <meta-data android:name="io.branch.sdk.BranchKey" android:value="key_live_dcixJiAqOixZkdkLxgiTLkeovycqdUPp" />
+        <meta-data android:name="io.branch.sdk.BranchKey" android:value="key_live_xxxxxxxxxxxxxxx" />
         <activity android:name="io.branch.nativeExtensions.branch.BranchActivity" android:launchMode="singleTask" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
     </application>
 ]]></manifestAdditions></android>
@@ -407,7 +410,7 @@ Branch opens your app by using its URL scheme (`yourapp://`), which should be un
 1. On the [Link Settings](https://dashboard.branch.io/#/settings/link) page of the Branch dashboard, ensure that **I have an iOS App** and/or **I have an Android App** is checked and **iOS URI Scheme** and/or **Android URI Scheme** is filled.
 1. In your project's `*-app.xml` file, insert the platform-specific snippet(s) below. Change `yourApp` to the URL scheme you've selected.
 
-#### iOS Projects
+### iOS Projects
 
 {% highlight xml %}
 <key>CFBundleURLTypes</key>
@@ -421,7 +424,7 @@ Branch opens your app by using its URL scheme (`yourapp://`), which should be un
 </array>
 {% endhighlight %}
 
-#### Android Projects
+### Android Projects
 
 {% highlight xml %}
 <activity>
@@ -482,7 +485,7 @@ Branch opens your app by using its URL scheme (`yourapp://`), which should be un
 <application>
     <!-- Other existing entries -->
 
-    <meta-data android:name="io.branch.sdk.BranchKey" android:value="key_live_abc123" />
+    <meta-data android:name="io.branch.sdk.BranchKey" android:value="key_live_xxxxxxxxxxxxxxx" />
 
 </application>
 {% endhighlight %}
@@ -494,8 +497,7 @@ Branch opens your app by using its URL scheme (`yourapp://`), which should be un
 1. On the [Link Settings](https://dashboard.branch.io/#/settings/link) page of the Branch dashboard, ensure that **I have an Android App** is checked and **Android URI Scheme** is filled.
 1. Choose the `Activity` you want to open up when a link is clicked. This is typically your `SplashActivity` or a `BaseActivity` that all other activities inherit from.
 1. Inside your `tiapp.xml`, locate where the selected `Activity` is defined.
-1. Within the `Activity` definition, insert the intent filter provided below.
-   - Change `yourApp` under `android:scheme` to the URL scheme you've selected.
+1. Within the `Activity` definition, insert the intent filter provided below. Change `yourApp` under `android:scheme` to the URL scheme you've selected.
 
 {% highlight xml %}
 <intent-filter>
@@ -520,7 +522,7 @@ To ensure proper deeplinking from other apps such as Facebook, this Activity mus
 
 {% endif %}
 
-## Start a Branch Session
+## Start a Branch session
 
 The Branch session starts every single time your app opens up to check if the user came from a link. If so, the callback method returns any deeplink parameters for that link. Please note that the callback function is always called, even when the network is out.
 
@@ -538,9 +540,23 @@ The Branch session starts every single time your app opens up to check if the us
 {% highlight objc %}
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:
 {% endhighlight %}
+{% endtab %}
 
-- Underneath this line, add the following snippet:
+{% tab swift %}
+1. Add a bridging header to import the Branch framework into your project. For help on adding a bridging header, see [this StackOverflow answer](http://stackoverflow.com/a/28486246/1914567).
+1. In Xcode, open your **AppDelegate.swift** file.
+1. Find the line beginning with:
 
+{% highlight swift %}
+func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions:
+{% endhighlight %}
+{% endtab %}
+{% endtabs %}
+
+Underneath this line, add the following snippet:
+
+{% tabs %}
+{% tab objective-c %}
 {% highlight objc %}
 Branch *branch = [Branch getInstance];
 [branch initSessionWithLaunchOptions:launchOptions andRegisterDeepLinkHandler:^(NSDictionary *params, NSError *error) {
@@ -553,18 +569,8 @@ Branch *branch = [Branch getInstance];
 }];
 {% endhighlight %}
 {% endtab %}
+
 {% tab swift %}
-
-1. Add a bridging header to import the Branch framework into your project. For help on adding a bridging header, see [this StackOverflow answer](http://stackoverflow.com/a/28486246/1914567).
-1. In Xcode, open your **AppDelegate.swift** file.
-1. Find the line beginning with:
-
-{% highlight swift %}
-func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions:
-{% endhighlight %}
-
-- Underneath this line, add the following snippet:
-
 {% highlight swift %}
 let branch: Branch = Branch.getInstance()
 branch.initSessionWithLaunchOptions(launchOptions, andRegisterDeepLinkHandler: { params, error in
@@ -579,10 +585,12 @@ branch.initSessionWithLaunchOptions(launchOptions, andRegisterDeepLinkHandler: {
 {% endtab %}
 {% endtabs %}
 
+## Handle incoming links
+
 {% tabs %}
 {% tab objective-c %}
 
-Finally, add these two new methods to your **AppDelegate.m** file. The first responds to URL scheme links. The second responds to Universal Links and Spotlight listings, but will not be active until you [configure Universal Links]({{base.url}}/features/universal-links).
+Finally, add these two new methods to your **AppDelegate.m** file. The first responds to URL scheme links. The second responds to Universal Links, but will not be active until you [configure Universal Links]({{base.url}}/getting-started/universal-links).
 
 {% highlight objc %}
 // Respond to URL scheme links
@@ -605,7 +613,7 @@ Finally, add these two new methods to your **AppDelegate.m** file. The first res
 {% endtab %}
 {% tab swift %}
 
-Finally, add these two new methods to your **AppDelegate.swift** file. The first responds to URL scheme links. The second responds to Universal Links and Spotlight listings, but will not be active until you [configure Universal Links]({{base.url}}/features/universal-links).
+Finally, add these two new methods to your **AppDelegate.swift** file. The first responds to URL scheme links. The second responds to Universal Links and Spotlight listings, but will not be active until you [configure Universal Links]({{base.url}}/getting-started/universal-links).
 
 {% highlight swift %}
 // Respond to URL scheme links
@@ -627,8 +635,6 @@ func application(application: UIApplication, continueUserActivity userActivity: 
 
 {% endtab %}
 {% endtabs %}
-
-
 
 {% endif %}
 <!---    /iOS -->
@@ -707,7 +713,7 @@ If `data` is null and `err` contains a string denoting a request timeout, make s
 
 The Branch initialization process is different depending on whether you are using Xamarin Forms or not. Please make sure to follow the correct instructions!
 
-#### Generic Xamarin initialization
+### Generic Xamarin initialization
 
 {% tabs %}
 {% tab forms %}
@@ -747,9 +753,9 @@ The generic Xamarin initialization is not required for non-forms apps.
 {% endtab %}
 {% endtabs %}
 
-#### Android initialization
+### Android initialization
 
-Add calls to the `OnCreate` and `OnNewIntent` methods of either your Application class or the first Activity you start. Be sure to replace `branch_key` with your Branch key from the [Settings](https://dashboard.branch.io/#/settings) page of the Branch dashboard.
+Add calls to the `OnCreate` and `OnNewIntent` methods of either your Application class or the first Activity you start. Be sure to replace `key_live_xxxxxxxxxxxxxxx ` with your Branch key from the [Settings](https://dashboard.branch.io/#/settings) page of the Branch dashboard.
 
 {% tabs %}
 {% tab forms %}
@@ -763,7 +769,7 @@ public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsApplicat
 
         global::Xamarin.Forms.Forms.Init (this, savedInstanceState);
 
-        BranchAndroid.Init (this, "branch_key", Intent.Data, Intent.Extras);
+        BranchAndroid.Init (this, "key_live_xxxxxxxxxxxxxxx", Intent.Data, Intent.Extras);
         
         App app = new App ();
         
@@ -791,7 +797,7 @@ public class MainActivity: Activity, IBranchSessionInterface
     {
         base.OnCreate (savedInstanceState);
 
-        BranchAndroid.Init (this, "branch_key", Intent.Data);
+        BranchAndroid.Init (this, "key_live_xxxxxxxxxxxxxxx", Intent.Data);
 
         // Call this method to enable automatic session management and initialize
         BranchAndroid.getInstance().SetLifeCycleHandlerCallback (this, this);
@@ -823,9 +829,9 @@ public class MainActivity: Activity, IBranchSessionInterface
 {% endtabs %}
 
 
-#### iOS initialization
+### iOS initialization
 
-Add these methods to your `AppDelegate.cs` file. Be sure to replace `branch_key` with your Branch key from the [Settings](https://dashboard.branch.io/#/settings) page of the Branch dashboard.
+Add these methods to your `AppDelegate.cs` file. Be sure to replace `key_live_xxxxxxxxxxxxxxx ` with your Branch key from the [Settings](https://dashboard.branch.io/#/settings) page of the Branch dashboard.
 
 {% tabs %}
 {% tab forms %}
@@ -843,7 +849,7 @@ public class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDe
             url = (NSUrl)launchOptions.ValueForKey (UIApplication.LaunchOptionsUrlKey);
         }
 
-        BranchIOS.Init ("branch_key", url, true);
+        BranchIOS.Init ("key_live_xxxxxxxxxxxxxxx", url, true);
 
         LoadApplication (new App ());
         return base.FinishedLaunching (uiApplication, launchOptions);
@@ -885,7 +891,7 @@ public class AppDelegate : UIApplicationDelegate, IBranchSessionInterface
             url = (NSUrl)launchOptions.ValueForKey (UIApplication.LaunchOptionsUrlKey);
         }
 
-        BranchIOS.Init ("branch_key", url, true);
+        BranchIOS.Init ("key_live_xxxxxxxxxxxxxxx", url, true);
 
         Branch branch = Branch.GetInstance ();
         branch.InitSessionAsync (this);
@@ -1036,12 +1042,53 @@ $.onInitSessionFinished = function(data) {
 {% endhighlight %}
 {% endif %}
 
+{% if page.android %}{% else %}
+
+## {% if page.ios %}{% else %}iOS: {% endif %}Submitting to the App Store
+
+After integrating the Branch SDK, you need to let Apple know that you use the IDFA. To follow proper protocol when submitting your next release to the App Store, you should:
+
+1. Answer `Yes` to the question **Does this app use the Advertising Identifier (IDFA)?**
+1. Check the two boxes for:
+   - **Attribute this app installation to a previously served advertisement** 
+   - **Attribute an action taken within this app to a previously served advertisement**
+
+{% image src='/img/pages/getting-started/submitting-apps/idfa.png' center 3-quarters alt='IDFA configuration on iTunes Connect' %}
+
+{% protip title="Why does Branch use the IDFA?" %}
+Branch uses the IDFA to identify users across our entire partner network, greatly increasing match accuracy rate. You can read more about this on the [Matching accuracy page]({{base.url}}/getting-started/matching-accuracy).
+
+The only situation in which you do not need to perform these steps is if you installed the Branch framework manually (without using CocoaPods) and elected **not** to import `AdSupport.framework`
+{% endprotip %}
+
+{% endif %}
+
+{% if page.android %}
+
+## Submitting to the Play Store
+
+By default, Branch collects and uses the [Android ID](http://developer.android.com/reference/android/provider/Settings.Secure.html#ANDROID_ID). No additional steps are required when submitting your app to the Play Store.
+
+{% protip title="Using the Google Advertising ID instead" %}
+If you'd like Branch to collect the [Google Advertising ID](https://support.google.com/googleplay/android-developer/answer/6048248?hl=en) for advertising or tracking purposes, you must add Google Play Services to your app prior to release. After you complete these steps, Branch will handle the rest!
+
+1. Add `compile 'com.google.android.gms:play-services:7.5.0'` to the dependencies section of your `build.gradle` file.
+1. Add the following line in your ProGuard settings:
+
+{% highlight xml %}
+-keep class com.google.android.gms.ads.identifier.** { *; }
+{% endhighlight %}
+{% endprotip %}
+
+{% endif %}
+
 ## Next Steps
 
-The Branch SDK is now integrated into your app, and you can use the [Branch dashboard](https://dashboard.branch.io/#) to track completed installs from [marketing links](https://dashboard.branch.io/#/marketing). However, this only scratches the surface of what is possible with Branch.
+The Branch SDK is now integrated into your app, and you can use the [Branch dashboard](https://dashboard.branch.io/#) to track completed installs from [Marketing links](https://dashboard.branch.io/#/marketing). However, this only scratches the surface of what is possible with Branch.
 
 Here are some recommended next steps:
 
-- **Enable [iOS Universal Links]({{base.url}}/features/universal-links)** — traditional URL scheme links are no longer supported in many situations on iOS 9.2+. To get full functionality from your Branch links on iOS devices, **you should enable Universal Links as soon as possible.**
+{% if page.android %}{% else %}
+- **Enable [iOS Universal Links]({{base.url}}/getting-started/universal-links)** — traditional URL scheme links are no longer supported in many situations on iOS 9.2+. To get full functionality from your Branch links on iOS devices, **you should enable Universal Links as soon as possible.**{% endif %}
 - **Learn about [Creating Links]({{base.url}}/getting-started/creating-links)** — let your users share content and invite friends from inside your app.
-- **Set up [Deeplink Routing]({{base.url}}/features/deeplink-routing)** — send incoming visitors directly to specific content in your app based on the Branch link they clicked.
+- **Set up [Deeplink Routing]({{base.url}}/getting-started/deeplink-routing)** — send incoming visitors directly to specific content in your app based on the Branch link they clicked.

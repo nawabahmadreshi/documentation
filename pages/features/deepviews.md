@@ -64,13 +64,13 @@ Only users who do not have the app will go through this flow. You can view the t
 
 ## Customizations
 
-This is all you need to do to enable Deepviews. For each link, Branch will attempt to intelligently display the best content we have available. However, you can (and will probably want to!) what is shown. See the [Advanced](../advanced/) page for more information.
+This is all you need to do to enable Deepviews. For each link, Branch will attempt to intelligently display the best content we have available. However, you can (and will probably want to!) what is shown. See the [Advanced]({{base.url}}/features/deepviews/advanced/) page for more information.
 
 {% elsif page.advanced %}
 
 ## Customizing Deepview content
 
-The default Deepview template simply displays the content from three of the link's [control parameters]({{base.url}}/getting-started/link-configuration). You can specify the content of these parameters when creating your link to control what will display in that link’s Deepview. If nothing is set for a particular link, we will gracefully fall back to the OG values set for your entire app in _Settings > Link Settings > Social Media Display Customization._
+The default Deepview template simply displays the content from three of the link's [control parameters]({{base.url}}/getting-started/configuring-links). You can specify the content of these parameters when creating your link to control what will display in that link’s Deepview. If nothing is set for a particular link, we will gracefully fall back to the OG values set for your entire app in _Settings > Link Settings > Social Media Display Customization._
 
 | Key | Value
 | --- | ---
@@ -266,7 +266,7 @@ You **cannot** specify `$og_title`, `$og_description` and `$og_image_url` in the
 
 ## Enabling Deepviews for one link
 
-If you don't want to enable Deepviews globally, you can do it for each platform on a per link basis by inserting custom link control parameters [link control parameters]({{base.url}}/getting-started/link-configuration).
+If you don't want to enable Deepviews globally, you can do it for each platform on a per link basis by inserting custom link control parameters [link control parameters]({{base.url}}/getting-started/configuring-links).
 
 - **$ios_deepview**: The name of the template to use for iOS. [default: `default_template`].
 - **$android_deepview**: The name of the template to use for Android. [default: `default_template`].
@@ -492,7 +492,7 @@ Before rendering the template, we sanitize the markup of Javascript for security
 
 ### Using liquid tags in Deepview templates
 
-By customizing your Deepview template, you have the ability to pass through other parameters from your link's [data dictionary]({{base.url}}/getting-started/link-configuration).
+By customizing your Deepview template, you have the ability to pass through other parameters from your link's [data dictionary]({{base.url}}/getting-started/configuring-links).
 
 Here's a full list of liquid available tags:
 

@@ -46,7 +46,7 @@ branch.banner({
 
 ## Customizations
 
-That’s all you need to add the smart banner to your website! Go to [Advanced](../advanced/) to see some common customizations, or take a look at the [Method Reference]({{base.url}}/method-reference/web-sdk) for all available options.
+That’s all you need to add the smart banner to your website! Go to [Advanced]({{base.url}}/features/app-download-banner/advanced/) to see some common customizations, or take a look at the [Method Reference]({{base.url}}/method-reference/web-sdk) for all available options.
 
 {% elsif page.advanced %}
 
@@ -103,7 +103,7 @@ branch.banner(
 
 ## Deeplinking from the banner
 
-Like all Branch deeplinks, you can pass custom parameters through the App/Play Store by specifying keys in the link's [data dictionary]({{base.url}}/getting-started/link-configuration).
+Like all Branch deeplinks, you can pass custom parameters through the App/Play Store by specifying keys in the link's [data dictionary]({{base.url}}/getting-started/configuring-links).
 
 {% example %}If you have enabled deeplink routing in your app, this example will take the visitor straight to a picture with id “12345” after installing and opening the app.
 
@@ -174,6 +174,29 @@ branch.banner({
 }, {});
 {% endhighlight %}
 {% endexample %}
+
+## Prepending country codes to phone numbers
+
+If your app audience is exclusively from one country, you can choose a specific country code to prepend to all phone numbers. You simply add the following code snippet after the `branch.init()` call. 
+
+{% highlight javascript %}
+var listener = function(event) { 
+    var banner_iframe = document.getElementById("branch-banner-iframe").contentWindow.document;
+    var submit_btn = banner_iframe.getElementById("branch-sms-send");
+    
+    submit_btn.addEventListener('click', function(e){
+        var phone_number = banner_iframe.getElementById("branch-sms-phone");
+        var country_code = "+2"
+        phone_number.value = country_code + phone_number.value;
+    });
+}
+
+branch.addListener('didShowBanner', listener);
+{% endhighlight %}
+
+{% caution %}
+This will prepend the country code to whatever number is entered. You might need to do extra validation to ensure that the user didn't add the country code themselves. 
+{% endcaution %}
 
 ## Closing the app banner programmatically
 

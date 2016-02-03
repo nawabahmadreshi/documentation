@@ -4,22 +4,23 @@
   directory: getting-started
   children:
     - sdk-integration-guide
-    - analytics-events
-    - link-configuration
-    - link-creation
+    - title: Next Steps
+      children:
+        - universal-links
+        - creating-links
+        - configuring-links
+        - deeplink-routing
+        - app-links
     - title: Advanced
       children:
-        - testing_your_integration
-        - submitting-apps
-        - dashboard_pro_tips
-        - webhooks
+        - integration-testing
         - matching-accuracy
+        - tracking-events
+        - setting-identities
+        - webhooks
 - title: Features
   directory: features
   children:
-    - app-links
-    - universal-links
-    - deeplink-routing
     - title: Content Indexing
       children:
         - google_app_indexing
@@ -39,7 +40,7 @@
     - title: Marketing for Mobile
       children:
         - email_campaigns
-        - referral_links_with_incentives
+        - referral-programs
         - facebook_appinvites
         - advertising_facebook
         - advertising_google
@@ -50,8 +51,8 @@
         - ul_test_implementation-guide
         - ul_test_reference-material
         - ul_test_support
-- title: Third-Party Integrations
-  directory: third-party-integrations
+- title: Other Integrations
+  directory: other-integrations
   children:
     - title: Growth Tools
       children:
