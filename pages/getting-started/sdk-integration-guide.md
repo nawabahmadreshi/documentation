@@ -524,7 +524,7 @@ To ensure proper deeplinking from other apps such as Facebook, this Activity mus
 
 ## Start a Branch session
 
-The Branch session starts every single time your app opens up to check if the user came from a link. If so, the callback method returns any deeplink parameters for that link. Please note that the callback function is always called, even when the network is out.
+A Branch session needs to be started every single time your app opens. We check to see if the user came from a link and if so, the callback method returns any deeplink parameters for that link. Please note that the callback function is always called, even when the network is out.
 
 <!---    iOS -->
 {% if page.ios %}

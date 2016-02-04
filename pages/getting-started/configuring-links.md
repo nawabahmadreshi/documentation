@@ -26,11 +26,11 @@ Use analytics labels to help _organize your data_. Track updates, run A/B tests 
 
 | **Label** | **Usage**
 | ---: | ---
-| **channel** | Use channel to tag the _route_ that your link reaches users. For example, tag links with ‘Facebook’ or ‘LinkedIn’ to help track clicks and installs through those paths separately.
-| **feature** | This is the feature of your app that the link might be associated with. For example, if you had built a referral program, you would label links with the feature ‘referral’.
-| **campaign** | Use this field to organize the links by actual campaign. For example, if you launched a new feature or product and want to run a campaign around that.
+| **channel** | Use channel to tag the _route_ that your link reaches users. For example, tag links with ‘Facebook’ or ‘LinkedIn’ to help track clicks and installs through those paths separately
+| **feature** | This is the feature of your app that the link might be associated with. For example, if you had built a referral program, you would label links with the feature ‘referral’
+| **campaign** | Use this field to organize the links by actual campaign. For example, if you launched a new feature or product and want to run a campaign around that
 | **stage** | Use this to categorize the progress or category of a user when the link was generated. For example, if you had an invite system accessible on level 1, level 3 and 5, you could differentiate links generated at each level with this parameter
-| **tags** | This is a free form entry with unlimited values. Use it to organize your link data with labels that don't fit within the bounds of the above.
+| **tags** | This is a free form entry with unlimited values. Use it to organize your link data with labels that don't fit within the bounds of the above
 
 ## Link control parameters
 
@@ -44,9 +44,9 @@ Every link that you create is completely customizable from a functionality persp
 
 | **Key** | **Usage** | **Default**
 | ---: | --- | ---
-| **$fallback_url** | Change the redirect endpoint for _all_ platforms - so you don't have to enable it by platform. | System-wide Default URL (set in [Link Settings](https://dashboard.branch.io/#/settings/link))
+| **$fallback_url** | Change the redirect endpoint for _all_ platforms - so you don't have to enable it by platform | System-wide Default URL (set in [Link Settings](https://dashboard.branch.io/#/settings/link))
 | **$desktop_url** | Change the redirect endpoint on desktops. | Text-Me-The-App page (set in [Link Settings](https://dashboard.branch.io/#/settings/link))
-| **$ios_url** | Change the redirect endpoint for iOS. | App Store page for your app (set in [Link Settings](https://dashboard.branch.io/#/settings/link))
+| **$ios_url** | Change the redirect endpoint for iOS | App Store page for your app (set in [Link Settings](https://dashboard.branch.io/#/settings/link))
 | **$android_url** | Change the redirect endpoint for Android. | Play Store page for your app (set in [Link Settings](https://dashboard.branch.io/#/settings/link))
 | **$windows_phone_url** | Change the redirect endpoint for Windows OS | System-wide Default URL (set in [Link Settings](https://dashboard.branch.io/#/settings/link))
 | **$blackberry_url** | Change the redirect endpoint for Blackberry OS | System-wide Default URL (set in [Link Settings](https://dashboard.branch.io/#/settings/link))
@@ -66,7 +66,7 @@ Use these keys to set the value of the deeplink path that you'd like us to appen
 
 | **Key** | **Usage** | **Default**
 | ---: | --- | ---
-| **$deeplink_path** | Set the deeplink path for _all_ platforms - so you don't have to enable it by platform. | `open?link_click_id=1234'`
+| **$deeplink_path** | Set the deeplink path for _all_ platforms - so you don't have to enable it by platform | `open?link_click_id=1234'`
 | **$android_deeplink_path** | Set the deeplink path for Android apps | *null*
 | **$ios_deeplink_path** | Set the deeplink path for iOS apps | *null*
 | **duration** | Lets you control the fingerprinting match timeout (the time that a click will wait for an app open to match) also known as attribution window. Specified in seconds | `7200` (2 hours) 
@@ -78,8 +78,8 @@ Use these keys to set the value of the deeplink path that you'd like us to appen
 
 | **Key** | **Usage** | **Default**
 | ---: | --- | ---
-| **iframe_src** | Set to true when you are going to set an iFrame src to a Branch link. We need to issue 300s in order to properly redirect in this case. | `false`
-| **has_app** | Set to 'true' or 'false' in order to tell us whether you want us to try to open up the app for this particular link or not. | `true`
+| **iframe_src** | Set to true when you are going to set an iFrame src to a Branch link. We need to issue 300s in order to properly redirect in this case | `false`
+| **has_app** | Set to 'true' or 'false' in order to tell us whether you want us to try to open up the app for this particular link or not | `true`
 | **debug** | Set to 'true' to route to a link debug page that shows the labels and configuration of a link | `false`
 | **type** | Set to 1 to make it a one-time use link (Marketing dashboard links are set to 2) | `0`
 
@@ -91,13 +91,13 @@ If you do not specify a primary OG tag when creating a link, Branch will perform
 
 | **Key** | **Usage** | **Scraped?**
 | ---: | --- | ---
-| **$og_title** | Set the title of the link as it will be seen in social media displays. | yes
-| **$og_description** | Set the description of the link as it will be seen in social media displays. | yes
-| **$og_image_url** | Set the image of the link as it will be seen in social media displays. | yes
-| **$og_video** | Set a video as it will be seen in social media displays.
-| **$og_url** | Set the base URL of the link as it will be seen in social media displays.
-| **$og_type** | Set the type of custom card format link as it will be seen in social media displays.
-| **$og_redirect** | *(Advanced, not recommended)* Set a custom URL that we redirect the social media robots to in order to retrieve all the appropriate tags.
+| **$og_title** | Set the title of the link as it will be seen in social media displays | yes
+| **$og_description** | Set the description of the link as it will be seen in social media displays | yes
+| **$og_image_url** | Set the image of the link as it will be seen in social media displays | yes
+| **$og_video** | Set a video as it will be seen in social media displays
+| **$og_url** | Set the base URL of the link as it will be seen in social media displays
+| **$og_type** | Set the type of custom card format link as it will be seen in social media displays
+| **$og_redirect** | *(Advanced, not recommended)* Set a custom URL that we redirect the social media robots to in order to retrieve all the appropriate tags
 
 ### Twitter specific
 
