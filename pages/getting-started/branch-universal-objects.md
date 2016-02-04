@@ -103,7 +103,7 @@ var branchUniversalObject = branch.createBranchUniversalObject({
 
 {% endif %}
 
-## Branch Universal Object Parameters
+## Parameters
 
 Some of these parameters automatically populate the OG tag keys in the [data dictionary]({{base.url}}/getting-started/configuring-links) of any link created from that `BranchUniversalObject`.
 
@@ -181,6 +181,105 @@ Some of these parameters automatically populate the OG tag keys in the [data dic
 | **expirationDate** | The date when the content will not longer be available or valid*
 
 **Currently, this parameter is only used for [iOS Spotlight Indexing]({{base.url}}/features/spotlight-indexing) but will be used by Branch in the future*
+
+{% endif %}
+
+## Methods
+
+After you've assembled parameters to create your `BranchUniversalObject`, there are a number of methods you can call on it.
+
+{% if page.ios %}
+
+### registerView
+
+Call this method in `viewDidLoad` or `viewDidAppear` to track how many times a piece of content is viewed.
+
+{% tabs %}
+{% tab objective-c %}
+{% highlight objc %}
+[branchUniversalObject registerView];
+{% endhighlight %}
+{% endtab %}
+
+{% tab swift %}
+{% highlight swift %}
+branchUniversalObject.registerView()
+{% endhighlight %}
+{% endtab %}
+{% endtabs %}
+
+
+### getShortUrlWithLinkProperties
+
+Create a link to a piece of content. Visit the [Creating Links]({{base.url}}/getting-started/creating-links) page to learn more.
+
+### showShareSheetWithLinkProperties
+
+Use Branch's preconfigured `UIActivityItemProvider` to share a piece of content without having to create a link. Visit the [Creating Links]({{base.url}}/getting-started/creating-links) page to learn more.
+
+### listOnSpotlightWithCallback
+
+List your piece of content on Spotlight. Visit the [iOS Spotlight Indexing]({{base.url}}/features/spotlight-indexing) page to learn more.
+
+{% endif %}
+
+{% if page.android %}
+
+### registerView
+
+Call this method when the page loads to track how many times a piece of content is viewed.
+
+{% highlight java %}
+branchUniversalObject.registerView();
+{% endhighlight %}
+
+### generateShortUrl
+
+Create a link to a piece of content. Visit the [Creating Links]({{base.url}}/getting-started/creating-links) page to learn more.
+
+### showShareSheet
+
+Use Branch's custom share sheet to share a piece of content without having to create a link. Visit the [Creating Links]({{base.url}}/getting-started/creating-links) page to learn more.
+
+{% endif %}
+
+{% if page.unity %}
+
+### registerView
+
+Call this method when the page loads to track how many times a piece of content is viewed.
+
+{% highlight c# %}
+Branch.registerView(universalObject);
+{% endhighlight %}
+
+### getShortURL
+
+Create a link to a piece of content. Visit the [Creating Links]({{base.url}}/getting-started/creating-links) page to learn more.
+
+### shareLink
+
+Use Branch's custom share sheet to share a piece of content without having to create a link. Visit the [Creating Links]({{base.url}}/getting-started/creating-links) page to learn more.
+
+{% endif %}
+
+{% if page.titanium %}
+
+### registerView
+
+Call this method in `viewDidLoad` or `viewDidAppear` to track how many times a piece of content is viewed.
+
+{% highlight js %}
+Branch.registerView(universalObject);
+{% endhighlight %}
+
+### generateShortUrl
+
+Create a link to a piece of content. Visit the [Creating Links]({{base.url}}/getting-started/creating-links) page to learn more.
+
+### showShareSheet
+
+Use Branch's custom share sheet to share a piece of content without having to create a link. Visit the [Creating Links]({{base.url}}/getting-started/creating-links) page to learn more.
 
 {% endif %}
 

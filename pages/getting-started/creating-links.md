@@ -127,9 +127,9 @@ branchUniversalObject.getShortUrlWithLinkProperties(linkProperties,  andCallback
 
 {% example title="Let Branch handle the details" %}
 
-Creating links is great, but creating a ton of different links up front for all the channels in `UIActivityViewController` is a pain. You can use our preconfigured `UIActivityItemProvider` to make life easier. Calling this method will automatically generate a Branch link with all the appropriate analytics tags when the user presses a button to share.
+Creating links is great, but creating a ton of different links up front for all the channels in `UIActivityViewController` is a pain. You can use our preconfigured `UIActivityItemProvider` to make life easier. Calling this method will automatically generate a Branch link with the appropriate analytics channel when the user presses a button to share.
 
-{% image src='/img/pages/getting-started/creating-links/ios_share_sheet.jpg' actual center alt='ios share sheet' %}
+{% image src='/img/pages/getting-started/creating-links/ios_share_sheet.png' actual center alt='ios share sheet' %}
 
 To implement it, use the following `showShareSheetWithLinkProperties` method instead of `getShortUrlWithLinkProperties` in the last step above:
 
@@ -288,7 +288,7 @@ tags.Add("version1");
 tags.Add("trial6");
 {% endhighlight %}
 
-Finally, generate the link:
+Then generate the link:
 
 {% highlight c# %}
 Branch branch = Branch.GetInstance ();
@@ -335,6 +335,27 @@ Branch.getShortURL(universalObject, linkProperties, (url, error) => {
     }
 });
 {% endhighlight %}
+
+{% example title="Let Branch handle the details" %}
+
+You can use our preconfigured share sheets to make life easier. Calling this method will automatically generate a Branch link with the appropriate analytics channel when the user presses a button to share.
+
+{% image src='/img/pages/getting-started/creating-links/combined_share_sheet.png' actual center alt='ios share sheet' %}
+
+To implement it, use the following `shareLink` method instead of `getShortURL ` in the last step above:
+
+{% highlight c# %}
+Branch.shareLink(universalObject, linkProperties, "hello there with short url", (url, error) => {
+    if (error != null) {
+        Debug.LogError("Branch.shareLink failed: " + error);
+    } else {
+        Debug.Log("Branch.shareLink shared params: " + url);
+    }
+});
+{% endhighlight %}
+
+{% endexample %}
+
 {% endif %}
 
 <!--- Adobe -->
@@ -367,7 +388,7 @@ var dataToInclude:Object = {
 };
 {% endhighlight %}
 
-Finally, generate the link:
+Then generate the link:
 
 {% highlight java %}
 branch.getShortUrl(tags, "sms", BranchConst.FEATURE_TAG_SHARE, JSON.stringify(dataToInclude));
@@ -394,7 +415,7 @@ var branchUniversalObject = branch.createBranchUniversalObject({
 });
 {% endhighlight %}
 
-Define the analytics tags and control parameters of the link itself:
+Define the analytics tags and control parameters, and generate the link by referencing the `BranchUniversalObject` you created:
 
 {% highlight js %}
 branchUniversalObject.generateShortUrl({
@@ -407,13 +428,43 @@ branchUniversalObject.generateShortUrl({
 });
 {% endhighlight %}
 
-Finally, generate the link by referencing the `BranchUniversalObject` you created:
+The event listener `bio:generateShortUrl` returns a `string` object containing the generated link:
 
 {% highlight js %}
 branchUniversalObject.addEventListener("bio:generateShortUrl", $.onGenerateUrlFinished);
 {% endhighlight %}
 
-The event listener `bio:generateShortUrl` returns a `string` object containing the generated link.
+{% example title="Let Branch handle the details" %}
+
+You can use our preconfigured share sheets to make life easier. Calling this method will automatically generate a Branch link with the appropriate analytics channel when the user presses a button to share.
+
+{% image src='/img/pages/getting-started/creating-links/combined_share_sheet.png' actual center alt='ios share sheet' %}
+
+To implement it, use the following `showShareSheet` method instead of `generateShortUrl` in the last step above:
+
+{% highlight js %}
+branchUniversalObject.showShareSheet({
+  "feature" : "sample-feature",
+  "channel" : "sample-channel",
+  "stage" : "sample-stage",
+  "duration" : 1,
+}, {
+  "$desktop_url" : "http://desktop-url.com",
+});
+{% endhighlight %}
+
+To implement the callback on Android, you must add listeners to the following events:
+
+| Event | Description
+| --- | ---
+| `bio:shareLinkDialogLaunched` | Fires when the share sheet is presented
+| `bio:shareLinkDialogDismissed` | Fires when the share sheet is dismissed
+| `bio:shareLinkResponse` | Returns a dictionary of the response data
+| `bio:shareChannelSelected` | Fires when a channel is selected
+
+**Note:** Callbacks in iOS are ignored. There is no need to implement them as the events are handled by `UIActivityViewController`.
+
+{% endexample %}
 
 {% endif %}
 
