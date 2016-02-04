@@ -41,7 +41,7 @@ Now that you've created your Tune Postback URL, you'll want to use it to [create
 6. In the "Filter (Advanced)" section, create an OS filter that corresponds to the OS of the app whose Tune site_id you used to create the potsback URL.  The Key in this filter will be `OS`, while the value will be either `Android` or `iOS`.  Refer to the screenshot below.
 
 <br>
-{% image src='/img/recipes/tune/tune_webhook_creation.png'}
+{% image src='/img/recipes/tune/tune_webhook_creation.png' %}
 <br>
 That’s it!  Branch will now send relevant information about your Branch links to Tune every time they are clicked.
 
