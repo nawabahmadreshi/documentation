@@ -9,7 +9,7 @@
         - universal-links
         - creating-links
         - configuring-links
-        - deeplink-routing
+        - deep-link-routing
         - branch-universal-objects
         - app-links
     - title: Advanced
@@ -32,7 +32,7 @@
     - title: Web to App Conversion
       children:
         - deepviews
-        - deeplink-mobile-site
+        - deep-link-mobile-site
         - app-download-banner
         - text-me-the-app-page
     - title: Marketing for Mobile

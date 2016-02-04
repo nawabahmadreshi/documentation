@@ -14,7 +14,7 @@ sections:
 
 {% if page.overview %}
 
-If you maintain a mobile website, Branch allows you to deeplink mobile visitors directly into your app, or easily and automatically give them the option of downloading it. Here's a diagram that describes how it works:
+If you maintain a mobile website, Branch allows you to deep link mobile visitors directly into your app, or easily and automatically give them the option of downloading it. Here's a diagram that describes how it works:
 
 {% image src='/img/pages/features/deeplink-mobile-site/deepview-websdk-routing.png' center alt='Deepviews web routing' %}
 

@@ -3,7 +3,7 @@ type: recipe
 directory: getting-started
 title: Creating Links
 page_title: How to create Branch links
-description: Learn about the multiple ways to create Branch deeplinks for iOS and Android apps.
+description: Learn about the multiple ways to create Branch deep links for iOS and Android apps.
 keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Link Properties, Redirect Customization, Mobile SDK, Web SDK, HTTP API
 platforms:
 - ios
@@ -18,7 +18,7 @@ sections:
 ---
 
 {% protip title="Link Creation vs. Link Configuration" %}
-This page describes the various ways to create links, which are the foundation to everything Branch offers. You can read more about using the link data dictionary to define key/value pairs for deeplinking, and the various link analytics and control parameters used throughout this page on the [Link Configuration page]({{base.url}}/getting-started/link-configuration).
+This page describes the various ways to create links, which are the foundation to everything Branch offers. You can read more about using the link data dictionary to define key/value pairs for deep linking, and the various link analytics and control parameters used throughout this page on the [Link Configuration page]({{base.url}}/getting-started/link-configuration).
 {% endprotip %}
 
 ## Mobile SDKs
@@ -28,7 +28,7 @@ With the Branch mobile SDKs, you can easily allow your app's users to create lin
 {% if page.ios or page.android or page.unity or page.titanium %}
 
 {% protip title="What is a BranchUniversalObject?" %}
-A `BranchUniversalObject` is the container Branch uses to organize and track your app's content. It provides convenient methods for sharing, deeplinking, and tracking analytics for each piece of content you define. Learn more on the [Branch Universal Object]({{base.url}}/getting-started/branch-universal-objects) page.
+A `BranchUniversalObject` is the container Branch uses to organize and track your app's content. It provides convenient methods for sharing, deep linking, and tracking analytics for each piece of content you define. Learn more on the [Branch Universal Object]({{base.url}}/getting-started/branch-universal-objects) page.
 {% endprotip %}
 
 {% endif %}
@@ -483,10 +483,6 @@ To implement the callback on Android, you must add listeners to the following ev
 
 You can build a Branch link dynamically by appending query parameters. This method is useful if you don't want to wait for a server callback, and don't need to display the resulting (long) link to the user.
 
-{% caution title="Incomplete support on iOS" %}
-[Universal Links]({{base.url}}/getting-started/universal-links) and [Spotlight]({{base.url}}/features/spotlight-indexing) do not support dynamically generated links. 
-{% endcaution %}
-
 1. Start with the Branch link domain: **http://bnc.lt** (you can also use your custom domain/subdomain here).
 2. Append `/a/your_Branch_key`: **http://bnc.lt/a/your_branch_key**
 3. Append `?` to start the query params string: **http://bnc.lt/a/your_branch_key?**
@@ -521,7 +517,7 @@ You can use the Branch Web SDK to create links in several ways:
 
 - [Text-Me-The-App page]({{base.url}}/features/text-me-the-app-page)
 - [App Download Banner]({{base.url}}/features/app-download-banner)
-- [Website to app routing]({{base.url}}/features/deeplink-mobile-site)
+- [Website to app routing]({{base.url}}/features/deep-link-mobile-site)
 
 A basic `link()` function is also available for custom implementations.
 

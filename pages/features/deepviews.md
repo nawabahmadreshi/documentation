@@ -512,7 +512,7 @@ If you want to use your App Name (My Awesome App!) inside a Deepview, you would 
 {% endexample %}
 
 ####{% raw %}{{link_data}}{% endraw %}
-Link Object, which contains all of your link's parameters, including your deeplink values.
+Link Object, which contains all of your link's parameters, including your deep link values.
 
 {% example %}
 If you want to expose a key value pair of 'welcome_message': 'Welcome to my App', you would do the following: `<h1>{% raw %}{{link_data.welcome_message}}{% endraw %}</h1>`, and this would render `Welcome to my App`.
