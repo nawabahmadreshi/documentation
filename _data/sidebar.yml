@@ -31,11 +31,8 @@
     - title: Web to App Conversion
       children:
         - deepviews
-        - deepviews_test
         - deeplink-mobile-site
         - app-download-banner
-        - app_download_banner_3sections
-        - app_download_banner_4sections
         - text-me-the-app-page
     - title: Marketing for Mobile
       children:
@@ -45,12 +42,6 @@
         - advertising_facebook
         - advertising_google
         - advertising_twitter
-    - title: Test
-      children:
-        - ul_test_overview
-        - ul_test_implementation-guide
-        - ul_test_reference-material
-        - ul_test_support
 - title: Other Integrations
   directory: other-integrations
   children:

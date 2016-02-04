@@ -13,6 +13,11 @@
 .inner__content .toc-number, .toc-list {
   margin-bottom: 60px;
 }
+
+.inner__content .toc-number {
+  padding-left: 30px;
+}
+
 .toc-list li {
   display: block;
 }
