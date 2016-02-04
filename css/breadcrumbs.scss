@@ -10,12 +10,19 @@
 .breadcrumbs li, .breadcrumbs li a {
 	color:#444444;
 	font-size:14px;
-	font-weight:600;
   line-height: 20px;
+  a {
+  	font-weight: bold;
+  	&:hover {
+  		color: #1cadce;
+  	}
+  }
 }
 
-.breadcrumbs li .fa-chevron-right {
-	font-size:12px;
-	margin:0 15px;
-  line-height:12px;
+.breadcrumbs li i {
+  margin: 0 8px;
+  line-height: .1;
+  position: relative;
+  top: 6px;
+  font-size: 22px
 }

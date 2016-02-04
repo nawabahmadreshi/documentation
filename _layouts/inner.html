@@ -17,7 +17,13 @@
 		<div class={% if page.guide %}"inner__content content-guide"{% else %}"inner__content"{% endif %}>
 			{% breadcrumbs %}
 			<h1> {{ page.title }} </h1>
-			{% section_selector %}
+
+			{% if page.hide_section_selector == true %}
+				<span class="hide-selector">{% section_selector %}</span>
+			{% else %}
+				{% section_selector %}
+			{% endif %}
+
 			{% if page.hide_platform_selector != true and page.overview != true %}
 			  {% platform_selector %}
 			{% endif %}

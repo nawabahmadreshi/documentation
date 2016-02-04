@@ -2,31 +2,29 @@ require 'json'
 
 module Jekyll
   class PlatformPage < Page
-    def initialize(site, base, type, page, platform, section, isDefaultPlatform, isDefaultSection)
+    def initialize(site, base, type, directory, page, platform, section, isDefaultPlatform, isDefaultSection)
       @site = site
       @base = base
       # set the type to empty if overview so that overview pages will be at root
       # types = if type != 'overview' then type + 's' else '' end
-      types = type
-      #directories = directory
 
       if platform != '' and !isDefaultPlatform then
-        @dir = File.join(types, page.name.split(".")[0], section)
+        @dir = File.join(directory, page.name.split(".")[0], section)
         @name = platform + '.md'
       elsif isDefaultPlatform then
-        @dir = File.join(types, page.name.split(".")[0])
+        @dir = File.join(directory, page.name.split(".")[0])
         @name = section + '.md'
       elsif section != '' and section != 'guide' and !isDefaultSection then
-        @dir = File.join(types, page.name.split(".")[0])
+        @dir = File.join(directory, page.name.split(".")[0])
         @name = section + '.md'
       #elsif isDefaultSection then
       else
-        @dir = types
+        @dir = directory
         @name = page.name.split(".")[0] + '.md'
       end
 
-      if File.exist?(File.join(base, 'pages', types, page.name))
-        self.read_yaml(File.join(base, 'pages', types), page.name)
+      if File.exist?(File.join(base, 'pages', directory, page.name))
+        self.read_yaml(File.join(base, 'pages', directory), page.name)
         self.process(@name)
       else
         self.read_yaml(File.join(base, 'recipes'), page.name)
@@ -62,7 +60,7 @@ module Jekyll
       path_page_name = page.name.split(".")[0]
       if path_page_name == 'index' then path_page_name = '' end
 
-      self.data['current_path'] = if types.length > 0 && path_page_name.length > 0 then types + '/' + path_page_name else '' end
+      self.data['current_path'] = if directory.length > 0 && path_page_name.length > 0 then directory + '/' + path_page_name else '' end
 
     end
   end
@@ -98,7 +96,7 @@ module Jekyll
 
     def generate(site)
       buildSiteMap(site)
-      filtered_pages = site.pages.select { |page| ['recipe', 'overview', 'domain', 'reference'].include?(page.data['type']) }
+      filtered_pages = site.pages.select { |page| ['recipe', 'overview', 'domain', 'reference', 'landing'].include?(page.data['type']) }
       site.pages.reject! { |page| page.data['type'] == 'ingredient' }
 
       filtered_pages.each do |page|
@@ -106,48 +104,50 @@ module Jekyll
           if page.data['sections'] then
             page.data['sections'].each do |section|
 
-              site.pages << PlatformPage.new(site, site.source, page.data['directory'], page, '', section, false, false)
+              site.pages << PlatformPage.new(site, site.source, page.data['type'], page.data['directory'], page, '', section, false, false)
             end
           end
           # add a default page as the first value in the array
           default_section = if page.data['sections'] then page.data['sections'][0] else '' end
 
-          site.pages << PlatformPage.new(site, site.source, page.data['directory'], page, '', default_section, false, true)
+          site.pages << PlatformPage.new(site, site.source, page.data['type'], page.data['directory'], page, '', default_section, false, true)
 
-          # allow platform-specific pages for guide section
-          if page.data['sections'].include?('guide')
-            if page.data['platforms'] then
-              page.data['platforms'].each do |platform|
-                site.pages << PlatformPage.new(site, site.source, page.data['directory'], page, platform, 'guide', false, false)
+          if page.data['sections'] then
+            # allow platform-specific pages for guide section
+            if page.data['sections'].include?('guide')
+              if page.data['platforms'] then
+                page.data['platforms'].each do |platform|
+                  site.pages << PlatformPage.new(site, site.source, page.data['type'], page.data['directory'], page, platform, 'guide', false, false)
+                end
               end
+
+              default_platform = if page.data['platforms'] then page.data['platforms'][0] else '' end
+              site.pages << PlatformPage.new(site, site.source, page.data['type'], page.data['directory'], page, default_platform, 'guide', true, false)
             end
 
-            default_platform = if page.data['platforms'] then page.data['platforms'][0] else '' end
-            site.pages << PlatformPage.new(site, site.source, page.data['directory'], page, default_platform, 'guide', true, false)
-          end
-
-          # allow platform-specific pages for advanced section
-          if page.data['sections'].include?('advanced')
-            if page.data['platforms'] then
-              page.data['platforms'].each do |platform|
-                site.pages << PlatformPage.new(site, site.source, page.data['directory'], page, platform, 'advanced', false, false)
+            # allow platform-specific pages for advanced section
+            if page.data['sections'].include?('advanced')
+              if page.data['platforms'] then
+                page.data['platforms'].each do |platform|
+                  site.pages << PlatformPage.new(site, site.source, page.data['type'], page.data['directory'], page, platform, 'advanced', false, false)
+                end
               end
+
+              default_platform = if page.data['platforms'] then page.data['platforms'][0] else '' end
+              site.pages << PlatformPage.new(site, site.source, page.data['type'], page.data['directory'], page, default_platform, 'advanced', true, false)
             end
 
-            default_platform = if page.data['platforms'] then page.data['platforms'][0] else '' end
-            site.pages << PlatformPage.new(site, site.source, page.data['directory'], page, default_platform, 'advanced', true, false)
-          end
-
-          # allow platform-specific pages for support section
-          if page.data['sections'].include?('support')
-            if page.data['platforms'] then
-              page.data['platforms'].each do |platform|
-                site.pages << PlatformPage.new(site, site.source, page.data['directory'], page, platform, 'support', false, false)
+            # allow platform-specific pages for support section
+            if page.data['sections'].include?('support')
+              if page.data['platforms'] then
+                page.data['platforms'].each do |platform|
+                  site.pages << PlatformPage.new(site, site.source, page.data['type'], page.data['directory'], page, platform, 'support', false, false)
+                end
               end
-            end
 
-            default_platform = if page.data['platforms'] then page.data['platforms'][0] else '' end
-            site.pages << PlatformPage.new(site, site.source, page.data['directory'], page, default_platform, 'support', true, false)
+              default_platform = if page.data['platforms'] then page.data['platforms'][0] else '' end
+              site.pages << PlatformPage.new(site, site.source, page.data['type'], page.data['directory'], page, default_platform, 'support', true, false)
+            end
           end
 
         end

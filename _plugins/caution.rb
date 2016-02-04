@@ -16,8 +16,7 @@ module Jekyll
         data[m[0]] = Liquid::Template.parse(m[1]).render!(context)
       }
 
-      icon = '<i class="fa ' + (data['icon'] or 'fa-exclamation-triangle') + '"></i> '
-      title = if data['title'] then '<h4 class="caution__title"> ' + icon + ' Caution: ' + data['title'] + '</h4>' else '<h4 class="caution__title">' + icon + ' Caution</h4>' end
+      title = if data['title'] then '<h5 class="caution__title">Caution: ' + data['title'] + '</h5>' else '<h5 class="caution__title">Caution</h5>' end
       contents = Kramdown::Document.new(super).to_html
       '<blockquote class="caution">' + title + contents + '</blockquote>'
     end

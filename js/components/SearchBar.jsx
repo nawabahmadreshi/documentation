@@ -77,7 +77,7 @@ var SearchBar = React.createClass({
 					</form>
 				</div>
 				<div className="search-icon">
-					<i className="fa fa-search"></i>
+					<i className="material-icons">search</i>
 				</div>
 				<div className="search-results">
 					{results}

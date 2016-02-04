@@ -7,9 +7,12 @@ var Breadcrumb = React.createClass({
 		if (!this.props.href) {
 			return (<li>{ this.props.label }</li>);
 		}
+		else if (this.props.href == '#') {
+			return (<li>{ this.props.label }<i className="material-icons">chevron_right</i></li>);
+		}
 		else {
-			// return (<li><a href={ this.props.href }>{ this.props.label }</a><i className="fa fa-chevron-right"></i></li>);
-			return (<li>{ this.props.label }<i className="fa fa-chevron-right"></i></li>);
+			return (<li><a href={ this.props.href }>{ this.props.label }</a><i className="material-icons">chevron_right</i></li>);
+			// return (<li>{ this.props.label }<i className="fa fa-chevron-right"></i></li>);
 		}
 	}
 });
@@ -49,12 +52,16 @@ var Breadcrumbs = React.createClass({
 			breadcrumbs = breadcrumbs.reverse();
 			var breadcrumbsCount =  breadcrumbs.length;
 			var page_title = this.props.page_title;
+			var current_path = this.props.current_path.split('/')[0];
 			breadcrumbs.forEach(function(link, index) {
 				if (index == breadcrumbsCount - 1) {
 					links.push(<Breadcrumb label={ page_title } />);
 				}
+				else if (index == 0) {
+					links.push(<Breadcrumb label={ link } href={ '/' + current_path } />);
+				}
 				else {
-					links.push(<Breadcrumb label={ link } href="#" />);
+					links.push(<Breadcrumb label={ link } href='#' />);
 				}
 			});
 		}
