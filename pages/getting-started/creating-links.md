@@ -28,7 +28,7 @@ With the Branch mobile SDKs, you can easily allow your app's users to create lin
 {% if page.ios or page.android or page.unity or page.titanium %}
 
 {% protip title="What is a BranchUniversalObject?" %}
-A `BranchUniversalObject` is the container Branch uses to organize and track your app's content. It provides convenient methods for sharing, deeplinking, and tracking analytics for each piece of content you define.
+A `BranchUniversalObject` is the container Branch uses to organize and track your app's content. It provides convenient methods for sharing, deeplinking, and tracking analytics for each piece of content you define. Learn more on the [Branch Universal Object]({{base.url}}/getting-started/branch-universal-objects) page.
 {% endprotip %}
 
 {% endif %}
@@ -54,7 +54,7 @@ Import the Branch framework into the view controller where you will be creating 
 {% endtab %}
 {% endtabs %}
 
-Create a `BranchUniversalObject` for the piece of content that you'd like to link to, and define any custom key/value pairs:
+Create a `BranchUniversalObject` for the piece of content that you'd like to link to, defining any custom key/value pairs as `metadata` parameters:
 
 {% tabs %}
 {% tab objective-c %}
@@ -79,7 +79,7 @@ branchUniversalObject.addMetadataKey("property2", value: "red")
 {% endtab %}
 {% endtabs %}
 
-Define any additional analytics and  control parameters:
+Define the analytics tags and control parameters of the link itself:
 
 {% tabs %}
 {% tab objective-c %}
@@ -166,7 +166,7 @@ branchUniversalObject.showShareSheetWithLinkProperties(linkProperties,
 <!--- Android -->
 {% if page.android %}
 
-Create a `BranchUniversalObject` for the piece of content that you'd like to link to, and define any custom key/value pairs:
+Create a `BranchUniversalObject` for the piece of content that you'd like to link to, defining any custom key/value pairs as `metadata` parameters:
 
 {% highlight java %}
  BranchUniversalObject branchUniversalObject = new BranchUniversalObject()
@@ -179,7 +179,7 @@ Create a `BranchUniversalObject` for the piece of content that you'd like to lin
                 .addContentMetadata("property2", "red");
 {% endhighlight %}
 
-Define any additional analytics and control parameters:
+Define the analytics tags and control parameters of the link itself:
 
 {% highlight java %}
 LinkProperties linkProperties = new LinkProperties()
@@ -301,7 +301,7 @@ await branch.GetShortUrlAsync(this, data, "alias","channel","stage", tags, "feat
 
 {% if page.unity %}
 
-Create a `BranchUniversalObject` for the piece of content that you'd like to link to, and define any custom key/value pairs:
+Create a `BranchUniversalObject` for the piece of content that you'd like to link to, defining any custom key/value pairs as `metadata` parameters:
 
 {% highlight c# %}
 BranchUniversalObject universalObject = new BranchUniversalObject();
@@ -312,7 +312,7 @@ universalObject.imageUrl = "https://s3-us-west-1.amazonaws.com/branchhost/mosaic
 universalObject.metadata.Add("foo", "bar");
 {% endhighlight %}
 
-Define any additional analytics and control parameters:
+Define the analytics tags and control parameters of the link itself:
 
 {% highlight c# %}
 BranchLinkProperties linkProperties = new BranchLinkProperties();
@@ -378,7 +378,7 @@ branch.getShortUrl(tags, "sms", BranchConst.FEATURE_TAG_SHARE, JSON.stringify(da
 
 {% if page.titanium %}
 
-Create a `BranchUniversalObject` for the piece of content that you'd like to link to, and define any custom key/value pairs:
+Create a `BranchUniversalObject` for the piece of content that you'd like to link to, defining any custom key/value pairs as `metadata` parameters:
 
 {% highlight js %}
 var branchUniversalObject = branch.createBranchUniversalObject({
@@ -394,7 +394,7 @@ var branchUniversalObject = branch.createBranchUniversalObject({
 });
 {% endhighlight %}
 
-Define any additional analytics and control parameters:
+Define the analytics tags and control parameters of the link itself:
 
 {% highlight js %}
 branchUniversalObject.generateShortUrl({
