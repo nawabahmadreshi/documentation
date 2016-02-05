@@ -1,24 +1,40 @@
 ---
 type: recipe
 directory: features
-title: "iOS9 Spotlight Deep Links"
+title: "iOS9 Spotlight App Search"
 page_title: "Index and track your content in iOS 9 Spotlight"
 description: Learn how to list your content in Apple's new Spotlight search.
 keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, iOS9, iOS 9, Apple Spotlight Search
 hide_platform_selector: true
 sections:
+- overview
 - guide
+- advanced
 ---
 
+{% if page.overview %}
 Listing your app content on Apple's new Spotlight search with Branch is easy. Note that this guide will list on both _cloud search_ in addition to _local spotlight search_.
 
-Note that some older devices cannot index content. iPad minis, for example, cannot user CoreSpotlight. The SDK includes a check for these devices and will return an error message if you attempt to index content on them.
+{% caution title="Legacy device support" %}
+Some older devices cannot index content. iPad minis, for example, cannot use CoreSpotlight. The SDK includes a check for these devices and will return an error message if you attempt to index content on them.
+{% endcaution %}
+
+{% elsif page.guide %}
+
+{% prerequisite %}
+
+- This guide requires you to have already [integrated the Branch SDK]({{base.url}}/getting-started/sdk-integration-guide) into your app.
+- For Spotlight search results to function as intended, you should also [configure deep link routing]({{base.url}}/getting-started/deep-link-routing).
+
+{% endprerequisite %}
 
 ## Listing your content
 
-Content can be added to Spotlight search with using the Branch Universal Object. We'd recommend that you put this on every page that renders a piece of content for your users. This way, a user could rediscover a previous thing that they had viewed.
+Content can be added to Spotlight search by using the `BranchUniversalObject`. We'd recommend that you put this on every page that renders a piece of content for your users. This way, a user could rediscover a previous thing that they had viewed.
 
-First, customize the content that you'd like to be listed by customizing the Branch Universal Object.
+{% ingredient buo-overview %}{% endingredient %}
+
+First, define the content that you'd like to be listed by customizing the `BranchUniversalObject`.
 
 {% tabs %}
 {% tab objective-c %}
@@ -43,7 +59,7 @@ branchUniversalObject.addMetadataKey("property2", value: "red")
 {% endtab %}
 {% endtabs %}
 
-Then call the following method on the universal object. The callback will return the URL used to list the content for your own records.
+Then call the `listOnSpotlightWithCallback` method on your `BranchUniversalObject`. The callback will return the URL used to list the content for your own records.
 
 {% tabs %}
 {% tab objective-c %}
@@ -66,22 +82,15 @@ branchUniversalObject.listOnSpotlightWithCallback((url: String?, error: NSError?
 {% endtab %}
 {% endtabs %}
 
-------
-
-{% ingredient sdk_links/tracking_views %}{% endingredient %}
-
-------
-
-## Tracking clicks and deep linking
-
-This section assumes that you've already [setup the SDK](/recipes/add_the_sdk/ios/). In order to properly receive a click from Spotlight when your app is installed, just let Branch handle th complexity. Parameters associated with the deep link will appear in the **Deep Link Handler** that you registered in initSession.
+## Handle incoming traffic from Spotlight
 
 {% tabs %}
 {% tab objective-c %}
+
+Open your **AppDelegate.m** file and add the following method (if you completed the [SDK Integration Guide]({{base.url}}/getting-started/sdk-integration-guide), this is likely already present).
+
 {% highlight objc %}
-- (BOOL)application:(UIApplication *)application
-continueUserActivity:(NSUserActivity *)userActivity
- restorationHandler:(void (^)(NSArray *restorableObjects))restorationHandler {
+- (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray *restorableObjects))restorationHandler {
     BOOL handledByBranch = [[Branch getInstance] continueUserActivity:userActivity];
     
     return handledByBranch;
@@ -89,37 +98,28 @@ continueUserActivity:(NSUserActivity *)userActivity
 {% endhighlight %}
 {% endtab %}
 {% tab swift %}
-{% highlight swift %}
-func application(application: UIApplication, continueUserActivity: userActivity, restorationHandler: ([AnyObject]?) -> Void) -> Bool {
-    // pass the url to the handle deep link call
-    Branch.getInstance().continueUserActivity(userActivity);
 
-    return true
+Open your **AppDelegate.swift** file and add the following method (if you completed the [SDK Integration Guide]({{base.url}}/getting-started/sdk-integration-guide), this is likely already present).
+
+{% highlight swift %}
+func application(application: UIApplication, continueUserActivity userActivity: NSUserActivity, restorationHandler: ([AnyObject]?) -> Void) -> Bool {
+    // pass the url to the handle deep link call
+
+    return Branch.getInstance().continueUserActivity(userActivity)
 }
 {% endhighlight %}
 {% endtab %}
 {% endtabs %}
 
-------
+{% elsif page.advanced %}
 
-## Other tips and best practices
+## Use deepviews for user acquisition
 
-### Deep link from Spotlight
+If the user doesn't have the app installed and finds your content through search, Spotlight will open up the browser. In this situation, you can [show a Deepview]({{base.url}}/features/deepviews), which is an automatically-generated, mobile web render of the app content.
 
-What's more delightful than searching for a particular something on your phone, and then clicking it to open the app immediately. You'll need to setup deep linking to allow for this.
+## Further customizations
 
-1. Add a custom key in your Branch dictionary to deeplink from when click (`picture_id`, `article_id`, etc)
-2. Let Branch open the view controller automatically when the key is detected. [**Here's how to set it up.**](/recipes/setup_deep_linking/ios)
-
-### Use deepviews for user acquisition
-
-If the user doesn't have the app installed and finds your content through search, Spotlight will open up the browser. You can show a deepview, which is an automatically-generated, mobile web render of the app content. [**Here's how to set it up.**](/recipes/deepviews/ios)
-
-------
-
-## Advanced: Further customizations
-
-If the available options are not good enough for you, and you want to do some advanced customizations of the content. You can use our identifier when indexing so that Branch will 
+You can use our identifier when indexing to perform advanced customizations of the content being listed. 
 
 {% highlight objc %}
 [branch getSpotlightUrlWithParams:@{@"$og_title": @"My App",
@@ -154,6 +154,4 @@ If the available options are not good enough for you, and you want to do some ad
 }];
 {% endhighlight %}
 
------
-
-{% ingredient recipe_preview/contact_us %}{%endingredient%}
+{% endif %}
