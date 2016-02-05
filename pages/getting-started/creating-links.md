@@ -125,7 +125,7 @@ branchUniversalObject.getShortUrlWithLinkProperties(linkProperties,  andCallback
 {% endtab %}
 {% endtabs %}
 
-{% example title="Let Branch handle the details" %}
+{% example title="Using the preconfigured share sheet" %}
 
 Creating links is great, but creating a ton of different links up front for all the channels in `UIActivityViewController` is a pain. You can use our preconfigured `UIActivityItemProvider` to make life easier. Calling this method will automatically generate a Branch link with the appropriate analytics channel when the user presses a button to share.
 
@@ -202,7 +202,7 @@ branchUniversalObject.generateShortUrl(this, linkProperties, new BranchLinkCreat
 });
 {% endhighlight %}
 
-{% example title="Let Branch handle the details" %}
+{% example title="Using the bundled share sheet" %}
 
 Android has very poor offerings for native share sheet functionality, so we built our own and bundled it into the core SDK. This share sheet is customizable and will automatically generate a link when the user selects a channel to share to.
 
@@ -507,9 +507,9 @@ https://bnc.lt/a/key_live_jbgnjxvlhSb6PGH23BhO4hiflcp3y7ky?$deeplink_path=articl
 
 {% endexample %}
 
-{% protip title="Use URL encoding" %}
+{% caution title="Use URL encoding" %}
 Please make sure to URL encode everything, lest the link will break.
-{% endprotip %}
+{% endcaution %}
 
 ## Web SDK
 

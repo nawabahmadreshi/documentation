@@ -50,11 +50,9 @@ If you don't use CocoaPods, you can still install the SDK manually:
 
 {% caution title="Considerations around using Frameworks" %}
 
-##### AdSupport.framework
-This framework allows us to use the IDFA to match your visitors across our entire network of apps, increasing matching accuracy. When you submit your app to the App Store, you need to let Apple know that you use the IDFA.
+`AdSupport.framework` allows us to use the IDFA to match your visitors across our entire network of apps, increasing matching accuracy. When you submit your app to the App Store, you need to let Apple know that you use the IDFA.
 
-##### SafariServices.framework
-This framework enables cookie-based matching on iOS 9+, which allows us to [guarantee link matching with 100% accuracy]({{base.url}}/getting-started/matching-accuracy). Please test to make sure the invisible `SFSafariViewController` does not alter your view controller stack. Delete the app and reinstall to trigger the invisible SFSafariViewController to be presented on first launch.
+`SafariServices.framework` enables cookie-based matching on iOS 9+, which allows us to [guarantee link matching with 100% accuracy]({{base.url}}/getting-started/matching-accuracy). Please test to make sure the invisible `SFSafariViewController` does not alter your view controller stack. Delete the app and reinstall to trigger the invisible SFSafariViewController to be presented on first launch.
 {% endcaution %}
 
 {% endif %}
@@ -200,11 +198,11 @@ We attempt to automatically add an Android manifest flag to support deeplinking,
 | :--- | --- | --- |
 | branch_key | String | [your Branch Key] |
 
-### Register a URL scheme
+### Register a URI scheme
 
 {% ingredient universal-links-requirement %}{% endingredient %}
 
-Branch opens your app by using its URL scheme (`yourapp://`), which should be unique to your app.
+Branch opens your app by using its URI scheme (`yourapp://`), which should be unique to your app.
 
 1. On the [Link Settings](https://dashboard.branch.io/#/settings/link) page of the Branch dashboard, ensure that **I have an iOS App** is checked and **iOS URI Scheme** is filled.
 1. In Xcode, click your project in the Navigator (on the left side).
@@ -273,14 +271,14 @@ listener.onReceive(context, intent);
 
 {% endprotip %}
 
-### Register a URL scheme
+### Register a URI scheme
 
-Branch opens your app by using its URL scheme (`yourapp://`), which should be unique to your app.
+Branch opens your app by using its URI scheme (`yourapp://`), which should be unique to your app.
 
 1. On the [Link Settings](https://dashboard.branch.io/#/settings/link) page of the Branch dashboard, ensure that **I have an Android App** is checked and **Android URI Scheme** is filled.
 1. Choose the `Activity` you want to open up when a link is clicked. This is typically your `SplashActivity` or a `BaseActivity` that all other activities inherit from.
 1. Inside your `AndroidManifest.xml`, locate where the selected `Activity` is defined.
-1. Within the `Activity` definition, insert the intent filter provided below. Change `yourApp` under `android:scheme` to the URL scheme you've selected.
+1. Within the `Activity` definition, insert the intent filter provided below. Change `yourApp` under `android:scheme` to the URI scheme you've selected.
 
 {% highlight xml %}
 <intent-filter>
@@ -354,13 +352,13 @@ protected void onStop() {
 </application>
 {% endhighlight %}
 
-### Register a URL scheme
+### Register a URI scheme
 
-Branch opens your app by using its URL scheme (`yourapp://`), which should be unique to your app.
+Branch opens your app by using its URI scheme (`yourapp://`), which should be unique to your app.
 
 1. On the [Link Settings](https://dashboard.branch.io/#/settings/link) page of the Branch dashboard, ensure that **I have an Android App** is checked and **Android URI Scheme** is filled.
 1. Choose the `Activity` you want to open up when a link is clicked. This is typically your `SplashActivity` or a `BaseActivity` that all other activities inherit from.
-1. Within the `Activity` definition, insert the intent filter provided below. Change `yourApp` under `android:scheme` to the URL scheme you've selected.
+1. Within the `Activity` definition, insert the intent filter provided below. Change `yourApp` under `android:scheme` to the URI scheme you've selected.
 
 {% highlight xml %}
 <intent-filter>
@@ -401,14 +399,14 @@ Branch opens your app by using its URL scheme (`yourapp://`), which should be un
 ]]></manifestAdditions></android>
 {% endhighlight %}
 
-## Register a URL scheme
+## Register a URI scheme
 
 {% ingredient universal-links-requirement %}{% endingredient %}
 
-Branch opens your app by using its URL scheme (`yourapp://`), which should be unique to your app.
+Branch opens your app by using its URI scheme (`yourapp://`), which should be unique to your app.
 
 1. On the [Link Settings](https://dashboard.branch.io/#/settings/link) page of the Branch dashboard, ensure that **I have an iOS App** and/or **I have an Android App** is checked and **iOS URI Scheme** and/or **Android URI Scheme** is filled.
-1. In your project's `*-app.xml` file, insert the platform-specific snippet(s) below. Change `yourApp` to the URL scheme you've selected.
+1. In your project's `*-app.xml` file, insert the platform-specific snippet(s) below. Change `yourApp` to the URI scheme you've selected.
 
 ### iOS Projects
 
@@ -440,17 +438,17 @@ Branch opens your app by using its URL scheme (`yourapp://`), which should be un
 
 {% if page.titanium %}
 
-## Add your Branch key and register a URL scheme
+## Add your Branch key and register a URI scheme
 
 ### iOS Projects
 
 {% ingredient universal-links-requirement %}{% endingredient %}
 
-Branch opens your app by using its URL scheme (`yourapp://`), which should be unique to your app.
+Branch opens your app by using its URI scheme (`yourapp://`), which should be unique to your app.
 
 1. Retrieve your Branch Key on the [Settings](https://dashboard.branch.io/#/settings) page of the Branch dashboard.
 1. On the [Link Settings](https://dashboard.branch.io/#/settings/link) page of the Branch dashboard, ensure that **I have an iOS App** is checked and **iOS URI Scheme** and is filled.
-1. In your project's `tiapp.xml` file, insert the snippet below. Change `yourApp` to the URL scheme you've selected.
+1. In your project's `tiapp.xml` file, insert the snippet below. Change `yourApp` to the URI scheme you've selected.
 
 {% highlight xml %}
   <ios>
@@ -490,14 +488,14 @@ Branch opens your app by using its URL scheme (`yourapp://`), which should be un
 </application>
 {% endhighlight %}
 
-#### Register a URL scheme
+#### Register a URI scheme
 
-Branch opens your app by using its URL scheme (`yourapp://`), which should be unique to your app.
+Branch opens your app by using its URI scheme (`yourapp://`), which should be unique to your app.
 
 1. On the [Link Settings](https://dashboard.branch.io/#/settings/link) page of the Branch dashboard, ensure that **I have an Android App** is checked and **Android URI Scheme** is filled.
 1. Choose the `Activity` you want to open up when a link is clicked. This is typically your `SplashActivity` or a `BaseActivity` that all other activities inherit from.
 1. Inside your `tiapp.xml`, locate where the selected `Activity` is defined.
-1. Within the `Activity` definition, insert the intent filter provided below. Change `yourApp` under `android:scheme` to the URL scheme you've selected.
+1. Within the `Activity` definition, insert the intent filter provided below. Change `yourApp` under `android:scheme` to the URI scheme you've selected.
 
 {% highlight xml %}
 <intent-filter>
@@ -590,10 +588,10 @@ branch.initSessionWithLaunchOptions(launchOptions, andRegisterDeepLinkHandler: {
 {% tabs %}
 {% tab objective-c %}
 
-Finally, add these two new methods to your **AppDelegate.m** file. The first responds to URL scheme links. The second responds to Universal Links, but will not be active until you [configure Universal Links]({{base.url}}/getting-started/universal-links).
+Finally, add these two new methods to your **AppDelegate.m** file. The first responds to URI scheme links. The second responds to Universal Links, but will not be active until you [configure Universal Links]({{base.url}}/getting-started/universal-links).
 
 {% highlight objc %}
-// Respond to URL scheme links
+// Respond to URI scheme links
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
     // pass the url to the handle deep link call
     [[Branch getInstance] handleDeepLink:url];
@@ -613,10 +611,10 @@ Finally, add these two new methods to your **AppDelegate.m** file. The first res
 {% endtab %}
 {% tab swift %}
 
-Finally, add these two new methods to your **AppDelegate.swift** file. The first responds to URL scheme links. The second responds to Universal Links and Spotlight listings, but will not be active until you [configure Universal Links]({{base.url}}/getting-started/universal-links).
+Finally, add these two new methods to your **AppDelegate.swift** file. The first responds to URI scheme links. The second responds to Universal Links and Spotlight listings, but will not be active until you [configure Universal Links]({{base.url}}/getting-started/universal-links).
 
 {% highlight swift %}
-// Respond to URL scheme links
+// Respond to URI scheme links
 func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
     // pass the url to the handle deep link call
     Branch.getInstance().handleDeepLink(url);
@@ -1089,6 +1087,6 @@ The Branch SDK is now integrated into your app, and you can use the [Branch dash
 Here are some recommended next steps:
 
 {% if page.android %}{% else %}
-- **Enable [iOS Universal Links]({{base.url}}/getting-started/universal-links)** — traditional URL scheme links are no longer supported in many situations on iOS 9.2+. To get full functionality from your Branch links on iOS devices, **you should enable Universal Links as soon as possible.**{% endif %}
+- **Enable [iOS Universal Links]({{base.url}}/getting-started/universal-links)** — traditional URI scheme links are no longer supported in many situations on iOS 9.2+. To get full functionality from your Branch links on iOS devices, **you should enable Universal Links as soon as possible.**{% endif %}
 - **Learn about [Creating Links]({{base.url}}/getting-started/creating-links)** — let your users share content and invite friends from inside your app.
 - **Set up [Deeplink Routing]({{base.url}}/getting-started/deeplink-routing)** — send incoming visitors directly to specific content in your app based on the Branch link they clicked.

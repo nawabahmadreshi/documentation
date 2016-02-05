@@ -21,7 +21,7 @@ sections:
 
 {% if page.overview %}
 
-Universal Links route directly to your app when opened, instead of using Safari and a URL scheme for the redirection process. They were introduced with iOS 9, and became the only fully-functional deeplinking option on iOS after [Apple stopped supporting URL schemes for deeplinking in iOS 9.2](https://blog.branch.io/ios-9.2-redirection-update-uri-scheme-and-universal-links). **You must enable Universal Links before Branch can function correctly on iOS 9.2+!**
+Universal Links route directly to your app when opened, instead of using Safari and a URI scheme for the redirection process. They were introduced with iOS 9, and became the only fully-functional deeplinking option on iOS after [Apple stopped supporting URI schemes for deeplinking in iOS 9.2](https://blog.branch.io/ios-9.2-redirection-update-uri-scheme-and-universal-links). **You must enable Universal Links before Branch can function correctly on iOS 9.2+!**
 
 {% protip title="Looking for Android support?" %}
 Universal Links are only available on iOS. [App Links]({{base.url}}/getting-started/app-links) are the Android equivalent.
@@ -227,7 +227,7 @@ After completing this guide and installing a new build of your app on your testi
 
 ## Using a custom domain or subdomain
 
-#### Custom SUBDOMAIN (go.branch.com)
+### Custom SUBDOMAIN (go.branch.com)
 1. Create a CNAME for the subdomain and point it to `custom.bnc.lt`
 1. Go to [Link Settings](https://dashboard.branch.io/#/settings/link) on the Branch dashboard, and find the **Custom Link Domain** section.
 1. You should see a message telling you the status of your domain under the `Domain name` field. If you don't, please type your domain in again.
@@ -235,23 +235,11 @@ After completing this guide and installing a new build of your app on your testi
 
 {% image src='/img/pages/getting-started/universal-links/custom-domain-success.png' 3-quarters center alt='successful custom subdomain configuration' %}
 
-#### Custom ROOT domain (branch.com)
+### Custom ROOT domain (branch.com)
 
 1. Follow [CloudFlare's instructions](https://support.cloudflare.com/hc/en-us/articles/200169046-How-do-I-add-a-CNAME-record-) to set up your root domain with a CNAME to `custom.bnc.lt`
 1. Using the CloudFlare control panel, proxy your traffic to the domain `custom.bnc.lt` by clicking the cloud with the arrow to make it _orange_. {% image src='/img/pages/getting-started/universal-links/orange_cloud.png' 3-quarters center alt='cloudflare TLS configuration' %}
 1. Make your Crypto settings match this screenshot. This is done by enabling SSL. {% image src='/img/pages/getting-started/universal-links/ssl.png' half center alt='cloudflare TLS' %}
-
-{% protip title="Troubleshooting SSL" %}
-
-The following error message will appear in your OS-level logs if your domain doesn't have SSL set up properly:
-
-{% highlight javascript %}
-Sep 21 14:27:01 Derricks-iPhone swcd[2044] <Notice>: 2015-09-21 02:27:01.878907 PM [SWC] ### Rejecting URL 'https://examplecustomdomain.com/apple-app-site-association' for auth method 'NSURLAuthenticationMethodServerTrust': -6754/0xFFFFE59E kAuthenticationErr
-{% endhighlight %}
-
-These logs can be found for physical devices connected to Xcode by navigating to Window > Devices > choosing your device and then clicking the "up" arrow in the bottom left corner of the main view.
-
-{% endprotip %}
 
 ## How to handle old URI paths with Universal Links
 
@@ -271,7 +259,12 @@ The entry point for this link type is `application:continueUserActivity:restorat
 1. The default value of **self.ignoreDeeplinkPath** in `application:didFinishLaunchingWithOptions:launchOptions:` defaults to `NO`.
 1. Harness the **$deeplink_path** key (set at the time of Branch link creation) to route users to the correct place in your App after Branch has finished initialization.
 
-{% example %}
+{% example title="Sample AppDelegate" %}
+
+{% tabs %}
+{% tab objective-c %}
+
+Here is a generic **AppDeledate.m** snippet with these methods implemented:
 
 {% highlight objc %}
 
@@ -314,6 +307,13 @@ Branch *branch = [Branch getInstance];
 	return YES;
 }
 {% endhighlight %}
+
+{% endtab %}
+{% tab swift %}
+
+{% endtab %}
+{% endtabs %}
+
 {% endexample %}
 
 {% elsif page.support %}
@@ -333,6 +333,7 @@ Branch links with custom domains are always enabled for Universal Links, even if
 Unfortunately, Universal Links don't work quite everywhere yet. We'll maintain this list and keep it up to date. *Last updated 1/25/15*.
 
 | **App/Browser** | **Status**
+| --- | ---
 | Messages | works
 | Mail | works
 | Whatsapp | works
@@ -381,7 +382,15 @@ iOS does not re-scrape the apple-app-site-association file unless you delete and
 If you are successfully taken into your app via a Universal Link, you'll see "bnc.lt" (or your domain) and a forward button in the top right corner of the status bar. If you click that button, Apple will no longer activate Universal Links in the future. To re-enable Universal Links, long press on the link in Messages or Notes and choose 'Open in <<App>>'.
 
 ##### Using a custom domain?
-Make sure it's configured correctly If you're using a custom subdomain,  your CNAME should point to `custom.bnc.lt` under [Link Settings](https://dashboard.branch.io/#/settings/link) in the Branch dashboard. If you're using a custom root domain, you need to use CloudFlare to proxy the traffic to Branch.
+Make sure it's configured correctly If you're using a custom subdomain, your CNAME should point to `custom.bnc.lt` under [Link Settings](https://dashboard.branch.io/#/settings/link) in the Branch dashboard. If you're using a custom root domain, you need to use CloudFlare to proxy the traffic to Branch.
+
+The following error message will appear in your OS-level logs if your domain doesn't have SSL set up properly:
+
+{% highlight js %}
+Sep 21 14:27:01 Derricks-iPhone swcd[2044] <Notice>: 2015-09-21 02:27:01.878907 PM [SWC] ### Rejecting URL 'https://examplecustomdomain.com/apple-app-site-association' for auth method 'NSURLAuthenticationMethodServerTrust': -6754/0xFFFFE59E kAuthenticationErr
+{% endhighlight %}
+
+These logs can be found for physical devices connected to Xcode by navigating to Window > Devices > choosing your device and then clicking the "up" arrow in the bottom left corner of the main view.
 
 ## What changed in iOS 9 and 9.2?
 

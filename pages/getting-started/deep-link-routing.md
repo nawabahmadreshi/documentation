@@ -1,7 +1,7 @@
 ---
 type: recipe
 directory: getting-started
-title: "Deep link Routing"
+title: "Deep Link Routing"
 page_title: Set up deep link routing in your Android or iOS app
 description: This page will tell you how to set up your Android, iOS, Cordova, Phonegap, Xamarin, Unity, Air or Titanium app for deep link routing.
 platforms:

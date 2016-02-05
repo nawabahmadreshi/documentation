@@ -1,7 +1,11 @@
 ---
 type: recipe
+directory: third-party-integrations
 title: "Tune Webhook Builder"
+page_title: "Tune Webhook Builder"
 hide_platform_selector: true
+sections:
+- overview
 ---
 
 ## Configuring your Branch + Tune Webhooks ##

@@ -16,7 +16,7 @@ sections:
 
 If you maintain a mobile website, Branch allows you to deep link mobile visitors directly into your app, or easily and automatically give them the option of downloading it. Here's a diagram that describes how it works:
 
-{% image src='/img/pages/features/deeplink-mobile-site/deepview-websdk-routing.png' center alt='Deepviews web routing' %}
+{% image src='/img/pages/features/deep-link-mobile-site/deepview-websdk-routing.png' center alt='Deepviews web routing' %}
 
 {% protip title="If you do not have a mobile website..." %}This feature essentially recreates the functionality of [Deepviews]({{base.url}}/features/deepviews) using your own website. If you do not have one, Deepviews are a good alternative!{% endprotip %}
 
@@ -75,7 +75,7 @@ branch.deepviewCta();
 
 With your deep linking all set up, you can view conversions on the summary tab of [the Branch dashboard](https://dashboard.branch.io). It will look something like this:
 
-{% image src='/img/pages/features/deeplink-mobile-site/deepview_analytics.png' 2-thirds center alt='Deepviews analytics tab' %}
+{% image src='/img/pages/features/deep-link-mobile-site/deepview_analytics.png' 2-thirds center alt='Deepviews analytics tab' %}
 
 There are various metrics to understand when deep linking from your mobile website.
 

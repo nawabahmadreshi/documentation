@@ -183,7 +183,7 @@ If you want to customize this, Branch offers two options for doing so:
 ### 1. Link-specific messages
 You can define a special SMS message for each individual link. Whether you want to switch the language of a message for a different region or include device specific date, you can specify the message in the *Deep Link Data* section at the bottom of the link editing screen.  
 
-{% image src="/img/pages/features/text-me-the-app-page/deep-link-data.png" center half alt="deep link data attributes" %} 
+{% image src="/img/pages/features/text-me-the-app-page/deeplink-data.png" center half alt="deep link data attributes" %} 
 
 Use the *key* of {% raw %}**$custom_sms_text**{% endraw %} and then enter your custom message in the value section. (Make sure to include the {% raw %}{{ link }}{% endraw %} tag in your custom message!) 
 

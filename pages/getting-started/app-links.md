@@ -13,7 +13,7 @@ sections:
 
 {% if page.overview %}
 
-App Links route directly to your app when opened, bypassing the web browser and URL scheme combination typically used for the redirection process. App Links were introduced with Android M, and enabling them results in a more seamless experience for your users.
+App Links route directly to your app when opened, bypassing the web browser and URI scheme combination typically used for the redirection process. App Links were introduced with Android M, and enabling them results in a more seamless experience for your users.
 
 {% protip title="Looking for iOS support?" %}
 App Links are only available on Android. [Universal Links]({{base.url}}/getting-started/universal-links) are the iOS equivalent.

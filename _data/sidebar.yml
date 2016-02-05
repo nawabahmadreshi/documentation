@@ -12,6 +12,7 @@
         - deep-link-routing
         - branch-universal-objects
         - app-links
+        - dynamic-link-builder
     - title: Advanced
       children:
         - integration-testing
@@ -43,8 +44,8 @@
         - advertising_facebook
         - advertising_google
         - advertising_twitter
-- title: Other Integrations
-  directory: other-integrations
+- title: Third-Party Integrations
+  directory: third-party-integrations
   children:
     - title: Growth Tools
       children:
@@ -56,6 +57,7 @@
         - analytics_adjust
         - analytics_localytics
         - analytics_mixpanel
+    - tune-webhook-builder
 - title: Methods & Endpoints
   directory: methods-endpoints
   children:

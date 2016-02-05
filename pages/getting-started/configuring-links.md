@@ -87,7 +87,7 @@ Use these keys to set the value of the deep link path that you'd like us to appe
 
 If you do not specify a primary OG tag when creating a link, Branch will perform a one-time scrape of your **$desktop_url** (if set) and attempt to retrieve it. 
 
-### Most all platforms
+### Open Graph tags
 
 | **Key** | **Usage** | **Scraped?**
 | ---: | --- | ---

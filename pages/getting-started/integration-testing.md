@@ -32,10 +32,10 @@ Toggling between these two modes on the Branch dashboard is simple:
 
 {% image src="/img/pages/getting-started/integration-testing/dashboard-test-mode.png" actual center alt="environment toggle" %}
 
-{% protip title="Configuring the Test App" %}
+{% caution title="Configuring the Test App" %}
 Since the **Test** and **Live** environments are completely separate, you will need check that your [Settings](https://dashboard.branch.io/#/settings)
 (especially your [Link Settings](http://dashboard.branch.io/#/settings/link)) are properly configured.
-{% endprotip %}
+{% endcaution %}
 
 ### Switching environments in your app
 
