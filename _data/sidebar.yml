@@ -26,7 +26,7 @@
     - title: Content Indexing
       children:
         - google_app_indexing
-        - spotlight_indexing
+        - spotlight-indexing
     - title: Personalized Sharing
       children:
         - personalized_welcome
@@ -57,7 +57,7 @@
         - analytics_adjust
         - analytics_localytics
         - analytics_mixpanel
-    - tune-webhook-builder
+        - tune-webhook-builder
 - title: Methods & Endpoints
   directory: methods-endpoints
   children:

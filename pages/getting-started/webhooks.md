@@ -19,11 +19,6 @@ Branch's webhook system allows you to receive install and down funnel event data
 
 The webhook system is very powerful and customizable. You can register to only receive notifications for specific events, or you can register a wildcard and receive all events. You can specify to only receive an event for the first time a user completes it, or every time. You can also specify receive events only in the case of referrals.
 
-{% protip title="Creating and tracking events" %}
-
-For more information about event tracking, including events that Branch automatically tracks and custom events specified by you, see the [Tracking Events]({{base.url}}/getting-started/tracking-events) page.
-{% endprotip %}
-
 {% elsif page.guide %}
 
 ## Register webhook on the Branch dashboard

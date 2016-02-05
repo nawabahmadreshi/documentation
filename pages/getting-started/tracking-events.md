@@ -6,6 +6,7 @@ page_title: Using events to track analytics with Branch
 description: Branch allows you to measure analytics for your deeplinks. Track install attribution, measure marketing channels and ad campaigns.
 keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Attribution, Analytics, Dashboard, App Install, App Open, Conversion, iOS, objective-c, swift
 android_keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Attribution, Analytics, Dashboard, App Install, App Open, Conversion, Android
+hide_section_selector: true
 platforms:
 - ios
 - android
@@ -17,6 +18,8 @@ platforms:
 sections:
 - guide
 ---
+
+{% ingredient quickstart-prerequisite %}{% endingredient %}
 
 ## Automatic events
 

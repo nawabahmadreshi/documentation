@@ -25,8 +25,6 @@ The Download/Open button and SMS link both contain all the features of any other
 
 {% elsif page.guide %}
 
-{% ingredient quickstart-prerequisite %}{% endingredient %}
-
 ## Add Smart Banner script to your website
 
 Add the following code somewhere inside the `<head></head>` tags on your website.
@@ -46,7 +44,7 @@ branch.banner({
 
 ## Customizations
 
-That’s all you need to add the smart banner to your website! Go to [Advanced]({{base.url}}/features/app-download-banner/advanced/) to see some common customizations, or take a look at the [Method Reference]({{base.url}}/method-reference/web-sdk) for all available options.
+That’s all you need to add the smart banner to your website! Go to [Advanced]({{base.url}}/features/app-download-banner/advanced/) to see some common customizations.
 
 {% elsif page.advanced %}
 
@@ -103,9 +101,15 @@ branch.banner(
 
 ## Deep linking from the banner
 
-Like all Branch deep links, you can pass custom parameters through the App/Play Store by specifying keys in the link's [data dictionary]({{base.url}}/getting-started/configuring-links).
+{% prerequisite %}
 
-{% example %}If you have enabled deep link routing in your app, this example will take the visitor straight to a picture with id “12345” after installing and opening the app.
+- For this to function as expected, you should [integrated the Branch SDK]({{base.url}}/getting-started/sdk-integration-guide) into your app and [configure deep link routing]({{base.url}}/getting-started/deep-link-routing).
+
+{% endprerequisite %}
+
+Like all Branch deep links, you can pass custom parameters by specifying keys in the link's [data dictionary]({{base.url}}/getting-started/configuring-links). This is useful if you are showing the Smart Banner on a website page with equivalent in-app content, because you can route directly to that content in your app.
+
+{% example %}This example will take the visitor straight to a picture with id “12345” after installing and opening the app.
 
 {% highlight javascript %}
 branch.banner(options, {

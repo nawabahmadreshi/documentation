@@ -29,8 +29,6 @@ Branch uses Twilio to send SMS messages. Thanks to Twilio, users can text themse
 
 {% elsif page.guide %}
 
-{% ingredient quickstart-prerequisite %}{% endingredient %}
-
 ## Configure custom URL in Branch dashboard
 
 1. Visit the [Branch link configuration tool](https://start.branch.io/#/desktop-routing).

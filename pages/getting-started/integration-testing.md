@@ -7,6 +7,7 @@ ios_description: Learn how to test your iOS Branch integration, debug individual
 android_description: Learn how to test your Android Branch integration, debug individual deep links and simulate fresh app installs. Also, some advice on fraud protection.
 ios_keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Testing, integration, debugging, fraud protection, setDebug
 android_keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views,Testing, integration, debugging, fraud protection, setDebug
+hide_section_selector: true
 platforms:
 - ios
 - android

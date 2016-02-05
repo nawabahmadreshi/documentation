@@ -6,6 +6,7 @@ page_title: Identify your users with Branch
 description: Branch allows you identify your users, bringing additional insight to analytics and referral data
 keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Attribution, Analytics, Dashboard, App Install, App Open, Conversion, iOS, objective-c, swift
 android_keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Attribution, Analytics, Dashboard, App Install, App Open, Conversion, Android
+hide_section_selector: true
 platforms:
 - ios
 - android
@@ -19,6 +20,8 @@ sections:
 ---
 
 Identifying your users will help you associate all activities and links created to a particular person. This can show you which of your users are the most influential.
+
+{% ingredient quickstart-prerequisite %}{% endingredient %}
 
 ## Log in
 

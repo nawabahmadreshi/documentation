@@ -6,6 +6,7 @@ page_title: How accurate is Branch fingerprint matching?
 description: How does Branch matching work? Learn about mechanisms we use to pass data through to the app and attribute app sessions back to the source.
 keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, matching, fingerprint, accuracy, direct deep linking
 hide_platform_selector: true
+hide_section_selector: true
 sections:
 - guide
 ---
