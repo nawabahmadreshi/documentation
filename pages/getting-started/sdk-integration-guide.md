@@ -39,7 +39,7 @@ The recommended way to install the SDK is via CocoaPods:
 If you don't use CocoaPods, you can still install the SDK manually:
 
 1. [Grab the latest SDK version](https://s3-us-west-1.amazonaws.com/branchhost/Branch-iOS-SDK.zip), or [clone our open-source GitHub repo](https://github.com/BranchMetrics/branch-ios-sdk).
-1. Drag the `Branch.framework` file into your Xcode project. Be sure that "Copy items if needed" is selected.
+1. Drag the `Branch.framework` file into your Xcode project. Be sure that "Copy items if needed" and "Create groups" are selected.
 1. Import the following frameworks under **Build Phases** for your app target:
     - `AdSupport.framework`
     - `CoreTelephony.framework`
@@ -582,6 +582,10 @@ branch.initSessionWithLaunchOptions(launchOptions, andRegisterDeepLinkHandler: {
 {% endhighlight %}
 {% endtab %}
 {% endtabs %}
+
+{% protip %}
+If you're using **Xcode 6.3 or newer**, have imported the SDK, and are still seeing a "Branch.h file not found" or some other compiler error, please [read this support article](https://support.branch.io/support/solutions/articles/6000109874-xcode-error-branch-not-found).
+{% endprotip %}
 
 ## Handle incoming links
 
