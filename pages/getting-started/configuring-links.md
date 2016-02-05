@@ -9,6 +9,7 @@ hide_platform_selector: true
 hide_section_selector: true
 sections:
 - guide
+contents: list
 ---
 
 {% protip title="Link Configuration vs. Link Creation" %}

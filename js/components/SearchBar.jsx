@@ -34,8 +34,17 @@ var SearchBar = React.createClass({
 			if (!this.state.isLoaded) { return; }
 
 			SearchActions.search(this.state.field, this.state.indexes);
-
-			if (this.state.field.length) {
+			if (this.state.field.length == 0) {
+				document.getElementsByClassName('search-icon')[0].innerHTML = '<i class="material-icons">search</i>';
+			}
+			else if (this.state.field.length) {
+				var clearSearch = document.getElementsByClassName('search-icon')[0];
+				clearSearch.innerHTML = '<i class="material-icons icon-close">close</i>';
+				clearSearch.onclick = function() {
+					var contents = document.getElementsByTagName('form')[0].children[0];
+					contents.value = '';
+					document.getElementsByClassName('search-icon')[0].innerHTML = '<i class="material-icons">search</i>';
+				} ;
 				if (this.timeout) { clearTimeout(this.timeout); }
 				this.timeout = setTimeout(function() {
 					mixpanel.track("Typed in Search Term", { "Search Term": term, "Section": "Search" });
@@ -63,6 +72,9 @@ var SearchBar = React.createClass({
 		}
 		return (
 			<div className="search">
+				<div className="search-icon">
+					<i className="material-icons">search</i>
+				</div>
 				<div className="search-bar">
 					<form className="navbar-form">
 						<input
@@ -75,9 +87,6 @@ var SearchBar = React.createClass({
 							onClick={this.handleClick}
 							value={this.state.field} />
 					</form>
-				</div>
-				<div className="search-icon">
-					<i className="material-icons">search</i>
 				</div>
 				<div className="search-results">
 					{results}
