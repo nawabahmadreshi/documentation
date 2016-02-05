@@ -40,7 +40,7 @@ var SearchBar = React.createClass({
 			else if (this.state.field.length) {
 				var clearSearch = document.getElementsByClassName('search-icon')[0];
 				clearSearch.innerHTML = '<i class="material-icons icon-close">close</i>';
-				clearSearch.onclick = function() { 
+				clearSearch.onclick = function() {
 					var contents = document.getElementsByTagName('form')[0].children[0];
 					contents.value = '';
 					document.getElementsByClassName('search-icon')[0].innerHTML = '<i class="material-icons">search</i>';
