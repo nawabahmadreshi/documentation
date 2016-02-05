@@ -31,7 +31,11 @@ Deepviews are discoverable in all search portals (Google, Apple Spotlight, Bing,
 
 {% elsif page.guide %}
 
-{% ingredient quickstart-prerequisite %}{% endingredient %}
+{% prerequisite %}
+
+- For Deepviews to function as intended, you should [integrated the Branch SDK]({{base.url}}/getting-started/sdk-integration-guide) into your app and [configure deep link routing]({{base.url}}/getting-started/deep-link-routing).
+
+{% endprerequisite %}
 
 ## Enable Deepviews on the Branch dashboard
 

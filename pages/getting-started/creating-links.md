@@ -5,6 +5,7 @@ title: Creating Links
 page_title: How to create Branch links
 description: Learn about the multiple ways to create Branch deep links for iOS and Android apps.
 keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Link Properties, Redirect Customization, Mobile SDK, Web SDK, HTTP API
+hide_section_selector: true
 platforms:
 - ios
 - android
@@ -27,10 +28,7 @@ With the Branch mobile SDKs, you can easily allow your app's users to create lin
 
 {% if page.ios or page.android or page.unity or page.titanium %}
 
-{% protip title="What is a BranchUniversalObject?" %}
-A `BranchUniversalObject` is the container Branch uses to organize and track your app's content. It provides convenient methods for sharing, deep linking, and tracking analytics for each piece of content you define. Learn more on the [Branch Universal Object]({{base.url}}/getting-started/branch-universal-objects) page.
-{% endprotip %}
-
+{% ingredient buo-overview %}{% endingredient %}
 {% endif %}
 
 <!--- iOS -->

@@ -4,6 +4,7 @@ directory: third-party-integrations
 title: "Tune Webhook Builder"
 page_title: "Tune Webhook Builder"
 hide_platform_selector: true
+hide_section_selector: true
 sections:
 - overview
 ---

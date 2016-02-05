@@ -4,6 +4,7 @@ directory: getting-started
 title: Dynamic Link Builder
 page_title: "Branch Dynamic Long Link Builder"
 hide_platform_selector: true
+hide_section_selector: true
 sections:
 - overview
 ---

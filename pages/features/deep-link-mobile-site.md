@@ -1,7 +1,7 @@
 ---
 type: recipe
 directory: features
-title: Website to app routing
+title: Website-To-App Routing
 page_title: Automatically route website users to your app
 description: Add powerful, best in class deep linking to your mobile website.
 keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views
@@ -9,6 +9,7 @@ hide_platform_selector: true
 sections:
 - overview
 - guide
+- advanced
 - support
 ---
 
@@ -21,8 +22,6 @@ If you maintain a mobile website, Branch allows you to deep link mobile visitors
 {% protip title="If you do not have a mobile website..." %}This feature essentially recreates the functionality of [Deepviews]({{base.url}}/features/deepviews) using your own website. If you do not have one, Deepviews are a good alternative!{% endprotip %}
 
 {% elsif page.guide %}
-
-{% ingredient quickstart-prerequisite %}{% endingredient %}
 
 ## Initialize the Deepview SDK on page load
 
@@ -73,7 +72,7 @@ branch.deepviewCta();
 
 ## View the analytics
 
-With your deep linking all set up, you can view conversions on the summary tab of [the Branch dashboard](https://dashboard.branch.io). It will look something like this:
+With your website linking all set up, you can view conversions on the summary tab of [the Branch dashboard](https://dashboard.branch.io). It will look something like this:
 
 {% image src='/img/pages/features/deep-link-mobile-site/deepview_analytics.png' 2-thirds center alt='Deepviews analytics tab' %}
 
@@ -85,6 +84,32 @@ There are various metrics to understand when deep linking from your mobile websi
 - **Upgrades:** a user re-opened or upgraded the app from a previous version
 
 Only users who do not have the app will go through this flow. You can view the total counts and conversion rate from each step on this chart.
+
+{% elsif page.advanced %}
+
+## Deep linking from your website
+
+{% prerequisite %}
+
+- For this to function as expected, you should [integrated the Branch SDK]({{base.url}}/getting-started/sdk-integration-guide) into your app and [configure deep link routing]({{base.url}}/getting-started/deep-link-routing).
+
+{% endprerequisite %}
+
+Like all Branch deep links, you can pass custom parameters by specifying keys in the link's [data dictionary]({{base.url}}/getting-started/configuring-links). This is useful if you are running this script on a website page with equivalent in-app content, because you can route directly to that content in your app.
+
+{% example %}This example will take the visitor straight to a picture with id “12345” after installing and opening the app.
+
+{% highlight javascript %}
+branch.deepview(options, {
+    data: {
+        '$deeplink_path': 'picture/12345',
+        'picture_id': '12345',
+        'user_id': '45123'
+    }
+});
+{% endhighlight %}
+{% endexample%}
+
 
 {% elsif page.support %}
 

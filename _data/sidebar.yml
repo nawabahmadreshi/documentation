@@ -10,13 +10,13 @@
         - creating-links
         - configuring-links
         - deep-link-routing
-        - branch-universal-objects
         - app-links
         - dynamic-link-builder
     - title: Advanced
       children:
         - integration-testing
         - matching-accuracy
+        - branch-universal-objects
         - tracking-events
         - setting-identities
         - webhooks
@@ -26,7 +26,7 @@
     - title: Content Indexing
       children:
         - google_app_indexing
-        - spotlight_indexing
+        - spotlight-indexing
     - title: Personalized Sharing
       children:
         - personalized_welcome
@@ -57,7 +57,7 @@
         - analytics_adjust
         - analytics_localytics
         - analytics_mixpanel
-    - tune-webhook-builder
+        - tune-webhook-builder
 - title: Methods & Endpoints
   directory: methods-endpoints
   children:
