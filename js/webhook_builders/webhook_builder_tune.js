@@ -14,12 +14,8 @@ function createTuneDynamicDeepLink() {
 	// var site_event_id = window.document.getElementById('site_event_id').value;
 	// var site_event_name = window.document.getElementById('site_event_name').value;
 
-	console.log(action.value)
-	console.log(site_event_id.value)
-	console.log(site_event_name.value)
-
 	// Add Tune main string identifiers
-	link = link + '.measure.mobileapptracking.com/serve?sdk=server&response_format=json&created_at={{event.date}}&user_id={{identity}}&timestamp={{event.date}}&ios_ad_tracking_disabled=0&google_ad_tracking=1&sub_publisher=Branch&sub_campaign={{campaign}}&sub_keyword={{tags}}&tracking_id={{click_id}'
+	var link = link + '.measure.mobileapptracking.com/serve?sdk=server&response_format=json&created_at={{event.date}}&user_id={{identity}}&timestamp={{event.date}}&ios_ad_tracking_disabled=0&google_ad_tracking=1&sub_publisher=Branch&sub_campaign={{campaign}}&sub_keyword={{tags}}&tracking_id={{click_id}'
 
 	// Add Tune Advertiser Id (advertiser_id)
 	if (advertiser_id.length>0) {
@@ -38,6 +34,8 @@ function createTuneDynamicDeepLink() {
 		window.alert('Your Tune Site Id is not filled in or is incorrect.');
 		return
 	};
+
+	var link = link + action 
 
 	// // Verify at least one Event
 	// if (action == "" && site_event_id == "" && site_event_name == "") {
