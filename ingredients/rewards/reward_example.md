@@ -1,7 +1,7 @@
 
 ### Two Example Rules
 
-Let's say you want to give 10 credits to each new user who signs up through a friend, and 5 credits to the friend who referred him or her. That can be done through a combination of (*two rules.*
+Let's say you want to give 10 credits to each new user who signs up through a friend, and 5 credits to the friend who referred him or her. That can be done through a combination of *two rules.*
 
 #### Example 1: Rewarding the Referred User 10 Credits
 
