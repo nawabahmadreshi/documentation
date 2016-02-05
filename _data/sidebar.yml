@@ -10,13 +10,13 @@
         - creating-links
         - configuring-links
         - deep-link-routing
-        - branch-universal-objects
         - app-links
         - dynamic-link-builder
     - title: Advanced
       children:
         - integration-testing
         - matching-accuracy
+        - branch-universal-objects
         - tracking-events
         - setting-identities
         - webhooks
