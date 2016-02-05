@@ -16,7 +16,7 @@ module Jekyll
         data[m[0]] = Liquid::Template.parse(m[1]).render!(context)
       }
 
-      title = if data['title'] then '<h5 class="protip__title">Tip: ' + data['title'] + '</h5>' else '<h5 class="protip__title">Tip</h5>' end
+      title = if data['title'] then '<h5 class="protip__title">' + data['title'] + '</h5>' else '' end
       contents = Kramdown::Document.new(super).to_html
       '<blockquote class="protip">' + title + contents + '</blockquote>'
     end

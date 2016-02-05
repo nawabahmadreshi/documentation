@@ -1,7 +1,11 @@
 ---
 type: recipe
-title: "Branch Dynamic Long Link Builder"
+directory: getting-started
+title: Dynamic Link Builder
+page_title: "Branch Dynamic Long Link Builder"
 hide_platform_selector: true
+sections:
+- overview
 ---
 
 ## Configuring your Branch Dynamic Deep Links ##

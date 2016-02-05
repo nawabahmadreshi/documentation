@@ -15,8 +15,6 @@ sections:
 
 {% if page.overview %}
 
-## Introduction
-
 Branch's webhook system allows you to receive install and down funnel event data from us as it occurs, for install attribution or conversion funnels in your own database. You simply need to specify a URL for us to send all this data to.
 
 The webhook system is very powerful and customizable. You can register to only receive notifications for specific events, or you can register a wildcard and receive all events. You can specify to only receive an event for the first time a user completes it, or every time. You can also specify receive events only in the case of referrals.
@@ -85,9 +83,9 @@ To test whether your webhook is configured correctly, you can use [requestb.in](
 
 All postbacks are formatted the same way, except for those triggered by `click` events. To read about the parameters in the link data dictionary, see the [Configuring Links]({{base.url}}/getting-started/configuring-links) page.
 
-Here are example returns:
+### Sample returns
 
-### Normal event format
+#### Normal event format
 
 {% highlight js %}
 POST
@@ -130,7 +128,7 @@ Content-Type: application/json
 }
 {% endhighlight %}
 
-### Click event format
+#### Click event format
 
 {% highlight js %}
 POST

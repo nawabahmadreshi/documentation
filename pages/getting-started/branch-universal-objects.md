@@ -17,7 +17,7 @@ sections:
 - guide
 ---
 
-A `BranchUniversalObject` is a container that Branch uses to organize and track pieces of content within your app. As a single, self-contained object associated with each thing that you want to share, it provides convenient methods for sharing, deeplinking, and tracking how often that thing is viewed.
+A `BranchUniversalObject` is a container that Branch uses to organize and track pieces of content within your app. As a single, self-contained object associated with each thing that you want to share, it provides convenient methods for sharing, deep linking, and tracking how often that thing is viewed.
 
 {% if page.cordova or page.xamarin or page.adobe %}
 
@@ -116,7 +116,7 @@ Some of these parameters automatically populate the OG tag keys in the [data dic
 | **title** | The name for the piece of content | $og_title 
 | **contentDescription** | A description for the content | $og_description
 | **imageUrl** | The image URL for the content | $og_image_url
-| **metadata** | Any extra parameters you'd like to associate with the Branch Universal Object. These will be made available to you after the user clicks the link and opens up the app, and are used for [Deeplink Routing]({{base.url}}/getting-started/deeplink-routing).
+| **metadata** | Any extra parameters you'd like to associate with the Branch Universal Object. These will be made available to you after the user clicks the link and opens up the app, and are used for [Deep Link Routing]({{base.url}}/getting-started/deep-link-routing).
 | **type** | This is a label for the type of content present. Apple recommends that you use uniform type identifier as [described here](https://developer.apple.com/library/prerelease/ios/documentation/MobileCoreServices/Reference/UTTypeRef/index.html)*
 | **contentIndexMode** | Can be set to either `ContentIndexModePublic` or `ContentIndexModePrivate`. Public indicates that you'd like this content to be discovered by other apps*
 | **keywords** | Keywords for which this content should be discovered by. Just assign an array of strings with the keywords you'd like to use*
@@ -136,7 +136,7 @@ Some of these parameters automatically populate the OG tag keys in the [data dic
 | **setTitle** | The name for the piece of content | $og_title 
 | **setContentDescription** | A description for the content | $og_description
 | **imageUrl** | The image URL for the content | $og_image_url
-| **addContentMetadata** | Any extra parameters you'd like to associate with the Branch Universal Object. These will be made available to you after the user clicks the link and opens up the app, and are used for [Deeplink Routing]({{base.url}}/getting-started/deeplink-routing).
+| **addContentMetadata** | Any extra parameters you'd like to associate with the Branch Universal Object. These will be made available to you after the user clicks the link and opens up the app, and are used for [Deep Link Routing]({{base.url}}/getting-started/deep-link-routing).
 | **type** | This is a label for the type of content present. Apple recommends that you use uniform type identifier as [described here](https://developer.apple.com/library/prerelease/ios/documentation/MobileCoreServices/Reference/UTTypeRef/index.html)*
 | **setContentIndexingMode** | Can be set to either `BranchUniversalObject.CONTENT_INDEX_MODE.PUBLIC` or `BranchUniversalObject.CONTENT_INDEX_MODE.PRIVATE`. Public indicates that you'd like this content to be discovered by other apps*
 | **addKeywords** | Keywords for which this content should be discovered by. Just assign an array of strings with the keywords you'd like to use. Can also be called as **addKeyword** with a `string`*
@@ -155,7 +155,7 @@ Some of these parameters automatically populate the OG tag keys in the [data dic
 | **title** | The name for the piece of content | $og_title 
 | **contentDescription** | A description for the content | $og_description
 | **imageUrl** | The image URL for the content | $og_image_url
-| **metadata** | Any extra parameters you'd like to associate with the Branch Universal Object. These will be made available to you after the user clicks the link and opens up the app, and are used for [Deeplink Routing]({{base.url}}/getting-started/deeplink-routing).
+| **metadata** | Any extra parameters you'd like to associate with the Branch Universal Object. These will be made available to you after the user clicks the link and opens up the app, and are used for [Deep Link Routing Routing]({{base.url}}/getting-started/deep-link-routing).
 | **type** | This is a label for the type of content present. Apple recommends that you use uniform type identifier as [described here](https://developer.apple.com/library/prerelease/ios/documentation/MobileCoreServices/Reference/UTTypeRef/index.html)*
 | **contentIndexMode** | Can be set to either `ContentIndexModePublic` or `ContentIndexModePrivate`. Public indicates that you'd like this content to be discovered by other apps*
 | **keywords** | Keywords for which this content should be discovered by. Just assign an array of strings with the keywords you'd like to use*
@@ -174,7 +174,7 @@ Some of these parameters automatically populate the OG tag keys in the [data dic
 | **title** | The name for the piece of content | $og_title 
 | **contentDescription** | A description for the content | $og_description
 | **contentImageUrl** | The image URL for the content | $og_image_url
-| **contentMetadata** | Any extra parameters you'd like to associate with the Branch Universal Object. These will be made available to you after the user clicks the link and opens up the app, and are used for [Deeplink Routing]({{base.url}}/getting-started/deeplink-routing).
+| **contentMetadata** | Any extra parameters you'd like to associate with the Branch Universal Object. These will be made available to you after the user clicks the link and opens up the app, and are used for [Deep Link Routing Routing]({{base.url}}/getting-started/deep-link-routing).
 | **type** | This is a label for the type of content present. Apple recommends that you use uniform type identifier as [described here](https://developer.apple.com/library/prerelease/ios/documentation/MobileCoreServices/Reference/UTTypeRef/index.html)*
 | **contentIndexingMode** | Can be set to either `public` or `private`. Public indicates that you'd like this content to be discovered by other apps*
 | **keywords** | Keywords for which this content should be discovered by. Just assign an array of strings with the keywords you'd like to use*

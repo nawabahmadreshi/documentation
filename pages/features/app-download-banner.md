@@ -21,7 +21,7 @@ The Branch Smart Banner displays a fully-customizable banner at the top of your 
 
 {% image src='/img/pages/features/app-download-banner/banner2.png' 2-thirds center alt='Smart Banner examples' %}
 
-The Download/Open button and SMS link both contain all the features of any other Branch link, including deeplinking directly to content, passing data across install, measuring clicks, and more.
+The Download/Open button and SMS link both contain all the features of any other Branch link, including deep linking directly to content, passing data across install, measuring clicks, and more.
 
 {% elsif page.guide %}
 
@@ -101,11 +101,11 @@ branch.banner(
 });
 {% endhighlight %}
 
-## Deeplinking from the banner
+## Deep linking from the banner
 
-Like all Branch deeplinks, you can pass custom parameters through the App/Play Store by specifying keys in the link's [data dictionary]({{base.url}}/getting-started/configuring-links).
+Like all Branch deep links, you can pass custom parameters through the App/Play Store by specifying keys in the link's [data dictionary]({{base.url}}/getting-started/configuring-links).
 
-{% example %}If you have enabled deeplink routing in your app, this example will take the visitor straight to a picture with id “12345” after installing and opening the app.
+{% example %}If you have enabled deep link routing in your app, this example will take the visitor straight to a picture with id “12345” after installing and opening the app.
 
 {% highlight javascript %}
 branch.banner(options, {
@@ -118,7 +118,7 @@ branch.banner(options, {
 {% endhighlight %}
 {% endexample%}
 
-{% example %}You can dynamically specify the deeplink path depending on which website page is loaded.
+{% example %}You can dynamically specify the deep link path depending on which website page is loaded.
 
 {% highlight javascript %}
 branch.banner(options, {

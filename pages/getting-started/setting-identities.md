@@ -20,6 +20,8 @@ sections:
 
 Identifying your users will help you associate all activities and links created to a particular person. This can show you which of your users are the most influential.
 
+## Log in
+
 {% if page.ios %}
 
 Add a `setIdentity` call wherever you create or login a user. This should be done after you have successfully initialized a Branch session. Only call `setIdentity` when the user first logs in. We will cache the identity for future sessions.
@@ -38,6 +40,8 @@ Branch.getInstance().setIdentity("your user id")
 {% endhighlight %}
 {% endtab %}
 {% endtabs %}
+
+## Log out
 
 Add a `logout` call anywhere you allow the user to logout. `Logout` should only be called when the user logs out. Calling it at other times could lead to hard-to-discover errors. Failing to call `logout` can likewise lead to bugs if multiple users log in on the same device.
 

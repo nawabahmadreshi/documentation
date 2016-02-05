@@ -22,7 +22,8 @@ sections:
 
 Branch _automatically_ creates events whenever a user accesses your site or your app. We measure installs, opens and web page visits with separate events. Here is a list of the auto-created ones:
 
-| **Event** | **Description**
+| Event | Description
+| --- | ---
 | `install` | Triggered the first time a user launches your app
 | `open` | Trigged when the user opens the app after the very first launch OR if a user reinstalls the app after uninstalling it
 | `web session start` | Triggered when the user views a webpage using the Branch Web SDK.

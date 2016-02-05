@@ -1,9 +1,9 @@
 ---
 type: recipe
 directory: getting-started
-title: "Deeplink Routing"
-page_title: Set up deeplink routing in your Android or iOS app
-description: This page will tell you how to set up your Android, iOS, Cordova, Phonegap, Xamarin, Unity, Air or Titanium app for deeplink routing.
+title: "Deep Link Routing"
+page_title: Set up deep link routing in your Android or iOS app
+description: This page will tell you how to set up your Android, iOS, Cordova, Phonegap, Xamarin, Unity, Air or Titanium app for deep link routing.
 platforms:
 - ios
 - android
@@ -20,30 +20,30 @@ sections:
 
 {% if page.overview %}
 
-When a Branch link is opened, either your app launches or users are taken to the App/Play store to download it. Deeplinks improve this process by routing users directly to specific content after your app launches. With Branch, this still works even if users have to stop and download the app first (a.k.a., "deferred deeplinks").
+When a Branch link is opened, either your app launches or users are taken to the App/Play store to download it. Deep links improve this process by routing users directly to specific content after your app launches. With Branch, this still works even if users have to stop and download the app first (a.k.a., "deferred deep links").
 
-Deeplinks are an incredibly important part of delivering a high quality user experience. With deeplinks, you can take users to the exact thing they clicked on or even offer a customized onboarding experience.
+Deep links are an incredibly important part of delivering a high quality user experience. With deep links, you can take users to the exact thing they clicked on or even offer a customized onboarding experience.
 
 {% elsif page.guide %}
 
 {% if page.ios or page.android %}
 
 {% ingredient quickstart-prerequisite %}{% endingredient %}
-{% protip title="Automatic vs. custom deeplink routing" %}
-This guide describes how to use the automatic routing functionality included in the Branch SDK. If you need more control, check out [this section of the Advanced page]({{base.url}}/getting-started/deeplink-routing/advanced#building-a-custom-deeplink-routing-method)
+{% protip title="Automatic vs. custom deep link routing" %}
+This guide describes how to use the automatic routing functionality included in the Branch SDK. If you need more control, check out [this section of the Advanced page]({{base.url}}/getting-started/deep-link-routing/advanced#building-a-custom-deep-link-routing-method)
 {% endprotip %}
 
 {% elsif page.unity or page.xamarin or page.cordova or page.titanium or page.adobe %}
 
 {% caution title="Automatic routing not yet available" %}
-Automatic deeplink routing is currently supported in only the native iOS and Android SDKs. Please see [this section of the Advanced page]() to set up a custom routing solution.
+Automatic deep link routing is currently supported in only the native iOS and Android SDKs. Please see [this section of the Advanced page]() to set up a custom routing solution.
 {% endcaution %}
 
 {% endif %}
 
 {% if page.ios %}
 
-## Configure View Controller to accept deeplinks
+## Configure View Controller to accept deep links
 
 Open the view controller that you want to appear when a user clicks a link. For example, this could be a view to show a product.
 
@@ -132,7 +132,7 @@ func closePressed() {
 {% endtab %}
 {% endtabs %}
 
-## Register View Controller for deeplink routing
+## Register View Controller for deep link routing
 
 Lastly, you need to tell Branch about the view controller you just configured, and which key it is using from the link's data dictionary.
 
@@ -197,7 +197,7 @@ Now whenever your app launches from a Branch link that has the `product_picture`
 {% endif %}
 {% if page.android %}
 
-## Configure Activity to accept deeplinks
+## Configure Activity to accept deep links
 
 Open the Activity that you want to appear when a user clicks a link. For example, this could be an Activity to show a product.
 
@@ -225,7 +225,7 @@ protected void onResume() {
 The example key `product_picture` is a parameter from the [data dictionary]({{base.url}}/getting-started/configuring-links) of the link that was clicked, and would have been defined when the link [was created]({{base.url}}/getting-started/creating-links).
 {% endprotip %} 
 
-## Register Activity for deeplink routing
+## Register Activity for deep link routing
 
 Lastly, you need to tell Branch about the Activity you just configured, and which key it is using from the link's data dictionary.
 
@@ -241,7 +241,7 @@ Now whenever your app launches from a Branch link that has the `product_picture`
 
 {% elsif page.advanced %}
 
-## Building a custom deeplink routing method
+## Building a custom deep link routing method
 
 {% if page.ios %}
 
@@ -443,15 +443,15 @@ $.onInitSessionFinished = function(data) {
 
 {% if page.android %}
 
-## Be notified when deeplink Activity finishes
+## Be notified when deep link Activity finishes
 
-In your Manifest, you can specify a custom code for the deeplink Activity like so:
+In your Manifest, you can specify a custom code for the deep link Activity like so:
 
 {% highlight xml %}
 <meta-data android:name="io.branch.sdk.auto_link_request_code" android:value="@integer/AutoDeeplinkRequestCode" />
 {% endhighlight %}
 
-To be notified when the deeplink Activity finishes, use the `onActivityResult` parameter to check for the custom code you inserted in the Manifest:
+To be notified when the deep link Activity finishes, use the `onActivityResult` parameter to check for the custom code you inserted in the Manifest:
 
 {% highlight java %}
 @Override
@@ -495,9 +495,9 @@ In addition to any custom key/value pairs specified in the link data dictionary,
 | **+clicked_branch_link** | Denotes whether or not the user clicked a Branch link that triggered this session
 | **+click_timestamp** | Epoch timestamp of when the click occurred
 
-## Support existing deeplink routes
+## Support existing deep link routes
 
-If you spent a bunch of time setting up deeplink paths before you heard of Branch and you want to continue using them, you can set the `$deeplink_path`, `$ios_deeplink_path` or `$android_deeplink_path` link control parameters to the URI path you'd like to display.
+If you spent a bunch of time setting up deep link paths before you heard of Branch and you want to continue using them, you can set the `$deeplink_path`, `$ios_deeplink_path` or `$android_deeplink_path` link control parameters to the URI path you'd like to display.
 
 {% if page.android %}
 
@@ -511,12 +511,12 @@ In your app's Manifest, add this meta-data key to the definition of the Activity
 {% if page.ios %}
 
 {% caution title="Incomplete support on iOS" %}
-[Universal Links]({{base.url}}/getting-started/universal-links) and [Spotlight]({{base.url}}/features/spotlight-indexing) do not support URI paths. We recommend avoiding this approach to deeplink routing if possible.
+[Universal Links]({{base.url}}/getting-started/universal-links) and [Spotlight]({{base.url}}/features/spotlight-indexing) do not support URI paths. We recommend avoiding this approach to deep link routing if possible.
 {% endcaution %}
 
 {% endif %}
 
-### How to insert custom deeplink routes into a Branch link
+### How to insert custom deep link routes into a Branch link
 
 All of the examples below create links that will cause Branch to display `myapp://content/1234` after launch.
 
@@ -661,13 +661,13 @@ You can specify the control parameters for individual marketing links by inserti
 
 {% endexample %}
 
-## Retrieve deeplink params after initialization
+## Retrieve deep link params after initialization
 
-You can retrieve the deeplink data at any time from the Branch singleton by calling one of the below methods.
+You can retrieve the deep link data at any time from the Branch singleton by calling one of the below methods.
 
 ### Get current referring params
 
-This returns the latest set of deeplink data from the most recent link that was clicked. If you minimize the app and reopen it, the session will be cleared and so will this data.
+This returns the latest set of deep link data from the most recent link that was clicked. If you minimize the app and reopen it, the session will be cleared and so will this data.
 
 {% if page.ios %}
 {% tabs %}
@@ -723,7 +723,7 @@ var sessionParams = branch.getLatestReferringParams();
 
 ### Get first referring params
 
-This returns the first set of deeplink data that ever referred the user. Once it's been set for a given user, it can never be updated. This is useful for referral programs.
+This returns the first set of deep link data that ever referred the user. Once it's been set for a given user, it can never be updated. This is useful for referral programs.
 
 {% if page.ios %}
 {% tabs %}

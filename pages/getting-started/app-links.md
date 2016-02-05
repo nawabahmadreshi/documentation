@@ -3,7 +3,7 @@ type: recipe
 directory: getting-started
 title: "Android App Links"
 page_title: "Set up Android App Links with Branch"
-description: "Learn how to enable Android App Links on with Branch deeplinks for tracking and deep linking."
+description: "Learn how to enable Android App Links on with Branch deep links for tracking and deep linking."
 keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Android App Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Dashboard, iOS9
 hide_platform_selector: true
 sections:
@@ -13,7 +13,7 @@ sections:
 
 {% if page.overview %}
 
-App Links route directly to your app when opened, bypassing the web browser and URL scheme combination typically used for the redirection process. App Links were introduced with Android M, and enabling them results in a more seamless experience for your users.
+App Links route directly to your app when opened, bypassing the web browser and URI scheme combination typically used for the redirection process. App Links were introduced with Android M, and enabling them results in a more seamless experience for your users.
 
 {% protip title="Looking for iOS support?" %}
 App Links are only available on Android. [Universal Links]({{base.url}}/getting-started/universal-links) are the iOS equivalent.

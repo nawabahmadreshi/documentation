@@ -13,7 +13,7 @@ contents: list
 ---
 
 {% protip title="Link Configuration vs. Link Creation" %}
-This page describes how to use the link data dictionary to define key/value pairs for deeplinking, and the various link analytics and control parameters Branch offers. You can read about how to actually create Branch links on the [Creating Links]({{base.url}}/getting-started/creating-links) page.
+This page describes how to use the link data dictionary to define key/value pairs for deep linking, and the various link analytics and control parameters Branch offers. You can read about how to actually create Branch links on the [Creating Links]({{base.url}}/getting-started/creating-links) page.
 {% endprotip %}
 
 Every Branch link that you create is completely customizable from a functionality perspective. Here are the key variables for customization.
@@ -62,9 +62,9 @@ Currently only supported on iOS, this lets you customize where Branch will redir
 | ---: | --- | ---
 | **$after_click_url** | URL redirect to after the main click redirect has completed | *null*
 
-### Deeplink customization
+### Deep link customization
 
-Use these keys to set the value of the deeplink path that you'd like us to append to your URI when opening your app from this link. For example, you could specify `$deeplink_path : radio/station/456` and we'll open the app with the URI "yourapp://radio/station/456?link_click_id=branch-identifier".
+Use these keys to set the value of the deep link path that you'd like us to append to your URI when opening your app from this link. For example, you could specify `$deeplink_path : radio/station/456` and we'll open the app with the URI "yourapp://radio/station/456?link_click_id=branch-identifier".
 
 | **Key** | **Usage** | **Default**
 | ---: | --- | ---
@@ -89,7 +89,7 @@ Use these keys to set the value of the deeplink path that you'd like us to appen
 
 If you do not specify a primary OG tag when creating a link, Branch will perform a one-time scrape of your **$desktop_url** (if set) and attempt to retrieve it. 
 
-### Most all platforms
+### Open Graph tags
 
 | **Key** | **Usage** | **Scraped?**
 | ---: | --- | ---
