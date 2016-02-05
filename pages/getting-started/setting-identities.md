@@ -17,6 +17,7 @@ platforms:
 - titanium
 sections:
 - guide
+contents: list
 ---
 
 Identifying your users will help you associate all activities and links created to a particular person. This can show you which of your users are the most influential.

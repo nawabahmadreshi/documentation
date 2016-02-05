@@ -9,6 +9,7 @@ hide_platform_selector: true
 hide_section_selector: true
 sections:
 - guide
+contents: list
 ---
 
 There are several mechanisms Branch uses to pass data through to the app and attribute app sessions back to the source. We always use the method with the highest match confidence rate.
