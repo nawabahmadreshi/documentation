@@ -94,6 +94,27 @@ branch.banner({
 
 ----
 
+## Advanced: Prepending Country Codes to Phone Numbers
+
+If your app audience belongs to one country, you can choose a specific country code to prepend to all phone numbers. You simply add the following code snippet to your `HTML` after the `branch.init()` call. Note that this will prepend the country code to whatever number is entered. You might need to do extra validation to ensure that the user didn't add the country code themselves. 
+
+{% highlight javascript %}
+var listener = function(event) { 
+    var banner_iframe = document.getElementById("branch-banner-iframe").contentWindow.document;
+    var submit_btn = banner_iframe.getElementById("branch-sms-send");
+    
+    submit_btn.addEventListener('click', function(e){
+        var phone_number = banner_iframe.getElementById("branch-sms-phone");
+        var country_code = "+2"
+        phone_number.value = country_code + phone_number.value;
+    });
+}
+
+branch.addListener('didShowBanner', listener);
+{% endhighlight %}
+
+----
+
 #### Advanced: Closing the app banner programmatically
 
 The App Banner includes a close button the user can click, but you may want to close the banner with a timeout, or via some other user interaction with your web app. In this case, closing the banner is very simple by calling `Branch.closeBanner()`.
