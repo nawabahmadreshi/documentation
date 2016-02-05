@@ -41,7 +41,7 @@ If you have completed the prerequisites, you're already good to go! Everything n
 
 A lot of what Branch does with App Indexing is behind the scenes and there's no direct feedback, so we want to make it clear how we help. Our goal is simple and twofold:
 
-1. Flag your existing website for App Indexing so you don't have to ([Website-To-App Routing]({{base.url}}/features/website-to-app-routing)) **OR** be the website for your content if you don't have one ([Deepviews]({{base.url}}/features/deepviews)).
+1. Flag your existing website for App Indexing so you don't have to (if you use [Website-To-App Routing]({{base.url}}/features/website-to-app-routing)) **OR** be the website for your content if you don't have one (by using [Deepviews]({{base.url}}/features/deepviews)).
 1. Improve your website's SEO so that your content is ranked higher.
 
 ### Content and metadata
