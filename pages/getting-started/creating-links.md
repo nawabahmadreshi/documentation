@@ -16,6 +16,7 @@ platforms:
 - titanium
 sections:
 - guide
+contents: list
 ---
 
 {% protip title="Link Creation vs. Link Configuration" %}

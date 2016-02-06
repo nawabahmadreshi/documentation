@@ -17,6 +17,7 @@ platforms:
 - titanium
 sections:
 - guide
+contents: list
 ---
 
 {% ingredient quickstart-prerequisite %}{% endingredient %}
