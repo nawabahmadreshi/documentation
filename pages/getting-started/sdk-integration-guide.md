@@ -14,10 +14,13 @@ platforms:
 - titanium
 sections:
 - guide
+- advanced
 ---
 
+{% if page.guide %}
+
 {% prerequisite %}
-Before using the Branch SDK, you must first [sign up for an account](https://dashboard.branch.io) and complete the [routing configuration wizard](https://start.branch.io/).
+Before using the Branch SDK, you must first [sign up for an account](https://dashboard.branch.io) and complete the [onboarding process](https://start.branch.io/).
 {% endprerequisite %}
 
 ## Get the SDK files
@@ -34,26 +37,11 @@ The recommended way to install the SDK is via CocoaPods:
 1. Add `pod "Branch"` to your podfile.
 1. Run `pod install` from the command line.
 
-{% protip title="Install Manually" %}
+{% protip title="If you do not use CocoaPods" %}
 
-If you don't use CocoaPods, you can still install the SDK manually:
+You can [install the SDK manually]({{base.url}}/getting-started/sdk-integration-guide/advanced/ios#install-the-sdk-manually).
 
-1. [Grab the latest SDK version](https://s3-us-west-1.amazonaws.com/branchhost/Branch-iOS-SDK.zip), or [clone our open-source GitHub repo](https://github.com/BranchMetrics/branch-ios-sdk).
-1. Drag the `Branch.framework` file into your Xcode project. Be sure that "Copy items if needed" and "Create groups" are selected.
-1. Import the following frameworks under **Build Phases** for your app target:
-    - `AdSupport.framework`
-    - `CoreTelephony.framework`
-    - `CoreSpotlight.framework`
-    - `MobileCoreServices.framework`
-    - `SafariServices.framework`
 {% endprotip %}
-
-{% caution title="Considerations around using Frameworks" %}
-
-`AdSupport.framework` allows us to use the IDFA to match your visitors across our entire network of apps, increasing matching accuracy. When you submit your app to the App Store, you need to let Apple know that you use the IDFA.
-
-`SafariServices.framework` enables cookie-based matching on iOS 9+, which allows us to [guarantee link matching with 100% accuracy]({{base.url}}/getting-started/matching-accuracy). Please test to make sure the invisible `SFSafariViewController` does not alter your view controller stack. Delete the app and reinstall to trigger the invisible SFSafariViewController to be presented on first launch.
-{% endcaution %}
 
 {% endif %}
 <!--- /iOS -->
@@ -67,7 +55,7 @@ With extensive use, the Android SDK footprint is **187 kb**.
 
 Add `compile 'io.branch.sdk.android:library:1.+'` to the dependencies section of your `build.gradle` file.
 
-{% protip title="Install Manually" %}
+{% protip %}
 
 You can also install the SDK manually by [downloading the latest version](https://s3-us-west-1.amazonaws.com/branchhost/Branch-Android-SDK.zip) or [cloning our open-source GitHub repo](https://github.com/BranchMetrics/branch-android-sdk).
 {% endprotip %}
@@ -84,11 +72,13 @@ The Cordova SDK can be installed with Cordova Plugin or the Plugman tool:
 
 `cordova plugin add https://github.com/BranchMetrics/Cordova-Ionic-PhoneGap-Deferred-Deep-Linking-SDK`
 
-#### Install using NPM
+{% protip title="Install using NPM" %}
 
 To install the SDK via NPM, use the following command:
 
 `npm install branch-cordova-sdk`
+
+{% endprotip %}
 
 {% endif %}
 <!--- /Cordova -->
@@ -106,13 +96,8 @@ The Branch Xamarin SDK is available as a [NuGet package](https://www.nuget.org/p
 
 {% protip title="Install Manually" %}
 
-You can also build and reference the assemblies directly.
+You can also [build and reference the assemblies directly]({{base.url}}/getting-started/sdk-integration-guide/advanced/xamarin#install-the-sdk-manually).
 
-1. [Clone our open-source GitHub repo](https://github.com/BranchMetrics/Xamarin-Deferred-Deep-Linking-SDK).
-1. Add the SDK assemblies to your solution and reference them from your projects:
-   - **Forms:** add the `BranchXamarinSDK` assembly and reference it from your project.
-   - **iOS (including iOS with Forms):** add the `BranchXamarinSDK` *and* `BranchXamarinSDK.iOS` assemblies and reference them from your iOS project.
-   - **Android (including Android with Forms):** add the `BranchXamarinSDK` *and* `BranchXamarinSDK.Droid` assemblies and reference them from your Android project.
 {% endprotip %}
 
 {% endif %}
@@ -135,7 +120,7 @@ You can also build and reference the assemblies directly.
 
 {% image src='/img/pages/getting-started/sdk-integration-guide/unity_branch_key.png' 2-thirds center alt='Unity plugin installation' %}
 
-{% protip title="for iOS projects" %}
+{% protip title="For iOS projects" %}
 
 When building an iOS project:
 
@@ -143,9 +128,7 @@ When building an iOS project:
 1. Objective C exceptions will be enabled automatically.
 1. URI Scheme will be added into .plist automatically.
 
-#### iOS + Unity 4.6
-
-Branch requires ARC, and we don’t intend to add `if` checks throughout the SDK to try to support pre-ARC. However, you can add flags to the project to compile the Branch files with ARC, which should work fine for you. Simply add `-fobjc-arc` to all Branch files.
+Branch requires ARC, and we don’t intend to add `if` checks throughout the SDK to try to support pre-ARC. However, for **Unity 4.6** you can add flags to the project to compile the Branch files with ARC, which should work fine for you. Simply add `-fobjc-arc` to all Branch files.
 {% endprotip %}
 
 {% caution title="For Android projects" %}
@@ -213,7 +196,6 @@ Branch opens your app by using its URI scheme (`yourapp://`), which should be un
 {% image src='/img/pages/getting-started/sdk-integration-guide/urlType.png' 2-thirds center alt='URL Scheme Demo' %}
 
 {% endif %}
-<!---       /iOS-specific Branch Key -->
 
 {% if page.android %}
 ## Configure Manifest
@@ -232,13 +214,9 @@ Branch opens your app by using its URI scheme (`yourapp://`), which should be un
 </application>
 {% endhighlight %}
 
-{% protip title="Use Google Play Install Referrer to improve match accuracy" %}
-Google Play provides an install referrer that can be used to guarantee 100% accuracy of deeplinking through install *when Google Play delivers it in time*. It’s notoriously unreliable and currently unsupported when redirecting from Chrome. However, Branch can use it when available if registered to receive the broadcast.
+## Register for Google Play Install Referrer
 
-{% tabs %}
-{% tab common %}
-
-To do so, add this snippet to your `AndroidManifest.xml`:
+Add this snippet to your `AndroidManifest.xml`:
 
 {% highlight xml %}
 <receiver android:name="io.branch.referral.InstallListener" android:exported="true">
@@ -247,28 +225,9 @@ To do so, add this snippet to your `AndroidManifest.xml`:
 	</intent-filter>
 </receiver>
 {% endhighlight %}
-{% endtab %}
-{% tab uncommon %}
 
-Google only allows one `BroadcastReceiver` class per application. If you already receive the install referrer for other purposes, you will need to create a custom receiver class in your `AndroidManifest.xml`:
-
-{% highlight xml %}
-<receiver android:name="com.myapp.CustomInstallListener" android:exported="true">
-	<intent-filter>
-		<action android:name="com.android.vending.INSTALL_REFERRER" />
-	</intent-filter>
-</receiver>
-{% endhighlight %}
-
-Then create an instance of `io.branch.referral.InstallListener` in `onReceive` and call this:
-
-{% highlight java %}
-InstallListener listener = new InstallListener();
-listener.onReceive(context, intent);
-{% endhighlight %}
-{% endtab %}
-{% endtabs %}
-
+{% protip title="Alternative Configuration" %}
+- [I already use the Install Referrer in my app]({{base.url}}/getting-started/sdk-integration-guide/advanced/android#custom-install-referrer-class)
 {% endprotip %}
 
 ### Register a URI scheme
@@ -298,38 +257,11 @@ Register an `Application` class in your Manifest as follows:
     android:name="io.branch.referral.BranchApp">
 {% endhighlight %}
 
-{% protip title="If you already have a custom Application class" %}
+{% protip title="Alternative Configurations" %}
 
-Simply create a Branch instance in your `Application#onCreate()` method:
+- [I already have a custom Application class]({{base.url}}/getting-started/sdk-integration-guide/advanced/android#using-an-existing-custom-application-class)
+- [I need to support pre-14 Android]({{base.url}}/getting-started/sdk-integration-guide/advanced/android#supporting-pre-14-android)
 
-{% highlight java %}
-public void onCreate() {
-    super.onCreate();
-    Branch.getAutoInstance(this);
-}
-{% endhighlight %}
-
-If you don't know what a custom application class is, no need to worry: you most likely don't have one yet!
-{% endprotip %}
-
-{% protip title="What if I support pre-14 Android?" %}
-Auto session tracking is only available for `minSdkVersion` 14 or above. If you need to support pre-14, you should include Branch SDK methods in both `onStart()` and `onStop()` to avoid strange, difficult-to-diagnose behavior. Branch must know when the app opens or closes to properly handle the deep link parameters retrieval.
-
-Please add this to every Activity for pre-14 support.
-
-{% highlight java %}
-@Override
-protected void onStart() {
-    super.onStart();
-    Branch.getInstance(getApplicationContext()).initSession();
-}
-
-@Override
-protected void onStop() {
-    super.onStop();
-    branch.closeSession();
-}
-{% endhighlight %}
 {% endprotip %}
 
 {% endif %}
@@ -513,7 +445,6 @@ To ensure proper deeplinking from other apps such as Facebook, this Activity mus
 <activity
     android:name="com.yourapp.SplashActivity"
     android:label="@string/app_name"
-    <!-- Make sure the activity is launched as "singleTask" -->
     android:launchMode="singleTask">
 {% endhighlight %}
 {% endcaution %}
@@ -705,20 +636,19 @@ onResume: function() {
 },
 {% endhighlight %}
 
-{% protip title="Watch out for content security policies" %}
+{% caution title="Watch out for content security policies" %}
 If `data` is null and `err` contains a string denoting a request timeout, make sure to whitelist `api.branch.io` and `bnc.lt` in your app's [content security policies](https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy).
-{% endprotip %}
+{% endcaution %}
 
 {% endif %}
 
 {% if page.xamarin %}
 
-The Branch initialization process is different depending on whether you are using Xamarin Forms or not. Please make sure to follow the correct instructions!
+{% protip title="Apps built without Xamarin Forms" %}
+If your app doesn't use Xamarin Forms, please follow [these alternative instructions]({{base.url}}/getting-started/sdk-integration-guide/advanced/xamarin#initialization-for-non-forms-apps).
+{% endprotip %}
 
 ### Generic Xamarin initialization
-
-{% tabs %}
-{% tab forms %}
 
 In your **App.cs** file, modify your `App` class to include the following:
 
@@ -747,20 +677,9 @@ public class App : Application, IBranchSessionInterface
 }
 {% endhighlight %}
 
-{% endtab %}
-{% tab non-forms %}
-
-The generic Xamarin initialization is not required for non-forms apps.
-
-{% endtab %}
-{% endtabs %}
-
 ### Android initialization
 
-Add calls to the `OnCreate` and `OnNewIntent` methods of either your Application class or the first Activity you start. Be sure to replace `key_live_xxxxxxxxxxxxxxx ` with your Branch key from the [Settings](https://dashboard.branch.io/#/settings) page of the Branch dashboard.
-
-{% tabs %}
-{% tab forms %}
+Add calls to the `OnCreate` and `OnNewIntent` methods of either your Application class or the first Activity you start. Be sure to replace `key_live_xxxxxxxxxxxxxxx` with your Branch key from the [Settings](https://dashboard.branch.io/#/settings) page of the Branch dashboard.
 
 {% highlight c# %}
 public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsApplicationActivity
@@ -789,54 +708,9 @@ public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsApplicat
 }
 {% endhighlight %}
 
-{% endtab %}
-{% tab non-forms %}
-
-{% highlight c# %}
-public class MainActivity: Activity, IBranchSessionInterface
-{
-    protected override void OnCreate (Bundle savedInstanceState)
-    {
-        base.OnCreate (savedInstanceState);
-
-        BranchAndroid.Init (this, "key_live_xxxxxxxxxxxxxxx", Intent.Data);
-
-        // Call this method to enable automatic session management and initialize
-        BranchAndroid.getInstance().SetLifeCycleHandlerCallback (this, this);
-    }
-
-    // Ensure we get the updated link identifier when the app is opened from the
-    // background with a new link.
-    protected override void OnNewIntent(Intent intent) {
-        BranchAndroid.getInstance().SetNewUrl(intent.Data);
-    }
-
-    #region IBranchSessionInterface implementation
-
-    public void InitSessionComplete (Dictionary<string, object> data)
-    {
-        // Do something with the referring link data...
-    }
-    
-    public void SessionRequestError (BranchError error)
-    {
-        // Handle the error case here
-    }
-
-    #endregion
-}
-{% endhighlight %}
-
-{% endtab %}
-{% endtabs %}
-
-
 ### iOS initialization
 
-Add these methods to your `AppDelegate.cs` file. Be sure to replace `key_live_xxxxxxxxxxxxxxx ` with your Branch key from the [Settings](https://dashboard.branch.io/#/settings) page of the Branch dashboard.
-
-{% tabs %}
-{% tab forms %}
+Add these methods to your `AppDelegate.cs` file. Be sure to replace `key_live_xxxxxxxxxxxxxxx` with your Branch key from the [Settings](https://dashboard.branch.io/#/settings) page of the Branch dashboard.
 
 {% highlight c# %}
 [Register ("AppDelegate")]
@@ -878,67 +752,6 @@ public class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDe
     }
 }
 {% endhighlight %}
-
-{% endtab %}
-{% tab non-forms %}
-
-{% highlight c# %}
-[Register ("AppDelegate")]
-public class AppDelegate : UIApplicationDelegate, IBranchSessionInterface
-{
-    public override bool FinishedLaunching (UIApplication uiApplication, NSDictionary launchOptions)
-    {
-        NSUrl url = null;
-        if ((launchOptions != null) && launchOptions.ContainsKey(UIApplication.LaunchOptionsUrlKey)) {
-            url = (NSUrl)launchOptions.ValueForKey (UIApplication.LaunchOptionsUrlKey);
-        }
-
-        BranchIOS.Init ("key_live_xxxxxxxxxxxxxxx", url, true);
-
-        Branch branch = Branch.GetInstance ();
-        branch.InitSessionAsync (this);
-
-        // Do your remaining launch stuff here...
-    }
-
-    // Ensure we get the updated link identifier when the app is opened from the
-    // background with a new link.
-    public override bool OpenUrl(UIApplication application,
-        NSUrl url,
-        string sourceApplication,
-        NSObject annotation)
-    {
-        BranchIOS.getInstance ().SetNewUrl (url);
-        return true;
-    }
-
-    // Support Universal Links
-    public override bool ContinueUserActivity (UIApplication application,
-        NSUserActivity userActivity,
-        UIApplicationRestorationHandler completionHandler)
-    {
-        bool handledByBranch = BranchIOS.getInstance ().ContinueUserActivity (userActivity, this);
-        return handledByBranch;
-    }
-    
-    #region IBranchSessionInterface implementation
-
-    public void InitSessionComplete (Dictionary<string, object> data)
-    {
-        // Do something with the referring link data...
-    }
-
-    public void SessionRequestError (BranchError error)
-    {
-        // Handle the error case here
-    }
-
-    #endregion
-}
-{% endhighlight %}
-
-{% endtab %}
-{% endtabs %}
 
 {% endif %}
 
@@ -1005,9 +818,9 @@ private function initSuccessed(bEvt:BranchEvent):void {
 branch.init();
 {% endhighlight %}
 
-{% protip %}
+{% caution %}
 Be sure to have the INIT_SUCCESSED event called, otherwise read the bEvt.informations from the INIT_FAILED event.
-{% endprotip %}
+{% endcaution %}
 {% endif %}
 
 {% if page.titanium %}
@@ -1071,15 +884,10 @@ The only situation in which you do not need to perform these steps is if you ins
 
 By default, Branch collects and uses the [Android ID](http://developer.android.com/reference/android/provider/Settings.Secure.html#ANDROID_ID). No additional steps are required when submitting your app to the Play Store.
 
-{% protip title="Using the Google Advertising ID instead" %}
-If you'd like Branch to collect the [Google Advertising ID](https://support.google.com/googleplay/android-developer/answer/6048248?hl=en) for advertising or tracking purposes, you must add Google Play Services to your app prior to release. After you complete these steps, Branch will handle the rest!
+{% protip title="Alternative Configuration" %}
 
-1. Add `compile 'com.google.android.gms:play-services:7.5.0'` to the dependencies section of your `build.gradle` file.
-1. Add the following line in your ProGuard settings:
+- [I want to use the Google Advertising ID instead]({{base.url}}/getting-started/sdk-integration-guide/advanced/android#use-google-advertising-id)
 
-{% highlight xml %}
--keep class com.google.android.gms.ads.identifier.** { *; }
-{% endhighlight %}
 {% endprotip %}
 
 {% endif %}
@@ -1094,3 +902,224 @@ Here are some recommended next steps:
 - **Enable [iOS Universal Links]({{base.url}}/getting-started/universal-app-links)** — traditional URI scheme links are no longer supported in many situations on iOS 9.2+. To get full functionality from your Branch links on iOS devices, **you should enable Universal Links as soon as possible.**{% endif %}
 - **Learn about [Creating Links]({{base.url}}/getting-started/creating-links)** — let your users share content and invite friends from inside your app.
 - **Set up [Deeplink Routing]({{base.url}}/getting-started/deep-link-routing)** — send incoming visitors directly to specific content in your app based on the Branch link they clicked.
+
+{% elsif page.advanced %}
+
+{% if page.ios %}
+
+## Install the SDK manually
+
+Follow these directions install the Branch SDK framework files without using CocoaPods:
+
+1. [Grab the latest SDK version](https://s3-us-west-1.amazonaws.com/branchhost/Branch-iOS-SDK.zip), or [clone our open-source GitHub repo](https://github.com/BranchMetrics/branch-ios-sdk).
+1. Drag the `Branch.framework` file into your Xcode project. Be sure that "Copy items if needed" and "Create groups" are selected.
+1. Import the following frameworks under **Build Phases** for your app target:
+    - `AdSupport.framework`
+    - `CoreTelephony.framework`
+    - `CoreSpotlight.framework`
+    - `MobileCoreServices.framework`
+    - `SafariServices.framework`
+
+{% caution title="Considerations around using Frameworks" %}
+
+`AdSupport.framework` allows us to use the IDFA to match your visitors across our entire network of apps, increasing matching accuracy. When you submit your app to the App Store, you need to let Apple know that you use the IDFA.
+
+`SafariServices.framework` enables cookie-based matching on iOS 9+, which allows us to [guarantee link matching with 100% accuracy]({{base.url}}/getting-started/matching-accuracy). Please test to make sure the invisible `SFSafariViewController` does not alter your view controller stack. Delete the app and reinstall to trigger the invisible SFSafariViewController to be presented on first launch.
+{% endcaution %}
+
+[Back to the Guide]({{base.url}}/getting-started/sdk-integration-guide/guide/ios#get-the-sdk-files)
+
+{% elsif page.android %}
+
+## Using an existing custom Application class
+
+Simply create a Branch instance in your `Application#onCreate()` method:
+
+{% highlight java %}
+public void onCreate() {
+    super.onCreate();
+    Branch.getAutoInstance(this);
+}
+{% endhighlight %}
+
+[Back to the Guide]({{base.url}}/getting-started/sdk-integration-guide/guide/android#enable-auto-session-management)
+
+## Supporting pre-14 Android
+
+Auto session tracking is only available for `minSdkVersion` 14 or above. If you need to support pre-14, you should include Branch SDK methods in both `onStart()` and `onStop()` to avoid strange, difficult-to-diagnose behavior. Branch must know when the app opens or closes to properly handle the deep link parameters retrieval.
+
+Please add this to every Activity for pre-14 support.
+
+{% highlight java %}
+@Override
+protected void onStart() {
+    super.onStart();
+    Branch.getInstance(getApplicationContext()).initSession();
+}
+
+@Override
+protected void onStop() {
+    super.onStop();
+    branch.closeSession();
+}
+{% endhighlight %}
+
+[Back to the Guide]({{base.url}}/getting-started/sdk-integration-guide/guide/android#enable-auto-session-management)
+
+## Custom Install Referrer class
+
+Google only allows one `BroadcastReceiver` class per application. If you already receive the install referrer for other purposes, you will need to create a custom receiver class in your `AndroidManifest.xml`:
+
+{% highlight xml %}
+<receiver android:name="com.myapp.CustomInstallListener" android:exported="true">
+	<intent-filter>
+		<action android:name="com.android.vending.INSTALL_REFERRER" />
+	</intent-filter>
+</receiver>
+{% endhighlight %}
+
+Then create an instance of `io.branch.referral.InstallListener` in `onReceive` and call this:
+
+{% highlight java %}
+InstallListener listener = new InstallListener();
+listener.onReceive(context, intent);
+{% endhighlight %}
+
+[Back to the Guide]({{base.url}}/getting-started/sdk-integration-guide/guide/android#register-for-google-play-install-referrer)
+
+## Use Google Advertising ID
+
+If you'd like Branch to collect the [Google Advertising ID](https://support.google.com/googleplay/android-developer/answer/6048248?hl=en) for advertising or tracking purposes instead of the Android ID, you must add Google Play Services to your app prior to release. After you complete these steps, Branch will handle the rest!
+
+1. Add `compile 'com.google.android.gms:play-services:7.5.0'` to the dependencies section of your `build.gradle` file.
+1. Add the following line in your ProGuard settings:
+
+{% highlight xml %}
+-keep class com.google.android.gms.ads.identifier.** { *; }
+{% endhighlight %}
+
+[Back to the Guide]({{base.url}}/getting-started/sdk-integration-guide/guide/android#submitting-to-the-play-store)
+
+{% elsif page.xamarin %}
+
+## Install the SDK manually
+
+Follow these directions install the Branch SDK framework files without using the NuGet package:
+
+1. [Clone our open-source GitHub repo](https://github.com/BranchMetrics/Xamarin-Deferred-Deep-Linking-SDK).
+1. Add the SDK assemblies to your solution and reference them from your projects:
+   - **Forms:** add the `BranchXamarinSDK` assembly and reference it from your project.
+   - **iOS (including iOS with Forms):** add the `BranchXamarinSDK` *and* `BranchXamarinSDK.iOS` assemblies and reference them from your iOS project.
+   - **Android (including Android with Forms):** add the `BranchXamarinSDK` *and* `BranchXamarinSDK.Droid` assemblies and reference them from your Android project.
+
+[Back to the Guide]({{base.url}}/getting-started/sdk-integration-guide/guide/xamarin#get-the-sdk-files)
+
+## Initialization for non-Forms apps
+
+### Android initialization
+
+Add calls to the `OnCreate` and `OnNewIntent` methods of either your Application class or the first Activity you start. Be sure to replace `key_live_xxxxxxxxxxxxxxx` with your Branch key from the [Settings](https://dashboard.branch.io/#/settings) page of the Branch dashboard.
+
+{% highlight c# %}
+public class MainActivity: Activity, IBranchSessionInterface
+{
+    protected override void OnCreate (Bundle savedInstanceState)
+    {
+        base.OnCreate (savedInstanceState);
+
+        BranchAndroid.Init (this, "key_live_xxxxxxxxxxxxxxx", Intent.Data);
+
+        // Call this method to enable automatic session management and initialize
+        BranchAndroid.getInstance().SetLifeCycleHandlerCallback (this, this);
+    }
+
+    // Ensure we get the updated link identifier when the app is opened from the
+    // background with a new link.
+    protected override void OnNewIntent(Intent intent) {
+        BranchAndroid.getInstance().SetNewUrl(intent.Data);
+    }
+
+    #region IBranchSessionInterface implementation
+
+    public void InitSessionComplete (Dictionary<string, object> data)
+    {
+        // Do something with the referring link data...
+    }
+    
+    public void SessionRequestError (BranchError error)
+    {
+        // Handle the error case here
+    }
+
+    #endregion
+}
+{% endhighlight %}
+
+### iOS initialization
+
+Add these methods to your `AppDelegate.cs` file. Be sure to replace `key_live_xxxxxxxxxxxxxxx` with your Branch key from the [Settings](https://dashboard.branch.io/#/settings) page of the Branch dashboard.
+
+{% highlight c# %}
+[Register ("AppDelegate")]
+public class AppDelegate : UIApplicationDelegate, IBranchSessionInterface
+{
+    public override bool FinishedLaunching (UIApplication uiApplication, NSDictionary launchOptions)
+    {
+        NSUrl url = null;
+        if ((launchOptions != null) && launchOptions.ContainsKey(UIApplication.LaunchOptionsUrlKey)) {
+            url = (NSUrl)launchOptions.ValueForKey (UIApplication.LaunchOptionsUrlKey);
+        }
+
+        BranchIOS.Init ("key_live_xxxxxxxxxxxxxxx", url, true);
+
+        Branch branch = Branch.GetInstance ();
+        branch.InitSessionAsync (this);
+
+        // Do your remaining launch stuff here...
+    }
+
+    // Ensure we get the updated link identifier when the app is opened from the
+    // background with a new link.
+    public override bool OpenUrl(UIApplication application,
+        NSUrl url,
+        string sourceApplication,
+        NSObject annotation)
+    {
+        BranchIOS.getInstance ().SetNewUrl (url);
+        return true;
+    }
+
+    // Support Universal Links
+    public override bool ContinueUserActivity (UIApplication application,
+        NSUserActivity userActivity,
+        UIApplicationRestorationHandler completionHandler)
+    {
+        bool handledByBranch = BranchIOS.getInstance ().ContinueUserActivity (userActivity, this);
+        return handledByBranch;
+    }
+    
+    #region IBranchSessionInterface implementation
+
+    public void InitSessionComplete (Dictionary<string, object> data)
+    {
+        // Do something with the referring link data...
+    }
+
+    public void SessionRequestError (BranchError error)
+    {
+        // Handle the error case here
+    }
+
+    #endregion
+}
+{% endhighlight %}
+
+[Back to the Guide]({{base.url}}/getting-started/sdk-integration-guide/guide/xamarin#start-a-branch-session)
+
+{% else %}
+
+No advanced information for this platform.
+
+{% endif %}
+
+{% endif %}
