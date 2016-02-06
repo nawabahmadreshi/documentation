@@ -13,7 +13,7 @@ function getStateFromStore() {
 
 var SearchBar = React.createClass({
 	getInitialState: function() {
-		return R.merge({ field: '' }, SearchStore.getState());
+		return R.merge({ field: '', resultsClass: 'search-results', iconClass: 'material-icons', iconContent: 'search' }, SearchStore.getState());
 	},
 	componentDidMount: function() {
 		lunr.Pipeline.registerFunction(customSWF, 'customSWF');
@@ -35,21 +35,31 @@ var SearchBar = React.createClass({
 
 			SearchActions.search(this.state.field, this.state.indexes);
 			if (this.state.field.length == 0) {
-				document.getElementsByClassName('search-icon')[0].innerHTML = '<i class="material-icons">search</i>';
+				this.setState({
+				  iconClass: 'material-icons',
+				  iconContent: 'search',
+				  resultsClass: 'search-results'
+				});
 			}
 			else if (this.state.field.length) {
-				var clearSearch = document.getElementsByClassName('search-icon')[0];
-				clearSearch.innerHTML = '<i class="material-icons icon-close">close</i>';
-				clearSearch.onclick = function() {
-					var contents = document.getElementsByTagName('form')[0].children[0];
-					contents.value = '';
-					document.getElementsByClassName('search-icon')[0].innerHTML = '<i class="material-icons">search</i>';
-				} ;
+				this.setState({
+				  iconClass: 'material-icons icon-close',
+				  iconContent: 'close',
+				  resultsClass: 'search-results results-open'
+				});
 				if (this.timeout) { clearTimeout(this.timeout); }
 				this.timeout = setTimeout(function() {
 					mixpanel.track("Typed in Search Term", { "Search Term": term, "Section": "Search" });
 				}, 500);
 			}
+		});
+	},
+	handleClose: function() {
+		this.setState({
+			field: '',
+		  iconClass: 'material-icons',
+		  iconContent: 'search',
+		  resultsClass: 'search-results'
 		});
 	},
 	handleClick: function() {
@@ -63,7 +73,7 @@ var SearchBar = React.createClass({
 				return (
 					<SearchResult
 						title={result.title}
-						link={'http://dev.branch.io' + result.url}
+						link={'/' + result.url}
 						origin={result.origin}
 						context={result.context}
 						key={result.id}
@@ -73,7 +83,7 @@ var SearchBar = React.createClass({
 		return (
 			<div className="search">
 				<div className="search-icon">
-					<i className="material-icons">search</i>
+					<i className={this.state.iconClass} onClick={this.handleClose}>{this.state.iconContent}</i>
 				</div>
 				<div className="search-bar">
 					<form className="navbar-form">
@@ -88,7 +98,7 @@ var SearchBar = React.createClass({
 							value={this.state.field} />
 					</form>
 				</div>
-				<div className="search-results">
+				<div className={this.state.resultsClass}>
 					{results}
 				</div>
 			</div>

@@ -1,17 +1,3 @@
-.homepage-header {
-	background-color:#313131;
-	padding:30px 0;
-}
-
-.homepage-header__title {
-	color:#ffffff;
-	font-weight:800;
-	font-size:34px;
-	margin-top:0;
-	font-family: "Open Sans", Helvetica, Arial;
-	-webkit-font-smoothing: antialiased;
-}
-
 .homepage-sidebar ul {
 	list-style:none;
 }
@@ -61,7 +47,7 @@
 	.homepage-section__content {
 		color: #444444;
 		font-size:14px;
-		padding:15px 0;
+		line-height: 1.6
 	}
 }
 
@@ -89,4 +75,66 @@
 	font-size: 30px;
 	color: #2AADCC;
 	margin-right: 15px;
+}
+
+
+.homepage.inner__content {
+	padding: 50px 0;
+	margin-left: 0;
+	a {
+		font-weight: normal;
+	}
+	.homepage-header {
+    background-color: #1D2A38;
+    padding:30px;
+  }
+	.inner__searchbar {
+	  position: static;
+	  margin: auto;
+	  width: 100%;
+	  max-width: 500px;
+	  h2 {
+	  	margin-bottom: 0;
+	  }
+	  .search-results {
+	    position: absolute;
+	    width: 100%
+	  }
+	  input {
+	  	font-size: 16px;
+	  	padding: 10px 15px;
+	  }
+	}
+
+  .inner__blurb {
+    font-size: 16px;
+    line-height: 1.6;
+    padding: 15px 30px 15px 30px;
+    font-weight: lighter;
+    text-align: left;
+    color: #ffffff;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+	a.new-button, button.new-button {
+	  background-color: #1cadce;
+	  white-space: nowrap;
+	  font-weight: bold;
+	  font-size: 16px;
+	  display: inline-block;
+	  text-transform: uppercase;
+	  padding: 15px 30px;
+	  border-radius: 2px;
+	  -moz-border-radius: 2px;
+	  -webkit-border-radius: 2px;
+	  color: #ffffff;
+	  transition: background 250ms;
+	  -webkit-transition: background 250ms;
+	  cursor: pointer;
+	  &:hover {
+	    background-color: #38c5e5;
+	    text-decoration: none;
+	    color: #ffffff;
+	  }
+	}
 }

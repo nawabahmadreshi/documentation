@@ -11,7 +11,7 @@ module Jekyll
       if platform != '' and !isDefaultPlatform then
         @dir = File.join(directory, page.name.split(".")[0], section)
         @name = platform + '.md'
-      elsif isDefaultPlatform then
+      elsif isDefaultPlatform and !isDefaultSection then
         @dir = File.join(directory, page.name.split(".")[0])
         @name = section + '.md'
       elsif section != '' and section != 'guide' and !isDefaultSection then
@@ -108,9 +108,10 @@ module Jekyll
             end
           end
           # add a default page as the first value in the array
+          default_platform = if page.data['platforms'] then page.data['platforms'][0] else '' end
           default_section = if page.data['sections'] then page.data['sections'][0] else '' end
 
-          site.pages << PlatformPage.new(site, site.source, page.data['type'], page.data['directory'], page, '', default_section, false, true)
+          site.pages << PlatformPage.new(site, site.source, page.data['type'], page.data['directory'], page, default_platform, default_section, true, true)
 
           if page.data['sections'] then
             # allow platform-specific pages for guide section

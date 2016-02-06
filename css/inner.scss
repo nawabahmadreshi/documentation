@@ -32,12 +32,8 @@
 	}
 }
 
-.inner__sidebar:before {
-	content: "\00a0";
-}
-
 .inner__sidebar__fixed {
-	padding: 0 10px 30px 15px;
+	padding: 30px 10px 30px 15px;
 	//padding-bottom: 359px;
 	/*@media (min-width: 768px) {
 		padding-left: calc((100% - 750px) / 2 - 15px);
