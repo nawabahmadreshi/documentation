@@ -1,7 +1,7 @@
 ---
 type: recipe
 directory: features
-title: Text-Me-The-App page
+title: Text Me The App
 page_title: Text-Me-The-App web pages for iOS or Android Apps
 description: Give your web users the option to text themselves your app with a Text-Me-The-App landing page. Learn how to set up the page and use our code for iOS apps.
 android_description: Give your web users the option to text themselves your app with a Text-Me-The-App landing page. Learn how to set it up and use our code for Android apps.
@@ -21,7 +21,7 @@ When users click your links on desktop, they have the option to text themselves 
 
 _**LEFT:** This default page is provided by Branch. **RIGHT:** This page was created by Drafted and can be viewed [here](http://drft.us/l/5Rfz8GU0yO)._
 
-{% image src="/img/pages/features/text-me-the-app-page/default-and-drafted.png" center alt="Default and custom SMS pages" %}
+{% image src="/img/pages/features/text-me-the-app/default-and-drafted.png" center alt="Default and custom SMS pages" %}
 
 {% protip title="Supports international SMS" %}
 Branch uses Twilio to send SMS messages. Thanks to Twilio, users can text themselves your app around the world!
@@ -34,7 +34,7 @@ Branch uses Twilio to send SMS messages. Thanks to Twilio, users can text themse
 1. Visit the [Link Settings](https://dashboard.branch.io/#/settings/link) page on the Branch dashboard.
 1. In the **Desktop** section select Custom Landing Page, and enter the URL on your site that will include a text-me-the-app option.
 
-{% image src="/img/pages/features/text-me-the-app-page/desktop-routing.png" full center alt="Default and custom SMS pages" %}
+{% image src="/img/pages/features/text-me-the-app/desktop-routing.png" full center alt="Default and custom SMS pages" %}
 
 {% protip title="You may already be done!" %}Branch hosts a basic text-me-the-app page for all of your links by default: just select Branch Hosted SMS Landing Page to use it. These steps are only necessary if you want to use a custom page.{% endprotip %}
 
@@ -89,7 +89,7 @@ Create a new file at the URL above, and paste the following code snippet into it
 
 ## Customizations
 
-That’s all you need to add a custom text-me-the-app page to your website! Go to [Advanced]({{base.url}}/features/text-me-the-app-page/advanced/) to read about more advanced implementations, or take a look at the [Method Reference](https://github.com/BranchMetrics/Smart-App-Banner-Deep-Linking-Web-SDK/blob/master/WEB_GUIDE.md#sendsmsphone-linkdata-options-callback) for all available options.
+That’s all you need to add a custom text-me-the-app page to your website! Go to [Advanced]({{base.url}}/features/text-me-the-app/advanced/) to read about more advanced implementations, or take a look at the [Method Reference](https://github.com/BranchMetrics/Smart-App-Banner-Deep-Linking-Web-SDK/blob/master/WEB_GUIDE.md#sendsmsphone-linkdata-options-callback) for all available options.
 
 {% elsif page.advanced %}
 
@@ -181,7 +181,7 @@ If you want to customize this, Branch offers two options for doing so:
 ### 1. Link-specific messages
 You can define a special SMS message for each individual link. Whether you want to switch the language of a message for a different region or include device specific date, you can specify the message in the *Deep Link Data* section at the bottom of the link editing screen.  
 
-{% image src="/img/pages/features/text-me-the-app-page/deeplink-data.png" center half alt="deep link data attributes" %} 
+{% image src="/img/pages/features/text-me-the-app/deeplink-data.png" center half alt="deep link data attributes" %} 
 
 Use the *key* of {% raw %}**$custom_sms_text**{% endraw %} and then enter your custom message in the value section. (Make sure to include the {% raw %}{{ link }}{% endraw %} tag in your custom message!) 
 
@@ -201,7 +201,7 @@ For ads in Germany:
 ### 2. Custom default for all messages
 You can create your own custom default message that will be sent if the specific link someone clicks doesn't have a customized message itself. To do this, edit the form under the *Text me the app page* tab in the general settings area of the [Branch dashboard](https://dashboard.branch.io/#/settings).
 
-{% image src="/img/pages/features/text-me-the-app-page/default-message.png" center half alt="deep link data attributes" %} 
+{% image src="/img/pages/features/text-me-the-app/default-message.png" center half alt="deep link data attributes" %} 
 
 ## Using liquid tags to access link data
 
@@ -219,7 +219,7 @@ E.g. `Flower : Rose`, `Flower : Tulip`
 He wants to customize his SMS messages based on name of the flower, so he sets his custom link messages as:  
 
 **{% raw %}{{ link.data.flower }}{% endraw %}**s on the mind? Click here to buy some for your home on FlowerPower! **{% raw %}{{ link }}{% endraw %}**
-{% image src="/img/pages/features/text-me-the-app-page/key-value.png" center half alt="Key/Value pairs" %} 
+{% image src="/img/pages/features/text-me-the-app/key-value.png" center half alt="Key/Value pairs" %} 
 {% endexample%}
 
 ### Setting default replacement values for liquid tags

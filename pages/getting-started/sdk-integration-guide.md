@@ -1093,4 +1093,4 @@ Here are some recommended next steps:
 {% if page.android %}{% else %}
 - **Enable [iOS Universal Links]({{base.url}}/getting-started/universal-app-links)** — traditional URI scheme links are no longer supported in many situations on iOS 9.2+. To get full functionality from your Branch links on iOS devices, **you should enable Universal Links as soon as possible.**{% endif %}
 - **Learn about [Creating Links]({{base.url}}/getting-started/creating-links)** — let your users share content and invite friends from inside your app.
-- **Set up [Deeplink Routing]({{base.url}}/getting-started/deeplink-routing)** — send incoming visitors directly to specific content in your app based on the Branch link they clicked.
+- **Set up [Deeplink Routing]({{base.url}}/getting-started/deep-link-routing)** — send incoming visitors directly to specific content in your app based on the Branch link they clicked.

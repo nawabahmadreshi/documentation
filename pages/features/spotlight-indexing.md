@@ -1,7 +1,7 @@
 ---
 type: recipe
 directory: features
-title: "iOS9 Spotlight App Search"
+title: "iOS9 Spotlight Indexing"
 page_title: "Index and track your content in iOS 9 Spotlight"
 description: Learn how to list your content in Apple's new Spotlight search.
 keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, iOS9, iOS 9, Apple Spotlight Search

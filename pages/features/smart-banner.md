@@ -1,7 +1,7 @@
 ---
 type: recipe
 directory: features
-title: App Download Banner
+title: Smart Banner
 page_title: Smart App Download Banner
 ios_description: Insert this short code snippet to add a smart app download banner to both your desktop and mobile web pages and drive iOS app downloads.
 android_description: Insert this short code snippet to add a smart app download banner to both your desktop and mobile web pages and drive Android app downloads.
@@ -19,7 +19,7 @@ sections:
 
 The Branch Smart Banner displays a fully-customizable banner at the top of your website, encouraging your mobile visitors to download the app (or open it, if already installed). Desktop visitors may enter their phone number to send themselves a link via SMS.
 
-{% image src='/img/pages/features/app-download-banner/banner2.png' 2-thirds center alt='Smart Banner examples' %}
+{% image src='/img/pages/features/smart-banner/banner2.png' 2-thirds center alt='Smart Banner examples' %}
 
 The Download/Open button and SMS link both contain all the features of any other Branch link, including deep linking directly to content, passing data across install, measuring clicks, and more.
 
@@ -78,7 +78,7 @@ branch.banner(options, {
 
 ## Customizations
 
-That’s all you need to add the smart banner to your website! Go to [Advanced]({{base.url}}/features/app-download-banner/advanced/) to see some common customizations.
+That’s all you need to add the smart banner to your website! Go to [Advanced]({{base.url}}/features/smart-banner/advanced/) to see some common customizations.
 
 {% elsif page.advanced %}
 
@@ -86,7 +86,7 @@ That’s all you need to add the smart banner to your website! Go to [Advanced](
 
 All properties are optional. You can customize the banner in lots of ways, including changing button text or color and adding ratings and review counts.
 
-{% image src='/img/pages/features/app-download-banner/mobile-banners.png' 2-thirds center alt='App download banner on mobile devices' %}
+{% image src='/img/pages/features/smart-banner/mobile-banners.png' 2-thirds center alt='App download banner on mobile devices' %}
 
 {% highlight javascript %}
 branch.banner(

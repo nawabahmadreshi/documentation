@@ -1,7 +1,7 @@
 ---
 type: recipe
 directory: features
-title: Website-To-App Routing
+title: Website To App Routing
 page_title: Automatically route website users to your app
 description: Add powerful, best in class deep linking to your mobile website.
 keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views
@@ -17,7 +17,7 @@ sections:
 
 If you maintain a mobile website, Branch allows you to deep link mobile visitors directly into your app, or easily and automatically give them the option of downloading it. Here's a diagram that describes how it works:
 
-{% image src='/img/pages/features/deep-link-mobile-site/deepview-websdk-routing.png' center alt='Deepviews web routing' %}
+{% image src='/img/pages/features/website-to-app-routing/deepview-websdk-routing.png' center alt='Deepviews web routing' %}
 
 {% protip title="If you do not have a mobile website..." %}This feature essentially recreates the functionality of [Deepviews]({{base.url}}/features/deepviews) using your own website. If you do not have one, Deepviews are a good alternative!{% endprotip %}
 
@@ -54,7 +54,7 @@ branch.deepview(
 
 ## Add a Call To Action
 
-{% protip title="Use The Branch Banner" %} If you don't want to build a custom call to action, you can use the Branch [App Download Banner]({{base.url}}/features/app-download-banner) to achieve the same results.{% endprotip %}
+{% protip title="Use The Branch Banner" %} If you don't want to build a custom call to action, you can use the Branch [App Download Banner]({{base.url}}/features/smart-banner) to achieve the same results.{% endprotip %}
 
 Trigger the `deepviewCta()` function with a button or hyperlink on your page. On mobile devices without your app installed, this method will open the app store. On non-mobile devices, this method call will redirect to your `$desktop_url` specified in the deepview() call, or fallback to your default web url in [link settings](https://dashboard.branch.io/#/settings/link).
 
@@ -74,7 +74,7 @@ branch.deepviewCta();
 
 With your website linking all set up, you can view conversions on the summary tab of [the Branch dashboard](https://dashboard.branch.io). It will look something like this:
 
-{% image src='/img/pages/features/deep-link-mobile-site/deepview_analytics.png' 2-thirds center alt='Deepviews analytics tab' %}
+{% image src='/img/pages/features/website-to-app-routing/deepview_analytics.png' 2-thirds center alt='Deepviews analytics tab' %}
 
 There are various metrics to understand when deep linking from your mobile website.
 

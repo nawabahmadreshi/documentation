@@ -451,7 +451,7 @@ branch.link({
 });
 {% endhighlight %}
 
-#### Callback Format
+**Callback Format**
 
 {% highlight js %}
 callback(

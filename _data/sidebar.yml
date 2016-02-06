@@ -7,14 +7,14 @@
     - title: Next Steps
       children:
         - creating-links
-        - configuring-links
         - deep-link-routing
         - universal-app-links
     - title: Advanced
       children:
+        - configuring-links
         - integration-testing
         - matching-accuracy
-        - branch-universal-objects
+        - branch-universal-object
         - tracking-events
         - setting-identities
         - webhooks
@@ -32,9 +32,9 @@
     - title: Web to App Conversion
       children:
         - deepviews
-        - deep-link-mobile-site
-        - app-download-banner
-        - text-me-the-app-page
+        - website-to-app-routing
+        - smart-banner
+        - text-me-the-app
     - title: Marketing for Mobile
       children:
         - email_campaigns

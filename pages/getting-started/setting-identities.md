@@ -24,9 +24,9 @@ Identifying your users will help you associate all activities and links created 
 
 {% ingredient quickstart-prerequisite %}{% endingredient %}
 
-## Log in
-
 {% if page.ios %}
+
+## Log in
 
 Add a `setIdentity` call wherever you create or login a user. This should be done after you have successfully initialized a Branch session. Only call `setIdentity` when the user first logs in. We will cache the identity for future sessions.
 
@@ -66,12 +66,17 @@ Branch.getInstance().logout()
 <!--- iOS identify and logout -->
 
 {% if page.android %}
+
+## Log in
+
 Add a `setIdentity` call wherever you create or login a user. This should be done after you have successfully initialized a Branch session. Only call `setIdentity` when the user first logs in. We will cache the identity for future sessions.
 
 {% highlight java %}
 // your app's userId, 127 chars or less
 Branch.getInstance().setIdentity("your user id");
 {% endhighlight %}
+
+## Log out
 
 Add a `logout` call anywhere you allow the user to logout. `Logout` should only be called when the user logs out. Calling it at other times could lead to hard-to-discover errors. Failing to call `logout` can likewise lead to bugs if multiple users log in on the same device.
 
@@ -83,11 +88,15 @@ Branch.getInstance().logout();
 
 {% if page.cordova %}
 
+## Log in
+
 Add a `setIdentity` call wherever you create or login a user. This should be done after you have successfully initialized a Branch session. Only call `setIdentity` when the user first logs in. We will cache the identity for future sessions.
 
 {% highlight js %}
 branch.setIdentity("your user id");
 {% endhighlight %}
+
+## Log out
 
 Add a `logout` call anywhere you allow the user to logout. `Logout` should only be called when the user logs out. Calling it at other times could lead to hard-to-discover errors. Failing to call `logout` can likewise lead to bugs if multiple users log in on the same device.
 
@@ -98,12 +107,16 @@ branch.logout();
 
 {% if page.xamarin %}
 
+## Log in
+
 Add a `SetIdentityAsync` call wherever you create or login a user. This should be done after you have successfully initialized a Branch session. Only call `SetIdentityAsync` when the user first logs in. We will cache the identity for future sessions.
 
 {% highlight c# %}
 Branch branch = Branch.GetInstance ();
 branch.SetIdentityAsync("your user id", this);
 {% endhighlight %}
+
+## Log out
 
 Add a `LogoutAsync` call anywhere you allow the user to logout. `LogoutAsync` should only be called when the user logs out. Calling it at other times could lead to hard-to-discover errors. Failing to call `LogoutAsync` can likewise lead to bugs if multiple users log in on the same device.
 
@@ -114,11 +127,16 @@ Branch.GetInstance(getApplicationContext()).LogoutAsync(this);
 {% endif %}
 
 {% if page.unity %}
+
+## Log in
+
 Add a `setIdentity` call wherever you create or login a user. This should be done after you have successfully initialized a Branch session. Only call `setIdentity` when the user first logs in. We will cache the identity for future sessions.
 
 {% highlight c# %}
 Branch.setIdentity("your user id");
 {% endhighlight %}
+
+## Log out
 
 Add a `logout` call anywhere you allow the user to logout. `Logout` should only be called when the user logs out. Calling it at other times could lead to hard-to-discover errors. Failing to call `logout` can likewise lead to bugs if multiple users log in on the same device.
 
@@ -128,11 +146,16 @@ Branch.logout();
 {% endif %}
 
 {% if page.adobe %}
+
+## Log in
+
 Add a `setIdentity` call wherever you create or login a user. This should be done after you have successfully initialized a Branch session. Only call `setIdentity` when the user first logs in. We will cache the identity for future sessions.
 
 {% highlight java %}
 branch.setIdentity("your user id");
 {% endhighlight %}
+
+## Log out
 
 Add a `logout` call anywhere you allow the user to logout. `Logout` should only be called when the user logs out. Calling it at other times could lead to hard-to-discover errors. Failing to call `logout` can likewise lead to bugs if multiple users log in on the same device.
 
@@ -142,11 +165,16 @@ branch.logout();
 {% endif %}
 
 {% if page.titanium %}
+
+## Log in
+
 Add a `setIdentity` call wherever you create or login a user. This should be done after you have successfully initialized a Branch session. Only call `setIdentity` when the user first logs in. We will cache the identity for future sessions.
 
 {% highlight js %}
 branch.setIdentity("your user id");
 {% endhighlight %}
+
+## Log out
 
 Add a `logout` call anywhere you allow the user to logout. `Logout` should only be called when the user logs out. Calling it at other times could lead to hard-to-discover errors. Failing to call `logout` can likewise lead to bugs if multiple users log in on the same device.
 
@@ -156,5 +184,5 @@ branch.logout();
 {% endif %}
 
 {% protip title="Retroactive event attribution" %}
-The **first** time `setIdentity` is called for each unique user ID, it will retroactively associate any previously recorded events from the current device with that user ID. This only occurs once.
+The **first** time an identity is set for each unique user ID, it will retroactively associate any previously recorded events from the current device with that user ID. This only occurs once.
 {% endprotip %}
