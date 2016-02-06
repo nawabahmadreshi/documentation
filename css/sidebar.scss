@@ -20,6 +20,9 @@
 	display: flex;
 	transition: all 0.2s ease-in;
 }
+.sidebar-wrapper > div:first-child .sidebar-group-title {
+	margin-top: 0;
+}
 
 .sidebar-group-title .fa, .sidebar-group-title .plus-minus {
 	width:12px;

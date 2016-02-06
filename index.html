@@ -6,63 +6,55 @@
 
 	{% webasset navbar branch_base='{{site.branch_base}}' subtitle='docs' sub_href='https://dev.branch.io' hide_options='true' no_fixed='true' width='1200' %}
   <body>
-    <section class="homepage-header">
-	    <div class="container text-center">
-			<h2 class="homepage-header__title">How can we help you today?</h2>
-	        <div>{% searchbar %}</div>
-	    </div>
-	</section>
-	<div class="container main">
-		<div class="row">
-			<div class="col-md-9">
-				<div class="col-sm-4">
-					<a href="#" class="homepage-section">
-						<h3 class="homepage-section__title">Get Started</h3>
-						<p class="homepage-section__content">Learn about deeplinks and how to set up your app</p>
-					</a>
+    <div class="homepage inner__content">
+    	<div class="homepage-header">
+		    <div class="container text-center">
+					<div class="inner__searchbar">
+						<h2>Documentation</h2>
+						{% searchbar %}
+					</div>
+					<div class="inner__blurb">
+							Branch is the most robust <a href="https://branch.io/features">deep linking platform</a> available for mobile apps. We handle every edge case for you — if you need something we don’t support, <a href="mailto:support@branch.io">just let us know</a>.
+					</div>
+		    </div>
+		  </div>
+			<div class="container main">
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="col-sm-4">
+							<a href="/getting-started" class="homepage-section">
+								<h3 class="homepage-section__title">Getting Started</h3>
+								<p class="homepage-section__content">Integrate the SDK into your app and start deep linking.</p>
+							</a>
+						</div>
+						<div class="col-sm-4">
+							<a href="/features" class="homepage-section">
+								<h3 class="homepage-section__title">Features</h3>
+								<p class="homepage-section__content">Implement deep linking features that grow your app.</p>
+							</a>
+						</div>
+						<div class="col-sm-4">
+							<a href="/third-party-integrations" class="homepage-section">
+								<h3 class="homepage-section__title">Third-Party Integrations</h3>
+								<p class="homepage-section__content">Integrate Branch with Apptimize, Appboy, Mixpanel and more.</p>
+							</a>
+						</div>
+						<div class="col-sm-4">
+							<a href="#" class="homepage-section">
+								<h3 class="homepage-section__title">Reference</h3>
+								<p class="homepage-section__content">View references for the App SDKs, Web SDK, and API on Github. <i class="material-icons">launch</i></p>
+							</a>
+						</div>
+						<div class="col-sm-4">
+							<a href="https://support.branch.io/home" class="homepage-section">
+								<h3 class="homepage-section__title">Help & Support</h3>
+								<p class="homepage-section__content">FAQ's, troubleshooting, and help from our dedicated support team.</p>
+							</a>
+						</div>
+					</div>
 				</div>
-				<div class="col-sm-4">
-					<a href="#" class="homepage-section">
-						<h3 class="homepage-section__title">Features</h3>
-						<p class="homepage-section__content">Learn how to enable our features for better experience</p>
-					</a>
-				</div>
-				<div class="col-sm-4">
-					<a href="#" class="homepage-section">
-						<h3 class="homepage-section__title">SDK</h3>
-						<p class="homepage-section__content">How to integrate in our SDK in your app step by step.</p>
-					</a>
-				</div>
-				<div class="col-sm-4">
-					<a href="#" class="homepage-section">
-						<h3 class="homepage-section__title">API</h3>
-						<p class="homepage-section__content">Export API, installation guide, references and changelog.</p>
-					</a>
-				</div>
-				<div class="col-sm-4">
-					<a href="#" class="homepage-section">
-						<h3 class="homepage-section__title">Dashboard</h3>
-						<p class="homepage-section__content">How to use analytics, reports, references and debbug.</p>
-					</a>
-				</div>
-				<div class="col-sm-4">
-					<a href="#" class="homepage-section">
-						<h3 class="homepage-section__title">Integration</h3>
-						<p class="homepage-section__content">How to guides integrations with Adjust, Google Analytics, Mixpanel and others</p>
-					</a>
-				</div>
-			</div>
-			<div class="col-md-3">
-				<nav class="homepage-sidebar">
-					<ul>
-						<li><a href="#" class="homepage-sidebar__link"><i class="fa fa-comments"></i> Forums</a></li>
-						<li><a href="#" class="homepage-sidebar__link"><i class="fa fa-question-circle"></i> FAQ</a></li>
-						<li><a href="#" class="homepage-sidebar__link"><i class="fa fa-life-ring"></i> Support</a></li>
-					</ul>
-				</nav>
 			</div>
 		</div>
-	</div>
 
 	{% include footer.html %}
 
