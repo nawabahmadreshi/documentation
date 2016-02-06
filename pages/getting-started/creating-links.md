@@ -5,7 +5,6 @@ title: Creating Links
 page_title: How to create Branch links
 description: Learn about the multiple ways to create Branch deep links for iOS and Android apps.
 keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Link Properties, Redirect Customization, Mobile SDK, Web SDK, HTTP API
-hide_section_selector: true
 platforms:
 - ios
 - android
@@ -15,25 +14,27 @@ platforms:
 - adobe
 - titanium
 sections:
+- overview
 - guide
-contents: list
+- advanced
 ---
 
-{% protip title="Link Creation vs. Link Configuration" %}
-This page describes the various ways to create links, which are the foundation to everything Branch offers. You can read more about using the link data dictionary to define key/value pairs for deep linking, and the various link analytics and control parameters used throughout this page on the [Link Configuration page]({{base.url}}/getting-started/link-configuration).
-{% endprotip %}
+{% if page.overview %}
 
-## Mobile SDKs
+There are many, many ways to create links with Branch! Links are the foundation to everything Branch offers, and this guide explains how to generate them by using the mobile SDK. See the Advanced page to learn about other opens.
 
-With the Branch mobile SDKs, you can easily allow your app's users to create links for sharing content, inviting friends, etc.
+You can read more about using the link data dictionary to define key/value pairs for deep linking, and the various link analytics and control parameters used throughout this page on the [Link Configuration page]({{base.url}}/getting-started/link-configuration).
 
-{% if page.ios or page.android or page.unity or page.titanium %}
+{% elsif page.guide %}
 
-{% ingredient buo-overview %}{% endingredient %}
-{% endif %}
+{% ingredient quickstart-prerequisite %}{% endingredient %}
+
+The most common way to create links is by using Branch's mobile SDKs. You can easily allow your app's users to create links for sharing content, inviting friends, etc.
 
 <!--- iOS -->
 {% if page.ios %}
+
+## Import framework
 
 Import the Branch framework into the view controller where you will be creating links:
 
@@ -52,6 +53,8 @@ Import the Branch framework into the view controller where you will be creating 
 {% endhighlight %}
 {% endtab %}
 {% endtabs %}
+
+## Create a Branch Universal Object
 
 Create a `BranchUniversalObject` for the piece of content that you'd like to link to, defining any custom key/value pairs as `metadata` parameters:
 
@@ -78,6 +81,10 @@ branchUniversalObject.addMetadataKey("property2", value: "red")
 {% endtab %}
 {% endtabs %}
 
+{% ingredient buo-overview %}{% endingredient %}
+
+## Assemble link parameters
+
 Define the analytics tags and control parameters of the link itself:
 
 {% tabs %}
@@ -100,6 +107,8 @@ linkProperties.addControlParam("$ios_url", withValue: "http://example.com/ios")
 {% endhighlight %}
 {% endtab %}
 {% endtabs %}
+
+## Generate the link
 
 Finally, generate the link by referencing the `BranchUniversalObject` you created:
 
@@ -124,46 +133,14 @@ branchUniversalObject.getShortUrlWithLinkProperties(linkProperties,  andCallback
 {% endtab %}
 {% endtabs %}
 
-{% example title="Using the preconfigured share sheet" %}
-
-Creating links is great, but creating a ton of different links up front for all the channels in `UIActivityViewController` is a pain. You can use our preconfigured `UIActivityItemProvider` to make life easier. Calling this method will automatically generate a Branch link with the appropriate analytics channel when the user presses a button to share.
-
-{% image src='/img/pages/getting-started/creating-links/ios_share_sheet.png' actual center alt='ios share sheet' %}
-
-To implement it, use the following `showShareSheetWithLinkProperties` method instead of `getShortUrlWithLinkProperties` in the last step above:
-
-{% tabs %}
-{% tab objective-c %}
-{% highlight objc %}
-[branchUniversalObject showShareSheetWithLinkProperties:linkProperties
-                                           andShareText:@"Super amazing thing I want to share!"
-                                     fromViewController:self 
-                                            andCallback:^{
-    NSLog(@"finished presenting");
-}];
-{% endhighlight %}
-{% endtab %}
-
-{% tab swift %}
-{% highlight swift %}
-branchUniversalObject.showShareSheetWithLinkProperties(linkProperties, 
-                                        andShareText: "Super amazing thing I want to share!",
-                                        fromViewController: self,
-                                        andCallback: { () -> Void in
-    NSLog("done showing share sheet!")
-})
-{% endhighlight %}
-{% endtab %}
-{% endtabs %}
-
-{% endexample %}
-
 {% endif %}
 <!--- /iOS -->
 
 
 <!--- Android -->
 {% if page.android %}
+
+## Create a Branch Universal Object
 
 Create a `BranchUniversalObject` for the piece of content that you'd like to link to, defining any custom key/value pairs as `metadata` parameters:
 
@@ -178,6 +155,10 @@ Create a `BranchUniversalObject` for the piece of content that you'd like to lin
                 .addContentMetadata("property2", "red");
 {% endhighlight %}
 
+{% ingredient buo-overview %}{% endingredient %}
+
+## Assemble link parameters
+
 Define the analytics tags and control parameters of the link itself:
 
 {% highlight java %}
@@ -187,6 +168,8 @@ LinkProperties linkProperties = new LinkProperties()
                .addControlParameter("$desktop_url", "http://example.com/home")
                .addControlParameter("$ios_url", "http://example.com/ios");
 {% endhighlight %}
+
+## Generate the link
 
 Finally, generate the link by referencing the `BranchUniversalObject` you created:
 
@@ -200,46 +183,6 @@ branchUniversalObject.generateShortUrl(this, linkProperties, new BranchLinkCreat
     }
 });
 {% endhighlight %}
-
-{% example title="Using the bundled share sheet" %}
-
-Android has very poor offerings for native share sheet functionality, so we built our own and bundled it into the core SDK. This share sheet is customizable and will automatically generate a link when the user selects a channel to share to.
-
-{% image src='/img/pages/getting-started/creating-links/android_share_sheet.png' third center alt='Android share sheet' %}
-
-To implement it, use the following `showShareSheet` method instead of `generateShortUrl` in the last step above:
-
-{% highlight java %}
-branchUniversalObject.showShareSheet(this, 
-                                      linkProperties,
-                                      shareSheetStyle,
-                                       new Branch.BranchLinkShareListener() {
-    @Override
-    public void onShareLinkDialogLaunched() {
-    }
-    @Override
-    public void onShareLinkDialogDismissed() {
-    }
-    @Override
-    public void onLinkShareResponse(String sharedLink, String sharedChannel, BranchError error) {
-    }
-    @Override
-    public void onChannelSelected(String channelName) {
-    }
-});
-{% endhighlight %}
-
-You can customize the styling with the ShareSheetStyle class:
-
-{% highlight java %}
-ShareSheetStyle shareSheetStyle = new ShareSheetStyle(MainActivity.this, "Check this out!", "This stuff is awesome: ")
-                        .setCopyUrlStyle(getResources().getDrawable(android.R.drawable.ic_menu_send), "Copy", "Added to clipboard")
-                        .setMoreOptionStyle(getResources().getDrawable(android.R.drawable.ic_menu_search), "Show more")
-                        .addPreferredSharingOption(SharingHelper.SHARE_WITH.FACEBOOK)
-                        .addPreferredSharingOption(SharingHelper.SHARE_WITH.EMAIL);
-{% endhighlight %}
-
-{% endexample %}
 
 {% endif %}
 <!--- /Android -->
@@ -268,6 +211,8 @@ branch.link({
 
 {% if page.xamarin %}
 
+## Assemble link parameters
+
 Build your key/value pairs and add any additional analytics and control parameters:
 
 {% highlight c# %}
@@ -287,7 +232,9 @@ tags.Add("version1");
 tags.Add("trial6");
 {% endhighlight %}
 
-Then generate the link:
+## Generate the link
+
+Use this method to create a link based on the data you assembled:
 
 {% highlight c# %}
 Branch branch = Branch.GetInstance ();
@@ -300,6 +247,8 @@ await branch.GetShortUrlAsync(this, data, "alias","channel","stage", tags, "feat
 
 {% if page.unity %}
 
+## Create a Branch Universal Object
+
 Create a `BranchUniversalObject` for the piece of content that you'd like to link to, defining any custom key/value pairs as `metadata` parameters:
 
 {% highlight c# %}
@@ -310,6 +259,10 @@ universalObject.contentDescription = "My awesome piece of content!";
 universalObject.imageUrl = "https://s3-us-west-1.amazonaws.com/branchhost/mosaic_og.png";
 universalObject.metadata.Add("foo", "bar");
 {% endhighlight %}
+
+{% ingredient buo-overview %}{% endingredient %}
+
+## Assemble link parameters
 
 Define the analytics tags and control parameters of the link itself:
 
@@ -323,6 +276,8 @@ linkProperties.stage = "2";
 linkProperties.controlParams.Add("$desktop_url", "http://example.com");
 {% endhighlight %}
 
+## Generate the link
+
 Finally, generate the link by referencing the `BranchUniversalObject` you created:
 
 {% highlight c# %}
@@ -335,33 +290,15 @@ Branch.getShortURL(universalObject, linkProperties, (url, error) => {
 });
 {% endhighlight %}
 
-{% example title="Let Branch handle the details" %}
-
-You can use our preconfigured share sheets to make life easier. Calling this method will automatically generate a Branch link with the appropriate analytics channel when the user presses a button to share.
-
-{% image src='/img/pages/getting-started/creating-links/combined_share_sheet.png' actual center alt='ios share sheet' %}
-
-To implement it, use the following `shareLink` method instead of `getShortURL ` in the last step above:
-
-{% highlight c# %}
-Branch.shareLink(universalObject, linkProperties, "hello there with short url", (url, error) => {
-    if (error != null) {
-        Debug.LogError("Branch.shareLink failed: " + error);
-    } else {
-        Debug.Log("Branch.shareLink shared params: " + url);
-    }
-});
-{% endhighlight %}
-
-{% endexample %}
-
 {% endif %}
 
 <!--- Adobe -->
 
 {% if page.adobe %}
 
-Add the event listeners and functions:
+## Add the event listeners and functions
+
+Use this snippet to register the methods that respond when link creation succeeds or fails:
 
 {% highlight java %}
 branch.addEventListener(BranchEvent.GET_SHORT_URL_FAILED, getShortUrlFailed);
@@ -376,6 +313,8 @@ private function getShortUrlFailed(bEvt:BranchEvent):void {
 }
 {% endhighlight %}
 
+## Assemble link information
+
 Build your key/value pairs and add any additional analytics and control parameters:
 
 {% highlight java %}
@@ -387,6 +326,8 @@ var dataToInclude:Object = {
 };
 {% endhighlight %}
 
+## Generate the links
+
 Then generate the link:
 
 {% highlight java %}
@@ -397,6 +338,8 @@ branch.getShortUrl(tags, "sms", BranchConst.FEATURE_TAG_SHARE, JSON.stringify(da
 <!--- Titanium -->
 
 {% if page.titanium %}
+
+## Create a Branch Universal Object
 
 Create a `BranchUniversalObject` for the piece of content that you'd like to link to, defining any custom key/value pairs as `metadata` parameters:
 
@@ -413,6 +356,10 @@ var branchUniversalObject = branch.createBranchUniversalObject({
   },
 });
 {% endhighlight %}
+
+{% ingredient buo-overview %}{% endingredient %}
+
+## Assemble link parameters
 
 Define the analytics tags and control parameters, and generate the link by referencing the `BranchUniversalObject` you created:
 
@@ -433,50 +380,9 @@ The event listener `bio:generateShortUrl` returns a `string` object containing t
 branchUniversalObject.addEventListener("bio:generateShortUrl", $.onGenerateUrlFinished);
 {% endhighlight %}
 
-{% example title="Let Branch handle the details" %}
-
-You can use our preconfigured share sheets to make life easier. Calling this method will automatically generate a Branch link with the appropriate analytics channel when the user presses a button to share.
-
-{% image src='/img/pages/getting-started/creating-links/combined_share_sheet.png' actual center alt='ios share sheet' %}
-
-To implement it, use the following `showShareSheet` method instead of `generateShortUrl` in the last step above:
-
-{% highlight js %}
-branchUniversalObject.showShareSheet({
-  "feature" : "sample-feature",
-  "channel" : "sample-channel",
-  "stage" : "sample-stage",
-  "duration" : 1,
-}, {
-  "$desktop_url" : "http://desktop-url.com",
-});
-{% endhighlight %}
-
-To implement the callback on Android, you must add listeners to the following events:
-
-| Event | Description
-| --- | ---
-| `bio:shareLinkDialogLaunched` | Fires when the share sheet is presented
-| `bio:shareLinkDialogDismissed` | Fires when the share sheet is dismissed
-| `bio:shareLinkResponse` | Returns a dictionary of the response data
-| `bio:shareChannelSelected` | Fires when a channel is selected
-
-**Note:** Callbacks in iOS are ignored. There is no need to implement them as the events are handled by `UIActivityViewController`.
-
-{% endexample %}
-
 {% endif %}
 
-#### Read More
-
-- [iOS documentation](https://github.com/BranchMetrics/iOS-Deferred-Deep-Linking-SDK#branch-universal-object-for-deep-links-content-analytics-and-indexing)
-- [Android documentation](https://github.com/BranchMetrics/Android-Deferred-Deep-Linking-SDK#branch-universal-object-for-deep-links-content-analytics-and-indexing)
-- [Cordova/Ionic documentation](https://github.com/BranchMetrics/Cordova-Ionic-PhoneGap-Deferred-Deep-Linking-SDK#linkdata-callback)
-- [Xamarin documentation](https://github.com/BranchMetrics/Xamarin-Deferred-Deep-Linking-SDK#shortened-links)
-- [Unity documentation](https://github.com/BranchMetrics/Unity-Deferred-Deep-Linking-SDK#shortened-links)
-- [Air ANE documentation](https://github.com/BranchMetrics/AIR-ANE-Deferred-Deep-Linking-SDK#shortened-links)
-- [Titanium documentation](https://github.com/BranchMetrics/Titanium-Deferred-Deep-Linking-SDK#linkdata-callback)
-
+{% elsif page.advanced %}
 
 ## Appending query parameters
 
@@ -556,12 +462,6 @@ callback(
 
 {% endexample %}
 
-#### Read More
-
-- [Web link documentation](https://github.com/BranchMetrics/Smart-App-Banner-Deep-Linking-Web-SDK/blob/master/WEB_GUIDE.md#linkdata-callback)
-- [Smart banner documentation](https://github.com/BranchMetrics/Smart-App-Banner-Deep-Linking-Web-SDK/blob/master/WEB_GUIDE.md#banneroptions-data)
-- [SMS link documentation](https://github.com/BranchMetrics/Smart-App-Banner-Deep-Linking-Web-SDK/blob/master/WEB_GUIDE.md#sendsmsphone-linkdata-options-callback)
-
 ## HTTP API
 
 If you want to build something custom, you can generate links by querying the Branch API directly. Here is an example CURL call:
@@ -586,13 +486,10 @@ This will return Branch shortlink:
 {"url":"https://bnc.lt/m/BqmToC9Ion"}
 {% endhighlight %}
 
-#### Read More
-
-- [URL endpoint documentation](https://github.com/BranchMetrics/Branch-Public-API#creating-a-deep-linking-url)
-- [Bulk link endpoint documentation](https://github.com/BranchMetrics/Branch-Public-API#bulk-creating-deep-linking-urls)
-
 ## Dashboard
 
 You can create links on the [Marketing page](https://dashboard.branch.io/#/marketing) of the Branch dashboard. Many link parameters can be configured using this UI, and most others can be manually specified under the _Deep Link Data (Advanced)_ section.
 
 {% image src="/img/pages/getting-started/creating-links/add_full.png" half center alt="Link Tags" %}
+
+{% endif %}

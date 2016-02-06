@@ -6,12 +6,10 @@
     - sdk-integration-guide
     - title: Next Steps
       children:
-        - universal-links
         - creating-links
         - configuring-links
         - deep-link-routing
-        - app-links
-        - dynamic-link-builder
+        - universal-app-links
     - title: Advanced
       children:
         - integration-testing
@@ -20,6 +18,7 @@
         - tracking-events
         - setting-identities
         - webhooks
+        - dynamic-link-builder
 - title: Features
   directory: features
   children:

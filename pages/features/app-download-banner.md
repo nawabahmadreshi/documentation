@@ -42,6 +42,40 @@ branch.banner({
 
 {% ingredient replace-branch-key %}{% endingredient %}
 
+## Deep linking from the banner
+
+{% prerequisite %}
+
+- For this to function as expected, you should [integrated the Branch SDK]({{base.url}}/getting-started/sdk-integration-guide) into your app and [configure deep link routing]({{base.url}}/getting-started/deep-link-routing).
+
+{% endprerequisite %}
+
+Like all Branch deep links, you can pass custom parameters by specifying keys in the link's [data dictionary]({{base.url}}/getting-started/configuring-links). This is useful if you are showing the Smart Banner on a website page with equivalent in-app content, because you can route directly to that content in your app.
+
+{% example %}This example will take the visitor straight to a picture with id “12345” after installing and opening the app.
+
+{% highlight javascript %}
+branch.banner(options, {
+    data: {
+        '$deeplink_path': 'picture/12345',
+        'picture_id': '12345',
+        'user_id': '45123'
+    }
+});
+{% endhighlight %}
+{% endexample %}
+
+{% protip %}You can dynamically specify the deep link path depending on which website page is loaded.
+
+{% highlight javascript %}
+branch.banner(options, {
+    data: {
+      '$deeplink_path': window.location.split('com/')[1],
+    }
+});
+{% endhighlight %}
+{% endprotip %}
+
 ## Customizations
 
 That’s all you need to add the smart banner to your website! Go to [Advanced]({{base.url}}/features/app-download-banner/advanced/) to see some common customizations.
@@ -98,40 +132,6 @@ branch.banner(
     }
 });
 {% endhighlight %}
-
-## Deep linking from the banner
-
-{% prerequisite %}
-
-- For this to function as expected, you should [integrated the Branch SDK]({{base.url}}/getting-started/sdk-integration-guide) into your app and [configure deep link routing]({{base.url}}/getting-started/deep-link-routing).
-
-{% endprerequisite %}
-
-Like all Branch deep links, you can pass custom parameters by specifying keys in the link's [data dictionary]({{base.url}}/getting-started/configuring-links). This is useful if you are showing the Smart Banner on a website page with equivalent in-app content, because you can route directly to that content in your app.
-
-{% example %}This example will take the visitor straight to a picture with id “12345” after installing and opening the app.
-
-{% highlight javascript %}
-branch.banner(options, {
-    data: {
-        '$deeplink_path': 'picture/12345',
-        'picture_id': '12345',
-        'user_id': '45123'
-    }
-});
-{% endhighlight %}
-{% endexample%}
-
-{% example %}You can dynamically specify the deep link path depending on which website page is loaded.
-
-{% highlight javascript %}
-branch.banner(options, {
-    data: {
-      '$deeplink_path': window.location.split('com/')[1],
-    }
-});
-{% endhighlight %}
-{% endexample%}
 
 ## Styling the banner using custom CSS
 

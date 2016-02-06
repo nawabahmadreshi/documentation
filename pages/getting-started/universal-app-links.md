@@ -1,12 +1,13 @@
 ---
 type: recipe
 directory: getting-started
-title: "iOS Universal Links"
-page_title: "Set up iOS 9 Universal Links with Branch"
-description: "Learn how to enable iOS 9 Universal Links on with Branch deeplinks for tracking and deep linking."
+title: "Universal & App Links"
+page_title: "Set up Universal & App Links with Branch"
+description: "Learn how to enable iOS 9 Universal Links and Android App Links with Branch deep links for tracking and deep linking."
 keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Android App Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Dashboard, iOS9
 platforms:
 - ios
+- android
 - cordova
 - xamarin
 - unity
@@ -21,17 +22,64 @@ sections:
 
 {% if page.overview %}
 
-Universal Links route directly to your app when opened, instead of using Safari and a URI scheme for the redirection process. They were introduced with iOS 9, and became the only fully-functional deeplinking option on iOS after [Apple stopped supporting URI schemes for deeplinking in iOS 9.2](https://blog.branch.io/ios-9.2-redirection-update-uri-scheme-and-universal-links). **You must enable Universal Links before Branch can function correctly on iOS 9.2+!**
+iOS Universal Links and Android App Links both route directly to your app when opened, bypassing the web browser and URI scheme combination typically used for the redirection process. App Links were introduced with Android M, and enabling them results in a more seamless experience for your users. Universal Links were introduced with iOS 9, and became the only fully-functional deep linking option on iOS after [Apple stopped supporting URI schemes for deep linking in iOS 9.2](https://blog.branch.io/ios-9.2-redirection-update-uri-scheme-and-universal-links). **You must enable Universal Links before Branch can function correctly on iOS 9.2+!**
 
-{% protip title="Looking for Android support?" %}
-Universal Links are only available on iOS. [App Links]({{base.url}}/getting-started/app-links) are the Android equivalent.
-{% endprotip %}
+Branch makes it simple to enable Universal Links and App Links, and even improves on them since you also get all the other benefits of Branch links when the visitor does not yet have your app installed:
 
-Branch makes it simple to enable Universal Links, and even improves on them since you also get all the other benefits of Branch links when the visitor does not yet have your app installed:
-
-{% image src='/img/pages/getting-started/universal-links/how_branch_improves.png' 2-thirds center alt='branch improves universal links' %}
+{% image src='/img/pages/getting-started/universal-app-links/how_branch_improves.png' 2-thirds center alt='branch improves universal links' %}
 
 {% elsif page.guide %}
+
+{% if page.android %}
+
+{% ingredient quickstart-prerequisite %}{% endingredient %}
+
+## Generate signing certificate fingerprint
+
+Start by generating a SHA256 fingerprint of your app's signing certificate. This is the file that you use to build the debug and production version of your APK file before deploying it.
+
+1. Navigate to your keystore file.
+1. Run this command on it to generate the fingerprint: `keytool -list -v -keystore my-release-key.keystore`
+1. You'll see a value like `14:6D:E9:83:C5:73:06:50:D8:EE:B9:95:2F:34:FC:64:16:A0:83:42:E6:1D:BE:A8:8A:04:96:B2:3F:CF:44:E5` come out the other end. Copy this.
+
+## Enable App Links on the Branch dashboard
+
+1. Head to the [Link Settings page](https://dashboard.branch.io/#/settings/link) on the Branch dashboard.
+1. Toggle the **Enable App Links** checkbox in the Android section.
+1. Paste the copied fingerprint value into the **SHA256 Cert Fingerprints** field that appears. {% image src='/img/pages/getting-started/app-links/enable_app_links.png' 3-quarters center alt='enable app links' %}
+1. Scroll down and click `Save`.
+ 
+{% protip title="Using multiple fingerprints" %}
+You can insert both your debug and production fingerprints for testing. Simply separate them with a comma.
+{% endprotip %}
+
+## Add Intent Filter to Manifest
+
+1. Choose the `Activity` you want to open up when a link is clicked. This is typically your `SplashActivity` or a `BaseActivity` that all other activities inherit from (and likely the same one you selected in the [SDK Integration Guide]({{base.url}}/getting-started/sdk-integration-guide)).
+1. Inside your `AndroidManifest.xml`, locate where the selected `Activity` is defined.
+1. Within the `Activity` definition, insert the intent filter provided below.
+   - Replace `READ_FROM_DASHBOARD` with the value provided underneath the **SHA256 Cert Fingerprints** field on the Branch dashboard. It will look something like this: `android:pathPrefix="/WSuf`
+
+{% highlight xml %}
+<!-- AppLink example -->
+<intent-filter android:autoVerify="true">
+    <action android:name="android.intent.action.VIEW" />
+    <category android:name="android.intent.category.DEFAULT" />
+    <category android:name="android.intent.category.BROWSABLE" />
+    <!-- <data android:scheme="https" android:host="bnc.lt" android:pathPrefix="/your_app_id_obtained form Branch dash board " /> -->
+    <data android:scheme="https" android:host="bnc.lt" android:pathPrefix="READ_FROM_DASHBOARD" /> <!-- Live App link-->
+</intent-filter>
+{% endhighlight %}
+
+## Test your App Links implementation
+
+After completing this guide and installing a new build of your app on your testing device, you can verify App Links are working correctly by following these steps:
+
+1. [Create a new Marketing Link](https://dashboard.branch.io/#/marketing/new) on the Branch dashboard. Leave all configuration items at their default options.
+1. Open this link on your testing device.
+1. If successful, your app should launch immediately without routing through the web browser or showing an **Open With...** dialog.
+
+{% else %}
 
 {% ingredient quickstart-prerequisite %}{% endingredient %}
 
@@ -45,21 +93,21 @@ Branch makes it simple to enable Universal Links, and even improves on them sinc
 
 #### If your app already has an App Identifier
 1. Select your app and press the `Edit` button.
-1. Check the box to enable `Associated Domains`. {% image src='/img/pages/getting-started/universal-links/background_ass_domains_existing.png' half center alt='enable associated domains' %}
+1. Check the box to enable `Associated Domains`. {% image src='/img/pages/getting-started/universal-app-links/background_ass_domains_existing.png' half center alt='enable associated domains' %}
 1. Scroll down and click `Save`.
 
 #### If your app does not yet have an App Identifier
 
 1. Click the `+` button to begin the Register an App ID process.
 1. Enter whatever you wish in the `Name` field.
-1. Enter your app's Bundle Identifier in the `Bundle ID` field. {% image src='/img/pages/getting-started/universal-links/background_bundle.png' half center alt='bundle identifier' %}
+1. Enter your app's Bundle Identifier in the `Bundle ID` field. {% image src='/img/pages/getting-started/universal-app-links/background_bundle.png' half center alt='bundle identifier' %}
 1. In the App Services section, check the box to enable `Associated Domains`. {% image src='/img/pages/getting-started/universal-links/background_ass_domains_new.png' half center alt='enable associated domains' %}
 1. Scroll down and click `Save`.
 
 {% protip title="Finding your Bundle Identifier" %}
 You can retrieve your app's Bundle Identifier under the `General` tab of your Xcode project.
 
-{% image src='/img/pages/getting-started/universal-links/background_bundle_xcode.png' 3-quarters center alt='bundle identifier xcode' %}
+{% image src='/img/pages/getting-started/universal-app-links/background_bundle_xcode.png' 3-quarters center alt='bundle identifier xcode' %}
 {% endprotip %}
 
 ## Add the entitlement to your project
@@ -68,11 +116,11 @@ You can retrieve your app's Bundle Identifier under the `General` tab of your Xc
 ### Enable Associated Domains in Xcode
 
 1. Go to the `Capabilities` tab of your project file.
-1. Scroll down and enable `Associated Domains`. {% image src='/img/pages/getting-started/universal-links/enable_ass_domains.png' half center alt='enable xcode associated domains' %}
+1. Scroll down and enable `Associated Domains`. {% image src='/img/pages/getting-started/universal-app-links/enable_ass_domains.png' half center alt='enable xcode associated domains' %}
 
 {% protip title="If you see an error after this step" %}
 
-{% image src='/img/pages/getting-started/universal-links/enable_ass_domains_error.png' half center alt='xcode associated domains errors' %}
+{% image src='/img/pages/getting-started/universal-app-links/enable_ass_domains_error.png' half center alt='xcode associated domains errors' %}
 
 Please ensure...
 
@@ -82,7 +130,7 @@ Please ensure...
 
 ### Add your Branch link domains
 
-1. In the `Domains` section, click the `+` icon and add the following entry: `applinks:bnc.lt` {% image src='/img/pages/getting-started/universal-links/add_domain.png' half center alt='xcode add domain' %}
+1. In the `Domains` section, click the `+` icon and add the following entry: `applinks:bnc.lt` {% image src='/img/pages/getting-started/universal-app-links/add_domain.png' half center alt='xcode add domain' %}
 
 {% protip title="Using a custom domain or subdomain?" %}
 If you use a custom domain or subdomain for your Branch links, you should also add an entry for `applinks:[mycustomdomainorsubdomain]` and then [see this section](../advanced/#using-a-custom-domain-or-subdomain) on the Advanced page.
@@ -91,7 +139,7 @@ If you use a custom domain or subdomain for your Branch links, you should also a
 ### Add entitlements file to the build target
 
 1. Select your `[projectname].entitlements` file in the Xcode navigator (left sidebar).
-1. Ensure that the correct build target is checked in the right sidebar. {% image src='/img/pages/getting-started/universal-links/entitlements-build-target.png' quarter center alt='add entitlements to build target' %}
+1. Ensure that the correct build target is checked in the right sidebar. {% image src='/img/pages/getting-started/universal-app-links/entitlements-build-target.png' quarter center alt='add entitlements to build target' %}
 
 {% endif %}
 {% if page.titanium %}
@@ -213,15 +261,17 @@ Does this step occur on Titanium?
 1. Type in your Apple App Prefix (found by clicking your app on [this page](https://developer.apple.com/account/ios/identifiers/bundle/bundleList.action) in Apple's Developer Portal).
 1. Scroll down and click on the `Save` button.
 
-{% image src='/img/pages/getting-started/universal-links/dashboard_enable_universal_links.png' 3-quarters center alt='enable Universal Links on Branch dashboard' %}
+{% image src='/img/pages/getting-started/universal-app-links/dashboard_enable_universal_links.png' 3-quarters center alt='enable Universal Links on Branch dashboard' %}
 
 ## Test your Universal Links implementation
 
 After completing this guide and installing a new build of your app on your testing device, you can verify Universal Links are working correctly by following these steps:
 
 1. [Create a new Marketing Link](https://dashboard.branch.io/#/marketing/new) on the Branch dashboard. Leave all configuration items at their default options.
-1. Open this link on your testing device via Messages, Mail, Notes, or one of the other apps listed as **works** on [this page]({{base.url}}/getting-started/universal-links/support/#appsbrowsers-that-support-universal-links).
-1. If successful, your app should launch immediately without routing through Safari. If not, please check the [Troubleshooting section]({{base.url}}/getting-started/universal-links/support/#troubleshooting-universal-links).
+1. Open this link on your testing device via Messages, Mail, Notes, or one of the other apps listed as **works** on [this page]({{base.url}}/getting-started/universal-app-links/support/#appsbrowsers-that-support-universal-links).
+1. If successful, your app should launch immediately without routing through Safari. If not, please check the [Troubleshooting section]({{base.url}}/getting-started/universal-app-links/support/#troubleshooting-universal-links).
+
+{% endif %}
 
 {% elsif page.advanced %}
 
@@ -233,13 +283,13 @@ After completing this guide and installing a new build of your app on your testi
 1. You should see a message telling you the status of your domain under the `Domain name` field. If you don't, please type your domain in again.
 1. Click the `Save` button.
 
-{% image src='/img/pages/getting-started/universal-links/custom-domain-success.png' 3-quarters center alt='successful custom subdomain configuration' %}
+{% image src='/img/pages/getting-started/universal-app-links/custom-domain-success.png' 3-quarters center alt='successful custom subdomain configuration' %}
 
 ### Custom ROOT domain (branch.com)
 
 1. Follow [CloudFlare's instructions](https://support.cloudflare.com/hc/en-us/articles/200169046-How-do-I-add-a-CNAME-record-) to set up your root domain with a CNAME to `custom.bnc.lt`
-1. Using the CloudFlare control panel, proxy your traffic to the domain `custom.bnc.lt` by clicking the cloud with the arrow to make it _orange_. {% image src='/img/pages/getting-started/universal-links/orange_cloud.png' 3-quarters center alt='cloudflare TLS configuration' %}
-1. Make your Crypto settings match this screenshot. This is done by enabling SSL. {% image src='/img/pages/getting-started/universal-links/ssl.png' half center alt='cloudflare TLS' %}
+1. Using the CloudFlare control panel, proxy your traffic to the domain `custom.bnc.lt` by clicking the cloud with the arrow to make it _orange_. {% image src='/img/pages/getting-started/universal-app-links/orange_cloud.png' 3-quarters center alt='cloudflare TLS configuration' %}
+1. Make your Crypto settings match this screenshot. This is done by enabling SSL. {% image src='/img/pages/getting-started/universal-app-links/ssl.png' half center alt='cloudflare TLS' %}
 
 ## How to handle old URI paths with Universal Links
 
@@ -249,7 +299,7 @@ When you make the move to Universal Links, you might be wondering how to best ha
 
 The entry point for this link type is `application:openURL:sourceApplication:annotation:`
 
-1. In `application:didFinishLaunchingWithOptions:launchOptions:`, set the **self.ignoreDeeplinkPath** to `YES` (to ensure that users do not get deeplinked twice).
+1. In `application:didFinishLaunchingWithOptions:launchOptions:`, set the **self.ignoreDeeplinkPath** to `YES` (to ensure that users do not get deep linked twice).
 1. Route users to the correct place in your app by harnessing the URL passed in as a parameter.
 
 ### Universal Links

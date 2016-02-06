@@ -592,7 +592,7 @@ If you're using **Xcode 6.3 or newer**, have imported the SDK, and are still see
 {% tabs %}
 {% tab objective-c %}
 
-Finally, add these two new methods to your **AppDelegate.m** file. The first responds to URI scheme links. The second responds to Universal Links, but will not be active until you [configure Universal Links]({{base.url}}/getting-started/universal-links).
+Finally, add these two new methods to your **AppDelegate.m** file. The first responds to URI scheme links. The second responds to Universal Links, but will not be active until you [configure Universal Links]({{base.url}}/getting-started/universal-app-links).
 
 {% highlight objc %}
 // Respond to URI scheme links
@@ -615,7 +615,7 @@ Finally, add these two new methods to your **AppDelegate.m** file. The first res
 {% endtab %}
 {% tab swift %}
 
-Finally, add these two new methods to your **AppDelegate.swift** file. The first responds to URI scheme links. The second responds to Universal Links and Spotlight listings, but will not be active until you [configure Universal Links]({{base.url}}/getting-started/universal-links).
+Finally, add these two new methods to your **AppDelegate.swift** file. The first responds to URI scheme links. The second responds to Universal Links and Spotlight listings, but will not be active until you [configure Universal Links]({{base.url}}/getting-started/universal-app-links).
 
 {% highlight swift %}
 // Respond to URI scheme links
@@ -1091,6 +1091,6 @@ The Branch SDK is now integrated into your app, and you can use the [Branch dash
 Here are some recommended next steps:
 
 {% if page.android %}{% else %}
-- **Enable [iOS Universal Links]({{base.url}}/getting-started/universal-links)** — traditional URI scheme links are no longer supported in many situations on iOS 9.2+. To get full functionality from your Branch links on iOS devices, **you should enable Universal Links as soon as possible.**{% endif %}
+- **Enable [iOS Universal Links]({{base.url}}/getting-started/universal-app-links)** — traditional URI scheme links are no longer supported in many situations on iOS 9.2+. To get full functionality from your Branch links on iOS devices, **you should enable Universal Links as soon as possible.**{% endif %}
 - **Learn about [Creating Links]({{base.url}}/getting-started/creating-links)** — let your users share content and invite friends from inside your app.
 - **Set up [Deeplink Routing]({{base.url}}/getting-started/deeplink-routing)** — send incoming visitors directly to specific content in your app based on the Branch link they clicked.

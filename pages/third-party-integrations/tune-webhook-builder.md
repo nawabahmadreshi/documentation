@@ -11,7 +11,7 @@ sections:
 
 ## Configuring your Branch + Tune Webhooks ##
 
-The purpose of this link generator is to help you to properly structure Branch + Tune integrated deeplinks.
+The purpose of this link generator is to help you to properly structure Branch + Tune integrated deep links.
 
 Want more information on Pre-defined Events? Visit <a href="http://developers.mobileapptracking.com/measure-pre-defined-events/" target="_blank">Tune's Docs on the topic.
 

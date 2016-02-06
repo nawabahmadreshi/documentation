@@ -31,10 +31,10 @@ Branch uses Twilio to send SMS messages. Thanks to Twilio, users can text themse
 
 ## Configure custom URL in Branch dashboard
 
-1. Visit the [Branch link configuration tool](https://start.branch.io/#/desktop-routing).
-1. Select Custom Landing Page, and enter the URL on your site that will include a text-me-the-app option.
+1. Visit the [Link Settings](https://dashboard.branch.io/#/settings/link) page on the Branch dashboard.
+1. In the **Desktop** section select Custom Landing Page, and enter the URL on your site that will include a text-me-the-app option.
 
-{% image src="/img/pages/features/text-me-the-app-page/desktop-routing.png" 2-thirds center alt="Default and custom SMS pages" %}
+{% image src="/img/pages/features/text-me-the-app-page/desktop-routing.png" full center alt="Default and custom SMS pages" %}
 
 {% protip title="You may already be done!" %}Branch hosts a basic text-me-the-app page for all of your links by default: just select Branch Hosted SMS Landing Page to use it. These steps are only necessary if you want to use a custom page.{% endprotip %}
 
@@ -233,11 +233,11 @@ If the `link.data.author` information isn't found, the tag will just be replaced
 
 ## FAQ
 
-#### Q: I've sent myself multiple texts just now and only received the first few, what's going on?
+##### Q: I've sent myself multiple texts just now and only received the first few, what's going on?
 
 A: This occurs when a carrier filters you SMS out due to spam. We try our hardest to rate limit a specific user, however, if bypassed, carriers may block your SMS. The reason is that carriers will agressively block content if it's similar and repeatedly sent to the same number. The solution is to wait 24-48 hours.
 
-#### Q: How come my (non US) phone number isn't working?
+##### Q: How come my (non US) phone number isn't working?
 
 A: With full numbers, you are required to use the "+" and the country code. If you know your users are only in a certain country, you could automatically append the + and the country code so that they only need to append their number without the country code.
 
