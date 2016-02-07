@@ -21,11 +21,17 @@ If you maintain a mobile website, Branch allows you to deep link mobile visitors
 
 {% protip title="If you do not have a mobile website..." %}This feature essentially recreates the functionality of [Deepviews]({{base.url}}/features/deepviews) using your own website. If you do not have one, Deepviews are a good alternative!{% endprotip %}
 
+### [Get started with Website to App Routing!]({{base.url}}/features/website-to-app-routing/guide)
+
 {% elsif page.guide %}
 
 ## Initialize the Deepview SDK on page load
 
-Add the following code somewhere inside the `<head></head>` tags on your website and customize the [link parameters]({{base.url}}/getting-started/configuring-links) to suit your needs. What this script does is move a lot of the Branch redirection logic to the Javascript on your own page, effectively 'clicking a Branch link' on page load.
+Add the following code somewhere inside the `<head></head>` tags on your website and customize the [link parameters]({{base.url}}/getting-started/configuring-links) to suit your needs.
+
+{% protip %}
+What this script does is move a lot of the Branch redirection logic to the Javascript on your own page, effectively 'clicking a Branch link' on page load.
+{% endprotip %}
 
 {% highlight javascript %}
 <script type="text/javascript">
@@ -54,21 +60,22 @@ branch.deepview(
 
 ## Add a Call To Action
 
-{% protip title="Use The Branch Banner" %} If you don't want to build a custom call to action, you can use the Branch [App Download Banner]({{base.url}}/features/smart-banner) to achieve the same results.{% endprotip %}
+Trigger the `branch.deepviewCta()` function with a button or hyperlink on your page.
 
-Trigger the `deepviewCta()` function with a button or hyperlink on your page. On mobile devices without your app installed, this method will open the app store. On non-mobile devices, this method call will redirect to your `$desktop_url` specified in the deepview() call, or fallback to your default web url in [link settings](https://dashboard.branch.io/#/settings/link).
+| Platform | Result of Call To Action
+| --- | ---
+| Mobile, app installed | Open app, deep link directly to content [if configured]({{base.url}}/features/website-to-app-routing/advanced/#deep-linking-from-your-website). This is a failsafe action in case the 'link click' on page load didn't fire correctly.
+| Mobile, app NOT installed | Open App Store or Play Store page for your app, deep link directly to content after download [if configured]({{base.url}}/features/website-to-app-routing/advanced/#deep-linking-from-your-website).
+| Desktop | Redirect to `$desktop_url` specified in the `deepview()` call, or fall back to your default web url from [Link Settings](https://dashboard.branch.io/#/settings/link).
 
-
-{% highlight javascript %}
-branch.deepviewCta();
-{% endhighlight %}
-
-{% example %}Here's how to call `deepviewCta()` from a hyperlink.
+{% example %}Here's how to add a simple hyperlink call to action:
 
 {% highlight html %}
 <a id='downloadapp' onclick='branch.deepviewCta()'>View this in app</a>
 {% endhighlight %}
 {% endexample %}
+
+{% protip title="Use The Branch Banner" %} If you don't want to build a custom call to action, you can use the Branch [App Download Banner]({{base.url}}/features/smart-banner) to achieve the same results.{% endprotip %}
 
 ## View the analytics
 
