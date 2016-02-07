@@ -26,18 +26,25 @@ Deep links are an incredibly important part of delivering a high quality user ex
 
 {% elsif page.guide %}
 
-{% if page.ios or page.android %}
+{% if page.ios %}
 
 {% ingredient quickstart-prerequisite %}{% endingredient %}
 {% protip title="Automatic vs. custom deep link routing" %}
-This guide describes how to use the automatic routing functionality included in the Branch SDK. If you need more control, check out [this section of the Advanced page]({{base.url}}/getting-started/deep-link-routing/advanced#building-a-custom-deep-link-routing-method)
+This guide describes how to use the automatic routing functionality included in the Branch SDK. If you need more control, check out [this section of the Advanced page]({{base.url}}/getting-started/deep-link-routing/advanced/ios#building-a-custom-deep-link-routing-method)
 {% endprotip %}
 
-{% elsif page.unity or page.xamarin or page.cordova or page.titanium or page.adobe %}
+{% elsif page.android %}
 
-{% caution title="Automatic routing not yet available" %}
-Automatic deep link routing is currently supported in only the native iOS and Android SDKs. Please see [this section of the Advanced page]() to set up a custom routing solution.
-{% endcaution %}
+{% ingredient quickstart-prerequisite %}{% endingredient %}
+{% protip title="Automatic vs. custom deep link routing" %}
+This guide describes how to use the automatic routing functionality included in the Branch SDK. If you need more control, check out [this section of the Advanced page]({{base.url}}/getting-started/deep-link-routing/advanced/android#building-a-custom-deep-link-routing-method)
+{% endprotip %}
+
+{% else %}
+
+{% protip title="Automatic routing not yet available" %}
+Automatic deep link routing is currently supported in only the native iOS and Android SDKs. Please see the Advanced page to set up a custom routing solution.
+{% endprotip %}
 
 {% endif %}
 
@@ -108,7 +115,7 @@ func configureControlWithData(data: [NSObject : AnyObject]!) {
 {% endtab %}
 {% endtabs %}
 
-{% protip title="More about link data keys" %}
+{% protip title="What is a link data key?" %}
 The example key `product_picture` is a parameter from the [data dictionary]({{base.url}}/getting-started/configuring-links) of the link that was clicked, and would have been defined when the link [was created]({{base.url}}/getting-started/creating-links).
 {% endprotip %} 
 
@@ -139,7 +146,7 @@ Lastly, you need to tell Branch about the view controller you just configured, a
 {% tabs %}
 {% tab objective-c %}
 
-In your **AppDelegate.m** file, find the `didFinishLaunchingWithOptions` method you added in the [SDK Configuration Guide]({{base.url}}/getting-started/sdk-configuration-guide)):
+In your **AppDelegate.m** file, find this method inside `didFinishLaunchingWithOptions` (you would have added it in the [SDK Configuration Guide]({{base.url}}/getting-started/sdk-configuration-guide)):
 
 {% highlight objc %}
 [branch initSessionWithLaunchOptions:launchOptions andRegisterDeepLinkHandler:^(NSDictionary *params, NSError *error) {
@@ -155,7 +162,7 @@ In your **AppDelegate.m** file, find the `didFinishLaunchingWithOptions` method 
 
 {% tab swift %}
 
-In your **AppDelegate.swift** file, find the `didFinishLaunchingWithOptions` method you added in the [SDK Configuration Guide]({{base.url}}/getting-started/sdk-configuration-guide)):
+In your **AppDelegate.swift** file, find this method inside `didFinishLaunchingWithOptions` (you would have added it in the [SDK Configuration Guide]({{base.url}}/getting-started/sdk-configuration-guide)):
 
 {% highlight swift %}
 branch.initSessionWithLaunchOptions(launchOptions, andRegisterDeepLinkHandler: { params, error in
@@ -221,7 +228,7 @@ protected void onResume() {
 }
 {% endhighlight %}
 
-{% protip title="More about link data keys" %}
+{% protip title="What is a link data key?" %}
 The example key `product_picture` is a parameter from the [data dictionary]({{base.url}}/getting-started/configuring-links) of the link that was clicked, and would have been defined when the link [was created]({{base.url}}/getting-started/creating-links).
 {% endprotip %} 
 
@@ -508,7 +515,7 @@ In your app's Manifest, add this meta-data key to the definition of the Activity
 {% endhighlight %}
 
 {% endif %}
-{% if page.ios %}
+{% if page.android %}{% else %}
 
 {% caution title="Incomplete support on iOS" %}
 [Universal Links]({{base.url}}/getting-started/universal-app-links) and [Spotlight]({{base.url}}/features/spotlight-indexing) do not support URI paths. We recommend avoiding this approach to deep link routing if possible.
@@ -657,7 +664,7 @@ linkProperties.controlParams.Add("$deeplink_path", "content/1234");
 
 You can specify the control parameters for individual marketing links by inserting the keys and values into the _Deep Link Data (Advanced)_ section.
 
-{% image src='/img/pages/getting-started/deeplink-routing/deeplink_path.png' half center alt='deeplink path' %}
+{% image src='/img/pages/getting-started/deep-link-routing/deep-link_path.png' 2-thirds center alt='deeplink path' %}
 
 {% endexample %}
 
@@ -748,7 +755,7 @@ JSONObject installParams = Branch.getInstance().getFirstReferringParams();
 
 {% if page.cordova %}
 {% highlight js %}
-Unfortunately not supported on this plaform.
+Unfortunately not supported on this platform.
 {% endhighlight %}
 {% endif %}
 
