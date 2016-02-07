@@ -75,7 +75,7 @@ Trigger the `branch.deepviewCta()` function with a button or hyperlink on your p
 {% endhighlight %}
 {% endexample %}
 
-{% protip title="Use The Branch Banner" %} If you don't want to build a custom call to action, you can use the Branch [App Download Banner]({{base.url}}/features/smart-banner) to achieve the same results.{% endprotip %}
+{% protip title="Use the Smart Banner" %} If you don't want to build a custom call to action, you can use the Branch [Smart Banner]({{base.url}}/features/smart-banner) to achieve the same results.{% endprotip %}
 
 ## View the analytics
 
