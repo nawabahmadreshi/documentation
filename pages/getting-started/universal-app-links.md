@@ -1,7 +1,7 @@
 ---
 type: recipe
 directory: getting-started
-title: "Universal & App Links"
+title: Universal and App Links
 page_title: "Set up Universal & App Links with Branch"
 description: "Learn how to enable iOS 9 Universal Links and Android App Links with Branch deep links for tracking and deep linking."
 keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Android App Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Dashboard, iOS9
