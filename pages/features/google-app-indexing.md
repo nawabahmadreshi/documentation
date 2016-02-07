@@ -22,6 +22,8 @@ Google is investing significant resources into a project called App Indexing, wh
 
 When you perform a search on Google, your results are drawn from content that Google scrapes from website pages. If the pages being scraped are properly configured for App Indexing, and that app is currently installed on the device performing the search, Google will open the app directly instead of going to the web page. Fortunately Branch has a database of all of your deep links, so we can easily help you take advantage of App Indexing.
 
+### [Get started with App Indexing!]({{base.url}}/features/google-app-indexing/guide)
+
 {% elsif page.guide %}
 
 {% prerequisite %}
