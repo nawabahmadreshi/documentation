@@ -77,13 +77,13 @@ and underneath it add:
 {% endif %}
 {% if page.cordova or page.xamarin %}
 
-#### iOS Projects
+##### iOS Projects
 
 Open your **Info.plist** file in Xcode, change the `branch_key` entry a Dictionary, and create two subentries for your keys:
 
 {% image src="/img/pages/getting-started/integration-testing/branch-multi-key-plist.png" actual center alt="environment toggle" %}
 
-#### Android Projects
+##### Android Projects
 
 In your Manifest file, find:
 
@@ -121,7 +121,7 @@ and replace it with:
 </dict>
 {% endhighlight %}
 
-#### Android Projects
+##### Android Projects
 
 In your project's `*-app.xml` file, find:
 
@@ -138,7 +138,7 @@ and underneath it add:
 {% endif %}
 {% if page.titanium %}
 
-#### iOS Projects
+##### iOS Projects
 
 In your project's `tiapp.xml` file, find:
 
@@ -159,7 +159,7 @@ and replace it with:
 </dict>
 {% endhighlight %}
 
-#### Android Projects
+##### Android Projects
 
 In your project's `tiapp.xml` file, find:
 

@@ -26,6 +26,8 @@ Links are the foundation of everything Branch offers. By using Branch links, you
 You can read more about using the link data dictionary to define key/value pairs for deep linking, and the various link analytics and control parameters used throughout this page on the [Link Configuration page]({{base.url}}/getting-started/link-configuration).
 {% endprotip %}
 
+### [Get started with creating links!]({{base.url}}/getting-started/creating-links/guide)
+
 {% elsif page.guide %}
 
 {% ingredient quickstart-prerequisite %}{% endingredient %}
@@ -380,6 +382,10 @@ branchUniversalObject.addEventListener("bio:generateShortUrl", $.onGenerateUrlFi
 {% endhighlight %}
 
 {% endif %}
+
+## Next steps
+
+Now that your users can create links inside your app, you will want to set up [**Deep Link Routing**]({{base.url}}/getting-started/deep-link-routing) to send them directly to specific content in your app based on the Branch link they opened.
 
 {% elsif page.advanced %}
 
