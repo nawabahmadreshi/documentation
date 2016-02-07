@@ -64,7 +64,7 @@ If you don't want to enable Deepviews globally, you can do it on a per link basi
 
 #### Dynamic link control
 
-If you're [creating links dynamically](/overviews/link_creation_guide/#appending-query-parameters), you simply need to append the parameters. For example:
+If you're [creating links dynamically](/link_creation_guide/#appending-query-parameters), you simply need to append the parameters. For example:
 
 {% highlight javascript %}
 "https://bnc.lt/a/key_live_jbgnjxvlhSb6PGH23BhO4hiflcp3y7ky?$ios_deepview=default_template&$desktop_deepview=default_template"
