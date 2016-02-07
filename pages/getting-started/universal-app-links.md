@@ -22,7 +22,10 @@ sections:
 
 {% if page.overview %}
 
-iOS Universal Links and Android App Links both route directly to your app when opened, bypassing the web browser and URI scheme combination typically used for the redirection process. App Links were introduced with Android M, and enabling them results in a more seamless experience for your users. Universal Links were introduced with iOS 9, and became the only fully-functional deep linking option on iOS after [Apple stopped supporting URI schemes for deep linking in iOS 9.2](https://blog.branch.io/ios-9.2-redirection-update-uri-scheme-and-universal-links). **You must enable Universal Links before Branch can function correctly on iOS 9.2+!**
+iOS Universal Links and Android App Links both route directly to your app when opened, bypassing the web browser and URI scheme combination typically used for the redirection process. App Links were introduced with Android M, and enabling them results in a more seamless experience for your users. Universal Links were introduced with iOS 9, and became the only fully-functional deep linking option on iOS after [Apple stopped supporting URI schemes for deep linking in iOS 9.2](https://blog.branch.io/ios-9.2-redirection-update-uri-scheme-and-universal-links). 
+
+{% caution title="Universal Links are critical on iOS!" %}
+You must enable Universal Links before Branch can function correctly on iOS 9.2+{% endcaution %}
 
 Branch makes it simple to enable Universal Links and App Links, and even improves on them since you also get all the other benefits of Branch links when the visitor does not yet have your app installed:
 
@@ -30,56 +33,7 @@ Branch makes it simple to enable Universal Links and App Links, and even improve
 
 {% elsif page.guide %}
 
-{% if page.android %}
-
-{% ingredient quickstart-prerequisite %}{% endingredient %}
-
-## Generate signing certificate fingerprint
-
-Start by generating a SHA256 fingerprint of your app's signing certificate. This is the file that you use to build the debug and production version of your APK file before deploying it.
-
-1. Navigate to your keystore file.
-1. Run this command on it to generate the fingerprint: `keytool -list -v -keystore my-release-key.keystore`
-1. You'll see a value like `14:6D:E9:83:C5:73:06:50:D8:EE:B9:95:2F:34:FC:64:16:A0:83:42:E6:1D:BE:A8:8A:04:96:B2:3F:CF:44:E5` come out the other end. Copy this.
-
-## Enable App Links on the Branch dashboard
-
-1. Head to the [Link Settings page](https://dashboard.branch.io/#/settings/link) on the Branch dashboard.
-1. Toggle the **Enable App Links** checkbox in the Android section.
-1. Paste the copied fingerprint value into the **SHA256 Cert Fingerprints** field that appears. {% image src='/img/pages/getting-started/app-links/enable_app_links.png' 3-quarters center alt='enable app links' %}
-1. Scroll down and click `Save`.
- 
-{% protip title="Using multiple fingerprints" %}
-You can insert both your debug and production fingerprints for testing. Simply separate them with a comma.
-{% endprotip %}
-
-## Add Intent Filter to Manifest
-
-1. Choose the `Activity` you want to open up when a link is clicked. This is typically your `SplashActivity` or a `BaseActivity` that all other activities inherit from (and likely the same one you selected in the [SDK Integration Guide]({{base.url}}/getting-started/sdk-integration-guide)).
-1. Inside your `AndroidManifest.xml`, locate where the selected `Activity` is defined.
-1. Within the `Activity` definition, insert the intent filter provided below.
-   - Replace `READ_FROM_DASHBOARD` with the value provided underneath the **SHA256 Cert Fingerprints** field on the Branch dashboard. It will look something like this: `android:pathPrefix="/WSuf`
-
-{% highlight xml %}
-<!-- AppLink example -->
-<intent-filter android:autoVerify="true">
-    <action android:name="android.intent.action.VIEW" />
-    <category android:name="android.intent.category.DEFAULT" />
-    <category android:name="android.intent.category.BROWSABLE" />
-    <!-- <data android:scheme="https" android:host="bnc.lt" android:pathPrefix="/your_app_id_obtained form Branch dash board " /> -->
-    <data android:scheme="https" android:host="bnc.lt" android:pathPrefix="READ_FROM_DASHBOARD" /> <!-- Live App link-->
-</intent-filter>
-{% endhighlight %}
-
-## Test your App Links implementation
-
-After completing this guide and installing a new build of your app on your testing device, you can verify App Links are working correctly by following these steps:
-
-1. [Create a new Marketing Link](https://dashboard.branch.io/#/marketing/new) on the Branch dashboard. Leave all configuration items at their default options.
-1. Open this link on your testing device.
-1. If successful, your app should launch immediately without routing through the web browser or showing an **Open With...** dialog.
-
-{% else %}
+{% if page.android %}{% else %}
 
 {% ingredient quickstart-prerequisite %}{% endingredient %}
 
@@ -101,7 +55,7 @@ After completing this guide and installing a new build of your app on your testi
 1. Click the `+` button to begin the Register an App ID process.
 1. Enter whatever you wish in the `Name` field.
 1. Enter your app's Bundle Identifier in the `Bundle ID` field. {% image src='/img/pages/getting-started/universal-app-links/background_bundle.png' half center alt='bundle identifier' %}
-1. In the App Services section, check the box to enable `Associated Domains`. {% image src='/img/pages/getting-started/universal-links/background_ass_domains_new.png' half center alt='enable associated domains' %}
+1. In the App Services section, check the box to enable `Associated Domains`. {% image src='/img/pages/getting-started/universal-app-links/background_ass_domains_new.png' half center alt='enable associated domains' %}
 1. Scroll down and click `Save`.
 
 {% protip title="Finding your Bundle Identifier" %}
@@ -133,7 +87,7 @@ Please ensure...
 1. In the `Domains` section, click the `+` icon and add the following entry: `applinks:bnc.lt` {% image src='/img/pages/getting-started/universal-app-links/add_domain.png' half center alt='xcode add domain' %}
 
 {% protip title="Using a custom domain or subdomain?" %}
-If you use a custom domain or subdomain for your Branch links, you should also add an entry for `applinks:[mycustomdomainorsubdomain]` and then [see this section](../advanced/#using-a-custom-domain-or-subdomain) on the Advanced page.
+If you use a custom domain or subdomain for your Branch links, you should also add an entry for `applinks:[mycustomdomainorsubdomain]` and then [see this section]({{base.url}}/getting-started/universal-app-links/advanced/#using-a-custom-domain-or-subdomain) on the Advanced page.
 {% endprotip %}
 
 ### Add entitlements file to the build target
@@ -161,7 +115,7 @@ If you use a custom domain or subdomain for your Branch links, you should also a
 {% endhighlight %}
 
 {% protip title="Using a custom domain or subdomain?" %}
-If you use a custom domain or subdomain for your Branch links, you should also add a key for `<string>[mycustomdomainorsubdomain]</string>` and then [see this section](../advanced/#using-a-custom-domain-or-subdomain) on the Advanced page.
+If you use a custom domain or subdomain for your Branch links, you should also add a key for `<string>[mycustomdomainorsubdomain]</string>` and then [see this section]({{base.url}}/getting-started/universal-app-links/advanced/#using-a-custom-domain-or-subdomain) on the Advanced page.
 {% endprotip %}
 
 {% endif %}
@@ -273,7 +227,68 @@ After completing this guide and installing a new build of your app on your testi
 
 {% endif %}
 
+{% if page.ios %}{% else %}
+
+## Generate signing certificate fingerprint
+
+{% if page.android %}
+{% ingredient quickstart-prerequisite %}{% endingredient %}
+{% else %}
+{% protip %}
+The following steps are only required if you wish you enable Android App Links, 
+{% endprotip %}
+{% endif %}
+
+Start by generating a SHA256 fingerprint of your app's signing certificate. This is the file that you use to build the debug and production version of your APK file before deploying it.
+
+1. Navigate to your keystore file.
+1. Run this command on it to generate the fingerprint: `keytool -list -v -keystore my-release-key.keystore`
+1. You'll see a value like `14:6D:E9:83:C5:73:06:50:D8:EE:B9:95:2F:34:FC:64:16:A0:83:42:E6:1D:BE:A8:8A:04:96:B2:3F:CF:44:E5` come out the other end. Copy this.
+
+## Enable App Links on the Branch dashboard
+
+1. Head to the [Link Settings page](https://dashboard.branch.io/#/settings/link) on the Branch dashboard.
+1. Toggle the **Enable App Links** checkbox in the Android section.
+1. Paste the copied fingerprint value into the **SHA256 Cert Fingerprints** field that appears. {% image src='/img/pages/getting-started/universal-app-links/enable_app_links.png' 3-quarters center alt='enable app links' %}
+1. Scroll down and click `Save`.
+ 
+{% protip title="Using multiple fingerprints" %}
+You can insert both your debug and production fingerprints for testing. Simply separate them with a comma.
+{% endprotip %}
+
+## Add Intent Filter to Manifest
+
+1. Choose the `Activity` you want to open up when a link is clicked. This is typically your `SplashActivity` or a `BaseActivity` that all other activities inherit from (and likely the same one you selected in the [SDK Integration Guide]({{base.url}}/getting-started/sdk-integration-guide)).
+1. Inside your `AndroidManifest.xml`, locate where the selected `Activity` is defined.
+1. Within the `Activity` definition, insert the intent filter provided below.
+   - Replace `READ_FROM_DASHBOARD` with the value provided underneath the **SHA256 Cert Fingerprints** field on the Branch dashboard. It will look something like this: `android:pathPrefix="/WSuf`
+
+{% highlight xml %}
+<!-- AppLink example -->
+<intent-filter android:autoVerify="true">
+    <action android:name="android.intent.action.VIEW" />
+    <category android:name="android.intent.category.DEFAULT" />
+    <category android:name="android.intent.category.BROWSABLE" />
+    <!-- <data android:scheme="https" android:host="bnc.lt" android:pathPrefix="/your_app_id_obtained form Branch dash board " /> -->
+    <data android:scheme="https" android:host="bnc.lt" android:pathPrefix="READ_FROM_DASHBOARD" /> <!-- Live App link-->
+</intent-filter>
+{% endhighlight %}
+
+## Test your App Links implementation
+
+After completing this guide and installing a new build of your app on your testing device, you can verify App Links are working correctly by following these steps:
+
+1. [Create a new Marketing Link](https://dashboard.branch.io/#/marketing/new) on the Branch dashboard. Leave all configuration items at their default options.
+1. Open this link on your testing device.
+1. If successful, your app should launch immediately without routing through the web browser or showing an **Open With...** dialog.
+
+{% endif %}
+
 {% elsif page.advanced %}
+
+{% if page.android %}
+No advanced information available for this platform.
+{% else %}
 
 ## Using a custom domain or subdomain
 
@@ -366,7 +381,13 @@ Branch *branch = [Branch getInstance];
 
 {% endexample %}
 
+{% endif %}
+
 {% elsif page.support %}
+
+{% if page.android %}
+No support information available for this platform.
+{% else %}
 
 ## What happens to existing links? 
 
@@ -452,5 +473,7 @@ We have published a number of resources that can help you understand the changes
 * iOS 9.2 Update: [The Fall of URI Schemes](https://blog.branch.io/ios-9.2-redirection-update-uri-scheme-and-universal-links)
 * iOS 9.2 Transition Guide - [Original Blog](https://blog.branch.io/ios-9.2-deep-linking-guide-transitioning-to-universal-links)
 * Why You Should Use Branch for [Universal Links](https://blog.branch.io/why-you-should-use-branch-for-universal-links)
+
+{% endif %}
 
 {% endif %}
