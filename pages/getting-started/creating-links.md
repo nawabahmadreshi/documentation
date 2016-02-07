@@ -20,16 +20,15 @@ sections:
 ---
 
 {% if page.overview %}
+Links are the foundation of everything Branch offers. By using Branch links, you can easily allow your app's users to accomplish tasks such as sharing content or inviting friends. This guide explains how to generate Branch links by using the mobile SDKs for each platform. See the Advanced page to learn about other link creation methods.
 
-There are many, many ways to create links with Branch! Links are the foundation to everything Branch offers, and this guide explains how to generate them by using the mobile SDK. See the Advanced page to learn about other opens.
-
+{% protip %}
 You can read more about using the link data dictionary to define key/value pairs for deep linking, and the various link analytics and control parameters used throughout this page on the [Link Configuration page]({{base.url}}/getting-started/link-configuration).
+{% endprotip %}
 
 {% elsif page.guide %}
 
 {% ingredient quickstart-prerequisite %}{% endingredient %}
-
-The most common way to create links is by using Branch's mobile SDKs. You can easily allow your app's users to create links for sharing content, inviting friends, etc.
 
 <!--- iOS -->
 {% if page.ios %}
@@ -234,7 +233,7 @@ tags.Add("trial6");
 
 ## Generate the link
 
-Use this method to create a link based on the data you assembled:
+Use the `GetShortUrlAsync()` method to create a link based on the data you assembled:
 
 {% highlight c# %}
 Branch branch = Branch.GetInstance ();
@@ -328,7 +327,7 @@ var dataToInclude:Object = {
 
 ## Generate the links
 
-Then generate the link:
+Then generate the link with the getShortUrl() method:
 
 {% highlight java %}
 branch.getShortUrl(tags, "sms", BranchConst.FEATURE_TAG_SHARE, JSON.stringify(dataToInclude));
@@ -388,6 +387,10 @@ branchUniversalObject.addEventListener("bio:generateShortUrl", $.onGenerateUrlFi
 
 You can build a Branch link dynamically by appending query parameters. This method is useful if you don't want to wait for a server callback, and don't need to display the resulting (long) link to the user.
 
+{% protip %}
+Try out the [Dynamic Link Builder]({{base.url}}/getting-started/dynamic-link-builder) to easily construct links of this type, or verify that links you have created are valid.
+{% endprotip %}
+
 1. Start with the Branch link domain: **http://bnc.lt** (you can also use your custom domain/subdomain here).
 2. Append `/a/your_Branch_key`: **http://bnc.lt/a/your_branch_key**
 3. Append `?` to start the query params string: **http://bnc.lt/a/your_branch_key?**
@@ -420,13 +423,13 @@ Please make sure to URL encode everything, lest the link will break.
 
 You can use the Branch Web SDK to create links in several ways:
 
-- [Text-Me-The-App page]({{base.url}}/features/text-me-the-app-page)
-- [App Download Banner]({{base.url}}/features/app-download-banner)
-- [Website to app routing]({{base.url}}/features/deep-link-mobile-site)
+- [Text-Me-The-App]({{base.url}}/features/text-me-the-app)
+- [Smart Banner]({{base.url}}/features/smart-banner)
+- [Website To App Routing]({{base.url}}/features/website-to-app-routing)
 
-A basic `link()` function is also available for custom implementations.
+#### Link() function
 
-{% example title="Generic link() example" %}
+A basic `link()` function is also available for custom implementations:
 
 {% highlight js %}
 branch.link({
@@ -451,7 +454,7 @@ branch.link({
 });
 {% endhighlight %}
 
-**Callback Format**
+##### Callback Format
 
 {% highlight js %}
 callback(
@@ -459,8 +462,6 @@ callback(
     'https://bnc.lt/l/3HZMytU-BW' // Branch shortlink URL
 );
 {% endhighlight %}
-
-{% endexample %}
 
 ## HTTP API
 
