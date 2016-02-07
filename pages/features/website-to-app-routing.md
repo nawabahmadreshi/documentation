@@ -1,7 +1,7 @@
 ---
 type: recipe
 directory: features
-title: Website To App Routing
+title: Website to App Routing
 page_title: Automatically route website users to your app
 description: Add powerful, best in class deep linking to your mobile website.
 keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views
