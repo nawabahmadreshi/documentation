@@ -31,6 +31,8 @@ Branch makes it simple to enable Universal Links and App Links, and even improve
 
 {% image src='/img/pages/getting-started/universal-app-links/how_branch_improves.png' 2-thirds center alt='branch improves universal links' %}
 
+### [Get started with Universal & App Links!]({{base.url}}/getting-started/universal-app-links/guide)
+
 {% elsif page.guide %}
 
 {% if page.android %}{% else %}
@@ -283,6 +285,15 @@ After completing this guide and installing a new build of your app on your testi
 1. If successful, your app should launch immediately without routing through the web browser or showing an **Open With...** dialog.
 
 {% endif %}
+
+## Next steps
+
+Your Branch links are now configured to open your app in the most user-friendly way possible.
+
+Here are some recommended next steps:
+
+- **Learn about [Creating Links]({{base.url}}/getting-started/creating-links)** — let your users share content and invite friends from inside your app.
+- **Set up [Deep Link Routing]({{base.url}}/getting-started/deep-link-routing)** — send incoming visitors directly to specific content in your app based on the Branch link they opened.
 
 {% elsif page.advanced %}
 

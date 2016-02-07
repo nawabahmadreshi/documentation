@@ -6,9 +6,9 @@
     - sdk-integration-guide
     - title: Next Steps
       children:
+        - universal-app-links
         - creating-links
         - deep-link-routing
-        - universal-app-links
     - title: Advanced
       children:
         - configuring-links

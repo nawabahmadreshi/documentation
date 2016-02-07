@@ -892,16 +892,15 @@ By default, Branch collects and uses the [Android ID](http://developer.android.c
 
 {% endif %}
 
-## Next Steps
+## Next steps
 
 The Branch SDK is now integrated into your app, and you can use the [Branch dashboard](https://dashboard.branch.io/#) to track completed installs from [Marketing links](https://dashboard.branch.io/#/marketing). However, this only scratches the surface of what is possible with Branch.
 
 Here are some recommended next steps:
 
-{% if page.android %}{% else %}
-- **Enable [iOS Universal Links]({{base.url}}/getting-started/universal-app-links)** — traditional URI scheme links are no longer supported in many situations on iOS 9.2+. To get full functionality from your Branch links on iOS devices, **you should enable Universal Links as soon as possible.**{% endif %}
+- **Enable [Universal & App Links]({{base.url}}/getting-started/universal-app-links)** — traditional URI scheme links are no longer supported in many situations on iOS 9.2+, and are a less than ideal solution on new versions of Android. To get full functionality from your Branch links on iOS devices, **you should enable Universal Links as soon as possible.**
 - **Learn about [Creating Links]({{base.url}}/getting-started/creating-links)** — let your users share content and invite friends from inside your app.
-- **Set up [Deeplink Routing]({{base.url}}/getting-started/deep-link-routing)** — send incoming visitors directly to specific content in your app based on the Branch link they clicked.
+-  **Set up [Deep Link Routing]({{base.url}}/getting-started/deep-link-routing)** — send incoming visitors directly to specific content in your app based on the Branch link they opened.
 
 {% elsif page.advanced %}
 

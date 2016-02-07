@@ -24,6 +24,8 @@ When a Branch link is opened, either your app launches or users are taken to the
 
 Deep links are an incredibly important part of delivering a high quality user experience. With deep links, you can take users to the exact thing they clicked on or even offer a customized onboarding experience.
 
+### [Get started with deep link routing!]({{base.url}}/getting-started/deep-link-routing/guide)
+
 {% elsif page.guide %}
 
 {% if page.ios %}
@@ -245,6 +247,10 @@ In your Manifest file, locate the definition for the Activity above and add this
 Now whenever your app launches from a Branch link that has the `product_picture` key set in its data dictionary, this Activity will be displayed!
 
 {% endif %}
+
+## Next steps
+
+Now that your Branch links are set up to send users exactly where they expect to go inside your app, you will want make it easy to [**Create Links**]({{base.url}}/getting-started/creating-links) that do this!
 
 {% elsif page.advanced %}
 

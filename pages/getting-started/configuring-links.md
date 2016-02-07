@@ -68,7 +68,7 @@ Use these keys to set the value of the deep link path that you'd like us to appe
 
 | **Key** | **Usage** | **Default**
 | ---: | --- | ---
-| **$deeplink_path** | Set the deeplink path for _all_ platforms - so you don't have to enable it by platform | `open?link_click_id=1234'`
+| **$deeplink_path** | Set the deeplink path for _all_ platforms - so you don't have to enable it by platform | `open?link_click_id=1234`
 | **$android_deeplink_path** | Set the deeplink path for Android apps | *null*
 | **$ios_deeplink_path** | Set the deeplink path for iOS apps | *null*
 | **duration** | Lets you control the fingerprinting match timeout (the time that a click will wait for an app open to match) also known as attribution window. Specified in seconds | `7200` (2 hours) 

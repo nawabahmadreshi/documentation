@@ -219,7 +219,35 @@ Create a link to a piece of content. Visit the [Creating Links]({{base.url}}/get
 
 ### showShareSheetWithLinkProperties
 
-Use Branch's preconfigured `UIActivityItemProvider` to share a piece of content without having to create a link. Visit the [Creating Links]({{base.url}}/getting-started/creating-links) page to learn more.
+Use Branch's preconfigured `UIActivityItemProvider` to share a piece of content without having to create a link. Calling this method will automatically generate a Branch link with the appropriate analytics channel when the user selects a sharing destination.
+
+{% image src='/img/pages/getting-started/branch-universal-object/ios_share_sheet.png' actual center alt='ios share sheet' %}
+
+To implement it, use the following `showShareSheetWithLinkProperties` method instead of `getShortUrlWithLinkProperties` in the last step above:
+
+{% tabs %}
+{% tab objective-c %}
+{% highlight objc %}
+[branchUniversalObject showShareSheetWithLinkProperties:linkProperties
+                                           andShareText:@"Super amazing thing I want to share!"
+                                     fromViewController:self 
+                                            andCallback:^{
+    NSLog(@"finished presenting");
+}];
+{% endhighlight %}
+{% endtab %}
+
+{% tab swift %}
+{% highlight swift %}
+branchUniversalObject.showShareSheetWithLinkProperties(linkProperties, 
+                                        andShareText: "Super amazing thing I want to share!",
+                                        fromViewController: self,
+                                        andCallback: { () -> Void in
+    NSLog("done showing share sheet!")
+})
+{% endhighlight %}
+{% endtab %}
+{% endtabs %}
 
 ### listOnSpotlightWithCallback
 
@@ -243,7 +271,41 @@ Create a link to a piece of content. Visit the [Creating Links]({{base.url}}/get
 
 ### showShareSheet
 
-Use Branch's custom share sheet to share a piece of content without having to create a link. Visit the [Creating Links]({{base.url}}/getting-started/creating-links) page to learn more.
+Use Branch's custom share sheet to share a piece of content without having to create a link. This share sheet is customizable and will automatically generate a link with the appropriate analytics channel when the user selects a sharing destination.
+
+{% image src='/img/pages/getting-started/branch-universal-object/android_share_sheet.png' third center alt='Android share sheet' %}
+
+To implement it, use the following `showShareSheet` method instead of `generateShortUrl` in the last step above:
+
+{% highlight java %}
+branchUniversalObject.showShareSheet(this, 
+                                      linkProperties,
+                                      shareSheetStyle,
+                                       new Branch.BranchLinkShareListener() {
+    @Override
+    public void onShareLinkDialogLaunched() {
+    }
+    @Override
+    public void onShareLinkDialogDismissed() {
+    }
+    @Override
+    public void onLinkShareResponse(String sharedLink, String sharedChannel, BranchError error) {
+    }
+    @Override
+    public void onChannelSelected(String channelName) {
+    }
+});
+{% endhighlight %}
+
+You can customize the styling with the ShareSheetStyle class:
+
+{% highlight java %}
+ShareSheetStyle shareSheetStyle = new ShareSheetStyle(MainActivity.this, "Check this out!", "This stuff is awesome: ")
+                        .setCopyUrlStyle(getResources().getDrawable(android.R.drawable.ic_menu_send), "Copy", "Added to clipboard")
+                        .setMoreOptionStyle(getResources().getDrawable(android.R.drawable.ic_menu_search), "Show more")
+                        .addPreferredSharingOption(SharingHelper.SHARE_WITH.FACEBOOK)
+                        .addPreferredSharingOption(SharingHelper.SHARE_WITH.EMAIL);
+{% endhighlight %}
 
 {% endif %}
 
@@ -263,8 +325,21 @@ Create a link to a piece of content. Visit the [Creating Links]({{base.url}}/get
 
 ### shareLink
 
-Use Branch's custom share sheet to share a piece of content without having to create a link. Visit the [Creating Links]({{base.url}}/getting-started/creating-links) page to learn more.
+Use Branch's custom share sheet to share a piece of content without having to create a link. Calling this method will automatically generate a Branch link with the appropriate analytics channel when the user selects a sharing destination.
 
+{% image src='/img/pages/getting-started/branch-universal-object/combined_share_sheet.png' actual center alt='ios and android share sheets' %}
+
+To implement it, use the following `shareLink` method instead of `getShortURL ` in the last step above:
+
+{% highlight c# %}
+Branch.shareLink(universalObject, linkProperties, "hello there with short url", (url, error) => {
+    if (error != null) {
+        Debug.LogError("Branch.shareLink failed: " + error);
+    } else {
+        Debug.Log("Branch.shareLink shared params: " + url);
+    }
+});
+{% endhighlight %}
 {% endif %}
 
 {% if page.titanium %}
@@ -283,7 +358,33 @@ Create a link to a piece of content. Visit the [Creating Links]({{base.url}}/get
 
 ### showShareSheet
 
-Use Branch's custom share sheet to share a piece of content without having to create a link. Visit the [Creating Links]({{base.url}}/getting-started/creating-links) page to learn more.
+Use Branch's custom share sheet to share a piece of content without having to create a link. Calling this method will automatically generate a Branch link with the appropriate analytics channel when the user selects a sharing destination.
+
+{% image src='/img/pages/getting-started/branch-universal-object/combined_share_sheet.png' actual center alt='ios and android share sheets' %}
+
+To implement it, use the following `showShareSheet` method instead of `generateShortUrl` in the last step above:
+
+{% highlight js %}
+branchUniversalObject.showShareSheet({
+  "feature" : "sample-feature",
+  "channel" : "sample-channel",
+  "stage" : "sample-stage",
+  "duration" : 1,
+}, {
+  "$desktop_url" : "http://desktop-url.com",
+});
+{% endhighlight %}
+
+To implement the callback on Android, you must add listeners to the following events:
+
+| Event | Description
+| --- | ---
+| `bio:shareLinkDialogLaunched` | Fires when the share sheet is presented
+| `bio:shareLinkDialogDismissed` | Fires when the share sheet is dismissed
+| `bio:shareLinkResponse` | Returns a dictionary of the response data
+| `bio:shareChannelSelected` | Fires when a channel is selected
+
+**Note:** Callbacks in iOS are ignored. There is no need to implement them as the events are handled by `UIActivityViewController`.
 
 {% endif %}
 
