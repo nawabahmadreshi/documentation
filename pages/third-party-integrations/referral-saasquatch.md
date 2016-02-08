@@ -1,41 +1,50 @@
 ---
 type: recipe
 directory: third-party-integrations
-title: "Referral Saasquatch"
+title: "Referral SaaSquatch"
 platforms:
 - ios
 - android
 sections:
+- overview
 - guide
 ---
 
-{% ingredient quickstart_preview/quickstart_preview %}{% endingredient %}
+{% if page.overview %}
 
-[Referral SaaSquatch](http://www.referralsaasquatch.com/) is a cross-platform customer referral program platform. The Branch + Referral SaaSquatch integration lets you run a referral program
-from **Mobile -> Mobile**, **Web -> Mobile**, **Mobile -> Web** and **Web -> Web** using the power of Branch deeplinking and Referral SaaSquatch's widgets, referral graph, reward bank and 
-administration features. In addition to mobile SaaSquatch also works with desktop, web, telecom, ecommerce and enterprise companies to power their referral programs across channels.
-
+[Referral SaaSquatch](http://www.referralsaasquatch.com/) is a cross-platform customer referral program platform. In addition to mobile, SaaSquatch also works with desktop, web, telecom, ecommerce, and enterprise companies to power their referral programs across channels. The Branch + Referral SaaSquatch integration lets you run a referral program with any combination of web and mobile, using the power of Branch deeplinking and Referral SaaSquatch's widgets, referral graph, reward bank, and administration features. 
 
 The Branch + SaaSquatch referral program integration provides:
 
-- _Cross-channel referrals._ The Branch + SaaSquatch integration powers referrals across from **Mobile -> Mobile**, **Web -> Mobile**, **Mobile -> Web** and **Web -> Web**.
+- **Cross-channel referrals.** The Branch + SaaSquatch integration powers referrals across from **Mobile ⇨ Mobile**, **Web ⇨ Mobile**, **Mobile ⇨ Web**, **Web ⇨ Web**.
+- **Unique referral links for web and mobile.** SaaSquatch referral links wrap Branch deep links to power mobile or web app attribution.
+- **Unique referral codes for retail, call centers and support.** SaaSquatch provides unique referral codes for each of your customers that can be integrated with identify systems, support systems and payment systems like Stripe, Braintree and Recurly.
+- **Custom conversion tracking.** SaaSquatch lets you to provide rewards for any custom conversion status. You can reward users for referring users who not just signup, but also make purchases, etc.
+- **User reward tracking/storage.** SaaSquatch leaves the actual user facing rewarding to you, but we store how many credits have been earned from referrals. This makes it easy so that you can just check the balance of credits in the app from us, give the user some reward, then clear the credit balance on our server.
 
-- _Unique referral links for web and mobile._ SaaSquatch referral links wrap Branch deep links to power mobile or web app attribution.
+## Other implementation ideas
 
-- _Unique referral codes for retail, call centers and support._ SaaSquatch provides unique referral codes for each of your customers that can be integrated with identify systems, support systems and payment systems like Stripe, Braintree and Recurly.
+Referral SaaSquatch supports referral tracking across platforms and mediums. 
+For example you could invite a friend to try a product using your iPhone, but then their friends might sign up for an account using Chrome on their laptop, and then install your Android app to make their first purchase. 
 
-- _Custom conversion tracking._ SaaSquatch lets you to provide rewards for any custom conversion status. You can reward users for referring users who not just signup, but also make purchases, etc.
+Some other examples:
 
-- _User reward tracking/storage._ SaaSquatch leaves the actual user facing rewarding to you, but we store how many credits have been earned from referrals. This makes it easy so that you can just check the balance of credits in the app from us, give the user some reward, then clear the credit balance on our server.
+ - Someone sends an invite from your **web app**, a friend gets an email on their phone, is redirected to install the iOs app and signs up in-app.
+ - Someone tweets an invite from your **android app**, a friend sees the tweet on their laptop, is redirected to your website, and signs up from your website using their twitter credentials.
+ - Someone posts to facebook after receiving an **email newsletter**, the friend sees the post and is redirected to install your Android app. After installing your app, they go to your website to create and account.
 
-Let's get started!
+### [Get started with Referral SaaSquatch!]({{base.url}}/third-party-integrations/referral-saasquatch/guide)
 
+{% elsif page.guide %}
 
-## Generating Referral Links & Codes
+{% ingredient quickstart-prerequisite %}{% endingredient %}
 
-Referral SaaSquatch provides a [referral widget](http://docs.referralsaasquatch.com/mobile/widget/) that can be embedded in your app to track referrals and let people send invites. The widget is embedded as a personalized 
-mobile webview based upon your user's id, name and details. The first time that a user is identified and has their widget loaded, they will be created in the SaaSquatch database. This will trigger
+## Generating referral links & codes
+
+Referral SaaSquatch [provides a widget](http://docs.referralsaasquatch.com/mobile/widget/) to track referrals and let people send invites. The widget is embedded as a personalized mobile webview based upon your user's id, name, and details. The first time that a user is identified and has their widget loaded, they will be created in the SaaSquatch database. This will trigger
 attribution and conversion tracking, and create a unique referral code and referral link.
+
+Here's how to integrate the widget:
 
 {% if page.ios %}
 
@@ -103,7 +112,7 @@ webview.loadUrl(widgetUrl);
 
 ## Including the widget
 
-Once you've built the widget and loaded the content, all of the background tracking for the referral program is complete. Next, to include the referral program you can load the request inside the webView in your View Controller.
+Once you've built the widget and loaded the content, all of the background tracking for the referral program is complete. To include the referral program you can load the request inside the webView in your View Controller:
 
 {% if page.ios %}
 {% highlight objc %}
@@ -121,12 +130,13 @@ Once you've built the widget and loaded the content, all of the background track
 {% endhighlight %}
 {% endif %}
 
-## Tracking Mobile Referrals
+## Tracking mobile referrals
 
-To capture **mobile installs** from a SaaSquatch referral program, you'll need to use the Branch SDK to detect the referral code after alink has been clicked and register the `sq_referralCode` metadata field
-to the `referralCode` field of the SaaSquatch webview. Alternatively, for the [SaaSquatch Stripe integration](docs.referralsaasquatch.com/stripe/) this referral code can be passed directly to the Stripe SDK
-as the `coupon.code`. This is the same strategy used for other SaaSquatch payment systems integrations like Recurly, Braintree and Zuora.
+To capture **mobile installs** from a SaaSquatch referral program, you'll need to use the Branch SDK to detect the referral code after a link has been clicked and register the `sq_referralCode` metadata field to the `referralCode` field of the SaaSquatch webview. Alternatively, for the [SaaSquatch Stripe integration](docs.referralsaasquatch.com/stripe/), this referral code can be passed directly to the Stripe SDK as the `coupon.code`.
 
+{% protip %}
+This is the same strategy used for other SaaSquatch payment systems integrations like Recurly, Braintree and Zuora.
+{% endprotip %}
 
 {% if page.ios %}
 {% highlight objc %}
@@ -196,24 +206,8 @@ public void onStart() {
 {% endhighlight %}
 {% endif %}
 
+## Conclusion
 
-## Tracking Across Platforms (mobile, web, estore, offline, CRM)
+You now have the foundation for an incentivized referral program. Like many popular promo-code systems, you can reward both the user who shares a link and the user who clicks the link and purchases in the app. 
 
-Referral SaaSquatch supports referral tracking across platforms and mediums. 
-For example you could invite a friend to try a product using your iPhone, but then their friends might sign up for an account using Chrome on their laptop, and then install your Android app to make their first purchase. 
-With the combined power of Referral SaaSquatch and Branch referrals can happen across all devices and mediums **Mobile -> Mobile**, **Web -> Mobile**, **Mobile -> Web** and **Web -> Web**.
-
-Some other examples:
-
- - Someone sends an invite from your **web app**, a friend gets an email on their phone, is redirected to install the iOs app and signs up in-app.
- - Someone tweets an invite from your **android app**, a friend sees the tweet on their laptop, is redirected to your website, and signs up from your website using their twitter credentials.
- - Someone posts to facebook after receiving an **email newsletter**, the friend sees the post and is redirected to install your Android app. After installing your app, they go to your website to create and account.
-
-
-## Conclusion: So Much More
-
-You now have an incentivized referral program. Like many popular promo-code systems, you can reward both the user who shares a link and the user who clicks the link and purchases in the app. 
-This guide covered the basics. The following may be of interest to you, if you want to:
-
-{% ingredient recipe_preview/personalized_welcome %}{% endingredient %}
-{% ingredient recipe_preview/contact_us %}{% endingredient %}
+{% endif %}

@@ -49,7 +49,7 @@
     - title: Growth Tools
       children:
         - apptimize
-        - referrals_referral_saasquatch
+        - referral-saasquatch
         - analytics_appboy
     - title: Measurement Platforms
       children:
