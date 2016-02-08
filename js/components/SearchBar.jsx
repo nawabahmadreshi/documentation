@@ -73,7 +73,7 @@ var SearchBar = React.createClass({
 				return (
 					<SearchResult
 						title={result.title}
-						link={'/' + result.url}
+						link={result.url}
 						origin={result.origin}
 						context={result.context}
 						key={result.id}
