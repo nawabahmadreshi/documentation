@@ -38,7 +38,7 @@ You can still complete this guide and App Links will function, but attribution d
 
 {% prerequisite %}
 
-- To use Facebook App Invites, you need to first [integrate the Branch SDK]({{base.url}}/getting-started/sdk-integration-guide) and ({% if page.ios %}[the Facebook SDK](https://developers.facebook.com/docs/ios/getting-started){% elsif page.android %}[the Facebook SDK](https://developers.facebook.com/docs/android/getting-started){% endif %} into your app. 
+- To use Facebook App Invites, you need to first [integrate the Branch SDK]({{base.url}}/getting-started/sdk-integration-guide) and {% if page.ios %}[the Facebook SDK](https://developers.facebook.com/docs/ios/getting-started){% elsif page.android %}[the Facebook SDK](https://developers.facebook.com/docs/android/getting-started){% endif %} into your app. 
 
 {% endprerequisite %}
 
