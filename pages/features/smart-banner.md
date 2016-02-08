@@ -48,7 +48,7 @@ branch.banner({
 
 {% prerequisite %}
 
-- For this to function as expected, you should [integrated the Branch SDK]({{base.url}}/getting-started/sdk-integration-guide) into your app and [configure deep link routing]({{base.url}}/getting-started/deep-link-routing).
+- For this to function as expected, you should [integrate the Branch SDK]({{base.url}}/getting-started/sdk-integration-guide) into your app and [configure deep link routing]({{base.url}}/getting-started/deep-link-routing).
 
 {% endprerequisite %}
 
