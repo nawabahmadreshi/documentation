@@ -30,7 +30,7 @@
         - text-me-the-app
     - title: Marketing for Mobile
       children:
-        - email_campaigns
+        - email-campaigns
         - referral-programs
         - facebook-app-invites
         - facebook-ads
