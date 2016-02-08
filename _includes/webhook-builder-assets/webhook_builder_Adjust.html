@@ -1,7 +1,7 @@
 
 <head>
 	<!-- If you want to test the webhook builder and have it fill in values automatically (to save you time) then turn on the JS below in debug mode-->
-	 <script src="{{base.url}}/js/webhook_builders/webhook_builder_adjust_testing.js" type="text/javascript"></script>
+	<script src="{{base.url}}/js/webhook_builders/webhook_builder_adjust_testing.js" type="text/javascript"></script>
 	<script src="{{base.url}}/js/webhook_builders/webhook_builder_adjust.js" type="text/javascript"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 </head>
@@ -11,7 +11,7 @@
 		<!-- START OF REQUIRED ADJUST INFORMATION -->
 		<tr><td><h3><b>Required Adjust Information </b></h3></td></tr>
 			<tr>
-	            <td><label>iOS Tracker Token/label></td>
+	            <td><label>iOS Tracker Token<label></td>
 	            <td><input style="width:300px" id="ios_tracker_token" type="text" maxlength="30" placeholder="ios_tracker_token" required/></td>
 	        </tr>
 	        <tr>
@@ -20,24 +20,25 @@
 	        </tr>
 	        <tr>
 	            <td><label>Adgroup</label></td>
-	            <td><select style="width:300px" id="adgroup"/></td>
-	            	<option value="" selected="">Choose an adgroup.</option>
-	            	<option value="{{ branch }}">Branch</option>
-	            	<option value="{{ channel }}">Channel</option>
-	            	<option value="{{ feature }}">Feature</option>
-	            	<option value="{{ stage }}">Stage</option>
-	            	<option value="{{ tags }}">Tags</option>
+	            <td><select style="width:300px" id="adgroup">
+	            		<option value="" selected="">Choose an adgroup.</option>
+	            		<option value="{{ branch }}">Branch</option>
+	            		<option value="{{ channel }}">Channel</option>
+	            		<option value="{{ feature }}">Feature</option>
+	            		<option value="{{ stage }}">Stage</option>
+	            		<option value="{{ tags }}">Tags</option>
 	            	</select></td>
 	        </tr>
+
 	        <tr>
 	            <td><label>Creative</label></td>
-	            <td><select style="width:300px" id="creative"/></td>
-	            	<option value="" selected="">Choose an adgroup.</option>
-	            	<option value="{{ branch }}">Branch</option>
-	            	<option value="{{ channel }}">Channel</option>
-	            	<option value="{{ feature }}">Feature</option>
-	            	<option value="{{ stage }}">Stage</option>
-	            	<option value="{{ tags }}">Tags</option>
+	            <td><select style="width:300px" id="creative">
+	            		<option value="" selected="">Choose an adgroup.</option>
+	            		<option value="{{ branch }}">Branch</option>
+	            		<option value="{{ channel }}">Channel</option>
+	            		<option value="{{ feature }}">Feature</option>
+	            		<option value="{{ stage }}">Stage</option>
+	            		<option value="{{ tags }}">Tags</option>
 	            	</select></td>
 	        </tr>
 	
