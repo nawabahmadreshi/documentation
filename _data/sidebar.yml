@@ -35,7 +35,7 @@
         - facebook_appinvites
         - advertising_facebook
         - advertising_google
-        - advertising_twitter
+        - twitter-ads
     - title: Personalized Experiences
       children:
         - personalized_welcome
