@@ -23,6 +23,8 @@ The Branch Smart Banner displays a fully-customizable banner at the top of your 
 
 The Download/Open button and SMS link both contain all the features of any other Branch link, including deep linking directly to content, passing data across install, measuring clicks, and more.
 
+### [Get started with the Smart Banner!]({{base.url}}/features/smart-banner/guide)
+
 {% elsif page.guide %}
 
 ## Add Smart Banner script to your website
@@ -214,19 +216,19 @@ js branch.closeBanner();
 
 ## FAQ
 
-#### Q: Can I use the App Smart Banner on non mobile-optimized pages?
+##### Q: Can I use the App Smart Banner on non mobile-optimized pages?
 
 A: Yes, you can. However, you are responsible for handling the resizing of the banner whenever a user zooms in or zooms out. The smart banner is meant for mobile-optimized pages.
 
-#### Q: How does Branch determine whether the banner says download or open?
+##### Q: How does Branch determine whether the banner says download or open?
 
 A: Initially, if we’ve never determined a device has your application, we will default to download (or whatever custom text you’ve set for when a user doesn’t have the app). If they have clicked one of your links before and consequently opened the application, we will switch the text to say open (or whatever custom text you’ve set for when a user has your app).
 
-#### Q: I’ve sent myself multiple texts just now and only received the first few, what’s going on?
+##### Q: I’ve sent myself multiple texts just now and only received the first few, what’s going on?
 
 A: This occurs when a carrier filters you SMS out due to spam. We try our hardest to rate limit a specific user, however, if bypassed, carriers may block your SMS. The reason is that carriers will aggressively block content if it’s similar and repeatedly sent to the same number. The solution is to wait 24-48 hours.
 
-#### Q: How come my (non US) phone number isn’t working?
+##### Q: How come my (non US) phone number isn’t working?
 
 A: With full numbers, you are required to use the “+” and the country code. If you know your users are only in a certain country, you could automatically append the + and the country code so that they only need to append their number without the country code.
 

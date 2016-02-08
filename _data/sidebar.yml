@@ -22,13 +22,6 @@
 - title: Features
   directory: features
   children:
-    - title: Content Indexing
-      children:
-        - google-app-indexing
-        - spotlight-indexing
-    - title: Personalized Sharing
-      children:
-        - personalized_welcome
     - title: Web to App Conversion
       children:
         - deepviews
@@ -41,8 +34,15 @@
         - referral-programs
         - facebook_appinvites
         - advertising_facebook
-        - advertising_google
-        - advertising_twitter
+        - google-search-ads
+        - twitter-ads
+    - title: Personalized Experiences
+      children:
+        - personalized_welcome
+    - title: Content Indexing
+      children:
+        - google-app-indexing
+        - spotlight-indexing
 - title: Third-Party Integrations
   directory: third-party-integrations
   children:

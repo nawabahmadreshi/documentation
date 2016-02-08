@@ -27,7 +27,9 @@ Deepviews are discoverable in all search portals (Google, Apple Spotlight, Bing,
 
 {% image src='/img/pages/features/deepviews/deepviews_allthecooks.gif' actual center alt='Deepviews example' %}
 
-{% protip title="If you already have a mobile website..." %}The [website to app routing]({{base.url}}/features/deepview-mobile-site) feature can be used to recreate the functionality of Deepviews using your own website. If you already host your own content previews, this is a good alternative!{% endprotip %}
+{% protip title="If you already have a mobile website..." %}The [Website to App Routing]({{base.url}}/features/website-to-app-routing) feature can be used to recreate the functionality of Deepviews using your own website. If you already host your own content previews, this is a good alternative!{% endprotip %}
+
+### [Get started with Deepviews!]({{base.url}}/features/deepviews/guide)
 
 {% elsif page.guide %}
 
@@ -41,13 +43,12 @@ Deepviews are discoverable in all search portals (Google, Apple Spotlight, Bing,
 
 1. Head to the [Deepviews configuration page](https://dashboard.branch.io/#/settings/deepviews) on the Branch dashboard.
 1. Deepviews are configured separately for visitors on each platform (iOS, Android, and desktop). Select the platforms you want and click **Enable**.
-   - **Note:** if you enable desktop Deepviews, they will override any [Text-Me-The-App page]({{base.url}}/features/deepview-mobile-site) you have configured.
 
 {% image src='/img/pages/features/deepviews/deepviews_enable.png' quarter center alt='Deepviews tab' %}
 
-{% example %}
-You are developing an app for iOS and Android, but the Android version is not yet ready. Showing a Deepview to Android users would be of limited use, so you enable Deepviews only for iOS and desktop.
-{% endexample %} 
+{% caution %}
+If you enable desktop Deepviews, they will override any [Text-Me-The-App]({{base.url}}/features/text-me-the-app) page you have configured.
+{% endcaution %}
 
 {% protip title="Changing the app icon" %}If we pulled the wrong app icon, you can upload a new one in the _Social Media Display Customization_ section of the [dashboard Settings](https://dashboard.branch.io/#/settings/link).{% endprotip %}
 
@@ -68,7 +69,7 @@ Only users who do not have the app will go through this flow. You can view the t
 
 ## Customizations
 
-This is all you need to do to enable Deepviews. For each link, Branch will attempt to intelligently display the best content we have available. However, you can (and will probably want to!) what is shown. See the [Advanced]({{base.url}}/features/deepviews/advanced/) page for more information.
+This is all you need to do to enable Deepviews. For each link, Branch will attempt to intelligently display the best content we have available. However, you can (and will probably want to!) customize what is shown. See the [Advanced]({{base.url}}/features/deepviews/advanced/) page for more information.
 
 {% elsif page.advanced %}
 
@@ -263,18 +264,23 @@ var branchUniversalObject = branch.createBranchUniversalObject({
 {% endexample %}
 
 {% example title="When creating Marketing links on the Branch dashboard" %}
-You **cannot** specify `$og_title`, `$og_description` and `$og_image_url` in the _Deep Link Data (Advanced)_ section. Instead, you need to edit the Title, Description and Image URL in the _Social Media Description_ section immediately above it. 
+Edit the Title, Description and Image URL in the _Social Media Description_ section. 
 
 {% image src='/img/pages/features/deepviews/deepviews_social_media_description.png' half center alt='Social Media Description' %}
+
+**Note:** the _Deep Link Data (Advanced)_ section accepts most link control parameters, but `$og_title`, `$og_description` and `$og_image_url` **cannot** be specified there.
+
 {% endexample %}
 
 ## Enabling Deepviews for one link
 
 If you don't want to enable Deepviews globally, you can do it for each platform on a per link basis by inserting custom link control parameters [link control parameters]({{base.url}}/getting-started/configuring-links).
 
-- **$ios_deepview**: The name of the template to use for iOS. [default: `default_template`].
-- **$android_deepview**: The name of the template to use for Android. [default: `default_template`].
-- **$desktop_deepview**: The name of the template to use for the desktop. [default: `default_template`].
+| Key | Value | Default
+| --- | --- | ---
+| $ios_deepview | The name of the template to use for iOS. | `default_template`
+| $android_deepview | The name of the template to use for Android. | `default_template`
+| $desktop_deepview | The name of the template to use for the desktop. | `default_template`
 
 {% example title="When creating links dynamically" %}
 If you're creating a link by appending query parameters, you simply need to append the parameters to the URL. Please make sure to URL encode everything, lest the link will break.
@@ -460,11 +466,13 @@ You can create new Deepview templates using the [Deepviews configuration page](h
 
 {% image src='/img/pages/features/deepviews/deepview-create-template.png' quarter center alt='Deepviews tab' %}
 
-The Deepview editing screen contains two tabs:
+The Deepview editing screen contains two tabs: **Basic** and **Editor**.
 
 ### Basic
 
-The Basic tab displays your new template and provides two sections:
+The Basic tab displays your new template, and allows you to modify the default fallback OG tags used if none are specified for a link.
+
+{% image src='/img/deepviews/deepviews_editor_basic.png' half center alt='Deepviews tab' %}
 
 #### Deepview Settings
 
@@ -474,55 +482,57 @@ The Basic tab displays your new template and provides two sections:
 | Key | The value that you will reference when creating a link. E.g., `$ios_deepview: [key]` |
 
 #### App Settings 
+
 {% caution %}
 These fields are duplicates of the _Social Media Display Customization_ section of your app's [main link settings page](https://dashboard.branch.io/#/settings/link). Any updates will be applied in both locations.
 {% endcaution %}
 
-  - OG Title
-  - OG Description
-  - OG Image Url
-
-{% image src='/img/deepviews/deepviews_editor_basic.png' half center alt='Deepviews tab' %}
+| Setting | Usage |
+| --- | --- |
+| OG Title | Default value used if `$og_title` is not specified for a link.
+| OG Description | Default value used if `$og_description` is not specified for a link.
+| OG Image Url | Default value used if `$og_image_url` is not specified for a link.
 
 ### Editor
 
 The Editor tab allows you to edit the raw HTML and CSS for your template. The rendered template will update as you modify the markup.
 
-{% protip title="Javascript is not allowed on deepview templates" %}
-Before rendering the template, we sanitize the markup of Javascript for security reasons. This includes script tags and event attributes on tags.
-{% endprotip %}
-
 {% image src='/img/deepviews/deepviews_editor_code.png' half center alt='Deepviews tab' %}
 
-### Using liquid tags in Deepview templates
+{% caution title="Javascript is not allowed on deepview templates" %}
+Before rendering the template, we sanitize the markup of Javascript for security reasons. This includes script tags and event attributes on tags.
+{% endcaution %}
+
+
+## Using liquid tags in Deepviews
 
 By customizing your Deepview template, you have the ability to pass through other parameters from your link's [data dictionary]({{base.url}}/getting-started/configuring-links).
 
 Here's a full list of liquid available tags:
 
-#### {% raw %}{{app}}{% endraw %}
-App Object, which contains app data. Possible keys are:
+### {% raw %}{{app}}{% endraw %}
+App Object, which contains app data not specific to any link.
 
-- `branch_key`
-- `name`
-- `og_title`
-- `og_description`
-- `og_image_url`
-
-_These OG values are those set for your entire app (not each individual link), and are configured in Settings > Link Settings > Social Media Display Customization._
-
-{% example %}
-If you want to use your App Name (My Awesome App!) inside a Deepview, you would expose it like so: `<h1>Get {% raw %}{{app.name}}{% endraw %}</h1>`
-{% endexample %}
-
-####{% raw %}{{link_data}}{% endraw %}
-Link Object, which contains all of your link's parameters, including your deep link values.
+| Key | Usage |
+| --- | --- |
+| `app.branch_key` | Your Branch key from [Settings](https://dashboard.branch.io/#/settings).
+| `app.name` | The name of your app from [Settings](https://dashboard.branch.io/#/settings).
+| `app.og_title` | The **Link Title** set in the _Social Media Display Customization_ section of your app's [Link Settings](https://dashboard.branch.io/#/settings/link).
+| `app.og_description` | The **Description** set in the _Social Media Display Customization_ section of your app's [Link Settings](https://dashboard.branch.io/#/settings/link).
+| `app.og_image_url` | The **Thumbnail Image** set in the _Social Media Display Customization_ section of your app's [Link Settings](https://dashboard.branch.io/#/settings/link).
 
 {% example %}
-If you want to expose a key value pair of 'welcome_message': 'Welcome to my App', you would do the following: `<h1>{% raw %}{{link_data.welcome_message}}{% endraw %}</h1>`, and this would render `Welcome to my App`.
+If you want to use show your app's name inside a Deepview, you would expose it like so: `<h1>Get {% raw %}{{app.name}}{% endraw %}</h1>`
 {% endexample %}
 
-#### {% raw %}{{action}}{% endraw %}
+### {% raw %}{{link_data}}{% endraw %}
+Link Object, which contains all of your link's parameters, including your deep link values from the data dictionary. See the [Configuring Links]({{base.url}}/getting-started/configuring-links) page for more information.
+
+{% example %}
+If you want to expose a key value pair of `'welcome_message' : 'Welcome to my App'`, you would do the following: `<h1>{% raw %}{{link_data.welcome_message}}{% endraw %}</h1>`, and this would render `Welcome to my App`.
+{% endexample %}
+
+### {% raw %}{{action}}{% endraw %}
 The URL of the Branch link itself. If you create a new call to action in your Deepview, use this.
 
 {% example %}

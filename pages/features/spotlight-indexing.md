@@ -19,6 +19,8 @@ Listing your app content on Apple's new Spotlight search with Branch is easy. No
 Some older devices cannot index content. iPad minis, for example, cannot use CoreSpotlight. The SDK includes a check for these devices and will return an error message if you attempt to index content on them.
 {% endcaution %}
 
+### [Get started with Spotlight Indexing!]({{base.url}}/features/spotlight-indexing/guide)
+
 {% elsif page.guide %}
 
 {% prerequisite %}
@@ -117,7 +119,7 @@ func application(application: UIApplication, continueUserActivity userActivity: 
 
 If the user doesn't have the app installed and finds your content through search, Spotlight will open up the browser. In this situation, you can [show a Deepview]({{base.url}}/features/deepviews), which is an automatically-generated, mobile web render of the app content.
 
-## Further customizations
+## Further content customizations
 
 You can use our identifier when indexing to perform advanced customizations of the content being listed. 
 
