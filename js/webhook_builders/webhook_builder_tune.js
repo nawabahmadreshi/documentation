@@ -1,7 +1,7 @@
 
 // TUNE Dynamic Link Generator Function
 
-function createTuneDynamicDeepLink() {
+function createTuneWebhook() {
 	// Takes inputs and creates a link out of them.
 
 	// Create base link.
@@ -72,6 +72,6 @@ function createTuneDynamicDeepLink() {
 	console.log(link)
 
 	// Final Link Creation
-	window.document.getElementById('generatedTuneDyanmicDeepLink').value = link
+	window.document.getElementById('generatedTuneWebhook').value = link
 
 };

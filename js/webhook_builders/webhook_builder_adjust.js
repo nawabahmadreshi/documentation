@@ -1,11 +1,11 @@
 
 // Adjust Dynamic Link Generator Function
 
-function createAdjustDynamicDeepLink() {
+function createAdjustWebhook() {
 	// Takes inputs and creates a link out of them.
 
 	// Create base link.
-	var link = 'http://'
+	var link = 'https://app.adjust.com/';					
 
 	// Grab Primary Adjust Query Parameters
 	var ios_tracker_token = window.document.getElementById('ios_tracker_token').value;
@@ -20,19 +20,17 @@ function createAdjustDynamicDeepLink() {
 		return
 	};
 
-
-//ANDROID
-	// Add Adjust Site Id (site_id)
-	if (site_id.length>0) {
-		var link = link + '&site_id=' + android_tracker_token;
+	// Android Tracker Token (android_tracker_token)
+	if (android_tracker_token.length>0) {
+		var link = link + '_' + android_tracker_token; // Key requirement to add underscore between two tokens
 	}
 	else {
 		window.alert('Your Android Tracker Token is not filled in or is incorrect.');
 		return
 	};
 
-	// Add Adjust main string identifiers
-	var link = link + ''
+	// Add Adjust s2s and campaign identifiers
+	var link = link + '?s2s=1' + '&' + 'campaign={{campaign}}'
 
 
 	// Add Custom Query Parameters
@@ -69,9 +67,10 @@ function createAdjustDynamicDeepLink() {
 	if (customQueryParams10.length > 0) {
 		var link = link + '&' + customQueryParams10;}
 
-	console.log(link)
+	console.log(link);
 
 	// Final Link Creation
-	window.document.getElementById('generatedAdjustDyanmicDeepLink').value = link
+	window.document.getElementById('generatedAdjustWebhook').value = link;
+
 
 };

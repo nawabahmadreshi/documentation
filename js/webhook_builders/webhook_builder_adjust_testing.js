@@ -2,8 +2,10 @@
 // You can manipulate the following values to test the generator.
 
 var testValues = {
-	'advertiser_id': '9999999',
-	'site_id': '55300',
+	'ios_tracker_token': '9999999',
+	'android_tracker_token': '55300',
+	'adgroup': 'johnjoe',
+	'creative': 'smith',
 	'customQueryParams1': 'user_id=johnjoe',
 	'customQueryParams2': 'company=branchmetrics',
 	'customQueryParams3': 'role=bd',
