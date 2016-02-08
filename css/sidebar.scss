@@ -64,3 +64,45 @@
 .sidebar-group li {
 	margin-top: 20px;
 }
+
+.inner__sidebar {
+	background-color:#364351;
+	width: 300px;
+	position: fixed;
+	top: 145px;
+	bottom: 0;
+	overflow-y: scroll;
+	&::-webkit-scrollbar {
+    width: 10px;
+	}
+	&::-webkit-scrollbar-track {
+    background-color:rgba(255,255,255,0.3);
+	}
+	&::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    background-color:rgba(54,67,81,0.5);
+    border: 1px solid rgba(255,255,255,0.1);
+	}
+}
+
+.inner__sidebar__fixed {
+	padding: 30px 10px 30px 15px;
+	//padding-bottom: 359px;
+	/*@media (min-width: 768px) {
+		padding-left: calc((100% - 750px) / 2 - 15px);
+	}
+	@media (min-width: 992px) {
+	    padding-left: calc((100% - 970px) / 2 - 15px);
+	}
+	@media (min-width: 1200px){
+	  padding-left: calc((100% - 1170px) / 2 - 15px);
+	}*/
+}
+
+@media (max-width: $screen-xs-max) {
+  .inner__sidebar {
+    width: 100%;
+    position: relative;
+    top: 0;
+  }
+}

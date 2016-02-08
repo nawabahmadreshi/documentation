@@ -5,7 +5,6 @@ $branch-font-path: "/font";
 
 @import "../_includes/branch-web-assets/styles/global";
 @import "../_includes/branch-web-assets/components/footer/footer";
-@import "../_includes/branch-web-assets/components/navbar/navbar";
 @import "../_includes/branch-web-assets/components/header/header";
 @import "./headers";
 @import "./tabs";
@@ -19,6 +18,7 @@ $branch-font-path: "/font";
 @import "./inner";
 @import "./breadcrumbs";
 @import "./searchbar";
+@import "../_includes/branch-web-assets/components/navbar/navbar";
 
 .btn-inactive {
 	border-color: white;
@@ -99,5 +99,16 @@ a:hover, a:focus {
   /** An element that fades in */
   .scene_element--fadein {
     animation-name: fadeIn;
+  }
+}
+
+a {
+  color: #1cadce;
+  text-decoration: none;
+  transition: all .2s ease-in;
+  -webkit-transition: all .2s ease-in;
+  &:hover {
+    text-decoration: none;
+    color: #076074;
   }
 }
