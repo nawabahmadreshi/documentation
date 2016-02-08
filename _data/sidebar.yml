@@ -48,7 +48,7 @@
   children:
     - title: Growth Tools
       children:
-        - ab_testing_apptimize
+        - apptimize
         - referrals_referral_saasquatch
         - analytics_appboy
     - title: Measurement Platforms
