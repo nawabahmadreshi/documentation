@@ -20,12 +20,27 @@
 	        </tr>
 	        <tr>
 	            <td><label>Adgroup</label></td>
-	            <td><input style="width:300px" id="adgroup" type="text" maxlength="30" placeholder="adgroup" required/></td>
+	            <td><select style="width:300px" id="adgroup"/></td>
+	            	<option value="" selected="">Choose an adgroup.</option>
+	            	<option value="{{ branch }}">Branch</option>
+	            	<option value="{{ channel }}">Channel</option>
+	            	<option value="{{ feature }}">Feature</option>
+	            	<option value="{{ stage }}">Stage</option>
+	            	<option value="{{ tags }}">Tags</option>
+	            	</select></td>
 	        </tr>
 	        <tr>
 	            <td><label>Creative</label></td>
-	            <td><input style="width:300px" id="creative" type="text" maxlength="30" placeholder="creative" required/></td>
+	            <td><select style="width:300px" id="creative"/></td>
+	            	<option value="" selected="">Choose an adgroup.</option>
+	            	<option value="{{ branch }}">Branch</option>
+	            	<option value="{{ channel }}">Channel</option>
+	            	<option value="{{ feature }}">Feature</option>
+	            	<option value="{{ stage }}">Stage</option>
+	            	<option value="{{ tags }}">Tags</option>
+	            	</select></td>
 	        </tr>
+	
 	</table>
 			</br>
 			</br>

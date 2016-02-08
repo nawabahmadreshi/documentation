@@ -10,6 +10,8 @@ function createAdjustWebhook() {
 	// Grab Primary Adjust Query Parameters
 	var ios_tracker_token = window.document.getElementById('ios_tracker_token').value;
 	var android_tracker_token = window.document.getElementById('android_tracker_token').value;
+	var adgroup = window.document.getElementById('adgroup').value;
+	var creative = window.document.getElementById('creative').value;
 
 	// iOS Tracker Token (ios_tracker_token)
 	if (ios_tracker_token.length>0) {
@@ -32,6 +34,23 @@ function createAdjustWebhook() {
 	// Add Adjust s2s and campaign identifiers
 	var link = link + '?s2s=1' + '&' + 'campaign={{campaign}}'
 
+	// Add Adgroup (adgroup)
+	if (adgroup.length>0) {
+		var link = link + '&' + adgroup;
+	}
+	else {
+		window.alert('Your Adgroup is not filled in or is incorrect.');
+		return
+	};
+
+	// Add Creative (creative)
+	if (creative.length>0) {
+		var link = link + '&' + creative;
+	}
+	else {
+		window.alert('Your Creative is not filled in or is incorrect.');
+		return
+	};
 
 	// Add Custom Query Parameters
 
