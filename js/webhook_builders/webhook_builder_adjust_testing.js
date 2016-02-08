@@ -4,8 +4,6 @@
 var testValues = {
 	'ios_tracker_token': '9999999',
 	'android_tracker_token': '55300',
-	'adgroup': '{{ channel }}',
-	'creative': '{{ tags }}',
 	'customQueryParams1': 'user_id=johnjoe',
 	'customQueryParams2': 'company=branchmetrics',
 	'customQueryParams3': 'role=bd',
