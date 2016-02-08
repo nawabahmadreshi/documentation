@@ -32,7 +32,7 @@
       children:
         - email_campaigns
         - referral-programs
-        - facebook_appinvites
+        - facebook-app-invites
         - facebook-ads
         - google-search-ads
         - twitter-ads
