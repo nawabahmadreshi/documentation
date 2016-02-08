@@ -4,10 +4,19 @@ directory: features
 title: "Twitter Ads"
 hide_platform_selector: true
 sections:
+- overview
 - guide
 ---
 
-Configuring Twitter install ads to use Branch links is very simple. The only trick is that you will be using the website click/conversion ads instead of the standard app install ad.
+{% if page.overview %}
+
+Configuring Twitter install ads to use Branch links is very simple. The only trick is that you will be using the website click/conversion ads instead of the standard app install ad. Using Branch links allows you to track ad-driven installs on the Branch dashboard and deep link those new users directly to content the first time they open your app.
+
+{% ingredient deep-linked-ad-ideas %}{% endingredient %}
+
+### [Get started with Twitter ads!]({{base.url}}/features/twitter-ads/guide)
+
+{% elsif page.guide %}
 
 {% prerequisite %}
 
@@ -43,3 +52,5 @@ On the ad creation card, enter the Branch marketing link you created in the **We
 ## Save
 
 Save the Campaign. You're done!
+
+{% endif %}

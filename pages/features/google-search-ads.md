@@ -6,13 +6,21 @@ page_title: "Advertising with Deep Links: Google Ads - Search and Display"
 description: 
 hide_platform_selector: true
 sections:
+- overview
 - guide
 ---
 
-If you're running Google AdWords campaigns, whether they're of the Search or Display variety, Branch links can be placed inside your ads.
+{% if page.overview %}
+If you're running Google AdWords campaigns, whether they're of the Search or Display variety, Branch links can be placed inside your ads. This allows you to track ad-driven installs on the Branch dashboard and deep link those new users directly to content the first time they open your app.
+
+{% ingredient deep-linked-ad-ideas %}{% endingredient %}
 
 {% protip title="Google Display Network Campaigns" %}Google Display Network campaigns allow you to place Branch links and direct traffic to mobile conversions. We're in testing stages of Google Display, and will provide steps here when we have a finalized integration.
 {% endprotip %}
+
+### [Get started with Google ads!]({{base.url}}/features/google-search-ads/guide)
+
+{% elsif page.guide %}
 
 {% prerequisite %}
 
@@ -44,3 +52,5 @@ Because the **Final URL** for your app install campaigns must match your domain,
 ## Finished
 
 That's it! App installs through Google ads will now display on your Branch dashboard.
+
+{% endif %}
