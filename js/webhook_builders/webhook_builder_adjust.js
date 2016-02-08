@@ -5,7 +5,7 @@ function createAdjustWebhook() {
 	// Takes inputs and creates a link out of them.
 
 	// Create base link.
-	var link = 'https://app.adjust.com/';					
+	var link = 'https://app.adjust.com/';
 
 	// Grab Primary Adjust Query Parameters
 	var ios_tracker_token = window.document.getElementById('ios_tracker_token').value;
