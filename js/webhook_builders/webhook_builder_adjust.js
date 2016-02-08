@@ -36,7 +36,7 @@ function createAdjustWebhook() {
 
 	// Add Adgroup (adgroup)
 	if (adgroup.length>0) {
-		var link = link + '&' + adgroup;
+		var link = link + '&' + 'adgroup=' + '{{' + adgroup + '}}';
 	}
 	else {
 		window.alert('Your Adgroup is not filled in or is incorrect.');
@@ -45,7 +45,7 @@ function createAdjustWebhook() {
 
 	// Add Creative (creative)
 	if (creative.length>0) {
-		var link = link + '&' + creative;
+		var link = link + '&' + 'creative=' + '{{' + creative + '}}'
 	}
 	else {
 		window.alert('Your Creative is not filled in or is incorrect.');
