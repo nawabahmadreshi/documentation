@@ -33,14 +33,15 @@ var PlatformSelector = React.createClass({
 
 			classes = {
 				'btn btn-default': true,
-				'btn-inactive': self.state.platform != platform.key
+				'btn-inactive': self.props.url_platform != platform.key
 			}
 			var platform_path = utils.pageHasPlatform(self.props.site_map, self.props.current_path, platform.key) ? platform.key : '';
 			return (
 				<a
 					className={ cx(classes) }
 					key={ platform.key }
-					href={ '/' + self.props.current_path + '/guide/' + platform_path }
+          url_platform={ self.props.url_platform }
+					href={ '/' + self.props.current_path + '/' + self.props.url_section + '/' + platform_path }
 					onClick={ self._handleClick(platform.key) }>
 					{ platform.name }
 				</a>);
