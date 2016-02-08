@@ -50,7 +50,7 @@
       children:
         - apptimize
         - referral-saasquatch
-        - analytics_appboy
+        - appboy
     - title: Measurement Platforms
       children:
         - analytics_adjust
