@@ -269,7 +269,7 @@ func application(application: UIApplication, didFinishLaunchingWithOptions launc
 {% endtab %}
 {% endtabs %}
 
-This method is for handling the case where the app is already installed the URI scheme gets called:
+This method is for handling the case where the app is already installed when the URI scheme gets called:
 
 {% tabs %}
 {% tab objective-c %}
