@@ -57,7 +57,8 @@
         - adjust
         - localytics
         - mixpanel
-        - tune-webhook-builder
+    - strategic-partners-guide
+    - tune-webhook-builder
 - title: Reference
   directory: methods-endpoints
   children:
