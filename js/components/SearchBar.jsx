@@ -56,10 +56,10 @@ var SearchBar = React.createClass({
 	},
 	handleClose: function() {
 		this.setState({
+		  resultsClass: 'search-results',
 			field: '',
 		  iconClass: 'material-icons',
-		  iconContent: 'search',
-		  resultsClass: 'search-results'
+		  iconContent: 'search'
 		});
 	},
 	handleClick: function() {

@@ -14,6 +14,7 @@
 @media (min-width: 1200px){.container{width:1170px;}}*/
 .container.inner {
 	width: 100%;
+  margin: 0;
 	padding: 0;
 }
 
@@ -23,6 +24,8 @@
 	font-size: 14px;
 	line-height: 2;
 	color: #444444;
+  max-width: 870px;
+  position: relative;
 	h1 {
 		padding-bottom: 10px;
 		margin: 45px 0 5px 0;
@@ -178,6 +181,7 @@
           border-left: none;
           text-align: right;
           white-space: nowrap;
+          font-weight: bold;
           //padding-right: 30px;
         }
       }
@@ -216,10 +220,12 @@
   div.panel {
     background-color: #ffffff;
     margin-left: -45px;
-    margin-right: -45px;
+    margin-right: -3045px;
+    padding-right: 3045px;
     padding: 45px;
+    padding-right: 3045px;
     &.panel-dark {
-      background-color: #fafafa;
+      background-color: #f9f9f9;
     }
   }
   &.content-guide div.panel {
@@ -305,7 +311,7 @@
   font-feature-settings: 'liga';
 }
 
-@media (max-width: $screen-xs-max) {
+@media (max-width: $screen-sm-max) {
   .inner__content {
     margin-left: 0;
   }

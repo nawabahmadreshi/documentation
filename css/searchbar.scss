@@ -142,6 +142,7 @@ select:active, select:hover {
   width: 300px;
   background-color: #1D2A38;
   padding: 15px;
+  padding-top: 30px;
   color: #ffffff;
   text-align: center;
   z-index: 2;
@@ -150,6 +151,12 @@ select:active, select:hover {
     text-transform: uppercase;
     font-weight: bold;
     font-size: 16px;
+    a {
+      color: #ffffff;
+      &:hover {
+        color: #1cadce;
+      }
+    }
   }
   .search {
     input {
@@ -177,7 +184,7 @@ select:active, select:hover {
     .search-icon {
       position: absolute;
       right: 20px;
-      top: 54px;
+      top: 69px;
       z-index: 1;
       i {
         font-size: 20px;
@@ -231,7 +238,7 @@ select:active, select:hover {
   }
 }
 
-@media (max-width: $screen-xs-max) {
+@media (max-width: $screen-sm-max) {
   .inner__searchbar {
     width: 100%;
     position: relative;
@@ -243,7 +250,7 @@ select:active, select:hover {
     .search .search-results {
       width: 100vw;
       position:relative;
-      top:4;
+      top:4px;
       left:-15px;
       transition: 0.2s max-height ease-in;
       -webkit-transition: 0.2s max-height ease-in;

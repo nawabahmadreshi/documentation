@@ -3,8 +3,13 @@
   .section-group {
     border-bottom: 4px solid #eeeeee;
     height: 53px;
-    margin: 0 -45px;
+    margin: 0 -4000px 0 -45px;
     padding: 0 15px;
+    @media (max-width: $screen-xs-max) {
+      margin: 0 -4000px 0 -4000px;
+      padding: 0;
+      text-align: center;
+    }
     .section {
       text-transform: uppercase;
       font-size: 14px;
@@ -14,8 +19,13 @@
       border-bottom: 4px solid #1cadce;
       font-weight: bold;
       display: inline-block;
+      height: 53px;
       &:hover {
         color: #1cadce;
+      }
+      @media (max-width: $screen-xs-max) {
+        font-size: 12px;
+        margin: 0;
       }
     }
     .section-inactive {
