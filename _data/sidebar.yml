@@ -30,9 +30,9 @@
         - text-me-the-app
     - title: Marketing for Mobile
       children:
-        - email_campaigns
+        - email-campaigns
         - referral-programs
-        - facebook_appinvites
+        - facebook-app-invites
         - facebook-ads
         - google-search-ads
         - twitter-ads
@@ -48,9 +48,9 @@
   children:
     - title: Growth Tools
       children:
-        - ab_testing_apptimize
-        - referrals_referral_saasquatch
-        - analytics_appboy
+        - apptimize
+        - referral-saasquatch
+        - appboy
     - title: Measurement Platforms
       children:
         - analytics_adjust
