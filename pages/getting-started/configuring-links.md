@@ -56,7 +56,11 @@ Every link that you create is completely customizable from a functionality persp
 
 #### After click redirect
 
-Currently only supported on iOS, this lets you customize where Branch will redirect a user's web view after opening up the app or app store. The alternative is that in some configs, we leave a white screen.
+This lets you customize where Branch will redirect a user's web view after opening up the app or app store. The alternative is that in some configs, we leave a white screen.
+
+{% caution %}
+This parameter is currently supported only on iOS.
+{% endcaution %}
 
 | **Key** | **Usage** | **Default**
 | ---: | --- | ---
