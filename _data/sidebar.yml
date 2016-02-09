@@ -57,9 +57,15 @@
         - localytics
         - mixpanel
         - tune-webhook-builder
-- title: Methods & Endpoints
+- title: Reference
   directory: methods-endpoints
   children:
-    - title: App SDKs
+    - title: iOS SDK
+    - title: Android SDK
     - title: Web SDK
-    - title: API
+    - title: Xamarin SDK
+    - title: Cordova/Ionic SDK
+    - title: Unity SDK
+    - title: Adobe AIR SDK
+    - title: Titanium SDK
+    - title: HTTP API

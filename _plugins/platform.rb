@@ -71,7 +71,8 @@ module Jekyll
       site.data['site_map'] = {
         'features' => {},
         'third-party-integrations' => {},
-        'getting-started' => {}
+        'getting-started' => {},
+        'methods-endpoints' => {}
       }
 
       group_pages.each do |page|

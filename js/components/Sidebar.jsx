@@ -29,7 +29,36 @@ var LinkInternal = React.createClass({
 		var props = this.props,
 			page_key = props.page_key;
 		if (!props.group_data || !props.group_data[page_key]) {
-			return (<a href="#">{ page_key }</a>);
+			if (props.page_key.title == 'iOS SDK') {
+				return (<a target="_blank" href="https://github.com/BranchMetrics/iOS-Deferred-Deep-Linking-SDK">{ page_key }</a>);
+			}
+			else if (props.page_key.title == 'Android SDK') {
+				return (<a target="_blank" href="https://github.com/BranchMetrics/Android-Deferred-Deep-Linking-SDK">{ page_key }</a>);
+			}
+			else if (props.page_key.title == 'Web SDK') {
+				return (<a target="_blank" href="https://github.com/BranchMetrics/Smart-App-Banner-Deep-Linking-Web-SDK">{ page_key }</a>);
+			}
+			else if (props.page_key.title == 'Xamarin SDK') {
+				return (<a target="_blank" href="https://github.com/BranchMetrics/Xamarin-Deferred-Deep-Linking-SDK">{ page_key }</a>);
+			}
+			else if (props.page_key.title == 'Cordova/Ionic SDK') {
+				return (<a target="_blank" href="https://github.com/BranchMetrics/Cordova-Ionic-PhoneGap-Deferred-Deep-Linking-SDK">{ page_key }</a>);
+			}
+			else if (props.page_key.title == 'Unity SDK') {
+				return (<a target="_blank" href="https://github.com/BranchMetrics/Unity-Deferred-Deep-Linking-SDK">{ page_key }</a>);
+			}
+			else if (props.page_key.title == 'Adobe AIR SDK') {
+				return (<a target="_blank" href="https://github.com/BranchMetrics/AIR-ANE-Deferred-Deep-Linking-SDK">{ page_key }</a>);
+			}
+			else if (props.page_key.title == 'Titanium SDK') {
+				return (<a target="_blank" href="https://github.com/BranchMetrics/Titanium-Deferred-Deep-Linking-SDK">{ page_key }</a>);
+			}
+			else if (props.page_key.title == 'HTTP API') {
+				return (<a target="_blank" href="https://github.com/BranchMetrics/Deferred-Deep-Linking-Public-API">{ page_key }</a>);
+			}
+			else {
+				return (<a href="#">{ page_key }</a>);
+			}
 		}
 		var page = props.group_data[page_key],
 			path = props.directory ? [ props.directory, page_key ] : [ page_key ],
@@ -40,7 +69,7 @@ var LinkInternal = React.createClass({
 		if ((page.platforms[props.platform]) && (Object.keys(page.sections)[0] != 'overview')) {
 			path.push(props.platform);
 		}
-		return (<a href={ '/' + path.join('/') } className={ isCurrentPath ? 'sidebar-link-selected scene_element scene_element--fadein' : 'scene_element scene_element--fadein' } onClick={ self._handleClick(Object.keys(page.sections)[0]) }>{ page.title }</a>);
+		return (<a href={ '/' + path.join('/') } className={ isCurrentPath ? 'sidebar-link-selected' : '' } onClick={ self._handleClick(Object.keys(page.sections)[0]) }>{ page.title }</a>);
 	}
 });
 

@@ -61,6 +61,10 @@
 	font-weight:bold;
 }
 
+.sidebar-group li a:hover {
+	color: #1cadce;
+}
+
 .sidebar-group li {
 	margin-top: 20px;
 }
@@ -99,7 +103,7 @@
 	}*/
 }
 
-@media (max-width: $screen-xs-max) {
+@media (max-width: $screen-sm-max) {
   .inner__sidebar {
     width: 100%;
     position: relative;
