@@ -35,13 +35,21 @@ function createAdjustWebhook() {
 	var link = link + '?s2s=1' + '&' + 'campaign={{campaign}}'
 
 	// Add Adgroup (adgroup)
+	if (adgroup != 'branch') {
+		adgroup = '{{' + adgroup + '}}'; // Add curly brackets if its not the branch param
+	}
+
 	if (adgroup.length>0) {
-		var link = link + '&' + 'adgroup=' + '{{' + adgroup + '}}';
+		var link = link + '&' + 'adgroup=' + adgroup ;
 	}
 
 	// Add Creative (creative)
+	if (creative != 'branch') {
+		creative = '{{' + creative + '}}'; // Add curly brackets if its not the branch param
+	}
+
 	if (creative.length>0) {
-		var link = link + '&' + 'creative=' + '{{' + creative + '}}'
+		var link = link + '&' + 'creative=' + creative;
 	}
 
 	// Add Custom Query Parameters
