@@ -26,9 +26,9 @@ module Jekyll
       if File.exist?(File.join(base, 'pages', directory, page.name))
         self.read_yaml(File.join(base, 'pages', directory), page.name)
         self.process(@name)
-      else
-        self.read_yaml(File.join(base, 'recipes'), page.name)
-        self.process(@name)
+      #else
+        #self.read_yaml(File.join(base, 'recipes'), page.name)
+        #self.process(@name)
       end
 
       formatted_sections = {
@@ -56,6 +56,21 @@ module Jekyll
       #  self.data['section'] = section
       #  self.data['guide'] = true
       #end
+      #puts 'page'
+      #puts page.data['redirect_from']
+      #puts 'self'
+      #puts self.data['redirect_from']
+      if page.data['sections']
+        if page.data['sections'][0] != self.data['section']
+          self.data.delete('redirect_from')
+        end
+      end
+      #puts 'CHANGE'
+      #puts self.data['section']
+      #puts 'page'
+      #puts page.data['redirect_from']
+      #puts 'self'
+      #puts self.data['redirect_from']
 
       path_page_name = page.name.split(".")[0]
       if path_page_name == 'index' then path_page_name = '' end
