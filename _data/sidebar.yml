@@ -53,9 +53,9 @@
         - appboy
     - title: Measurement Platforms
       children:
-        - analytics_adjust
-        - analytics_localytics
-        - analytics_mixpanel
+        - adjust
+        - localytics
+        - mixpanel
         - tune-webhook-builder
 - title: Methods & Endpoints
   directory: methods-endpoints
