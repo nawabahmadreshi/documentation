@@ -59,8 +59,8 @@ module Jekyll
 
       path_page_name = page.name.split(".")[0]
       if path_page_name == 'index' then path_page_name = '' end
-
-      self.data['current_path'] = if directory.length > 0 && path_page_name.length > 0 then directory + '/' + path_page_name else '' end
+      
+      self.data['current_path'] = if directory.length > 0 && path_page_name.length > 0 then directory + '/' + path_page_name else directory end
 
     end
   end
