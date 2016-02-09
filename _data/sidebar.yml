@@ -53,6 +53,7 @@
         - appboy
     - title: Measurement Platforms
       children:
+        - google-analytics
         - adjust
         - localytics
         - mixpanel
