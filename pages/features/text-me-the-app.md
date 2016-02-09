@@ -101,7 +101,7 @@ Add the following code somewhere inside the `<head></head>` tags on your website
 
 {% highlight html %}
 <script type="text/javascript">
-{% ingredient web_sdk/_initialization %}{% endingredient %}
+{% ingredient web-sdk-initialization %}{% endingredient %}
 function sendSMS(form) {
   branch.sendSMS(
     phone: form.phone.text,

@@ -38,7 +38,8 @@
         - twitter-ads
     - title: Personalized Experiences
       children:
-        - personalized_welcome
+        - content-sharing
+        - custom-onboarding
     - title: Content Indexing
       children:
         - google-app-indexing
@@ -53,10 +54,12 @@
         - appboy
     - title: Measurement Platforms
       children:
+        - google-analytics
         - adjust
         - localytics
         - mixpanel
-        - tune-webhook-builder
+    - strategic-partners-guide
+    - tune-webhook-builder
 - title: Reference
   directory: methods-endpoints
   children:
@@ -69,3 +72,4 @@
     - title: Adobe AIR SDK
     - title: Titanium SDK
     - title: HTTP API
+    - data-export-api
