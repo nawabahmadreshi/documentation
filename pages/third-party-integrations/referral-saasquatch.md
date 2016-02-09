@@ -22,16 +22,18 @@ The Branch + SaaSquatch referral program integration provides:
 - **Custom conversion tracking.** SaaSquatch lets you to provide rewards for any custom conversion status. You can reward users for referring users who not just signup, but also make purchases, etc.
 - **User reward tracking/storage.** SaaSquatch leaves the actual user facing rewarding to you, but we store how many credits have been earned from referrals. This makes it easy so that you can just check the balance of credits in the app from us, give the user some reward, then clear the credit balance on our server.
 
-## Other implementation ideas
+{% example title="Other implementation ideas" %}
 
 Referral SaaSquatch supports referral tracking across platforms and mediums. 
 For example you could invite a friend to try a product using your iPhone, but then their friends might sign up for an account using Chrome on their laptop, and then install your Android app to make their first purchase. 
 
-Some other examples:
+Some other possibilities:
 
  - Someone sends an invite from your **web app**, a friend gets an email on their phone, is redirected to install the iOs app and signs up in-app.
  - Someone tweets an invite from your **android app**, a friend sees the tweet on their laptop, is redirected to your website, and signs up from your website using their twitter credentials.
- - Someone posts to facebook after receiving an **email newsletter**, the friend sees the post and is redirected to install your Android app. After installing your app, they go to your website to create and account.
+ - Someone posts to Facebook after receiving an **email newsletter**, the friend sees the post and is redirected to install your Android app. After installing your app, they go to your website to create and account.
+
+{% endexample %}
 
 ### [Get started with Referral SaaSquatch!]({{base.url}}/third-party-integrations/referral-saasquatch/guide)
 

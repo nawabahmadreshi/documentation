@@ -31,8 +31,6 @@ If you're running Google AdWords campaigns, whether they're of the Search or Dis
 
 ## Create a Marketing link on the Branch dashboard
 
-### Add a marketing link
-
 1. Visit the [Marketing page](https://dashboard.branch.io/#/marketing) on the Branch dashboard and click **+ Add link**.
 1. Pick a **Marketing Title** for later reference. For example: "Ad for blue sneakers" {% image src='/img/pages/features/google-search-ads/ad_example_create.png' 2-thirds center alt='Create Marketing Link' %}
 1. **Channel** and **Campaign** are optional but recommended. **Tags** is free form.
