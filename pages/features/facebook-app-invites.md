@@ -297,7 +297,7 @@ func application(application: UIApplication, openURL url: NSURL, sourceApplicati
     Branch.getInstance().handleDeepLink(url)
 
     // We're not sure how to init the Facebook SDK in Swift
-    // if you know, please make a pull request on this repo https://github.com/BranchMetrics/documentation/blob/master/recipes/facebook_appinvites.md
+    // if you know, please get in touch with us!
 
     return true
 }
