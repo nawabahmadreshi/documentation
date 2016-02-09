@@ -22,7 +22,7 @@ sections:
 
 To help you grow your app, Facebook offers a feature called App Invites as an alternative to sharing on the Facebook wall. It is a private, friend-to-friend invite, similar to a direct SMS message. 
 
-{% image src='/img/pages/features/facebook-app-invites/appinvite.png' half center alt='app invite' %}
+{% image src='/img/pages/features/facebook-app-invites/appinvite.png' 2-thirds center alt='app invite' %}
 
 ### [Get started with Facebook App Invites!]({{base.url}}/features/facebook-app-invites/guide)
 
@@ -46,8 +46,8 @@ You can still complete this guide and App Links will function, but attribution d
 
 In order for Branch to work with Facebook App Invites, you must first allow Branch to access your Facebook app information.
 
-1. Log in to Facebook, navigate to [developers.facebook.com/apps](http://developers.facebook.com/apps) and choose your app. You'll need the **App ID** and **App Secret**.{% image src='/img/pages/features/facebook-app-invites/fb_auth_fb.png' 2-thirds center alt='Facebook Auth' %}
-1. On the Branch Dashboard, go to [Link Settings](https://dashboard.branch.io/#/settings/link) and scroll down to 'Authenticate for Facebook Install Ads'. Enter your **App ID** and **App Secret** from Facebook.{% image src='/img/pages/features/facebook-app-invites/fb_auth_branch.png' 2-thirds center alt='Facebook Auth' %}
+1. Log in to Facebook, navigate to [developers.facebook.com/apps](http://developers.facebook.com/apps) and choose your app. You'll need the **App ID** and **App Secret**.{% image src='/img/pages/features/facebook-app-invites/fb_auth_fb.png' 3-quarters center alt='Facebook Auth' %}
+1. On the Branch Dashboard, go to [Link Settings](https://dashboard.branch.io/#/settings/link) and scroll down to 'Authenticate for Facebook Install Ads'. Enter your **App ID** and **App Secret** from Facebook.{% image src='/img/pages/features/facebook-app-invites/fb_auth_branch.png' 3-quarters center alt='Facebook Auth' %}
 1. Press 'Authenticate'.
 
 ## Insert Branch link into App Invite
@@ -191,7 +191,7 @@ Facebook prevents Branch from measuring the number of clicks for App Invites, so
 
 To view more details stats, click the _small button that looks like a bar chart_ on the far right. Note that these stats are **limited to the date range** at the top. You can expand the range if you'd like.
 
-{% image src='/img/pages/features/facebook-app-invites/click_flow_analytics.png' 3-quarters center alt='Facebook Example Ad' %}
+{% image src='/img/pages/features/facebook-app-invites/click_flow_analytics.png' full center alt='Facebook Example Ad' %}
 
 ## Next steps
 
@@ -374,7 +374,7 @@ protected void onStop() {
 
 If Facebook is having trouble reading the AppLinks from the Branch link, you might see this message while trying to test out the flow. This means that there is something corrupted in the OG tags causing Facebook to not parse it.
 
-{% image src='/img/pages/features/facebook-ads/missing_applinks.png' quarter center alt='troubleshooting' %}
+{% image src='/img/pages/features/facebook-ads/missing_applinks.png' third center alt='troubleshooting' %}
 
 ### Rescrape the OG tags
 
@@ -411,7 +411,7 @@ We recently discovered a bug within the Facebook system that prevents App Links 
 - Country Restricted is set to **No**
 
 It has to look like this **exactly**:
-{% image src='/img/pages/features/facebook-ads/app_restrictions.png' 2-thirds center alt='app restrictions troubleshooting' %}
+{% image src='/img/pages/features/facebook-ads/app_restrictions.png' 3-quarters center alt='app restrictions troubleshooting' %}
 
 
 ## Common issues with Facebook Authentication
@@ -428,6 +428,6 @@ If you have entered the correct App ID and Secret but are still getting issues, 
 
 So if you have enabled "Native or desktop app", then your advanced options should appear like the following:
 
-{% image src='/img/pages/features/facebook-ads/facebook_secret.png' 2-thirds center alt='Client Secret' %}
+{% image src='/img/pages/features/facebook-ads/facebook_secret.png' 3-quarters center alt='Client Secret' %}
 
 {% endif %}

@@ -670,7 +670,7 @@ linkProperties.controlParams.Add("$deeplink_path", "content/1234");
 
 You can specify the control parameters for individual marketing links by inserting the keys and values into the _Deep Link Data (Advanced)_ section.
 
-{% image src='/img/pages/getting-started/deep-link-routing/deep-link_path.png' 2-thirds center alt='deeplink path' %}
+{% image src='/img/pages/getting-started/deep-link-routing/deep-link_path.png' 3-quarters center alt='deeplink path' %}
 
 {% endexample %}
 

@@ -118,7 +118,7 @@ You can also [build and reference the assemblies directly]({{base.url}}/getting-
    - `branchKey`: get your Branch key from [the Branch dashboard](https://dashboard.branch.io/#/settings).
    - `branchUri`: this must be the same value as you entered in [the Branch link settings](https://dashboard.branch.io/#/settings/link). Do **not** include the `://` characters.
 
-{% image src='/img/pages/getting-started/sdk-integration-guide/unity_branch_key.png' 2-thirds center alt='Unity plugin installation' %}
+{% image src='/img/pages/getting-started/sdk-integration-guide/unity_branch_key.png' full center alt='Unity plugin installation' %}
 
 {% protip title="For iOS projects" %}
 
@@ -193,7 +193,7 @@ Branch opens your app by using its URI scheme (`yourapp://`), which should be un
 1. Expand the "URL Types" section at the bottom.
 1. Click the `+` button to add the URL Scheme you've selected, as below:
 
-{% image src='/img/pages/getting-started/sdk-integration-guide/urlType.png' 2-thirds center alt='URL Scheme Demo' %}
+{% image src='/img/pages/getting-started/sdk-integration-guide/urlType.png' full center alt='URL Scheme Demo' %}
 
 {% endif %}
 
@@ -868,7 +868,7 @@ After integrating the Branch SDK, you need to let Apple know that you use the ID
    - **Attribute this app installation to a previously served advertisement** 
    - **Attribute an action taken within this app to a previously served advertisement**
 
-{% image src='/img/pages/getting-started/submitting-apps/idfa.png' center 3-quarters alt='IDFA configuration on iTunes Connect' %}
+{% image src='/img/pages/getting-started/submitting-apps/idfa.png' center full alt='IDFA configuration on iTunes Connect' %}
 
 {% protip title="Why does Branch use the IDFA?" %}
 Branch uses the IDFA to identify users across our entire partner network, greatly increasing match accuracy rate. You can read more about this on the [Matching accuracy page]({{base.url}}/getting-started/matching-accuracy).

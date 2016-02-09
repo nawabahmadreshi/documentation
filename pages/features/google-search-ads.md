@@ -32,7 +32,7 @@ If you're running Google AdWords campaigns, whether they're of the Search or Dis
 ## Create a Marketing link on the Branch dashboard
 
 1. Visit the [Marketing page](https://dashboard.branch.io/#/marketing) on the Branch dashboard and click **+ Add link**.
-1. Pick a **Marketing Title** for later reference. For example: "Ad for blue sneakers" {% image src='/img/pages/features/google-search-ads/ad_example_create.png' 2-thirds center alt='Create Marketing Link' %}
+1. Pick a **Marketing Title** for later reference. For example: "Ad for blue sneakers" {% image src='/img/pages/features/google-search-ads/ad_example_create.png' 3-quarters center alt='Create Marketing Link' %}
 1. **Channel** and **Campaign** are optional but recommended. **Tags** is free form.
 
 {% protip title="Optional: Deep Link Data (Advanced)" %}
@@ -62,8 +62,6 @@ The [Marketing page](https://dashboard.branch.io/#/marketing) on the Branch dash
 
 To view more details stats, click the _small button that looks like a bar chart_ on the far right. Note that these stats are **limited to the date range** at the top. You can expand the range if you'd like.
 
-{% image src='/img/pages/features/google-search-ads/click_flow_analytics.png' 3-quarters center alt='Facebook Example Ad' %}
-
-{% elsif page.support %}
+{% image src='/img/pages/features/google-search-ads/click_flow_analytics.png' full center alt='Facebook Example Ad' %}
 
 {% endif %}

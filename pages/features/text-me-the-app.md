@@ -183,12 +183,12 @@ If you want to customize this, Branch allows you to set a default for all messag
 ### Custom default for all messages
 You can create your own custom default message that will be sent if the specific link someone clicks doesn't have a customized message itself. To do this, edit the form under the *Text me the app page* tab in the general settings area of the [Branch dashboard](https://dashboard.branch.io/#/settings).
 
-{% image src="/img/pages/features/text-me-the-app/default-message.png" center 2-thirds alt="deep link data attributes" %} 
+{% image src="/img/pages/features/text-me-the-app/default-message.png" center 3-quarters alt="deep link data attributes" %} 
 
 ### Link-specific messages
 You can define a special SMS message for each individual link. Whether you want to switch the language of a message for a different region or include device specific date, you can specify the message in the *Deep Link Data* section at the bottom of the link editing screen.  
 
-{% image src="/img/pages/features/text-me-the-app/deeplink-data.png" center half alt="deep link data attributes" %} 
+{% image src="/img/pages/features/text-me-the-app/deeplink-data.png" center 2-thirds alt="deep link data attributes" %} 
 
 Use the {% raw %}**$custom_sms_text**{% endraw %} parameter and then enter your custom message in the value section. (Make sure to include the {% raw %}**{{ link }}**{% endraw %} tag in your custom message!) 
 
@@ -221,7 +221,7 @@ E.g. `Flower : Rose`, `Flower : Tulip`
 He wants to customize his SMS messages based on name of the flower, so he sets his custom link messages as:  
 
 **{% raw %}{{ link.data.flower }}{% endraw %}**s on the mind? Click here to buy some for your home on FlowerPower! **{% raw %}{{ link }}{% endraw %}**
-{% image src="/img/pages/features/text-me-the-app/key-value.png" center half alt="Key/Value pairs" %} 
+{% image src="/img/pages/features/text-me-the-app/key-value.png" center 2-thirds alt="Key/Value pairs" %} 
 {% endexample%}
 
 ### Setting default replacement values for liquid tags

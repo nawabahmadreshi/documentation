@@ -30,7 +30,7 @@ Configuring Twitter install ads to use Branch links is very simple. The only tri
 ### Add a marketing link
 
 1. Visit the [Marketing page](https://dashboard.branch.io/#/marketing) on the Branch dashboard and click **+ Add link**.
-1. Pick a **Marketing Title** for later reference. For example: "Ad for blue sneakers" {% image src='/img/pages/features/twitter-ads/ad_example_create.png' 2-thirds center alt='Create Marketing Link' %}
+1. Pick a **Marketing Title** for later reference. For example: "Ad for blue sneakers" {% image src='/img/pages/features/twitter-ads/ad_example_create.png' 3-quarters center alt='Create Marketing Link' %}
 1. **Channel** and **Campaign** are optional but recommended. **Tags** is free form.
 
 {% protip title="Optional: Deep Link Data (Advanced)" %}
@@ -41,7 +41,7 @@ You can use this configuration section to specify custom link parameters that wi
 
 ## Configure ad campaign on Twitter
 
-{% image src='/img/pages/features/twitter-ads/twitter_screenshot_0.png' 3-quarters center alt='Twitter Ads' %}
+{% image src='/img/pages/features/twitter-ads/twitter_screenshot_0.png' full center alt='Twitter Ads' %}
 
 ### Select campaign type
 
@@ -55,16 +55,16 @@ Set the device targeting as desired.
 
 On the ad creation card, enter the Branch marketing link you created in the **Website URL** field.
 
-{% image src='/img/pages/features/twitter-ads/twitter_screenshot_1.png' 3-quarters center alt='Twitter Ads' %}
+{% image src='/img/pages/features/twitter-ads/twitter_screenshot_1.png' full center alt='Twitter Ads' %}
 
 ## View your data using the Branch dashboard
 
 The [Marketing page](https://dashboard.branch.io/#/marketing) on the Branch dashboard shows the performance of each individual link. You can find your link listed in the table with a quick summary of the _total_ clicks and installs. 
 
-{% image src='/img/pages/features/twitter-ads/marketing_link_row.png' full center alt='Facebook Example Ad' %}
+{% image src='/img/pages/features/twitter-ads/marketing_link_row.png' full center alt='Twitter Example Ad' %}
 
 To view more details stats, click the _small button that looks like a bar chart_ on the far right. Note that these stats are **limited to the date range** at the top. You can expand the range if you'd like.
 
-{% image src='/img/pages/features/twitter-ads/click_flow_analytics.png' 3-quarters center alt='Facebook Example Ad' %}
+{% image src='/img/pages/features/twitter-ads/click_flow_analytics.png' full center alt='Twitter Example Ad' %}
 
 {% endif %}

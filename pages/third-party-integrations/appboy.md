@@ -48,7 +48,7 @@ On the Appboy dashboard, navigate to the **App Settings** section, and click **3
 1. Click the Appboy button.
 1. Input your 3rd party API key from the previous step.
 
-{% image src='/img/pages/third-party-integrations/appboy/appboy-add.png' half center alt='branch-appboy-settings' %}
+{% image src='/img/pages/third-party-integrations/appboy/appboy-add.png' 2-thirds center alt='branch-appboy-settings' %}
 
 {% caution %}
 When [creating a Branch]({{base.url}}/getting-started/creating-links) link to use with Appboy, be sure to specify a **campaign** and **channel**.

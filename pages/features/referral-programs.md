@@ -63,7 +63,7 @@ Let's say you want to give 10 credits to each new user who signs up through a fr
 1. Whether the reward occurs the first time or every time: **the first time**
 1. Which event triggers the reward: **install**
 
-{% image src='/img/pages/features/referral-programs/referred_rule.png' center 2-thirds alt='referred used' %}
+{% image src='/img/pages/features/referral-programs/referred_rule.png' center 3-quarters alt='referred used' %}
 
 ### Rule 2: rewarding the referring user 5 credits
 
@@ -73,7 +73,7 @@ Let's say you want to give 10 credits to each new user who signs up through a fr
 1. Whether the reward occurs the first time or every time: **every time**
 1. Which event triggers the reward: **install**
 
-{% image src='/img/pages/features/referral-programs/referring_rule.png' center 2-thirds alt='referring user' %}
+{% image src='/img/pages/features/referral-programs/referring_rule.png' center 3-quarters alt='referring user' %}
 
 {% endexample %}
 

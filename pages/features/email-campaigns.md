@@ -34,11 +34,11 @@ You can use Branch links in email campaigns to launch your app or gracefully fal
 ## Create a Marketing link on the Branch dashboard
 
 1. Visit the [Marketing page](https://dashboard.branch.io/#/marketing) on the Branch dashboard and click **+ Add link**.
-1. Pick a **Link Description** for later reference. For example: "Launch Email" {% image src='/img/pages/features/email-campaigns/add_email.png' half center alt='Create Marketing Link' %}
+1. Pick a **Link Description** for later reference. For example: "Launch Email" {% image src='/img/pages/features/email-campaigns/add_email.png' 2-thirds center alt='Create Marketing Link' %}
 
 ## Configure link analytics
 
-**Channel** and **Campaign** are optional but recommended. **Tags** is free form. {% image src='/img/pages/features/email-campaigns/tags_email.png' half center alt='tags' %}
+**Channel** and **Campaign** are optional but recommended. **Tags** is free form. {% image src='/img/pages/features/email-campaigns/tags_email.png' 2-thirds center alt='tags' %}
 
 {% protip title="Optional: Deep Link Data (Advanced)" %}
 

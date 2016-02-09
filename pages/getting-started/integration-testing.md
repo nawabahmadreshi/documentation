@@ -57,7 +57,7 @@ For more advanced implementations, you may want to specify keys for both **Test*
 
 Open your **Info.plist** file in Xcode, change the `branch_key` entry to a Dictionary, and create two subentries for your keys:
 
-{% image src="/img/pages/getting-started/integration-testingintegration-testing/branch-multi-key-plist.png" actual center alt="environment toggle" %}
+{% image src="/img/pages/getting-started/integration-testing/branch-multi-key-plist.png" actual center alt="environment toggle" %}
 
 {% endif %}
 {% if page.android %}

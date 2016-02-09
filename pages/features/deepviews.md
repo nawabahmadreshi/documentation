@@ -44,7 +44,7 @@ Deepviews are discoverable in all search portals (Google, Apple Spotlight, Bing,
 1. Head to the [Deepviews configuration page](https://dashboard.branch.io/#/settings/deepviews) on the Branch dashboard.
 1. Deepviews are configured separately for visitors on each platform (iOS, Android, and desktop). Select the platforms you want and click **Enable**.
 
-{% image src='/img/pages/features/deepviews/deepviews_enable.png' quarter center alt='Deepviews tab' %}
+{% image src='/img/pages/features/deepviews/deepviews_enable.png' third center alt='Deepviews tab' %}
 
 {% caution %}
 If you enable desktop Deepviews, they will override any [Text-Me-The-App]({{base.url}}/features/text-me-the-app) page you have configured.
@@ -266,7 +266,7 @@ var branchUniversalObject = branch.createBranchUniversalObject({
 {% example title="When creating Marketing links on the Branch dashboard" %}
 Edit the Title, Description and Image URL in the _Social Media Description_ section. 
 
-{% image src='/img/pages/features/deepviews/deepviews_social_media_description.png' half center alt='Social Media Description' %}
+{% image src='/img/pages/features/deepviews/deepviews_social_media_description.png' 2-thirds center alt='Social Media Description' %}
 
 **Note:** the _Deep Link Data (Advanced)_ section accepts most link control parameters, but `$og_title`, `$og_description` and `$og_image_url` **cannot** be specified there.
 
@@ -446,7 +446,7 @@ You can enable Deepviews for an individual link on the [Marketing dashboard](htt
 | **$ios_deepview** | `default_template` |
 | **$android_deepview** | `default_template` |
 
-{% image src='/img/pages/features/deepviews/deepview_db_key.png' half center alt='Marketing link deepview keys' %}
+{% image src='/img/pages/features/deepviews/deepview_db_key.png' 2-thirds center alt='Marketing link deepview keys' %}
 
 {% endexample %}
 
@@ -464,7 +464,7 @@ If you've enabled Deepviews globally, it's likely that you'll want to disable th
 
 You can create new Deepview templates using the [Deepviews configuration page](https://dashboard.branch.io/#/settings/deepviews) on the Branch dashboard, either by duplicating the default Branch Public Template, or by creating a new one from scratch. New Deepview templates are shared between all platforms (iOS, Android, and desktop), and cannot be deleted after creation.
 
-{% image src='/img/pages/features/deepviews/deepview-create-template.png' quarter center alt='Deepviews tab' %}
+{% image src='/img/pages/features/deepviews/deepview-create-template.png' third center alt='Deepviews tab' %}
 
 The Deepview editing screen contains two tabs: **Basic** and **Editor**.
 
@@ -472,7 +472,7 @@ The Deepview editing screen contains two tabs: **Basic** and **Editor**.
 
 The Basic tab displays your new template, and allows you to modify the default fallback OG tags used if none are specified for a link.
 
-{% image src='/img/deepviews/deepviews_editor_basic.png' half center alt='Deepviews tab' %}
+{% image src='/img/deepviews/deepviews_editor_basic.png' 2-thirds center alt='Deepviews tab' %}
 
 #### Deepview Settings
 
@@ -497,7 +497,7 @@ These fields are duplicates of the _Social Media Display Customization_ section 
 
 The Editor tab allows you to edit the raw HTML and CSS for your template. The rendered template will update as you modify the markup.
 
-{% image src='/img/deepviews/deepviews_editor_code.png' half center alt='Deepviews tab' %}
+{% image src='/img/deepviews/deepviews_editor_code.png' 2-thirds center alt='Deepviews tab' %}
 
 {% caution title="Javascript is not allowed on deepview templates" %}
 Before rendering the template, we sanitize the markup of Javascript for security reasons. This includes script tags and event attributes on tags.

@@ -18,7 +18,7 @@ sections:
 
 Branch has partnered with Apptimize to seamlessly provide different onboarding flows for users arriving through Branch links. You can design and test different user flows based off the data a Branch deeplink returns to you. Have a theory that users clicking Branch links right into a product page convert better than users clicking Branch links but must authenticate first? With this integration, you can define, measure, and prove your hypothesis!
 
-{% image src='/img/pages/third-party-integrations/apptimize/campaign-flow.png' 2-thirds center alt='Apptimize flow example' %}
+{% image src='/img/pages/third-party-integrations/apptimize/campaign-flow.png' full center alt='Apptimize flow example' %}
 
 ### [Get started with Apptimize!]({{base.url}}/third-party-integrations/apptimize/guide)
 
@@ -40,13 +40,13 @@ You first define a campaign on Apptimize's dashboard, and then configure it to f
 1. Create a new Apptimize campaign and name it
 1. Set up **Variants** corresponding to pieces of code you will execute to perform your A/B test.
 
-{% image src='/img/pages/third-party-integrations/apptimize/campaign-creation.png' 2-thirds center alt='Apptimize campaign creation' %}
+{% image src='/img/pages/third-party-integrations/apptimize/campaign-creation.png' 3-quarters center alt='Apptimize campaign creation' %}
 
 ## Set targeting on Apptimize dashboard
 
 Next, segment users into your campaign using the Apptimize dashboard. We have set a **custom attribute** of `channel` with a value of **facebook**, meaning that if someone comes from a Branch link with the channel set to Facebook, they will automatically be a part of your campaign.
 
-{% image src='/img/pages/third-party-integrations/apptimize/campaign-targeting.png' 3-quarters center alt='Apptimize campaign targeting' %}
+{% image src='/img/pages/third-party-integrations/apptimize/campaign-targeting.png' full center alt='Apptimize campaign targeting' %}
 
 ## Set targeting in your app
 

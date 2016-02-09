@@ -497,6 +497,6 @@ This will return Branch shortlink:
 
 You can create links on the [Marketing page](https://dashboard.branch.io/#/marketing) of the Branch dashboard. Many link parameters can be configured using this UI, and most others can be manually specified under the _Deep Link Data (Advanced)_ section.
 
-{% image src="/img/pages/getting-started/creating-links/add_full.png" half center alt="Link Tags" %}
+{% image src="/img/pages/getting-started/creating-links/add_full.png" 3-quarters center alt="Link Tags" %}
 
 {% endif %}

@@ -35,9 +35,9 @@ Through automatically configured webhooks, we have built a custom integration to
 
 ## Set up Localytics
 
-1. On the Localytics dashboard, navigate to the **Attribution** section, click the **•••** (overflow) button, and select **Settings**. {% image src='/img/pages/third-party-integrations/localytics/localytics-more.png' half center alt='Custom redirect configuration' %}
+1. On the Localytics dashboard, navigate to the **Attribution** section, click the **•••** (overflow) button, and select **Settings**. {% image src='/img/pages/third-party-integrations/localytics/localytics-more.png' 3-quarters center alt='Custom redirect configuration' %}
 1. Once there, you'll need to add your **Store ID** (iTunes for iOS, Play Store for Android).
-1. Under the section **Ad Tracking Setup**, check the box labeled **Third-party Attribution**. This will enable an **Attribution ID** for you. Copy it, and have it handy for the next steps. {% image src='/img/pages/third-party-integrations/localytics/localytics-attr-settings.png' half center alt='Custom redirect configuration' %}
+1. Under the section **Ad Tracking Setup**, check the box labeled **Third-party Attribution**. This will enable an **Attribution ID** for you. Copy it, and have it handy for the next steps. {% image src='/img/pages/third-party-integrations/localytics/localytics-attr-settings.png' 2-thirds center alt='Custom redirect configuration' %}
 
 {% protip title="What does this mean?" %}
 Once you have selected to allow third-party attribution, Localytics will attribute non-Localytics installs to your dashboard. **This information is delayed by 10 minutes.**
@@ -48,7 +48,7 @@ Once you have selected to allow third-party attribution, Localytics will attribu
 
 1. Navigate to the [Webhooks](https://dashboard.branch.io/#/webhook) tab on the Branch dashboard.
 1. Click the Localytics button.
-1. You need to select the platform and paste the Localytics **Attribution ID** from the previous step. {% image src='/img/pages/third-party-integrations/localytics/localytics-save.png' half center alt='branch-localytics-settings' %}
+1. You need to select the platform and paste the Localytics **Attribution ID** from the previous step. {% image src='/img/pages/third-party-integrations/localytics/localytics-save.png' 2-thirds center alt='branch-localytics-settings' %}
 
 {% caution %}
 When [creating a Branch]({{base.url}}/getting-started/creating-links) link to use with Localytics, be sure to specify a **campaign** and **channel**.
@@ -64,7 +64,7 @@ Now that your Branch account is configured to send data to Localytics, we'll tel
 1. Once the click is registered, run (Command+R) your application. This will allow Branch's SDK to match the "link-click" from earlier and confirm a Branch install just occurred (instead of another type of install).
 1. Navigate back to the Webhooks section of the Branch dashboard and click the Localytics webhook you're testing. If it worked, you'll notice a successful webhook sent, with a response code of `202`. This is what it would look like:
 
-{% image src='/img/pages/third-party-integrations/localytics/localytics-success.png' half center alt='success' %}
+{% image src='/img/pages/third-party-integrations/localytics/localytics-success.png' 2-thirds center alt='success' %}
 
 {% protip title="Simulating a fresh install" %}
 Inside XCode's iOS Simulator, select `Reset Content and Settings` under `File`. The next time you run your app, it will simulate a new install. You need to continually do this every time you want to test an attribution.

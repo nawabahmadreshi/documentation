@@ -26,11 +26,11 @@ The webhook system is very powerful and customizable. You can register to only r
 1. Open the [Webhooks](https://dashboard.branch.io/#/webhook) page.
 1. Click **Add a new webhook**
 
-{% image src='/img/pages/getting-started/webhooks/add.png' third center alt='add a new webhook button' %}
+{% image src='/img/pages/getting-started/webhooks/add.png' 2-thirds center alt='add a new webhook button' %}
 
 ## Configure webhook criteria
 
-{% image src='/img/pages/getting-started/webhooks/edit.png' half center alt='add a new webhook' %}
+{% image src='/img/pages/getting-started/webhooks/edit.png' 2-thirds center alt='add a new webhook' %}
 
 Here are explanations of what each field on this screen controls:
 
@@ -67,10 +67,10 @@ See the [Advanced page]({{base.url}}/getting-started/webhooks/advanced#filters) 
 
 To test whether your webhook is configured correctly, you can use [requestb.in](http://requestb.in/). RequestBin gives you a URL that accepts events and allows you to see exactly what Branch is sending.
 
-1. Go to [requestb.in](http://requestb.in/) and click **+ Create a RequestBin:** {% image src='/img/pages/getting-started/webhooks/requestbin_create.png' half center alt='requestbin create' %}
-1. Copy the **Bin URL:** {% image src='/img/pages/getting-started/webhooks/requestbin_inspect.png' half center alt='requestbin create' %}
-1. Paste this into the URL field of your Branch webhook's configuration screen: {% image src='/img/pages/getting-started/webhooks/requestbin_add_webhook.png' half center alt='requestbin inspect' %}
-1. Now whenever your webhook is triggered, you will see a full report on RequestBin: {% image src='/img/pages/getting-started/webhooks/requestbin_response.png' half center alt='requestbin response' %}
+1. Go to [requestb.in](http://requestb.in/) and click **+ Create a RequestBin:** {% image src='/img/pages/getting-started/webhooks/requestbin_create.png' 2-thirds center alt='requestbin create' %}
+1. Copy the **Bin URL:** {% image src='/img/pages/getting-started/webhooks/requestbin_inspect.png' 2-thirds center alt='requestbin create' %}
+1. Paste this into the URL field of your Branch webhook's configuration screen: {% image src='/img/pages/getting-started/webhooks/requestbin_add_webhook.png' 2-thirds center alt='requestbin inspect' %}
+1. Now whenever your webhook is triggered, you will see a full report on RequestBin: {% image src='/img/pages/getting-started/webhooks/requestbin_response.png' 2-thirds center alt='requestbin response' %}
 
 {% elsif page.advanced %}
 
@@ -179,7 +179,7 @@ You would configure a filter to fire a webhook only when `city` is equal to Chic
 
 The end product would look like this:
 
-{% image src="/img/pages/getting-started/webhooks/filters.png" half center alt="webhook filter configuration" %}
+{% image src="/img/pages/getting-started/webhooks/filters.png" 2-thirds center alt="webhook filter configuration" %}
 {% endexample %}
 
 {% protip title="Wildcard filtering" %}
@@ -205,7 +205,7 @@ Since these filters are ANDs (not ORs), both filter values must be satisfied at 
 
 The picture below show cases what a webhook would look like with proper filters.
 
-{% image src="/img/pages/getting-started/webhooks/filters1.png" 2-thirds center alt="webhook filter configuration" %}
+{% image src="/img/pages/getting-started/webhooks/filters1.png" 3-quarters center alt="webhook filter configuration" %}
 
 {% protip title="Testing Branch Tracking Links" %}
 
@@ -235,7 +235,7 @@ You want to return that value **clickId** value (`12345`) back to your backend. 
 
 **NOTE:** this works for all types of Branch links, and not just Marketing links.
 
-{% image src="/img/pages/getting-started/webhooks/templates.png" 3-quarters center alt="webhook template configuration" %}
+{% image src="/img/pages/getting-started/webhooks/templates.png" full center alt="webhook template configuration" %}
 
 Any query parameter you add to Branch Links will be captured in our database and available for you to use in this format: `session.link_click.query.[key]`. So, if you had `?clickId=5&deviceId=7` appended to the link URL, you could retrieve those values as `session.link_click.query.clickId` and `session.link_click.query.deviceId`.
 
@@ -244,7 +244,7 @@ Any query parameter you add to Branch Links will be captured in our database and
 
 If you want to add other parameters, you can configure your templates to use any [webhook keyword value](#webhook-keyword-values). For example, let's say you have an endpoint that accepts a GET with the required parameters `device.id`, and `event.name`. In this case, that would look like the following:
 
-{% image src="/img/pages/getting-started/webhooks/templates2.png" 3-quarters center alt="webhook template configuration" %}
+{% image src="/img/pages/getting-started/webhooks/templates2.png" full center alt="webhook template configuration" %}
 
 ## Webhook keyword values
 

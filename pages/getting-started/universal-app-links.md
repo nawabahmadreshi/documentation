@@ -29,9 +29,9 @@ You must enable Universal Links before Branch can function correctly on iOS 9.2+
 
 Branch makes it simple to enable Universal Links and App Links, and even improves on them since you also get all the other benefits of Branch links when the visitor does not yet have your app installed:
 
-{% image src='/img/pages/getting-started/universal-app-links/how_branch_improves.png' 2-thirds center alt='branch improves universal links' %}
+{% image src='/img/pages/getting-started/universal-app-links/how_branch_improves.png' 3-quarters center alt='branch improves universal links' %}
 
-### [Get started with Universal & App Links!]({{base.url}}/getting-started/universal-app-links/guide)
+### [Get started with Universal Links and App Links!]({{base.url}}/getting-started/universal-app-links/guide)
 
 {% elsif page.guide %}
 
@@ -49,21 +49,21 @@ Branch makes it simple to enable Universal Links and App Links, and even improve
 
 #### If your app already has an App Identifier
 1. Select your app and press the `Edit` button.
-1. Check the box to enable `Associated Domains`. {% image src='/img/pages/getting-started/universal-app-links/background_ass_domains_existing.png' half center alt='enable associated domains' %}
+1. Check the box to enable `Associated Domains`. {% image src='/img/pages/getting-started/universal-app-links/background_ass_domains_existing.png' 3-quarters center alt='enable associated domains' %}
 1. Scroll down and click `Save`.
 
 #### If your app does not yet have an App Identifier
 
 1. Click the `+` button to begin the Register an App ID process.
 1. Enter whatever you wish in the `Name` field.
-1. Enter your app's Bundle Identifier in the `Bundle ID` field. {% image src='/img/pages/getting-started/universal-app-links/background_bundle.png' half center alt='bundle identifier' %}
-1. In the App Services section, check the box to enable `Associated Domains`. {% image src='/img/pages/getting-started/universal-app-links/background_ass_domains_new.png' half center alt='enable associated domains' %}
+1. Enter your app's Bundle Identifier in the `Bundle ID` field. {% image src='/img/pages/getting-started/universal-app-links/background_bundle.png' 3-quarters center alt='bundle identifier' %}
+1. In the App Services section, check the box to enable `Associated Domains`. {% image src='/img/pages/getting-started/universal-app-links/background_ass_domains_new.png' 3-quarters center alt='enable associated domains' %}
 1. Scroll down and click `Save`.
 
 {% protip title="Finding your Bundle Identifier" %}
 You can retrieve your app's Bundle Identifier under the `General` tab of your Xcode project.
 
-{% image src='/img/pages/getting-started/universal-app-links/background_bundle_xcode.png' 3-quarters center alt='bundle identifier xcode' %}
+{% image src='/img/pages/getting-started/universal-app-links/background_bundle_xcode.png' full center alt='bundle identifier xcode' %}
 {% endprotip %}
 
 ## Add the entitlement to your project
@@ -72,11 +72,11 @@ You can retrieve your app's Bundle Identifier under the `General` tab of your Xc
 ### Enable Associated Domains in Xcode
 
 1. Go to the `Capabilities` tab of your project file.
-1. Scroll down and enable `Associated Domains`. {% image src='/img/pages/getting-started/universal-app-links/enable_ass_domains.png' half center alt='enable xcode associated domains' %}
+1. Scroll down and enable `Associated Domains`. {% image src='/img/pages/getting-started/universal-app-links/enable_ass_domains.png' 3-quarters center alt='enable xcode associated domains' %}
 
 {% protip title="If you see an error after this step" %}
 
-{% image src='/img/pages/getting-started/universal-app-links/enable_ass_domains_error.png' half center alt='xcode associated domains errors' %}
+{% image src='/img/pages/getting-started/universal-app-links/enable_ass_domains_error.png' 3-quarters center alt='xcode associated domains errors' %}
 
 Please ensure...
 
@@ -86,7 +86,7 @@ Please ensure...
 
 ### Add your Branch link domains
 
-1. In the `Domains` section, click the `+` icon and add the following entry: `applinks:bnc.lt` {% image src='/img/pages/getting-started/universal-app-links/add_domain.png' half center alt='xcode add domain' %}
+1. In the `Domains` section, click the `+` icon and add the following entry: `applinks:bnc.lt` {% image src='/img/pages/getting-started/universal-app-links/add_domain.png' 3-quarters center alt='xcode add domain' %}
 
 {% protip title="Using a custom domain or subdomain?" %}
 If you use a custom domain or subdomain for your Branch links, you should also add an entry for `applinks:[mycustomdomainorsubdomain]` and then [see this section]({{base.url}}/getting-started/universal-app-links/advanced/#using-a-custom-domain-or-subdomain) on the Advanced page.
@@ -95,7 +95,7 @@ If you use a custom domain or subdomain for your Branch links, you should also a
 ### Add entitlements file to the build target
 
 1. Select your `[projectname].entitlements` file in the Xcode navigator (left sidebar).
-1. Ensure that the correct build target is checked in the right sidebar. {% image src='/img/pages/getting-started/universal-app-links/entitlements-build-target.png' quarter center alt='add entitlements to build target' %}
+1. Ensure that the correct build target is checked in the right sidebar. {% image src='/img/pages/getting-started/universal-app-links/entitlements-build-target.png' half center alt='add entitlements to build target' %}
 
 {% endif %}
 {% if page.titanium %}
@@ -251,7 +251,7 @@ Start by generating a SHA256 fingerprint of your app's signing certificate. This
 
 1. Head to the [Link Settings page](https://dashboard.branch.io/#/settings/link) on the Branch dashboard.
 1. Toggle the **Enable App Links** checkbox in the Android section.
-1. Paste the copied fingerprint value into the **SHA256 Cert Fingerprints** field that appears. {% image src='/img/pages/getting-started/universal-app-links/enable_app_links.png' 3-quarters center alt='enable app links' %}
+1. Paste the copied fingerprint value into the **SHA256 Cert Fingerprints** field that appears. {% image src='/img/pages/getting-started/universal-app-links/enable_app_links.png' full center alt='enable app links' %}
 1. Scroll down and click `Save`.
  
 {% protip title="Using multiple fingerprints" %}
@@ -309,13 +309,13 @@ No advanced information available for this platform.
 1. You should see a message telling you the status of your domain under the `Domain name` field. If you don't, please type your domain in again.
 1. Click the `Save` button.
 
-{% image src='/img/pages/getting-started/universal-app-links/custom-domain-success.png' 3-quarters center alt='successful custom subdomain configuration' %}
+{% image src='/img/pages/getting-started/universal-app-links/custom-domain-success.png' full center alt='successful custom subdomain configuration' %}
 
 ### Custom ROOT domain (branch.com)
 
 1. Follow [CloudFlare's instructions](https://support.cloudflare.com/hc/en-us/articles/200169046-How-do-I-add-a-CNAME-record-) to set up your root domain with a CNAME to `custom.bnc.lt`
-1. Using the CloudFlare control panel, proxy your traffic to the domain `custom.bnc.lt` by clicking the cloud with the arrow to make it _orange_. {% image src='/img/pages/getting-started/universal-app-links/orange_cloud.png' 3-quarters center alt='cloudflare TLS configuration' %}
-1. Make your Crypto settings match this screenshot. This is done by enabling SSL. {% image src='/img/pages/getting-started/universal-app-links/ssl.png' half center alt='cloudflare TLS' %}
+1. Using the CloudFlare control panel, proxy your traffic to the domain `custom.bnc.lt` by clicking the cloud with the arrow to make it _orange_. {% image src='/img/pages/getting-started/universal-app-links/orange_cloud.png' full center alt='cloudflare TLS configuration' %}
+1. Make your Crypto settings match this screenshot. This is done by enabling SSL. {% image src='/img/pages/getting-started/universal-app-links/ssl.png' 3-quarters center alt='cloudflare TLS' %}
 
 ## How to handle old URI paths with Universal Links
 

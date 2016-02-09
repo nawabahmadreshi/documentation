@@ -273,7 +273,7 @@ Create a link to a piece of content. Visit the [Creating Links]({{base.url}}/get
 
 Use Branch's custom share sheet to share a piece of content without having to create a link. This share sheet is customizable and will automatically generate a link with the appropriate analytics channel when the user selects a sharing destination.
 
-{% image src='/img/pages/getting-started/branch-universal-object/android_share_sheet.png' third center alt='Android share sheet' %}
+{% image src='/img/pages/getting-started/branch-universal-object/android_share_sheet.png' half center alt='Android share sheet' %}
 
 To implement it, use the following `showShareSheet` method instead of `generateShortUrl` in the last step above:
 
