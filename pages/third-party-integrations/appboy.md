@@ -27,14 +27,14 @@ At this time, our integration only applies to the iOS platform.
 {% prerequisite %}
 
 - This guide requires you to have already [integrated the Branch SDK]({{base.url}}/getting-started/sdk-integration-guide) into your app.
-- You also need to [sign up for an Appboy account](https://dashboard.appboy.com/developers/sign_up) and [install the Appboy SDK]((https://documentation.appboy.com/)).
+- You also need to [sign up for an Appboy account](https://dashboard.appboy.com/developers/sign_up) and [install the Appboy SDK](https://documentation.appboy.com/).
 - Ensure Appboy's SDK is [collecting the IDGA](https://documentation.appboy.com/iOS/#optional-idfa-collection).
 
 {% endprerequisite %}
 
 ## How it works
 
-Through automatically configured webhooks, we have built a custom integration to automatically send all Branch install data to Appboy data without any extra work on your side (besides integrating both SDKs). Simply click a button, and you'll be good to go!
+Through automatically configured webhooks, we have built a custom integration to automatically send all Branch install data to Appboy without any extra work on your side (besides integrating both SDKs). Simply click a button, and you'll be good to go!
 
 {% protip title="How do we differentiate Appboy and Branch installs?" %}We rely on a Branch link being clicked, which leads to an install. This sets an internal boolean that an install came from Branch, which then fires the webhook.{% endprotip %}
 
@@ -58,7 +58,7 @@ When [creating a Branch]({{base.url}}/getting-started/creating-links) link to us
 
 Now that your Branch account is configured to send data to Appboy, we'll tell you the best strategy to test.
 
-1. Grab a Branch link from your dashboard, paste it in mobile safari, and hit go.
+1. Grab a Branch link from your dashboard, paste it in mobile Safari, and hit go.
 1. Once the click is registered, run (Command+R) your application. This will allow Branch's SDK to match the "link-click" from earlier and confirm a Branch install just occurred (instead of another type of install).
 1. Navigate back to the Webhooks section of the Branch dashboard and click the Appboy webhook you're testing. If it worked, you'll notice a successful webhook sent, with a response code of `200`. Appboy's dashboard will indicate a Branch install hit their servers with a green button and a timestamp of the last successful install.
 
