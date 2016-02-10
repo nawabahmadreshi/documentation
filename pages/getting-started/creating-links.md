@@ -23,7 +23,7 @@ sections:
 Links are the foundation of everything Branch offers. By using Branch links, you can easily allow your app's users to accomplish tasks such as sharing content or inviting friends. This guide explains how to generate Branch links by using the mobile SDKs for each platform. See the Advanced page to learn about other link creation methods.
 
 {% protip %}
-You can read more about using the link data dictionary to define key/value pairs for deep linking, and the various link analytics and control parameters used throughout this page on the [Link Configuration page]({{base.url}}/getting-started/link-configuration).
+You can read more about using the link data dictionary to define key/value pairs for deep linking, and the various link analytics and control parameters used throughout this page on the [Link Configuration page]({{base.url}}/getting-started/configuring-links).
 {% endprotip %}
 
 ### [Get started with creating links!]({{base.url}}/getting-started/creating-links/guide)

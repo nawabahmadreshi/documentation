@@ -148,7 +148,7 @@ Lastly, you need to tell Branch about the view controller you just configured, a
 {% tabs %}
 {% tab objective-c %}
 
-In your **AppDelegate.m** file, find this method inside `didFinishLaunchingWithOptions` (you would have added it in the [SDK Configuration Guide]({{base.url}}/getting-started/sdk-configuration-guide)):
+In your **AppDelegate.m** file, find this method inside `didFinishLaunchingWithOptions` (you would have added it in the [SDK Configuration Guide]({{base.url}}/getting-started/sdk-integration-guide)):
 
 {% highlight objc %}
 [branch initSessionWithLaunchOptions:launchOptions andRegisterDeepLinkHandler:^(NSDictionary *params, NSError *error) {
@@ -164,7 +164,7 @@ In your **AppDelegate.m** file, find this method inside `didFinishLaunchingWithO
 
 {% tab swift %}
 
-In your **AppDelegate.swift** file, find this method inside `didFinishLaunchingWithOptions` (you would have added it in the [SDK Configuration Guide]({{base.url}}/getting-started/sdk-configuration-guide)):
+In your **AppDelegate.swift** file, find this method inside `didFinishLaunchingWithOptions` (you would have added it in the [SDK Configuration Guide]({{base.url}}/getting-started/sdk-integration-guide)):
 
 {% highlight swift %}
 branch.initSessionWithLaunchOptions(launchOptions, andRegisterDeepLinkHandler: { params, error in
