@@ -363,7 +363,7 @@ If you want to give a preview of the invitation before the app is even downloade
 You can use the dashboard's [Live View page](https://dashboard.branch.io/#/liveview) to see links and link clicks in real time.
 
 {% protip %}
-If you [identify your users]({{base.url}}/getting-started/setting-identities), the [Influencers page](https://dashboard.branch.io/#/referrals/influencers) on the dashboard will show you who is driving the most new signups.
+The [Influencers page](https://dashboard.branch.io/#/referrals/influencers) on the dashboard will show you who is driving the most new signups.
 {% endprotip %} 
 
 {% elsif page.advanced %}
