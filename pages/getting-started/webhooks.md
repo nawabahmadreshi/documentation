@@ -59,6 +59,10 @@ You may select between the following default events:
 | `click` | Triggered whenever a Branch link is clicked on any platform
 | `-- other --` | Enter an event you [created through the Branch SDK]({{base.url}}/getting-started/tracking-events#custom-events), or a wildcard (`*`) to return every single event tracked through Branch.
 
+{% protip %}
+The `referred session` and `web session start` options will only appear after at least one event of that type has been recorded.
+{% endprotip %}
+
 #### Filter (Advanced)
 
 See the [Advanced page]({{base.url}}/getting-started/webhooks/advanced#filters) to read about customizing when events are sent.
