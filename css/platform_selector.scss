@@ -1,5 +1,49 @@
-.platform_selector {
-	float: left;
-	margin-top:5px;
-	margin-left: 15px;
+.platform-selector {
+  //margin-bottom: 30px;
+  line-height: 1;
+  .btn-group {
+    //display: inline-flex;
+
+    width: 120px;
+    position: absolute;
+    right: 45px;
+    margin-top: -34px;
+    padding: 0;
+    border-radius: 2px;
+
+    @media (max-width: $screen-xs-max) {
+      position: static;
+      width: 100%;
+      margin-bottom: 30px;
+      margin-top: -30px;
+    }
+
+    .col-xs-1point5 {
+      @extend .col-xs-1;
+      width: 12.5%;
+      &:nth-child(3) {
+        @extend .col-xs-3;
+      }
+    }
+    .btn-default {
+      margin: 0;
+      display: block;
+      color: #ffffff;
+      border: none;
+      border-radius: 0;
+      padding: 5px 15px;
+      font-weight: bold;
+      font-size: 12px;
+      background-color: #1cadce;
+      transition: all 0.2s ease-in;
+    }
+    .btn-inactive {
+      font-weight: normal;
+      color: #1cadce;
+      background-color: #eeeeee;
+      &:hover {
+        background-color:#f9f9f9;
+      }
+    }
+  }
 }

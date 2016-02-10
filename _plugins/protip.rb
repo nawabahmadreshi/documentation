@@ -16,8 +16,7 @@ module Jekyll
         data[m[0]] = Liquid::Template.parse(m[1]).render!(context)
       }
 
-      icon = '<i class="fa ' + (data['icon'] or 'fa-bookmark-o') + '"></i> '
-      title = if data['title'] then '<h4 class="protip__title"> ' + icon + ' ' + data['title'] + '</h4>' else '' end
+      title = if data['title'] then '<h5 class="protip__title">' + data['title'] + '</h5>' else '' end
       contents = Kramdown::Document.new(super).to_html
       '<blockquote class="protip">' + title + contents + '</blockquote>'
     end

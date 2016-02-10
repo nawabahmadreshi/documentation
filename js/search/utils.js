@@ -32,7 +32,7 @@ utils.walk = function(directoryPath) {
 };
 
 // Reads files and parses by h2/h3/h4 into JSON objects
-// title: text inside of <a> tag with href="#..."
+// title: text inside of <a> tag with href="#...", excluding link icons
 // body: all text between headers excluding tags
 // url: og:url + href
 // 1. Read file 2. Split by header tag 3. Grab title information/href 4. Split by other header tag 5. Remove tags and add information to body
@@ -42,6 +42,19 @@ utils.convertSubsectionsToJSON = function(filePath) {
 	var data = fs.readFileSync(filePath);
 	var $ = cheerio.load(data.toString());
 	$('h2, h3').each(function() {
+		var og_url = $('meta[property="og:url"]').attr('content');
+		var url = ($(this).children('a[href^="#"]').attr('href')) ? '' + og_url + $(this).children('a[href^="#"]').attr('href') : '' + og_url;
+		var JSON_obj = {
+			title: $(this).contents().eq(1).contents().eq(1).text(),
+			id: id_counter++,
+			// Gets all elements between each header and outputs their text
+			body: $(this).nextUntil('h2, h3').not('script').text(),
+			url: url,
+			origin: $('.inner__content').find('h1').first().text()
+		};
+		JSON_data.push(JSON_obj);
+	});
+	$('h1').each(function() {
 		var og_url = $('meta[property="og:url"]').attr('content');
 		var url = ($(this).children('a[href^="#"]').attr('href')) ? '' + og_url + $(this).children('a[href^="#"]').attr('href') : '' + og_url;
 		var JSON_obj = {
@@ -100,10 +113,14 @@ utils.removeAllFromArray = function(arr, val) {
 // Gives the title of the page that the result is on
 utils.getOrigin = function(url) {
 	var origin = path.basename(path.dirname(url));
-	if (origin == 'ios' || origin == 'android') {
+	if (origin == 'ios' || origin == 'android' || origin == 'xamarin' || origin == 'unity' || origin == 'cordova' || origin == 'adobe' || origin == 'titanium') {
+		origin = path.basename(path.dirname(path.dirname(path.dirname(url))));
+	}
+	else if (origin == 'overview' || origin == 'guide' || origin == 'advanced' || origin == 'support') {
 		origin = path.basename(path.dirname(path.dirname(url)));
 	}
 	var parts = origin.replace(/_/g, ' ');
+	parts = parts.replace(/-/g, ' ');
 
 	return parts.replace(/(?:^|\s)\S/g, function(a) { return a.toUpperCase(); });
 };

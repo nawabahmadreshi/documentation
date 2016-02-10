@@ -1,1 +1,0 @@
-* [**Dashboard pro tips**](/recipes/dashboard_pro_tips/) --  viewing influencers, specifying a custom link domain, and more

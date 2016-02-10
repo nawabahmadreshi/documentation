@@ -1,1 +1,0 @@
-* [**Reward users**](/recipes/advanced_referral_incentives/{% section platform %}{{page.platform}}{% endsection %}) for driving installs or even custom events that you define, such as "signup" or "purchase"

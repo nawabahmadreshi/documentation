@@ -1,1 +1,0 @@
-* [**Specify the channel**](/recipes/add_custom_link_data_and_routing/{% section platform %}{{page.platform}}{% endsection %}#specifying-channel) (Facebook, Email, etc.) or [**tag content**](/recipes/add_custom_link_data_and_routing/{{page.platform}}#adding-tags) as it is being shared -- then you can see a breakdown of installs by tag on the Dashboard

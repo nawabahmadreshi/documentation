@@ -14,10 +14,11 @@ module Jekyll
       current_path = context.environments.first['page']['current_path'] || '/'
 
       return BranchUtils.instance.react(
-        '<SidebarCollection
+        '<Sidebar
           current_path="' + current_path + '"
           site_map=' + BranchUtils.instance.json_property(site_map) + '
-          layout=' + BranchUtils.instance.json_property(layout) + '/>')
+          layout=' + BranchUtils.instance.json_property(layout) + '
+          current_url=' + BranchUtils.instance.json_property(layout) + '/>')
     end
   end
 
