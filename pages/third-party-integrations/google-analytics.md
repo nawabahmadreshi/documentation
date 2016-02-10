@@ -98,9 +98,9 @@ Once you have saved these events inside your app, Branch will track each time th
 
 Because you will not know the values for some of the specified keys until the event is actually recorded, we will need to build a dynamic URL with [Branch's webhook templating system]({{base.url}}/getting-started/webhooks/advanced/#templating) to went the data back to Google Analytics.
 
-The Google Analytics base endpoint is `http://www.google-analytics.com/collect`, to which you append your keys as query parameters. Here is a sample URL containing the templated parameters from the earlier example (line-breaks added for legibility — **remove before using**):
+The Google Analytics base endpoint is `http://www.google-analytics.com/collect`, to which you append your keys as query parameters. Here is a sample URL containing the templated parameters from the earlier example (line breaks added for legibility — **remove before using**):
 
-{% highlight html %}
+{% highlight sh %}
 {% raw %}
 http://www.google-analytics.com/collect?
 	v=1&

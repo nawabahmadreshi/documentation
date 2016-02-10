@@ -23,7 +23,7 @@ A `BranchUniversalObject` is a container that Branch uses to organize and track 
 
 {% if page.cordova or page.xamarin or page.adobe %}
 
-Unfortunately `BranchUniversalObject` is not yet supported on this platform. Please see the [Creating Links]({{base.url}}/getting-started/creating-links) page for alternatives!
+Unfortunately `BranchUniversalObject` is not yet supported on this platform. Please see the [Creating Links in Apps]({{base.url}}/getting-started/creating-links-in-apps) page for alternatives!
 
 {% else %}
 
@@ -31,7 +31,7 @@ Unfortunately `BranchUniversalObject` is not yet supported on this platform. Ple
 
 ## Defining a Branch Universal Object
 
-You build a `BranchUniversalObject` by assembling parameters. After the parameters are assembled, you can [create a link]({{base.url}}/getting-started/creating-links) by referencing the `BranchUniversalObject`.
+You build a `BranchUniversalObject` by assembling parameters. After the parameters are assembled, you can [create a link]({{base.url}}/getting-started/creating-links-in-apps) by referencing the `BranchUniversalObject`.
 
 {% if page.ios %}
 
@@ -215,7 +215,7 @@ branchUniversalObject.registerView()
 
 ### getShortUrlWithLinkProperties
 
-Create a link to a piece of content. Visit the [Creating Links]({{base.url}}/getting-started/creating-links) page to learn more.
+Create a link to a piece of content. Visit the [Creating Links in Apps]({{base.url}}/getting-started/creating-links-in-apps) page to learn more.
 
 ### showShareSheetWithLinkProperties
 
@@ -267,7 +267,7 @@ branchUniversalObject.registerView();
 
 ### generateShortUrl
 
-Create a link to a piece of content. Visit the [Creating Links]({{base.url}}/getting-started/creating-links) page to learn more.
+Create a link to a piece of content. Visit the [Creating Links in Apps]({{base.url}}/getting-started/creating-links-in-apps) page to learn more.
 
 ### showShareSheet
 
@@ -321,7 +321,7 @@ Branch.registerView(universalObject);
 
 ### getShortURL
 
-Create a link to a piece of content. Visit the [Creating Links]({{base.url}}/getting-started/creating-links) page to learn more.
+Create a link to a piece of content. Visit the [Creating Links in Apps]({{base.url}}/getting-started/creating-links-in-apps) page to learn more.
 
 ### shareLink
 
@@ -354,7 +354,7 @@ Branch.registerView(universalObject);
 
 ### generateShortUrl
 
-Create a link to a piece of content. Visit the [Creating Links]({{base.url}}/getting-started/creating-links) page to learn more.
+Create a link to a piece of content. Visit the [Creating Links in Apps]({{base.url}}/getting-started/creating-links-in-apps) page to learn more.
 
 ### showShareSheet
 

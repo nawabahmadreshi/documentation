@@ -13,7 +13,7 @@ contents: list
 ---
 
 {% protip title="Link Configuration vs. Link Creation" %}
-This page describes how to use the link data dictionary to define key/value pairs for deep linking, and the various link analytics and control parameters Branch offers. You can read about how to actually create Branch links on the [Creating Links]({{base.url}}/getting-started/creating-links) page.
+This page describes how to use the link data dictionary to define key/value pairs for deep linking, and the various link analytics and control parameters Branch offers. You can read about how to actually create Branch links on the [Creating Links in Apps]({{base.url}}/getting-started/creating-links-in-apps) and [Creating Links in Other Ways]({{base.url}}/getting-started/creating-links-other-ways) pages.
 {% endprotip %}
 
 Every Branch link that you create is completely customizable from a functionality perspective. Here are the key variables for customization.

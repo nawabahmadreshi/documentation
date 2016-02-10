@@ -345,7 +345,7 @@ branchUniversalObject.addEventListener("bio:generateShortUrl", $.onGenerateUrlFi
 
 {% protip title="To learn more about the concepts we used, visit these pages:" %}
 
-- [Creating Links]({{base.url}}/getting-started/creating-links)
+- [Creating Links in Apps]({{base.url}}/getting-started/creating-links-in-apps)
 - [Configuring Links]({{base.url}}/getting-started/configuring-links)
 - [BranchUniversalObject]({{base.url}}/getting-started/branch-universal-object)
 - [Deep Link Routing]({{base.url}}/getting-started/deep-link-routing)

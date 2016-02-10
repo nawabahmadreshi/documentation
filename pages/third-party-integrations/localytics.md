@@ -51,7 +51,7 @@ Once you have selected to allow third-party attribution, Localytics will attribu
 1. You need to select the platform and paste the Localytics **Attribution ID** from the previous step. {% image src='/img/pages/third-party-integrations/localytics/localytics-save.png' 2-thirds center alt='branch-localytics-settings' %}
 
 {% caution %}
-When [creating a Branch]({{base.url}}/getting-started/creating-links) link to use with Localytics, be sure to specify a **campaign** and **channel**.
+When [creating a Branch]({{base.url}}/getting-started/creating-links-other-ways) link to use with Localytics, be sure to specify a **campaign** and **channel**.
 {% endcaution %}
 
 ## Testing

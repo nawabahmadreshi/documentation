@@ -4,14 +4,18 @@
   directory: getting-started
   children:
     - sdk-integration-guide
-    - title: Next Steps
+    - title: 2. Set Up Deep Linking
       children:
-        - universal-app-links
-        - creating-links
         - deep-link-routing
+        - universal-app-links
+    - title: 3. Link Creation
+      children:
+        - creating-links-in-apps
+        - creating-links-other-ways
+        - configuring-links
+    - dashboard-guide
     - title: Advanced
       children:
-        - configuring-links
         - integration-testing
         - matching-accuracy
         - branch-universal-object
@@ -22,7 +26,7 @@
 - title: Features
   directory: features
   children:
-    - title: Sharing and Personization
+    - title: Sharing and Personalization
       children:
         - content-sharing
         - custom-onboarding
