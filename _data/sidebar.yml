@@ -59,9 +59,9 @@
     - title: Measurement Platforms
       children:
         - google-analytics
-        - adjust
         - localytics
         - mixpanel
+        - ad-network-analytics
     - strategic-partners-guide
 - title: Reference
   directory: methods-endpoints
