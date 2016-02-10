@@ -22,6 +22,10 @@
 - title: Features
   directory: features
   children:
+    - title: Sharing and Personization
+      children:
+        - content-sharing
+        - custom-onboarding
     - title: Web to App Conversion
       children:
         - deepviews
@@ -36,10 +40,6 @@
         - facebook-ads
         - google-search-ads
         - twitter-ads
-    - title: Personalized Experiences
-      children:
-        - content-sharing
-        - custom-onboarding
     - title: Content Indexing
       children:
         - google-app-indexing

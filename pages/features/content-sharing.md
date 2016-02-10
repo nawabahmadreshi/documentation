@@ -1,13 +1,13 @@
 ---
 type: recipe
 directory: features
-title: Custom Onboarding
-ios_page_title: Personalized Onboarding Flow for iOS Apps
-android_page_title: Personalized Onboarding for Android Apps
-ios_description: How to set up a personalized invite system and onboarding flow for iOS Apps using Branch deep links. With objective-c and swift code snippets.
-android_description: How to set up a personalized invite system and onboarding flow for Android Apps using Branch deep links. With code snippets.
-ios_keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Personalized onboarding, onboarding, welcome screen, iOS, objective-c, swift
-android_keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Personalized onboarding, onboarding, welcome screen, Android
+title: "Content Sharing"
+ios_page_title: iOS Deep Links for Content Sharing
+android_page_title: Android Deep Links for Content Sharing
+ios_description: How to create deep links programmatically to share content and how to route to content within your iOS app. With objective-c and swift code snippets.
+android_description: How to create deep links programmatically to share content and how to route to content within your Android app. With code snippets.
+ios_keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Content Sharing, Content, Routing, SMS, iOS, objective-c, swift
+android_keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views,Content Sharing, Content, Routing, SMS, Android
 platforms:
 - ios
 - android
@@ -24,23 +24,23 @@ sections:
 
 {% if page.overview %}
 
-Right now, when users open your app for the first time, chances are you have no idea where they came from or who they are. You have no idea if they were invited by a friend on Facebook, found your app randomly browsing through the App Store, saw an ad, or simply discovered it through word of mouth and decided to give it a shot.
+If your users are creating content in your app, they will probably want to share that content with their friends. You can encourage this by making it easy to generate sharing links that open your app *and* route back exactly to the piece of content that was originally shared. This will even work when the user who opens the link doesn't have your app installed yet.
 
-**By using Branch deep links, you can finally tailor the onboarding flow for new users!**
+**By using Branch deep links, you can take users directly to where they want to go in your app!**
 
-### [Get started with a custom onboarding flow!]({{base.url}}/features/custom-onboarding/guide)
+### [Get started with content sharing!]({{base.url}}/features/content-sharing/guide)
 
 {% elsif page.guide %}
 
 {% prerequisite %}
-- To implement a custom onboarding flow, you will need to [integrate the Branch SDK]({{base.url}}/getting-started/sdk-integration-guide) into your app and [configure deep link routing]({{base.url}}/getting-started/deep-link-routing).
+- To implement a content sharing flow, you will need to [integrate the Branch SDK]({{base.url}}/getting-started/sdk-integration-guide) into your app and [configure deep link routing]({{base.url}}/getting-started/deep-link-routing).
 {% endprerequisite %}
 
-Let's say you have developed an app called **Branch Monster Factory**, and you want your users to invite their friends. If new users open your app and immediately see a message that includes details about the friend who invited them, these invitations will be far more effective. Let's get started!
+Let's say you have developed an app called **Branch Monster Factory**. You want your users to share the monsters they create with their friends, and see the monster that was shared as soon as your app opens. Let's get started!
 
-## Generate invite links to share
+## Generate sharing links
 
-The first thing we need to do is allow your users to create links to share. These links will contain references to the information we want to show new users after signup.
+The first thing we need to do is allow your users to create links. These links will to contain references to the content being shared, which generate analytics data and allow your app to route straight back to that content when a link is opened.
 
 <!--- iOS -->
 {% if page.ios %}
@@ -63,45 +63,51 @@ Start by importing the relevant Branch frameworks into the view controller you w
 {% endtab %}
 {% endtabs %}
 
-Create a `BranchUniversalObject` containing details about the user who is inviting friends:
+Create a `BranchUniversalObject` containing details about the content that is being shared:
 
 {% tabs %}
 {% tab objective-c %}
 {% highlight objective-c %}
-BranchUniversalObject *branchUniversalObject = [[BranchUniversalObject alloc] initWithCanonicalIdentifier:@"invite/12345"];
-branchUniversalObject.title = @"Josh wants you to try Branch Monster Factory";
-branchUniversalObject.contentDescription = @"Your friend Josh has invited you to download Branch Monster Factory create awesome monsters!";
-branchUniversalObject.imageUrl = @"https://example.com/profile-pic-12345.png";
+BranchUniversalObject *branchUniversalObject = [[BranchUniversalObject alloc] initWithCanonicalIdentifier:@"monster/12345"];
+branchUniversalObject.title = @"Meet Mr. Squiggles";
+branchUniversalObject.contentDescription = @"Your friend Josh has invited you to meet his awesome monster, Mr. Squiggles!";
+branchUniversalObject.imageUrl = @"https://example.com/monster-pic-12345.png";
 [branchUniversalObject addMetadataKey:@"userId" value:@"12345"];
 [branchUniversalObject addMetadataKey:@"userName" value:@"Josh"];
+[branchUniversalObject addMetadataKey:@"monsterName" value:@"Mr. Squiggles"];
 {% endhighlight %}
 {% endtab %}
 {% tab swift %}
 {% highlight swift %}
-let branchUniversalObject: BranchUniversalObject = BranchUniversalObject(canonicalIdentifier: "invite/12345")
-branchUniversalObject.title = "Josh wants you to try Branch Monster Factory"
-branchUniversalObject.contentDescription = "Your friend Josh has invited you to download Branch Monster Factory create awesome monsters!"
-branchUniversalObject.imageUrl = "https://example.com/profile-pic-12345.png"
+let branchUniversalObject: BranchUniversalObject = BranchUniversalObject(canonicalIdentifier: "monster/12345")
+branchUniversalObject.title = "Meet Mr. Squiggles"
+branchUniversalObject.contentDescription = "Your friend Josh has invited you to meet his awesome monster, Mr. Squiggles!"
+branchUniversalObject.imageUrl = "https://example.com/monster-pic-12345.png"
 branchUniversalObject.addMetadataKey("userId", value: "12345")
 branchUniversalObject.addMetadataKey("userName", value: "Josh")
+branchUniversalObject.addMetadataKey("monsterName", value: "Mr. Squiggles")
 {% endhighlight %}
 {% endtab %}
 {% endtabs %}
 
-Then define the properties of the link. In the example, our properties reflect that this is an invitation and the user selected Facebook as the destination:
+{% protip %}
+The `canonicalIdentifier` parameter greatly improves the content analytics data Branch captures. It should be unique to that piece of content and helps Branch dedupe across many instances of the same thing. Suitable options: a website with pathing, or a database with identifiers for entities.
+{% endprotip %}
+
+Then define the properties of the link. In the example, our properties reflect that this is shared content and the user selected Facebook as the destination:
 
 {% tabs %}
 {% tab objective-c %}
 {% highlight objc %}
 BranchLinkProperties *linkProperties = [[BranchLinkProperties alloc] init];
-linkProperties.feature = @"invites";
+linkProperties.feature = @"share";
 linkProperties.channel = @"facebook";
 {% endhighlight %}
 {% endtab %}
 {% tab swift %}
 {% highlight swift %}
 let linkProperties: BranchLinkProperties = BranchLinkProperties()
-linkProperties.feature = "invites"
+linkProperties.feature = "share"
 linkProperties.channel = "facebook"
 {% endhighlight %}
 {% endtab %}
@@ -139,19 +145,24 @@ You would next use the returned link and help the user post it to (in this examp
 <!--- Android -->
 {% if page.android %}
 
-Create a `BranchUniversalObject` containing details about the user who is inviting friends:
+Create a `BranchUniversalObject` containing details about the content that is being shared:
 
 {% highlight java %}
  BranchUniversalObject branchUniversalObject = new BranchUniversalObject()
-                .setCanonicalIdentifier("invite/12345")
-                .setTitle("Josh wants you to try Branch Monster Factory")
-                .setContentDescription("Your friend Josh has invited you to download Branch Monster Factory create awesome monsters!")
-                .setContentImageUrl("https://example.com/profile-pic-12345.png")
+                .setCanonicalIdentifier("monster/12345")
+                .setTitle("Meet Mr. Squiggles")
+                .setContentDescription("Your friend Josh has invited you to meet his awesome monster, Mr. Squiggles!")
+                .setContentImageUrl("https://example.com/monster-pic-12345.png")
                 .addContentMetadata("userId", "12345")
                 .addContentMetadata("userName", "Josh");
+                .addContentMetadata("monsterName", "Mr. Squiggles");
 {% endhighlight %}
 
-Then define the properties of the link. In the example, our properties reflect that this is an invitation and the user selected Facebook as the destination:
+{% protip %}
+The `canonicalIdentifier` parameter greatly improves the content analytics data Branch captures. It should be unique to that piece of content and helps Branch dedupe across many instances of the same thing. Suitable options: a website with pathing, or a database with identifiers for entities.
+{% endprotip %}
+
+Then define the properties of the link. In the example, our properties reflect that this is shared content and the user selected Facebook as the destination:
 
 {% highlight java %}
 LinkProperties linkProperties = new LinkProperties()
@@ -188,9 +199,10 @@ branch.link({
     data: {
 		"userId": "12345",
 		"userName": "Josh",
-		"$og_title": "Josh wants you to try Branch Monster Factory",
-		"$og_description": "Your friend Josh has invited you to download Branch Monster Factory create awesome monsters!"
-		"$og_image_url": "https://example.com/profile-pic-12345.png"
+		"monsterName": "Mr. Squiggles",
+		"$og_title": "Meet Mr. Squiggles",
+		"$og_description": "Your friend Josh has invited you to meet his awesome monster, Mr. Squiggles!"
+		"$og_image_url": "https://example.com/monster-pic-12345.png"
     }
 }, function(err, link) {
 	if (!err) {
@@ -211,12 +223,13 @@ Build a link containing details about the user who is inviting friends. In the e
 var data = new Dictionary<string, object>(); 
 data.Add("userId", "12345");
 data.Add("userName", "Josh");
-data.Add("$og_title", "Josh wants you to try Branch Monster Factory");
-data.Add("$og_description", "Your friend Josh has invited you to download Branch Monster Factory create awesome monsters!");
-data.Add("$og_image_url", "https://example.com/profile-pic-12345.png");
+data.Add("monsterName", "Mr. Squiggles");
+data.Add("$og_title", "Meet Mr. Squiggles");
+data.Add("$og_description", "Your friend Josh has invited you to meet his awesome monster, Mr. Squiggles!");
+data.Add("$og_image_url", "https://example.com/monster-pic-12345.png");
 
 Branch branch = Branch.GetInstance ();
-await branch.GetShortUrlAsync(this, data, "facebook", "invite");
+await branch.GetShortUrlAsync(this, data, "facebook", "share");
 {% endhighlight %}
 
 After you've registered the class as a delegate of `IBranchUrlInterface`, you would next use the returned link and help the user post it to (in this example) Facebook.
@@ -236,23 +249,28 @@ public void ReceivedUrl (Uri uri)
 
 {% if page.unity %}
 
-Create a `BranchUniversalObject` containing details about the user who is inviting friends:
+Create a `BranchUniversalObject` containing details about the content that is being shared:
 
 {% highlight c# %}
 BranchUniversalObject universalObject = new BranchUniversalObject();
-universalObject.canonicalIdentifier = "invite/12345";
-universalObject.title = "Josh wants you to try Branch Monster Factory";
-universalObject.contentDescription = "Your friend Josh has invited you to download Branch Monster Factory create awesome monsters!";
-universalObject.imageUrl = "https://example.com/profile-pic-12345.png";
+universalObject.canonicalIdentifier = "monster/12345";
+universalObject.title = "Meet Mr. Squiggles";
+universalObject.contentDescription = "Your friend Josh has invited you to meet his awesome monster, Mr. Squiggles!";
+universalObject.imageUrl = "https://example.com/monster-pic-12345.png";
 universalObject.metadata.Add("userId", "12345");
 universalObject.metadata.Add("userName", "Josh");
+universalObject.metadata.Add("monsterName", "Mr. Squiggles");
 {% endhighlight %}
 
-Then define the properties of the link. In the example, our properties reflect that this is an invitation and the user selected Facebook as the destination:
+{% protip %}
+The `canonicalIdentifier` parameter greatly improves the content analytics data Branch captures. It should be unique to that piece of content and helps Branch dedupe across many instances of the same thing. Suitable options: a website with pathing, or a database with identifiers for entities.
+{% endprotip %}
+
+Then define the properties of the link. In the example, our properties reflect that this is shared content and the user selected Facebook as the destination:
 
 {% highlight c# %}
 BranchLinkProperties linkProperties = new BranchLinkProperties();
-linkProperties.feature = "invite";
+linkProperties.feature = "share";
 linkProperties.channel = "facebook";
 {% endhighlight %}
 
@@ -294,9 +312,10 @@ private function getShortUrlFailed(bEvt:BranchEvent):void {
 var dataToInclude:Object = {
 	"userId": "12345",
 	"userName": "Josh",
-	"$og_title": "Josh wants you to try Branch Monster Factory",
-	"$og_description": "Your friend Josh has invited you to download Branch Monster Factory create awesome monsters!"
-	"$og_image_url": "https://example.com/profile-pic-12345.png"
+	"monsterName": "Mr. Squiggles",
+	"$og_title": "Meet Mr. Squiggles",
+	"$og_description": "Your friend Josh has invited you to meet his awesome monster, Mr. Squiggles!"
+	"$og_image_url": "https://example.com/monster-pic-12345.png"
 };
 
 branch.getShortUrl(tags, "facebook", BranchConst.FEATURE_TAG_SHARE, JSON.stringify(dataToInclude));
@@ -310,26 +329,31 @@ You would next use the returned link and help the user post it to (in this examp
 
 {% if page.titanium %}
 
-Create a `BranchUniversalObject` containing details about the user who is inviting friends:
+Create a `BranchUniversalObject` containing details about the content that is being shared:
 
 {% highlight js %}
 var branchUniversalObject = branch.createBranchUniversalObject({
-  "canonicalIdentifier" : "invite/12345",
-  "title" : "Josh wants you to try Branch Monster Factory",
-  "contentDescription" : "Your friend Josh has invited you to download Branch Monster Factory create awesome monsters!",
-  "contentImageUrl" : "https://example.com/profile-pic-12345.png",
+  "canonicalIdentifier" : "monster/12345",
+  "title" : "Meet Mr. Squiggles",
+  "contentDescription" : "Your friend Josh has invited you to meet his awesome monster, Mr. Squiggles!",
+  "contentImageUrl" : "https://example.com/monster-pic-12345.png",
   "contentMetadata" : {
       "userId" : "12345",
       "userName" : "Josh"
+      "monsterName" : "Mr. Squiggles"
   },
 });
 {% endhighlight %}
 
-Then define the properties of the link. In the example, our properties reflect that this is an invitation and the user selected Facebook as the destination:
+{% protip %}
+The `canonicalIdentifier` parameter greatly improves the content analytics data Branch captures. It should be unique to that piece of content and helps Branch dedupe across many instances of the same thing. Suitable options: a website with pathing, or a database with identifiers for entities.
+{% endprotip %}
+
+Then define the properties of the link. In the example, our properties reflect that this is shared content and the user selected Facebook as the destination:
 
 {% highlight js %}
 branchUniversalObject.generateShortUrl({
-  "feature" : "invite",
+  "feature" : "share",
   "channel" : "facebook"
 }, {
 });
@@ -352,15 +376,15 @@ branchUniversalObject.addEventListener("bio:generateShortUrl", $.onGenerateUrlFi
 
 {% endprotip %}
 
-## The personal touch: show a welcome screen
+## Route incoming users directly to content
 
-Now that your user has created a link and sent it to a friend, you just need to wait for that friend to download your app. When that happens, you should detect the incoming link and route the new user to a custom welcome screen. Read more about how to do this on the [Deep Link Routing]({{base.url}}/getting-started/deep-link-routing) page.
+Now that your user has created a link and sent it to a friend, you should detect the incoming link when that friend opens your app, and route directly to the shared content. Read more about how to do this on the [Deep Link Routing]({{base.url}}/getting-started/deep-link-routing) page.
 
-If you want to give a preview of the invitation before the app is even downloaded, try out [Deepviews]({{base.url}}/features/deepviews).
+If you want to give a preview of the content to users who have not yet downloaded your app, try out [Deepviews]({{base.url}}/features/deepviews).
 
 ## Viewing live data on the Branch dashboard
 
-You can use the dashboard's [Live View page](https://dashboard.branch.io/#/liveview) to see links and link clicks in real time.
+The [Analytics page](https://dashboard.branch.io/#/analytics/content) on the Branch dashboard allows you to see data on content your users are sharing, and which pieces of content are the most popular. You can also use the dashboard's [Live View page](https://dashboard.branch.io/#/liveview) to see links and link clicks in real time.
 
 {% protip %}
 If you [identify your users]({{base.url}}/getting-started/setting-identities), the [Influencers page](https://dashboard.branch.io/#/referrals/influencers) on the dashboard will show you who is driving the most new signups.
