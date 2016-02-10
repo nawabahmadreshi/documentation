@@ -15,13 +15,6 @@ There are a million and one ways to use Branch in your app! In this section, we 
 - The **[SDK Integration Guide](sdk-integration-guide)** is a good place to begin. This covers what you need to get our mobile SDK integrated into your app, which is the foundation for everything else.
 
 #### Next steps to take
-- After integrating the SDK, you will want to enable **[iOS Universal Links](universal-app-links)** if your app has an iOS version. **You must enable Universal Links before Branch can function correctly on iOS 9.2+!**
-- The **[Creating Links](creating-links)** page describes all the different ways you can generate Branch links. You may also find the **[Dynamic Link Builder](dynamic-link-builder)** useful.
-- You will want to know the various options for **[Configuring Links](configuring-links)** to customize functionality and display.
+- After integrating the SDK, you will want to enable **[Universal and App Links](universal-app-links)**, especially if your app contains an iOS version. **You must enable Universal Links before Branch can function correctly on iOS 9.2+!**
+- The **[Creating Links](creating-links)** page describes all the different ways you can generate Branch links.
 - **[Deep Link Routing](deep-link-routing)** allows you control what users see first after opening your app from a Branch link. It's a powerful feature you will want to enable.
-
-#### More advanced concepts
-- Testing Branch functionality in your app can be a challenge. Read about some tips and tools on the **[Integration Testing](integration-testing)** page.
-- Wondering about the tech specs behind Branch links? The **[Matching Accuracy](matching-accuracy)** page describes the methods we use.
-- **[Tracking Events](tracking-events)** and **[Setting Identities](setting-identities)** are both powerful features with many useful applications.
-- **[Webhooks](webhooks)** are one of Branch's most versatile components. If you need to get data from our platform in realtime, take a look at this guide.
