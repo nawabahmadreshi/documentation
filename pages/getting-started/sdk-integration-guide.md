@@ -4,15 +4,6 @@ directory: getting-started
 title: SDK Integration Guide
 page_title: Add the Branch SDK to your app
 description: This page will tell you how to quickly add the Branch SDK to your Android, iOS, Cordova, Phonegap, Xamarin, Unity, Air or Titanium app.
-redirect_from:
-- /recipes/add_the_sdk/
-- /recipes/add_the_sdk/ios/
-- /recipes/add_the_sdk/android/
-- /recipes/add_the_sdk/cordova/
-- /recipes/add_the_sdk/xamarin/
-- /recipes/add_the_sdk/unity/
-- /recipes/add_the_sdk/adobe/
-- /recipes/add_the_sdk/titanium/
 platforms:
 - ios
 - android

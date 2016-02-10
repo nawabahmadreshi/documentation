@@ -5,6 +5,15 @@ title: Universal and App Links
 page_title: "Set up Universal & App Links with Branch"
 description: "Learn how to enable iOS 9 Universal Links and Android App Links with Branch deep links for tracking and deep linking."
 keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Android App Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Dashboard, iOS9
+redirect_from:
+- /recipes/add_the_sdk/
+- /recipes/add_the_sdk/ios/
+- /recipes/add_the_sdk/android/
+- /recipes/add_the_sdk/cordova/
+- /recipes/add_the_sdk/xamarin/
+- /recipes/add_the_sdk/unity/
+- /recipes/add_the_sdk/adobe/
+- /recipes/add_the_sdk/titanium/
 platforms:
 - ios
 - android
