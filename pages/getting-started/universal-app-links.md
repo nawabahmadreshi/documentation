@@ -339,9 +339,6 @@ The entry point for this link type is `application:continueUserActivity:restorat
 
 {% example title="Sample AppDelegate" %}
 
-{% tabs %}
-{% tab objective-c %}
-
 Here is a generic **AppDeledate.m** snippet with these methods implemented:
 
 {% highlight objc %}
@@ -385,12 +382,6 @@ Branch *branch = [Branch getInstance];
 	return YES;
 }
 {% endhighlight %}
-
-{% endtab %}
-{% tab swift %}
-
-{% endtab %}
-{% endtabs %}
 
 {% endexample %}
 
