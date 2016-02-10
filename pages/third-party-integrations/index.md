@@ -15,3 +15,7 @@ Branch can integrate with a number of other platforms to enable powerful, custom
 - **[Apptimize](apptimize)** allows you to perform easy A/B tests inside your app.
 - Branch can send data to **[Google Analytics](google-analytics),** **[Localytics](localytics),** and **[Mixpanel](mixpanel),** giving additional relevancy to your app analytics.
 - Use **[Referral SaaSquatch](referral-saasquatch)** to set up an incentivized referral program that includes your mobile app.
+
+#### Deep linked ads
+
+To learn about using deep links in ads on Google, Facebook, and Twitter, check out the **Features ⇨ Marketing for Mobile** section.

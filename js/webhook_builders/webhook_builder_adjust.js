@@ -1,39 +1,56 @@
 
-// TUNE Dynamic Link Generator Function
+// Adjust Dynamic Link Generator Function
 
-function createTuneWebhook() {
+function createAdjustWebhook() {
 	// Takes inputs and creates a link out of them.
 
 	// Create base link.
-	var link = 'http://'
+	var link = 'https://app.adjust.com/';
 
-	// Grab Primary Tune Query Parameters
-	var advertiser_id = window.document.getElementById('advertiser_id').value;
-	var site_id = window.document.getElementById('site_id').value;
-	var action = '&action=click';
+	// Grab Primary Adjust Query Parameters
+	var ios_tracker_token = window.document.getElementById('ios_tracker_token').value;
+	var android_tracker_token = window.document.getElementById('android_tracker_token').value;
+	var adgroup = window.document.getElementById('adgroup').value;
+	var creative = window.document.getElementById('creative').value;
 
-	// Add Tune Advertiser Id (advertiser_id)
-	if (advertiser_id.length>0) {
-		var link = link + advertiser_id;
+	// iOS Tracker Token (ios_tracker_token)
+	if (ios_tracker_token.length>0) {
+		var link = link + ios_tracker_token;
 	}
 	else {
-		window.alert('Your Tune Advertiser Id is not filled in or is incorrect.');
+		window.alert('Your iOS Tracker Token is not filled in or is incorrect.');
 		return
 	};
 
-	// Add Tune main string identifiers
-	var link = link + '.measure.mobileapptracking.com/serve?sdk=server&response_format=json&created_at={{event.date}}&user_id={{identity}}&timestamp={{event.date}}&ios_ad_tracking_disabled=0&google_ad_tracking=1&sub_publisher=Branch&sub_campaign={{campaign}}&sub_keyword={{tags}}&tracking_id={{click_id}'
-
-	// Add Tune Site Id (site_id)
-	if (site_id.length>0) {
-		var link = link + '&site_id=' + site_id;
+	// Android Tracker Token (android_tracker_token)
+	if (android_tracker_token.length>0) {
+		var link = link + '_' + android_tracker_token; // Key requirement to add underscore between two tokens
 	}
 	else {
-		window.alert('Your Tune Site Id is not filled in or is incorrect.');
+		window.alert('Your Android Tracker Token is not filled in or is incorrect.');
 		return
 	};
 
-	var link = link + action
+	// Add Adjust s2s and campaign identifiers
+	var link = link + '?s2s=1' + '&' + 'campaign={{campaign}}'
+
+	// Add Adgroup (adgroup)
+	if (adgroup != 'branch') {
+		adgroup = '{{' + adgroup + '}}'; // Add curly brackets if its not the branch param
+	}
+
+	if (adgroup.length>0) {
+		var link = link + '&' + 'adgroup=' + adgroup ;
+	}
+
+	// Add Creative (creative)
+	if (creative != 'branch') {
+		creative = '{{' + creative + '}}'; // Add curly brackets if its not the branch param
+	}
+
+	if (creative.length>0) {
+		var link = link + '&' + 'creative=' + creative;
+	}
 
 	// Add Custom Query Parameters
 
@@ -69,9 +86,10 @@ function createTuneWebhook() {
 	if (customQueryParams10.length > 0) {
 		var link = link + '&' + customQueryParams10;}
 
-	console.log(link)
+	console.log(link);
 
 	// Final Link Creation
-	window.document.getElementById('generatedTuneWebhook').value = link
+	window.document.getElementById('generatedAdjustWebhook').value = link;
+
 
 };
