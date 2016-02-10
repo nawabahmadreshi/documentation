@@ -25,27 +25,6 @@ module Jekyll
 
       if File.exist?(File.join(base, 'pages', directory, page.name))
         self.read_yaml(File.join(base, 'pages', directory), page.name)
-          
-        #puts 'page'
-        #puts page.data['redirect_from']
-        #puts 'self'
-        #puts self.data['redirect_from']
-        puts self.data['title']
-        puts self.data['sections']
-        puts section
-        puts self.data['redirect_from']
-        if self.data['sections']
-          if self.data['sections'][0] != section
-            self.data.delete('redirect_from')
-          end
-        end
-        puts 'CHANGE'
-        puts self.data['redirect_from']
-        #puts self.data['section']
-        #puts 'page'
-        #puts page.data['redirect_from']
-        #puts 'self'
-        #puts self.data['redirect_from']
         self.process(@name)
       #else
         #self.read_yaml(File.join(base, 'recipes'), page.name)
