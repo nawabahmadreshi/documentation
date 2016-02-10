@@ -13,7 +13,7 @@ contents: list
 ---
 
 {% protip title="Link Configuration vs. Link Creation" %}
-This page describes how to use the link data dictionary to define key/value pairs for deep linking, and the various link analytics and control parameters Branch offers. You can read about how to actually create Branch links on the [Creating Links]({{base.url}}/getting-started/creating-links) page.
+This page describes how to use the link data dictionary to define key/value pairs for deep linking, and the various link analytics and control parameters Branch offers. You can read about how to actually create Branch links on the [Creating Links in Apps]({{base.url}}/getting-started/creating-links-in-apps) and [Creating Links in Other Ways]({{base.url}}/getting-started/creating-links-other-ways) pages.
 {% endprotip %}
 
 Every Branch link that you create is completely customizable from a functionality perspective. Here are the key variables for customization.
@@ -26,13 +26,7 @@ Every Branch link includes a dictionary for `key : value` pairs specified by you
 
 Use analytics labels to help _organize your data_. Track updates, run A/B tests and measure the effectiveness of different channels using these labels.
 
-| **Label** | **Usage**
-| ---: | ---
-| **channel** | Use channel to tag the _route_ that your link reaches users. For example, tag links with ‘Facebook’ or ‘LinkedIn’ to help track clicks and installs through those paths separately
-| **feature** | This is the feature of your app that the link might be associated with. For example, if you had built a referral program, you would label links with the feature ‘referral’
-| **campaign** | Use this field to organize the links by actual campaign. For example, if you launched a new feature or product and want to run a campaign around that
-| **stage** | Use this to categorize the progress or category of a user when the link was generated. For example, if you had an invite system accessible on level 1, level 3 and 5, you could differentiate links generated at each level with this parameter
-| **tags** | This is a free form entry with unlimited values. Use it to organize your link data with labels that don't fit within the bounds of the above
+{% ingredient analytics-labels %}{% endingredient %}
 
 ## Link control parameters
 

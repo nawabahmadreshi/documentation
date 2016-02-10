@@ -53,9 +53,9 @@ One of the most common uses of Branch is to dynamically create Branch links for 
 
 If you want to create links manually or via the API, there many mechanisms to do so. Here are links to describe the most common ways for doing so:
 
-1. **[Via the API]({{base.url}}/getting-started/creating-links/advanced#http-api)**
-2. **[By appending query params]({{base.url}}/getting-started/creating-links/advanced#appending-query-parameters)**
-3. **[On the dashboard]({{base.url}}/getting-started/creating-links/advanced#dashboard)**
+1. **[Via the API]({{base.url}}/getting-started/creating-links-other-ways#http-api)**
+2. **[By appending query params]({{base.url}}/getting-started/creating-links-other-ways#appending-query-parameters)**
+3. **[On the dashboard]({{base.url}}/getting-started/creating-links-other-ways#dashboard)**
 
 ### Use the Web SDK (Smart banner or SMS-to-download)
 

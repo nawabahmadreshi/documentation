@@ -16,5 +16,5 @@ There are a million and one ways to use Branch in your app! In this section, we 
 
 #### Next steps to take
 - After integrating the SDK, you will want to enable **[Universal and App Links](universal-app-links)**, especially if your app contains an iOS version. **You must enable Universal Links before Branch can function correctly on iOS 9.2+!**
-- The **[Creating Links](creating-links)** page describes all the different ways you can generate Branch links.
+- The **[Creating Links in Apps](creating-links-in-apps)** page describes how to generate Branch links inside your app.
 - **[Deep Link Routing](deep-link-routing)** allows you control what users see first after opening your app from a Branch link. It's a powerful feature you will want to enable.

@@ -1,9 +1,9 @@
 ---
 type: recipe
 directory: getting-started
-title: Creating Links
-page_title: How to create Branch links
-description: Learn about the multiple ways to create Branch deep links for iOS and Android apps.
+title: Creating Links in Apps
+page_title: How to create Branch links inside your mobile app
+description: Learn how to create Branch deep links for iOS and Android apps using the Branch mobile SDKs.
 keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Link Properties, Redirect Customization, Mobile SDK, Web SDK, HTTP API
 platforms:
 - ios
@@ -16,17 +16,18 @@ platforms:
 sections:
 - overview
 - guide
-- advanced
 ---
 
 {% if page.overview %}
-Links are the foundation of everything Branch offers. By using Branch links, you can easily allow your app's users to accomplish tasks such as sharing content or inviting friends. This guide explains how to generate Branch links by using the mobile SDKs for each platform. See the Advanced page to learn about other link creation methods.
+Links are the foundation of everything Branch offers. By using our mobile SDKs to create Branch links in your app, you can easily allow your users to accomplish tasks such as sharing content or inviting friends. 
 
 {% protip %}
+For alternative ways to create Branch links, including via the dashboard, your website, the API, or appending URL query parameters, see the [Creating Links in Other Ways page]({{base.url}}/getting-started/creating-links-other-ways).
+
 You can read more about using the link data dictionary to define key/value pairs for deep linking, and the various link analytics and control parameters used throughout this page on the [Link Configuration page]({{base.url}}/getting-started/configuring-links).
 {% endprotip %}
 
-### [Get started with creating links!]({{base.url}}/getting-started/creating-links/guide)
+### [Get started with creating links in your app!]({{base.url}}/getting-started/creating-links-in-apps/guide)
 
 {% elsif page.guide %}
 
@@ -497,6 +498,6 @@ This will return Branch shortlink:
 
 You can create links on the [Marketing page](https://dashboard.branch.io/#/marketing) of the Branch dashboard. Many link parameters can be configured using this UI, and most others can be manually specified under the _Deep Link Data (Advanced)_ section.
 
-{% image src="/img/pages/getting-started/creating-links/add_full.png" 3-quarters center alt="Link Tags" %}
+{% image src="/img/pages/getting-started/creating-links-other-ways/add_full.png" 3-quarters center alt="Link Tags" %}
 
 {% endif %}

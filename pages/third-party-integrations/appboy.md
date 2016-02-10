@@ -51,7 +51,7 @@ On the Appboy dashboard, navigate to the **App Settings** section, and click **3
 {% image src='/img/pages/third-party-integrations/appboy/appboy-add.png' 2-thirds center alt='branch-appboy-settings' %}
 
 {% caution %}
-When [creating a Branch]({{base.url}}/getting-started/creating-links) link to use with Appboy, be sure to specify a **campaign** and **channel**.
+When [creating a Branch]({{base.url}}/getting-started/creating-links-other-ways) link to use with Appboy, be sure to specify a **campaign** and **channel**.
 {% endcaution %}
 
 ## Testing

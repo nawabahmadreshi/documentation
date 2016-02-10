@@ -1,7 +1,7 @@
 ---
 type: recipe
 directory: getting-started
-title: SDK Integration Guide
+title: 1. SDK Integration Guide
 page_title: Add the Branch SDK to your app
 description: This page will tell you how to quickly add the Branch SDK to your Android, iOS, Cordova, Phonegap, Xamarin, Unity, Air or Titanium app.
 redirect_from:
@@ -908,7 +908,7 @@ The Branch SDK is now integrated into your app, and you can use the [Branch dash
 Here are some recommended next steps:
 
 - **Enable [Universal & App Links]({{base.url}}/getting-started/universal-app-links)** — traditional URI scheme links are no longer supported in many situations on iOS 9.2+, and are a less than ideal solution on new versions of Android. To get full functionality from your Branch links on iOS devices, **you should enable Universal Links as soon as possible.**
-- **Learn about [Creating Links]({{base.url}}/getting-started/creating-links)** — let your users share content and invite friends from inside your app.
+- **Learn about [Creating Links in Apps]({{base.url}}/getting-started/creating-links-in-apps)** — let your users share content and invite friends from inside your app.
 -  **Set up [Deep Link Routing]({{base.url}}/getting-started/deep-link-routing)** — send incoming visitors directly to specific content in your app based on the Branch link they opened.
 
 {% elsif page.advanced %}
