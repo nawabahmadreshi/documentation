@@ -22,6 +22,25 @@ module Jekyll
         @dir = directory
         @name = page.name.split(".")[0] + '.md'
       end
+      
+      #puts 'page'
+      #puts page.data['redirect_from']
+      #puts 'self'
+      #puts self.data['redirect_from']
+      puts page.data['title']
+      puts page.data['redirect_from']
+      if page.data['sections']
+        if page.data['sections'][0] != section
+          page.data.delete('redirect_from')
+        end
+      end
+      puts 'CHANGE'
+      puts page.data['redirect_from']
+      #puts self.data['section']
+      #puts 'page'
+      #puts page.data['redirect_from']
+      #puts 'self'
+      #puts self.data['redirect_from']
 
       if File.exist?(File.join(base, 'pages', directory, page.name))
         self.read_yaml(File.join(base, 'pages', directory), page.name)
@@ -56,21 +75,7 @@ module Jekyll
       #  self.data['section'] = section
       #  self.data['guide'] = true
       #end
-      #puts 'page'
-      #puts page.data['redirect_from']
-      #puts 'self'
-      #puts self.data['redirect_from']
-      if page.data['sections']
-        if page.data['sections'][0] != self.data['section']
-          self.data.delete('redirect_from')
-        end
-      end
-      #puts 'CHANGE'
-      #puts self.data['section']
-      #puts 'page'
-      #puts page.data['redirect_from']
-      #puts 'self'
-      #puts self.data['redirect_from']
+
 
       path_page_name = page.name.split(".")[0]
       if path_page_name == 'index' then path_page_name = '' end
