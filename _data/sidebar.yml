@@ -4,7 +4,7 @@
   directory: getting-started
   children:
     - sdk-integration-guide
-    - title: 2. Route Links
+    - title: 2. Set Up Deep Linking
       children:
         - deep-link-routing
         - universal-app-links
