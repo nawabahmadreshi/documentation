@@ -131,7 +131,9 @@ If you use a custom domain or subdomain for your Branch links, you should also a
 
 {% endif %}
 
+{% if page.ios or page.android or page.xamarin %}
 ## Make your app aware of incoming Universal Links
+{% endif %}
 
 {% if page.ios %}
 
@@ -165,7 +167,7 @@ func application(application: UIApplication, continueUserActivity userActivity: 
 {% endif %}
 {% if page.cordova %}
 
-Does this step occur on Cordova?
+<!--Does this step occur on Cordova?-->
 
 {% endif %}
 {% if page.xamarin %}
@@ -204,17 +206,17 @@ public override bool ContinueUserActivity (UIApplication application,
 {% endif %}
 {% if page.unity %}
 
-Does this step occur on Unity?
+<!--Does this step occur on Unity?-->
 
 {% endif %}
 {% if page.adobe %}
 
-Does this step occur on Air ANE?
+<!--Does this step occur on Air ANE?-->
 
 {% endif %}
 {% if page.titanium %}
 
-Does this step occur on Titanium?
+<!--Does this step occur on Titanium?-->
 
 {% endif %}
 

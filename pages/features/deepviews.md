@@ -472,7 +472,7 @@ The Deepview editing screen contains two tabs: **Basic** and **Editor**.
 
 The Basic tab displays your new template, and allows you to modify the default fallback OG tags used if none are specified for a link.
 
-{% image src='/img/deepviews/deepviews_editor_basic.png' 2-thirds center alt='Deepviews tab' %}
+{% image src='/img/pages/features/deepviews/deepviews_editor_basic.png' 2-thirds center alt='Deepviews tab' %}
 
 #### Deepview Settings
 
@@ -497,7 +497,7 @@ These fields are duplicates of the _Social Media Display Customization_ section 
 
 The Editor tab allows you to edit the raw HTML and CSS for your template. The rendered template will update as you modify the markup.
 
-{% image src='/img/deepviews/deepviews_editor_code.png' 2-thirds center alt='Deepviews tab' %}
+{% image src='/img/pages/features/deepviews/deepviews_editor_code.png' 2-thirds center alt='Deepviews tab' %}
 
 {% caution title="Javascript is not allowed on deepview templates" %}
 Before rendering the template, we sanitize the markup of Javascript for security reasons. This includes script tags and event attributes on tags.

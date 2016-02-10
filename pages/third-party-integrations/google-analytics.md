@@ -92,7 +92,7 @@ Branch.getInstance().userCompletedAction("purchase", data);
 
 Once you have saved these events inside your app, Branch will track each time the event `purchase` occurred, with the exact user, and will retain meta data for each user-event. 
 
-{% protip title="Identities" %}Since Branch [tracks identity]({{base.url}}/getting-started/tracking-identities), we recommend you keep the property `cid` the same as what you would use if you were calling `setIdentity` through the Branch SDK.{% endprotip %}
+{% protip title="Identities" %}Since Branch [tracks identity]({{base.url}}/getting-started/setting-identities), we recommend you keep the property `cid` the same as what you would use if you were calling `setIdentity` through the Branch SDK.{% endprotip %}
 
 ## Build a template URL
 

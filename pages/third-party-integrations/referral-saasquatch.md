@@ -134,7 +134,7 @@ Once you've built the widget and loaded the content, all of the background track
 
 ## Tracking mobile referrals
 
-To capture **mobile installs** from a SaaSquatch referral program, you'll need to use the Branch SDK to detect the referral code after a link has been clicked and register the `sq_referralCode` metadata field to the `referralCode` field of the SaaSquatch webview. Alternatively, for the [SaaSquatch Stripe integration](docs.referralsaasquatch.com/stripe/), this referral code can be passed directly to the Stripe SDK as the `coupon.code`.
+To capture **mobile installs** from a SaaSquatch referral program, you'll need to use the Branch SDK to detect the referral code after a link has been clicked and register the `sq_referralCode` metadata field to the `referralCode` field of the SaaSquatch webview. Alternatively, for the [SaaSquatch Stripe integration](http://docs.referralsaasquatch.com/stripe/), this referral code can be passed directly to the Stripe SDK as the `coupon.code`.
 
 {% protip %}
 This is the same strategy used for other SaaSquatch payment systems integrations like Recurly, Braintree and Zuora.
