@@ -109,23 +109,23 @@ var branchUniversalObject = branch.createBranchUniversalObject({
 
 ## Parameters
 
-Some of these parameters automatically [populate the OG tag parameters]({{base.url}}/getting-started/configuring-links) of any link created from that `BranchUniversalObject`.
+Some of these parameters automatically [populate the link parameters]({{base.url}}/getting-started/configuring-links) of any link created from that `BranchUniversalObject`. Specifying via `BranchUniversalObject` is preferred.
 
 {% if page.ios %}
 
-| Parameter | Usage | OG Tag key
-| --- | ---
-| **canonicalIdentifier** | This is the unique identifier for content that will help Branch dedupe across many instances of the same thing. Suitable options: a website with pathing, or a database with identifiers for entities
-| **canonicalUrl** | The canonical URL, used for SEO purposes
-| **title** | The name for the piece of content | $og_title 
-| **contentDescription** | A description for the content | $og_description
-| **imageUrl** | The image URL for the content | $og_image_url
-| **metadata** | Any extra parameters you'd like to associate with the Branch Universal Object. These will be made available to you after the user clicks the link and opens up the app, and are used for [Deep Link Routing]({{base.url}}/getting-started/deep-link-routing).
-| **type** | This is a label for the type of content present. Apple recommends that you use uniform type identifier as [described here](https://developer.apple.com/library/prerelease/ios/documentation/MobileCoreServices/Reference/UTTypeRef/index.html)*
-| **contentIndexMode** | Can be set to either `ContentIndexModePublic` or `ContentIndexModePrivate`. Public indicates that you'd like this content to be discovered by other apps*
-| **keywords** | Keywords for which this content should be discovered by. Just assign an array of strings with the keywords you'd like to use*
-| **expirationDate** | The date when the content will not longer be available or valid*
-| **spotlightIdentifier** | |
+| Parameter | Usage | Link Parameter
+| --- | --- | ---
+| canonicalIdentifier | This is the unique identifier for content that will help Branch dedupe across many instances of the same thing. Suitable options: a website with pathing, or a database with identifiers for entities | $canonical_identifier
+| canonicalUrl | The canonical URL, used for SEO purposes
+| title | The name for the piece of content | $og_title 
+| contentDescription | A description for the content | $og_description
+| imageUrl | The image URL for the content | $og_image_url
+| metadata | Any extra parameters you'd like to associate with the Branch Universal Object. These will be made available to you after the user clicks the link and opens up the app, and are used for [Deep Link Routing]({{base.url}}/getting-started/deep-link-routing).
+| type | This is a label for the type of content present. Apple recommends that you use uniform type identifier as [described here](https://developer.apple.com/library/prerelease/ios/documentation/MobileCoreServices/Reference/UTTypeRef/index.html)* | $content_type
+| contentIndexMode | Can be set to either `ContentIndexModePublic` or `ContentIndexModePrivate`. Public indicates that you'd like this content to be discovered by other apps* | $publicly_indexable
+| keywords | Keywords for which this content should be discovered by. Just assign an array of strings with the keywords you'd like to use* |$keywords
+| expirationDate | The date when the content will not longer be available or valid* | $exp_date
+| spotlightIdentifier | Unique identifier used for iOS Spotlight Indexing. Usually can be left blank
 
 **Currently, this parameter is only used for [iOS Spotlight Indexing]({{base.url}}/features/spotlight-indexing) but will be used by Branch in the future*
 
@@ -134,17 +134,17 @@ Some of these parameters automatically [populate the OG tag parameters]({{base.u
 {% if page.android %}
 
 | Parameter | Usage | OG Tag key
-| --- | ---
-| **setCanonicalIdentifier** | This is the unique identifier for content that will help Branch dedupe across many instances of the same thing. Suitable options: a website with pathing, or a database with identifiers for entities
-| **setCanonicalUrl** | The canonical URL, used for SEO purposes
-| **setTitle** | The name for the piece of content | $og_title 
-| **setContentDescription** | A description for the content | $og_description
-| **imageUrl** | The image URL for the content | $og_image_url
-| **addContentMetadata** | Any extra parameters you'd like to associate with the Branch Universal Object. These will be made available to you after the user clicks the link and opens up the app, and are used for [Deep Link Routing]({{base.url}}/getting-started/deep-link-routing).
-| **type** | This is a label for the type of content present. Apple recommends that you use uniform type identifier as [described here](https://developer.apple.com/library/prerelease/ios/documentation/MobileCoreServices/Reference/UTTypeRef/index.html)*
-| **setContentIndexingMode** | Can be set to either `BranchUniversalObject.CONTENT_INDEX_MODE.PUBLIC` or `BranchUniversalObject.CONTENT_INDEX_MODE.PRIVATE`. Public indicates that you'd like this content to be discovered by other apps*
-| **addKeywords** | Keywords for which this content should be discovered by. Just assign an array of strings with the keywords you'd like to use. Can also be called as **addKeyword** with a `string`*
-| **setContentExpiration** | The date when the content will not longer be available or valid. Set in milliseconds.*
+| --- | --- | ---
+| setCanonicalIdentifier | This is the unique identifier for content that will help Branch dedupe across many instances of the same thing. Suitable options: a website with pathing, or a database with identifiers for entities | $canonical_identifier
+| setCanonicalUrl | The canonical URL, used for SEO purposes
+| setTitle | The name for the piece of content | $og_title 
+| setContentDescription | A description for the content | $og_description
+| imageUrl | The image URL for the content | $og_image_url
+| addContentMetadata | Any extra parameters you'd like to associate with the Branch Universal Object. These will be made available to you after the user clicks the link and opens up the app, and are used for [Deep Link Routing]({{base.url}}/getting-started/deep-link-routing).
+| type | This is a label for the type of content present. Apple recommends that you use uniform type identifier as [described here](https://developer.apple.com/library/prerelease/ios/documentation/MobileCoreServices/Reference/UTTypeRef/index.html)* | $content_type
+| setContentIndexingMode | Can be set to either `BranchUniversalObject.CONTENT_INDEX_MODE.PUBLIC` or `BranchUniversalObject.CONTENT_INDEX_MODE.PRIVATE`. Public indicates that you'd like this content to be discovered by other apps* | $publicly_indexable
+| addKeywords | Keywords for which this content should be discovered by. Just assign an array of strings with the keywords you'd like to use. Can also be called as **addKeyword** with a `string`* | $keywords
+| setContentExpiration | The date when the content will not longer be available or valid. Set in milliseconds.* | $exp_date
 
 **Currently, this parameter is only used for [iOS Spotlight Indexing]({{base.url}}/features/spotlight-indexing) but will be used by Branch in the future*
 
@@ -153,17 +153,17 @@ Some of these parameters automatically [populate the OG tag parameters]({{base.u
 {% if page.unity %}
 
 | Parameter | Usage | OG Tag key
-| --- | ---
-| **canonicalIdentifier** | This is the unique identifier for content that will help Branch dedupe across many instances of the same thing. Suitable options: a website with pathing, or a database with identifiers for entities
-| **canonicalUrl** | The canonical URL, used for SEO purposes
-| **title** | The name for the piece of content | $og_title 
-| **contentDescription** | A description for the content | $og_description
-| **imageUrl** | The image URL for the content | $og_image_url
-| **metadata** | Any extra parameters you'd like to associate with the Branch Universal Object. These will be made available to you after the user clicks the link and opens up the app, and are used for [Deep Link Routing Routing]({{base.url}}/getting-started/deep-link-routing).
-| **type** | This is a label for the type of content present. Apple recommends that you use uniform type identifier as [described here](https://developer.apple.com/library/prerelease/ios/documentation/MobileCoreServices/Reference/UTTypeRef/index.html)*
-| **contentIndexMode** | Can be set to either `ContentIndexModePublic` or `ContentIndexModePrivate`. Public indicates that you'd like this content to be discovered by other apps*
-| **keywords** | Keywords for which this content should be discovered by. Just assign an array of strings with the keywords you'd like to use*
-| **expirationDate** | The date when the content will not longer be available or valid*
+| --- | --- | ---
+| canonicalIdentifier | This is the unique identifier for content that will help Branch dedupe across many instances of the same thing. Suitable options: a website with pathing, or a database with identifiers for entities | $canonical_identifier
+| canonicalUrl | The canonical URL, used for SEO purposes
+| title | The name for the piece of content | $og_title 
+| contentDescription | A description for the content | $og_description
+| imageUrl | The image URL for the content | $og_image_url
+| metadata | Any extra parameters you'd like to associate with the Branch Universal Object. These will be made available to you after the user clicks the link and opens up the app, and are used for [Deep Link Routing Routing]({{base.url}}/getting-started/deep-link-routing).
+| type | This is a label for the type of content present. Apple recommends that you use uniform type identifier as [described here](https://developer.apple.com/library/prerelease/ios/documentation/MobileCoreServices/Reference/UTTypeRef/index.html)* | $content_type
+| contentIndexMode | Can be set to either `ContentIndexModePublic` or `ContentIndexModePrivate`. Public indicates that you'd like this content to be discovered by other apps* | $publicly_indexable
+| keywords | Keywords for which this content should be discovered by. Just assign an array of strings with the keywords you'd like to use* | $keywords
+| expirationDate | The date when the content will not longer be available or valid* | $exp_date
 
 **Currently, this parameter is only used for [iOS Spotlight Indexing]({{base.url}}/features/spotlight-indexing) but will be used by Branch in the future*
 
@@ -172,17 +172,17 @@ Some of these parameters automatically [populate the OG tag parameters]({{base.u
 {% if page.titanium %}
 
 | Parameter | Usage | OG Tag key
-| --- | ---
-| **canonicalIdentifier** | This is the unique identifier for content that will help Branch dedupe across many instances of the same thing. Suitable options: a website with pathing, or a database with identifiers for entities
-| **canonicalUrl** | The canonical URL, used for SEO purposes
-| **title** | The name for the piece of content | $og_title 
-| **contentDescription** | A description for the content | $og_description
-| **contentImageUrl** | The image URL for the content | $og_image_url
-| **contentMetadata** | Any extra parameters you'd like to associate with the Branch Universal Object. These will be made available to you after the user clicks the link and opens up the app, and are used for [Deep Link Routing Routing]({{base.url}}/getting-started/deep-link-routing).
-| **type** | This is a label for the type of content present. Apple recommends that you use uniform type identifier as [described here](https://developer.apple.com/library/prerelease/ios/documentation/MobileCoreServices/Reference/UTTypeRef/index.html)*
-| **contentIndexingMode** | Can be set to either `public` or `private`. Public indicates that you'd like this content to be discovered by other apps*
-| **keywords** | Keywords for which this content should be discovered by. Just assign an array of strings with the keywords you'd like to use*
-| **expirationDate** | The date when the content will not longer be available or valid*
+| --- | --- | ---
+| canonicalIdentifier | This is the unique identifier for content that will help Branch dedupe across many instances of the same thing. Suitable options: a website with pathing, or a database with identifiers for entities | $canonical_identifier
+| canonicalUrl | The canonical URL, used for SEO purposes
+| title | The name for the piece of content | $og_title 
+| contentDescription | A description for the content | $og_description
+| contentImageUrl | The image URL for the content | $og_image_url
+| contentMetadata | Any extra parameters you'd like to associate with the Branch Universal Object. These will be made available to you after the user clicks the link and opens up the app, and are used for [Deep Link Routing Routing]({{base.url}}/getting-started/deep-link-routing).
+| type | This is a label for the type of content present. Apple recommends that you use uniform type identifier as [described here](https://developer.apple.com/library/prerelease/ios/documentation/MobileCoreServices/Reference/UTTypeRef/index.html)* | $content_type
+| contentIndexingMode | Can be set to either `public` or `private`. Public indicates that you'd like this content to be discovered by other apps* | $publicly_indexable
+| keywords | Keywords for which this content should be discovered by. Just assign an array of strings with the keywords you'd like to use* | $keywords
+| expirationDate | The date when the content will not longer be available or valid* | $exp_date
 
 **Currently, this parameter is only used for [iOS Spotlight Indexing]({{base.url}}/features/spotlight-indexing) but will be used by Branch in the future*
 

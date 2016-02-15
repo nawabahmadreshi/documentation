@@ -36,7 +36,7 @@ Use analytics labels to help _organize your data_. Track updates, run A/B tests 
 | --- | --- | ---
 | alias | Specify a link alias in place of the standard encoded short URL (e.g., `bnc.lt/youralias` or `yourdomain.co/youralias`). Link aliases are unique, immutable objects that cannot be deleted. **Aliases on the bnc.lt domain are incompatible with [Universal Links]({{base.url}}/getting-started/universal-app-links) and [Spotlight]({{base.url}}/features/spotlight-indexing)**
 | duration | Lets you control the fingerprinting match timeout (the time that a click will wait for an app open to match) also known as attribution window. Can also be set using `$match_duration`. Specified in seconds | `7200`
-| type | *(Advanced)* Set to '1' to limit deep linking behavior of the generated link to a single use. Set type to 2 to make link show up under [Marketing page](https://dashboard.branch.io/#/marketing) in the dashboard | `0`
+| type | *(Advanced)* Set to `1` to limit deep linking behavior of the generated link to a single use. Set type to `2` to make link show up under [Marketing page](https://dashboard.branch.io/#/marketing) in the dashboard | `0`
 
 ## Link control parameters
 
@@ -53,13 +53,13 @@ The redirect destinations are completely customizable for every link that you cr
 | $fallback_url | Change the redirect endpoint for _all_ platforms - so you don't have to enable it by platform | System-wide Default URL (set in [Link Settings](https://dashboard.branch.io/#/settings/link))
 | **$desktop_url** | Change the redirect endpoint on desktops | Text-Me-The-App page (set in [Link Settings](https://dashboard.branch.io/#/settings/link))
 | $ios_url | Change the redirect endpoint for iOS | App Store page for your app (set in [Link Settings](https://dashboard.branch.io/#/settings/link))
-| $ipad_url | Change the redirect endpoint for iPads | `$ios_url` value)
+| $ipad_url | Change the redirect endpoint for iPads | `$ios_url` value
 | $android_url | Change the redirect endpoint for Android | Play Store page for your app (set in [Link Settings](https://dashboard.branch.io/#/settings/link))
-| **$windows_phone_url** | Change the redirect endpoint for Windows OS | System-wide Default URL (set in [Link Settings](https://dashboard.branch.io/#/settings/link))
-| $blackberry_url | Change the redirect endpoint for Blackberry OS | System-wide Default URL (set in [Link Settings](https://dashboard.branch.io/#/settings/link))
-| $fire_url | Change the redirect endpoint for Amazon Fire OS | System-wide Default URL (set in [Link Settings](https://dashboard.branch.io/#/settings/link))
-| $ios_wechat_url | Change the redirect endpoint for WeChat on iOS devices | System-wide Default URL (set in [Link Settings](https://dashboard.branch.io/#/settings/link))
-| $ios_weibo_url | Change the redirect endpoint for Weibo on iOS devices | System-wide Default URL (set in [Link Settings](https://dashboard.branch.io/#/settings/link))
+| **$windows_phone_url** | Change the redirect endpoint for Windows OS | Windows Phone default URL (set in [Link Settings](https://dashboard.branch.io/#/settings/link))
+| $blackberry_url | Change the redirect endpoint for Blackberry OS | BlackBerry default URL (set in [Link Settings](https://dashboard.branch.io/#/settings/link))
+| $fire_url | Change the redirect endpoint for Amazon Fire OS | Fire default URL (set in [Link Settings](https://dashboard.branch.io/#/settings/link))
+| $ios_wechat_url | Change the redirect endpoint for WeChat on iOS devices | `$ios_url` value
+| $ios_weibo_url | Change the redirect endpoint for Weibo on iOS devices | `$ios_url` value
 
 #### After click redirect
 
@@ -69,9 +69,9 @@ This lets you customize where Branch will redirect a user's web view after openi
 This parameter is currently supported only on iOS.
 {% endcaution %}
 
-| Key | Usage | Default
-| --- | --- | ---
-| $after_click_url | URL redirect to after the main click redirect has completed | *null*
+| Key | Usage
+| --- | ---
+| $after_click_url | URL redirect to after the main click redirect has completed
 
 ### Deep link routing customization
 
@@ -114,7 +114,7 @@ Control [Deepviews]({{base.url}}/features/deepviews) on a link-by-link basis.
 ## Display customization
 
 {% protip title="Use the BranchUniversalObject if possible!" %}
-A number of these parameters can also be specified using the [BranchUniversalObject]({{base.url}}/getting-started/branch-universal-object). This is the preferred method, if available on your platform.
+Most of these parameters can also be specified using the [BranchUniversalObject]({{base.url}}/getting-started/branch-universal-object). This is the preferred method, if available on your platform.
 {% endprotip %}
 
 ### Content indexing controls
@@ -156,7 +156,11 @@ If you do not specify a primary OG tag when creating a link, Branch will perform
 
 ## Appending query parameters to links
 
-In addition to specifying parameters when creating a link, you can also append any of them on a case-by-case to the URL of a generated link:
+### Branch parameters
+
+In addition to specifying parameters when creating a link, you can also append any of them on a case-by-case to the URL of a generated link.
+
+To pass a key/value pair of `$deeplink_path : article/jan/123` on a specific instance of a link:
 
 {% highlight sh %}
 https://bnc.lt/l/3HZMytU-BW?$deeplink_path=article%2Fjan%2F123
@@ -168,3 +172,14 @@ The following parameters can **only** be specified by appending to a link:
 | --- | --- | ---
 | has_app | Set to 'true' or 'false' in order to tell us whether you want us to try to open up the app for this particular link or not. Functionally identical to `$always_deeplink` | `true`
 | debug | Set to 'true' to route to a link debug page that shows the labels and configuration of a link | `false`
+
+### Custom parameters
+
+If you append your own custom query parameters to a link, this data will also be captured and passed through when you initiate a Branch session.
+
+To pass a key/value pair of `myparameter : testvalue` on a specific instance of a link:
+
+{% highlight sh %}
+https://bnc.lt/l/3HZMytU-BW?myparameter=testvalue
+{% endhighlight %}
+
