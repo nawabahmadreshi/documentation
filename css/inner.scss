@@ -316,3 +316,41 @@
     margin-left: 0;
   }
 }
+
+.inner__supportbar {
+  position: fixed;
+  bottom: 0px;
+  width: 300px;
+  background-color: #1D2A38;
+  //padding: 15px;
+  color: #ffffff;
+  text-align: right;
+  a {
+    //font-weight: bold;
+    font-size: 14px;
+    padding: 15px 37px;
+    display: inline-block;
+    color: #cecece;
+    &:first-child {
+      //padding-right: 30px;
+      //margin-right: 30px;
+      border-right: 1px solid #364351;
+    }
+    &:hover {
+      color: #ffffff;
+      background-color: #2A3745;
+    }
+  }
+}
+
+@media (max-width: $screen-sm-max) {
+  .inner__supportbar {
+    width: 100%;
+    position: relative;
+    bottom: 0;
+  }
+}
+
+.inner__footer footer {
+  display:none;
+}
