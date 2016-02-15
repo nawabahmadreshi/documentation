@@ -80,11 +80,48 @@ To test whether your webhook is configured correctly, you can use [requestb.in](
 
 ## Postback syntax
 
-All postbacks are formatted the same way, except for those triggered by `click` events. To read about the parameters in the link data dictionary, see the [Configuring Links]({{base.url}}/getting-started/configuring-links) page.
+All postbacks are formatted the same way, except for those triggered by `click` events.
 
-### Sample returns
+{% protip %}
+To read about the parameters in the link data dictionary, see the [Configuring Links]({{base.url}}/getting-started/configuring-links) page.
+{% endprotip %}
 
-#### Normal event format
+### Sample return for Click events
+
+{% highlight js %}
+POST
+User-agent: Branch Metrics API
+Content-Type: application/json
+{
+    metadata: 'event metadata' - specified in userCompletedAction withState
+    event_timestamp: 'time stamp for the event'
+    os: 'iOS' | 'Android'
+    os_version: 'the OS version'
+    query: 'any query string you have on the link'
+    link_data: { link data dictionary - see below }
+    event: 'click'
+    event_timestamp: 'link click timestamp'
+}
+
+// link data dictionary example
+{
+    data: { deep link dictionary }
+    date_ms: 'link click date with millisecond'
+    date_sec: 'link click date with second'
+    date: 'click date'
+    campaign: 'campaign label'
+    feature: 'feature label'
+    branch_id: 'branch ID for unique browser of that user'
+    domain: 'domain label'
+    channel: 'channel label'
+    state: 'state label'
+    href: 'href label'
+    tags: [tags array]
+    stage: 'stage label'
+}
+{% endhighlight %}
+
+### Sample return for all other events
 
 {% highlight js %}
 POST
@@ -127,44 +164,9 @@ Content-Type: application/json
 }
 {% endhighlight %}
 
-#### Click event format
-
-{% highlight js %}
-POST
-User-agent: Branch Metrics API
-Content-Type: application/json
-{
-    metadata: 'event metadata' - specified in userCompletedAction withState
-    event_timestamp: 'time stamp for the event'
-    os: 'iOS' | 'Android'
-    os_version: 'the OS version'
-    query: 'any query string you have on the link'
-    link_data: { link data dictionary - see below }
-    event: 'click'
-    event_timestamp: 'link click timestamp'
-}
-
-// link data dictionary example
-{
-    data: { deep link dictionary }
-    date_ms: 'link click date with millisecond'
-    date_sec: 'link click date with second'
-    date: 'click date'
-    campaign: 'campaign label'
-    feature: 'feature label'
-    branch_id: 'branch ID for unique browser of that user'
-    domain: 'domain label'
-    channel: 'channel label'
-    state: 'state label'
-    href: 'href label'
-    tags: [tags array]
-    stage: 'stage label'
-}
-{% endhighlight %}
-
 ## Filters
 
-Filters allow you to specify when a webhook gets sent to your URL based off criteria matches. You can configure your filters to use any [webhook keyword value](#webhook-keyword-values).
+Filters allow you to specify when a webhook gets sent to your URL based off criteria matches. You can configure your filters to use any [webhook keyword value](#webhook-keyword-values) by using liquid tags following this convention: {% raw %}`{{ param.name }}`{% endraw %}. 
 
 {% example title="Filtering signups by location" %}
 Let's say you're interested in receiving a webhook every time your `sign_up` event is triggered, but only in a specific market, like Chicago. Your event metadata will look something like the following:
@@ -229,19 +231,19 @@ If all steps are met, your webhook will fire as expected.
 
 ## Templating
 
-If your backend relies on a dynamic URL structure to receive events, then we can support you with our webhooks. This is typically used for marketing campaigns, where a unique parameter needs to be appended to each link-click, and consequently posted back to a URL. You can also expose data we collect on the URL itself, through our templates. Here are the two options for templates and webhooks:
+If your backend relies on a dynamic URL structure to receive events, then we can support you with our webhooks. This is typically used for marketing campaigns, where a unique parameter needs to be appended to each link-click, and consequently posted back to a URL. You can also expose data we collect on the URL itself.
+ 
+To access template values when setting up a webhook, you use liquid tags following this convention: {% raw %}`{{ param.name }}`{% endraw %}. We'll pass through that value we have saved in our database. Here are the two options for templates and webhooks:
 
 ### Query parameters on Branch links
 
 Let's say you have created a Branch link in the Marketing tab specifically for SEM campaigns and want to track query parameters. Potentially something like this: **http://bnc.lt/my-sf-campaign?clickId=12345**
 
-You want to return that value **clickId** value (`12345`) back to your backend. When setting up a webhook, you'd use liquid tags, which follow this convention: `{{ param.name }}`, and we'll pass through that value we have saved in our database. In case there isn't anything, it'll simply be empty.
+You want to return that value **clickId** value (`12345`) back to your backend. Any query parameter you add to Branch Links will be captured in our database and available for you to use in this format: `session.link_click.query.[key]`. So, if you had `?clickId=5&deviceId=7` appended to the link URL, you could retrieve those values as `session.link_click.query.clickId` and `session.link_click.query.deviceId`. In case there isn't anything, it'll simply be empty.
 
 **NOTE:** this works for all types of Branch links, and not just Marketing links.
 
 {% image src="/img/pages/getting-started/webhooks/templates.png" full center alt="webhook template configuration" %}
-
-Any query parameter you add to Branch Links will be captured in our database and available for you to use in this format: `session.link_click.query.[key]`. So, if you had `?clickId=5&deviceId=7` appended to the link URL, you could retrieve those values as `session.link_click.query.clickId` and `session.link_click.query.deviceId`.
 
 
 ### General templates without query parameters
@@ -252,94 +254,28 @@ If you want to add other parameters, you can configure your templates to use any
 
 ## Webhook keyword values
 
-You can access a wide variety of data keys when building your filters and templates. Here are the various options:
+Branch has a wide variety of data keys you can access when building your filters and templates. All events offer the same keys, with the exception of `click`.
 
-### Event data
+### Click events
 
-These can be events [created by you]({{base.url}}/getting-started/tracking-events), or tracked by Branch automatically (`click`, `install`, `open`, `referred session`, and `web session start`).
+When a Branch link is opened, triggering a `click` event, you may access:
 
-| Key | Description
-| --- | ---
-| event.name | The name of the event (e.g., `install` or `my_custom_event`)
-| event.metadata.referred | Equals `true` if user installed app after opening a Branch link
-| event.metadata.ip | The IP address of the user
-| event.metadata.key | Data defined as `key` when creating a custom event 
-| event.date | Timestamp of when the event occurred
-
-### Identity data
-
-{% protip title="Identity vs. Session" %}
-Identity data is set **once**, the very first time Branch sees a user, and can never be changed afterwards. Session data refers to the most recent record Branch has for a user. For an initial `install` event, these should be the same. For any subsequent `open` events, session referring data may be different.
-{% endprotip %}
-
-Identity data is unique for each user Branch tracks. The `identity.link_click` and `identity.link_data` values will be populated only if the user opened a Branch link when first installing the app. These values are permanently tied to that user, meaning if a link with a campaign of 'google' drives an install, then that user will have a permanent `identity.link_data.~campaign` value equal to 'google'.
-
-| Key | Description
-| --- | ---
-| identity.id | User ID you set [using setIdentity]({{base.url}}/getting-started/setting-identities)
-| identity.click.query.key | Any key that was appended to the link when opened. To retrieve `value1` from **https://bnc.lt/test?param1=value1**, you would use `identity.click.query.param1`.
-| identity.click.referring_identity.id | ID you set for the user who created this link
-| identity.click.browser.branch_id | The Branch ID we have for a user's unique browser
-| identity.click.browser.metadata.userAgent | The user agent of the browser
-| identity.click.device.hardware_id | For iOS, this is the Advertising ID. For Android, this is the Android ID
-| identity.click.device.metadata.google_advertising_id | Android only. The Google Advertising ID, if known
-| identity.click.device.metadata.os | The OS of the device
-| identity.click.device.metadata.os_version | The OS version
-| identity.click.date | Time of link click.
-| identity.link_data.~id | ID of the link
-| identity.link_data.~creation_source | How the link was created, e.g. iOS SDK, API, etc.
-| identity.link_data.~tags | Tags of the link
-| identity.link_data.~campaign | Campaign of the link
-| identity.link_data.~channel | Channel of the link
-| identity.link_data.~feature | Feature of the link
-| identity.link_data.~stage | Stage of the link
-| identity.link_data.$one_time_use | Whether this was a one time use link or not
-| identity.link_data.$one_time_use_used | Whether this one time use link was used or not
-| identity.link_data.$identity_id | Branch internal identity of user who generated the link
-| identity.link_data.$match_duration | Length of time (in milliseconds) that a match could have occurred
-| identity.link_data.+url | The full URL of the link, e.g. bnc.lt/m/abcde12345
-| identity.link_data.key | Any key value you specified in the link's data dictionary
-| identity.referring_identity.id | ID you set for the user who created the link that drove this user's event
-| identity.referring_device.hardware_id | Device ID of the user who created the link that drove this user's event
-
-### Session data
-
-Session data refers to the **most recent** record Branch has for each user, regardless of whether it was initiated by an `install` or an `open` event. If a Branch link was opened to initiate the session, then the `session.link_data`  and `session.link_click` keys will be populated.
-
-| Key | Description
-| --- | ---
-| session.click.query.key | Any key that was appended to the link when opened. To retrieve `value1` from **https://bnc.lt/test?param1=value1**, you would use `session.click.query.param1`.
-| session.click.referring_identity.id | ID you set for the user who created this link
-| session.click.browser.branch_id | The Branch ID we have for a user's unique browser
-| session.click.browser.metadata.userAgent | The user agent of the browser
-| session.click.device.hardware_id | For iOS, this is the Advertising ID. For Android, this is the Android ID
-| session.click.device.metadata.google_advertising_id | Android only. The Google Advertising ID, if known
-| session.click.device.metadata.os | The OS of the device
-| session.click.device.metadata.os_version | The OS version
-| session.click.date | Time of link click.
-| session.link_data.~id | ID of the link
-| session.link_data.~creation_source | How the link was created, e.g. iOS SDK, API, etc.
-| session.link_data.~tags | Tags of the link
-| session.link_data.~campaign | Campaign of the link
-| session.link_data.~channel | Channel of the link
-| session.link_data.~feature | Feature of the link
-| session.link_data.~stage | Stage of the link
-| session.link_data.$one_time_use | Whether this was a one time use link or not
-| session.link_data.$one_time_use_used | Whether this one time use link was used or not
-| session.link_data.$identity_id | Branch internal identity of user who generated the link
-| session.link_data.$match_duration | Length of time (in milliseconds) that a match could have occurred
-| session.link_data.+url | The full URL of the link, e.g. bnc.lt/m/abcde12345
-| session.link_data.key | Any key value you specified in the link's data dictionary
-| session.referring_identity.id | ID you set for the user who created the link that drove this user's session
-| session.referring_device.hardware_id | device ID of the user who created the link that drove this user's session
-
-### Click data
-
-Click data are properties of the `click` event that occurs when a user opens a Branch link. You can access `link_data` keys for specific link that was opened.
+- Properties of the visitor who opened the link.
+- Properties of the link that was opened.
 
 | Key | Description
 | --- | ---
 | click.query.key | Any key that was appended to the link when opened. To retrieve `value1` from **https://bnc.lt/test?param1=value1**, you would use `click.query.param1`.
+| click.browser.branch_id | The Branch ID we have for a user's unique browser
+| click.browser.metadata.userAgent | The user agent of the browser
+| click.device.hardware_id | For iOS, this is the Advertising ID. For Android, this is the Android ID
+| click.device.metadata.google_advertising_id | Android only. The Google Advertising ID, if known
+| click.device.metadata.os | The OS of the device
+| click.device.metadata.os_version | The OS version
+| click.date | Time of link click.
+
+| Key | Description
+| --- | ---
 | click.link_data.~id | ID of the link
 | click.link_data.~creation_source | How the link was created, e.g. iOS SDK, API, etc.
 | click.link_data.~tags | Tags of the link
@@ -354,55 +290,121 @@ Click data are properties of the `click` event that occurs when a user opens a B
 | click.link_data.+url | The full URL of the link, e.g. bnc.lt/m/abcde12345
 | click.link_data.key | Any key value you specified in the link's data dictionary
 | click.referring_identity.id | ID you set for the user who created this link
-| click.browser.branch_id | The Branch ID we have for a user's unique browser
-| click.browser.metadata.userAgent | The user agent of the browser
-| click.device.hardware_id | For iOS, this is the Advertising ID. For Android, this is the Android ID
-| click.device.metadata.google_advertising_id | Android only. The Google Advertising ID, if known
-| click.device.metadata.os | The OS of the device
-| click.device.metadata.os_version | The OS version
-| click.date | Time of link click.
 
-### Browser data
+### All other events
 
-Browser data is what we know about the browser of the user who clicked a Branch link.
+When a user triggers an event inside your app, either one [created by you]({{base.url}}/getting-started/tracking-events) or one tracked by Branch automatically (`install`, `open`, `referred session`, and `web session start`), you may access:
 
-| Key | Description
-| --- | ---
-| browser.branch_id | The Branch ID we have for a user's unique browser
-| browser.metadata.userAgent | The user agent of the browser
+- Properties of the event.
+- Session properties of the user who triggered the event.
+- Identity properties of the user who triggered the event.
 
-### Device data
+{% protip title="Identity vs. Session" %}
+**Identity properties** are set *once*, the very first time Branch sees a user. Once set for each user, these are never changed. **Session properties** are the data of the *most recent* record Branch has for a user.
 
-Device data is what we know about the unique device of a user who triggered an event.
+For an initial `install` event, identity and session properties will be the same. For `open` events, session properties will be different if the user has subsequently opened another Branch link.
+{% endprotip %}
+
+#### Event data
 
 | Key | Description
 | --- | ---
-| device.hardware_id | For iOS, this is the Advertising ID. For Android, this is the Android ID
-| device.metadata.google_advertising_id | Android only. The Google Advertising ID, if known
-| device.metadata.os | The OS of the device
-| device.metadata.os_version | The OS version
+| event.name | The name of the event (e.g., `install` or `my_custom_event`)
+| event.metadata.referred | Equals `true` if user installed app after opening a Branch link
+| event.metadata.ip | The IP address of the user
+| event.metadata.key | Data defined as `key` when creating a custom event 
+| event.date | Timestamp of when the event occurred
 
-### Link data
+#### Identity data
 
-Link data refers to the values of the Branch link that was opened, including any keys you specified in the link's [data dictionary]({{base.url}}/getting-started/configuring-links).
+Identity data is unique for each user Branch tracks. These values are permanently tied to that user, meaning if a link with a campaign of 'google' drives an install, then that user will have a permanent `identity.link_data.~campaign` value equal to 'google'.
 
-**Note, you cannot use these keys by themselves**, because they are ambiguous without also specifying additional context. You must append them to [click](#click-data), [session](#session-data), or [identity](#identity-data), so the final filter or template value would be `click.link_data.~id`, `session.link_data.~id`, or `identity.link_data.~id`.
+{% protip %}
+Except for `identity.id`, these will not be populated if the user installed your app without opening a Branch link first.
+{% endprotip %}
 
 | Key | Description
 | --- | ---
-| link_data.~id | ID of the link
-| link_data.~creation_source | How the link was created, e.g. iOS SDK, API, etc.
-| link_data.~tags | Tags of the link
-| link_data.~campaign | Campaign of the link
-| link_data.~channel | Channel of the link
-| link_data.~feature | Feature of the link
-| link_data.~stage | Stage of the link
-| link_data.$one_time_use | Whether this was a one time use link or not
-| link_data.$one_time_use_used | Whether this one time use link was used or not
-| link_data.$identity_id | Branch internal identity of user who generated the link
-| link_data.$match_duration | Length of time (in milliseconds) that a match could have occurred
-| link_data.+url | The full URL of the link, e.g. bnc.lt/m/abcde12345
-| link_data.key | Any key value you specified in the link's data dictionary
+| identity.id | ID you set [using setIdentity]({{base.url}}/getting-started/setting-identities) for the user who triggered the event
+| identity.referring_identity.id | User ID you set for the user who created the link that drove this user's install
+| identity.referring_device.hardware_id | Device ID of the user who created the link that drove this user's install
+
+The `identity.link_click.` values refer to the `click` event that led to your app being installed by that user.
+
+| Key | Description
+| --- | ---
+| identity.link_click.query.key | Any key that was appended to the link when opened. To retrieve `value1` from **https://bnc.lt/test?param1=value1**, you would use `identity.link_click.query.param1`.
+| identity.link_click.referring_identity.id | ID you set for the user who created this link
+| identity.link_click.browser.branch_id | The Branch ID we have for a user's unique browser
+| identity.link_click.browser.metadata.userAgent | The user agent of the browser
+| identity.link_click.device.hardware_id | For iOS, this is the Advertising ID. For Android, this is the Android ID
+| identity.link_click.device.metadata.google_advertising_id | Android only. The Google Advertising ID, if known
+| identity.link_click.device.metadata.os | The OS of the device
+| identity.link_click.device.metadata.os_version | The OS version
+| identity.link_click.date | Time of link click.
+
+The `identity.link_data.` values refer to the link that was opened prior to your app being installed by that user.
+
+| Key | Description
+| --- | ---
+| identity.link_data.~id | ID of the link
+| identity.link_data.~creation_source | How the link was created, e.g. iOS SDK, API, etc.
+| identity.link_data.~tags | Tags of the link
+| identity.link_data.~campaign | Campaign of the link
+| identity.link_data.~channel | Channel of the link
+| identity.link_data.~feature | Feature of the link
+| identity.link_data.~stage | Stage of the link
+| identity.link_data.$one_time_use | Whether this was a one time use link or not
+| identity.link_data.$one_time_use_used | Whether this one time use link was used or not
+| identity.link_data.$identity_id | Branch internal identity of user who generated the link
+| identity.link_data.$match_duration | Length of time (in milliseconds) that a match could have occurred
+| identity.link_data.+url | The full URL of the link, e.g. bnc.lt/m/abcde12345
+| identity.link_data.key | Any key value you specified in the link's data dictionary
+
+#### Session data
+
+Session data refers to the **most recent** record Branch has for each user, regardless of whether it reflects an `install` or an `open` event. 
+
+{% protip %}
+These will not be populated if the session was not initiated by opening a Branch link.
+{% endprotip %}
+
+| Key | Description
+| --- | ---
+| session.referring_identity.id | User ID you set for the user who created the link that drove this user's session
+| session.referring_device.hardware_id | Device ID of the user who created the link that drove this user's session
+
+The `session.link_click` keys refer to the `click` event that initiated the session.
+
+| Key | Description
+| --- | ---
+| session.link_click.query.key | Any key that was appended to the link when opened. To retrieve `value1` from **https://bnc.lt/test?param1=value1**, you would use `session.click.query.param1`.
+| session.link_click.referring_identity.id | ID you set for the user who created this link
+| session.link_click.browser.branch_id | The Branch ID we have for a user's unique browser
+| session.link_click.browser.metadata.userAgent | The user agent of the browser
+| session.link_click.device.hardware_id | For iOS, this is the Advertising ID. For Android, this is the Android ID
+| session.link_click.device.metadata.google_advertising_id | Android only. The Google Advertising ID, if known
+| session.link_click.device.metadata.os | The OS of the device
+| session.link_click.device.metadata.os_version | The OS version
+| session.link_click.date | Time of link click.
+
+The `session.link_data` keys refer to the link that initiated the session.
+
+| Key | Description
+| --- | ---
+| session.link_data.~id | ID of the link
+| session.link_data.~creation_source | How the link was created, e.g. iOS SDK, API, etc.
+| session.link_data.~tags | Tags of the link
+| session.link_data.~campaign | Campaign of the link
+| session.link_data.~channel | Channel of the link
+| session.link_data.~feature | Feature of the link
+| session.link_data.~stage | Stage of the link
+| session.link_data.$one_time_use | Whether this was a one time use link or not
+| session.link_data.$one_time_use_used | Whether this one time use link was used or not
+| session.link_data.$identity_id | Branch internal identity of user who generated the link
+| session.link_data.$match_duration | Length of time (in milliseconds) that a match could have occurred
+| session.link_data.+url | The full URL of the link, e.g. bnc.lt/m/abcde12345
+| session.link_data.key | Any key value you specified in the link's data dictionary
 
 {% elsif page.support %}
 
