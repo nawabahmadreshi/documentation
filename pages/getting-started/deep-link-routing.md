@@ -485,11 +485,11 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
 ## Branch-provided data parameters in callback
 
-In addition to any custom key/value pairs specified in the link data dictionary, Branch also returns some other useful parameters every time a session is initialized. Here is a list, and a description of what each represents.
+In addition to any custom key/value pairs specified in the link data dictionary, Branch also returns some other useful parameters every time a session is initialized. These parameters will be returned every time `initSession` is called, even if the user has not clicked on a Branch link. Here is a list, and a description of what each represents.
 
 * `~` denotes analytics
 * `+` denotes information added by Branch
-* (for the curious, `$` denotes reserved keywords used for controlling how the Branch service behaves)
+* (for the curious, `$` denotes reserved keywords used for controlling how the Branch service behaves. Read more about control parameters on the [Configuring Links page]({{base.url}}/getting-started/configuring-links))
 
 
 | **Parameter** | **Meaning** |
@@ -500,13 +500,15 @@ In addition to any custom key/value pairs specified in the link data dictionary,
 | **~campaign** | The campaign the link is associated with, specified at link creation time
 | **~stage** | The stage, specified at link creation time
 | **~creation_source** | Where the link was created ('API', 'Dashboard', 'SDK', 'iOS SDK', 'Android SDK', or 'Web SDK')
-| **~referring_link** | The referring link that drove the install/open if present
+| **~referring_link** | The referring link that drove the install/open, if present
+| **~id** | Automatically generated 18 digit ID number for the link that drove the install/open, if present
 | **+match_guaranteed** | True or false as to whether the match was made with 100% accuracy
 | **+referrer** | The referrer for the link click, if a link was clicked
 | **+phone_number** | The phone number of the user, if the user texted himself/herself the app
 | **+is_first_session** | Denotes whether this is the first session (install) or any other session (open)
 | **+clicked_branch_link** | Denotes whether or not the user clicked a Branch link that triggered this session
 | **+click_timestamp** | Epoch timestamp of when the click occurred
+| **+url** | The full URL of the link that drove the install/open, if present (e.g. bnc.lt/m/abcde12345)
 
 ## Support existing deep link routes
 
