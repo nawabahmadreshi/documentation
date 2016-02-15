@@ -109,7 +109,7 @@ var branchUniversalObject = branch.createBranchUniversalObject({
 
 ## Parameters
 
-Some of these parameters automatically populate the OG tag keys in the [data dictionary]({{base.url}}/getting-started/configuring-links) of any link created from that `BranchUniversalObject`.
+Some of these parameters automatically [populate the OG tag parameters]({{base.url}}/getting-started/configuring-links) of any link created from that `BranchUniversalObject`.
 
 {% if page.ios %}
 
