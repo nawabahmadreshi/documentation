@@ -282,7 +282,7 @@ branch.addEventListener("bio:loadRewards", $.onLoadRewardFinished);
 
 ## Redeeming Credits
 
-When users spend credits, you can make a simple call to redeem their credits. On your dashboard, this will fall under the `default` bucket.
+When users spend credits, you can make a simple call to redeem their credits.
 
 {% if page.ios %}
 {% highlight objc %}
