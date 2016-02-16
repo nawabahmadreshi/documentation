@@ -33,6 +33,12 @@ If you're running Google AdWords campaigns, whether they're of the Search or Dis
 1. Pick a **Marketing Title** for later reference. For example: "Ad for blue sneakers" {% image src='/img/pages/features/google-search-ads/ad_example_create.png' 3-quarters center alt='Create Marketing Link' %}
 1. **Channel** and **Campaign** are optional but recommended. **Tags** is free form.
 
+{% example title="Use the pre-configured link" %}
+
+If you just want to track which keywords drove installs, Branch provides a pre-configured link for you to use in the *Ad URL options* field in the step below. Simply navigate to Link Settings on the Branch dashboard, and copy and paste the value inside `AdWords URL`. You can optionally [add additional parameters]({{base.url}}/getting-started/configuring-links) to that link (such as campaign, channel, and other deep link data).
+
+{% endexample %}
+
 {% protip title="Optional: Deep Link Data (Advanced)" %}
 
 You can use this configuration section to specify custom link parameters that will be deep linked into the app after install. These could include a coupon code or a page identifier to route the user. Visit the [Deep Link Routing]({{base.url}}/getting-started/deep-link-routing) page to learn more.
@@ -47,12 +53,6 @@ You can use this configuration section to specify custom link parameters that wi
 1. Expand **Ad URL options**. and place your Branch link from the first step in the **Tracking template** box. No need to add any extra parameters.
 
 {% image src="/img/pages/features/google-search-ads/link-configuration.png" half center alt='Example Ad' %}
-
-{% example title="Use the pre-configured link" %}
-
-If you just want to track which keywords drove installs, Branch provides a pre-configured link for you to use in the *Ad URL options* field. Simply navigate to Link Settings on the Branch dashboard, and copy and paste the value inside `AdWords URL`. You can optionally [add additional parameters]({{base.url}}/getting-started/configuring-links) to that link (such as campaign, channel, and other deep link data).
-
-{% endexample %}
 
 {% protip %}
 Because the **Final URL** for your app install campaigns must match your domain, you cannot put a Branch link in that box. However, capturing installs and deep linking users through content is still possible due to the **Tracking template** configuration.
