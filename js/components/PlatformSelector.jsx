@@ -30,23 +30,25 @@ var PlatformSelector = React.createClass({
 	render: function() {
 		var self = this;
 		var platforms = R.map(function(platform) {
+
 			classes = {
 				'btn btn-default': true,
-				'btn-inactive': self.state.platform != platform.key
+				'btn-inactive': self.props.url_platform != platform.key
 			}
 			var platform_path = utils.pageHasPlatform(self.props.site_map, self.props.current_path, platform.key) ? platform.key : '';
 			return (
 				<a
 					className={ cx(classes) }
 					key={ platform.key }
-					href={ '/' + self.props.current_path + '/' + platform_path }
+          url_platform={ self.props.url_platform }
+					href={ '/' + self.props.current_path + '/' + self.props.url_section + '/' + platform_path }
 					onClick={ self._handleClick(platform.key) }>
 					{ platform.name }
 				</a>);
 		});
 
 		return (
-			<div className="row text-center platform-selector">
+			<div className="text-right platform-selector">
 				<div className="btn-group">
 					{ platforms(this.props.platforms) }
 				</div>

@@ -5,15 +5,20 @@ $branch-font-path: "/font";
 
 @import "../_includes/branch-web-assets/styles/global";
 @import "../_includes/branch-web-assets/components/footer/footer";
-@import "../_includes/branch-web-assets/components/navbar/navbar";
 @import "../_includes/branch-web-assets/components/header/header";
 @import "./headers";
 @import "./tabs";
 @import "./sidebar";
-@import "./protip";
+@import "./blockquote";
 @import "./toc";
 @import "./image";
 @import "./platform_selector";
+@import "./section_selector";
+@import "./homepage";
+@import "./inner";
+@import "./breadcrumbs";
+@import "./searchbar";
+@import "../_includes/branch-web-assets/components/navbar/navbar";
 
 .btn-inactive {
 	border-color: white;
@@ -26,10 +31,6 @@ $branch-font-path: "/font";
 .main {
 	max-width: 1200px;
 	padding: 30px 15px;
-}
-
-.sidebar-group li {
-	padding-top: 6px;
 }
 
 .page-title {
@@ -65,4 +66,49 @@ a:hover, a:focus {
 	margin: 20px 0px;
 	font-weight: 600;
 	text-align: center;
+}
+
+/*
+ * Keyframes
+ */
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+/*
+ * CSS Page Transitions
+ * Don't forget to add vendor prefixes!
+ */
+.m-scene {
+  /** Basic styles for an animated element */
+  .scene_element {
+    animation-duration: .2s;
+    animation-delay: .1s;
+    transition-timing-function: ease-in;
+    animation-fill-mode: both;
+
+  }
+
+  /** An element that fades in */
+  .scene_element--fadein {
+    animation-name: fadeIn;
+  }
+}
+
+a {
+  color: #1cadce;
+  text-decoration: none;
+  transition: all .2s ease-in;
+  -webkit-transition: all .2s ease-in;
+  &:hover {
+    text-decoration: none;
+    color: #076074;
+  }
 }

@@ -2,12 +2,8 @@
 // You can manipulate the following values to test the generator.
 
 var testValues = {
-	'your_advertiser_id': '10000001',
-	'site_id': '55300',
 	'advertiser_id': '9999999',
-	// 'action': '',
-	// 'site_event_id': '',
-	// 'site_event_name': '',
+	'site_id': '55300',
 	'customQueryParams1': 'user_id=johnjoe',
 	'customQueryParams2': 'company=branchmetrics',
 	'customQueryParams3': 'role=bd',

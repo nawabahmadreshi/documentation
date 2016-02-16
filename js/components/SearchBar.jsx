@@ -13,7 +13,7 @@ function getStateFromStore() {
 
 var SearchBar = React.createClass({
 	getInitialState: function() {
-		return R.merge({ field: '' }, SearchStore.getState());
+		return R.merge({ field: '', resultsClass: 'search-results', iconClass: 'material-icons', iconContent: 'search' }, SearchStore.getState());
 	},
 	componentDidMount: function() {
 		lunr.Pipeline.registerFunction(customSWF, 'customSWF');
@@ -34,13 +34,32 @@ var SearchBar = React.createClass({
 			if (!this.state.isLoaded) { return; }
 
 			SearchActions.search(this.state.field, this.state.indexes);
-
-			if (this.state.field.length) {
+			if (this.state.field.length == 0) {
+				this.setState({
+				  iconClass: 'material-icons',
+				  iconContent: 'search',
+				  resultsClass: 'search-results'
+				});
+			}
+			else if (this.state.field.length) {
+				this.setState({
+				  iconClass: 'material-icons icon-close',
+				  iconContent: 'close',
+				  resultsClass: 'search-results results-open'
+				});
 				if (this.timeout) { clearTimeout(this.timeout); }
 				this.timeout = setTimeout(function() {
 					mixpanel.track("Typed in Search Term", { "Search Term": term, "Section": "Search" });
 				}, 500);
 			}
+		});
+	},
+	handleClose: function() {
+		this.setState({
+		  resultsClass: 'search-results',
+			field: '',
+		  iconClass: 'material-icons',
+		  iconContent: 'search'
 		});
 	},
 	handleClick: function() {
@@ -54,7 +73,7 @@ var SearchBar = React.createClass({
 				return (
 					<SearchResult
 						title={result.title}
-						link={'http://dev.branch.io' + result.url}
+						link={result.url}
 						origin={result.origin}
 						context={result.context}
 						key={result.id}
@@ -63,12 +82,15 @@ var SearchBar = React.createClass({
 		}
 		return (
 			<div className="search">
+				<div className="search-icon">
+					<i className={this.state.iconClass} onClick={this.handleClose}>{this.state.iconContent}</i>
+				</div>
 				<div className="search-bar">
 					<form className="navbar-form">
 						<input
 							type="text"
 							name="search"
-							className="form-control"
+							className=""
 							autoComplete="off"
 							placeholder="Search"
 							onChange={this.inputChanged}
@@ -76,10 +98,7 @@ var SearchBar = React.createClass({
 							value={this.state.field} />
 					</form>
 				</div>
-				<div className="search-icon">
-					<i className="fa fa-search"></i>
-				</div>
-				<div className="search-results">
+				<div className={this.state.resultsClass}>
 					{results}
 				</div>
 			</div>

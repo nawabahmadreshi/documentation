@@ -1,3 +1,0 @@
-
-{% protip title="Complete the Quickstart Guide first" %}This guide requires you to have already completed our quickstart guide, {% if page.ios || page.android %}[Integrating the SDK](/recipes/quickstart_guide/{{page.platform}}/){% else %}[Integrating the SDK](/recipes/quickstart_guide/ios/){% endif %}. If you haven't completed it, please {% if page.ios || page.android %}[do so now](/recipes/quickstart_guide/{{page.platform}}/){% else %}[do so now](/recipes/quickstart_guide/ios/){% endif %}.
-{% endprotip %}

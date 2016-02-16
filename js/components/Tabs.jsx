@@ -36,7 +36,7 @@ var Tabs = React.createClass({
 
 		var optionButtons = R.mapIndexed(function(val, i) {
 			var classes = {
-				'btn btn-default': true,
+				'btn': true,
 				'btn-inactive': i != self.state.active
 			};
 			return (<a key={ i } className={ cx(classes) } onClick={ self._toggleTab(i) }>{ val }</a>);
@@ -47,8 +47,8 @@ var Tabs = React.createClass({
 				<div>
 					{ this.props.children[this.state.active] }
 				</div>
-				<div className="row switcher">
-					<div className="pull-right">
+				<div className="switcher">
+					<div className="text-right btn-group">
 						{ optionButtons(this.state.options) }
 					</div>
 				</div>

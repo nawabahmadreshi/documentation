@@ -4,26 +4,60 @@
 
 	{% webasset navbar branch_base='{{site.branch_base}}' subtitle='docs' sub_href='https://dev.branch.io' hide_options='true' no_fixed='true' width='1200' %}
   <body>
+    <section class="row homepage-header">
+	    <div class="container text-center">
+			<h2 class="homepage-header__title">How can we help you today?</h2>
+	        <div>{% searchbar %}</div>
+	    </div>
+	</section>
 	<div class="container main">
 		<div class="row">
-			<div class="col-md-3">
-				{% sidebar %}
-			</div>
 			<div class="col-md-9">
-				<div class="row">
-					<div class="col-md-9">
-						<h1 class="page-title">{{ page.title }}</h1>
-					</div>
+				<div class="col-sm-4">
+					<a href="#" class="homepage-section">
+						<h3 class="homepage-section__title">Get Started</h3>
+						<p class="homepage-section__content">Learn about deeplinks and how to set up your app</p>
+					</a>
 				</div>
-				<div class="row">
-					<div class="platform_selector">
-						{% if page.hide_platform_selector != true %}{% platform_selector %}{% endif %}
-					</div>
+				<div class="col-sm-4">
+					<a href="#" class="homepage-section">
+						<h3 class="homepage-section__title">Features</h3>
+						<p class="homepage-section__content">Learn how to enable our features for better experience</p>
+					</a>
 				</div>
-				{% if page.has_key?("overview") != true %}<p>{{ page.overview }}</p>{% endif %}
-				<div class="content">
-					{{ content }}
+				<div class="col-sm-4">
+					<a href="#" class="homepage-section">
+						<h3 class="homepage-section__title">SDK</h3>
+						<p class="homepage-section__content">How to integrate in our SDK in your app step by step.</p>
+					</a>
 				</div>
+				<div class="col-sm-4">
+					<a href="#" class="homepage-section">
+						<h3 class="homepage-section__title">API</h3>
+						<p class="homepage-section__content">Export API, installation guide, references and changelog.</p>
+					</a>
+				</div>
+				<div class="col-sm-4">
+					<a href="#" class="homepage-section">
+						<h3 class="homepage-section__title">Dashboard</h3>
+						<p class="homepage-section__content">How to use analytics, reports, references and debbug.</p>
+					</a>
+				</div>
+				<div class="col-sm-4">
+					<a href="#" class="homepage-section">
+						<h3 class="homepage-section__title">Integration</h3>
+						<p class="homepage-section__content">How to guides integrations with Adjust, Google Analytics, Mixpanel and others</p>
+					</a>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<nav class="homepage-sidebar">
+					<ul>
+						<li><a href="#" class="homepage-sidebar__link"><i class="fa fa-comments"></i> Forums</a></li>
+						<li><a href="#" class="homepage-sidebar__link"><i class="fa fa-question-circle"></i> FAQ</a></li>
+						<li><a href="#" class="homepage-sidebar__link"><i class="fa fa-life-ring"></i> Support</a></li>
+					</ul>
+				</nav>
 			</div>
 		</div>
 	</div>
