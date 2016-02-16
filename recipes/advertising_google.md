@@ -17,9 +17,9 @@ If you're running Google AdWords campaigns, whether they're of the Search or Dis
 
 {% ingredient dashboard_links/creating_links %}{% endingredient %}
 
-## Google AdWords Search Campaigns
+## Google AdWords Campaigns
 
-We'll walk you through the steps required to set up a Google AdWords campaign using Branch links. Because the *final URL* for your app install campaigns must match your domain, you can no longer put a Branch link in that box. However, capturing installs and deep linking users through content is very straightforward.
+We'll walk you through the steps required to set up a Google AdWords campaign using Branch links. Because the *final URL* for your app install campaigns must match your domain, you cannot put a Branch link in that box. However, capturing installs and deep linking users through content is very straightforward.
 
 First, grab your iTunes URL or Google Play Store URL, in addition to the Branch link you created from the earlier step.
 
@@ -33,10 +33,15 @@ Expand *Ad URL options*. Here is where you will place the Branch link from the f
 
 {% image src='/img/recipes/google_ads/ad-links.png' half center alt='Google Example Ad' %}
 
+### Keyword tracking
+
+If you'd like to track which keywords drove installs, Branch provides a pre-configured link for you to copy and paste and place in the *Ad URL Options* section. Simply navigate to **Link Settings** in your dashboard, and copy and paste the value inside `AdWords URL`. You can add any additional parameters to that link, such as campaign, channel, and other deeplink data. However, at minimum, that is all that is required.
+
+### FAQ / Debugging
+
+Sometimes, your ad may be disapproved if the Branch link does not re-direct to Google Play or App Store when clicked on a desktop. Please ensure that for the Branch link you're using to track installs, depeviews are disabled and a desktop redirect is set to either the App / Play store.
+
+
 ### Finished
 
 That's it! Users clicking your links and downloading to deeplinked content will now display on your Branch dashboard.
-
-## Google Display Network Campaigns
-
-Like Search cammpaigns, Google Display Network campaigns allow you to place Branch links and direct traffic to mobile conversions. We're in testing stages of Google Display. When we are 100% on our finalized integration, we will provide steps here.
