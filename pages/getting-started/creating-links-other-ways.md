@@ -45,8 +45,8 @@ Here's an example of a finalized dynamic link (line breaks added for legibility)
 
 {% highlight sh %}
 https://bnc.lt/a/key_live_jbgnjxvlhSb6PGH23BhO4hiflcp3y7ky?
-	$deeplink_path=article%2Fjan%2F123&
-	$fallback_url=https%3A%2F%2Fgoogle.com&
+	%24deeplink_path=article%2Fjan%2F123&
+	%24fallback_url=https%3A%2F%2Fgoogle.com&
 	channel=facebook&
 	feature=affiliate&
 	user_id=4562&

@@ -18,6 +18,42 @@ Every Branch link that you create is completely customizable from a functionalit
 This page describes how to use the link data dictionary to define key/value pairs for deep linking, and the various link analytics and control parameters Branch offers. You can read about how to actually create Branch links on the [Creating Links in Apps]({{base.url}}/getting-started/creating-links-in-apps) and [Creating Links in Other Ways]({{base.url}}/getting-started/creating-links-other-ways) pages.
 {% endprotip %}
 
+## The data structure of Branch links
+
+Conceptually, the data inside a Branch link follows this model:
+
+{% highlight js %}
+{
+    tags: [ 'tag1', 'tag2' ],
+    channel: 'facebook',
+    feature: 'dashboard',
+    stage: 'new user',
+    alias: 'myalias',
+    data: {
+        mydata: 'something',
+        foo: 'bar',
+        '$desktop_url': 'http://myappwebsite.com',
+        '$ios_url': 'http://myappwebsite.com/ios',
+        '$ipad_url': 'http://myappwebsite.com/ipad',
+        '$android_url': 'http://myappwebsite.com/android',
+        '$og_app_id': '12345',
+        '$og_title': 'My App',
+        '$og_description': 'My app\'s description.',
+        '$og_image_url': 'http://myappwebsite.com/image.png'
+    }
+}
+{% endhighlight %}
+
+{% protip title="Points to understand" %}
+
+- Analytics labels and certain parameters related to the link itself (essentially everything **not** prefixed with `$`) are specified at the top level.
+- All other parameters (everything prefixed with `$`) go inside the `data` dictionary.
+- Any custom data you specify also goes inside the `data` dictionary.
+
+The mobile SDKs take care of this structure automatically, but it is important to keep in mind if you are creating links via the [Web SDK]({{base.url}}/getting-started/creating-links-other-ways/guide/#web-sdk) or [HTTP API]({{base.url}}/getting-started/creating-links-other-ways/guide/#http-api).
+
+{% endprotip %}
+
 ## Link data dictionary
 
 Every Branch link includes a dictionary for `key : value` pairs specified by you at the time the link is created. This data is then returned and available for use the next time your app is launched through that link. Read more about this on the [Creating Links in Apps]({{base.url}}/getting-started/creating-links-in-apps) and [Creating Links in Other Ways]({{base.url}}/getting-started/creating-links-in-other-ways) pages.

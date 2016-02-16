@@ -417,7 +417,7 @@ Here's an example of a finalized dynamic link with the following keys:
 | **name** | Alex |
 
 {% highlight sh %}
-https://bnc.lt/a/key_live_jbgnjxvlhSb6PGH23BhO4hiflcp3y7ky?$deeplink_path=article%2Fjan%2F123&$fallback_url=https%3A%2F%2Fgoogle.com&channel=facebook&feature=affiliate&user_id=4562&name=Alex
+https://bnc.lt/a/key_live_jbgnjxvlhSb6PGH23BhO4hiflcp3y7ky?$deeplink_path=article%2Fjan%2F123&%24fallback_url=https%3A%2F%2Fgoogle.com&channel=facebook&feature=affiliate&user_id=4562&name=Alex
 {% endhighlight %}
 
 {% endexample %}

@@ -22,7 +22,6 @@
         - tracking-events
         - setting-identities
         - webhooks
-        - dynamic-link-builder
 - title: Features
   directory: features
   children:
