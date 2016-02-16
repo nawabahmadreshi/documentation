@@ -22,5 +22,21 @@
   }
   &.prerequisite {
     border-left-color: #fcba5d;
+      
+    ul {
+        list-style-type: none;
+    }
+    ul li {
+        text-indent: -1.4em;
+    }
+    ul li:before {
+	font-family: 'Material Icons';
+    content: "check_box";
+    float: left;
+    width: 1.4em;
+	font-size: 1.4em;
+	margin-top: -0.2em;
+    color: #fcba5d;
+    }
   }
 }
