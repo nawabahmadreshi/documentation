@@ -72,7 +72,7 @@ Let's say you want to give 10 credits to each new user who signs up through a fr
 1. Who gets a reward: **"Referring users"**
 1. How many credits the reward is: **5**
 1. Which bucket the credits go to: **default**
-1. Whether the reward occurs the first time or every time: **every time**
+1. Whether the reward occurs the first time or every time: **the first time**
 1. Which event triggers the reward: **install**
 
 {% image src='/img/pages/features/referral-programs/referring_rule.png' center 3-quarters alt='referring user' %}
