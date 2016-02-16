@@ -170,7 +170,7 @@
   }
 
     .get-started {
-        border-radius: 0;
+        border-radius: 2px;
         border: none;
         font-weight: bold;
         text-transform: uppercase;
@@ -181,10 +181,11 @@
         color: #ffffff;
         margin-bottom: 50px;
         white-space: normal;
+        padding: 15px 30px;
     }
 
     .get-started:hover {
-        background-color: #3c6477;
+        background-color: #38c5e5;
         color: #ffffff;
     }
 
