@@ -48,7 +48,7 @@ When no 100% match method is available, we connect the unique fingerprint collec
 
 {% protip title="Customize the fingerprint matching criteria" %}
 
-If you are concerned that users may potentially have the same fingerprint, you can choose to have us not match users if two identical fingerprints are outstanding. On the Dashboard's [Link Settings](https://dashboard.branch.io/#/settings/link) page, under advanced options, you should set **Match Type** to `Unique`. You can also modify the 7200 second (2 hour) default expiration for all links, or [configure it for individual links]({{base.url}}/getting-started/configuring-links) by using the `duration` control parameter.
+If you are concerned that users may potentially have the same fingerprint, you can choose to have us not match users if two identical fingerprints are outstanding. On the Dashboard's [Link Settings](https://dashboard.branch.io/#/settings/link) page, under advanced options, you should set **Match Type** to `Unique`. You can also modify the 7200 second (2 hour) default expiration for all links, or [configure it for individual links]({{base.url}}/getting-started/configuring-links) by using the `$match_duration` control parameter.
 
 {% image src="/img/pages/getting-started/matching-accuracy/match_type.png" center full alt="match_type" %}
 

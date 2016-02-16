@@ -46,8 +46,8 @@ Conceptually, the data inside a Branch link follows this model:
 
 {% protip title="Points to understand" %}
 
-- Analytics labels and certain parameters related to the link itself (essentially everything **not** prefixed with `$`) are specified at the top level.
-- All other parameters (everything prefixed with `$`) go inside the `data` dictionary.
+- Analytics labels and certain parameters related to the link itself are specified at the top level. These include `channel`, `feature`, `campaign`, `stage`, `tags`, `alias`, `duration`, and `type`, and are documented in the [Link creation customizations]({{base.url}}/getting-started/configuring-links/guide/#link-creation-customizations) section of this page.
+- All other parameters (essentially everything prefixed with `$`) go inside the `data` dictionary.
 - Any custom data you specify also goes inside the `data` dictionary.
 
 The mobile SDKs take care of this structure automatically, but it is important to keep in mind if you are creating links via the [Web SDK]({{base.url}}/getting-started/creating-links-other-ways/guide/#web-sdk) or [HTTP API]({{base.url}}/getting-started/creating-links-other-ways/guide/#http-api).
@@ -71,7 +71,7 @@ Use analytics labels to help _organize your data_. Track updates, run A/B tests 
 | Key | Usage | Default
 | --- | --- | ---
 | alias | Specify a link alias in place of the standard encoded short URL (e.g., `bnc.lt/youralias` or `yourdomain.co/youralias`). Link aliases are unique, immutable objects that cannot be deleted. **Aliases on the bnc.lt domain are incompatible with [Universal Links]({{base.url}}/getting-started/universal-app-links) and [Spotlight]({{base.url}}/features/spotlight-indexing)**
-| duration | Lets you control the fingerprinting match timeout (the time that a click will wait for an app open to match) also known as attribution window. Can also be set using `$match_duration`. Specified in seconds | `7200`
+| duration | *(Deprecated. Use `$match_duration`)* Lets you control the fingerprinting match timeout (the time that a click will wait for an app open to match) also known as attribution window. Specified in seconds | `7200`
 | type | *(Advanced)* Set to `1` to limit deep linking behavior of the generated link to a single use. Set type to `2` to make link show up under [Marketing page](https://dashboard.branch.io/#/marketing) in the dashboard | `0`
 
 ## Link control parameters
@@ -122,7 +122,7 @@ Use these keys to control how URI scheme deep linking functions when opening you
 | $deeplink_path | Set the deeplink path for _all_ platforms - so you don't have to enable it by platform | `open?link_click_id=1234`
 | $android_deeplink_path | Set the deeplink path for Android apps | *null*
 | $ios_deeplink_path | Set the deeplink path for iOS apps | *null*
-| **$match_duration** | Lets you control the fingerprinting match timeout (the time that a click will wait for an app open to match) also known as attribution window. Can also be set using `duration`. Specified in seconds | `7200` (2 hours) 
+| **$match_duration** | Lets you control the fingerprinting match timeout (the time that a click will wait for an app open to match) also known as attribution window. Specified in seconds | `7200` (2 hours) 
 | $always_deeplink | If set to 'false' Branch will only try to open your app if we are certain the user has it | Value of **Always try to open app** in [Link Settings](https://dashboard.branch.io/#/settings/link)
 | $ios_redirect_timeout | Control the timeout that the client-side JS waits after trying to open up the app before redirecting to the App Store. Specified in milliseconds | `750`
 | $android_redirect_timeout | Control the timeout that the clientside JS waits after trying to open up the app before redirecting to the Play Store. Specified in milliseconds | `750`

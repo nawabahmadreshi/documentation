@@ -369,7 +369,6 @@ branchUniversalObject.showShareSheet({
   "feature" : "sample-feature",
   "channel" : "sample-channel",
   "stage" : "sample-stage",
-  "duration" : 1,
 }, {
   "$desktop_url" : "http://desktop-url.com",
 });
