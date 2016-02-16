@@ -1,3 +1,5 @@
+{% if page.ios %}
+
 #### Branch links in push notifications
 
 You can use Branch links with push notifications. When creating a push notification, you should specify the Branch link in the `userInfo` dictionary. It should be an NSString, and the key in `userInfo` should be Branch. So, for example: `@{ @"branch" : @"https://bnc.lt/ALMc/e03OVEJLUq" }`.
@@ -24,3 +26,7 @@ func application(application: UIApplication, didReceiveRemoteNotification userIn
 {% endhighlight %}
 {% endtab %}
 {% endtabs %}
+
+-----
+
+{% endif %}

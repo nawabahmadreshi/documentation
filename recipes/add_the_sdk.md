@@ -39,13 +39,9 @@ In order to use Branch you must first sign up for an acount. You can sign up for
 
 ## Advanced functionality
 
-{% if page.ios %}
 
 {% ingredient sdk_setup/push_notifications %}{% endingredient %}
 
------
-
-{% endif %}
 
 {% ingredient sdk_setup/callback_params %}{% endingredient %}
 
