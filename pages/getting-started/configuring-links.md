@@ -73,12 +73,12 @@ This parameter is currently supported only on iOS.
 | --- | ---
 | $after_click_url | URL redirect to after the main click redirect has completed
 
-### Deep link routing customization
+### Link behavior customization
 
-Use these keys to set the value of the deep link path that you'd like us to append to your URI when opening your app from this link. For example, you could specify `$deeplink_path : radio/station/456` and we'll open the app with the URI "yourapp://radio/station/456?link_click_id=branch-identifier".
+Use these keys to control how URI scheme deep linking functions when opening your app from a link.
 
 {% caution title="Incomplete support on iOS" %}
-[Universal Links]({{base.url}}/getting-started/universal-app-links) and [Spotlight]({{base.url}}/features/spotlight-indexing) do not support URI paths. We recommend avoiding this approach to deep link routing if possible.
+[Universal Links]({{base.url}}/getting-started/universal-app-links) and [Spotlight]({{base.url}}/features/spotlight-indexing) do not support deep linking via URI paths. We recommend avoiding this approach to deep link routing if possible.
 {% endcaution %}
 
 | Key | Usage | Default
@@ -87,16 +87,7 @@ Use these keys to set the value of the deep link path that you'd like us to appe
 | $android_deeplink_path | Set the deeplink path for Android apps | *null*
 | $ios_deeplink_path | Set the deeplink path for iOS apps | *null*
 | **$match_duration** | Lets you control the fingerprinting match timeout (the time that a click will wait for an app open to match) also known as attribution window. Can also be set using `duration`. Specified in seconds | `7200` (2 hours) 
-| $always_deeplink | If set to 'false' Branch will only try to open your app if we are certain the user has it | `true` (set using **Always try to open app** in [Link Settings](https://dashboard.branch.io/#/settings/link))
-| $ios_redirect_timeout | Control the timeout that the client-side JS waits after trying to open up the app before redirecting to the App Store. Specified in milliseconds | `750`
-| $android_redirect_timeout | Control the timeout that the clientside JS waits after trying to open up the app before redirecting to the Play Store. Specified in milliseconds | `750`
-
-### Link behavior customization
-
-| Key | Usage | Default
-| --- | --- | ---
-| $match_duration | Lets you control the fingerprinting match timeout (the time that a click will wait for an app open to match) also known as attribution window. Specified in seconds | `7200` (2 hours) 
-| $always_deeplink | If set to 'false' Branch will only try to open your app if we are certain the user has it | `true` (set using **Always try to open app** in [Link Settings](https://dashboard.branch.io/#/settings/link))
+| $always_deeplink | If set to 'false' Branch will only try to open your app if we are certain the user has it | Value of **Always try to open app** in [Link Settings](https://dashboard.branch.io/#/settings/link)
 | $ios_redirect_timeout | Control the timeout that the client-side JS waits after trying to open up the app before redirecting to the App Store. Specified in milliseconds | `750`
 | $android_redirect_timeout | Control the timeout that the clientside JS waits after trying to open up the app before redirecting to the Play Store. Specified in milliseconds | `750`
 | $one_time_use | Set to 'true' to limit deep linking behavior of the generated link to a single use. Can also be set using `type` | `false`
@@ -171,7 +162,7 @@ The following parameters can **only** be specified by appending to a link:
 | Key | Usage | Default
 | --- | --- | ---
 | has_app | Set to 'true' or 'false' in order to tell us whether you want us to try to open up the app for this particular link or not. Functionally identical to `$always_deeplink` | `true`
-| debug | Set to 'true' to route to a link debug page that shows the labels and configuration of a link | `false`
+| debug | Set to 'true' to route to a link debug page that shows the labels and configuration of a link | Value of **Always try to open app** in [Link Settings](https://dashboard.branch.io/#/settings/link)
 
 ### Custom parameters
 
