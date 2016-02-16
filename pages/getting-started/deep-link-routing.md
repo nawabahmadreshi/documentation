@@ -540,7 +540,7 @@ All of the examples below create links that will cause Branch to display `myapp:
 If you're creating a link by appending query parameters, just append the control parameters to the URL. Please make sure to URL encode everything, lest the link will break.
 
 {% highlight javascript %}
-"https://bnc.lt/a/key_live_jbgnjxvlhSb6PGH23BhO4hiflcp3y7ky?$deeplink_path=content%2F1234"
+"https://bnc.lt/a/key_live_jbgnjxvlhSb6PGH23BhO4hiflcp3y7ky?%24deeplink_path=content%2F1234"
 {% endhighlight %}
 
 {% endexample %}
