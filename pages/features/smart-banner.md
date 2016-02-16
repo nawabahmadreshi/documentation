@@ -23,7 +23,7 @@ The Branch Smart Banner displays a fully-customizable banner at the top of your 
 
 The Download/Open button and SMS link both contain all the features of any other Branch link, including deep linking directly to content, passing data across install, measuring clicks, and more.
 
-### [Get started with the Smart Banner!]({{base.url}}/features/smart-banner/guide)
+{% getstarted title="Get started with the Smart Banner!" %}{% endgetstarted %}
 
 {% elsif page.guide %}
 

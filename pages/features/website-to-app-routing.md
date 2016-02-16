@@ -21,7 +21,7 @@ If you maintain a mobile website, Branch allows you to deep link mobile visitors
 
 {% protip title="If you do not have a mobile website..." %}This feature essentially recreates the functionality of [Deepviews]({{base.url}}/features/deepviews) using your own website. If you do not have one, Deepviews are a good alternative!{% endprotip %}
 
-### [Get started with Website to App Routing!]({{base.url}}/features/website-to-app-routing/guide)
+{% getstarted title="Get started with Website to App Routing!" %}{% endgetstarted %}
 
 {% elsif page.guide %}
 
