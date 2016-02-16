@@ -19,7 +19,7 @@ Let's say you want to give 10 credits to each new user who signs up through a fr
 1. Who gets a reward: "Referring users"
 2. How many credits the reward is: 5
 3. Which bucket the credits go to: default
-4. Whether the reward occurs the first time or every time: every time
+4. Whether the reward occurs the first time or every time: the first time
 5. Which event triggers the reward: install
 
 {% image src='/img/ingredients/dashboard_credits_and_reward_rules/referring_rule.png' center half alt='referring' %}
