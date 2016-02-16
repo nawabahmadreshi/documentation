@@ -31,7 +31,7 @@ Branch makes it simple to enable Universal Links and App Links, and even improve
 
 {% image src='/img/pages/getting-started/universal-app-links/how_branch_improves.png' 3-quarters center alt='branch improves universal links' %}
 
-{% getstarted title="Get started with Universal Links and App Links!" %}{% endgetstarted %}
+{% getstarted %}{% endgetstarted %}
 
 {% elsif page.guide %}
 
