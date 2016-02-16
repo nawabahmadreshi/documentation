@@ -21,7 +21,7 @@ This is useful when you want to make use of the attribution and analytics tools 
 1. Users who click on an ad and **do not** have your app installed will be sent through Branch to Adjust, and then sent by Adjust to download your app. After downloading, you will still be able to access your Branch link data as usual.
 1. You may choose whether Branch sends users who **already have your app** to Adjust, or simply routes them directly to your app.
 
-### [Get started with Adjust passthroughs!]({{base.url}}/third-party-integrations/adjust/guide)
+### [Get started with Adjust passthroughs!]({{base.url}}/third-party-integrations/adjust-webhook/guide)
 
 {% elsif page.guide %}
 
@@ -33,7 +33,7 @@ This is useful when you want to make use of the attribution and analytics tools 
 ## Create a Marketing link on the Branch dashboard
 
 1. Visit the [Marketing page](https://dashboard.branch.io/#/marketing) on the Branch dashboard and click **+ Add link**.
-1. Pick a **Marketing Title** for later reference. For example: "Ad for blue sneakers" {% image src='/img/pages/third-party-integrations/adjust/ad_example_create.png' 3-quarters center alt='Create Marketing Link' %}
+1. Pick a **Marketing Title** for later reference. For example: "Ad for blue sneakers" {% image src='/img/pages/third-party-integrations/adjust-webhook/ad_example_create.png' 3-quarters center alt='Create Marketing Link' %}
 1. **Channel** and **Campaign** are optional but recommended. **Tags** is free form.
 
 {% protip title="Optional: Deep Link Data (Advanced)" %}
@@ -58,10 +58,10 @@ Take the base URL (everything before the `?`) and set the Custom Redirects of yo
 | **Android URL** | https://app.adjust.io/abc123
 | **iOS URL** | https://app.adjust.io/abc123
 
-{% image src='/img/pages/third-party-integrations/adjust/custom_redirect_configuration.png' 2-thirds center alt='Custom redirect configuration' %}
+{% image src='/img/pages/third-party-integrations/adjust-webhook/custom_redirect_configuration.png' 2-thirds center alt='Custom redirect configuration' %}
 
 {% protip %}
-Note that by default these redirects only come into play if the user does **not** have the app installed. If you want **all** users (including those with the app already installed) to pass through Adjust, set the `has_app` [control parameter]({{base-url}}/getting-started/configuring-links/guide/#advanced-query-params-for-control) of your link to `false`.
+Note that by default these redirects only come into play if the user does **not** have the app installed. If you want **all** users (including those with the app already installed) to pass through Adjust, set the `has_app` [control parameter]({{base-url}}/getting-started/configuring-links/guide/#appending-query-parameters-to-links) of your link to `false`.
 {% endprotip %}
 
 ## Provide Branch link to advertiser

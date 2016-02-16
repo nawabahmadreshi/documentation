@@ -56,7 +56,7 @@ The mobile SDKs take care of this structure automatically, but it is important t
 
 ## Link data dictionary
 
-Every Branch link includes a dictionary for `key : value` pairs specified by you at the time the link is created. This data is then returned and available for use the next time your app is launched through that link. Read more about this on the [Creating Links in Apps]({{base.url}}/getting-started/creating-links-in-apps) and [Creating Links in Other Ways]({{base.url}}/getting-started/creating-links-in-other-ways) pages.
+Every Branch link includes a dictionary for `key : value` pairs specified by you at the time the link is created. This data is then returned and available for use the next time your app is launched through that link. Read more about this on the [Creating Links in Apps]({{base.url}}/getting-started/creating-links-in-apps) and [Creating Links in Other Ways]({{base.url}}/getting-started/creating-links-other-ways) pages.
 
 ## Link creation customizations
 
