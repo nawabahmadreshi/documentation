@@ -68,7 +68,7 @@ The following keys have been embedded:
 {% endexample %}
 
 {% caution title="Use URL encoding" %}
-Please make sure to URL encode everything, lest the link will break.
+Please make sure to URL encode everything, otherwise the link will break.
 {% endcaution %}
 
 ## Web SDK
