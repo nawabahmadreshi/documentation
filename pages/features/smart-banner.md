@@ -208,10 +208,6 @@ This will prepend the country code to whatever number is entered. You might need
 
 The App Banner includes a close button the user can click, but you may want to close the banner with a timeout, or via some other user interaction with your web app. In this case, closing the banner is very simple by calling `Branch.closeBanner()`.
 
-{% highlight javascript %}
-js branch.closeBanner();
-{% endhighlight %}
-
 {% elsif page.support %}
 
 ## FAQ
