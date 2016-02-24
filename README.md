@@ -139,9 +139,9 @@ Example images used in ingredients are kept in the `img/ingredients` directory, 
 
 ## Page sections
 
-Each documentation page can have up to four distinct sections. All are optional depending on the needs of each page, and **Guide** should be used for pages with only one section.
-
 ![](img/readme/sections.png)
+
+Each documentation page can have up to four distinct sections. All are optional depending on the needs of each page, and **Guide** should be used for pages with only one section.
 
 ### Overview
 
@@ -191,6 +191,8 @@ All standard markdown is supported.
 
 ### Structural headers
 
+![](img/readme/toc.png)
+
 Level two headers are special:
 
 - The highest level of header used in the docs (level one headers should be avoided).
@@ -205,13 +207,13 @@ Either method works for indicating headers:
 The next thing to do
 ----
 ```
-
-![](img/readme/toc.png)
-
 ## Liquid tags
 There are a number of liquid tags available to structure content. All follow standard Jekyll syntax and must be terminated: `{% example %} Content here {% endexample %}`
 
 ### protip
+
+![](img/readme/protip.png)
+
 Creates a block element used for things the user might like to know.
 
 | Attribute | Usage
@@ -224,9 +226,10 @@ What a cool tip, right?
 {% endprotip %}
 ```
 
-![](img/readme/protip.png)
-
 ### caution
+
+![](img/readme/caution.png)
+
 Creates a block element used for things the user shouldn't miss (otherwise bad stuff will happen).
 
 | Attribute | Usage
@@ -239,9 +242,10 @@ Don't miss this. It's important.
 {% endcaution %}
 ```
 
-![](img/readme/caution.png)
-
 ### example
+
+![](img/readme/example.png)
+
 Creates a block element used for:
 
 - Ready-to-go implementations of something that was explained in abstract but isn’t required for basic implementation.
@@ -257,9 +261,10 @@ A cool way to use this feature. Give it a go.
 {% endexample %}
 ```
 
-![](img/readme/example.png)
-
 ### prerequisite
+
+![](img/readme/prerequisite.png)
+
 Creates a block element used to indicate if something else must be done in advance.
 
 | Attribute | Usage
@@ -273,8 +278,6 @@ Creates a block element used to indicate if something else must be done in advan
 
 {% endprerequisite %}
 ```
-
-![](img/readme/prerequisite.png)
 
 ### if
 Conditionally display wrapped content only for the specified section or platform.
@@ -393,6 +396,8 @@ Use to wrap content that will override a defined section in an ingredient you ar
 
 ### tabs/tab
 
+![](img/readme/tabs.png)
+
 Define a set of switchable tabs, most commonly used to show both Objective-C and Swift examples for iOS.
 
 | Attribute | Usage
@@ -418,9 +423,9 @@ Define a set of switchable tabs, most commonly used to show both Objective-C and
 {% endtabs %}
 ```
 
-![](img/readme/tabs.png)
-
 ### getstarted
+
+![](img/readme/getstarted.png)
 
 Used at the bottom of the Overview page section. Creates a button to the Guide section.
 
@@ -431,8 +436,6 @@ Used at the bottom of the Overview page section. Creates a button to the Guide s
 ```
 {% getstarted title="Get started with content sharing!" %}{% endgetstarted %}
 ```
-
-![](img/readme/getstarted.png)
 
 ## Jekyll front matter
 This YAML block appears at the top of every main content page:
