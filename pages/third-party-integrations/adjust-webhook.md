@@ -21,7 +21,7 @@ This is useful when you want to make use of the attribution and analytics tools 
 1. Users who click on an ad and **do not** have your app installed will be sent through Branch to Adjust, and then sent by Adjust to download your app. After downloading, you will still be able to access your Branch link data as usual.
 1. You may choose whether Branch sends users who **already have your app** to Adjust, or simply routes them directly to your app.
 
-### [Get started with Adjust passthroughs!]({{base.url}}/third-party-integrations/adjust-webhook/guide)
+{% getstarted %}{% endgetstarted %}
 
 {% elsif page.guide %}
 

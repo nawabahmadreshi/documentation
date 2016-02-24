@@ -22,7 +22,7 @@ If you use Google Analytics to track all mobile application analytics data, you 
 
 The simplest way to make Branch and Google Analytics work together is by allowing Branch to track events specific to users who come via a Branch link, and letting GA track the other events.
 
-### [Get started with Google Analytics integration!]({{base.url}}/third-party-integrations/google-analytics/guide)
+{% getstarted title="Get started with Google Analytics integration!" %}{% endgetstarted %}
 
 {% elsif page.guide %}
 

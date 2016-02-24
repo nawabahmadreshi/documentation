@@ -35,7 +35,7 @@ Some other possibilities:
 
 {% endexample %}
 
-### [Get started with Referral SaaSquatch!]({{base.url}}/third-party-integrations/referral-saasquatch/guide)
+{% getstarted title="Get started with Referral SaaSquatch!" %}{% endgetstarted %}
 
 {% elsif page.guide %}
 

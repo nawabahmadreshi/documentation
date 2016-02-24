@@ -16,7 +16,7 @@ sections:
 
 We've partnered with Localytics to provide an easy way to deliver Branch installs and attributions to your Localytics dashboard. This is great for segmenting your users and providing higher granularity for your organic cohorts vs paid cohorts.
 
-### [Get started with Localytics integration!]({{base.url}}/third-party-integrations/localytics/guide)
+{% getstarted title="Get started with Localytics integration!" %}{% endgetstarted %}
 
 {% elsif page.guide %}
 

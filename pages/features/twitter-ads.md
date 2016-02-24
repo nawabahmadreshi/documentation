@@ -14,7 +14,7 @@ Configuring Twitter install ads to use Branch links is very simple. The only tri
 
 {% ingredient deep-linked-ad-ideas %}{% endingredient %}
 
-### [Get started with Twitter ads!]({{base.url}}/features/twitter-ads/guide)
+{% getstarted title="Get started with Twitter ads!" %}{% endgetstarted %}
 
 {% elsif page.guide %}
 

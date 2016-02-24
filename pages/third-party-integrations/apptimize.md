@@ -20,7 +20,7 @@ Branch has partnered with Apptimize to seamlessly provide different onboarding f
 
 {% image src='/img/pages/third-party-integrations/apptimize/campaign-flow.png' full center alt='Apptimize flow example' %}
 
-### [Get started with Apptimize!]({{base.url}}/third-party-integrations/apptimize/guide)
+{% getstarted title="Get started with Apptimize!" %}{% endgetstarted %}
 
 {% elsif page.guide %}
 

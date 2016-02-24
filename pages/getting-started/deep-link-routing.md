@@ -24,7 +24,7 @@ When a Branch link is opened, either your app launches or users are taken to the
 
 Deep links are an incredibly important part of delivering a high quality user experience. With deep links, you can take users to the exact thing they clicked on or even offer a customized onboarding experience.
 
-### [Get started with deep link routing!]({{base.url}}/getting-started/deep-link-routing/guide)
+{% getstarted title="Get started with deep link routing!" %}{% endgetstarted %}
 
 {% elsif page.guide %}
 
