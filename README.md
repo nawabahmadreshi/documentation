@@ -100,7 +100,7 @@ For a sample file with the most common elements preloaded, see `_template.md`
 
 It is recommended to make changes on a new branch, and then submit a pull request to `master`. Ask for someone to thumb it up before merging.
 
-***Important:** `master` is the production branch! If you push changes there, they will be deployed to [https://dev.branch.io](https://dev.branch.io)!* 
+***Important:*** `master` *is the production branch! If you push changes there, they will be deployed to [https://dev.branch.io](https://dev.branch.io)!* 
 
 We also have a staging server. Any changes pushed to the `staging` branch will deploy to [http://dev.staging.branch.io.s3-website-us-west-1.amazonaws.com](http://dev.staging.branch.io.s3-website-us-west-1.amazonaws.com)
 
@@ -123,7 +123,7 @@ All main content files are kept inside the `pages` directory. Generally:
 | pages/third-party-integrations | https://dev.branch.io/third-party-integrations/...
 | pages/methods-endpoints | https://dev.branch.io/methods-endpoints/...
 
-***Note:** second level directories (e.g. Features > **Sharing and Personalization** > Content Sharing) in the sidebar and breadcrumbs are not reflected in the URL or file system)*
+***Note:*** *second level directories (e.g. Features* > **Sharing and Personalization** > *Content Sharing) in the sidebar and breadcrumbs are not reflected in the URL or file system)*
 
 ### Ingredients
 
@@ -135,7 +135,7 @@ Example images used directly in content pages are kept in the `img/pages` direct
 
 Example images used in ingredients are kept in the `img/ingredients` directory, filed into folders ingredient name to match the `ingredients` directory.
 
-***Note:** if an image is reused in multiple places, please create multiple copies to avoid cross-linking!*
+***Note:*** *if an image is reused in multiple places, please create multiple copies to avoid cross-linking!*
 
 ## Page sections
 
@@ -187,7 +187,7 @@ Selected troubleshooting/FAQ issues.
 
 All standard markdown is supported.
 
-***Note**: it is preferred to specify code blocks and images using the `highlight` and `image` liquid tags (below).*
+***Note:*** *it is preferred to specify code blocks and images using the `highlight` and `image` liquid tags (below).*
 
 ### Structural headers
 
