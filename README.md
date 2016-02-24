@@ -94,6 +94,8 @@ $ sudo npm run build_search
 
 This is the documentation for the docs. It describes how the site works, what is supported, and best practices to make collaboration easier.
 
+For a sample file with the most common elements preloaded, see `_template.md`
+
 ## Editing procedure
 
 It is recommended to make changes on a new branch, and then submit a pull request to `master`. Ask for someone to thumb it up before merging.
