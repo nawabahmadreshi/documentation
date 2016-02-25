@@ -15,7 +15,7 @@ Open a shell and run these commands:
 ```
 $ gem install bundler
 $ xcode-select --install
-$ sudo gem install nokogiri -v '1.6.6.2'
+$ gem install nokogiri -v '1.6.6.2'
 ```
 
 ### 2. Clone repo
@@ -51,20 +51,51 @@ $ npm install && bundle install
 To generate the static site files and serve them, open a new shell window, navigate the the `documentation` folder in the cloned repo, and run:
 
 ```
-$ sudo bundle exec jekyll serve --watch
+$ bundle exec jekyll serve --watch
 ```
 
 Wait for the build process to finish, and then open [http://localhost:4000](http://localhost:4000) in your web browser. The `--watch` flag automatically regenerates the site whenever you make changes to component files.
 
 ## Troubleshooting
 
-If you encounter connection errors when running the project, increase your open file limit:
+### Connection errors with Jekyll builds
+
+```
+Conversion error: Jekyll::BrowserifyConverter encountered an error while converting 'js/all.js':
+                    Connection refused - connect(2) for "localhost" port 20219
+```
+                    
+If you get connection errors like the above from Jekyll, try increasing your open file limit:
 
 ```
 $ ulimit -n 10000
 ```
 
+Then rerun Jekyll (it may take a couple of attempts):
+
+```
+$ bundle exec jekyll serve --watch
+```
+
 You'll need to do this every time you open a new shell window.
+
+### Permissions errors
+
+If you run into trouble with either `bundle` or `npm` commands, you may need to use `sudo`. Of course, as always:
+
+>We trust you have received the usual lecture from the local System Administrator. It usually boils down to these three things:
+>
+>    #1) Respect the privacy of others.
+>    #2) Think before you type.
+>    #3) With great power comes great responsibility.
+
+### Using the --trace option
+
+The output of Jekyll's `--trace` option can often be useful for debugging build problems:
+
+```
+$ bundle exec jekyll serve --watch --trace
+```
 
 ## Useful tools
 
@@ -81,13 +112,13 @@ $ htmlproof --href-ignore /^$/ ./_site/
 Search will not work locally until you create an index for it. First, generate the static site with:
 
 ```
-$ sudo bundle exec jekyll serve --watch
+$ bundle exec jekyll serve --watch
 ```
 
 When the build process has completed, and while the site is being served, run:
 
 ```
-$ sudo npm run build_search
+$ npm run build_search
 ```
 
 # Guidelines for writing
