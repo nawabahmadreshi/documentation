@@ -120,6 +120,42 @@ If you use a custom domain or subdomain for your Branch links, you should also a
 If you use a custom domain or subdomain for your Branch links, you should also add a key for `<string>[mycustomdomainorsubdomain]</string>` and then [see this section]({{base.url}}/getting-started/universal-app-links/advanced/#using-a-custom-domain-or-subdomain) on the Advanced page.
 {% endprotip %}
 
+#### Support Universal Links on Cold Start
+
+Due to some certain limitations (at the time of writing), the module will not be able to handle data when clicking Universal Links while the app is not running at all. To solve this issue, you have to implement a listener to the 'continueactivity' on your Titanium app, retrieve the parameters and pass it to the module's `continueUserActivity` method. You can see an example of how this is implemented in [our testbed code](https://github.com/BranchMetrics/Titanium-Deferred-Deep-Linking-SDK/blob/master/testbed/app/controllers/index.js#L86).
+
+To implement, first add an entry to `NSUserActivityTypes` in your plist file.
+
+{% highlight xml %}
+<plist>
+  <dict>
+    ....
+    <key>NSUserActivityTypes</key>
+    <array>
+      <string>io.branch.testbed.universalLink</string> // This is only a sample. Use reverse domain.
+    </array>
+  </dict>
+</plist>
+{% endhighlight %}
+
+Now, before you call initSession, create a User Activity with the same name as you registered above and then add a listener to the event `continueactivity`. Note that the Universal Link data will be available in the initSession callback - this mechanism is just to work around a Titanium deficiency.
+
+{% highlight js %}
+if (OS_IOS) { // Don't forget this condition.
+    var activity = Ti.App.iOS.createUserActivity({
+        activityType:'io.branch.testbed.universalLink'
+    });
+
+    activity.becomeCurrent();
+
+    Ti.App.iOS.addEventListener('continueactivity', function(e) {
+        if (e.activityType === 'io.branch.testbed.universalLink') {
+            branch.continueUserActivity(e.activityType, e.webpageURL, e.userInfo);
+        }
+    });
+}
+{% endhighlight %}
+
 {% endif %}
 
 {% if page.ios or page.android or page.xamarin %}

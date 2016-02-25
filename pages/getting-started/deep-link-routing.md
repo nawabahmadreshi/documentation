@@ -823,4 +823,29 @@ func application(application: UIApplication, didReceiveRemoteNotification userIn
 
 {% endif %}
 
+{% if page.android %}
+## Branch links in GCM push notifications
+
+You can use Branch links inside your GCMs sent from your server, especially if you're looking for a good way to deliver someone to a specific page and want to attribute these "deep linked push notifications" back to a Branch Link. We assume that you've already set up Branch deep linking in the Android SDK.
+
+The specific flow, if done properly, is as follows:
+
+1. Your server creates a message delivered via GCM.
+1. Your app locally receives message via Intent.
+1. You construct payload and present notification.
+1. User clicks, and Branch's SDK handles the rest.
+
+Assuming you have the right permissions for push notifications and can reliably deliver messages, all you need to do is add a key value pair inside your intent as so:
+
+{% highlight java %}
+
+Intent resultIntent = new Intent(this, DeepLinkActivity.class);
+intent.putExtra("branch","http://bnc.lt/abcde12345");
+PendingIntent resultPendingIntent =  PendingIntent.getActivity(this, 0, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+{% endhighlight %}
+
+And we'll take care of the rest once the user clicks your notification!
+{% endif %}
+
 {% endif %}
