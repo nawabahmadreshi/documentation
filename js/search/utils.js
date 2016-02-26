@@ -4,7 +4,7 @@ var fs = require('fs'),
 
 var utils = {};
 
-var excludes = [ 'text-me-the-app', 'deepviews' ];
+var excludes = require('./excluded_pages');
 
 function excluder(path, excluded) {
     var i = 0;
@@ -59,7 +59,7 @@ var id_counter = 0;
 utils.convertSubsectionsToJSON = function(filePath) {
     var JSON_data = [];//    for (var i = 0; i < excludes.length; i++) {
         if (excluder(filePath, excludes) == true) {
-            console.log('Excluded subpage: ' + filePath);
+//            console.log('Excluded subpage: ' + filePath);
         }
         else {
             var data = fs.readFileSync(filePath);
