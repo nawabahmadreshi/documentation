@@ -126,7 +126,7 @@ $ npm run build_search
 
 This is the documentation for the docs. It describes how the site works, what is supported, and best practices to make collaboration easier.
 
-For a sample file with the most common elements preloaded, see `_template.md`
+For a sample file with the most common elements preloaded, see `features/template.md` (preview available [here](https://dev.branch.io/features/template/)).
 
 ## Editing procedure
 
@@ -509,6 +509,18 @@ sections:
 | **contents** | *(Optional)* Controls the style of Table of Contents and alternating content rows on the Guide page section. Available options are `list`, `numbered`, and `hide`. Defaults to `numbered`
 | **hide_section_selector** | *(Optional)* Set `true` to hide the section selector.
 | **hide_platform_selector** | *(Optional)* Set `true` to hide the platform selector.
+| **exclude_from_google_search** | *(Optional)* Set `true` to keep Google (and others) from indexing this page.
+
+## Managing search results
+
+To keep a page from showing up in search results:
+
+1. Set `exclude_from_google_search` (above) to `true`, to block external search engines.
+1. Add the filename of the page (omitting `.md`) to `js/search/excluded_files.json`, to block the internal search engine.
+
+#### Important Notes
+- Exclusion matching is currently imperfect: excluding a filename of `foo` will also exclude `foo-bar`.
+- Pages will still be accessible by direct URL, and search engines may not respect the `noindex` setting. All content published should be considered as public.
 
 ## Best practices
 

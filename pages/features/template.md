@@ -18,7 +18,17 @@ sections:
 - guide
 - advanced
 - support
+exclude_from_google_search: true
 ---
+
+<!--
+Be sure to
+
+	1. Fill in the correct "directory"
+	2. Remove "exclude_from_google_search: true"
+
+above before publishing!
+-->
 
 {% if page.overview %}
 
