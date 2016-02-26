@@ -10,7 +10,6 @@ function excluder(path, excluded) {
     var i = 0;
     while (i < excluded.length) {
         if (path.indexOf(excluded[i]) > -1) {
-            console.log('Excluded page: ' + path);
             return true;
         }
         else {
