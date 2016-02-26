@@ -3,7 +3,9 @@ var excludedPages = [
     'webhook-builder-Adjust',
     'mixpanel-webhook',
     'adjust-webhook',
-    'template'
+    'template',
+    'tune-webhook-builder',
+    'dynamic-link-builder'
 ];
 
 module.exports = excludedPages;
