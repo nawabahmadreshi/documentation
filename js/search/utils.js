@@ -9,7 +9,7 @@ var excludes = require('./excluded_pages');
 function excluder(path, excluded) {
     var i = 0;
     while (i < excluded.length) {
-        if (path.includes(excluded[i]) == true) {
+        if (String(path).includes(excluded[i]) == true) {
             return true;
         }
         else {
