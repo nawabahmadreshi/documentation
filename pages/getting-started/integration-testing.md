@@ -201,7 +201,7 @@ To enable this mode in your test builds, add a `setDebug` call to your **AppDele
 
 {% highlight objc %}
 Branch *branch = [Branch getInstance];
-[Branch setDebug];
+[branch setDebug];
 [branch initSession.....
 {% endhighlight %}
 {% endtab %}
