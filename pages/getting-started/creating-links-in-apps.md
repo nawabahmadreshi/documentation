@@ -201,7 +201,7 @@ branch.link({
 		"article_id": "1234",
 		"$og_title": "Hot off the presses!",
 		"$og_image_url": "mysite.com/image.png",
-		"$desktop_url": "mysite.com/article1234"
+		"$og_description": "Joe likes long walks on the beach..."
     }
 }, function(err, link) {
 	if (!err) {
@@ -220,8 +220,9 @@ Build your key/value pairs and add any additional analytics and control paramete
 {% highlight c# %}
 var data = new Dictionary<string, object>(); 
 data.Add("user", "Joe");
-data.Add("profile_pic", "https://s3-us-west-1.amazonaws.com/myapp/joes_pic.jpg");
-data.Add("description", "Joe likes long walks on the beach...") 
+data.Add("$og_title", "Hot off the presses!");
+data.Add("$og_description", "Joe likes long walks on the beach...");
+data.Add("$og_image_url", "mysite.com/image.png");
 
 // associate a url with a set of tags, channel, feature, and stage for better analytics.
 // tags: null or example set of tags could be "version1", "trial6", etc
