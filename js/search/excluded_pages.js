@@ -2,7 +2,8 @@ var excludedPages = [
     'tune',
     'webhook-builder-Adjust',
     'mixpanel-webhook',
-    'adjust-webhook'
+    'adjust-webhook',
+    'template'
 ];
 
 module.exports = excludedPages;
