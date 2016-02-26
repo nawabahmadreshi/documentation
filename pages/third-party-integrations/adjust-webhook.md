@@ -6,6 +6,7 @@ page_title: Use Branch and Adjust together
 description: Learn what needs to be done in order to put a Branch deep link in between a third party ad network and a third party measurement service.
 keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Ad Measurement, third party ad measurement, ad network
 hide_platform_selector: true
+exclude_from_google_search: true
 sections:
 - overview
 - guide
