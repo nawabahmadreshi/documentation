@@ -190,28 +190,46 @@ You would next use the returned link and help the user post it to (in this examp
 
 {% if page.cordova %}
 
-Build a link containing details about the user who is inviting friends. In the example, our properties reflect that this is an invitation and the user selected Facebook as the destination:
+Create a `BranchUniversalObject` containing details about the content that is being shared:
 
 {% highlight js %}
-branch.link({
-    channel: 'facebook',
-    feature: 'share',
-    data: {
-		"userId": "12345",
-		"userName": "Josh",
-		"monsterName": "Mr. Squiggles",
-		"$og_title": "Meet Mr. Squiggles",
-		"$og_description": "Your friend Josh has invited you to meet his awesome monster, Mr. Squiggles!"
-		"$og_image_url": "https://example.com/monster-pic-12345.png"
-    }
-}, function(err, link) {
-	if (!err) {
-    	console.log("got my Branch invite link to share: " + link);
-	}
+var branchUniversalObj = null;
+
+Branch.createBranchUniversalObject({
+  canonicalIdentifier: 'monster/12345',
+  title: 'Meet Mr. Squiggles',
+  contentDescription: 'Your friend Josh has invited you to meet his awesome monster, Mr. Squiggles!',
+  contentImageUrl: 'https://example.com/monster-pic-12345.png',
+  contentMetadata: {
+    'userId': '12345',
+    'userName': 'Josh',
+    'monsterName': 'Mr. Squiggles'
+  }
+}).then(function (newBranchUniversalObj) {
+  branchUniversalObj = newBranchUniversalObj;
+  console.log(newBranchUniversalObj);
 });
 {% endhighlight %}
 
-You would next use the returned link and help the user post it to (in this example) Facebook.
+{% protip %}
+The `canonicalIdentifier` parameter greatly improves the content analytics data Branch captures. It should be unique to that piece of content and helps Branch dedupe across many instances of the same thing. Suitable options: a website with pathing, or a database with identifiers for entities.
+{% endprotip %}
+
+Then, create the link to be shared by referencing the `BranchUniversalObject` and defining the properties of the link. In the example, our properties reflect that this is shared content and the user selected Facebook as the destination. We also added a default redirect to a website on the desktop.
+
+{% highlight js %}
+branchUniversalObj.generateShortUrl({
+  // put your link properties here
+  "feature" : "sharing",
+  "channel" : "facebook"
+}, {
+  // put your control parameters here
+  "$desktop_url" : "http://desktop-url.com/monster/12345",
+}).then(function (res) {
+    // Success Callback
+    console.log(res.generatedUrl);
+});
+{% endhighlight %}
 
 {% endif %}
 

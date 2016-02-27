@@ -148,19 +148,20 @@ branchUniversalObject.addMetadataKey("$og_video", value: "http://mysite/video.mp
 <!--- Codova -->
 {% if page.cordova %}
 {% highlight js %}
-branch.link({
-    channel: 'sms',
-    feature: 'share',
-    data: {
-        "article_id": "1234",
-        "$og_title": "MyApp is disrupting apps",
-        "$og_image_url": "http://yoursite.com/pics/987666.png",
-        "$og_description": "Out of all the apps disrupting apps, MyApp is without a doubt a leader. Check us out."
-    }
-}, function(err, link) {
-    if (!err) {
-        console.log("Ready to share my " + link);
-    }
+var branchUniversalObj = null;
+
+Branch.createBranchUniversalObject({
+  canonicalIdentifier: 'item/12345',
+// Facebook OG tags -- This will overwrite any defaults you have set on the Branch Dashboard
+  title: 'My Content Title',
+  contentDescription: 'My Content Description',
+  contentImageUrl: 'https://example.com/mycontent-12345.png,
+  contentMetadata: {
+    '$og_video': 'http://mysite/video.mpg'
+  }
+}).then(function (newBranchUniversalObj) {
+  branchUniversalObj = newBranchUniversalObj;
+  console.log(newBranchUniversalObj);
 });
 {% endhighlight %}
 {% endif %}
@@ -335,17 +336,17 @@ LinkProperties linkProperties = new LinkProperties()
 <!--- Cordova -->
 {% if page.cordova %}
 {% highlight js %}
-branch.link({
-    channel: 'sms',
-    feature: 'share',
-    data: {
-		"$ios_deepview": "default_template",
-		"$android_deepview": "default_template"
-    }
-}, function(err, link) {
-	if (!err) {
-    	console.log("Ready to share my " + link);
-	}
+branchUniversalObj.generateShortUrl({
+  // put your link properties here
+  "feature" : "sharing",
+  "channel" : "facebook"
+}, {
+  // put your control parameters here
+  "$ios_deepview" : "default_template",
+  "$android_deepview" : "default_template"
+}).then(function (res) {
+    // Success Callback
+    console.log(res.generatedUrl);
 });
 {% endhighlight %}
 {% endif %}
