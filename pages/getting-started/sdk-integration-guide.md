@@ -75,20 +75,51 @@ You can also install the SDK manually by [downloading the latest version](https:
 <!--- Cordova -->
 {% if page.cordova %}
 
-### Install using Cordova Plugin or Plugman
+### Command line install
 
-The Cordova SDK can be installed with Cordova Plugin or the Plugman tool:
+**Install parameters:**
+* `BRANCH_LIVE_KEY` - Your Branch live API key. You can sign up for your own Branch key at [https://dashboard.branch.io](https://dashboard.branch.io).
+* `URI_SCHEME` - It could be your app name or the URI set in your Branch dashboard. As a reminder, the URI scheme is what you use to open your app from a browser, i.e. `yourapp://`.
+* [optional] `ENCODED_ID` - This is for supporting App Links (6.0+) on Android. You can obtain the encodied id from the Branch dashboard. Just append `--variable ENCODED_ID=your-encoded-id` to the plugin install command below. For more info about App Links, please see [this](https://github.com/BranchMetrics/Android-Deferred-Deep-Linking-SDK/blob/master/README.md#leverage-android-app-links-for-deep-linking) section of the Android readme.
 
-`cordova plugin add https://github.com/BranchMetrics/Cordova-Ionic-PhoneGap-Deferred-Deep-Linking-SDK`
+{% tabs %}
+{% tab cordova %}
+{% highlight sh %}
+cordova plugin install https://github.com/BranchMetrics/Cordova-Ionic-PhoneGap-Deferred-Deep-Linking-SDK.git --variable BRANCH_LIVE_KEY=<your-branch-key> --variable URI_SCHEME=<your-app-uri-scheme-without-colon-and-slashes>
+{% endhighlight %}
 
-{% protip title="Install using NPM" %}
+example:
 
-To install the SDK via NPM, use the following command:
+{% highlight sh %}
+cordova plugin install https://github.com/BranchMetrics/Cordova-Ionic-PhoneGap-Deferred-Deep-Linking-SDK.git --variable BRANCH_LIVE_KEY=key_live_gchnKkd3l3m9YBPP2d73jmfejkcgVjgM --variable URI_SCHEME=branchsters
+{% endhighlight %}
+{% endtab %}
 
-`npm install branch-cordova-sdk`
+{% tab phonegap %}
+{% highlight sh %}
+phonegap plugin add https://github.com/BranchMetrics/Cordova-Ionic-PhoneGap-Deferred-Deep-Linking-SDK.git --variable BRANCH_LIVE_KEY=your-branch-key --variable URI_SCHEME=your-app-uri-scheme --variable ENCODED_ID=your-encoded-id
+{% endhighlight %}
 
-{% endprotip %}
+example:
 
+{% highlight sh %}
+phonegap plugin add https://github.com/BranchMetrics/Cordova-Ionic-PhoneGap-Deferred-Deep-Linking-SDK.git --variable BRANCH_LIVE_KEY=key_live_gchnKkd3l3m9YBPP2d73jmfejkcgVjgM --variable URI_SCHEME=branchsters
+{% endhighlight %}
+{% endtab %}
+
+{% tab npm %}
+{% highlight sh %}
+npm install branch-cordova-sdk --variable BRANCH_LIVE_KEY=your-branch-key --variable URI_SCHEME=your-app-uri-scheme --variable ENCODED_ID=your-encoded-id
+{% endhighlight %}
+
+example:
+
+{% highlight sh %}
+npm install branch-cordova-sdk --variable BRANCH_LIVE_KEY=key_live_gchnKkd3l3m9YBPP2d73jmfejkcgVjgM --variable URI_SCHEME=branchsters
+{% endhighlight %}
+{% endtab %}
+
+{% endtabs %}
 {% endif %}
 <!--- /Cordova -->
 
