@@ -21,7 +21,7 @@ contents: list
 
 A `BranchUniversalObject` is a container that Branch uses to organize and track pieces of content within your app. As a single, self-contained object associated with each thing that you want to share, it provides convenient methods for sharing, deep linking, and tracking how often that thing is viewed.
 
-{% if page.cordova or page.xamarin or page.adobe %}
+{% if page.xamarin or page.adobe %}
 
 Unfortunately `BranchUniversalObject` is not yet supported on this platform. Please see the [Creating Links in Apps]({{base.url}}/getting-started/creating-links-in-apps) page for alternatives!
 
@@ -107,6 +107,28 @@ var branchUniversalObject = branch.createBranchUniversalObject({
 
 {% endif %}
 
+{% if page.cordova %}
+
+{% highlight js %}
+var branchUniversalObj = null;
+
+Branch.createBranchUniversalObject({
+  canonicalIdentifier: 'content/12345',
+  title: 'My Content Title',
+  contentDescription: 'My Content Description',
+  contentImageUrl: 'https://example.com/mycontent-12345.png',
+  contentMetadata: {
+    'product_picture': '12345',
+    'user_id': '6789'
+  }
+}).then(function (newBranchUniversalObj) {
+  branchUniversalObj = newBranchUniversalObj;
+  console.log(newBranchUniversalObj);
+});
+{% endhighlight %}
+
+{% endif %}
+
 ## Parameters
 
 Some of these parameters automatically [populate the link parameters]({{base.url}}/getting-started/configuring-links) of any link created from that `BranchUniversalObject`. Specifying via `BranchUniversalObject` is preferred.
@@ -186,6 +208,17 @@ Some of these parameters automatically [populate the link parameters]({{base.url
 
 **Currently, this parameter is only used for [iOS Spotlight Indexing]({{base.url}}/features/spotlight-indexing) but will be used by Branch in the future*
 
+{% endif %}
+
+{% if page.cordova %}
+| Parameter | Usage | OG Tag key
+| --- | --- | ---
+| canonicalIdentifier | This is the unique identifier for content that will help Branch dedupe across many instances of the same thing. Suitable options: a website with pathing, or a database with identifiers for entities | $canonical_identifier
+| title | The name for the piece of content | $og_title 
+| contentDescription | A description for the content | $og_description
+| contentImageUrl | The image URL for the content | $og_image_url
+| contentMetadata | Any extra parameters you'd like to associate with the Branch Universal Object. These will be made available to you after the user clicks the link and opens up the app, and are used for [Deep Link Routing Routing]({{base.url}}/getting-started/deep-link-routing).
+| contentIndexingMode | Can be set to either `public` or `private`. Public indicates that you'd like this content to be discovered by other apps* | $publicly_indexable
 {% endif %}
 
 ## Methods
@@ -385,6 +418,42 @@ To implement the callback on Android, you must add listeners to the following ev
 
 **Note:** Callbacks in iOS are ignored. There is no need to implement them as the events are handled by `UIActivityViewController`.
 
+{% endif %}
+
+
+{% if page.cordova %}
+### registerView
+
+Call this method when the content loads on screen to track how many times a piece of content is viewed.
+
+{% highlight js %}
+branchUniversalObj.registerView();
+{% endhighlight %}
+
+### generateShortUrl
+
+Create a link to a piece of content. Visit the [Creating Links in Apps]({{base.url}}/getting-started/creating-links-in-apps) page to learn more.
+
+### showShareSheet
+
+Use Branch's custom share sheet to share a piece of content without having to create a link. Calling this method will automatically generate a Branch link with the appropriate analytics channel when the user selects a sharing destination.
+
+{% image src='/img/pages/getting-started/branch-universal-object/combined_share_sheet.png' actual center alt='ios and android share sheets' %}
+
+To implement it, use the following `showShareSheet` method instead of `generateShortUrl` in the last step above:
+
+{% highlight js %}
+branchUniversalObj.showShareSheet({
+  // put your link properties here
+  "feature" : "sample-feature",
+  "channel" : "sample-channel",
+  "stage" : "sample-stage",
+  "duration" : 1,
+}, {
+  // put your control parameters here
+  "$desktop_url" : "http://desktop-url.com",
+});
+{% endhighlight %}
 {% endif %}
 
 {% endif %}

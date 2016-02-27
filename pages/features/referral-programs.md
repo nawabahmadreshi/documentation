@@ -115,11 +115,12 @@ Branch.getInstance(getApplicationContext()).loadRewards(new BranchReferralStateC
 
 {% if page.cordova %}
 {% highlight js %}
-branch.credits(function(err, data) {
-	if (!err) {
-		// will return the balance of the current user's credits
-    	var credits = data['default'];
-	}
+Branch.loadRewards().then(function (rewards) {
+    console.log(rewards);
+    // will return the balance of the current user's credits
+    var credits = rewards['default'];
+}).catch(function (err) {
+    console.error(err);
 });
 {% endhighlight %}
 {% endif %}
@@ -218,11 +219,12 @@ Branch.getInstance(getApplicationContext()).loadRewards(new BranchReferralStateC
 
 {% if page.cordova %}
 {% highlight js %}
-branch.credits(function(err, data) {
-	if (!err) {
-		// will return the balance of the current user's credits
-    	var credits = data['myBucket'];
-	}
+Branch.loadRewards().then(function (rewards) {
+    console.log(rewards);
+    // will return the balance of the current user's credits
+    var credits = rewards['myBucket'];
+}).catch(function (err) {
+    console.error(err);
 });
 {% endhighlight %}
 {% endif %}
@@ -304,10 +306,11 @@ Branch.getInstance(getApplicationContext()).redeemRewards(5);
 
 {% if page.cordova %}
 {% highlight js %}
-branch.redeem(
-    5,          // Amount of credits to be redeemed
-    "default"  // String of bucket name to redeem credits from
-);
+Branch.redeemRewards(5, "default").then(function (res) {
+  console.log(res);
+}).catch(function (err) {
+  console.error(err);
+});
 {% endhighlight %}
 {% endif %}
 
@@ -394,10 +397,11 @@ Branch.getInstance(getApplicationContext()).redeemRewards("myBucket", 5)
 
 {% if page.cordova %}
 {% highlight js %}
-branch.redeem(
-    5,          // Amount of credits to be redeemed
-    "myBucket"  // String of bucket name to redeem credits from
-);
+Branch.redeemRewards(5, "myBucket").then(function (res) {
+  console.log(res);
+}).catch(function (err) {
+  console.error(err);
+});
 {% endhighlight %}
 {% endif %}
 
