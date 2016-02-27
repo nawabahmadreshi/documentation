@@ -75,7 +75,7 @@ You can also install the SDK manually by [downloading the latest version](https:
 <!--- Cordova -->
 {% if page.cordova %}
 
-### Command line install
+### Command line module install
 
 **Install parameters:**
 * `BRANCH_LIVE_KEY` - Your Branch live API key. You can sign up for your own Branch key at [https://dashboard.branch.io](https://dashboard.branch.io).
@@ -206,8 +206,8 @@ We attempt to automatically add an Android manifest flag to support deeplinking,
 {% endif %}
 <!--- /Titanium -->
 
-{% if page.ios or page.cordova or page.xamarin %}
-## {% if page.cordova or page.xamarin %}iOS: {% endif %}Configure Xcode Project
+{% if page.ios or page.xamarin %}
+## {% if page.xamarin %}iOS: {% endif %}Configure Xcode Project
 
 ### Add your Branch key
  
@@ -307,7 +307,7 @@ Register an `Application` class in your Manifest as follows:
 {% endif %}
 <!---       /Android-specific Branch Key -->
 
-{% if page.cordova or page.xamarin %}
+{% if page.xamarin %}
 ## Android: Configure Manifest
 
 ### Add your Branch key
@@ -341,6 +341,38 @@ Branch opens your app by using its URI scheme (`yourapp://`), which should be un
 </intent-filter>
 {% endhighlight %}
 
+{% endif %}
+
+
+{% if page.cordova %}
+### iOS: Enable Universal Links
+
+In iOS 9.2, Apple dropped support for URI scheme redirects. You must enable Universal Links if you want Branch-generated links to work in your iOS app. To do this:
+
+1. enable `Associated Domains` capability on the Apple Developer portal when you create your app's bundle identifier.
+2. In your [Dashboard Link Settings](https://dashboard.branch.io/#/settings/link), tick the `Enable Universal Links` checkbox and provide the Bundle Identifier and Apple Team ID in the appropriate boxes.
+3. Finally, add `associated-domains` to your entitlements file. Since cordova doesn't have a way to a create entitlements and associate it to your generated project, we
+will generate the said file with the help of [Cordova Universal Links Plugin](https://github.com/nordnet/cordova-universal-links-plugin), a third plarty plugin.
+
+**Note:** The purpose of the said plugin is to generate an entitlements file and associate it to your generated project. No other implementations from the plugin are need as this guide will cover what only needs to be implemented.
+
+To start, go to your project root and install the plugin:
+
+{% highlight sh %}
+cordova plugin add cordova-universal-links-plugin
+{% endhighlight %}
+
+After the installation, add the following entry to your application's `config.xml`:
+
+{% highlight xml %}
+<universal-links>
+    <ios-team-id value=your_ios_team_id />
+    <host name="bnc.lt">
+    </host>
+</universal-links>
+{% endhighlight %}
+
+You can get your iOS Team ID from the Apple Developer Portal. Once done, you have successfully enabled universal links for iOS.
 {% endif %}
 
 {% if page.adobe %}
@@ -659,21 +691,27 @@ You will need to initialize the session using `Branch branch = Branch.getInstanc
 
 {% if page.cordova %}
 
-Use the the following methods to initialize a Branch session when the `deviceready` event fires and every time the `resume` event fires. Be sure to replace `branch_key` with your Branch key from the [Settings](https://dashboard.branch.io/#/settings) page of the Branch dashboard.
+Use the the following methods to initialize a Branch session when the `deviceready` event fires and every time the `resume` event fires.
 
 {% highlight js %}
 onDeviceReady: function() {
-    document.addEventListener('resume', app.onResume, false);
-    branch.init(app.branch_key, { isReferrable: true }, function(err, data) {
-        // call completion handler with data.data
-    });
+    Branch.initSession();
 },
-
 onResume: function() {
-    branch.init(app.branch_key, { isReferrable: true }, function(err, data) {
-        // call completion handler with data.data
-    });
+    Branch.initSession();
 },
+initialize: function() {
+    document.addEventListener('resume', onResume, false);
+    document.addEventListener('deviceready', onDeviceReady, false);
+},
+{% endhighlight %}
+
+Then add the method `DeepLinkHandler()` which will act as our callback when the session beings. The deep link data will be included here:
+
+{% highlight js %}
+function DeepLinkHandler(data) {
+    alert('Data from initSession: ' + data.data);
+}
 {% endhighlight %}
 
 {% caution title="Watch out for content security policies" %}
