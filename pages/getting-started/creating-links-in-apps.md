@@ -191,24 +191,43 @@ branchUniversalObject.generateShortUrl(this, linkProperties, new BranchLinkCreat
 
 {% if page.cordova %}
 
-The Cordova/Ionic creates link with the `link()` function. Here is a generic example:
+Create a `BranchUniversalObject` for the piece of content that you'd like to link to, defining any custom key/value pairs as `metadata` parameters:
 
 {% highlight js %}
-branch.link({
-    channel: 'sms',
-    feature: 'share',
-    data: {
-		"article_id": "1234",
-		"$og_title": "Hot off the presses!",
-		"$og_image_url": "mysite.com/image.png",
-		"$og_description": "Joe likes long walks on the beach..."
-    }
-}, function(err, link) {
-	if (!err) {
-    	console.log("Ready to share my " + link);
-	}
+var branchUniversalObj = null;
+
+Branch.createBranchUniversalObject({
+  canonicalIdentifier: 'monster/12345',
+  title: 'Meet Mr. Squiggles',
+  contentDescription: 'Your friend Josh has invited you to meet his awesome monster, Mr. Squiggles!',
+  contentImageUrl: 'https://example.com/monster-pic-12345.png',
+  contentMetadata: {
+    'userId': '12345',
+    'userName': 'Josh',
+    'monsterName': 'Mr. Squiggles'
+  }
+}).then(function (newBranchUniversalObj) {
+  branchUniversalObj = newBranchUniversalObj;
+  console.log(newBranchUniversalObj);
 });
 {% endhighlight %}
+
+Then, create the link to be shared by referencing the `BranchUniversalObject` and defining the properties of the link. In the example, our properties reflect that this is shared content and the user selected Facebook as the destination. We also added a default redirect to a website on the desktop.
+
+{% highlight js %}
+branchUniversalObj.generateShortUrl({
+  // put your link properties here
+  "feature" : "sharing",
+  "channel" : "facebook"
+}, {
+  // put your control parameters here
+  "$desktop_url" : "http://desktop-url.com/monster/12345",
+}).then(function (res) {
+    // Success Callback
+    console.log(res.generatedUrl);
+});
+{% endhighlight %}
+
 {% endif %}
 
 {% if page.xamarin %}
