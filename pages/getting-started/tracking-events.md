@@ -74,7 +74,7 @@ Branch.getInstance(getApplicationContext()).userCompletedAction("custom_action_1
 
 {% if page.cordova %}
 {% highlight js %}
-branch.track("custom_action_1");
+Branch.userCompletedAction("custom_action_1");
 {% endhighlight %}
 {% endif %}
 
@@ -136,7 +136,7 @@ Branch.getInstance().userCompletedAction("custom_action_with_data", metaData);
 
 {% if page.cordova %}
 {% highlight js %}
-branch.track(
+Branch.userCompletedAction(
     "purchase_event",
     {
     	"sku": "12346789"

@@ -228,16 +228,11 @@ To enable this mode in your test builds, add the following `<meta-data>` tag to 
 {% endif %}
 
 {% if page.cordova %}
-To enable this mode in your test builds, add a `setDebug()` call to your `onDeviceReady` function *before* you call `init()`. Your code will end up looking something like this:
+To enable this mode in your test builds, add a `setDebug()` call *before* you call `initSession()`. Your code will end up looking something like this:
 
 {% highlight js %}
-onDeviceReady: function() {
-    branch.setDebug(true);
-    document.addEventListener('resume', app.onResume, false);
-    branch.init(app.branch_key, { isReferrable: true }, function(err, data) {
-        // call completion handler with data.data
-    });
-},
+Branch.setDebug(true);
+Branch.initSession();
 {% endhighlight %}
 {% endif %}
 
