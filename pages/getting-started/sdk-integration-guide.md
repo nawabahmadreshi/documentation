@@ -169,7 +169,7 @@ Branch requires ARC, and we don’t intend to add `if` checks throughout the SDK
 {% endprotip %}
 
 {% caution title="For Android projects" %}
-We attempt to automatically add an Android manifest flag to support deeplinking, but check it before building your project. You may need to click the "Update Android Manifest" button to add it yourself.
+We attempt to automatically add an Android manifest flag to support deep linking, but check it before building your project. You may need to click the "Update Android Manifest" button to add it yourself.
 {% endcaution %}
 
 {% endif %}
@@ -476,7 +476,7 @@ Branch opens your app by using its URI scheme (`yourapp://`), which should be un
 {% endhighlight %}
 
 {% caution %}
-To ensure proper deeplinking from other apps such as Facebook, this Activity must be launched in `singleTask` mode. This is done in the Activity definition as so:
+To ensure proper deep linking from other apps such as Facebook, this Activity must be launched in `singleTask` mode. This is done in the Activity definition as so:
 
 {% highlight xml %}
 <activity
@@ -490,7 +490,7 @@ To ensure proper deeplinking from other apps such as Facebook, this Activity mus
 
 ## Start a Branch session
 
-A Branch session needs to be started every single time your app opens. We check to see if the user came from a link and if so, the callback method returns any deeplink parameters for that link. Please note that the callback function is always called, even when the network is out.
+A Branch session needs to be started every single time your app opens. We check to see if the user came from a link and if so, the callback method returns any deep link parameters for that link. Please note that the callback function is always called, even when the network is out.
 
 <!---    iOS -->
 {% if page.ios %}
@@ -799,13 +799,11 @@ public class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDe
 {% endif %}
 
 {% if page.unity %}
-Insert the following methods into the main class of the scene to which you added BranchPrefab. The callback method should be visible from every scene in which you will use deeplinked data.
+Insert the following methods into the main class of the scene to which you added BranchPrefab. The callback method should be visible from every scene in which you will use deep linked data.
 
-**Important note**: Please call initSession(..) in Start of your very first scene. Branch needs time to register for all of the iOS lifecycle calls before iOS calls them, in order to intercept the deep link data. If you call it after, you'll potentially miss data.
-
-{% protip %}
-Don't worry about several instances of Branch SDK, even if the scene containing BranchPrefab will be launched several times (for example: a content loading scene).
-{% endprotip %}
+{%caution %}
+Please call `initSession()` in Start of your very first scene. Branch needs time to register for all of the iOS lifecycle calls before iOS calls them, in order to intercept the deep link data. If you call it after, you'll potentially miss data.
+{% endcaution %}
 
 {% highlight c# %}
 using UnityEngine;
@@ -826,6 +824,10 @@ public class MyCoolBehaviorScript : MonoBehaviour {
     }
 }
 {% endhighlight %}
+
+{% protip %}
+Don't worry about several instances of Branch SDK, even if the scene containing BranchPrefab will be launched several times (for example: a content loading scene).
+{% endprotip %}
 
 
 {% endif %}
