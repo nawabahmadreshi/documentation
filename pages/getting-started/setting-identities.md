@@ -93,7 +93,11 @@ Branch.getInstance().logout();
 Add a `setIdentity` call wherever you create or login a user. This should be done after you have successfully initialized a Branch session. Only call `setIdentity` when the user first logs in. We will cache the identity for future sessions.
 
 {% highlight js %}
-branch.setIdentity("your user id");
+Branch.setIdentity("your user id").then(function (res) {
+  console.log(res);
+}).catch(function (err) {
+  console.error(err);
+});
 {% endhighlight %}
 
 ## Log out
@@ -101,7 +105,7 @@ branch.setIdentity("your user id");
 Add a `logout` call anywhere you allow the user to logout. `Logout` should only be called when the user logs out. Calling it at other times could lead to hard-to-discover errors. Failing to call `logout` can likewise lead to bugs if multiple users log in on the same device.
 
 {% highlight js %}
-branch.logout();
+Branch.logout();
 {% endhighlight %}
 {% endif %}
 

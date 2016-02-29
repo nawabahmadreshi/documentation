@@ -68,7 +68,7 @@ You can retrieve your app's Bundle Identifier under the `General` tab of your Xc
 
 ## Add the entitlement to your project
 
-{% if page.ios or page.cordova or page.xamarin or page.unity or page.adobe %}
+{% if page.ios or page.xamarin or page.unity or page.adobe %}
 ### Enable Associated Domains in Xcode
 
 1. Go to the `Capabilities` tab of your project file.
@@ -98,6 +98,36 @@ If you use a custom domain or subdomain for your Branch links, you should also a
 1. Ensure that the correct build target is checked in the right sidebar. {% image src='/img/pages/getting-started/universal-app-links/entitlements-build-target.png' half center alt='add entitlements to build target' %}
 
 {% endif %}
+
+{% if page.cordova %}
+In iOS 9.2, Apple dropped support for URI scheme redirects. You must enable Universal Links if you want Branch-generated links to work in your iOS app. To do this:
+
+1. Enable `Associated Domains` capability on the Apple Developer portal when you create your app's bundle identifier.
+2. In your [Dashboard Link Settings](https://dashboard.branch.io/#/settings/link), tick the `Enable Universal Links` checkbox and provide the Bundle Identifier and Apple Team ID in the appropriate boxes.
+3. Finally, add `associated-domains` to your entitlements file. Since cordova doesn't have a way to a create entitlements and associate it to your generated project, we
+will generate the said file with the help of [Cordova Universal Links Plugin](https://github.com/nordnet/cordova-universal-links-plugin), a third plarty plugin.
+
+**Note:** The purpose of the said plugin is to generate an entitlements file and associate it to your generated project. No other implementations from the plugin are need as this guide will cover what only needs to be implemented.
+
+To start, go to your project root and install the plugin:
+
+{% highlight sh %}
+cordova plugin add cordova-universal-links-plugin
+{% endhighlight %}
+
+After the installation, add the following entry to your application's `config.xml`:
+
+{% highlight xml %}
+<universal-links>
+    <ios-team-id value=your_ios_team_id />
+    <host name="bnc.lt">
+    </host>
+</universal-links>
+{% endhighlight %}
+
+You can get your iOS Team ID from the Apple Developer Portal.
+{% endif %}
+
 {% if page.titanium %}
 
 1. Create a new file named `Entitlements.plist` in the same directory as your Titanium app's `tiapp.xml`
@@ -192,11 +222,7 @@ func application(application: UIApplication, continueUserActivity userActivity: 
 {% endtabs %}
 
 {% endif %}
-{% if page.cordova %}
 
-<!--Does this step occur on Cordova?-->
-
-{% endif %}
 {% if page.xamarin %}
 
 Open your **AppDelegate.cs** file and add the following method (if you completed the [SDK Integration Guide]({{base.url}}/getting-started/sdk-integration-guide), this is likely already present). Note that there are different versions depending on whether you are using Xamarin Forms or not. 

@@ -358,17 +358,27 @@ public void onStart() {
 Inside the callback where Branch is initialized, you will want to examine the dictionary passed in the callback to see if the user opened a link to content. Below is an example assuming that the links correspond to pictures.
 
 {% highlight js %}
-branch.init("YOUR BRANCH KEY HERE", function(err, data) {
-    if (!err && data.data['+clicked_branch_link']) {
-        if (data.data['picture_id']) {
-            // load the view to show the picture
-        } else {
-            // load your normal view
-        }
-    } 
-});
+Branch.initSession();
 {% endhighlight %}
 
+To implement the callback, you must add a function called `DeepLinkHandler`.
+
+{% highlight js %}
+function DeepLinkHandler(data) {
+    console.log("received data: " + JSON.stringify(data));
+    for (key in data) {
+        if ((key != "type" && key != "source" && key != "bubbles" && key != "cancelBubble") && data[key] != null) {
+            console.log(key + ": " + data["key"]);
+        }
+    }
+
+    if (data["picture_id"]) {
+        // load the view to show the picture
+    } else {
+        // load your normal view
+    }
+}
+{% endhighlight %}
 {% endif %}
 
 {% if page.xamarin %}

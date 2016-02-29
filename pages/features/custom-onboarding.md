@@ -179,27 +179,41 @@ You would next use the returned link and help the user post it to (in this examp
 
 {% if page.cordova %}
 
-Build a link containing details about the user who is inviting friends. In the example, our properties reflect that this is an invitation and the user selected Facebook as the destination:
+Create a `BranchUniversalObject` containing details about the user who is inviting friends:
 
 {% highlight js %}
-branch.link({
-    channel: 'facebook',
-    feature: 'share',
-    data: {
-		"userId": "12345",
-		"userName": "Josh",
-		"$og_title": "Josh wants you to try Branch Monster Factory",
-		"$og_description": "Your friend Josh has invited you to download Branch Monster Factory create awesome monsters!"
-		"$og_image_url": "https://example.com/profile-pic-12345.png"
-    }
-}, function(err, link) {
-	if (!err) {
-    	console.log("got my Branch invite link to share: " + link);
-	}
+var branchUniversalObj = null;
+
+Branch.createBranchUniversalObject({
+  canonicalIdentifier: 'invite/12345',
+  title: 'Josh wants you to try Branch Monster Factory',
+  contentDescription: 'Your friend Josh has invited you to download Branch Monster Factory create awesome monsters!',
+  contentImageUrl: 'https://example.com/profile-pic-12345.png',
+  contentMetadata: {
+    'userId': '12345',
+    'userName': 'Josh'
+  }
+}).then(function (newBranchUniversalObj) {
+  branchUniversalObj = newBranchUniversalObj;
+  console.log(newBranchUniversalObj);
 });
 {% endhighlight %}
 
-You would next use the returned link and help the user post it to (in this example) Facebook.
+Then, create the link to be shared by referencing the `BranchUniversalObject` and defining the properties of the link. In the example, our properties reflect that this is an invite feature and the user selected Facebook as the destination. We also added a default redirect to a website on the desktop.
+
+{% highlight js %}
+branchUniversalObj.generateShortUrl({
+  // put your link properties here
+  "feature" : "invite",
+  "channel" : "facebook"
+}, {
+  // put your control parameters here
+  "$desktop_url" : "http://desktop-url.com/invite/12345",
+}).then(function (res) {
+    // Success Callback
+    console.log(res.generatedUrl);
+});
+{% endhighlight %}
 
 {% endif %}
 
