@@ -100,16 +100,13 @@ If you use a custom domain or subdomain for your Branch links, you should also a
 {% endif %}
 
 {% if page.cordova %}
-In iOS 9.2, Apple dropped support for URI scheme redirects. You must enable Universal Links if you want Branch-generated links to work in your iOS app. To do this:
 
-1. Enable `Associated Domains` capability on the Apple Developer portal when you create your app's bundle identifier.
-2. In your [Dashboard Link Settings](https://dashboard.branch.io/#/settings/link), tick the `Enable Universal Links` checkbox and provide the Bundle Identifier and Apple Team ID in the appropriate boxes.
-3. Finally, add `associated-domains` to your entitlements file. Since cordova doesn't have a way to a create entitlements and associate it to your generated project, we
-will generate the said file with the help of [Cordova Universal Links Plugin](https://github.com/nordnet/cordova-universal-links-plugin), a third plarty plugin.
+Unfortunately Cordova doesn't have a way to a create entitlements and associate them to your generated Xcode project, so we will make use of the third-party [Cordova Universal Links Plugin](https://github.com/nordnet/cordova-universal-links-plugin).
 
-**Note:** The purpose of the said plugin is to generate an entitlements file and associate it to your generated project. No other implementations from the plugin are need as this guide will cover what only needs to be implemented.
+{% protip %}Our use of the Universal Links Plugin is simply to generate an entitlements file and associate it to your generated project. This guide covers all the steps you need to take, and no other implementations from the plugin are necessary since Branch handles everything else behind the scenes.
+{% endprotip %}
 
-To start, go to your project root and install the plugin:
+Go to your project root and install the plugin:
 
 {% highlight sh %}
 cordova plugin add cordova-universal-links-plugin
@@ -125,7 +122,7 @@ After the installation, add the following entry to your application's `config.xm
 </universal-links>
 {% endhighlight %}
 
-You can get your iOS Team ID from the Apple Developer Portal.
+You can get your iOS Team ID from the Your Account page on the [Apple Developer Portal](https://developer.apple.com/membercenter/index.action#accountSummary).
 {% endif %}
 
 {% if page.titanium %}
@@ -301,7 +298,7 @@ After completing this guide and installing a new build of your app on your testi
 {% ingredient quickstart-prerequisite %}{% endingredient %}
 {% else %}
 {% protip %}
-The following steps are only required if you wish you enable Android App Links, 
+The following steps are only required if you wish you enable Android App Links. 
 {% endprotip %}
 {% endif %}
 
@@ -322,6 +319,44 @@ Start by generating a SHA256 fingerprint of your app's signing certificate. This
 You can insert both your debug and production fingerprints for testing. Simply separate them with a comma.
 {% endprotip %}
 
+{% if page.cordova %}
+
+## Configure project
+
+The SDK plugin will automatically configure everything necessary to support App Links. You simply need to rerun the [plugin installation command]({{base.url}}/getting-started/sdk-integration-guide/guide/cordova/#command-line-module-install):
+
+1. Use the same Branch key and URI scheme values as when you installed the plugin.
+1. Append `--variable ENCODED_ID=READ_FROM_DASHBOARD` to the installation command.
+   - Replace `READ_FROM_DASHBOARD` with the four-character value provided underneath the **SHA256 Cert Fingerprints** field on the Branch dashboard. It will look something like this: `WSuf`
+
+Here is an example of the full plugin installation command:
+
+{% tabs %}
+{% tab cordova %}
+{% highlight sh %}
+cordova plugin install https://github.com/BranchMetrics/Cordova-Ionic-PhoneGap-Deferred-Deep-Linking-SDK.git --variable BRANCH_LIVE_KEY=key_live_xxxxxxxxxxxxxxx --variable URI_SCHEME=yourApp --variable ENCODED_ID=READ_FROM_DASHBOARD
+{% endhighlight %}
+
+{% endtab %}
+
+{% tab phonegap %}
+{% highlight sh %}
+phonegap plugin add https://github.com/BranchMetrics/Cordova-Ionic-PhoneGap-Deferred-Deep-Linking-SDK.git --variable BRANCH_LIVE_KEY=key_live_xxxxxxxxxxxxxxx --variable URI_SCHEME=yourApp --variable ENCODED_ID=READ_FROM_DASHBOARD
+{% endhighlight %}
+
+{% endtab %}
+
+{% tab npm %}
+{% highlight sh %}
+npm install branch-cordova-sdk --variable BRANCH_LIVE_KEY=key_live_xxxxxxxxxxxxxxx --variable URI_SCHEME=yourApp --variable ENCODED_ID=READ_FROM_DASHBOARD
+{% endhighlight %}
+
+{% endtab %}
+
+{% endtabs %}
+
+{% else %}
+
 ## Add Intent Filter to Manifest
 
 1. Choose the `Activity` you want to open up when a link is clicked. This is typically your `SplashActivity` or a `BaseActivity` that all other activities inherit from (and likely the same one you selected in the [SDK Integration Guide]({{base.url}}/getting-started/sdk-integration-guide)).
@@ -339,6 +374,8 @@ You can insert both your debug and production fingerprints for testing. Simply s
     <data android:scheme="https" android:host="bnc.lt" android:pathPrefix="READ_FROM_DASHBOARD" /> <!-- Live App link-->
 </intent-filter>
 {% endhighlight %}
+
+{% endif %}
 
 ## Test your App Links implementation
 
