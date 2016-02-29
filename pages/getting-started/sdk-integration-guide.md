@@ -75,48 +75,45 @@ You can also install the SDK manually by [downloading the latest version](https:
 <!--- Cordova -->
 {% if page.cordova %}
 
+### Register a URI scheme
+
+{% ingredient universal-links-requirement %}{% endingredient %}
+
+Branch opens your app by using its URI scheme (`yourapp://`), which should be unique to your app.
+
+1. On the [Link Settings](https://dashboard.branch.io/#/settings/link) page of the Branch dashboard.
+1. For iOS projects, ensure that **I have an iOS App** is checked and **iOS URI Scheme** is filled.
+1. For Android projects, ensure that **I have an Android App** is checked and **Android URI Scheme** is filled.
+
 ### Command line module install
 
-**Install parameters:**
-* `BRANCH_LIVE_KEY` - Your Branch live API key. You can sign up for your own Branch key at [https://dashboard.branch.io](https://dashboard.branch.io).
-* `URI_SCHEME` - It could be your app name or the URI set in your Branch dashboard. As a reminder, the URI scheme is what you use to open your app from a browser, i.e. `yourapp://`.
-* [optional] `ENCODED_ID` - This is for supporting App Links (6.0+) on Android. You can obtain the encodied id from the Branch dashboard. Just append `--variable ENCODED_ID=your-encoded-id` to the plugin install command below. For more info about App Links, please see [this](https://github.com/BranchMetrics/Android-Deferred-Deep-Linking-SDK/blob/master/README.md#leverage-android-app-links-for-deep-linking) section of the Android readme.
+You can install the Branch SDK by using one of several different command line tools. Here are the install parameters to use:
+
+| Parameter | Usage
+| --- | ---
+| `BRANCH_LIVE_KEY` | Your Branch live API key, retrieved from the [Settings page](https://dashboard.branch.io/#/settings) of the Branch dashboard.
+| `URI_SCHEME` | The URI scheme for your app (**not** including `://`) from the step above.
 
 {% tabs %}
 {% tab cordova %}
 {% highlight sh %}
-cordova plugin install https://github.com/BranchMetrics/Cordova-Ionic-PhoneGap-Deferred-Deep-Linking-SDK.git --variable BRANCH_LIVE_KEY=<your-branch-key> --variable URI_SCHEME=<your-app-uri-scheme-without-colon-and-slashes>
+cordova plugin install https://github.com/BranchMetrics/Cordova-Ionic-PhoneGap-Deferred-Deep-Linking-SDK.git --variable BRANCH_LIVE_KEY=key_live_xxxxxxxxxxxxxxx --variable URI_SCHEME=yourApp
 {% endhighlight %}
 
-example:
-
-{% highlight sh %}
-cordova plugin install https://github.com/BranchMetrics/Cordova-Ionic-PhoneGap-Deferred-Deep-Linking-SDK.git --variable BRANCH_LIVE_KEY=key_live_gchnKkd3l3m9YBPP2d73jmfejkcgVjgM --variable URI_SCHEME=branchsters
-{% endhighlight %}
 {% endtab %}
 
 {% tab phonegap %}
 {% highlight sh %}
-phonegap plugin add https://github.com/BranchMetrics/Cordova-Ionic-PhoneGap-Deferred-Deep-Linking-SDK.git --variable BRANCH_LIVE_KEY=your-branch-key --variable URI_SCHEME=your-app-uri-scheme --variable ENCODED_ID=your-encoded-id
+phonegap plugin add https://github.com/BranchMetrics/Cordova-Ionic-PhoneGap-Deferred-Deep-Linking-SDK.git --variable BRANCH_LIVE_KEY=key_live_xxxxxxxxxxxxxxx --variable URI_SCHEME=yourApp
 {% endhighlight %}
 
-example:
-
-{% highlight sh %}
-phonegap plugin add https://github.com/BranchMetrics/Cordova-Ionic-PhoneGap-Deferred-Deep-Linking-SDK.git --variable BRANCH_LIVE_KEY=key_live_gchnKkd3l3m9YBPP2d73jmfejkcgVjgM --variable URI_SCHEME=branchsters
-{% endhighlight %}
 {% endtab %}
 
 {% tab npm %}
 {% highlight sh %}
-npm install branch-cordova-sdk --variable BRANCH_LIVE_KEY=your-branch-key --variable URI_SCHEME=your-app-uri-scheme --variable ENCODED_ID=your-encoded-id
+npm install branch-cordova-sdk --variable BRANCH_LIVE_KEY=key_live_xxxxxxxxxxxxxxx --variable URI_SCHEME=yourApp
 {% endhighlight %}
 
-example:
-
-{% highlight sh %}
-npm install branch-cordova-sdk --variable BRANCH_LIVE_KEY=key_live_gchnKkd3l3m9YBPP2d73jmfejkcgVjgM --variable URI_SCHEME=branchsters
-{% endhighlight %}
 {% endtab %}
 
 {% endtabs %}
@@ -172,7 +169,7 @@ Branch requires ARC, and we don’t intend to add `if` checks throughout the SDK
 {% endprotip %}
 
 {% caution title="For Android projects" %}
-We attempt to automatically add an Android manifest flag to support deeplinking, but check it before building your project. You may need to click the "Update Android Manifest" button to add it yourself.
+We attempt to automatically add an Android manifest flag to support deep linking, but check it before building your project. You may need to click the "Update Android Manifest" button to add it yourself.
 {% endcaution %}
 
 {% endif %}
@@ -343,38 +340,6 @@ Branch opens your app by using its URI scheme (`yourapp://`), which should be un
 
 {% endif %}
 
-
-{% if page.cordova %}
-### iOS: Enable Universal Links
-
-In iOS 9.2, Apple dropped support for URI scheme redirects. You must enable Universal Links if you want Branch-generated links to work in your iOS app. To do this:
-
-1. enable `Associated Domains` capability on the Apple Developer portal when you create your app's bundle identifier.
-2. In your [Dashboard Link Settings](https://dashboard.branch.io/#/settings/link), tick the `Enable Universal Links` checkbox and provide the Bundle Identifier and Apple Team ID in the appropriate boxes.
-3. Finally, add `associated-domains` to your entitlements file. Since cordova doesn't have a way to a create entitlements and associate it to your generated project, we
-will generate the said file with the help of [Cordova Universal Links Plugin](https://github.com/nordnet/cordova-universal-links-plugin), a third plarty plugin.
-
-**Note:** The purpose of the said plugin is to generate an entitlements file and associate it to your generated project. No other implementations from the plugin are need as this guide will cover what only needs to be implemented.
-
-To start, go to your project root and install the plugin:
-
-{% highlight sh %}
-cordova plugin add cordova-universal-links-plugin
-{% endhighlight %}
-
-After the installation, add the following entry to your application's `config.xml`:
-
-{% highlight xml %}
-<universal-links>
-    <ios-team-id value=your_ios_team_id />
-    <host name="bnc.lt">
-    </host>
-</universal-links>
-{% endhighlight %}
-
-You can get your iOS Team ID from the Apple Developer Portal. Once done, you have successfully enabled universal links for iOS.
-{% endif %}
-
 {% if page.adobe %}
 ## Add your Branch key
 
@@ -511,7 +476,7 @@ Branch opens your app by using its URI scheme (`yourapp://`), which should be un
 {% endhighlight %}
 
 {% caution %}
-To ensure proper deeplinking from other apps such as Facebook, this Activity must be launched in `singleTask` mode. This is done in the Activity definition as so:
+To ensure proper deep linking from other apps such as Facebook, this Activity must be launched in `singleTask` mode. This is done in the Activity definition as so:
 
 {% highlight xml %}
 <activity
@@ -525,7 +490,7 @@ To ensure proper deeplinking from other apps such as Facebook, this Activity mus
 
 ## Start a Branch session
 
-A Branch session needs to be started every single time your app opens. We check to see if the user came from a link and if so, the callback method returns any deeplink parameters for that link. Please note that the callback function is always called, even when the network is out.
+A Branch session needs to be started every single time your app opens. We check to see if the user came from a link and if so, the callback method returns any deep link parameters for that link. Please note that the callback function is always called, even when the network is out.
 
 <!---    iOS -->
 {% if page.ios %}
@@ -834,7 +799,7 @@ public class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDe
 {% endif %}
 
 {% if page.unity %}
-Insert the following methods into the main class of the scene to which you added BranchPrefab. The callback method should be visible from every scene in which you will use deeplinked data.
+Insert the following methods into the main class of the scene to which you added BranchPrefab. The callback method should be visible from every scene in which you will use deep linked data.
 
 {% caution title="Call initSession in first scene" %}
 Please call initSession(..) in Start of your very first scene. Branch needs time to register for all of the iOS lifecycle calls before iOS calls them, in order to intercept the deep link data. If you call it after, you'll potentially miss data.
@@ -859,7 +824,6 @@ public class MyCoolBehaviorScript : MonoBehaviour {
     }
 }
 {% endhighlight %}
-
 
 {% endif %}
 
