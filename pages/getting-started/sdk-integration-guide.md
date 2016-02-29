@@ -801,8 +801,8 @@ public class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDe
 {% if page.unity %}
 Insert the following methods into the main class of the scene to which you added BranchPrefab. The callback method should be visible from every scene in which you will use deep linked data.
 
-{%caution %}
-Please call `initSession()` in Start of your very first scene. Branch needs time to register for all of the iOS lifecycle calls before iOS calls them, in order to intercept the deep link data. If you call it after, you'll potentially miss data.
+{% caution title="Call initSession in first scene" %}
+Please call initSession(..) in Start of your very first scene. Branch needs time to register for all of the iOS lifecycle calls before iOS calls them, in order to intercept the deep link data. If you call it after, you'll potentially miss data.
 {% endcaution %}
 
 {% highlight c# %}
@@ -824,11 +824,6 @@ public class MyCoolBehaviorScript : MonoBehaviour {
     }
 }
 {% endhighlight %}
-
-{% protip %}
-Don't worry about several instances of Branch SDK, even if the scene containing BranchPrefab will be launched several times (for example: a content loading scene).
-{% endprotip %}
-
 
 {% endif %}
 
