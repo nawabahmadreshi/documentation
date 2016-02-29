@@ -840,10 +840,6 @@ Insert the following methods into the main class of the scene to which you added
 Please call initSession(..) in Start of your very first scene. Branch needs time to register for all of the iOS lifecycle calls before iOS calls them, in order to intercept the deep link data. If you call it after, you'll potentially miss data.
 {% endcaution %}
 
-{% protip %}
-Don't worry about several instances of Branch SDK, even if the scene containing BranchPrefab will be launched several times (for example: a content loading scene).
-{% endprotip %}
-
 {% highlight c# %}
 using UnityEngine;
 using System.Collections.Generic;
