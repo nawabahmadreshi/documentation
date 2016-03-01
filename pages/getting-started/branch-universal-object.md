@@ -375,52 +375,6 @@ Branch.shareLink(universalObject, linkProperties, "hello there with short url", 
 {% endhighlight %}
 {% endif %}
 
-{% if page.titanium %}
-
-### registerView
-
-Call this method in `viewDidLoad` or `viewDidAppear` to track how many times a piece of content is viewed.
-
-{% highlight js %}
-Branch.registerView(universalObject);
-{% endhighlight %}
-
-### generateShortUrl
-
-Create a link to a piece of content. Visit the [Creating Links in Apps]({{base.url}}/getting-started/creating-links-in-apps) page to learn more.
-
-### showShareSheet
-
-Use Branch's custom share sheet to share a piece of content without having to create a link. Calling this method will automatically generate a Branch link with the appropriate analytics channel when the user selects a sharing destination.
-
-{% image src='/img/pages/getting-started/branch-universal-object/combined_share_sheet.png' actual center alt='ios and android share sheets' %}
-
-To implement it, use the following `showShareSheet` method instead of `generateShortUrl` in the last step above:
-
-{% highlight js %}
-branchUniversalObject.showShareSheet({
-  "feature" : "sample-feature",
-  "channel" : "sample-channel",
-  "stage" : "sample-stage",
-}, {
-  "$desktop_url" : "http://desktop-url.com",
-});
-{% endhighlight %}
-
-To implement the callback on Android, you must add listeners to the following events:
-
-| Event | Description
-| --- | ---
-| `bio:shareLinkDialogLaunched` | Fires when the share sheet is presented
-| `bio:shareLinkDialogDismissed` | Fires when the share sheet is dismissed
-| `bio:shareLinkResponse` | Returns a dictionary of the response data
-| `bio:shareChannelSelected` | Fires when a channel is selected
-
-**Note:** Callbacks in iOS are ignored. There is no need to implement them as the events are handled by `UIActivityViewController`.
-
-{% endif %}
-
-
 {% if page.cordova %}
 ### registerView
 
@@ -454,6 +408,139 @@ branchUniversalObj.showShareSheet({
   "$desktop_url" : "http://desktop-url.com",
 });
 {% endhighlight %}
+
+#### Share sheet callbacks (Android ONLY)
+
+{% protip %}
+Callbacks in iOS are ignored. There is no need to implement them as the events are handled by `UIActivityViewController`.
+{% endprotip %}
+
+To implement the callback on Android, you must add listeners to the following events:
+
+##### onShareSheetLaunched
+
+The event fires when the share sheet is presented.
+
+{% highlight js %}
+branchUniversalObj.onShareSheetLaunched(function () {
+  console.log('Share sheet launched');
+});
+{% endhighlight %}
+
+##### onShareSheetDismissed
+
+The event fires when the share sheet is dismissed.
+
+{% highlight js %}
+branchUniversalObj.onShareSheetDismissed(function () {
+  console.log('Share sheet dimissed');
+});
+{% endhighlight %}
+
+##### onLinkShareResponse
+
+The event returns a dictionary of the response data.
+
+{% highlight js %}
+branchUniversalObj.onLinkShareResponse(function (res) {
+  console.log('Share link response: ' + JSON.stringify(res));
+});
+{% endhighlight %}
+
+##### onChannelSelected
+
+The event fires when a channel is selected.
+
+{% highlight js %}
+branchUniversalObj.onChannelSelected(function (res) {
+  console.log('Channel selected: ' + JSON.stringify(res));
+});
+{% endhighlight %}
+
+{% endif %}
+
+
+{% if page.titanium %}
+
+### registerView
+
+Call this method in `viewDidLoad` or `viewDidAppear` to track how many times a piece of content is viewed.
+
+{% highlight js %}
+Branch.registerView(universalObject);
+{% endhighlight %}
+
+### generateShortUrl
+
+Create a link to a piece of content. Visit the [Creating Links in Apps]({{base.url}}/getting-started/creating-links-in-apps) page to learn more.
+
+### showShareSheet
+
+Use Branch's custom share sheet to share a piece of content without having to create a link. Calling this method will automatically generate a Branch link with the appropriate analytics channel when the user selects a sharing destination.
+
+{% image src='/img/pages/getting-started/branch-universal-object/combined_share_sheet.png' actual center alt='ios and android share sheets' %}
+
+To implement it, use the following `showShareSheet` method instead of `generateShortUrl` in the last step above:
+
+{% highlight js %}
+branchUniversalObject.showShareSheet({
+  "feature" : "sample-feature",
+  "channel" : "sample-channel",
+  "stage" : "sample-stage",
+}, {
+  "$desktop_url" : "http://desktop-url.com",
+});
+{% endhighlight %}
+
+#### Share sheet callbacks (Android ONLY)
+
+{% protip %}
+Callbacks in iOS are ignored. There is no need to implement them as the events are handled by `UIActivityViewController`.
+{% endprotip %}
+
+To implement the callback on Android, you must add listeners to the following events:
+
+##### onShareSheetLaunched
+
+The event fires when the share sheet is presented.
+
+{% highlight js %}
+branchUniversalObject.shareLinkDialogLaunched(function () {
+  console.log('Share sheet launched');
+});
+{% endhighlight %}
+
+##### onShareSheetDismissed
+
+The event fires when the share sheet is dismissed.
+
+{% highlight js %}
+branchUniversalObject.shareLinkDialogDismissed(function () {
+  console.log('Share sheet dimissed');
+});
+{% endhighlight %}
+
+##### onLinkShareResponse
+
+The event returns a dictionary of the response data.
+
+{% highlight js %}
+branchUniversalObject.shareLinkResponse(function (res) {
+  console.log('Share link response: ' + JSON.stringify(res));
+});
+{% endhighlight %}
+
+##### onChannelSelected
+
+The event fires when a channel is selected.
+
+{% highlight js %}
+branchUniversalObject.shareChannelSelected(function (res) {
+  console.log('Channel selected: ' + JSON.stringify(res));
+});
+{% endhighlight %}
+
+
 {% endif %}
 
 {% endif %}
