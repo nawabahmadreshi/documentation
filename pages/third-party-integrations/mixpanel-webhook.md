@@ -1,3 +1,7 @@
+---
+exclude_from_google_search: true
+---
+
 # Branch / Mixpanel Integration Guide
 
 We recommend linking your Branch and Mixpanel accounts via webhooks so you can view your Branch event data alongside your other acquisition channels.

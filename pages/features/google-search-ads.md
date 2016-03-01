@@ -16,7 +16,7 @@ If you're running Google AdWords campaigns, whether they're of the Search or Dis
 
 {% ingredient deep-linked-ad-ideas %}{% endingredient %}
 
-### [Get started with Google ads!]({{base.url}}/features/google-search-ads/guide)
+{% getstarted title="Get started with Google ads!" %}{% endgetstarted %}
 
 {% elsif page.guide %}
 

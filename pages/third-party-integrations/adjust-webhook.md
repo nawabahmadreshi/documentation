@@ -6,6 +6,7 @@ page_title: Use Branch and Adjust together
 description: Learn what needs to be done in order to put a Branch deep link in between a third party ad network and a third party measurement service.
 keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Ad Measurement, third party ad measurement, ad network
 hide_platform_selector: true
+exclude_from_google_search: true
 sections:
 - overview
 - guide
@@ -21,7 +22,7 @@ This is useful when you want to make use of the attribution and analytics tools 
 1. Users who click on an ad and **do not** have your app installed will be sent through Branch to Adjust, and then sent by Adjust to download your app. After downloading, you will still be able to access your Branch link data as usual.
 1. You may choose whether Branch sends users who **already have your app** to Adjust, or simply routes them directly to your app.
 
-### [Get started with Adjust passthroughs!]({{base.url}}/third-party-integrations/adjust-webhook/guide)
+{% getstarted %}{% endgetstarted %}
 
 {% elsif page.guide %}
 

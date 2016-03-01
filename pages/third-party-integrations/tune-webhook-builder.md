@@ -7,6 +7,7 @@ hide_platform_selector: true
 hide_section_selector: true
 sections:
 - overview
+exclude_from_google_search: true
 ---
 
 ## Configuring your Branch + Tune Webhooks ##

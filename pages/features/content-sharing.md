@@ -28,7 +28,7 @@ If your users are creating content in your app, they will probably want to share
 
 **By using Branch deep links, you can take users directly to where they want to go in your app!**
 
-### [Get started with content sharing!]({{base.url}}/features/content-sharing/guide)
+{% getstarted title="Get started with content sharing!" %}{% endgetstarted %}
 
 {% elsif page.guide %}
 

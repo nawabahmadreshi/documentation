@@ -2,6 +2,7 @@
 type: recipe
 title: "Adjust Webhook Builder"
 hide_platform_selector: true
+exclude_from_google_search: true
 ---
 
 ## Configuring your Branch + Adjust Webhooks ##
