@@ -24,7 +24,7 @@ To help you grow your app, Facebook offers a feature called App Invites as an al
 
 {% image src='/img/pages/features/facebook-app-invites/appinvite.png' 2-thirds center alt='app invite' %}
 
-{% getstarted title="Get started with Facebook App Invites!" %}{% endgetstarted %}
+{% getstarted title="Get started with Facebook App Invites" %}{% endgetstarted %}
 
 {% elsif page.guide %}
 

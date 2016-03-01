@@ -21,7 +21,7 @@ This is useful when you want to make use of the attribution and analytics offere
 1. Users who click on an ad and **do not** have your app installed will be sent through Branch to your analytics tool, which should be configured to send them to download your app. After downloading, you will still be able to access your Branch link data as usual.
 1. You may choose whether Branch sends users who **already have your app** to your analytics tool, or simply routes them directly to your app.
 
-{% getstarted title="Get started with ad passthroughs!" %}{% endgetstarted %}
+{% getstarted title="Get started with ad passthroughs" %}{% endgetstarted %}
 
 {% elsif page.guide %}
 

@@ -35,7 +35,7 @@ Some other possibilities:
 
 {% endexample %}
 
-{% getstarted title="Get started with Referral SaaSquatch!" %}{% endgetstarted %}
+{% getstarted title="Get started with Referral SaaSquatch" %}{% endgetstarted %}
 
 {% elsif page.guide %}
 

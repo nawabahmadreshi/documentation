@@ -19,7 +19,7 @@ The Branch partnership with [Appboy](https://www.appboy.com) provides a push-but
 At this time, our integration only applies to the iOS platform.
 {% endcaution %}
 
-{% getstarted title="Get started with Appboy!" %}{% endgetstarted %}
+{% getstarted title="Get started with Appboy" %}{% endgetstarted %}
 
 {% elsif page.guide %}
 

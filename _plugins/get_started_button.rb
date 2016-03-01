@@ -1,7 +1,7 @@
 
 require 'kramdown'
 
-# Takes one property i.e. {% getstarted title='Get started with this concept!' %}
+# Takes one property i.e. {% getstarted title='Get started with this concept' %}
 
 module Jekyll
     class GetStartedButton < Liquid::Block
@@ -19,7 +19,7 @@ module Jekyll
         data[m[0]] = Liquid::Template.parse(m[1]).render!(context)
       }
 
-      button = if data['title'] then '<a href="/' + link_path + '/guide" class="get-started btn btn-primary btn-lg">' + data['title'] + '</a>' else '<a href="/' + link_path + '/guide" class="get-started btn btn-primary btn-lg">Get Started!</a>' end
+      button = if data['title'] then '<a href="/' + link_path + '/guide" class="get-started btn btn-primary btn-lg">' + data['title'] + '</a>' else '<a href="/' + link_path + '/guide" class="get-started btn btn-primary btn-lg">Get Started</a>' end
       button
     end
   end

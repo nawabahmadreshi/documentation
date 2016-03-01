@@ -34,7 +34,7 @@ above before publishing!
 
 What this feature does and why you might want it, like the dust jacket blurb on a book.
 
-{% getstarted title="Get started with content sharing!" %}{% endgetstarted %}
+{% getstarted title="Get started with content sharing" %}{% endgetstarted %}
 
 {% elsif page.guide %}
 

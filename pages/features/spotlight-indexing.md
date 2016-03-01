@@ -19,7 +19,7 @@ Listing your app content on Apple's new Spotlight search with Branch is easy. No
 Some older devices cannot index content. iPad minis, for example, cannot use CoreSpotlight. The SDK includes a check for these devices and will return an error message if you attempt to index content on them.
 {% endcaution %}
 
-{% getstarted title="Get started with Spotlight Indexing!" %}{% endgetstarted %}
+{% getstarted title="Get started with Spotlight Indexing" %}{% endgetstarted %}
 
 {% elsif page.guide %}
 

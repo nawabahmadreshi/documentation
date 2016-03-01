@@ -25,7 +25,7 @@ Whether you simply leverage Mixpanel to track in-app events, or have a more comp
 1. Branch SDK callbacks to to Mixpanel (simpler integration, but provides less flexibility).
 1. Templated Webhooks to deliver data to your backend, which can then send that data to Mixpanel (advanced integration, but provides a bit more flexibility).
 
-{% getstarted title="Get started with Mixpanel integration!" %}{% endgetstarted %}
+{% getstarted title="Get started with Mixpanel integration" %}{% endgetstarted %}
 
 {% elsif page.guide %}
 
