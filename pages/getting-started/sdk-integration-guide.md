@@ -97,7 +97,7 @@ You can install the Branch SDK by using one of several different command line to
 {% tabs %}
 {% tab cordova %}
 {% highlight sh %}
-cordova plugin install https://github.com/BranchMetrics/Cordova-Ionic-PhoneGap-Deferred-Deep-Linking-SDK.git --variable BRANCH_LIVE_KEY=key_live_xxxxxxxxxxxxxxx --variable URI_SCHEME=yourApp
+cordova plugin add https://github.com/BranchMetrics/Cordova-Ionic-PhoneGap-Deferred-Deep-Linking-SDK.git --variable BRANCH_LIVE_KEY=key_live_xxxxxxxxxxxxxxx --variable URI_SCHEME=yourApp
 {% endhighlight %}
 
 {% endtab %}
