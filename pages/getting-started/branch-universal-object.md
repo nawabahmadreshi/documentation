@@ -415,7 +415,7 @@ Callbacks in iOS are ignored. There is no need to implement them as the events a
 
 To implement the callback on Android, you must add listeners to the following events:
 
-##### onShareSheetLaunched
+##### shareLinkDialogLaunched
 
 The event fires when the share sheet is presented.
 
@@ -425,7 +425,7 @@ branchUniversalObject.shareLinkDialogLaunched(function () {
 });
 {% endhighlight %}
 
-##### onShareSheetDismissed
+##### shareLinkDialogDismissed
 
 The event fires when the share sheet is dismissed.
 
@@ -435,7 +435,7 @@ branchUniversalObject.shareLinkDialogDismissed(function () {
 });
 {% endhighlight %}
 
-##### onLinkShareResponse
+##### shareLinkResponse
 
 The event returns a dictionary of the response data.
 
@@ -445,7 +445,7 @@ branchUniversalObject.shareLinkResponse(function (res) {
 });
 {% endhighlight %}
 
-##### onChannelSelected
+##### shareChannelSelected
 
 The event fires when a channel is selected.
 
