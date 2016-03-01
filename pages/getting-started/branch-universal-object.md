@@ -407,16 +407,54 @@ branchUniversalObject.showShareSheet({
 });
 {% endhighlight %}
 
+#### Share sheet callbacks (Android ONLY)
+
+{% protip %}
+Callbacks in iOS are ignored. There is no need to implement them as the events are handled by `UIActivityViewController`.
+{% endprotip %}
+
 To implement the callback on Android, you must add listeners to the following events:
 
-| Event | Description
-| --- | ---
-| `bio:shareLinkDialogLaunched` | Fires when the share sheet is presented
-| `bio:shareLinkDialogDismissed` | Fires when the share sheet is dismissed
-| `bio:shareLinkResponse` | Returns a dictionary of the response data
-| `bio:shareChannelSelected` | Fires when a channel is selected
+##### shareLinkDialogLaunched
 
-**Note:** Callbacks in iOS are ignored. There is no need to implement them as the events are handled by `UIActivityViewController`.
+The event fires when the share sheet is presented.
+
+{% highlight js %}
+branchUniversalObject.shareLinkDialogLaunched(function () {
+  console.log('Share sheet launched');
+});
+{% endhighlight %}
+
+##### shareLinkDialogDismissed
+
+The event fires when the share sheet is dismissed.
+
+{% highlight js %}
+branchUniversalObject.shareLinkDialogDismissed(function () {
+  console.log('Share sheet dimissed');
+});
+{% endhighlight %}
+
+##### shareLinkResponse
+
+The event returns a dictionary of the response data.
+
+{% highlight js %}
+branchUniversalObject.shareLinkResponse(function (res) {
+  console.log('Share link response: ' + JSON.stringify(res));
+});
+{% endhighlight %}
+
+##### shareChannelSelected
+
+The event fires when a channel is selected.
+
+{% highlight js %}
+branchUniversalObject.shareChannelSelected(function (res) {
+  console.log('Channel selected: ' + JSON.stringify(res));
+});
+{% endhighlight %}
+
 
 {% endif %}
 
@@ -454,6 +492,55 @@ branchUniversalObj.showShareSheet({
   "$desktop_url" : "http://desktop-url.com",
 });
 {% endhighlight %}
+
+#### Share sheet callbacks (Android ONLY)
+
+{% protip %}
+Callbacks in iOS are ignored. There is no need to implement them as the events are handled by `UIActivityViewController`.
+{% endprotip %}
+
+To implement the callback on Android, you must add listeners to the following events:
+
+##### onShareSheetLaunched
+
+The event fires when the share sheet is presented.
+
+{% highlight js %}
+branchUniversalObj.onShareSheetLaunched(function () {
+  console.log('Share sheet launched');
+});
+{% endhighlight %}
+
+##### onShareSheetDismissed
+
+The event fires when the share sheet is dismissed.
+
+{% highlight js %}
+branchUniversalObj.onShareSheetDismissed(function () {
+  console.log('Share sheet dimissed');
+});
+{% endhighlight %}
+
+##### onLinkShareResponse
+
+The event returns a dictionary of the response data.
+
+{% highlight js %}
+branchUniversalObj.onLinkShareResponse(function (res) {
+  console.log('Share link response: ' + JSON.stringify(res));
+});
+{% endhighlight %}
+
+##### onChannelSelected
+
+The event fires when a channel is selected.
+
+{% highlight js %}
+branchUniversalObj.onChannelSelected(function (res) {
+  console.log('Channel selected: ' + JSON.stringify(res));
+});
+{% endhighlight %}
+
 {% endif %}
 
 {% endif %}
