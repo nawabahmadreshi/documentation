@@ -98,7 +98,7 @@ Only users who do not have the app will go through this flow. You can view the t
 
 {% prerequisite %}
 
-- For this to function as expected, you should [integrated the Branch SDK]({{base.url}}/getting-started/sdk-integration-guide) into your app and [configure deep link routing]({{base.url}}/getting-started/deep-link-routing).
+- For this to function as expected, you should [integrate the Branch SDK]({{base.url}}/getting-started/sdk-integration-guide) into your app and [configure deep link routing]({{base.url}}/getting-started/deep-link-routing).
 
 {% endprerequisite %}
 
