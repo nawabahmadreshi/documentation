@@ -39,6 +39,10 @@ Try out the [Dynamic Link Builder]({{base.url}}/getting-started/dynamic-link-bui
 3. Append `?` to start the query params string: **http://bnc.lt/a/your_branch_key?**
 4. [optional] Append any additional key/value pairs, and analytics or link control parameters.
 
+{% caution title="Dynamic links and iOS Universal Links" %}
+If you're using **bnc.lt** as the base for your links and you also have a [custom link domain](https://dev.branch.io/getting-started/dashboard-guide/guide/#setting-a-custom-link-domain), be sure to include your custom domain **and** `bnc.lt` when configuring the [Associated Domains entitlement]({{base.url}}/getting-started/universal-app-links/guide/ios/#add-your-branch-link-domains) for iOS Universal Links.
+{% endcaution %}
+
 {% example %}
 
 Here's an example of a finalized dynamic link (line breaks added for legibility): 
