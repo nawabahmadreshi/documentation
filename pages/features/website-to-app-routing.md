@@ -50,7 +50,8 @@ branch.deepview(
       }
     },
     {
-      'open_app': true
+      'make_new_link: false,    // Whether to create a new link even if one already exists; defaults to false
+      'open_app': true          // Whether to try to open the app passively (as opposed to opening it upon user clicking); defaults to true
     }
 );
 </script>
