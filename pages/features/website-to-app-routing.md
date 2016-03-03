@@ -50,7 +50,7 @@ branch.deepview(
       }
     },
     {
-      'open_app': true
+      'open_app': true          // Whether to try to open the app passively (as opposed to opening it upon user clicking); defaults to true
     }
 );
 </script>
