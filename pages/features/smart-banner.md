@@ -135,6 +135,12 @@ branch.banner(
 });
 {% endhighlight %}
 
+{% caution %}
+If you would like to view analytics related to Smart Banner clicks then please do not override the channel. It is set to "app banner" by default. You will see analytics related to Smart Banner clicks in Dashboard > Summary via the "app banner" label in the channel dropdown. 
+
+If this channel is set to something different, then our analytics service will not know whether clicks came from the Smart Banner or some other source.
+{% endcaution %}
+
 ## Styling the banner using custom CSS
 
 You can customize elements of the Smart Banner's appearance with the `customCSS` property.
