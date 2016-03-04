@@ -20,7 +20,7 @@ You can use Branch links in email campaigns to launch your app or gracefully fal
 
 {% image src='/img/pages/features/email-campaigns/email.png' half center alt='Create Marketing Link' %}
 
-### [Learn how to create links for email campaigns!]({{base.url}}/features/email-campaigns/guide)
+{% getstarted title="Create links for emails" %}{% endgetstarted %}
 
 {% elsif page.guide %}
 
