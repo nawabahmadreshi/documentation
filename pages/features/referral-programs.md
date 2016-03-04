@@ -37,6 +37,8 @@ To add a rule, go to the Dashboard Referrals page and click the [Rules tab](http
 
 ### Promo code
 
+You can give awards based on promo codes manually entered by the user.
+
 Properties you can define:
 
 1. The code a user may enter
@@ -45,6 +47,8 @@ Properties you can define:
 1. Whether the reward occurs the first time or every time
 
 ### Give reward
+
+You can automatically give awards based on events taken by users.
 
 Properties you can define:
 
