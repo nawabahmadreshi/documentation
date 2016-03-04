@@ -50,7 +50,7 @@ branch.deepview(
       }
     },
     {
-      'open_app': true          // Whether to try to open the app passively (as opposed to opening it upon user clicking); defaults to true
+      'open_app': true  // If true, Branch attempts to open your app immediately when the page loads. If false, users will need to press a button. Defaults to true
     }
 );
 </script>
