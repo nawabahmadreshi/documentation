@@ -18,3 +18,4 @@ There are a million and one ways to use Branch in your app! In this section, we 
 - After integrating the SDK, you will want to enable **[Universal and App Links](universal-app-links)**, especially if your app contains an iOS version. **You must enable Universal Links before Branch can function correctly on iOS 9.2+!**
 - The **[Creating Links in Apps](creating-links-in-apps)** page describes how to generate Branch links inside your app.
 - **[Deep Link Routing](deep-link-routing)** allows you control what users see first after opening your app from a Branch link. It's a powerful feature you will want to enable.
+- **[Custom Event Tracking](tracking-events)** lets you track events beyond clicks, installs, and opens. Custom Events are reported in the dashboard, so you can see how a link click relates to post-install activities like purchases, signups, and anything else you can imagine.
