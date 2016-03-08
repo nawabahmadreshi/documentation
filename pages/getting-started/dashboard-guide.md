@@ -51,7 +51,7 @@ You must [identify your users]({{base.url}}/getting-started/setting-identities) 
 
 While you may enjoy Branch, it doesn’t mean you need to have `bnc.lt` as a part of every link you send out. Setting up a custom subdomain is simple:
 
-1. Procure a subdomain, like `get.myapp.co`. We strongly recommend you use subdomains instead of root domains, and preferably a subdomain of a different domain than your website.
+1. Procure a subdomain, like `get.myapp.co`. We strongly recommend you use subdomains instead of root domains, and preferably a subdomain of a different domain than your website. We also recommend that you choose one subdomain to use with Branch and stick with it, as switching between custom subdomains can cause problems.
 1. Through your DNS provider, point the CNAME record for this subdomain to `custom.bnc.lt`.
 1. After you’ve confirmed that the CNAME records have propagated throughout the internet, you simply enter your custom subdomain on the [Link Settings page](https://dashboard.branch.io/#/settings/link), under **Custom Link Domain**:
 
