@@ -22,6 +22,8 @@ Google is investing significant resources into a project called App Indexing, wh
 
 When you perform a search on Google, your results are drawn from content that Google scrapes from website pages. If the pages being scraped are properly configured for App Indexing, and that app is currently installed on the device performing the search, Google will open the app directly instead of going to the web page. Fortunately Branch has a database of all of your deep links, so we can easily help you take advantage of App Indexing.
 
+We're working with Google to ensure that we can properly transfer all of your links directly into their index. We automatically upload a deduped list of your links in a sitemap. Google then scrapes these sitemaps.
+
 {% getstarted title="Get started with Google App Indexing" %}{% endgetstarted %}
 
 {% elsif page.guide %}
@@ -29,13 +31,30 @@ When you perform a search on Google, your results are drawn from content that Go
 {% prerequisite %}
 
 - For this to function as intended, you should [integrate the Branch SDK]({{base.url}}/getting-started/sdk-integration-guide) into your app and [configure deep link routing]({{base.url}}/getting-started/deep-link-routing).
-- You also need to enable either [Deepviews]({{base.url}}/features/deepviews) **OR** [Website-To-App Routing]({{base.url}}/features/website-to-app-routing)
+- We also recommend you enable either [Deepviews]({{base.url}}/features/deepviews) **OR** [Website-To-App Routing]({{base.url}}/features/website-to-app-routing), but this is not strictly required.
 
 {% endprerequisite %}
 
 ## How to list content in Google through Branch
 
-If you have completed the prerequisites, you're already good to go! Everything needed for App Indexing is configured and running in the background, so you just need to get as many Branch links as possible out into the wild.
+If you have completed the prerequisites, you've done the hard part! Now you should go enable automatic sitemap generation on the [Settings](https://dashboard.branch.io/#/settings) page of the Branch Dashboard. Look for the option `Automatic sitemap generation (for Google App Indexing)`.
+
+{% image src="/img/pages/features/google-app-indexing/db-settings.png" 2-thirds center alt="Settings page" %}
+
+Once you enable this, your app will be included in our nightly job to automatically generate sitemaps. These sitemaps can be scraped by Google, and all of the included links can then be indexed.
+
+## When does Google scrape?
+
+After you've given us permission to create sitemap, how can you know that Google has even seen your content? We've created a graph, which is currently located at the bottom of the Dashboard's [Summary](https://dashboard.branch.io/#) page. This graph lists four pieces of information:
+
+1. The date the sitemap files were last generated (and included at least one of your links)
+2. The total number of links to unique pieces content that Branch has included in sitemaps
+3. The date Google last scraped your links
+4. The total number of times that Google has scraped links to your content
+
+Both the sitemap itself and statistics about Google scraping your links are updated via nightly map-reduce jobs.
+
+{% image src="/img/pages/features/google-app-indexing/db-summary.png" 2-thirds center alt="Summary page" %}
 
 {% elsif page.advanced %}
 
@@ -45,6 +64,7 @@ A lot of what Branch does with App Indexing is behind the scenes and there's no 
 
 1. Flag your existing website for App Indexing so you don't have to (if you use [Website-To-App Routing]({{base.url}}/features/website-to-app-routing)) **OR** be the website for your content if you don't have one (by using [Deepviews]({{base.url}}/features/deepviews)).
 1. Improve your website's SEO so that your content is ranked higher.
+1. (Optionally) List your app's content in automatically generated sitemap files so that it can be easily scraped by Google.
 
 ### Content and metadata
 
@@ -56,7 +76,6 @@ When Google scrapes a Branch link, in most situations we can automatically inser
 <html>
 <head>
   ...
-  <---
   <link rel="alternate" href="android-app://<com.yourapp>/<your_uri_scheme>/open?link_click_id=link-123456" />
   <link rel="alternate" href="ios-app://<your_app_id>/<your_uri_scheme>/open?link_click_id=link-123456" />
   ...
@@ -80,32 +99,46 @@ If you defined the `canonicalUrl` parameter when creating your `BranchUniversalO
 
 In the less common situation that you choose to host your own link meta data (for example, by specifying the `$og_redirect` link parameter) we'll gently set 301 redirects to the URL that you've configured as the fallback.
 
-## We create a sitemap of your app content
-
-{% protip title="Coming soon..." %}
-This feature should be available in early 2016. More information will follow, but no SDK update will be required.
-{% endprotip %}
-
-We're working with Google to ensure that we can properly transfer all of your links directly into their index. We'll automatically upload the list of links via a sitemap to Google on your behalf. Below is an example of the format we'll be using.
-
-{% highlight xml %}
-<?xml version="1.0" encoding="UTF-8" ?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
- xmlns:xhtml="http://www.w3.org/1999/xhtml">
-<url>
-  <loc>http://yourapp.com/example</loc>
-  <xhtml:link rel="alternate" href="android-app://<com.yourapp>/<your_uri_scheme>/open?link_click_id=link-123456" />
-  <xhtml:link rel="alternate" href="ios-app://<your_app_id>/<your_uri_scheme>/open?link_click_id=link-123456" />
-...
-</urlset>
-{% endhighlight %}
 
 ## Attribute app traffic to organic search
 
-{% protip title="Coming soon..." %}
-This feature should be available in early 2016. More information will follow, but no SDK update will be required.
-{% endprotip %}
+Curious as to how well your content is performing -- how many clicks and installs it is driving?
 
-We're working on a Branch dashboard table to give you a complete summary of where your traffic is coming from. We plan to report how much traffic (new and existing) comes from Google search so that you have metrics to leverage for SEO.
+We automatically tag clicks on these links as coming from Google App Indexing. In the Click Flow section of our Dashboard's [Summary](http://dashboard.dev2.branch.io/#) page, you can filter for these clicks. Just select either `channel: google_search` or `feature: google_app_index`.
+
+## Listing content as private
+
+Not all content is public, and not all content should be publicly indexed. If you want to enable Branch's automatic sitemap generation but exclude certain pieces of content, you can mark that content as private. You should set the content indexing mode for the individual Branch Universal Object.
+
+{% if page.ios %}
+
+{% tabs %}
+{% tab objective-c %}
+{% highlight objc %}
+BranchUniversalObject *branchUniversalObject = [[BranchUniversalObject alloc] initWithCanonicalIdentifier:@"item/12345"];
+branchUniversalObject.contentIndexMode = ContentIndexModePrivate;
+{% endhighlight %}
+{% endtab %}
+
+{% tab swift %}
+{% highlight swift %}
+let branchUniversalObject: BranchUniversalObject = BranchUniversalObject(canonicalIdentifier: "item/12345")
+branchUniversalObject.contentIndexMode = ContentIndexModePrivate
+{% endhighlight %}
+{% endtab %}
+{% endtabs %}
+
+{% endif %}
+
+{% if page.android %}
+
+{% highlight java %}
+ BranchUniversalObject branchUniversalObject = new BranchUniversalObject()
+                .setCanonicalIdentifier("item/12345")
+                .setContentIndexingMode(BranchUniversalObject.CONTENT_INDEX_MODE.PRIVATE)
+{% endhighlight %}
+
+{% endif %}
+
 
 {% endif %}
