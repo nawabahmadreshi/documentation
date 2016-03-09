@@ -126,7 +126,7 @@ The {% if page.ios %}`[Apptimize runTest: withBaseline: andVariations:]`{% endif
 
 ## Define a goal event
 
-Like [tracking events with Branch]({{base.url}}/getting-started/tracking-events), you can track events with Apptimize. Use this to measure conversions from different flows; a good goal to track would be purchases from the initial product.
+Like [tracking events with Branch]({{base.url}}/getting-started/user-value-attribution#custom-event-tracking), you can track events with Apptimize. Use this to measure conversions from different flows; a good goal to track would be purchases from the initial product.
 
 {% if page.ios %}
 
