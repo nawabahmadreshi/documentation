@@ -1,4 +1,4 @@
 [submodule "_includes/branch-web-assets"]
 	path = _includes/branch-web-assets
 	url = https://github.com/BranchMetrics/branch-web-assets.git
-	branch = new-design-lila
+	branch = master
