@@ -23,9 +23,9 @@ sections:
 
 Branch allows you reward users with credits, track those credits, and redeem them when appropriate. It is a unit-less currency available to your users without you having to build a system from scratch.
 
-With every event that is recorded in Branch, we check automatically if that event is eligible for credits based on the rules that you configured, then deposit the credits if so. Reward rules can be based on both [automatic events](/getting-started/tracking-events#automatic-events) and [custom events](/getting-started/tracking-events#custom-events).
+With every event that is recorded in Branch, we check automatically if that event is eligible for credits based on the rules that you configured, then deposit the credits if so. Reward rules can be based on both [automatic events](/getting-started/growth-attribution#automatic-event-tracking) and [custom events](/getting-started/user-value-attribution#custom-event-tracking).
 
-We recommend that you do not use the events we automatically track, such as `install` and `open`. Because we do not merge identities, we ask that you set a reward on any event *after* you have identified a user using our [identity methods]({{base.url}}/getting-started/setting-identities).
+We recommend that you do not use the events we automatically track, such as `install` and `open`. Because we do not merge identities, we ask that you set a reward on any event *after* you have identified a user using our [identity methods]({{base.url}}/getting-started/growth-attribution#setting-identities).
 
 {% protip title="Referral Fraud Protection" %}
 Branch tracks the hardware ID and IDFA of every device we detect, and ties these to our concept of a user identity. However, this means that you may run into issues if you test repeatedly with the same devices. When testing referral programs and reward rules, you should [use debug mode](/getting-started/integration-testing#use-debug-mode-to-simulate-fresh-installs).

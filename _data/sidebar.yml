@@ -13,14 +13,16 @@
       children:
         - deep-link-routing
         - universal-app-links
-    - dashboard-guide
+    - title: 4. Dashboard Guide
+      children:
+        - organizing-link-data
+        - growth-attribution
+        - user-value-attribution
     - title: Advanced
       children:
         - integration-testing
         - matching-accuracy
         - branch-universal-object
-        - tracking-events
-        - setting-identities
         - webhooks
 - title: Features
   directory: features

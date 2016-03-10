@@ -83,7 +83,7 @@ Mixpanel then receives the Branch install event, and you know Branch is responsi
 
 Let's say you want to take it a step further and track Branch-specific installs and users inside your Mixpanel segments. The way to leverage that would be with the following:
 
-- After a successfully initiating Branch session, [set an identity]({{base.url}}/getting-started/setting-identities).
+- After a successfully initiating Branch session, [set an identity]({{base.url}}/getting-started/growth-attribution#setting-identities).
 - [Set an identity in Mixpanel](http://mixpanel.github.io/mixpanel-android/com/mixpanel/android/mpmetrics/MixpanelAPI.html#identify-java.lang.String-).
 - Track events.
 

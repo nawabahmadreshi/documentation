@@ -1,11 +1,11 @@
 ---
 type: recipe
 directory: getting-started
-title: "Tracking Events"
-page_title: Using events to track analytics with Branch
-description: Branch allows you to measure analytics for your deep links. Track install attribution, measure marketing channels and ad campaigns.
-keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Attribution, Analytics, Dashboard, App Install, App Open, Conversion, iOS, objective-c, swift
-android_keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Attribution, Analytics, Dashboard, App Install, App Open, Conversion, Android
+title: User Value Attribution
+page_title: User value attribution in the Branch dashboard
+description: "Use the Branch dashboard track high-value users with custom in-app event tracking"
+android_description: "Learn about some advanced features of the Branch dashboard: How to set up a custom link domain and identify your best users."
+keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Dashboard, custom link domain, conversion funnel, funnels, influencers
 hide_section_selector: true
 platforms:
 - ios
@@ -22,28 +22,17 @@ contents: list
 
 {% ingredient quickstart-prerequisite %}{% endingredient %}
 
-## Automatic events
+In-app engagement and user value metrics are just as important as the click, install, and open metrics that Branch [automatically provides]({{base.url}}/getting-started/growth-attribution). You can define your own post-install events for Branch to track, and view them in the dashboard.
 
-Branch _automatically_ creates events whenever a user accesses your site or your app. We measure installs, opens and web page visits with separate events. Here is a list of the auto-created ones:
-
-| Event | Description
-| --- | ---
-| `install` | Triggered the first time a user launches your app
-| `open` | Trigged when the user opens the app after the very first launch OR if a user reinstalls the app after uninstalling it
-| `web session start` | Triggered when the user views a webpage using the Branch Web SDK.
-| `referred session` | Triggered _in addition_ to install, open or web session start if a user comes from a Branch link
-
-{% protip title="Receiving Postbacks" %}
-You can be notified via a postback to your server every time that an event occurs. Visit the [Webhooks](/getting-started/webhooks/) page for more information on configuring postbacks.
-{% endprotip %}
-
-## Custom events
+## Custom event tracking
 
 In addition the default Branch events, you can track any custom user action you wish. Examples of what you may want to track:
 
-- sign up
-- purchases
-- shares
+- Account creation / signup
+- Add to cart
+- Purchase
+- Creating content inside the app (e.g. posting a photo, video, or comment)
+- Sharing a piece of content outside of the app
 
 Recording a custom event in your app is accomplished via a simple call to the SDK:
 
@@ -103,7 +92,7 @@ branch.userCompletedAction("custom_action_1");
 {% endhighlight %}
 {% endif %}
 
-{% protip title="Appending custom metadata" %}
+## Appending custom metadata
 
 You can also include additional information when creating a custom event:
 
@@ -139,8 +128,8 @@ Branch.getInstance().userCompletedAction("custom_action_with_data", metaData);
 Branch.userCompletedAction(
     "purchase_event",
     {
-    	"sku": "12346789"
-	}
+      "sku": "12346789"
+  }
 );
 {% endhighlight %}
 {% endif %}
@@ -173,9 +162,15 @@ Currently not supported in the ANE
 {% if page.titanium %}
 {% highlight js %}
 branch.userCompletedAction("purchase_event", {
-	"sku": "12346789"
+  "sku": "12346789"
 });
 {% endhighlight %}
 {% endif %}
 
-{% endprotip %}
+## Measuring custom events
+
+You can see custom events as they occur on the [Live View > Events](https://dashboard.branch.io/#/liveview/events/view) page. You can also see one type of custom event at a time by using the dropdown picker above [Marketing](https://dashboard.branch.io/#/marketing) and [Source Analytics](https://dashboard.branch.io/#/analytics/source) data.
+
+{% image src='/img/pages/getting-started/user-value-attribution/live-view-events.png' full center alt='Branch dashboard' %}
+
+There’s no hard limit to tracking custom events data, but Branch will only allow you to choose your top 100 custom events to see in the Branch dashboard (where ‘top 100’ is determined by all-time event volume).
