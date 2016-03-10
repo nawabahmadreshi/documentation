@@ -253,7 +253,7 @@ public class App : Application, IBranchSessionInterface
     protected override void OnResume ()
     {
         Branch branch = Branch.GetInstance ();
-        Branch.GetInstance().Debug = true;
+        Branch.Debug = true;
         branch.InitSessionAsync (this);
     }
 }
