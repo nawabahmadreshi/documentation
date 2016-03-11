@@ -43,6 +43,46 @@ Since the **Test** and **Live** environments are completely separate, you will n
 
 Using the **Test** environment in your app is easy:
 
+{% if page.cordova %}
+
+Rerun the [plugin installation command]({{base.url}}/getting-started/sdk-integration-guide/guide/cordova/#command-line-module-install):
+
+1. Use the same Branch live key and URI scheme values as when you installed the plugin.
+1. Append `--variable BRANCH_TEST_KEY=key_test_xxxxxxxxxxxxxxx` to the installation command.
+
+Here is an example of the full plugin installation command:
+
+{% tabs %}
+{% tab cordova %}
+{% highlight sh %}
+cordova plugin install https://github.com/BranchMetrics/Cordova-Ionic-PhoneGap-Deferred-Deep-Linking-SDK.git --variable BRANCH_LIVE_KEY=key_live_xxxxxxxxxxxxxxx --variable BRANCH_TEST_KEY=key_test_xxxxxxxxxxxxxxx --variable URI_SCHEME=yourApp
+{% endhighlight %}
+
+{% endtab %}
+
+{% tab phonegap %}
+{% highlight sh %}
+phonegap plugin add https://github.com/BranchMetrics/Cordova-Ionic-PhoneGap-Deferred-Deep-Linking-SDK.git --variable BRANCH_LIVE_KEY=key_live_xxxxxxxxxxxxxxx --variable BRANCH_TEST_KEY=key_test_xxxxxxxxxxxxxxx --variable URI_SCHEME=yourApp
+{% endhighlight %}
+
+{% endtab %}
+
+{% tab npm %}
+{% highlight sh %}
+npm install branch-cordova-sdk --variable BRANCH_LIVE_KEY=key_live_xxxxxxxxxxxxxxx --variable BRANCH_TEST_KEY=key_test_xxxxxxxxxxxxxxx --variable URI_SCHEME=yourApp
+{% endhighlight %}
+
+{% endtab %}
+{% endtabs %}
+
+If you have enabled [Universal Links]({{base.url}}/getting-started/universal-app-links/), then you will also need to add this line inside the `<host>` sub-block of your `config.xml` file, where `your_encoded_test_id` is the alternative four-character link prefix for your test environment:
+
+{% highlight xml %}
+<path prefix="your_encoded_test_id"/>
+{% endhighlight %}
+
+{% else %}
+
 1. Go to [Settings](https://dashboard.branch.io/#/settings)
 1. Make sure the toggle switch is in "Test" mode
 1. Grab the Branch Key (it will start with `key_test_`). 
@@ -75,7 +115,8 @@ and underneath it add:
 {% endhighlight %}
 
 {% endif %}
-{% if page.cordova or page.xamarin %}
+
+{% if page.xamarin %}
 
 ##### iOS Projects
 
@@ -176,6 +217,8 @@ and underneath it add:
 {% endif %}
 
 {% endprotip %}
+{% endif %}
+
 {% endif %}
 
 ## Debugging an individual link
