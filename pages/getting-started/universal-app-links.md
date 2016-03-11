@@ -66,6 +66,16 @@ You can retrieve your app's Bundle Identifier under the `General` tab of your Xc
 {% image src='/img/pages/getting-started/universal-app-links/background_bundle_xcode.png' full center alt='bundle identifier xcode' %}
 {% endprotip %}
 
+## Enable Universal Links on the Branch dashboard
+
+1. Navigate to [Link Settings](https://dashboard.branch.io/#/settings/link) in the Branch Dashboard.
+1. Check the box to `Enable Universal Links` from iOS redirects.
+1. Type in your App’s Bundle Identifier.
+1. Type in your Apple App Prefix (found by clicking your app on [this page](https://developer.apple.com/account/ios/identifiers/bundle/bundleList.action) in Apple's Developer Portal).
+1. Scroll down and click on the `Save` button.
+
+{% image src='/img/pages/getting-started/universal-app-links/dashboard_enable_universal_links.png' 3-quarters center alt='enable Universal Links on Branch dashboard' %}
+
 ## Add the entitlement to your project
 
 {% if page.ios or page.xamarin or page.unity or page.adobe %}
@@ -101,28 +111,23 @@ If you use a custom domain or subdomain for your Branch links, you should also a
 
 {% if page.cordova %}
 
-Unfortunately Cordova doesn't have a way to a create entitlements and associate them to your generated Xcode project, so we will make use of the third-party [Cordova Universal Links Plugin](https://github.com/nordnet/cordova-universal-links-plugin).
-
-{% protip %}Our use of the Universal Links Plugin is simply to generate an entitlements file and associate it to your generated project. This guide covers all the steps you need to take, and no other implementations from the plugin are necessary since Branch handles everything else behind the scenes.
-{% endprotip %}
-
-Go to your project root and install the plugin:
-
-{% highlight sh %}
-cordova plugin add cordova-universal-links-plugin
-{% endhighlight %}
-
-After the installation, add the following entry to your application's `config.xml`:
+Add the following entry to your application's `config.xml`:
 
 {% highlight xml %}
 <universal-links>
-    <ios-team-id value=your_ios_team_id />
-    <host name="bnc.lt">
+    <ios-team-id value="your_ios_team_id" />
+    <host name="bnc.lt" scheme="https">
+        <path prefix="READ_FROM_DASHBOARD"/>
     </host>
 </universal-links>
 {% endhighlight %}
 
-You can get your iOS Team ID from the Your Account page on the [Apple Developer Portal](https://developer.apple.com/membercenter/index.action#accountSummary).
+{% protip title="Notes" %}
+- You can get your **iOS Team ID** from the Your Account page on the [Apple Developer Portal](https://developer.apple.com/membercenter/index.action#accountSummary).
+- If you use a custom domain or subdomain for your Branch links, you should also add a key for `<host name="mycustomdomainorsubdomain" scheme="https" />` and then [see this section]({{base.url}}/getting-started/universal-app-links/advanced/#using-a-custom-domain-or-subdomain) on the Advanced page.
+- `READ_FROM_DASHBOARD` is the four-character value in front of all your links. You can find it by temporarily toggling the **Enable App Links** checkbox on the [Link Settings page](https://dashboard.branch.io/#/settings/link) (make sure to un-toggle when you are finished) and looking underneath the field labeled **SHA256 Cert Fingerprints**. It will look something like this: `WSuf`. The `/` character should be omitted. {% image src='/img/pages/getting-started/universal-app-links/enable_app_links.png' full center alt='enable app links' %}
+{% endprotip %}
+
 {% endif %}
 
 {% if page.titanium %}
@@ -269,16 +274,6 @@ public override bool ContinueUserActivity (UIApplication application,
 <!--Does this step occur on Titanium?-->
 
 {% endif %}
-
-## Enable Universal Links on the Branch dashboard
-
-1. Navigate to [Link Settings](https://dashboard.branch.io/#/settings/link) in the Branch Dashboard.
-1. Check the box to `Enable Universal Links` from iOS redirects.
-1. Type in your App’s Bundle Identifier.
-1. Type in your Apple App Prefix (found by clicking your app on [this page](https://developer.apple.com/account/ios/identifiers/bundle/bundleList.action) in Apple's Developer Portal).
-1. Scroll down and click on the `Save` button.
-
-{% image src='/img/pages/getting-started/universal-app-links/dashboard_enable_universal_links.png' 3-quarters center alt='enable Universal Links on Branch dashboard' %}
 
 ## Test your Universal Links implementation
 
