@@ -173,4 +173,20 @@ You can see custom events as they occur on the [Live View > Events](https://dash
 
 {% image src='/img/pages/getting-started/user-value-attribution/live-view-events.png' full center alt='Branch dashboard' %}
 
-There’s no hard limit to tracking custom events data, but Branch will only allow you to choose your top 100 custom events to see in the Branch dashboard (where ‘top 100’ is determined by all-time event volume).
+There’s no hard limit to tracking custom events data, but Branch will only allow you to choose your top 100 custom events to see in the Branch dashboard.
+
+{% protip title="What attribution logic does Branch use for reporting on custom events in the dashboard?" %}
+ 
+- *90-day attribution window*: Branch will include counts of events that happen within 90 days of a user’s most recent Branch-referred session.
+
+- *Last-session attribution*: We’ll attribute a custom event to the link click and resulting Branch-referred session that occurs most recently prior to a custom event.
+
+- *Events are reported on the date the attributed Branch-referred session occurred, not the date the the actual event occurred*: In the following sequence of events, Branch will report on the event on Feb 1, although the event itself happened on Feb 3:
+
+
+  1. Feb 1: User clicks on a Branch link and installs app
+  1. Feb 3: User returns to app (not via Branch link) and completes an in-app custom event
+
+For more information on how Branch attributes custom events, see this [FAQ](https://support.branch.io/solution/articles/6000116662-branch-dashboard-custom-events-overview-and-how-to).
+
+{% endprotip %}
