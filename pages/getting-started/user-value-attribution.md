@@ -187,6 +187,6 @@ There’s no hard limit to tracking custom events data, but Branch will only all
   1. Feb 1: User clicks on a Branch link and installs app
   1. Feb 3: User returns to app (not via Branch link) and completes an in-app custom event
 
-For more information on how Branch attributes custom events, see this [FAQ](https://support.branch.io/solution/articles/6000116662-branch-dashboard-custom-events-overview-and-how-to).
+For more information on how Branch attributes custom events, see this [FAQ](https://support.branch.io/solution/articles/6000116662-branch-dashboard-custom-events-overview-and-how-to){:target="_blank"}.
 
 {% endprotip %}
