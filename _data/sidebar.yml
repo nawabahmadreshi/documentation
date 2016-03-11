@@ -4,7 +4,6 @@
   directory: getting-started
   children:
     - sdk-integration-guide
-    - sample-doc
     - title: 2. Create Links
       children:
         - creating-links-in-apps
