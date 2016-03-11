@@ -322,7 +322,7 @@ The SDK plugin will automatically configure everything necessary to support App 
 
 1. Use the same Branch key and URI scheme values as when you installed the plugin.
 1. Append `--variable ENCODED_ID=READ_FROM_DASHBOARD` to the installation command.
-   - Replace `READ_FROM_DASHBOARD` with the four-character value provided underneath the **SHA256 Cert Fingerprints** field on the Branch dashboard. It will look something like this: `WSuf`
+   - Replace `READ_FROM_DASHBOARD` with the four-character value provided underneath the **SHA256 Cert Fingerprints** field on the Branch dashboard. It will look something like this: `WSuf`. The `/` character should be omitted. {% image src='/img/pages/getting-started/universal-app-links/enable_app_links.png' full center alt='enable app links' %}
 
 Here is an example of the full plugin installation command:
 
