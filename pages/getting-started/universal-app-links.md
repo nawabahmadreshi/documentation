@@ -117,7 +117,7 @@ Add the following entry to your application's `config.xml`:
 <universal-links>
     <ios-team-id value="your_ios_team_id" />
     <host name="bnc.lt" scheme="https">
-        <path prefix="READ_FROM_DASHBOARD"/>
+        <path prefix="READ_FROM_DASHBOARD" />
     </host>
 </universal-links>
 {% endhighlight %}

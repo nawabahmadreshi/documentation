@@ -78,7 +78,7 @@ npm install branch-cordova-sdk --variable BRANCH_LIVE_KEY=key_live_xxxxxxxxxxxxx
 If you have enabled [Universal Links]({{base.url}}/getting-started/universal-app-links/), then you will also need to add this line inside the `<host>` sub-block of your `config.xml` file, where `your_encoded_test_id` is the alternative four-character link prefix for your test environment:
 
 {% highlight xml %}
-<path prefix="your_encoded_test_id"/>
+<path prefix="your_encoded_test_id" />
 {% endhighlight %}
 
 {% else %}
