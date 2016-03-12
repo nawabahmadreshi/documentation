@@ -125,7 +125,7 @@ Add the following entry to your application's `config.xml`:
 {% protip title="Notes" %}
 - You can get your **iOS Team ID** from the Your Account page on the [Apple Developer Portal](https://developer.apple.com/membercenter/index.action#accountSummary).
 - If you use a custom domain or subdomain for your Branch links, you should also add a key for `<host name="mycustomdomainorsubdomain" scheme="https" />` and then [see this section]({{base.url}}/getting-started/universal-app-links/advanced/#using-a-custom-domain-or-subdomain) on the Advanced page.
-- `READ_FROM_DASHBOARD` is the four-character value in front of all your links. You can find it by temporarily toggling the **Enable App Links** checkbox on the [Link Settings page](https://dashboard.branch.io/#/settings/link) (make sure to un-toggle when you are finished) and looking underneath the field labeled **SHA256 Cert Fingerprints**. It will look something like this: `WSuf`. The `/` character should be omitted. {% image src='/img/pages/getting-started/universal-app-links/enable_app_links.png' full center alt='enable app links' %}
+- `READ_FROM_DASHBOARD` is the four-character value in front of all your links. You can find it by temporarily toggling the **Enable App Links** checkbox on the [Link Settings page](https://dashboard.branch.io/#/settings/link) (make sure to un-toggle when you are finished) and looking underneath the field labeled **SHA256 Cert Fingerprints**. It will look something like this: `/WSuf`. The `/` opening character should be included. {% image src='/img/pages/getting-started/universal-app-links/enable_app_links.png' full center alt='enable app links' %}
 {% endprotip %}
 
 {% endif %}
