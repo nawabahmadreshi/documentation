@@ -48,8 +48,24 @@ Using the **Test** environment in your app is easy:
 1. Grab the Branch Key (it will start with `key_test_`). 
 1. Simply replace the **Live** key in your app with this one (but be sure to switch it back before release!)
 
-{% if page.unity %}{% else %}
-{% protip title="Specifying both Test and Live keys in your app" %}
+{% if page.ios %}
+<!-- do nothing -->
+{% elsif page.android %}
+{% protip title="App Links and the Test Environment" %}
+Your **live** and **test** environments have different four-digit link prefixes. If you have enabled App Links and want them to function for links created in your test environment, you need to [add the link prefix]({{base.url}}/getting-started/universal-app-links/guide/android/#add-intent-filter-to-manifest) for your test environment to your `AndroidManifest.xml` file.
+{% endprotip %}
+{% elsif page.cordova %}
+<!-- do nothing -->
+{% else %}
+{% protip title="App Links and the Test Environment" %}
+Your **live** and **test** environments have different four-digit link prefixes. If you have enabled App Links in the Android version of your app, and want them to function for links created in your test environment, you need to [add the link prefix]({{base.url}}/getting-started/universal-app-links/guide/android/#add-intent-filter-to-manifest) for your test environment to your `AndroidManifest.xml` file.
+{% endprotip %}
+{% endif %}
+
+{% if page.unity %}
+<!-- do nothing -->
+{% else %}
+### Specifying both Test and Live keys in your app
 
 For more advanced implementations, you may want to specify keys for both **Test** and **Live** environments (for example, if you are building a custom switch to automatically select the correct key depending on compiler schemes).
 
@@ -77,13 +93,13 @@ and underneath it add:
 {% endif %}
 {% if page.cordova or page.xamarin %}
 
-##### iOS Projects
+#### iOS Projects
 
 Open your **Info.plist** file in Xcode, change the `branch_key` entry a Dictionary, and create two subentries for your keys:
 
 {% image src="/img/pages/getting-started/integration-testing/branch-multi-key-plist.png" actual center alt="environment toggle" %}
 
-##### Android Projects
+#### Android Projects
 
 In your Manifest file, find:
 
@@ -121,7 +137,7 @@ and replace it with:
 </dict>
 {% endhighlight %}
 
-##### Android Projects
+#### Android Projects
 
 In your project's `*-app.xml` file, find:
 
@@ -138,7 +154,7 @@ and underneath it add:
 {% endif %}
 {% if page.titanium %}
 
-##### iOS Projects
+#### iOS Projects
 
 In your project's `tiapp.xml` file, find:
 
@@ -159,7 +175,7 @@ and replace it with:
 </dict>
 {% endhighlight %}
 
-##### Android Projects
+#### Android Projects
 
 In your project's `tiapp.xml` file, find:
 
@@ -174,8 +190,6 @@ and underneath it add:
 {% endhighlight %}
 
 {% endif %}
-
-{% endprotip %}
 {% endif %}
 
 ## Debugging an individual link
