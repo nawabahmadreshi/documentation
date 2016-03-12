@@ -192,6 +192,20 @@ Debug mode is currently not supported on Air ANE :(
 
 Branch intentionally adds a lot of restrictions to prevent `install` events from being triggered on app updates and reinstalls. Of course this can make it a challenge to simulate fresh installs while testing, so we have created a debug mode to help you manually override these restrictions.
 
+{% if page.android %}
+<!-- do nothing -->
+{% elsif page.ios %}
+{% protip title="Debug mode and the Test Environment" %}
+If you have [configured your app with both **test** and **live** keys](#switching-environments-in-your-app), using `setDebug` will *also* cause all links created in your app to use your **test** environment.
+{% endprotip %}
+{% else %}
+{% protip title="Debug mode and the Test Environment" %}
+If you have [configured your app with both **test** and **live** keys](#switching-environments-in-your-app), using `setDebug` will *also* cause all links created in the iOS version of your app to use your **test** environment. 
+
+*The Android version of your app will continue to use the* ***live*** *environment*.
+{% endprotip %}
+{% endif %}
+
 {% if page.ios %}
 
 {% tabs %}
