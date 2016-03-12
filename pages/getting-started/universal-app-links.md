@@ -99,7 +99,7 @@ Please ensure...
 1. In the `Domains` section, click the `+` icon and add the following entry: `applinks:bnc.lt` {% image src='/img/pages/getting-started/universal-app-links/add_domain.png' 3-quarters center alt='xcode add domain' %}
 
 {% protip title="Using a custom domain or subdomain?" %}
-If you use a custom domain or subdomain for your Branch links, you should also add an entry for `applinks:[mycustomdomainorsubdomain]` and then [see this section]({{base.url}}/getting-started/universal-app-links/advanced/#using-a-custom-domain-or-subdomain) on the Advanced page.
+If you use a [custom domain or subdomain for your Branch links]({{base.url}}/getting-started/dashboard-guide/guide/#setting-a-custom-link-domain), you should also add an entry for `applinks:[mycustomdomainorsubdomain]` and then [see this section]({{base.url}}/getting-started/universal-app-links/advanced/#using-a-custom-domain-or-subdomain) on the Advanced page.
 {% endprotip %}
 
 ### Add entitlements file to the build target
@@ -149,7 +149,7 @@ Add the following entry to your application's `config.xml`:
 {% endhighlight %}
 
 {% protip title="Using a custom domain or subdomain?" %}
-If you use a custom domain or subdomain for your Branch links, you should also add a key for `<string>[mycustomdomainorsubdomain]</string>` and then [see this section]({{base.url}}/getting-started/universal-app-links/advanced/#using-a-custom-domain-or-subdomain) on the Advanced page.
+If you use a [custom domain or subdomain for your Branch links]({{base.url}}/getting-started/dashboard-guide/guide/#setting-a-custom-link-domain), you should also add a key for `<string>[mycustomdomainorsubdomain]</string>` and then [see this section]({{base.url}}/getting-started/universal-app-links/advanced/#using-a-custom-domain-or-subdomain) on the Advanced page.
 {% endprotip %}
 
 #### Support Universal Links on Cold Start
@@ -357,7 +357,7 @@ npm install branch-cordova-sdk --variable BRANCH_LIVE_KEY=key_live_xxxxxxxxxxxxx
 1. Choose the `Activity` you want to open up when a link is clicked. This is typically your `SplashActivity` or a `BaseActivity` that all other activities inherit from (and likely the same one you selected in the [SDK Integration Guide]({{base.url}}/getting-started/sdk-integration-guide)).
 1. Inside your `AndroidManifest.xml`, locate where the selected `Activity` is defined.
 1. Within the `Activity` definition, insert the intent filter provided below.
-   - Replace `READ_FROM_DASHBOARD` with the value provided underneath the **SHA256 Cert Fingerprints** field on the Branch dashboard. It will look something like this: `android:pathPrefix="/WSuf`
+   - Replace `READ_FROM_DASHBOARD` with the value provided underneath the **SHA256 Cert Fingerprints** field on the Branch dashboard. It will look something like this: `android:pathPrefix="/WSuf"`
 
 {% highlight xml %}
 <!-- AppLink example -->
@@ -365,10 +365,17 @@ npm install branch-cordova-sdk --variable BRANCH_LIVE_KEY=key_live_xxxxxxxxxxxxx
     <action android:name="android.intent.action.VIEW" />
     <category android:name="android.intent.category.DEFAULT" />
     <category android:name="android.intent.category.BROWSABLE" />
-    <!-- <data android:scheme="https" android:host="bnc.lt" android:pathPrefix="/your_app_id_obtained form Branch dash board " /> -->
-    <data android:scheme="https" android:host="bnc.lt" android:pathPrefix="READ_FROM_DASHBOARD" /> <!-- Live App link-->
+    <data android:scheme="https" android:host="bnc.lt" android:pathPrefix="READ_FROM_DASHBOARD" />
 </intent-filter>
 {% endhighlight %}
+
+{% protip title="Using a custom domain or subdomain?" %}
+If you use a [custom domain or subdomain for your Branch links]({{base.url}}/getting-started/dashboard-guide/guide/#setting-a-custom-link-domain), you should also add an entry for:
+
+{% highlight xml %}
+<data android:scheme="https" android:host="mycustomdomainorsubdomain" android:pathPrefix="READ_FROM_DASHBOARD" />
+{% endhighlight %}
+{% endprotip %}
 
 {% endif %}
 
