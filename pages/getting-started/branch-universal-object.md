@@ -155,7 +155,7 @@ Some of these parameters automatically [populate the link parameters]({{base.url
 
 {% if page.android %}
 
-| Parameter | Usage | OG Tag key
+| Parameter | Usage | Link Parameter
 | --- | --- | ---
 | setCanonicalIdentifier | This is the unique identifier for content that will help Branch dedupe across many instances of the same thing. Suitable options: a website with pathing, or a database with identifiers for entities | $canonical_identifier
 | setCanonicalUrl | The canonical URL, used for SEO purposes
@@ -174,7 +174,7 @@ Some of these parameters automatically [populate the link parameters]({{base.url
 
 {% if page.unity %}
 
-| Parameter | Usage | OG Tag key
+| Parameter | Usage | Link Parameter
 | --- | --- | ---
 | canonicalIdentifier | This is the unique identifier for content that will help Branch dedupe across many instances of the same thing. Suitable options: a website with pathing, or a database with identifiers for entities | $canonical_identifier
 | canonicalUrl | The canonical URL, used for SEO purposes
@@ -193,7 +193,7 @@ Some of these parameters automatically [populate the link parameters]({{base.url
 
 {% if page.titanium %}
 
-| Parameter | Usage | OG Tag key
+| Parameter | Usage | Link Parameter
 | --- | --- | ---
 | canonicalIdentifier | This is the unique identifier for content that will help Branch dedupe across many instances of the same thing. Suitable options: a website with pathing, or a database with identifiers for entities | $canonical_identifier
 | canonicalUrl | The canonical URL, used for SEO purposes
@@ -211,7 +211,7 @@ Some of these parameters automatically [populate the link parameters]({{base.url
 {% endif %}
 
 {% if page.cordova %}
-| Parameter | Usage | OG Tag key
+| Parameter | Usage | Link Parameter
 | --- | --- | ---
 | canonicalIdentifier | This is the unique identifier for content that will help Branch dedupe across many instances of the same thing. Suitable options: a website with pathing, or a database with identifiers for entities | $canonical_identifier
 | title | The name for the piece of content | $og_title 
