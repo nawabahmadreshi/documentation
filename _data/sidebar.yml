@@ -59,8 +59,8 @@
       children:
         - old-webhook-tune
         - old-webhook-adjust
-        - webhook-builder-Tune
-        - webhook-builder-Adjust
+        - webhook-builder-tune
+        - webhook-builder-adjust
         - google-analytics
         - localytics
         - mixpanel
