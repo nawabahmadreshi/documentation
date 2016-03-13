@@ -66,6 +66,16 @@ You can retrieve your app's Bundle Identifier under the `General` tab of your Xc
 {% image src='/img/pages/getting-started/universal-app-links/background_bundle_xcode.png' full center alt='bundle identifier xcode' %}
 {% endprotip %}
 
+## Enable Universal Links on the Branch dashboard
+
+1. Navigate to [Link Settings](https://dashboard.branch.io/#/settings/link) in the Branch Dashboard.
+1. Check the box to `Enable Universal Links` from iOS redirects.
+1. Type in your App’s Bundle Identifier.
+1. Type in your Apple App Prefix (found by clicking your app on [this page](https://developer.apple.com/account/ios/identifiers/bundle/bundleList.action) in Apple's Developer Portal).
+1. Scroll down and click on the `Save` button.
+
+{% image src='/img/pages/getting-started/universal-app-links/dashboard_enable_universal_links.png' 3-quarters center alt='enable Universal Links on Branch dashboard' %}
+
 ## Add the entitlement to your project
 
 {% if page.ios or page.xamarin or page.unity or page.adobe %}
@@ -89,7 +99,7 @@ Please ensure...
 1. In the `Domains` section, click the `+` icon and add the following entry: `applinks:bnc.lt` {% image src='/img/pages/getting-started/universal-app-links/add_domain.png' 3-quarters center alt='xcode add domain' %}
 
 {% protip title="Using a custom domain or subdomain?" %}
-If you use a custom domain or subdomain for your Branch links, you should also add an entry for `applinks:[mycustomdomainorsubdomain]` and then [see this section]({{base.url}}/getting-started/universal-app-links/advanced/#using-a-custom-domain-or-subdomain) on the Advanced page.
+If you use a [custom domain or subdomain for your Branch links]({{base.url}}/getting-started/dashboard-guide/guide/#setting-a-custom-link-domain), you should also add an entry for `applinks:[mycustomdomainorsubdomain]` and then [see this section]({{base.url}}/getting-started/universal-app-links/advanced/#using-a-custom-domain-or-subdomain) on the Advanced page.
 {% endprotip %}
 
 ### Add entitlements file to the build target
@@ -101,28 +111,20 @@ If you use a custom domain or subdomain for your Branch links, you should also a
 
 {% if page.cordova %}
 
-Unfortunately Cordova doesn't have a way to a create entitlements and associate them to your generated Xcode project, so we will make use of the third-party [Cordova Universal Links Plugin](https://github.com/nordnet/cordova-universal-links-plugin).
-
-{% protip %}Our use of the Universal Links Plugin is simply to generate an entitlements file and associate it to your generated project. This guide covers all the steps you need to take, and no other implementations from the plugin are necessary since Branch handles everything else behind the scenes.
-{% endprotip %}
-
-Go to your project root and install the plugin:
-
-{% highlight sh %}
-cordova plugin add cordova-universal-links-plugin
-{% endhighlight %}
-
-After the installation, add the following entry to your application's `config.xml`:
+Add the following entry to your application's `config.xml`:
 
 {% highlight xml %}
-<universal-links>
-    <ios-team-id value=your_ios_team_id />
-    <host name="bnc.lt">
-    </host>
-</universal-links>
+<branch-config>
+    <ios-team-id value="your_ios_team_id" />
+    <host name="bnc.lt" scheme="https" />
+</branch-config>    
 {% endhighlight %}
 
-You can get your iOS Team ID from the Your Account page on the [Apple Developer Portal](https://developer.apple.com/membercenter/index.action#accountSummary).
+{% protip title="Notes" %}
+- You can get your **iOS Team ID** from the Your Account page on the [Apple Developer Portal](https://developer.apple.com/membercenter/index.action#accountSummary).
+- If you use a custom domain or subdomain for your Branch links, you should also add a key for `<host name="mycustomdomainorsubdomain" scheme="https" />` and then [see this section]({{base.url}}/getting-started/universal-app-links/advanced/#using-a-custom-domain-or-subdomain) on the Advanced page.
+{% endprotip %}
+
 {% endif %}
 
 {% if page.titanium %}
@@ -144,7 +146,7 @@ You can get your iOS Team ID from the Your Account page on the [Apple Developer 
 {% endhighlight %}
 
 {% protip title="Using a custom domain or subdomain?" %}
-If you use a custom domain or subdomain for your Branch links, you should also add a key for `<string>[mycustomdomainorsubdomain]</string>` and then [see this section]({{base.url}}/getting-started/universal-app-links/advanced/#using-a-custom-domain-or-subdomain) on the Advanced page.
+If you use a [custom domain or subdomain for your Branch links]({{base.url}}/getting-started/dashboard-guide/guide/#setting-a-custom-link-domain), you should also add a key for `<string>[mycustomdomainorsubdomain]</string>` and then [see this section]({{base.url}}/getting-started/universal-app-links/advanced/#using-a-custom-domain-or-subdomain) on the Advanced page.
 {% endprotip %}
 
 #### Support Universal Links on Cold Start
@@ -270,16 +272,6 @@ public override bool ContinueUserActivity (UIApplication application,
 
 {% endif %}
 
-## Enable Universal Links on the Branch dashboard
-
-1. Navigate to [Link Settings](https://dashboard.branch.io/#/settings/link) in the Branch Dashboard.
-1. Check the box to `Enable Universal Links` from iOS redirects.
-1. Type in your App’s Bundle Identifier.
-1. Type in your Apple App Prefix (found by clicking your app on [this page](https://developer.apple.com/account/ios/identifiers/bundle/bundleList.action) in Apple's Developer Portal).
-1. Scroll down and click on the `Save` button.
-
-{% image src='/img/pages/getting-started/universal-app-links/dashboard_enable_universal_links.png' 3-quarters center alt='enable Universal Links on Branch dashboard' %}
-
 ## Test your Universal Links implementation
 
 After completing this guide and installing a new build of your app on your testing device, you can verify Universal Links are working correctly by following these steps:
@@ -323,37 +315,20 @@ You can insert both your debug and production fingerprints for testing. Simply s
 
 ## Configure project
 
-The SDK plugin will automatically configure everything necessary to support App Links. You simply need to rerun the [plugin installation command]({{base.url}}/getting-started/sdk-integration-guide/guide/cordova/#command-line-module-install):
+Add the following entry to your application's `config.xml`:
 
-1. Use the same Branch key and URI scheme values as when you installed the plugin.
-1. Append `--variable ENCODED_ID=READ_FROM_DASHBOARD` to the installation command.
-   - Replace `READ_FROM_DASHBOARD` with the four-character value provided underneath the **SHA256 Cert Fingerprints** field on the Branch dashboard. It will look something like this: `WSuf`
-
-Here is an example of the full plugin installation command:
-
-{% tabs %}
-{% tab cordova %}
-{% highlight sh %}
-cordova plugin install https://github.com/BranchMetrics/Cordova-Ionic-PhoneGap-Deferred-Deep-Linking-SDK.git --variable BRANCH_LIVE_KEY=key_live_xxxxxxxxxxxxxxx --variable URI_SCHEME=yourApp --variable ENCODED_ID=READ_FROM_DASHBOARD
+{% highlight xml %}
+<branch-config>
+    <android-prefix value="READ_FROM_DASHBOARD" />
+    <host name="bnc.lt" scheme="https" />
+</branch-config>
 {% endhighlight %}
 
-{% endtab %}
-
-{% tab phonegap %}
-{% highlight sh %}
-phonegap plugin add https://github.com/BranchMetrics/Cordova-Ionic-PhoneGap-Deferred-Deep-Linking-SDK.git --variable BRANCH_LIVE_KEY=key_live_xxxxxxxxxxxxxxx --variable URI_SCHEME=yourApp --variable ENCODED_ID=READ_FROM_DASHBOARD
-{% endhighlight %}
-
-{% endtab %}
-
-{% tab npm %}
-{% highlight sh %}
-npm install branch-cordova-sdk --variable BRANCH_LIVE_KEY=key_live_xxxxxxxxxxxxxxx --variable URI_SCHEME=yourApp --variable ENCODED_ID=READ_FROM_DASHBOARD
-{% endhighlight %}
-
-{% endtab %}
-
-{% endtabs %}
+{% protip title="Notes" %}
+- If you enabled iOS Universal Links, some of these keys will already exist and should not be entered again.
+- `READ_FROM_DASHBOARD` is the four-character value in front of all your links. You can find it underneath the field labeled **SHA256 Cert Fingerprints** on the dashboard. It will look something like this: `/WSuf` (the initial `/` character should be included).
+- If you use a custom domain or subdomain for your Branch links, you should also add a key for `<host name="mycustomdomainorsubdomain" scheme="https" />`.
+{% endprotip %}
 
 {% else %}
 
@@ -362,7 +337,7 @@ npm install branch-cordova-sdk --variable BRANCH_LIVE_KEY=key_live_xxxxxxxxxxxxx
 1. Choose the `Activity` you want to open up when a link is clicked. This is typically your `SplashActivity` or a `BaseActivity` that all other activities inherit from (and likely the same one you selected in the [SDK Integration Guide]({{base.url}}/getting-started/sdk-integration-guide)).
 1. Inside your `AndroidManifest.xml`, locate where the selected `Activity` is defined.
 1. Within the `Activity` definition, insert the intent filter provided below.
-   - Replace `READ_FROM_DASHBOARD` with the value provided underneath the **SHA256 Cert Fingerprints** field on the Branch dashboard. It will look something like this: `android:pathPrefix="/WSuf`
+   - Replace `READ_FROM_DASHBOARD` with the value provided underneath the **SHA256 Cert Fingerprints** field on the Branch dashboard. It will look something like this: `android:pathPrefix="/WSuf"`
 
 {% highlight xml %}
 <!-- AppLink example -->
@@ -370,10 +345,17 @@ npm install branch-cordova-sdk --variable BRANCH_LIVE_KEY=key_live_xxxxxxxxxxxxx
     <action android:name="android.intent.action.VIEW" />
     <category android:name="android.intent.category.DEFAULT" />
     <category android:name="android.intent.category.BROWSABLE" />
-    <!-- <data android:scheme="https" android:host="bnc.lt" android:pathPrefix="/your_app_id_obtained form Branch dash board " /> -->
-    <data android:scheme="https" android:host="bnc.lt" android:pathPrefix="READ_FROM_DASHBOARD" /> <!-- Live App link-->
+    <data android:scheme="https" android:host="bnc.lt" android:pathPrefix="READ_FROM_DASHBOARD" />
 </intent-filter>
 {% endhighlight %}
+
+{% protip title="Using a custom domain or subdomain?" %}
+If you use a [custom domain or subdomain for your Branch links]({{base.url}}/getting-started/dashboard-guide/guide/#setting-a-custom-link-domain), you should also add an entry for:
+
+{% highlight xml %}
+<data android:scheme="https" android:host="mycustomdomainorsubdomain" android:pathPrefix="READ_FROM_DASHBOARD" />
+{% endhighlight %}
+{% endprotip %}
 
 {% endif %}
 

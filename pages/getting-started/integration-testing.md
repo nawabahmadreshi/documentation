@@ -43,13 +43,68 @@ Since the **Test** and **Live** environments are completely separate, you will n
 
 Using the **Test** environment in your app is easy:
 
+{% if page.cordova %}
+
+1. Go to [Settings](https://dashboard.branch.io/#/settings)
+1. Make sure the toggle switch is in "Test" mode
+1. Grab the Branch Key (it will start with `key_test_`). 
+1. Rerun the [plugin installation command]({{base.url}}/getting-started/sdk-integration-guide/guide/cordova/#command-line-module-install):
+	- For the `BRANCH_KEY` value, use the test environment key you just retrieved from the dashboard.
+	- Use the same URI scheme as when you originally installed the plugin.
+
+Here is an example of the full plugin installation command:
+
+{% tabs %}
+{% tab cordova %}
+{% highlight sh %}
+cordova plugin install https://github.com/BranchMetrics/Cordova-Ionic-PhoneGap-Deferred-Deep-Linking-SDK.git --variable BRANCH_KEY=key_test_xxxxxxxxxxxxxxx --variable URI_SCHEME=yourApp
+{% endhighlight %}
+
+{% endtab %}
+
+{% tab phonegap %}
+{% highlight sh %}
+phonegap plugin add https://github.com/BranchMetrics/Cordova-Ionic-PhoneGap-Deferred-Deep-Linking-SDK.git --variable BRANCH_KEY=key_test_xxxxxxxxxxxxxxx --variable URI_SCHEME=yourApp
+{% endhighlight %}
+
+{% endtab %}
+
+{% tab npm %}
+{% highlight sh %}
+npm install branch-cordova-sdk --variable BRANCH_KEY=key_test_xxxxxxxxxxxxxxx --variable URI_SCHEME=yourApp
+{% endhighlight %}
+
+{% endtab %}
+{% endtabs %}
+
+{% protip title="App Links and the Test Environment" %}
+Your **live** and **test** environments have different four-digit link prefixes. If you have enabled App Links in the Android version of your app, and want them to function for links created in your test environment, you need to [replace the link prefix]({{base.url}}/getting-started/universal-app-links/guide/cordova/#configure-project) from your live environment with the one from your test environment in your `config.xml` file.
+{% endprotip %}
+
+{% else %}
+
 1. Go to [Settings](https://dashboard.branch.io/#/settings)
 1. Make sure the toggle switch is in "Test" mode
 1. Grab the Branch Key (it will start with `key_test_`). 
 1. Simply replace the **Live** key in your app with this one (but be sure to switch it back before release!)
 
-{% if page.unity %}{% else %}
-{% protip title="Specifying both Test and Live keys in your app" %}
+{% if page.ios %}
+<!-- do nothing -->
+{% elsif page.android %}
+{% protip title="App Links and the Test Environment" %}
+Your **live** and **test** environments have different four-digit link prefixes. If you have enabled App Links and want them to function for links created in your test environment, you need to [add the link prefix]({{base.url}}/getting-started/universal-app-links/guide/android/#add-intent-filter-to-manifest) for your test environment to your `AndroidManifest.xml` file.
+{% endprotip %}
+{% else %}
+{% protip title="App Links and the Test Environment" %}
+Your **live** and **test** environments have different four-digit link prefixes. If you have enabled App Links in the Android version of your app, and want them to function for links created in your test environment, you need to [add the link prefix]({{base.url}}/getting-started/universal-app-links/guide/android/#add-intent-filter-to-manifest) for your test environment to your `AndroidManifest.xml` file.
+{% endprotip %}
+{% endif %}
+{% endif %}
+
+{% if page.unity or page.cordova %}
+<!-- do nothing -->
+{% else %}
+### Specifying both Test and Live keys in your app
 
 For more advanced implementations, you may want to specify keys for both **Test** and **Live** environments (for example, if you are building a custom switch to automatically select the correct key depending on compiler schemes).
 
@@ -75,15 +130,15 @@ and underneath it add:
 {% endhighlight %}
 
 {% endif %}
-{% if page.cordova or page.xamarin %}
+{% if page.xamarin %}
 
-##### iOS Projects
+#### iOS Projects
 
 Open your **Info.plist** file in Xcode, change the `branch_key` entry a Dictionary, and create two subentries for your keys:
 
 {% image src="/img/pages/getting-started/integration-testing/branch-multi-key-plist.png" actual center alt="environment toggle" %}
 
-##### Android Projects
+#### Android Projects
 
 In your Manifest file, find:
 
@@ -121,7 +176,7 @@ and replace it with:
 </dict>
 {% endhighlight %}
 
-##### Android Projects
+#### Android Projects
 
 In your project's `*-app.xml` file, find:
 
@@ -138,7 +193,7 @@ and underneath it add:
 {% endif %}
 {% if page.titanium %}
 
-##### iOS Projects
+#### iOS Projects
 
 In your project's `tiapp.xml` file, find:
 
@@ -159,7 +214,7 @@ and replace it with:
 </dict>
 {% endhighlight %}
 
-##### Android Projects
+#### Android Projects
 
 In your project's `tiapp.xml` file, find:
 
@@ -174,8 +229,6 @@ and underneath it add:
 {% endhighlight %}
 
 {% endif %}
-
-{% endprotip %}
 {% endif %}
 
 ## Debugging an individual link
@@ -191,6 +244,20 @@ Debug mode is currently not supported on Air ANE :(
 {% else %}
 
 Branch intentionally adds a lot of restrictions to prevent `install` events from being triggered on app updates and reinstalls. Of course this can make it a challenge to simulate fresh installs while testing, so we have created a debug mode to help you manually override these restrictions.
+
+{% if page.android %}
+<!-- do nothing -->
+{% elsif page.ios %}
+{% protip title="Debug mode and the Test Environment" %}
+If you have [configured your app with both **test** and **live** keys](#switching-environments-in-your-app), using `setDebug` will *also* cause all links created in your app to use your **test** environment.
+{% endprotip %}
+{% else %}
+{% protip title="Debug mode and the Test Environment" %}
+If you have [configured your app with both **test** and **live** keys](#switching-environments-in-your-app), using `setDebug` will *also* cause all links created in the iOS version of your app to use your **test** environment. 
+
+*The Android version of your app will continue to use the* ***live*** *environment*.
+{% endprotip %}
+{% endif %}
 
 {% if page.ios %}
 
