@@ -91,27 +91,27 @@ You can install the Branch SDK by using one of several different command line to
 
 | Parameter | Usage
 | --- | ---
-| `BRANCH_LIVE_KEY` | Your Branch live API key, retrieved from the [Settings page](https://dashboard.branch.io/#/settings) of the Branch dashboard.
+| `BRANCH_KEY` | Your Branch live API key, retrieved from the [Settings page](https://dashboard.branch.io/#/settings) of the Branch dashboard.
 | `URI_SCHEME` | The URI scheme for your app (**not** including `://`) from the step above.
 
 {% tabs %}
 {% tab cordova %}
 {% highlight sh %}
-cordova plugin add https://github.com/BranchMetrics/Cordova-Ionic-PhoneGap-Deferred-Deep-Linking-SDK.git --variable BRANCH_LIVE_KEY=key_live_xxxxxxxxxxxxxxx --variable URI_SCHEME=yourApp
+cordova plugin add https://github.com/BranchMetrics/Cordova-Ionic-PhoneGap-Deferred-Deep-Linking-SDK.git --variable BRANCH_KEY=key_live_xxxxxxxxxxxxxxx --variable URI_SCHEME=yourApp
 {% endhighlight %}
 
 {% endtab %}
 
 {% tab npm %}
 {% highlight sh %}
-npm install branch-cordova-sdk --variable BRANCH_LIVE_KEY=key_live_xxxxxxxxxxxxxxx --variable URI_SCHEME=yourApp
+npm install branch-cordova-sdk --variable BRANCH_KEY=key_live_xxxxxxxxxxxxxxx --variable URI_SCHEME=yourApp
 {% endhighlight %}
 
 {% endtab %}
 
 {% tab phonegap %}
 {% highlight sh %}
-phonegap plugin add https://github.com/BranchMetrics/Cordova-Ionic-PhoneGap-Deferred-Deep-Linking-SDK.git --variable BRANCH_LIVE_KEY=key_live_xxxxxxxxxxxxxxx --variable URI_SCHEME=yourApp
+phonegap plugin add https://github.com/BranchMetrics/Cordova-Ionic-PhoneGap-Deferred-Deep-Linking-SDK.git --variable BRANCH_KEY=key_live_xxxxxxxxxxxxxxx --variable URI_SCHEME=yourApp
 {% endhighlight %}
 
 {% endtab %}
