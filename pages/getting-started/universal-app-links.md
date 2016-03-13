@@ -114,18 +114,15 @@ If you use a [custom domain or subdomain for your Branch links]({{base.url}}/get
 Add the following entry to your application's `config.xml`:
 
 {% highlight xml %}
-<universal-links>
+<branch-config>
     <ios-team-id value="your_ios_team_id" />
-    <host name="bnc.lt" scheme="https">
-        <path prefix="READ_FROM_DASHBOARD" />
-    </host>
-</universal-links>
+    <host name="bnc.lt" scheme="https" />
+</branch-config>    
 {% endhighlight %}
 
 {% protip title="Notes" %}
 - You can get your **iOS Team ID** from the Your Account page on the [Apple Developer Portal](https://developer.apple.com/membercenter/index.action#accountSummary).
 - If you use a custom domain or subdomain for your Branch links, you should also add a key for `<host name="mycustomdomainorsubdomain" scheme="https" />` and then [see this section]({{base.url}}/getting-started/universal-app-links/advanced/#using-a-custom-domain-or-subdomain) on the Advanced page.
-- `READ_FROM_DASHBOARD` is the four-character value in front of all your links. You can find it by temporarily toggling the **Enable App Links** checkbox on the [Link Settings page](https://dashboard.branch.io/#/settings/link) (make sure to un-toggle when you are finished) and looking underneath the field labeled **SHA256 Cert Fingerprints**. It will look something like this: `/WSuf`. The `/` opening character should be included. {% image src='/img/pages/getting-started/universal-app-links/enable_app_links.png' full center alt='enable app links' %}
 {% endprotip %}
 
 {% endif %}
@@ -318,37 +315,20 @@ You can insert both your debug and production fingerprints for testing. Simply s
 
 ## Configure project
 
-The SDK plugin will automatically configure everything necessary to support App Links. You simply need to rerun the [plugin installation command]({{base.url}}/getting-started/sdk-integration-guide/guide/cordova/#command-line-module-install):
+Add the following entry to your application's `config.xml`:
 
-1. Use the same Branch key and URI scheme values as when you installed the plugin.
-1. Append `--variable ENCODED_ID=READ_FROM_DASHBOARD` to the installation command.
-   - Replace `READ_FROM_DASHBOARD` with the four-character value provided underneath the **SHA256 Cert Fingerprints** field on the Branch dashboard. It will look something like this: `WSuf`. The `/` opening character should be included. {% image src='/img/pages/getting-started/universal-app-links/enable_app_links.png' full center alt='enable app links' %}
-
-Here is an example of the full plugin installation command:
-
-{% tabs %}
-{% tab cordova %}
-{% highlight sh %}
-cordova plugin install https://github.com/BranchMetrics/Cordova-Ionic-PhoneGap-Deferred-Deep-Linking-SDK.git --variable BRANCH_LIVE_KEY=key_live_xxxxxxxxxxxxxxx --variable URI_SCHEME=yourApp --variable ENCODED_ID=READ_FROM_DASHBOARD
+{% highlight xml %}
+<branch-config>
+    <android-prefix value="READ_FROM_DASHBOARD" />
+    <host name="bnc.lt" scheme="https" />
+</branch-config>
 {% endhighlight %}
 
-{% endtab %}
-
-{% tab phonegap %}
-{% highlight sh %}
-phonegap plugin add https://github.com/BranchMetrics/Cordova-Ionic-PhoneGap-Deferred-Deep-Linking-SDK.git --variable BRANCH_LIVE_KEY=key_live_xxxxxxxxxxxxxxx --variable URI_SCHEME=yourApp --variable ENCODED_ID=READ_FROM_DASHBOARD
-{% endhighlight %}
-
-{% endtab %}
-
-{% tab npm %}
-{% highlight sh %}
-npm install branch-cordova-sdk --variable BRANCH_LIVE_KEY=key_live_xxxxxxxxxxxxxxx --variable URI_SCHEME=yourApp --variable ENCODED_ID=READ_FROM_DASHBOARD
-{% endhighlight %}
-
-{% endtab %}
-
-{% endtabs %}
+{% protip title="Notes" %}
+- If you enabled iOS Universal Links, some of these keys will already exist and should not be entered again.
+- `READ_FROM_DASHBOARD` is the four-character value in front of all your links. You can find it underneath the field labeled **SHA256 Cert Fingerprints** on the dashboard. It will look something like this: `/WSuf` (the initial `/` character should be included).
+- If you use a custom domain or subdomain for your Branch links, you should also add a key for `<host name="mycustomdomainorsubdomain" scheme="https" />`.
+{% endprotip %}
 
 {% else %}
 

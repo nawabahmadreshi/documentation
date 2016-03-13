@@ -45,41 +45,41 @@ Using the **Test** environment in your app is easy:
 
 {% if page.cordova %}
 
-Rerun the [plugin installation command]({{base.url}}/getting-started/sdk-integration-guide/guide/cordova/#command-line-module-install):
-
-1. Use the same Branch live key and URI scheme values as when you installed the plugin.
-1. Append `--variable BRANCH_TEST_KEY=key_test_xxxxxxxxxxxxxxx` to the installation command.
+1. Go to [Settings](https://dashboard.branch.io/#/settings)
+1. Make sure the toggle switch is in "Test" mode
+1. Grab the Branch Key (it will start with `key_test_`). 
+1. Rerun the [plugin installation command]({{base.url}}/getting-started/sdk-integration-guide/guide/cordova/#command-line-module-install):
+	- For the `BRANCH_KEY` value, use the test environment key you just retrieved from the dashboard.
+	- Use the same URI scheme as when you originally installed the plugin.
 
 Here is an example of the full plugin installation command:
 
 {% tabs %}
 {% tab cordova %}
 {% highlight sh %}
-cordova plugin install https://github.com/BranchMetrics/Cordova-Ionic-PhoneGap-Deferred-Deep-Linking-SDK.git --variable BRANCH_LIVE_KEY=key_live_xxxxxxxxxxxxxxx --variable BRANCH_TEST_KEY=key_test_xxxxxxxxxxxxxxx --variable URI_SCHEME=yourApp
+cordova plugin install https://github.com/BranchMetrics/Cordova-Ionic-PhoneGap-Deferred-Deep-Linking-SDK.git --variable BRANCH_KEY=key_test_xxxxxxxxxxxxxxx --variable URI_SCHEME=yourApp
 {% endhighlight %}
 
 {% endtab %}
 
 {% tab phonegap %}
 {% highlight sh %}
-phonegap plugin add https://github.com/BranchMetrics/Cordova-Ionic-PhoneGap-Deferred-Deep-Linking-SDK.git --variable BRANCH_LIVE_KEY=key_live_xxxxxxxxxxxxxxx --variable BRANCH_TEST_KEY=key_test_xxxxxxxxxxxxxxx --variable URI_SCHEME=yourApp
+phonegap plugin add https://github.com/BranchMetrics/Cordova-Ionic-PhoneGap-Deferred-Deep-Linking-SDK.git --variable BRANCH_KEY=key_test_xxxxxxxxxxxxxxx --variable URI_SCHEME=yourApp
 {% endhighlight %}
 
 {% endtab %}
 
 {% tab npm %}
 {% highlight sh %}
-npm install branch-cordova-sdk --variable BRANCH_LIVE_KEY=key_live_xxxxxxxxxxxxxxx --variable BRANCH_TEST_KEY=key_test_xxxxxxxxxxxxxxx --variable URI_SCHEME=yourApp
+npm install branch-cordova-sdk --variable BRANCH_KEY=key_test_xxxxxxxxxxxxxxx --variable URI_SCHEME=yourApp
 {% endhighlight %}
 
 {% endtab %}
 {% endtabs %}
 
-If you have enabled [Universal Links]({{base.url}}/getting-started/universal-app-links/), then you will also need to add this line inside the `<host>` sub-block of your `config.xml` file, where `your_encoded_test_id` is the alternative four-character link prefix for your test environment:
-
-{% highlight xml %}
-<path prefix="your_encoded_test_id" />
-{% endhighlight %}
+{% protip title="App Links and the Test Environment" %}
+Your **live** and **test** environments have different four-digit link prefixes. If you have enabled App Links in the Android version of your app, and want them to function for links created in your test environment, you need to [replace the link prefix]({{base.url}}/getting-started/universal-app-links/guide/cordova/#configure-project) from your live environment with the one from your test environment in your `config.xml` file.
+{% endprotip %}
 
 {% else %}
 
@@ -94,15 +94,14 @@ If you have enabled [Universal Links]({{base.url}}/getting-started/universal-app
 {% protip title="App Links and the Test Environment" %}
 Your **live** and **test** environments have different four-digit link prefixes. If you have enabled App Links and want them to function for links created in your test environment, you need to [add the link prefix]({{base.url}}/getting-started/universal-app-links/guide/android/#add-intent-filter-to-manifest) for your test environment to your `AndroidManifest.xml` file.
 {% endprotip %}
-{% elsif page.cordova %}
-<!-- do nothing -->
 {% else %}
 {% protip title="App Links and the Test Environment" %}
 Your **live** and **test** environments have different four-digit link prefixes. If you have enabled App Links in the Android version of your app, and want them to function for links created in your test environment, you need to [add the link prefix]({{base.url}}/getting-started/universal-app-links/guide/android/#add-intent-filter-to-manifest) for your test environment to your `AndroidManifest.xml` file.
 {% endprotip %}
 {% endif %}
+{% endif %}
 
-{% if page.unity %}
+{% if page.unity or page.cordova %}
 <!-- do nothing -->
 {% else %}
 ### Specifying both Test and Live keys in your app
@@ -131,7 +130,6 @@ and underneath it add:
 {% endhighlight %}
 
 {% endif %}
-
 {% if page.xamarin %}
 
 #### iOS Projects
@@ -231,8 +229,6 @@ and underneath it add:
 {% endhighlight %}
 
 {% endif %}
-{% endif %}
-
 {% endif %}
 
 ## Debugging an individual link
