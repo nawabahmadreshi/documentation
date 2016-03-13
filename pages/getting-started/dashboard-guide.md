@@ -49,13 +49,28 @@ You must [identify your users]({{base.url}}/getting-started/setting-identities) 
 
 ## Setting a custom link domain
 
-While you may enjoy Branch, it doesn’t mean you need to have `bnc.lt` as a part of every link you send out. Setting up a custom subdomain is simple:
+While you may enjoy Branch, it doesn’t mean you need to have `bnc.lt` as a part of every link you send out. Setting up a custom subdomain is simple.
 
-1. Procure a subdomain, like `get.myapp.co`. We strongly recommend you use subdomains instead of root domains, and preferably a subdomain of a different domain than your website. We also recommend that you choose one subdomain to use with Branch and stick with it, as switching between custom subdomains can cause problems.
-1. Through your DNS provider, point the CNAME record for this subdomain to `custom.bnc.lt`.
-1. After you’ve confirmed that the CNAME records have propagated throughout the internet, you simply enter your custom subdomain on the [Link Settings page](https://dashboard.branch.io/#/settings/link), under **Custom Link Domain**:
+{% protip title="SSL for custom domains" %}
+Branch automatically handles HTTPS traffic for custom subdomains and root domains. Branch will acquire the necessary SSL certificate if you follow the simple setup instructions below. Branch will also automatically renew the certificates when needed.
+{% endprotip %}
 
-{% image src='/img/pages/getting-started/dashboard-guide/custom_link_domain.png' full center alt='configuring a custom subdomain' %}
+### Custom SUBDOMAIN (go.branch.com)
+1. Procure a subdomain, like `get.myapp.co`. We recommend you use subdomains instead of root domains, and preferably a subdomain of a different domain than your website. We also recommend that you choose one subdomain to use with Branch and stick with it, as switching between custom subdomains can cause problems.
+1. Create a CNAME for the subdomain and point it to `custom.bnc.lt`
+1. Go to [Link Settings](https://dashboard.branch.io/#/settings/link) on the Branch dashboard, and find the **Custom Link Domain** section.
+1. You should see a message telling you the status of your domain under the `Domain name` field. If you don't, please type your domain in again.
+1. Click the `Save` button.
+
+{% image src='/img/pages/getting-started/universal-app-links/custom-domain-success.png' full center alt='successful custom subdomain configuration' %}
+
+### Custom ROOT domain (branch.com)
+
+1. Go to [Link Settings](https://dashboard.branch.io/#/settings/link) on the Branch dashboard, and find the **Custom Link Domain** section.
+1. Enter your custom domain into the text box and click the `Save` button. (If the validation status doesn't update with nameservers please **refresh the page.**) {% image src='/img/pages/getting-started/universal-app-links/custom_domain_nameservers_error.png' full center alt='root domain nameservers' %}
+
+1. Go to your DNS configuration for your custom domain, and update your nameserver records with the Branch-provided nameservers.
+1. Click the `Save` button again.
 
 ## Controlling default link redirection behavior
 
