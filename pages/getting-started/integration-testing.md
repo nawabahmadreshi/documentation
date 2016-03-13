@@ -16,6 +16,7 @@ platforms:
 - unity
 - adobe
 - titanium
+- react
 sections:
 - guide
 contents: list
@@ -130,7 +131,7 @@ and underneath it add:
 {% endhighlight %}
 
 {% endif %}
-{% if page.xamarin %}
+{% if page.xamarin or page.react %}
 
 #### iOS Projects
 
@@ -404,6 +405,20 @@ $.initialize = function(params) {
         });
     }
 };
+{% endhighlight %}
+{% endif %}
+
+{% if page.react %}
+
+To enable this mode in your test builds, add a `setDebug()` call function. Your code will end up looking something like this:
+
+{% highlight js %}
+var branch = require('react-native-branch');
+
+//Receives the initSession's result as soon as it becomes available
+branch.getInitSessionResultPatiently(({params, error}) => { });
+
+branch.setDebug();
 {% endhighlight %}
 {% endif %}
 

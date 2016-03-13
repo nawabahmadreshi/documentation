@@ -13,6 +13,7 @@ platforms:
 - unity
 - adobe
 - titanium
+- react
 sections:
 - overview
 - guide
@@ -262,6 +263,22 @@ var branchUniversalObject = branch.createBranchUniversalObject({
 {% endif %}
 <!--- /Titanium -->
 
+<!--- /React -->
+{% if page.react %}
+{% highlight js %}
+branchUniversalObject = {
+   metadata:{  
+      "$og_video" : "http://mysite/video.mpg"
+   },
+   "canonicalIdentifier" : "content/12345",
+   "contentTitle" : "My Content Title",
+   "contentDescription" : "My Content Description",
+   "contentImageUrl" : "https://example.com/mycontent-12345.png"
+};
+{% endhighlight %}
+{% endif %}
+<!--- /React -->
+
 {% endexample %}
 
 {% example title="When creating Marketing links on the Branch dashboard" %}
@@ -435,6 +452,16 @@ branchUniversalObject.addEventListener("bio:generateShortUrl", $.onGenerateUrlFi
 {% endhighlight %}
 {% endif %}
 <!--- /Titanium -->
+
+<!--- React -->
+{% if page.react %}
+{% highlight js %}
+
+// Currently not supported in React Native
+
+{% endhighlight %}
+{% endif %}
+<!--- /React -->
 
 {% endexample %}
 
