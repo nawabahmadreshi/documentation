@@ -137,7 +137,7 @@ utils.removeAllFromArray = function(arr, val) {
 // Gives the title of the page that the result is on
 utils.getOrigin = function(url) {
     var origin = path.basename(path.dirname(url));
-    if (origin == 'ios' || origin == 'android' || origin == 'xamarin' || origin == 'unity' || origin == 'cordova' || origin == 'adobe' || origin == 'titanium') {
+    if (origin == 'ios' || origin == 'android' || origin == 'xamarin' || origin == 'unity' || origin == 'cordova' || origin == 'adobe' || origin == 'titanium' || origin == 'react') {
         origin = path.basename(path.dirname(path.dirname(path.dirname(url))));
     }
     else if (origin == 'overview' || origin == 'guide' || origin == 'advanced' || origin == 'support') {

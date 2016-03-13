@@ -13,6 +13,8 @@
   name: Air ANE
 - key: titanium
   name: Titanium
+- key: react
+  name: React Native
 - key: web
   name: Web
 

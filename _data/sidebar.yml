@@ -68,10 +68,11 @@
     - title: iOS SDK
     - title: Android SDK
     - title: Web SDK
-    - title: Xamarin SDK
     - title: Cordova/Ionic SDK
+    - title: Xamarin SDK
     - title: Unity SDK
     - title: Adobe AIR SDK
     - title: Titanium SDK
+    - title: React Native SDK
     - title: HTTP API
     - data-export-api
