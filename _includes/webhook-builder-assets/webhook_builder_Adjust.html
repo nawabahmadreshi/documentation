@@ -9,9 +9,9 @@
 <body>
 	<table>
 		<!-- START OF REQUIRED ADJUST INFORMATION -->
-		<tr><td><h3><b>Required Adjust Information </b></h3></td></tr>
+		<tr><h3><b>Required Adjust Information </b></h3></tr>
 			<tr>
-	            <td><label>iOS Tracker Token<label></td>
+	            <td><label>iOS Tracker Token</label></td>
 	            <td><input style="width:300px" id="ios_tracker_token" type="text" maxlength="30" placeholder="ios_tracker_token" required/></td>
 	        </tr>
 	        <tr>
@@ -22,11 +22,11 @@
 	            <td><label>Adgroup</label></td>
 	            <td><select id="adgroup" style="width:300px">
 	            		<option value="" selected="">Select Branch param to assign as 'Adgroup' in Adjust.</option>
-	            		<option value="branch">Branch"</option>
-	            		<option value="channel">{{ Channel }}</option>
-	            		<option value="feature">{{ Feature }}</option>
-	            		<option value="stage">{{ Stage }}</option>
-	            		<option value="tags">{{ Tags }}</option>
+	            		<option value="branch">Branch</option>
+	            		<option value="channel">Channel</option>
+	            		<option value="feature">Feature</option>
+	            		<option value="stage">Stage</option>
+	            		<option value="tags">Tags</option>
 	            	</select></td>
 	        </tr>
 
@@ -34,65 +34,70 @@
 	            <td><label>Creative</label></td>
 	            <td><select id="creative" style="width:300px" >
 	            		<option value="" selected="">Select Branch param to assign as 'Creative' in Adjust.</option>
-	            		<option value="branch">"Branch"</option>
-	            		<option value="channel">{{ Channel }}</option>
-	            		<option value="feature">{{ Feature }}</option>
-	            		<option value="stage">{{ Stage }}</option>
-	            		<option value="tags">vTags }}</option>
+	            		<option value="branch">Branch</option>
+	            		<option value="channel">Channel </option>
+	            		<option value="feature">Feature </option>
+	            		<option value="stage">Stage</option>
+	            		<option value="tags">Tags</option>
 	            	</select></td>
 	        </tr>
-	
-	</table>
-			</br>
-			</br>
 
-	<table>
 		<!-- START OF CUSTOM QUERY PARAMETERS -->
-		<tr><td><h3><b>Custom Query Parameters </b></h3></td></tr>
+		<tr><h3><b>Custom Query Parameters </b></h3></tr>
 	       	<tr>
 	            <td><label>Custom Query Parameters<br><i>*Note* Format should be a string with <br>one item = another item. </i><br><b>Example:</b> user_id=JohnJoe</label></td>
 	        </tr>
 	        <tr>
+	        	<td><label>Custom Query Parameter</label></td>
 	            <td><input style="width:300px" id="customQueryParams1" type="text" maxlength="200" placeholder="format: param=sometext"/></td>
 	        </tr>
 			<tr>
+				<td><label>Custom Query Parameter</label></td>
 	            <td><input style="width:300px" id="customQueryParams2" type="text" maxlength="200" placeholder="format: param=sometext"/></td>
 	        </tr>
 	        <tr>
+	        	<td><label>Custom Query Parameter</label></td>
 	            <td><input style="width:300px" id="customQueryParams3" type="text" maxlength="200" placeholder="format: param=sometext"/></td>
 	        </tr>
 	        <tr>
+	        	<td><label>Custom Query Parameter</label></td>
 	  	        <td><input style="width:300px" id="customQueryParams4" type="text" maxlength="200" placeholder="format: param=sometext"/></td>          	
 	        </tr>
 	       	<tr>
+	        	<td><label>Custom Query Parameter</label></td>
 	            <td><input style="width:300px" id="customQueryParams5" type="text" maxlength="200" placeholder="format: param=sometext"/></td>
 	        </tr>
-	        	        <tr>
+	       	<tr>
+				<td><label>Custom Query Parameter</label></td>
 	            <td><input style="width:300px" id="customQueryParams6" type="text" maxlength="200" placeholder="format: param=sometext"/></td>
 	        </tr>
 			<tr>
+	        	<td><label>Custom Query Parameter</label></td>
 	            <td><input style="width:300px" id="customQueryParams7" type="text" maxlength="200" placeholder="format: param=sometext"/></td>
 	        </tr>
 	        <tr>
+				<td><label>Custom Query Parameter</label></td>
 	            <td><input style="width:300px" id="customQueryParams8" type="text" maxlength="200" placeholder="format: param=sometext"/></td>
 	        </tr>
 	        <tr>
+			 	<td><label>Custom Query Parameter</label></td>
 	  	        <td><input style="width:300px" id="customQueryParams9" type="text" maxlength="200" placeholder="format: param=sometext"/></td>          	
 	        </tr>
 	       	<tr>
+	 	        <td><label>Custom Query Parameter</label></td>
 	            <td><input style="width:300px" id="customQueryParams10" type="text" maxlength="200" placeholder="format: param=sometext"/></td>
 	        </tr>
 	</table>
 			</br>
 			</br>
 	
-	<button onclick="createAdjustWebhook()">Create Webhook</button>
+	<button style="float:bottom" onclick="createAdjustWebhook()">Create Webhook</button>
 			
 			</br>
 			</br>
 
 	<h3>Generated Adjust Webhook</h3>
-		<textarea style="height:100px; width:400px" id="generatedAdjustWebhook" type="text"></textarea>
+		<textarea style="float:bottom;width:100%; height:400px;" id="generatedAdjustWebhook" type="text"></textarea>
 			</br>
 			</br>
 </body>
