@@ -469,7 +469,7 @@ $.onInitSessionFinished = function(data) {
 Inside the callback where Branch is initialized, you will want to examine the dictionary passed in the callback to see if the user opened a link to content. Below is an example assuming that the links correspond to pictures.
 
 {% highlight js %}
-var branch = require('react-native-branch');
+var branch = require('branch-react-native-sdk');
 
 //Receives the initSession's result as soon as it becomes available
 branch.getInitSessionResultPatiently(({params, error}) => {

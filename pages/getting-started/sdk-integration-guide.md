@@ -214,7 +214,7 @@ We attempt to automatically add an Android manifest flag to support deep linking
 
 1. Navigate into the SDK package directory: `cd node_modules/branch-react-native-sdk`.
 1. Use CocoaPods to install dependencies: `pod install`.
-1. Drag **/node_modules/react-native-branch/Pods/Pods.xcodeproj** into the **Libraries** folder of your Xcode project. {% image src='/img/pages/getting-started/sdk-integration-guide/pod-import.png' full center alt='Import CocoaPods project' %}
+1. Drag **/node_modules/branch-react-native-sdk/Pods/Pods.xcodeproj** into the **Libraries** folder of your Xcode project. {% image src='/img/pages/getting-started/sdk-integration-guide/pod-import.png' full center alt='Import CocoaPods project' %}
 1. In Xcode, drag the `libBranch.a` Product from **Pods.xcodeproj** into your the **Link Binary with Libraries** section of **Build Phases** for your project's target. {% image src='/img/pages/getting-started/sdk-integration-guide/link-pod-binary.png' full center alt='Link Pod product with project binary' %}
 
 {% protip %}
@@ -230,10 +230,10 @@ Sometimes `rnpm` link creates incorrect relative paths, leading to compilation e
 {% highlight js %}
 ...
 
-include ':react-native-branch', ':app'
+include ':branch-react-native-sdk', ':app'
 
-// The relative path to the react-native-branch directory tends to often be prefixed with one too many "../"s
-project(':react-native-branch').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-branch/android')
+// The relative path to the branch-react-native-sdk directory tends to often be prefixed with one too many "../"s
+project(':branch-react-native-sdk').projectDir = new File(rootProject.projectDir, '../node_modules/branch-react-native-sdk/android')
 {% endhighlight %}
 
 #### android/app/build.gradle
@@ -243,7 +243,7 @@ project(':react-native-branch').projectDir = new File(rootProject.projectDir, '.
 
 dependencies {
     ...
-    compile project(':react-native-branch')
+    compile project(':branch-react-native-sdk')
 }
 {% endhighlight %}
 {% endif %}
