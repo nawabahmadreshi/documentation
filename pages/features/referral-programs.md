@@ -17,6 +17,7 @@ platforms:
 - unity
 - adobe
 - titanium
+- react
 sections:
 - guide
 ---
@@ -84,6 +85,14 @@ Let's say you want to give 10 credits to each new user who signs up through a fr
 {% endexample %}
 
 ## Viewing Credits
+
+{% if page.react %}
+
+{% protip title="Unsupported in React Native" %}
+Viewing credits is currently unsupported in the React Native SDK. We hope to include this soon, and would also gladly accept pull requests to our [GitHub repo](https://github.com/BranchMetrics/React-Native-Deep-Linking-SDK)!
+{% endprotip %}
+
+{% else %}
 
 Once users have credits, they should be able to redeem them.
 
@@ -286,7 +295,17 @@ branch.addEventListener("bio:loadRewards", $.onLoadRewardFinished);
 {% endhighlight %}
 {% endif %}
 
+{% endif %}
+
 ## Redeeming Credits
+
+{% if page.react %}
+
+{% protip title="Unsupported in React Native" %}
+Redeeming credits is currently unsupported in the React Native SDK. We hope to include this soon, and would also gladly accept pull requests to our [GitHub repo](https://github.com/BranchMetrics/React-Native-Deep-Linking-SDK)!
+{% endprotip %}
+
+{% else %}
 
 When users spend credits, you can make a simple call to redeem their credits.
 
@@ -479,3 +498,5 @@ Branch.getInstance().loadRewards(new BranchReferralStateChangedListener() {
 {% endhighlight %}
 {% endif %}
 {% endexample %}
+
+{% endif %}

@@ -266,7 +266,7 @@ var branchUniversalObject = branch.createBranchUniversalObject({
 <!--- /React -->
 {% if page.react %}
 {% highlight js %}
-branchUniversalObject = {
+var branchUniversalObject = {
    metadata:{  
       "$og_video" : "http://mysite/video.mpg"
    },
@@ -455,11 +455,9 @@ branchUniversalObject.addEventListener("bio:generateShortUrl", $.onGenerateUrlFi
 
 <!--- React -->
 {% if page.react %}
-{% highlight js %}
-
-// Currently not supported in React Native
-
-{% endhighlight %}
+{% protip title="Unsupported in React Native" %}
+Link control parameters are currently unsupported in the React Native SDK. We hope to include them soon, and would also gladly accept pull requests to our [GitHub repo](https://github.com/BranchMetrics/React-Native-Deep-Linking-SDK)!
+{% endprotip %}
 {% endif %}
 <!--- /React -->
 
