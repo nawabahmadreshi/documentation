@@ -281,7 +281,7 @@ Branch opens your app by using its URI scheme (`yourapp://`), which should be un
 {% endif %}
 
 {% if page.android or page.react %}
-## Configure Manifest
+## {% if page.react %}Android: {% endif %}Configure Manifest
 
 ### Add your Branch key
 
