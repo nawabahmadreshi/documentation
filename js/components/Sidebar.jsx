@@ -53,6 +53,9 @@ var LinkInternal = React.createClass({
 			else if (props.page_key.title == 'Titanium SDK') {
 				return (<a target="_blank" href="https://github.com/BranchMetrics/Titanium-Deferred-Deep-Linking-SDK">{ page_key }</a>);
 			}
+			else if (props.page_key.title == 'React Native SDK') {
+				return (<a target="_blank" href="https://github.com/BranchMetrics/React-Native-Deferred-Deep-Linking-SDK">{ page_key }</a>);
+			}
 			else if (props.page_key.title == 'HTTP API') {
 				return (<a target="_blank" href="https://github.com/BranchMetrics/Deferred-Deep-Linking-Public-API">{ page_key }</a>);
 			}

@@ -16,6 +16,7 @@ platforms:
 - unity
 - adobe
 - titanium
+- react
 sections:
 - overview
 - guide
@@ -357,7 +358,7 @@ var branchUniversalObject = branch.createBranchUniversalObject({
   "contentImageUrl" : "https://example.com/monster-pic-12345.png",
   "contentMetadata" : {
       "userId" : "12345",
-      "userName" : "Josh"
+      "userName" : "Josh",
       "monsterName" : "Mr. Squiggles"
   },
 });
@@ -382,6 +383,40 @@ To implement the callback, you must add a listener to the event `bio:generateSho
 {% highlight js %}
 branchUniversalObject.addEventListener("bio:generateShortUrl", $.onGenerateUrlFinished);
 {% endhighlight %}
+
+{% endif %}
+
+<!--- React -->
+
+{% if page.react %}
+
+Create a `BranchUniversalObject` containing details about the user who is inviting friends:
+
+{% highlight js %}
+var branchUniversalObject = {
+   metadata:{  
+      "userId" : "12345",
+      "userName" : "Josh",
+      "monsterName" : "Mr. Squiggles"
+   },
+   "canonicalIdentifier" : "monster/12345",
+   "contentTitle" : "Meet Mr. Squiggles",
+   "contentDescription" : "Your friend Josh has invited you to meet his awesome monster, Mr. Squiggles!",
+   "contentImageUrl" : "https://example.com/monster-pic-12345.png"
+};
+{% endhighlight %}
+
+{% protip %}
+The `canonicalIdentifier` parameter greatly improves the content analytics data Branch captures. It should be unique to that piece of content and helps Branch dedupe across many instances of the same thing. Suitable options: a website with pathing, or a database with identifiers for entities.
+{% endprotip %}
+
+Then, create the link to be shared by referencing the `BranchUniversalObject` and defining the properties of the link.
+
+{% protip title="Unsupported in React Native" %}
+A stand-alone link creation method is currently not available in the React Native SDK. We hope to include one soon, and would also gladly accept pull requests to our [GitHub repo](https://github.com/BranchMetrics/React-Native-Deep-Linking-SDK)!
+
+In the meantime, you can use the `showShareSheet` method instead. [Read more about it here]({{base.url}}/getting-started/branch-universal-object/guide/react/#showsharesheet).
+{% endprotip %}
 
 {% endif %}
 

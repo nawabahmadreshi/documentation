@@ -21,6 +21,7 @@ platforms:
 - unity
 - adobe
 - titanium
+- react
 sections:
 - guide
 - advanced
@@ -188,13 +189,13 @@ We attempt to automatically add an Android manifest flag to support deep linking
 <!--- Titanium -->
 {% if page.titanium %}
 
-### iOS Module Installation
+### iOS module installation
 
 1. [Download the latest SDK version](https://s3-us-west-1.amazonaws.com/branchhost/Branch-Titanium-iOS-SDK.zip) or [clone our open-source GitHub repository](https://github.com/BranchMetrics/Titanium-Deferred-Deep-Linking-SDK) and locate the ZIP file inside the `iphone` folder.
 1. Extract the contents.
 3. Copy the `iphone` folder to your Titanium `modules` folder.
 
-### Android Module Installation
+### Android module installation
 
 1. [Download the latest SDK version](https://s3-us-west-1.amazonaws.com/branchhost/Branch-Titanium-Android-SDK.zip) or [clone our open-source GitHub repository](https://github.com/BranchMetrics/Titanium-Deferred-Deep-Linking-SDK) and locate the ZIP file inside the `android/dist` folder.
 1. Extract the contents.
@@ -203,8 +204,53 @@ We attempt to automatically add an Android manifest flag to support deep linking
 {% endif %}
 <!--- /Titanium -->
 
-{% if page.ios or page.xamarin %}
-## {% if page.xamarin %}iOS: {% endif %}Configure Xcode Project
+{% if page.react %}
+
+1. Run `npm install rnpm -g` (skip this step if `rnpm` is already installed on your system).
+1. Navigate go your root project directory and download the Branch SDK package: `npm install --save branch-react-native-sdk`.
+1. Configure the package: `rnpm link branch-react-native-sdk`.
+
+### iOS project installation
+
+1. Navigate into the SDK package directory: `cd node_modules/branch-react-native-sdk`.
+1. Use CocoaPods to install dependencies: `pod install`.
+1. Drag **/node_modules/react-native-branch/Pods/Pods.xcodeproj** into the **Libraries** folder of your Xcode project. {% image src='/img/pages/getting-started/sdk-integration-guide/pod-import.png' full center alt='Import CocoaPods project' %}
+1. In Xcode, drag the `libBranch.a` Product from **Pods.xcodeproj** into your the **Link Binary with Libraries** section of **Build Phases** for your project's target. {% image src='/img/pages/getting-started/sdk-integration-guide/link-pod-binary.png' full center alt='Link Pod product with project binary' %}
+
+{% protip %}
+See [this page](https://facebook.github.io/react-native/docs/linking-libraries-ios.html#manual-linking) for detailed documentation on importing iOS libraries into a React Native project.
+{% endprotip %}
+
+### Android project installation
+
+Sometimes `rnpm` link creates incorrect relative paths, leading to compilation errors. Ensure that the following files look as described and all linked paths are correct:
+
+#### android/settings.gradle
+
+{% highlight js %}
+...
+
+include ':react-native-branch', ':app'
+
+// The relative path to the react-native-branch directory tends to often be prefixed with one too many "../"s
+project(':react-native-branch').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-branch/android')
+{% endhighlight %}
+
+#### android/app/build.gradle
+
+{% highlight js %}
+...
+
+dependencies {
+    ...
+    compile project(':react-native-branch')
+}
+{% endhighlight %}
+{% endif %}
+<!--- /React -->
+
+{% if page.ios or page.xamarin or page.react %}
+## {% if page.xamarin or page.react %}iOS: {% endif %}Configure Xcode Project
 
 ### Add your Branch key
  
@@ -234,7 +280,7 @@ Branch opens your app by using its URI scheme (`yourapp://`), which should be un
 
 {% endif %}
 
-{% if page.android %}
+{% if page.android or page.react %}
 ## Configure Manifest
 
 ### Add your Branch key
@@ -251,7 +297,7 @@ Branch opens your app by using its URI scheme (`yourapp://`), which should be un
 </application>
 {% endhighlight %}
 
-## Register for Google Play Install Referrer
+### Register for Google Play Install Referrer
 
 Add this snippet to your `AndroidManifest.xml`:
 
@@ -500,7 +546,6 @@ A Branch session needs to be started every single time your app opens. We check 
 
 1. In Xcode, open your **App.Delegate.m** file.
 1. Add `#import "Branch.h"` at the top to import the Branch framework.
-1. Create the following new methods:
 1. Find the line beginning with:
 
 {% highlight objc %}
@@ -897,6 +942,82 @@ $.onInitSessionFinished = function(data) {
     }
 }
 {% endhighlight %}
+{% endif %}
+
+{% if page.react %}
+
+### iOS initialization
+
+1. In Xcode, open your **App.Delegate.m** file.
+2. Add `#import "RNBranch.h"` at the top to import the Branch framework.
+3. Find the line beginning with:
+
+{% highlight objc %}
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:
+{% endhighlight %}
+
+Underneath this line, add the following snippet:
+
+{% highlight objc %}
+[RNBranch initSessionWithLaunchOptions:launchOptions isReferrable:YES];
+
+NSURL *jsCodeLocation;
+{% endhighlight %}
+
+Finally, add these two new methods. The first responds to URI scheme links. The second responds to Universal Links, but will not be active until you [configure Universal Links]({{base.url}}/getting-started/universal-app-links).
+
+{% highlight objc %}
+// Respond to URI scheme links
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+  if (![RNBranch handleDeepLink:url]) {
+    // do other deep link routing for the Facebook SDK, Pinterest SDK, etc
+  }
+  return YES;
+}
+
+// Respond to Universal Links
+- (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray *restorableObjects))restorationHandler {
+  return [RNBranch continueUserActivity:userActivity];
+}
+{% endhighlight %}
+
+### Android initialization
+
+In **android/app/src/main/java/com/xxx/MainActivity.java**, add the following:
+
+{% highlight java %}
+import android.content.Intent; // <-- import
+import com.dispatcher.rnbranch.*; // <-- import
+
+public class MainActivity extends ReactActivity {
+    // ...
+
+    @Override
+    protected List<ReactPackage> getPackages() {
+        return Arrays.<ReactPackage>asList(
+            new MainReactPackage(),
+            new RNBranchPackage() // <-- add this line, if not already there
+        );
+    }
+
+    // Add onStart
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        RNBranchModule.initSession(this.getIntent().getData(), this);
+    }
+
+    // Add onNewIntent
+    @Override
+    public void onNewIntent(Intent intent) {
+        this.setIntent(intent);
+    }
+
+    // ...  
+}
+{% endhighlight %}
+
 {% endif %}
 
 {% if page.android %}{% else %}

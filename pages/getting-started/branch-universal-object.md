@@ -14,6 +14,7 @@ platforms:
 - unity
 - adobe
 - titanium
+- react
 sections:
 - guide
 contents: list
@@ -76,6 +77,28 @@ branchUniversalObject.addMetadataKey("property2", value: "red")
 
 {% endif %}
 
+{% if page.cordova %}
+
+{% highlight js %}
+var branchUniversalObj = null;
+
+Branch.createBranchUniversalObject({
+  canonicalIdentifier: 'content/12345',
+  title: 'My Content Title',
+  contentDescription: 'My Content Description',
+  contentImageUrl: 'https://example.com/mycontent-12345.png',
+  contentMetadata: {
+    'product_picture': '12345',
+    'user_id': '6789'
+  }
+}).then(function (newBranchUniversalObj) {
+  branchUniversalObj = newBranchUniversalObj;
+  console.log(newBranchUniversalObj);
+});
+{% endhighlight %}
+
+{% endif %}
+
 {% if page.unity %}
 
 {% highlight c# %}
@@ -107,24 +130,19 @@ var branchUniversalObject = branch.createBranchUniversalObject({
 
 {% endif %}
 
-{% if page.cordova %}
+{% if page.react %}
 
 {% highlight js %}
-var branchUniversalObj = null;
-
-Branch.createBranchUniversalObject({
-  canonicalIdentifier: 'content/12345',
-  title: 'My Content Title',
-  contentDescription: 'My Content Description',
-  contentImageUrl: 'https://example.com/mycontent-12345.png',
-  contentMetadata: {
-    'product_picture': '12345',
-    'user_id': '6789'
-  }
-}).then(function (newBranchUniversalObj) {
-  branchUniversalObj = newBranchUniversalObj;
-  console.log(newBranchUniversalObj);
-});
+var branchUniversalObject = {
+   metadata:{  
+      "product_picture" : "12345",
+      "user_id" : "6789"
+   },
+   "canonicalIdentifier" : "content/12345",
+   "contentTitle" : "My Content Title",
+   "contentDescription" : "My Content Description",
+   "contentImageUrl" : "https://example.com/mycontent-12345.png"
+};
 {% endhighlight %}
 
 {% endif %}
@@ -172,6 +190,17 @@ Some of these parameters automatically [populate the link parameters]({{base.url
 
 {% endif %}
 
+{% if page.cordova %}
+| Parameter | Usage | Link Parameter
+| --- | --- | ---
+| canonicalIdentifier | This is the unique identifier for content that will help Branch dedupe across many instances of the same thing. Suitable options: a website with pathing, or a database with identifiers for entities | $canonical_identifier
+| title | The name for the piece of content | $og_title 
+| contentDescription | A description for the content | $og_description
+| contentImageUrl | The image URL for the content | $og_image_url
+| contentMetadata | Any extra parameters you'd like to associate with the Branch Universal Object. These will be made available to you after the user clicks the link and opens up the app, and are used for [Deep Link Routing Routing]({{base.url}}/getting-started/deep-link-routing).
+| contentIndexingMode | Can be set to either `public` or `private`. Public indicates that you'd like this content to be discovered by other apps* | $publicly_indexable
+{% endif %}
+
 {% if page.unity %}
 
 | Parameter | Usage | Link Parameter
@@ -210,15 +239,20 @@ Some of these parameters automatically [populate the link parameters]({{base.url
 
 {% endif %}
 
-{% if page.cordova %}
+{% if page.react %}
+
+{% protip title="Partial support in React Native" %}
+Only a subset of link parameters are currently supported in the React Native SDK. We hope to include more soon, and would also gladly accept pull requests to our [GitHub repo](https://github.com/BranchMetrics/React-Native-Deep-Linking-SDK)!
+{% endprotip %}
+
 | Parameter | Usage | Link Parameter
 | --- | --- | ---
 | canonicalIdentifier | This is the unique identifier for content that will help Branch dedupe across many instances of the same thing. Suitable options: a website with pathing, or a database with identifiers for entities | $canonical_identifier
-| title | The name for the piece of content | $og_title 
+| contentTitle | The name for the piece of content | $og_title 
 | contentDescription | A description for the content | $og_description
 | contentImageUrl | The image URL for the content | $og_image_url
-| contentMetadata | Any extra parameters you'd like to associate with the Branch Universal Object. These will be made available to you after the user clicks the link and opens up the app, and are used for [Deep Link Routing Routing]({{base.url}}/getting-started/deep-link-routing).
-| contentIndexingMode | Can be set to either `public` or `private`. Public indicates that you'd like this content to be discovered by other apps* | $publicly_indexable
+| metadata | Any extra parameters you'd like to associate with the Branch Universal Object. These will be made available to you after the user clicks the link and opens up the app, and are used for [Deep Link Routing Routing]({{base.url}}/getting-started/deep-link-routing).
+
 {% endif %}
 
 ## Methods
@@ -256,7 +290,7 @@ Use Branch's preconfigured `UIActivityItemProvider` to share a piece of content 
 
 {% image src='/img/pages/getting-started/branch-universal-object/ios_share_sheet.png' actual center alt='ios share sheet' %}
 
-To implement it, use the following `showShareSheetWithLinkProperties` method instead of `getShortUrlWithLinkProperties` in the last step above:
+To implement it, use the following `showShareSheetWithLinkProperties` method on your `branchUniversalObject`
 
 {% tabs %}
 {% tab objective-c %}
@@ -308,7 +342,7 @@ Use Branch's custom share sheet to share a piece of content without having to cr
 
 {% image src='/img/pages/getting-started/branch-universal-object/android_share_sheet.png' half center alt='Android share sheet' %}
 
-To implement it, use the following `showShareSheet` method instead of `generateShortUrl` in the last step above:
+To implement it, use the following `showShareSheet` method on your `branchUniversalObject`
 
 {% highlight java %}
 branchUniversalObject.showShareSheet(this, 
@@ -342,6 +376,90 @@ ShareSheetStyle shareSheetStyle = new ShareSheetStyle(MainActivity.this, "Check 
 
 {% endif %}
 
+{% if page.cordova %}
+### registerView
+
+Call this method when the content loads on screen to track how many times a piece of content is viewed.
+
+{% highlight js %}
+branchUniversalObj.registerView();
+{% endhighlight %}
+
+### generateShortUrl
+
+Create a link to a piece of content. Visit the [Creating Links in Apps]({{base.url}}/getting-started/creating-links-in-apps) page to learn more.
+
+### showShareSheet
+
+Use Branch's custom share sheet to share a piece of content without having to create a link. Calling this method will automatically generate a Branch link with the appropriate analytics channel when the user selects a sharing destination.
+
+{% image src='/img/pages/getting-started/branch-universal-object/combined_share_sheet.png' actual center alt='ios and android share sheets' %}
+
+To implement it, use the following `showShareSheet` method on your `branchUniversalObject`
+
+{% highlight js %}
+branchUniversalObj.showShareSheet({
+  // put your link properties here
+  "feature" : "sample-feature",
+  "channel" : "sample-channel",
+  "stage" : "sample-stage",
+  "duration" : 1,
+}, {
+  // put your control parameters here
+  "$desktop_url" : "http://desktop-url.com",
+});
+{% endhighlight %}
+
+#### Share sheet callbacks (Android ONLY)
+
+{% protip %}
+Callbacks in iOS are ignored. There is no need to implement them as the events are handled by `UIActivityViewController`.
+{% endprotip %}
+
+To implement the callback on Android, you must add listeners to the following events:
+
+##### onShareSheetLaunched
+
+The event fires when the share sheet is presented.
+
+{% highlight js %}
+branchUniversalObj.onShareSheetLaunched(function () {
+  console.log('Share sheet launched');
+});
+{% endhighlight %}
+
+##### onShareSheetDismissed
+
+The event fires when the share sheet is dismissed.
+
+{% highlight js %}
+branchUniversalObj.onShareSheetDismissed(function () {
+  console.log('Share sheet dimissed');
+});
+{% endhighlight %}
+
+##### onLinkShareResponse
+
+The event returns a dictionary of the response data.
+
+{% highlight js %}
+branchUniversalObj.onLinkShareResponse(function (res) {
+  console.log('Share link response: ' + JSON.stringify(res));
+});
+{% endhighlight %}
+
+##### onChannelSelected
+
+The event fires when a channel is selected.
+
+{% highlight js %}
+branchUniversalObj.onChannelSelected(function (res) {
+  console.log('Channel selected: ' + JSON.stringify(res));
+});
+{% endhighlight %}
+
+{% endif %}
+
 {% if page.unity %}
 
 ### registerView
@@ -362,7 +480,7 @@ Use Branch's custom share sheet to share a piece of content without having to cr
 
 {% image src='/img/pages/getting-started/branch-universal-object/combined_share_sheet.png' actual center alt='ios and android share sheets' %}
 
-To implement it, use the following `shareLink` method instead of `getShortURL ` in the last step above:
+To implement it, use the following `shareLink` method on your `branchUniversalObject`
 
 {% highlight c# %}
 Branch.shareLink(universalObject, linkProperties, "hello there with short url", (url, error) => {
@@ -395,7 +513,7 @@ Use Branch's custom share sheet to share a piece of content without having to cr
 
 {% image src='/img/pages/getting-started/branch-universal-object/combined_share_sheet.png' actual center alt='ios and android share sheets' %}
 
-To implement it, use the following `showShareSheet` method instead of `generateShortUrl` in the last step above:
+To implement it, use the following `showShareSheet` method on your `branchUniversalObject`
 
 {% highlight js %}
 branchUniversalObject.showShareSheet({
@@ -458,87 +576,39 @@ branchUniversalObject.shareChannelSelected(function (res) {
 
 {% endif %}
 
+{% if page.react %}
 
-{% if page.cordova %}
 ### registerView
 
-Call this method when the content loads on screen to track how many times a piece of content is viewed.
+{% protip title="Unsupported in React Native" %}
+This method is currently unsupported in the React Native SDK. We hope to include it soon, and would also gladly accept pull requests to our [GitHub repo](https://github.com/BranchMetrics/React-Native-Deep-Linking-SDK)!
+{% endprotip %}
 
-{% highlight js %}
-branchUniversalObj.registerView();
-{% endhighlight %}
+### getShortUrl
 
-### generateShortUrl
-
-Create a link to a piece of content. Visit the [Creating Links in Apps]({{base.url}}/getting-started/creating-links-in-apps) page to learn more.
+{% protip title="Unsupported in React Native" %}
+This method is currently unsupported in the React Native SDK. We hope to include it soon, and would also gladly accept pull requests to our [GitHub repo](https://github.com/BranchMetrics/React-Native-Deep-Linking-SDK)!
+{% endprotip %}
 
 ### showShareSheet
 
-Use Branch's custom share sheet to share a piece of content without having to create a link. Calling this method will automatically generate a Branch link with the appropriate analytics channel when the user selects a sharing destination.
+Use Branch’s custom share sheet to share a piece of content without having to create a link. Calling this method will automatically generate a Branch link with the appropriate analytics channel when the user selects a sharing destination.
 
-{% image src='/img/pages/getting-started/branch-universal-object/combined_share_sheet.png' actual center alt='ios and android share sheets' %}
+{% image src='/img/pages/getting-started/branch-universal-object/combined_share_sheet.png' actual center alt='ios share sheet' %}
 
-To implement it, use the following `showShareSheet` method instead of `generateShortUrl` in the last step above:
+To implement it, first set your `shareOptions`
 
 {% highlight js %}
-branchUniversalObj.showShareSheet({
-  // put your link properties here
-  "feature" : "sample-feature",
-  "channel" : "sample-channel",
-  "stage" : "sample-stage",
-  "duration" : 1,
-}, {
-  // put your control parameters here
-  "$desktop_url" : "http://desktop-url.com",
-});
+var shareOptions = {
+	"messageHeader" : "Check this out!", //Only used on Android
+	"messageBody" : "Check this cool thing out: "
+};
 {% endhighlight %}
 
-#### Share sheet callbacks (Android ONLY)
-
-{% protip %}
-Callbacks in iOS are ignored. There is no need to implement them as the events are handled by `UIActivityViewController`.
-{% endprotip %}
-
-To implement the callback on Android, you must add listeners to the following events:
-
-##### onShareSheetLaunched
-
-The event fires when the share sheet is presented.
+Then use the following `showShareSheet` method on your `branchUniversalObject`
 
 {% highlight js %}
-branchUniversalObj.onShareSheetLaunched(function () {
-  console.log('Share sheet launched');
-});
-{% endhighlight %}
-
-##### onShareSheetDismissed
-
-The event fires when the share sheet is dismissed.
-
-{% highlight js %}
-branchUniversalObj.onShareSheetDismissed(function () {
-  console.log('Share sheet dimissed');
-});
-{% endhighlight %}
-
-##### onLinkShareResponse
-
-The event returns a dictionary of the response data.
-
-{% highlight js %}
-branchUniversalObj.onLinkShareResponse(function (res) {
-  console.log('Share link response: ' + JSON.stringify(res));
-});
-{% endhighlight %}
-
-##### onChannelSelected
-
-The event fires when a channel is selected.
-
-{% highlight js %}
-branchUniversalObj.onChannelSelected(function (res) {
-  console.log('Channel selected: ' + JSON.stringify(res));
-});
+branch.showShareSheet(shareOptions, branchUniversalObject, linkProperties, ({channel, completed, error}) => {});
 {% endhighlight %}
 
 {% endif %}

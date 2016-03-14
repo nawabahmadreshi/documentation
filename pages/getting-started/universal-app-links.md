@@ -13,6 +13,7 @@ platforms:
 - unity
 - adobe
 - titanium
+- react
 sections:
 - overview
 - guide
@@ -35,7 +36,9 @@ Branch makes it simple to enable Universal Links and App Links, and even improve
 
 {% elsif page.guide %}
 
-{% if page.android %}{% else %}
+{% if page.android %}
+<!-- do nothing -->
+{% else %}
 
 {% ingredient quickstart-prerequisite %}{% endingredient %}
 
@@ -78,7 +81,7 @@ You can retrieve your app's Bundle Identifier under the `General` tab of your Xc
 
 ## Add the entitlement to your project
 
-{% if page.ios or page.xamarin or page.unity or page.adobe %}
+{% if page.ios or page.xamarin or page.unity or page.adobe or page.react %}
 ### Enable Associated Domains in Xcode
 
 1. Go to the `Capabilities` tab of your project file.
@@ -187,7 +190,7 @@ if (OS_IOS) { // Don't forget this condition.
 
 {% endif %}
 
-{% if page.ios or page.android or page.xamarin %}
+{% if page.ios or page.xamarin or page.react %}
 ## Make your app aware of incoming Universal Links
 {% endif %}
 
@@ -272,6 +275,18 @@ public override bool ContinueUserActivity (UIApplication application,
 
 {% endif %}
 
+{% if page.react %}
+
+Open your **AppDelegate.m** file and add the following method (if you completed the [SDK Integration Guide]({{base.url}}/getting-started/sdk-integration-guide), this is likely already present).
+
+{% highlight objc %}
+- (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray *restorableObjects))restorationHandler {
+  return [RNBranch continueUserActivity:userActivity];
+}
+{% endhighlight %}
+
+{% endif %}
+
 ## Test your Universal Links implementation
 
 After completing this guide and installing a new build of your app on your testing device, you can verify Universal Links are working correctly by following these steps:
@@ -282,7 +297,9 @@ After completing this guide and installing a new build of your app on your testi
 
 {% endif %}
 
-{% if page.ios %}{% else %}
+{% if page.ios %}
+<!-- do nothing -->
+{% else %}
 
 ## Generate signing certificate fingerprint
 

@@ -317,7 +317,7 @@ Conditionally display wrapped content only for the specified section or platform
 | Attribute | Usage
 | ---: | ---
 | **page.[section]** | `overview`, `guide`, `advanced`, `support`
-| **page.[platform]** | `ios`, `android`, `cordova`, `xamarin`, `unity`, `adobe`, `titanium`, `web`
+| **page.[platform]** | `ios`, `android`, `cordova`, `xamarin`, `unity`, `adobe`, `titanium`, `react`, `web`
 
 - These statements can be nested, except within the `page.overview` section which does not support platform conditionals.
 - **elsif** is available
@@ -488,6 +488,7 @@ platforms:
 - unity
 - adobe
 - titanium
+- react
 sections:
 - overview
 - guide
@@ -504,7 +505,7 @@ sections:
 | **page_title** | Longer page name used in the browser titlebar. Can also be specified by platform using **ios_page_title** and **android_page_title** instead.
 | **description** | Short description of page content, used in search results and section landing pages. Can also be specified by platform using **ios_description** and **android_description** instead.
 | **keywords** | Comma-separated keywords used for search. Can also be specified by platform using **ios_keywords** and **android_keywords** instead.
-| **platforms** | *(Optional)* Items to show in the platform selector, which appears at the top of every page section except Overview. Available options are `ios`, `android`, `cordova`, `xamarin`, `unity`, `adobe`, `titanium`, and `web`
+| **platforms** | *(Optional)* Items to show in the platform selector, which appears at the top of every page section except Overview. Available options are `ios`, `android`, `cordova`, `xamarin`, `unity`, `adobe`, `titanium`, `react`, and `web`
 | **sections** | Sections used on page. Available options are `overview`, `guide`, `advanced`, and `support`
 | **contents** | *(Optional)* Controls the style of Table of Contents and alternating content rows on the Guide page section. Available options are `list`, `numbered`, and `hide`. Defaults to `numbered`
 | **hide_section_selector** | *(Optional)* Set `true` to hide the section selector.

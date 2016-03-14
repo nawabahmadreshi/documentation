@@ -15,6 +15,7 @@ platforms:
 - unity
 - adobe
 - titanium
+- react
 sections:
 - guide
 contents: list
@@ -103,6 +104,12 @@ branch.userCompletedAction("custom_action_1");
 {% endhighlight %}
 {% endif %}
 
+{% if page.react %}
+{% highlight js %}
+branch.userCompletedAction("custom_action_1");
+{% endhighlight %}
+{% endif %}
+
 {% protip title="Appending custom metadata" %}
 
 You can also include additional information when creating a custom event:
@@ -175,6 +182,12 @@ Currently not supported in the ANE
 branch.userCompletedAction("purchase_event", {
 	"sku": "12346789"
 });
+{% endhighlight %}
+{% endif %}
+
+{% if page.react %}
+{% highlight js %}
+branch.userCompletedAction("purchase_event", {sku: 12346789});
 {% endhighlight %}
 {% endif %}
 
