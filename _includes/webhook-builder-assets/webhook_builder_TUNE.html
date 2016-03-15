@@ -9,72 +9,79 @@
 <body>
 	<table>
 		<!-- START OF REQUIRED TUNE INFORMATION -->
-			<tr><h3><b>Required Tune Information </b></h3></tr>
+			<tr>
+				<td><h3><b>Required Tune Information </b></h3></td>
+				<td></td>
+			</tr>
 			<tr>
 	            <td><label>Advertiser ID</label></td>
-	            <td><input style="width:300px" id="advertiser_id" type="text" maxlength="30" placeholder="advertiser_id" required/></td>
+	            <td><input class="form-control" style="width:300px" id="advertiser_id" type="text" maxlength="30" placeholder="advertiser_id" required/></td>
 	        </tr>
 	        <tr>
 	            <td><label>Site ID</label></td>
-	            <td><input style="width:300px" id="site_id" type="text" maxlength="30" placeholder="site_id" required/></td>
+	            <td><input class="form-control" style="width:300px" id="site_id" type="text" maxlength="30" placeholder="site_id" required/></td>
 	        </tr>
 
 		<!-- START OF CUSTOM QUERY PARAMETERS -->
-		<tr><td><h3><b>Custom Query Parameters </b></h3></td></tr>
+			<tr>
+				<td><h3><b>Custom Query Parameters </b></h3></td>
+				<td></td>
+			</tr>
 	       	<tr>
-	            <td><label>Custom Query Parameters<br><i>*Note* Format should be a string with <br>one item = another item. </i><br><b>Example:</b> user_id=JohnJoe</label></td>
+	       		<td><br><i>*Note* Format should be a string with <br>one item = another item. </i><br><b>Example:</b> user_id=JohnJoe</td>
+	       		<td></td>
 	        </tr>
 	        <tr>
 	        	<td><label>Custom Query Parameter</label></td>
-	            <td><input style="width:300px" id="customQueryParams1" type="text" maxlength="200" placeholder="format: param=sometext"/></td>
+	            <td><input class="form-control" style="width:300px" id="customQueryParams1" type="text" maxlength="200" placeholder="format: param=sometext"/></td>
 	        </tr>
 			<tr>
 				<td><label>Custom Query Parameter</label></td>
-	            <td><input style="width:300px" id="customQueryParams2" type="text" maxlength="200" placeholder="format: param=sometext"/></td>
+	            <td><input class="form-control" style="width:300px" id="customQueryParams2" type="text" maxlength="200" placeholder="format: param=sometext"/></td>
 	        </tr>
 	        <tr>
 	        	<td><label>Custom Query Parameter</label></td>
-	            <td><input style="width:300px" id="customQueryParams3" type="text" maxlength="200" placeholder="format: param=sometext"/></td>
+	            <td><input class="form-control" style="width:300px" id="customQueryParams3" type="text" maxlength="200" placeholder="format: param=sometext"/></td>
 	        </tr>
 	        <tr>
 	        	<td><label>Custom Query Parameter</label></td>
-	  	        <td><input style="width:300px" id="customQueryParams4" type="text" maxlength="200" placeholder="format: param=sometext"/></td>          	
+	  	        <td><input class="form-control" style="width:300px" id="customQueryParams4" type="text" maxlength="200" placeholder="format: param=sometext"/></td>          	
 	        </tr>
 	       	<tr>
 	        	<td><label>Custom Query Parameter</label></td>
-	            <td><input style="width:300px" id="customQueryParams5" type="text" maxlength="200" placeholder="format: param=sometext"/></td>
+	            <td><input class="form-control" style="width:300px" id="customQueryParams5" type="text" maxlength="200" placeholder="format: param=sometext"/></td>
 	        </tr>
 	       	<tr>
 				<td><label>Custom Query Parameter</label></td>
-	            <td><input style="width:300px" id="customQueryParams6" type="text" maxlength="200" placeholder="format: param=sometext"/></td>
+	            <td><input class="form-control" style="width:300px" id="customQueryParams6" type="text" maxlength="200" placeholder="format: param=sometext"/></td>
 	        </tr>
 			<tr>
 	        	<td><label>Custom Query Parameter</label></td>
-	            <td><input style="width:300px" id="customQueryParams7" type="text" maxlength="200" placeholder="format: param=sometext"/></td>
+	            <td><input class="form-control" style="width:300px" id="customQueryParams7" type="text" maxlength="200" placeholder="format: param=sometext"/></td>
 	        </tr>
 	        <tr>
 				<td><label>Custom Query Parameter</label></td>
-	            <td><input style="width:300px" id="customQueryParams8" type="text" maxlength="200" placeholder="format: param=sometext"/></td>
+	            <td><input class="form-control" style="width:300px" id="customQueryParams8" type="text" maxlength="200" placeholder="format: param=sometext"/></td>
 	        </tr>
 	        <tr>
 			 	<td><label>Custom Query Parameter</label></td>
-	  	        <td><input style="width:300px" id="customQueryParams9" type="text" maxlength="200" placeholder="format: param=sometext"/></td>          	
+	  	        <td><input class="form-control" style="width:300px" id="customQueryParams9" type="text" maxlength="200" placeholder="format: param=sometext"/></td>          	
 	        </tr>
 	       	<tr>
 	 	        <td><label>Custom Query Parameter</label></td>
-	            <td><input style="width:300px" id="customQueryParams10" type="text" maxlength="200" placeholder="format: param=sometext"/></td>
+	            <td><input class="form-control" style="width:300px" id="customQueryParams10" type="text" maxlength="200" placeholder="format: param=sometext"/></td>
 	        </tr>
 	</table>
 			</br>
 			</br>
 	
-	<button onclick="createTuneWebhook()">Create Webhook</button>
+	<button class="form-control" onclick="createTuneWebhook()">Create Webhook</button>
 			
 			</br>
 			</br>
 
 	<h3>Generated Tune Webhook</h3>
-		<textarea style="width:100%; height:400px;" id="generatedTuneWebhook" type="text"></textarea>
+		<textarea class="form-control" style="height:300px; margin-bottom:15%;" id="generatedTuneWebhook" type="text"></textarea>
 			</br>
 			</br>
 </body>
