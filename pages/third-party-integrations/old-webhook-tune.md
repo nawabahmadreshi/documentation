@@ -1,7 +1,7 @@
 ---
 type: recipe
-title: "Tune"
-page_title: Branch / Tune Integration Guide
+directory: third-party-integrations
+title: "Tune Integration Guide"
 description: Learn how to send your Branch data to your Tune account so you can view Branch events alongside your other acquisiion channels.
 keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Ad Measurement, third party ad measurement, ad network
 hide_platform_selector: true
