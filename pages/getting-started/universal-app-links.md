@@ -401,6 +401,36 @@ Here are some recommended next steps:
 No advanced information available for this platform.
 {% else %}
 
+## Using a custom domain or subdomain
+
+### Custom SUBDOMAIN (go.branch.com)
+1. Create a CNAME for the subdomain and point it to `custom.bnc.lt`
+1. Go to [Link Settings](https://dashboard.branch.io/#/settings/link) on the Branch dashboard, and find the **Custom Link Domain** section.
+1. You should see a message telling you the status of your domain under the `Domain name` field. If you don't, please type your domain in again.
+1. Click the `Save` button.
+
+{% image src='/img/pages/getting-started/universal-app-links/custom-domain-success.png' full center alt='successful custom subdomain configuration' %}
+
+### Custom ROOT domain (branch.com)
+
+1. Follow [CloudFlare's instructions](https://support.cloudflare.com/hc/en-us/articles/200169046-How-do-I-add-a-CNAME-record-) to set up your root domain with a CNAME to `custom.bnc.lt`
+1. Using the CloudFlare control panel, proxy your traffic to the domain `custom.bnc.lt` by clicking the cloud with the arrow to make it _orange_. {% image src='/img/pages/getting-started/universal-app-links/orange_cloud.png' full center alt='cloudflare TLS configuration' %}
+1. Make your Crypto settings match this screenshot. This is done by enabling SSL. {% image src='/img/pages/getting-started/universal-app-links/ssl.png' 3-quarters center alt='cloudflare TLS' %}
+
+## Custom continueUserActivity configuration
+
+When users enter your app via a Universal Link, we check to see to see if the link URL contains `bnc.lt`. If so, `handledByBranch` will return `YES`. If not, `handledByBranch` will return `NO`. This allows us to explicitly confirm the incoming link is from Branch without making a server call.
+
+For most implementations this will never be an issue, since your deep links will be routed correctly either way. However, if you use a custom link domain *and* you rely on `handledByBranch` to return `YES` for every incoming Branch-generated Universal Link, you can inform the Branch SDK by following these steps:
+
+1. In your **Info.plist** file, create a new key called `branch_universal_link_domains`.
+1. Add your custom domain(s) as a string. {% image src='/img/pages/getting-started/universal-app-links/branch-universal-link-domain.png' 3-quarters center alt='cloudflare TLS' %}
+1. Save the file.
+
+{% protip title="Multiple custom domains" %}
+If you have an unusual situation with multiple custom link domains, you may also configure `branch_universal_link_domains` as an array of strings. {% image src='/img/pages/getting-started/universal-app-links/branch-universal-link-domains.png' 3-quarters center alt='cloudflare TLS' %}
+{% endprotip %}
+
 ## How to handle old URI paths with Universal Links
 
 When you make the move to Universal Links, you might be wondering how to best harness your old URI paths for iOS 9.X users while keeping the experience the same for iOS 8.X and lower. The easiest way is to handle each link type separately via a conditional flag (such as **self.ignoreDeeplinkPath**) in `application:didFinishLaunchingWithOptions:launchOptions:`.
