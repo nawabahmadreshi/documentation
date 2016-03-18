@@ -102,7 +102,7 @@ Please ensure...
 1. In the `Domains` section, click the `+` icon and add the following entry: `applinks:bnc.lt` {% image src='/img/pages/getting-started/universal-app-links/add_domain.png' 3-quarters center alt='xcode add domain' %}
 
 {% protip title="Using a custom domain or subdomain?" %}
-If you use a [custom domain or subdomain for your Branch links]({{base.url}}/getting-started/dashboard-guide/guide/#setting-a-custom-link-domain), you should also add an entry for `applinks:[mycustomdomainorsubdomain]` and then [see this section]({{base.url}}/getting-started/universal-app-links/advanced/#using-a-custom-domain-or-subdomain) on the Advanced page.
+If you use a [custom domain or subdomain for your Branch links]({{base.url}}/getting-started/dashboard-guide/guide/#setting-a-custom-link-domain), you should also add an entry for `applinks:[mycustomdomainorsubdomain]`.
 {% endprotip %}
 
 ### Add entitlements file to the build target
@@ -125,7 +125,7 @@ Add the following entry to your application's `config.xml`:
 
 {% protip title="Notes" %}
 - You can get your **iOS Team ID** from the Your Account page on the [Apple Developer Portal](https://developer.apple.com/membercenter/index.action#accountSummary).
-- If you use a custom domain or subdomain for your Branch links, you should also add a key for `<host name="mycustomdomainorsubdomain" scheme="https" />` and then [see this section]({{base.url}}/getting-started/universal-app-links/advanced/#using-a-custom-domain-or-subdomain) on the Advanced page.
+- If you use a custom domain or subdomain for your Branch links, you should also add a key for `<host name="mycustomdomainorsubdomain" scheme="https" />`.
 {% endprotip %}
 
 {% endif %}
@@ -149,7 +149,7 @@ Add the following entry to your application's `config.xml`:
 {% endhighlight %}
 
 {% protip title="Using a custom domain or subdomain?" %}
-If you use a [custom domain or subdomain for your Branch links]({{base.url}}/getting-started/dashboard-guide/guide/#setting-a-custom-link-domain), you should also add a key for `<string>[mycustomdomainorsubdomain]</string>` and then [see this section]({{base.url}}/getting-started/universal-app-links/advanced/#using-a-custom-domain-or-subdomain) on the Advanced page.
+If you use a [custom domain or subdomain for your Branch links]({{base.url}}/getting-started/dashboard-guide/guide/#setting-a-custom-link-domain), you should also add a key for `<string>[mycustomdomainorsubdomain]</string>`.
 {% endprotip %}
 
 #### Support Universal Links on Cold Start
@@ -569,7 +569,9 @@ iOS does not re-scrape the apple-app-site-association file unless you delete and
 If you are successfully taken into your app via a Universal Link, you'll see "bnc.lt" (or your domain) and a forward button in the top right corner of the status bar. If you click that button, Apple will no longer activate Universal Links in the future. To re-enable Universal Links, long press on the link in Messages or Notes and choose 'Open in <<App>>'.
 
 ##### Using a custom domain?
-Make sure it's configured correctly If you're using a custom subdomain, your CNAME should point to `custom.bnc.lt` under [Link Settings](https://dashboard.branch.io/#/settings/link) in the Branch dashboard. If you're using a custom root domain, you need to use CloudFlare to proxy the traffic to Branch.
+Make sure it's configured correctly. You can find configuration issues by using our [Universal Link Validator](http://branch.io/resources/universal-links/).
+
+If you're using a custom subdomain, your CNAME should point to `custom.bnc.lt` under [Link Settings](https://dashboard.branch.io/#/settings/link) in the Branch dashboard.
 
 The following error message will appear in your OS-level logs if your domain doesn't have SSL set up properly:
 
