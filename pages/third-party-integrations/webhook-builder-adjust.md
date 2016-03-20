@@ -20,6 +20,8 @@ Use this webhook creation tool to create a postback URL, which you can then use 
 - If you want to deep link from your ads directly content, you should [configure deep link routing]({{base.url}}/getting-started/deep-link-routing).
 {% endprerequisite %}
 
+{% getstarted %}{% endgetstarted %}
+
 {% elsif page.guide %}
 
 {% include webhook-builder-assets/webhook_builder_Adjust.html %}

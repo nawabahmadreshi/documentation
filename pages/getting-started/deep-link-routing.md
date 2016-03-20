@@ -2,8 +2,8 @@
 type: recipe
 directory: getting-started
 title: "Deep Link Routing"
-page_title: Set up deep link routing in your Android or iOS app
-description: This page will tell you how to set up your Android, iOS, Cordova, Phonegap, Xamarin, Unity, Air or Titanium app for deep link routing.
+page_title: Set up deep link routing in your app
+description: This page will tell you how to set up your Android, iOS, Cordova, Phonegap, Xamarin, Unity, Air, Titanium, or React Native app for deep link routing.
 platforms:
 - ios
 - android
@@ -12,6 +12,7 @@ platforms:
 - unity
 - adobe
 - titanium
+- react
 sections:
 - overview
 - guide
@@ -274,12 +275,12 @@ Inside the `andRegisterDeepLinkHandler` callback in your AppDelegate, you will w
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UIViewController *nextVC;
 
-    // If the key '{% section ios_key %}pictureId{% endsection %}' is present in the deep link dictionary
-    {% section ios_comment %}// then load the picture screen with the appropriate picture{% endsection %}
-    NSString *{% section ios_key %}pictureId{% endsection %} = [params objectForKey:@"{% section ios_key %}pictureId{% endsection %}"];
-    if ({% section ios_key %}pictureId{% endsection %}) {
-      nextVC = [storyboard instantiateViewControllerWithIdentifier:@"{% section vc_name %}PicVC{% endsection %}"];
-      [nextVC setNext{% section ios_key_U %}PictureId{% endsection %}:{% section ios_key %}pictureId{% endsection %}];
+    // If the key 'pictureId' is present in the deep link dictionary
+    // then load the picture screen with the appropriate picture
+    NSString *pictureId = [params objectForKey:@"pictureId"];
+    if (pictureId) {
+      nextVC = [storyboard instantiateViewControllerWithIdentifier:@"PicVC"];
+      [nextVC setNextPictureId:pictureId];
     } else {
       nextVC = [storyboard instantiateViewControllerWithIdentifier:@"MainVC"];
     }
@@ -298,7 +299,7 @@ func application(application: UIApplication, didFinishLaunchingWithOptions launc
     let branch: Branch = Branch.getInstance()
     branch.initSessionWithLaunchOptions(launchOptions, true, andRegisterDeepLinkHandler: { params, error in
 
-        // If the key '{% section ios_key %}pictureId{% endsection %}' is present in the deep link dictionary
+        // If the key 'pictureId' is present in the deep link dictionary
         if (params["+clicked_branch_link"] && params["pictureId"]) {
             NSLog("clicked picture link!")
             // load the view to show the picture
@@ -334,13 +335,13 @@ public void onStart() {
             if (error == null) {
                 // params are the deep linked params associated with the link that the user clicked before showing up
                 // params will be empty if no data found
-                String {% section akeyU %}pictureID{% endsection %} = referringParams.optString({% section akeyL %}"picture_id"{% endsection %}, "");
-                if ({% section akeyU %}pictureID{% endsection %}.equals("")) {
+                String pictureID = referringParams.optString("picture_id", "");
+                if (pictureID.equals("")) {
                     startActivity(new Intent(this, HomeActivity.class));
                 }
                 else {
                     Intent i = new Intent(this, ViewerActivity.class);
-                    i.putExtra({% section akeyL %}"picture_id"{% endsection %}, {% section akeyU %}pictureID{% endsection %});
+                    i.putExtra("picture_id", pictureID);
                     startActivity(i);
                 }
             } else {
@@ -462,6 +463,26 @@ $.onInitSessionFinished = function(data) {
     }
 }
 {% endhighlight %}
+{% endif %}
+
+{% if page.react %}
+Inside the callback where Branch is initialized, you will want to examine the dictionary passed in the callback to see if the user opened a link to content. Below is an example assuming that the links correspond to pictures.
+
+{% highlight js %}
+var branch = require('branch-react-native-sdk');
+
+//Receives the initSession's result as soon as it becomes available
+branch.getInitSessionResultPatiently(({params, error}) => {
+
+    if (data["picture_id"]) {
+        // load the view to show the picture
+    } else {
+        // load your normal view
+    }
+    
+});
+{% endhighlight %}
+
 {% endif %}
 
 {% if page.android %}
@@ -629,6 +650,22 @@ await branch.GetShortUrlAsync(this, data, "sms", "share");
 {% endhighlight %}
 {% endif %}
 
+<!--- Unity -->
+
+{% if page.unity %}
+
+{% highlight objective-c %}
+BranchLinkProperties linkProperties = new BranchLinkProperties();
+linkProperties.tags.Add("tag1");
+linkProperties.tags.Add("tag2");
+linkProperties.feature = "invite";
+linkProperties.channel = "Twitter";
+linkProperties.stage = "2";
+linkProperties.controlParams.Add("$deeplink_path", "content/1234");
+{% endhighlight %}
+
+{% endif %}
+
 <!--- Adobe -->
 
 {% if page.adobe %}
@@ -660,19 +697,13 @@ branchUniversalObject.generateShortUrl({
 
 {% endif %}
 
-<!--- Unity -->
+<!--- React -->
 
-{% if page.unity %}
+{% if page.react %}
 
-{% highlight objective-c %}
-BranchLinkProperties linkProperties = new BranchLinkProperties();
-linkProperties.tags.Add("tag1");
-linkProperties.tags.Add("tag2");
-linkProperties.feature = "invite";
-linkProperties.channel = "Twitter";
-linkProperties.stage = "2";
-linkProperties.controlParams.Add("$deeplink_path", "content/1234");
-{% endhighlight %}
+{% protip title="Unsupported in React Native" %}
+Link control parameters are currently unsupported in the React Native SDK. We hope to include them soon, and would also gladly accept pull requests to our [GitHub repo](https://github.com/BranchMetrics/React-Native-Deep-Linking-SDK)!
+{% endprotip %}
 
 {% endif %}
 
@@ -746,6 +777,12 @@ var sessionParams = branch.getLatestReferringParams();
 {% endhighlight %}
 {% endif %}
 
+{% if page.react %}
+{% highlight js %}
+branch.getLatestReferringParams((params) => { });
+{% endhighlight %}
+{% endif %}
+
 ### Get first referring params
 
 This returns the first set of deep link data that ever referred the user. Once it's been set for a given user, it can never be updated. This is useful for referral programs.
@@ -802,6 +839,11 @@ var installParams = branch.getFirstReferringParams();
 {% endhighlight %}
 {% endif %}
 
+{% if page.react %}
+{% highlight js %}
+branch.getFirstReferringParams((params) => { });
+{% endhighlight %}
+{% endif %}
 
 {% if page.ios %}
 ## Branch links in push notifications
