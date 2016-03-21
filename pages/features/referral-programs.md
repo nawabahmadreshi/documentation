@@ -26,7 +26,7 @@ sections:
 
 Branch allows you reward users with credits, track those credits, and redeem them when appropriate. It is a unit-less currency available to your users without you having to build a system from scratch.
 
-{% getstarted title="Set up referrals %}{% endgetstarted %}
+{% getstarted title="Set up referrals" %}{% endgetstarted %}
 
 {% elsif page.guide %}
 
@@ -213,7 +213,6 @@ branch.credits(function(err, data) {
 {% endhighlight %}
 {% endif %}
 
-{% section different_bucket %}
 If you want to see the number of credits in a custom bucket you've specified, such as `myBucket`, then you can do the following:
 
 <!-- iOS -->
@@ -243,8 +242,6 @@ Branch.getInstance(getApplicationContext()).loadRewards(new BranchReferralStateC
 });
 {% endhighlight %}
 {% endif %}
-
-{% endsection %}
 
 {% if page.cordova %}
 {% highlight js %}
@@ -405,8 +402,6 @@ branch.redeem(
 {% endhighlight %}
 {% endif %}
 
-{% section different_bucket %}
-
 If you want to redeem credits in a custom bucket you've specified, such as `myBucket`, then you can do the following:
 
 <!-- iOS -->
@@ -431,8 +426,6 @@ Branch.getInstance(getApplicationContext()).redeemRewards("myBucket", 5)
 {% endhighlight %}
 {% endif %}
 <!-- end Android -->
-
-{% endsection %}
 
 {% if page.cordova %}
 {% highlight js %}
@@ -514,5 +507,7 @@ Branch.getInstance().loadRewards(new BranchReferralStateChangedListener() {
 {% endhighlight %}
 {% endif %}
 {% endexample %}
+
+{% endif %}
 
 {% endif %}
