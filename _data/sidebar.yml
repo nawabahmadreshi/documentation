@@ -57,13 +57,6 @@
         - appboy
     - title: Measurement Platforms
       children:
-<<<<<<< HEAD
-        # - old-webhook-tune
-        # - old-webhook-adjust
-        # - webhook-builder-Tune
-        # - webhook-builder-Adjust
-=======
->>>>>>> master
         - google-analytics
         - localytics
         - mixpanel
