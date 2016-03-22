@@ -409,6 +409,8 @@ Branch opens your app by using its URI scheme (`yourapp://`), which should be un
     <!-- other stuff -->
     <application>
         <meta-data android:name="io.branch.sdk.BranchKey" android:value="key_live_xxxxxxxxxxxxxxx" />
+        <meta-data android:name="io.branch.sdk.BranchKey.test" android:value="key_test_yyyyyyy" />
+        <meta-data android:name="io.branch.sdk.TestMode" android:value="false" />
         <activity android:name="io.branch.nativeExtensions.branch.BranchActivity" android:launchMode="singleTask" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
     </application>
 ]]></manifestAdditions></android>
