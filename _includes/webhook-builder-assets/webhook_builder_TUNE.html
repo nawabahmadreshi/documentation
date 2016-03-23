@@ -9,10 +9,13 @@
 <body>
 	<table>
 		<!-- START OF REQUIRED TUNE INFORMATION -->
+			<thead>
 			<tr>
-				<td><h3><b>Required Tune Information </b></h3></td>
-				<td></td>
+				<th>Required Tune Information</th>
+				<th></th>
 			</tr>
+		</thead>
+		<tbody>
 			<tr>
 	            <td><label>Advertiser ID</label></td>
 	            <td><input class="form-control" style="width:300px" id="advertiser_id" type="text" maxlength="30" placeholder="advertiser_id" required/></td>
@@ -21,12 +24,18 @@
 	            <td><label>Site ID</label></td>
 	            <td><input class="form-control" style="width:300px" id="site_id" type="text" maxlength="30" placeholder="site_id" required/></td>
 	        </tr>
+	       </tbody>
+	     </table>
 
+	     <table>
 		<!-- START OF CUSTOM QUERY PARAMETERS -->
+			<thead>
 			<tr>
-				<td><h3><b>Custom Query Parameters </b></h3></td>
-				<td></td>
+				<th>Custom Query Parameters</th>
+				<th></th>
 			</tr>
+			</thead>
+				<tbody>
 	       	<tr>
 	       		<td><br><i>*Note* Format should be a string with <br>one item = another item. </i><br><b>Example:</b> user_id=JohnJoe</td>
 	       		<td></td>
@@ -71,11 +80,12 @@
 	 	        <td><label>Custom Query Parameter</label></td>
 	            <td><input class="form-control" style="width:300px" id="customQueryParams10" type="text" maxlength="200" placeholder="format: param=sometext"/></td>
 	        </tr>
+	      </tbody>
 	</table>
 			</br>
 			</br>
 	
-	<button class="form-control" onclick="createTuneWebhook()">Create Webhook</button>
+	<div class="text-center"><button class="form-control get-started" style="float:none" onclick="createTuneWebhook()">Create Webhook</button></div>
 			
 			</br>
 			</br>
