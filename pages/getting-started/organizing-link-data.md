@@ -25,9 +25,9 @@ When you [set analytics labels for your links]({{base.url}}/getting-started/conf
 
 {% ingredient analytics-labels %}{% endingredient %}
 
-Below is the filtering bar on the main [Summary page](https://dashboard.branch.io/#). You can find similar controls on a number of dashboard pages:
+Below is the filtering bar on the [Source Analytics page](https://dashboard.branch.io/#/analytics/source). You can find similar controls on a number of dashboard pages:
 
-{% image src='/img/pages/getting-started/organizing-link-data/analytics_labels.png' full center alt='analytics filtering options' %}
+{% image src='/img/pages/getting-started/organizing-link-data/source-filters.png' full center alt='analytics filtering options' %}
 
 ## See link and click data in real time
 
