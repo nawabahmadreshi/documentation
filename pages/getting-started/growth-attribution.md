@@ -15,6 +15,7 @@ platforms:
 - unity
 - adobe
 - titanium
+- react
 sections:
 - guide
 contents: list
@@ -200,6 +201,25 @@ branch.setIdentity("your user id");
 {% endhighlight %}
 
 ### Log out
+
+Add a `logout` call anywhere you allow the user to logout. `Logout` should only be called when the user logs out. Calling it at other times could lead to hard-to-discover errors. Failing to call `logout` can likewise lead to bugs if multiple users log in on the same device.
+
+{% highlight js %}
+branch.logout();
+{% endhighlight %}
+{% endif %}
+
+{% if page.react %}
+
+## Log in
+
+Add a `setIdentity` call wherever you create or login a user. This should be done after you have successfully initialized a Branch session. Only call `setIdentity` when the user first logs in. We will cache the identity for future sessions.
+
+{% highlight js %}
+branch.setIdentity("your user id");
+{% endhighlight %}
+
+## Log out
 
 Add a `logout` call anywhere you allow the user to logout. `Logout` should only be called when the user logs out. Calling it at other times could lead to hard-to-discover errors. Failing to call `logout` can likewise lead to bugs if multiple users log in on the same device.
 

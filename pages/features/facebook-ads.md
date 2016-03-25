@@ -125,18 +125,6 @@ curl --insecure "https://graph.facebook.com/?id=[YOUR-URL-TO-SCRAPE]&scrape=true
 
 If your OG tags look fine and you're still getting errors, please reach out to support@branch.io immediately.
 
-## Known issue with App Restrictions
-
-We recently discovered a bug within the Facebook system that prevents App Links from being read by the robot if you change any of these values from the defaults in your Advanced Facebook App Settings tab. Please make sure
-
-- Contains Alcohol is set to **No**
-- Age Restriction is set to **Anyone (13+)**
-- Social Discovery is set to **Yes**
-- Country Restricted is set to **No**
-
-It has to look like this **exactly**:
-{% image src='/img/pages/features/facebook-ads/app_restrictions.png' 2-thirds center alt='app restrictions troubleshooting' %}
-
 
 ## Common issues with Facebook Authentication
 

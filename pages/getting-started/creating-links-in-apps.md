@@ -13,6 +13,7 @@ platforms:
 - unity
 - adobe
 - titanium
+- react
 sections:
 - overview
 - guide
@@ -401,6 +402,54 @@ The event listener `bio:generateShortUrl` returns a `string` object containing t
 {% highlight js %}
 branchUniversalObject.addEventListener("bio:generateShortUrl", $.onGenerateUrlFinished);
 {% endhighlight %}
+
+{% endif %}
+
+{% if page.react %}
+
+## Create a Branch Universal Object
+
+Create a `BranchUniversalObject` for the piece of content that you'd like to link to, defining any custom key/value pairs as `metadata` parameters:
+
+{% highlight js %}
+var branchUniversalObject = {
+   metadata:{  
+      "product_picture" : "12345",
+      "user_id" : "6789"
+   },
+   "canonicalIdentifier" : "content/12345",
+   "contentTitle" : "My Content Title",
+   "contentDescription" : "My Content Description",
+   "contentImageUrl" : "https://example.com/mycontent-12345.png"
+};
+{% endhighlight %}
+
+{% ingredient buo-overview %}{% endingredient %}
+
+## Assemble link parameters
+
+Define the analytics tags and control parameters, and generate the link by referencing the `BranchUniversalObject` you created:
+
+{% highlight js %}
+var linkProperties = {
+	"feature" : "sharing",
+	"channel" : "RNApp"
+};
+{% endhighlight %}
+
+{% protip title="Partial support in React Native" %}
+Only a subset of link parameters are currently supported in the React Native SDK. We hope to include more soon, and would also gladly accept pull requests to our [GitHub repo](https://github.com/BranchMetrics/React-Native-Deep-Linking-SDK)!
+{% endprotip %}
+
+## Generate the link
+
+Finally, generate the link by referencing the `BranchUniversalObject` you created:
+
+{% protip title="Unsupported in React Native" %}
+A stand-alone link creation method is currently not available in the React Native SDK. We hope to include one soon, and would also gladly accept pull requests to our [GitHub repo](https://github.com/BranchMetrics/React-Native-Deep-Linking-SDK)!
+
+In the meantime, you can use the `showShareSheet` method instead. [Read more about it here]({{base.url}}/getting-started/branch-universal-object/guide/react/#showsharesheet).
+{% endprotip %}
 
 {% endif %}
 

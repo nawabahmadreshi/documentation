@@ -8,7 +8,6 @@ ios_description: How to set up Referral Links and Reward Schemes for iOS apps us
 android_description: How to set up App Invites, Referral Links and Reward Schemes for Android apps using deep links.
 ios_keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Referral Links, App Invites, Reward Schemes, Promotion codes, iOS, objective-c, swift
 android_keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Referral Links, App Invites, Reward Schemes, Promotion codes, Android
-hide_section_selector: true
 platforms:
 - ios
 - android
@@ -17,21 +16,39 @@ platforms:
 - unity
 - adobe
 - titanium
+- react
 sections:
+- overview
 - guide
 ---
 
+{% if page.overview %}
+
 Branch allows you reward users with credits, track those credits, and redeem them when appropriate. It is a unit-less currency available to your users without you having to build a system from scratch.
 
-With every event that is recorded in Branch, we check automatically if that event is eligible for credits based on the rules that you configured, then deposit the credits if so. Reward rules can be based on both [automatic events](/getting-started/growth-attribution#automatic-event-tracking) and [custom events](/getting-started/user-value-attribution#custom-event-tracking).
+{% getstarted title="Set up referrals" %}{% endgetstarted %}
 
-We recommend that you do not use the events we automatically track, such as `install` and `open`. Because we do not merge identities, we ask that you set a reward on any event *after* you have identified a user using our [identity methods]({{base.url}}/getting-started/growth-attribution#setting-identities).
+{% elsif page.guide %}
+
+{% prerequisite %}
+
+- You need to [integrate the Branch SDK]({{base.url}}/getting-started/sdk-integration-guide) into your app.
+- You should [identify your users]({{base.url}}/getting-started/setting-identities) on both log in and log out.
+- Your users should be able to [create links]({{base.url}}/getting-started/creating-links-in-apps) so we can track referred-referring relationships.
+
+{% endprerequisite %}
+
+With every event that is recorded in Branch, we check automatically if that event is eligible for credits based on the rules that you configured, then deposit the credits if so. Reward rules can be based on both [automatic events](/getting-started/tracking-events#automatic-events) and [custom events](/getting-started/tracking-events#custom-events).
+
+{% caution title="If you identify your users" %}
+Because we do not merge identities, you should set rewards on custom events instead of using the events we automatically track (`install` and `open`), and do so only *after* you have identified a user using our [identity methods]({{base.url}}/getting-started/setting-identities). This will help avoid duplicate rewards and missing credits.
+{% endcaution %}
+
+## Awarding credits
 
 {% protip title="Referral Fraud Protection" %}
 Branch tracks the hardware ID and IDFA of every device we detect, and ties these to our concept of a user identity. However, this means that you may run into issues if you test repeatedly with the same devices. When testing referral programs and reward rules, you should [use debug mode](/getting-started/integration-testing#use-debug-mode-to-simulate-fresh-installs).
 {% endprotip %}
-
-## Awarding credits
 
 To add a rule, go to the Dashboard Referrals page and click the [Rules tab](https://dashboard.branch.io/#/referrals/rules). Click the green "+ Add a new rule" button. Once there, you can select between two options:
 
@@ -84,6 +101,14 @@ Let's say you want to give 10 credits to each new user who signs up through a fr
 {% endexample %}
 
 ## Viewing Credits
+
+{% if page.react %}
+
+{% protip title="Unsupported in React Native" %}
+Viewing credits is currently unsupported in the React Native SDK. We hope to include this soon, and would also gladly accept pull requests to our [GitHub repo](https://github.com/BranchMetrics/React-Native-Deep-Linking-SDK)!
+{% endprotip %}
+
+{% else %}
 
 Once users have credits, they should be able to redeem them.
 
@@ -188,7 +213,6 @@ branch.credits(function(err, data) {
 {% endhighlight %}
 {% endif %}
 
-{% section different_bucket %}
 If you want to see the number of credits in a custom bucket you've specified, such as `myBucket`, then you can do the following:
 
 <!-- iOS -->
@@ -218,8 +242,6 @@ Branch.getInstance(getApplicationContext()).loadRewards(new BranchReferralStateC
 });
 {% endhighlight %}
 {% endif %}
-
-{% endsection %}
 
 {% if page.cordova %}
 {% highlight js %}
@@ -286,7 +308,17 @@ branch.addEventListener("bio:loadRewards", $.onLoadRewardFinished);
 {% endhighlight %}
 {% endif %}
 
+{% endif %}
+
 ## Redeeming Credits
+
+{% if page.react %}
+
+{% protip title="Unsupported in React Native" %}
+Redeeming credits is currently unsupported in the React Native SDK. We hope to include this soon, and would also gladly accept pull requests to our [GitHub repo](https://github.com/BranchMetrics/React-Native-Deep-Linking-SDK)!
+{% endprotip %}
+
+{% else %}
 
 When users spend credits, you can make a simple call to redeem their credits.
 
@@ -370,8 +402,6 @@ branch.redeem(
 {% endhighlight %}
 {% endif %}
 
-{% section different_bucket %}
-
 If you want to redeem credits in a custom bucket you've specified, such as `myBucket`, then you can do the following:
 
 <!-- iOS -->
@@ -396,8 +426,6 @@ Branch.getInstance(getApplicationContext()).redeemRewards("myBucket", 5)
 {% endhighlight %}
 {% endif %}
 <!-- end Android -->
-
-{% endsection %}
 
 {% if page.cordova %}
 {% highlight js %}
@@ -479,3 +507,7 @@ Branch.getInstance().loadRewards(new BranchReferralStateChangedListener() {
 {% endhighlight %}
 {% endif %}
 {% endexample %}
+
+{% endif %}
+
+{% endif %}
