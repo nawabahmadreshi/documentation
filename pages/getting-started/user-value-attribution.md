@@ -182,11 +182,11 @@ branch.userCompletedAction("purchase_event", {sku: 12346789});
 
 ## Measuring custom events
 
-You can see custom events as they occur on the [Live View > Events](https://dashboard.branch.io/#/liveview/events/view) page. You can also see one type of custom event at a time by using the dropdown picker above [Marketing](https://dashboard.branch.io/#/marketing) and [Source Analytics](https://dashboard.branch.io/#/analytics/source) data.
+You can see one custom event at a time in the dashboard by using the dropdown picker above [Marketing](https://dashboard.branch.io/#/marketing) and [Source Analytics](https://dashboard.branch.io/#/analytics/source) data. Custom events columns on these pages show total events count and events %, where the percentage is total events over total app sessions (installs + re-opens). You can see these metrics for individual links, campaigns, channels, tags, stages, and features.
 
-{% image src='/img/pages/getting-started/user-value-attribution/live-view-events.png' full center alt='Branch dashboard' %}
+{% image src='/img/pages/getting-started/user-value-attribution/custom-events-source.png' full center alt='Branch dashboard' %}
 
-There’s no hard limit to tracking custom events data, but Branch will only allow you to choose your top 100 custom events to see in the Branch dashboard.
+There’s no hard limit to tracking custom events data, but Branch will only allow you to see your first 100 custom events in the Branch dashboard. Most apps track 5-10 of the most important custom events they care about.
 
 {% protip title="What attribution logic does Branch use for reporting on custom events in the dashboard?" %}
  
@@ -203,3 +203,7 @@ There’s no hard limit to tracking custom events data, but Branch will only all
 For more information on how Branch attributes custom events, see this [FAQ](https://support.branch.io/solution/articles/6000116662-branch-dashboard-custom-events-overview-and-how-to){:target="_blank"}.
 
 {% endprotip %}
+
+You can also see custom events as they occur on the [Live View > Events](https://dashboard.branch.io/#/liveview/events/view) page. 
+
+{% image src='/img/pages/getting-started/user-value-attribution/live-view-events.png' full center alt='Live View Events' %}
