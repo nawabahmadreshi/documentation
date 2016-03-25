@@ -411,7 +411,7 @@ We recently discovered a bug within the Facebook system that prevents App Links 
 - Country Restricted is set to **No**
 
 It has to look like this **exactly**:
-{% image src='/img/pages/features/facebook-ads/app_restrictions.png' 3-quarters center alt='app restrictions troubleshooting' %}
+{% image src='/img/pages/features/facebook-app-invites/app_restrictions.png' 3-quarters center alt='app restrictions troubleshooting' %}
 
 
 ## Common issues with Facebook Authentication
