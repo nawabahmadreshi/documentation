@@ -9,99 +9,106 @@
 <body>
 	<table>
 		<!-- START OF REQUIRED ADJUST INFORMATION -->
+		<thead>
 			<tr>
-				<td><h3><b>Required Adjust Information </b></h3></td>
-				<td></td>
+				<th>Required Adjust Information</th>
+				<th></th>
 			</tr>
-			
+		</thead>
 
+		<tbody>
 			<tr>
-	            <td><label>iOS Tracker Token</label></td>
-	            <td><input class="form-control" style="width:300px" id="ios_tracker_token" type="text" maxlength="30" placeholder="ios_tracker_token" required/></td>
-	        </tr>
-	        <tr>
-	            <td><label>Android Tracker Token</label></td>
-	            <td><input class="form-control" style="width:300px" id="android_tracker_token" type="text" maxlength="30" placeholder="android_tracker_token" required/></td>
-	        </tr>
-	        <tr>
-	            <td><label>Adgroup</label></td>
-	            <td><select class="form-control" id="adgroup" style="width:300px">
-	            		<option value="" selected="">Select Branch param to assign as 'Adgroup' in Adjust.</option>
-	            		<option value="branch">Branch</option>
-	            		<option value="channel">Channel</option>
-	            		<option value="feature">Feature</option>
-	            		<option value="stage">Stage</option>
-	            		<option value="tags">Tags</option>
-	            	</select></td>
-	        </tr>
+        <td><label>iOS Tracker Token</label></td>
+        <td><input class="form-control" style="width:300px" id="ios_tracker_token" type="text" maxlength="30" placeholder="ios_tracker_token" required/></td>
+      </tr>
+      <tr>
+        <td><label>Android Tracker Token</label></td>
+        <td><input class="form-control" style="width:300px" id="android_tracker_token" type="text" maxlength="30" placeholder="android_tracker_token" required/></td>
+      </tr>
+      <tr>
+        <td><label>Adgroup</label></td>
+        <td><select class="form-control" id="adgroup" style="width:300px">
+        		<option value="" selected="">Select Branch param to assign as 'Adgroup' in Adjust.</option>
+        		<option value="branch">Branch</option>
+        		<option value="channel">Channel</option>
+        		<option value="feature">Feature</option>
+        		<option value="stage">Stage</option>
+        		<option value="tags">Tags</option>
+        	</select></td>
+      </tr>
 
-	        <tr>
-	            <td><label>Creative</label></td>
-	            <td><select class="form-control" id="creative" style="width:300px" >
-	            		<option value="" selected="">Select Branch param to assign as 'Creative' in Adjust.</option>
-	            		<option value="branch">Branch</option>
-	            		<option value="channel">Channel </option>
-	            		<option value="feature">Feature </option>
-	            		<option value="stage">Stage</option>
-	            		<option value="tags">Tags</option>
-	            	</select></td>
-	        </tr>
-
-		<!-- START OF CUSTOM QUERY PARAMETERS -->
-		<tr>
-			<td><h3><b>Custom Query Parameters </b></h3></td>
-			<td></td>
-		</tr>
-	       	
-	       	<tr>
-	       		<td><br><i>*Note* Format should be a string with <br>one item = another item. </i><br><b>Example:</b> user_id=JohnJoe</td>
-	       		<td></td>
-	        </tr>
-	        <tr>
-	        	<td><label>Custom Query Parameter</label></td>
-	            <td><input class="form-control" style="width:300px" id="customQueryParams1" type="text" maxlength="200" placeholder="format: param=sometext"/></td>
-	        </tr>
+      <tr>
+        <td><label>Creative</label></td>
+        <td><select class="form-control" id="creative" style="width:300px" >
+        		<option value="" selected="">Select Branch param to assign as 'Creative' in Adjust.</option>
+        		<option value="branch">Branch</option>
+        		<option value="channel">Channel </option>
+        		<option value="feature">Feature </option>
+        		<option value="stage">Stage</option>
+        		<option value="tags">Tags</option>
+        	</select></td>
+      </tr>
+    </tbody>
+  </table>
+	<!-- START OF CUSTOM QUERY PARAMETERS -->
+	<table>
+		<thead>
+			<tr>
+				<th>Custom Query Parameters</th>
+				<th></th>
+			</tr>
+		</thead>
+   	<tbody>
+     	<tr>
+     		<td><br><i>*Note* Format should be a string with <br>one item = another item. </i><br><b>Example:</b> user_id=JohnJoe</td>
+     		<td></td>
+      </tr>
+      <tr>
+      	<td><label>Custom Query Parameter</label></td>
+        <td><input class="form-control" style="width:300px" id="customQueryParams1" type="text" maxlength="200" placeholder="format: param=sometext"/></td>
+      </tr>
 			<tr>
 				<td><label>Custom Query Parameter</label></td>
-	            <td><input class="form-control" style="width:300px" id="customQueryParams2" type="text" maxlength="200" placeholder="format: param=sometext"/></td>
-	        </tr>
-	        <tr>
-	        	<td><label>Custom Query Parameter</label></td>
-	            <td><input class="form-control" style="width:300px" id="customQueryParams3" type="text" maxlength="200" placeholder="format: param=sometext"/></td>
-	        </tr>
-	        <tr>
-	        	<td><label>Custom Query Parameter</label></td>
-	  	        <td><input class="form-control" style="width:300px" id="customQueryParams4" type="text" maxlength="200" placeholder="format: param=sometext"/></td>          	
-	        </tr>
-	       	<tr>
-	        	<td><label>Custom Query Parameter</label></td>
-	            <td><input class="form-control" style="width:300px" id="customQueryParams5" type="text" maxlength="200" placeholder="format: param=sometext"/></td>
-	        </tr>
-	       	<tr>
+        <td><input class="form-control" style="width:300px" id="customQueryParams2" type="text" maxlength="200" placeholder="format: param=sometext"/></td>
+      </tr>
+      <tr>
+      	<td><label>Custom Query Parameter</label></td>
+        <td><input class="form-control" style="width:300px" id="customQueryParams3" type="text" maxlength="200" placeholder="format: param=sometext"/></td>
+      </tr>
+      <tr>
+      	<td><label>Custom Query Parameter</label></td>
+        <td><input class="form-control" style="width:300px" id="customQueryParams4" type="text" maxlength="200" placeholder="format: param=sometext"/></td>          	
+      </tr>
+     	<tr>
+      	<td><label>Custom Query Parameter</label></td>
+        <td><input class="form-control" style="width:300px" id="customQueryParams5" type="text" maxlength="200" placeholder="format: param=sometext"/></td>
+      </tr>
+     	<tr>
 				<td><label>Custom Query Parameter</label></td>
-	            <td><input class="form-control" style="width:300px" id="customQueryParams6" type="text" maxlength="200" placeholder="format: param=sometext"/></td>
-	        </tr>
+        <td><input class="form-control" style="width:300px" id="customQueryParams6" type="text" maxlength="200" placeholder="format: param=sometext"/></td>
+      </tr>
 			<tr>
-	        	<td><label>Custom Query Parameter</label></td>
-	            <td><input class="form-control" style="width:300px" id="customQueryParams7" type="text" maxlength="200" placeholder="format: param=sometext"/></td>
-	        </tr>
-	        <tr>
+	    	<td><label>Custom Query Parameter</label></td>
+        <td><input class="form-control" style="width:300px" id="customQueryParams7" type="text" maxlength="200" placeholder="format: param=sometext"/></td>
+      </tr>
+      <tr>
 				<td><label>Custom Query Parameter</label></td>
-	            <td><input class="form-control" style="width:300px" id="customQueryParams8" type="text" maxlength="200" placeholder="format: param=sometext"/></td>
-	        </tr>
-	        <tr>
+        <td><input class="form-control" style="width:300px" id="customQueryParams8" type="text" maxlength="200" placeholder="format: param=sometext"/></td>
+      </tr>
+      <tr>
 			 	<td><label>Custom Query Parameter</label></td>
-	  	        <td><input class="form-control" style="width:300px" id="customQueryParams9" type="text" maxlength="200" placeholder="format: param=sometext"/></td>          	
-	        </tr>
-	       	<tr>
-	 	        <td><label>Custom Query Parameter</label></td>
-	            <td><input class="form-control" style="width:300px" id="customQueryParams10" type="text" maxlength="200" placeholder="format: param=sometext"/></td>
-	        </tr>
+        <td><input class="form-control" style="width:300px" id="customQueryParams9" type="text" maxlength="200" placeholder="format: param=sometext"/></td>          	
+      </tr>
+     	<tr>
+        <td><label>Custom Query Parameter</label></td>
+        <td><input class="form-control" style="width:300px" id="customQueryParams10" type="text" maxlength="200" placeholder="format: param=sometext"/></td>
+      </tr>
+    </tbody>
 	</table>
-			</br>
-			</br>
+	</br>
+	</br>
 	
-	<button class="form-control" style="float:bottom" onclick="createAdjustWebhook()">Create Webhook</button>
+	<div class="text-center"><button class="form-control get-started" style="float:none" onclick="createAdjustWebhook()">Create Webhook</button></div>
 			
 			</br>
 			</br>
