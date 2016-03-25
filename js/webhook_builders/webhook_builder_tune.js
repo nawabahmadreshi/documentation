@@ -22,7 +22,7 @@ function createTuneWebhook() {
 	};
 
 	// Add Tune main string identifiers
-	var link = link + '.measure.mobileapptracking.com/serve?response_format=json&integration_id=1993&created_at={{event.date}}&user_id={{identity}}&timestamp={{event.date}}&ios_ad_tracking_disabled=0&google_ad_tracking=1&sub_publisher=Branch&sub_campaign={{click.link_data.~campaign}}&sub_placement={{click.link_data.~channel}}&sub_keyword={{click.link_data.~tags}}&tracking_id={{click.branch_id}}&device_ip={{click.browser.metadata.ip}}&user_agent={{click.browser.metadata.userAgent}}'
+	var link = link + '.measure.mobileapptracking.com/serve?response_format=json&created_at={{event.date}}&user_id={{identity}}&timestamp={{event.date}}&ios_ad_tracking_disabled=0&google_ad_tracking=1&sub_publisher=Branch&sub_campaign={{click.link_data.~campaign}}&sub_placement={{click.link_data.~channel}}&sub_keyword={{click.link_data.~tags}}&tracking_id={{click.branch_id}}&device_ip={{click.browser.metadata.ip}}&user_agent={{click.browser.metadata.userAgent}}'
 
 	// Add Tune Site Id (site_id)
 	if (site_id.length>0) {
