@@ -65,7 +65,7 @@ branch.deepview(
 
 ## Add a Call To Action
 
-Trigger the `branch.deepviewCta()` function with a button or hyperlink on your page.
+Trigger the `branch.deepviewCta()` function with a button or hyperlink on your page. Executing this function (whether by button, link, or some other method) 'clicks' the link you defined using `branch.deepview()` above.
 
 | Platform | Result of Call To Action
 | --- | ---
