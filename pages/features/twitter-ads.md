@@ -2,6 +2,7 @@
 type: recipe
 directory: features
 title: "Twitter Ads"
+page_title: "Twitter Ads"
 hide_platform_selector: true
 sections:
 - overview

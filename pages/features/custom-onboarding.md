@@ -2,10 +2,8 @@
 type: recipe
 directory: features
 title: Custom Onboarding
-ios_page_title: Personalized Onboarding Flow for iOS Apps
-android_page_title: Personalized Onboarding for Android Apps
-ios_description: How to set up a personalized invite system and onboarding flow for iOS Apps using Branch deep links. With objective-c and swift code snippets.
-android_description: How to set up a personalized invite system and onboarding flow for Android Apps using Branch deep links. With code snippets.
+page_title: Personalized Onboarding Flow for Apps
+description: How to set up a personalized invite system and onboarding flow for Apps using Branch deep links. With code snippets.
 ios_keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Personalized onboarding, onboarding, welcome screen, iOS, objective-c, swift
 android_keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Personalized onboarding, onboarding, welcome screen, Android
 platforms:

@@ -2,6 +2,7 @@
 type: recipe
 directory: third-party-integrations
 title: "Referral SaaSquatch"
+page_title: "Using Branch and Referral Saasquatch together"
 platforms:
 - ios
 - android
