@@ -74,6 +74,10 @@ This is all you need to do to enable Deepviews. For each link, Branch will attem
 
 {% elsif page.advanced %}
 
+## Use pages on your own website for Deepviews
+
+The [Website to App Routing]({{base.url}}/features/website-to-app-routing) feature can be used to recreate the functionality of Deepviews using your own website. If you already host your own content previews, try this instead.
+
 ## Customizing Deepview content
 
 The default Deepview template simply displays the content from three of the link's [control parameters]({{base.url}}/getting-started/configuring-links). You can specify the content of these parameters when creating your link to control what will display in that link’s Deepview. If nothing is set for a particular link, we will gracefully fall back to the OG values set for your entire app in _Settings > Link Settings > Social Media Display Customization._
