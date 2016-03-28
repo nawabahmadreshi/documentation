@@ -233,37 +233,58 @@ branchUniversalObj.generateShortUrl({
 
 {% if page.xamarin %}
 
-## Assemble link parameters
+## Create a Branch Universal Object
 
-Build your key/value pairs and add any additional analytics and control parameters:
+Create a `BranchUniversalObject` for the piece of content that you'd like to link to, defining any custom key/value pairs as `metadata` parameters:
 
 {% highlight c# %}
-var data = new Dictionary<string, object>(); 
-data.Add("user", "Joe");
-data.Add("$og_title", "Hot off the presses!");
-data.Add("$og_description", "Joe likes long walks on the beach...");
-data.Add("$og_image_url", "mysite.com/image.png");
+BranchUniversalObject universalObject = new BranchUniversalObject();
+universalObject.canonicalIdentifier = "item/12345";
+universalObject.title = "My Content Title";
+universalObject.contentDescription = "My Content Description";
+universalObject.imageUrl = "https://example.com/mycontent-12345.png";
+universalObject.contentIndexMode = 0; // 1 for private
+universalObject.metadata.Add("property1", "red");
+universalObject.metadata.Add("property2", "blue");
+{% endhighlight %}
 
-// associate a url with a set of tags, channel, feature, and stage for better analytics.
-// tags: null or example set of tags could be "version1", "trial6", etc
-// channel: null or examples: "facebook", "twitter", "text_message", etc
-// feature: null or examples: Branch.FEATURE_TAG_SHARE, Branch.FEATURE_TAG_REFERRAL, "unlock", etc
-// stage: null or examples: "past_customer", "logged_in", "level_6"
+{% ingredient buo-overview %}{% endingredient %}
 
-List<String> tags = new List<String>();
-tags.Add("version1");
-tags.Add("trial6");
+## Assemble link parameters
+
+Define the analytics tags and control parameters of the link itself:
+
+{% highlight c# %}
+BranchLinkProperties linkProperties = new BranchLinkProperties();
+linkProperties.feature = "sharing";
+linkProperties.channel = "facebook";
+linkProperties.controlParams.Add("$desktop_url", "http://example.com/home");
+linkProperties.controlParams.Add("$ios_url", "http://example.com/ios");
 {% endhighlight %}
 
 ## Generate the link
 
-Use the `GetShortUrlAsync()` method to create a link based on the data you assembled:
+Finally, generate the link by referencing the `BranchUniversalObject` you created:
 
 {% highlight c# %}
-Branch branch = Branch.GetInstance ();
-await branch.GetShortUrlAsync(this, data, "alias","channel","stage", tags, "feature", uriType);
+
+Branch.GetInstance().GetShortURL (callback,
+                              universalObject,
+                              linkProperties);
+
 {% endhighlight %}
 
+After you've registered the class as a delegate of `IBranchUrlInterface`, you would next use the returned link and help the user post it to (in this example) Facebook.
+
+{% highlight c# %}
+#region IBranchUrlInterface implementation
+
+public void ReceivedUrl (Uri uri)
+{
+    // Do something with the new link...
+}
+#endregion
+{% endhighlight %}
 {% endif %}
 
 <!--- Unity -->
