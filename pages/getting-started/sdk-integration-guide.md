@@ -47,7 +47,14 @@ The recommended way to install the SDK is via CocoaPods:
 1. Add `pod "Branch"` to your podfile.
 1. Run `pod install` from the command line.
 
-{% protip title="If you do not use CocoaPods" %}
+### Install with Carthage
+
+Alternatively, you could install the SDK via Carthage:
+
+1. Add `github "BranchMetrics/iOS-Deferred-Deep-Linking-SDK"` to your Cartfile.
+1. Run `carthage update` from the command line.
+
+{% protip title="If you do not use CocoaPods or Carthage" %}
 
 You can [install the SDK manually]({{base.url}}/getting-started/sdk-integration-guide/advanced/ios#install-the-sdk-manually).
 
