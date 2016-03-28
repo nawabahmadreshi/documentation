@@ -155,7 +155,7 @@ function createDynamicLink() {
 		if (androidUrl.length > 0) {
 				branchReservedData['$android_url'] = androidUrl;}
 		if (desktopUrl.length > 0) {
-				branchReservedData['$deskto_url'] = desktopUrl;}
+				branchReservedData['$desktop_url'] = desktopUrl;}
 		if (windowsUrl.length > 0) {
 				branchReservedData['$windows_url'] = windowsUrl;}
 		if (blackberryUrl.length > 0) {
