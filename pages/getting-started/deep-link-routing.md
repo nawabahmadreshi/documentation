@@ -622,17 +622,16 @@ LinkProperties linkProperties = new LinkProperties()
 {% if page.cordova %}
 
 {% highlight js %}
-branch.link({
-    channel: 'sms',
-    feature: 'share',
-    data: {
-		"article_id": "1234",
-		"$deeplink_path": "content/1234"
-    }
-}, function(err, link) {
-	if (!err) {
-    	console.log("Ready to share my " + link);
-	}
+branchUniversalObj.generateShortUrl({
+  // put your link properties here
+  "feature" : "sharing",
+  "channel" : "facebook"
+}, {
+  // put your control parameters here
+  "$deeplink_path" : "content/1234",
+}).then(function (res) {
+    // Success Callback
+    console.log(res.generatedUrl);
 });
 {% endhighlight %}
 {% endif %}
@@ -641,12 +640,10 @@ branch.link({
 
 {% if page.xamarin %}
 {% highlight c# %}
-var data = new Dictionary<string, object>(); 
-data.Add("article_id", "1234");
-data.Add("$deeplink_path", "content/1234");
-
-Branch branch = Branch.GetInstance ();
-await branch.GetShortUrlAsync(this, data, "sms", "share");
+BranchLinkProperties linkProperties = new BranchLinkProperties();
+linkProperties.feature = "sharing";
+linkProperties.channel = "facebook";
+linkProperties.controlParams.Add("$deeplink_path", "content/1234");
 {% endhighlight %}
 {% endif %}
 
@@ -656,11 +653,8 @@ await branch.GetShortUrlAsync(this, data, "sms", "share");
 
 {% highlight objective-c %}
 BranchLinkProperties linkProperties = new BranchLinkProperties();
-linkProperties.tags.Add("tag1");
-linkProperties.tags.Add("tag2");
-linkProperties.feature = "invite";
-linkProperties.channel = "Twitter";
-linkProperties.stage = "2";
+linkProperties.feature = "sharing";
+linkProperties.channel = "facebook";
 linkProperties.controlParams.Add("$deeplink_path", "content/1234");
 {% endhighlight %}
 

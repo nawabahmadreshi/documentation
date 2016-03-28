@@ -71,7 +71,7 @@ Branch.userCompletedAction("custom_action_1");
 {% if page.xamarin %}
 {% highlight c# %}
 Branch branch = Branch.GetInstance ();
-await branch.UserCompletedActionAsync("custom_action_1");
+await branch.UserCompletedAction("custom_action_1");
 {% endhighlight %}
 {% endif %}
 
@@ -146,7 +146,7 @@ Branch.userCompletedAction(
 Branch branch = Branch.GetInstance ();
 Dictionary<string, object> data = new Dictionary<string, object>();
 data.Add("sku", "123456789");
-await branch.UserCompletedActionAsync("purchase_event", data);
+await branch.UserCompletedAction("purchase_event", data);
 {% endhighlight %}
 {% endif %}
 

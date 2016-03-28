@@ -171,26 +171,12 @@ Branch.createBranchUniversalObject({
 <!--- Xamarin -->
 {% if page.xamarin %}
 {% highlight c# %}
-var data = new Dictionary<string, object>(); 
-data.Add("article_id", "1234");
-data.Add("$og_title", "Hot off the presses!");
-data.Add("$og_image_url", "http://yoursite.com/pics/987666.png");
-data.Add("$og_description", "Out of all the apps disrupting apps, MyApp is without a doubt a leader. Check us out.");
-
-Branch branch = Branch.GetInstance ();
-await branch.GetShortUrlAsync(this, data, "sms", "share");
-{% endhighlight %}
-
-After you've registered the class as a delegate of `IBranchUrlInterface`
-
-{% highlight c# %}
-#region IBranchUrlInterface implementation
-
-public void ReceivedUrl (Uri uri)
-{
-    // Do something with the new link...
-}
-#endregion
+BranchUniversalObject universalObject = new BranchUniversalObject();
+universalObject.canonicalIdentifier = "item/12345";
+universalObject.title = "Hot off the presses!";
+universalObject.contentDescription = "Out of all the apps disrupting apps, MyApp is without a doubt a leader. Check us out.";
+universalObject.imageUrl = "http://yoursite.com/pics/987666.png";
+universalObject.metadata.Add("$og_video", "http://mysite/video.mpg");
 {% endhighlight %}
 {% endif %}
 <!--- /Xamarin -->
@@ -372,24 +358,11 @@ branchUniversalObj.generateShortUrl({
 <!--- Xamarin -->
 {% if page.xamarin %}
 {% highlight c# %}
-var data = new Dictionary<string, object>(); 
-data.Add("$ios_deepview", "default_template");
-data.Add("$android_deepview", "default_template");
-
-Branch branch = Branch.GetInstance ();
-await branch.GetShortUrlAsync(this, data, "facebook", "share");
-{% endhighlight %}
-
-After you've registered the class as a delegate of `IBranchUrlInterface`
-
-{% highlight c# %}
-#region IBranchUrlInterface implementation
-
-public void ReceivedUrl (Uri uri)
-{
-    // Do something with the new link...
-}
-#endregion
+BranchLinkProperties linkProperties = new BranchLinkProperties();
+linkProperties.feature = "sharing";
+linkProperties.channel = "facebook";
+linkProperties.controlParams.Add("$ios_deepview", "default_template");
+linkProperties.controlParams.Add("$android_deepview", "default_template");
 {% endhighlight %}
 {% endif %}
 <!--- /Xamarin -->

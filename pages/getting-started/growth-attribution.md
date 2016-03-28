@@ -135,11 +135,11 @@ Branch.logout();
 
 ### Log in
 
-Add a `SetIdentityAsync` call wherever you create or login a user. This should be done after you have successfully initialized a Branch session. Only call `SetIdentityAsync` when the user first logs in. We will cache the identity for future sessions.
+Add a `SetIdentity` call wherever you create or login a user. This should be done after you have successfully initialized a Branch session. Only call `SetIdentityAsync` when the user first logs in. We will cache the identity for future sessions.
 
 {% highlight c# %}
 Branch branch = Branch.GetInstance ();
-branch.SetIdentityAsync("your user id", this);
+branch.SetIdentity("your user id", this);
 {% endhighlight %}
 
 ### Log out
