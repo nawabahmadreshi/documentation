@@ -13,7 +13,7 @@ sections:
 contents: list
 ---
 
-Now that your app is configured, it's time to dive into your data with the [Branch Dashboard](https://dashboard.branch.io)! The dashboard is a great tool for measuring growth and engagement, and offers many powerful configuration options.
+Now that your app is configured, it's time to dive into your data with the [Branch Dashboard](https://dashboard.branch.io){:target="_blank"}! The dashboard is a great tool for measuring growth and engagement, and offers many powerful configuration options.
 
 {% image src='/img/pages/getting-started/organizing-link-data/dashboard_summary.png' full center alt='Branch dashboard' %}
 
@@ -25,13 +25,13 @@ When you [set analytics labels for your links]({{base.url}}/getting-started/conf
 
 {% ingredient analytics-labels %}{% endingredient %}
 
-Below is the filtering bar on the [Source Analytics page](https://dashboard.branch.io/#/analytics/source). You can find similar controls on a number of dashboard pages:
+Below is the filtering bar on the [Source Analytics page](https://dashboard.branch.io/#/analytics/source){:target="_blank"}. You can find similar controls on a number of dashboard pages:
 
 {% image src='/img/pages/getting-started/organizing-link-data/source-filters.png' full center alt='analytics filtering options' %}
 
 ## See link and click data in real time
 
-The [Content Analytics page](https://dashboard.branch.io/#/analytics/content) allows you to see data on content your users are sharing, and which pieces of content are the most popular. You can also use the tabs on the [Live View page](https://dashboard.branch.io/#/liveview) to see generated links and link clicks in real time.
+The [Content Analytics page](https://dashboard.branch.io/#/analytics/content){:target="_blank"} allows you to see data on content your users are sharing, and which pieces of content are the most popular. You can also use the tabs on the [Live View page](https://dashboard.branch.io/#/liveview){:target="_blank"} to see generated links and link clicks in real time.
 
 ## Setting a custom link domain
 
@@ -50,7 +50,7 @@ Branch automatically handles HTTPS traffic for custom subdomains and root domain
 ### Custom SUBDOMAIN (go.branch.com)
 
 1. Create a CNAME for your subdomain and point it to `custom.bnc.lt`
-1. Go to [Link Settings](https://dashboard.branch.io/#/settings/link) on the Branch dashboard, and find the **Custom Link Domain** section.
+1. Go to [Link Settings](https://dashboard.branch.io/#/settings/link){:target="_blank"} on the Branch dashboard, and find the **Custom Link Domain** section.
 1. You should see a message telling you the status of your domain under the `Domain name` field. If you don't, please type your domain in again.
 1. Click the `Save` button.
 
@@ -58,13 +58,13 @@ Branch automatically handles HTTPS traffic for custom subdomains and root domain
 
 ### Custom ROOT domain (branch.com)
 
-1. Go to [Link Settings](https://dashboard.branch.io/#/settings/link) on the Branch dashboard, and find the **Custom Link Domain** section.
+1. Go to [Link Settings](https://dashboard.branch.io/#/settings/link){:target="_blank"} on the Branch dashboard, and find the **Custom Link Domain** section.
 1. Enter your custom domain into the text box and click the `Save` button. (If the validation status doesn't update with nameservers please **refresh the page.**) {% image src='/img/pages/getting-started/universal-app-links/custom_domain_nameservers_error.png' full center alt='root domain nameservers' %}
 1. Go to your DNS configuration for your custom domain, and update your nameserver records with the Branch-provided nameservers.
 1. Click the `Save` button on the Branch dashboard again.
 
 ## Controlling default link redirection behavior
 
-By default, Branch will attempt to launch your app every single time a link is opened, before redirecting to the App Store or Play Store. On iOS 9, this can cause an ugly error message if the app is not yet installed. To reverse this default behavior, you can uncheck the **Always try to open app** box on the [Link Settings page](https://dashboard.branch.io/#/settings/link):
+By default, Branch will attempt to launch your app every single time a link is opened, before redirecting to the App Store or Play Store. On iOS 9, this can cause an ugly error message if the app is not yet installed. To reverse this default behavior, you can uncheck the **Always try to open app** box on the [Link Settings page](https://dashboard.branch.io/#/settings/link){:target="_blank"}:
 
 {% image src='/img/pages/getting-started/organizing-link-data/always_open_app.png' full center alt='setting link redirection default behavior' %}

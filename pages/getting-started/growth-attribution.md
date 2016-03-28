@@ -23,7 +23,7 @@ contents: list
 
 {% ingredient quickstart-prerequisite %}{% endingredient %}
 
-You can measure your app growth in the [Dashboard](https://dashboard.branch.io) through automatic event tracking and user identity tracking.
+You can measure your app growth in the [Dashboard](https://dashboard.branch.io){:target="_blank"} through automatic event tracking and user identity tracking.
 
 ## Automatic event tracking
 
@@ -40,7 +40,7 @@ Branch _automatically_ creates events whenever a user accesses your site or your
 You can be notified via a postback to your server every time that an event occurs. Visit the [Webhooks](/getting-started/webhooks/) page for more information on configuring postbacks.
 {% endprotip %}
 
-You can also define as many custom events (sign ups, purchases, shares, etc.) as you wish - see the [User Value Attribution]({{base.url}}/getting-started/user-value-attribution) guide for more on tracking custom events. You can see these events as they occur on the [Live View > Events](https://dashboard.branch.io/#/liveview/events/view) page.
+You can also define as many custom events (sign ups, purchases, shares, etc.) as you wish - see the [User Value Attribution]({{base.url}}/getting-started/user-value-attribution) guide for more on tracking custom events. You can see these events as they occur on the [Live View > Events](https://dashboard.branch.io/#/liveview/events/view){:target="_blank"} page.
 
 ## Setting identities
 
@@ -234,7 +234,7 @@ The **first** time an identity is set for each unique user ID, it will retroacti
 
 ## Measuring influencers
 
-The [Influencers page](https://dashboard.branch.io/#/referrals/influencers) on the dashboard will show you who is driving the most new signups.
+The [Influencers page](https://dashboard.branch.io/#/referrals/influencers){:target="_blank"} on the dashboard will show you who is driving the most new signups.
 
 {% image src='/img/pages/getting-started/growth-attribution/influencers.png' full center alt='analytics filtering options' %}
 
