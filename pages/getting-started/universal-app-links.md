@@ -238,7 +238,7 @@ public override bool ContinueUserActivity (UIApplication application,
     NSUserActivity userActivity,
     UIApplicationRestorationHandler completionHandler)
 {
-    bool handledByBranch = BranchIOS.getInstance ().ContinueUserActivity (userActivity, app);
+    bool handledByBranch = BranchIOS.getInstance ().ContinueUserActivity (userActivity);x
     return handledByBranch;
 }
 {% endhighlight %}
