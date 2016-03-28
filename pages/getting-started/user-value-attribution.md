@@ -182,7 +182,7 @@ branch.userCompletedAction("purchase_event", {sku: 12346789});
 
 ## Measuring custom events
 
-You can see one custom event at a time in the dashboard by using the dropdown picker above [Marketing](https://dashboard.branch.io/#/marketing) and [Source Analytics](https://dashboard.branch.io/#/analytics/source) data. Custom events columns on these pages show total events count and events %, where the percentage is total events over total app sessions (installs + re-opens). You can see these metrics for individual links, campaigns, channels, tags, stages, and features.
+You can see one custom event at a time in the dashboard by using the dropdown picker above [Marketing](https://dashboard.branch.io/#/marketing){:target="_blank"} and [Source Analytics](https://dashboard.branch.io/#/analytics/source){:target="_blank"} data. Custom events columns on these pages show total events count and events %, where the percentage is total events over total app sessions (installs + re-opens). You can see these metrics for individual links, campaigns, channels, tags, stages, and features.
 
 {% image src='/img/pages/getting-started/user-value-attribution/custom-events-source.png' full center alt='Branch dashboard' %}
 
@@ -204,6 +204,6 @@ For more information on how Branch attributes custom events, see this [FAQ](http
 
 {% endprotip %}
 
-You can also see custom events as they occur on the [Live View > Events](https://dashboard.branch.io/#/liveview/events/view) page. 
+You can also see custom events as they occur on the [Live View > Events](https://dashboard.branch.io/#/liveview/events/view){:target="_blank"} page. 
 
 {% image src='/img/pages/getting-started/user-value-attribution/live-view-events.png' full center alt='Live View Events' %}
