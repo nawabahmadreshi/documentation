@@ -2,10 +2,8 @@
 type: recipe
 directory: third-party-integrations
 title: "Mixpanel"
-ios_page_title: Sync Branch iOS data with Mixpanel
-android_page_title: Sync Branch Android data with Mixpanel
-ios_description: Learn how to synchronize your Branch iOS data with Mixpanel, for example to track in-app events, segment users from Branch installs and calculate LTV.
-android_description: Learn how to synchronize your Branch Android data with Mixpanel, for example to track in-app events, segment users from Branch installs and calculate LTV.
+page_title: Sync Branch data with Mixpanel
+description: Learn how to synchronize your Branch data with Mixpanel, for example to track in-app events, segment users from Branch installs and calculate LTV.
 ios_keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Mixpanel, user segmentation, life time value, LTV
 android_keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Mixpanel, user segmentation, life time value, LTV
 platforms:

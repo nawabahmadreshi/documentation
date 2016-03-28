@@ -2,10 +2,8 @@
 type: recipe
 directory: features
 title: "Content Sharing"
-ios_page_title: iOS Deep Links for Content Sharing
-android_page_title: Android Deep Links for Content Sharing
-ios_description: How to create deep links programmatically to share content and how to route to content within your iOS app. With objective-c and swift code snippets.
-android_description: How to create deep links programmatically to share content and how to route to content within your Android app. With code snippets.
+page_title: Deep Links for Content Sharing
+description: How to create deep links programmatically to share content and how to route to content within your app. With code snippets.
 ios_keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Content Sharing, Content, Routing, SMS, iOS, objective-c, swift
 android_keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views,Content Sharing, Content, Routing, SMS, Android
 platforms:

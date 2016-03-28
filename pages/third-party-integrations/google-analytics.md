@@ -2,10 +2,8 @@
 type: recipe
 directory: third-party-integrations
 title: "Google Analytics"
-ios_page_title: Send iOS Deep Link Data to Google Analytics
-android_page_title: Use Android Link Data in Google Analytics
-ios_description: This guide teaches you how to find and send iOS deep link data to Google Analytics through your Branch Metrics implementation.
-android_description: This guide teaches you how to find and send Android deep link data to Google Analytics through your Branch Metrics implementation.
+page_title: Send Deep Link Data to Google Analytics
+description: This guide teaches you how to find and send deep link data to Google Analytics through your Branch Metrics implementation.
 ios_keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Google Analytics, iOS, Webhook
 android_keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Google Analytics, Android, Webhook
 platforms:
