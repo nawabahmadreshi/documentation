@@ -39,7 +39,7 @@ Let's say you have developed an app called **Branch Monster Factory**. You want 
 
 ## Generate sharing links
 
-The first thing we need to do is allow your users to create links. These links will to contain references to the content being shared, which generate analytics data and allow your app to route straight back to that content when a link is opened.
+The first thing we need to do is allow your users to create links. These links will contain references to the content being shared, which generate analytics data and allow your app to route straight back to that content when a link is opened.
 
 <!--- iOS -->
 {% if page.ios %}
