@@ -1,7 +1,7 @@
 ---
 type: recipe
 directory: getting-started
-title: 4. Dashboard Guide
+title: 5. Dashboard Guide
 page_title: Learn more about the Branch dashboard
 description: "Learn about some basic and advanced features of the Branch dashboard"
 android_description: "Learn about some advanced features of the Branch dashboard: How to set up a custom link domain and identify your best users."
