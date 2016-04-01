@@ -4,6 +4,7 @@
 	<!--<script src="{{base.url}}/js/webhook_builders/dynamic_link_builder_testing.js" type="text/javascript"></script>-->
 	<script src="{{base.url}}/js/webhook_builders/dynamic_link_builder.js" type="text/javascript"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -109,12 +110,12 @@
 	<table>
 		<!-- START OF CUSTOM QUERY PARAMETERS -->
 		<thead>
-			<tr>
+			<tr data-toggle="collapse" data-target="#custom_query_parameters" class="accordion-toggle">
 				<th>Custom Query Parameters</th>
 				<th></th>
 			</tr>
 		</thead>
-		<tbody>
+		<tbody class="accordion-body collapse" id="custom_query_parameters">
 	       	<tr>
 	       		<td><br><i>*Note* Format should be a string with <br>one item = another item. </i><br><b>Example:</b> user_id=JohnJoe</td>
 	       		<td></td>
