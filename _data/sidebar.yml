@@ -4,15 +4,13 @@
   directory: getting-started
   children:
     - sdk-integration-guide
-    - title: 2. Create Links
+    - universal-app-links
+    - title: 3. Create Links
       children:
         - creating-links-in-apps
         - creating-links-other-ways
         - configuring-links
-    - title: 3. Set Up Deep Linking
-      children:
-        - deep-link-routing
-        - universal-app-links
+    - deep-link-routing
     - dashboard-guide
     - title: Advanced
       children:
