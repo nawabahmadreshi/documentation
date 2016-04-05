@@ -376,7 +376,7 @@ Make sure that this activity is launched as a `singleTask`. This is important to
 [IntentFilter (new[]{"android.intent.action.VIEW"},
         Categories=new[]{"android.intent.category.DEFAULT", 
         "android.intent.category.BROWSABLE"},
-        DataScheme="yourapp",
+        DataScheme="yourApp",
         DataHost="open")]
 {% endhighlight %}
 
@@ -415,8 +415,6 @@ To understand how to work with android manifest, read Xamarin documentation:
     <!-- other stuff -->
     <application>
         <meta-data android:name="io.branch.sdk.BranchKey" android:value="key_live_xxxxxxxxxxxxxxx" />
-        <meta-data android:name="io.branch.sdk.BranchKey.test" android:value="key_test_yyyyyyy" />
-        <meta-data android:name="io.branch.sdk.TestMode" android:value="false" />
         <activity android:name="io.branch.nativeExtensions.branch.BranchActivity" android:launchMode="singleTask" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
     </application>
 ]]></manifestAdditions></android>
@@ -759,7 +757,7 @@ public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsApplicat
 
         App app = new App ();
 
-        BranchAndroid.Init (this, "Your Branch key here", app);
+        BranchAndroid.Init (this, "key_live_xxxxxxxxxxxxxxx", app);
 
         LoadApplication (app);
     }
@@ -788,7 +786,7 @@ public class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDe
 
         // Enable debug mode. 
         BranchIOS.Debug = true;
-        BranchIOS.Init ("Your Branch key here", launchOptions, app);
+        BranchIOS.Init ("key_live_xxxxxxxxxxxxxxx", launchOptions, app);
 
         LoadApplication (app);
 

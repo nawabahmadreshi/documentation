@@ -17,6 +17,7 @@ platforms:
 sections:
 - overview
 - guide
+- advanced
 ---
 
 {% if page.overview %}
@@ -192,6 +193,8 @@ branchUniversalObject.generateShortUrl(this, linkProperties, new BranchLinkCreat
 
 {% if page.cordova %}
 
+## Create a Branch Universal Object
+
 Create a `BranchUniversalObject` for the piece of content that you'd like to link to, defining any custom key/value pairs as `metadata` parameters:
 
 {% highlight js %}
@@ -212,6 +215,8 @@ Branch.createBranchUniversalObject({
   console.log(newBranchUniversalObj);
 });
 {% endhighlight %}
+
+## Assemble link parameters
 
 Then, create the link to be shared by referencing the `BranchUniversalObject` and defining the properties of the link. In the example, our properties reflect that this is shared content and the user selected Facebook as the destination. We also added a default redirect to a website on the desktop.
 
