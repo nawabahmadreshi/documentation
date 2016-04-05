@@ -197,7 +197,7 @@ If you want to filter on just a key being present, you can put a `*` in the valu
 Let's say you want a webhook to fire for all `install` events driven by a single Branch link. This typically occurs if you run a campaign with an ad provider and they need install information posted back to their servers. You can use filters to accomplish this goal.
 
 1. Create a link through the [Marketing page](https://dashboard.branch.io/#/marketing). This is the link you will give to your ad provider.
-1. Once you have added necessary data to the link and saved it, you must grab its ID. The simplest way to do this is by taking the full link (**https://bnc.lt/abcd/a1b2c3d4e5**), and appending `?debug=1` to the end (**https://bnc.lt/abcd/a1b2c3d4e5?debug=1**).
+1. Once you have added necessary data to the link and saved it, you must grab its ID. The simplest way to do this is by taking the full link (**https://[branchsubdomain]/abcd/a1b2c3d4e5**), and appending `?debug=1` to the end (**https://[branchsubdomain]/abcd/a1b2c3d4e5?debug=1**).
 1. Enter that URL inside your browser. You will see all of the link's details, including a section that says `Data`. Inside that section, the ID of the link itself is present (~id). Grab the value for that ID. For our example, let's assume the ID is 12345.
 1. With this information handy, go to the [Webhooks page](https://dashboard.branch.io/#/webhook) and set one up for `install` events.
 1. Go to the filters drop down for that webhook, and add the following key/values pairs:
@@ -237,7 +237,7 @@ To access template values when setting up a webhook, you use liquid tags followi
 
 ### Query parameters on Branch links
 
-Let's say you have created a Branch link in the Marketing tab specifically for SEM campaigns and want to track query parameters. Potentially something like this: **http://bnc.lt/my-sf-campaign?clickId=12345**
+Let's say you have created a Branch link in the Marketing tab specifically for SEM campaigns and want to track query parameters. Potentially something like this: **http://[branchsubdomain]/my-sf-campaign?clickId=12345**
 
 You want to return that value **clickId** value (`12345`) back to your backend. Any query parameter you add to Branch Links will be captured in our database and available for you to use in this format: `session.link_click.query.[key]`. So, if you had `?clickId=5&deviceId=7` appended to the link URL, you could retrieve those values as `session.link_click.query.clickId` and `session.link_click.query.deviceId`. In case there isn't anything, it'll simply be empty.
 
@@ -265,7 +265,7 @@ When a Branch link is opened, triggering a `click` event, you may access:
 
 | Key | Description
 | --- | ---
-| click.query.key | Any key that was appended to the link when opened. To retrieve `value1` from **https://bnc.lt/test?param1=value1**, you would use `click.query.param1`.
+| click.query.key | Any key that was appended to the link when opened. To retrieve `value1` from **https://[branchsubdomain]/test?param1=value1**, you would use `click.query.param1`.
 | click.browser.branch_id | The Branch ID we have for a user's unique browser
 | click.browser.metadata.userAgent | The user agent of the browser
 | click.device.hardware_id | For iOS, this is the Advertising ID. For Android, this is the Android ID
@@ -287,7 +287,7 @@ When a Branch link is opened, triggering a `click` event, you may access:
 | click.link_data.$one_time_use_used | Whether this one time use link was used or not
 | click.link_data.$identity_id | Branch internal identity of user who generated the link
 | click.link_data.$match_duration | Length of time (in milliseconds) that a match could have occurred
-| click.link_data.+url | The full URL of the link, e.g. bnc.lt/m/abcde12345
+| click.link_data.+url | The full URL of the link, e.g. [branchsubdomain]/m/abcde12345
 | click.link_data.key | Any key value you specified in the link's data dictionary
 | click.referring_identity.id | ID you set for the user who created this link
 
@@ -333,7 +333,7 @@ The `identity.link_click.` values refer to the `click` event that led to your ap
 
 | Key | Description
 | --- | ---
-| identity.link_click.query.key | Any key that was appended to the link when opened. To retrieve `value1` from **https://bnc.lt/test?param1=value1**, you would use `identity.link_click.query.param1`.
+| identity.link_click.query.key | Any key that was appended to the link when opened. To retrieve `value1` from **https://[branchsubdomain]/test?param1=value1**, you would use `identity.link_click.query.param1`.
 | identity.link_click.referring_identity.id | ID you set for the user who created this link
 | identity.link_click.browser.branch_id | The Branch ID we have for a user's unique browser
 | identity.link_click.browser.metadata.userAgent | The user agent of the browser
@@ -358,7 +358,7 @@ The `identity.link_data.` values refer to the link that was opened prior to your
 | identity.link_data.$one_time_use_used | Whether this one time use link was used or not
 | identity.link_data.$identity_id | Branch internal identity of user who generated the link
 | identity.link_data.$match_duration | Length of time (in milliseconds) that a match could have occurred
-| identity.link_data.+url | The full URL of the link, e.g. bnc.lt/m/abcde12345
+| identity.link_data.+url | The full URL of the link, e.g. [branchsubdomain]/m/abcde12345
 | identity.link_data.key | Any key value you specified in the link's data dictionary
 
 #### Session data
@@ -378,7 +378,7 @@ The `session.link_click` keys refer to the `click` event that initiated the sess
 
 | Key | Description
 | --- | ---
-| session.link_click.query.key | Any key that was appended to the link when opened. To retrieve `value1` from **https://bnc.lt/test?param1=value1**, you would use `session.click.query.param1`.
+| session.link_click.query.key | Any key that was appended to the link when opened. To retrieve `value1` from **https://[branchsubdomain]/test?param1=value1**, you would use `session.click.query.param1`.
 | session.link_click.referring_identity.id | ID you set for the user who created this link
 | session.link_click.browser.branch_id | The Branch ID we have for a user's unique browser
 | session.link_click.browser.metadata.userAgent | The user agent of the browser
@@ -403,7 +403,7 @@ The `session.link_data` keys refer to the link that initiated the session.
 | session.link_data.$one_time_use_used | Whether this one time use link was used or not
 | session.link_data.$identity_id | Branch internal identity of user who generated the link
 | session.link_data.$match_duration | Length of time (in milliseconds) that a match could have occurred
-| session.link_data.+url | The full URL of the link, e.g. bnc.lt/m/abcde12345
+| session.link_data.+url | The full URL of the link, e.g. [branchsubdomain]/m/abcde12345
 | session.link_data.key | Any key value you specified in the link's data dictionary
 
 {% elsif page.support %}

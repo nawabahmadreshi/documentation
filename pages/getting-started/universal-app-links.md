@@ -99,7 +99,11 @@ Please ensure...
 
 ### Add your Branch link domains
 
-1. In the `Domains` section, click the `+` icon and add the following entry: `applinks:bnc.lt` {% image src='/img/pages/getting-started/universal-app-links/add_domain.png' 3-quarters center alt='xcode add domain' %}
+1. In the `Domains` section, click the `+` icon and add the following entry: `applinks:[branchsubdomain]` {% image src='/img/pages/getting-started/universal-app-links/add_domain.png' 3-quarters center alt='xcode add domain' %}
+
+{% caution title="Support for legacy links" %}
+If any of your links use the legacy `bnc.lt` domain, you must also include the following entry: `applinks:bnc.lt`
+{% endcaution %}
 
 {% protip title="Using a custom domain or subdomain?" %}
 If you use a [custom domain or subdomain for your Branch links]({{base.url}}/getting-started/dashboard-guide/guide/#setting-a-custom-link-domain), you should also add an entry for `applinks:[mycustomdomainorsubdomain]`.
@@ -119,9 +123,21 @@ Add the following entry to your application's `config.xml`:
 {% highlight xml %}
 <branch-config>
     <ios-team-id value="your_ios_team_id" />
-    <host name="bnc.lt" scheme="https" />
-</branch-config>    
+    <host name="[branchsubdomain]" scheme="https" />
+</branch-config>
 {% endhighlight %}
+
+{% caution title="Support for legacy links" %}
+If any of your links use the legacy `bnc.lt` domain, you must also include the following entry:
+
+{% highlight xml %}
+<branch-config>
+<ios-team-id value="your_ios_team_id" />
+<host name="bnc.lt" scheme="https" />
+</branch-config>
+{% endhighlight %}
+
+{% endcaution %}
 
 {% protip title="Notes" %}
 - You can get your **iOS Team ID** from the Your Account page on the [Apple Developer Portal](https://developer.apple.com/membercenter/index.action#accountSummary).
@@ -132,9 +148,13 @@ Add the following entry to your application's `config.xml`:
 
 {% if page.xamarin %}
 
-Create a new file named `Entitlements.plist` in the root directory of your project. Enable `associated-domains` and add `applinks:bnc.lt`.
+Create a new file named `Entitlements.plist` in the root directory of your project. Enable `associated-domains` and add `applinks:[branchsubdomain]`.
 
 {% image src='/img/pages/getting-started/universal-app-links/xamarin_branch_ios_domains.png' full center alt='Associated Domains' %}
+
+{% caution title="Support for legacy links" %}
+If any of your links use the legacy `bnc.lt` domain, you must also include the following entry: `applinks:bnc.lt`
+{% endcaution %}
 
 {% protip title="Using a custom domain or subdomain?" %}
 If you use a [custom domain or subdomain for your Branch links]({{base.url}}/getting-started/dashboard-guide/guide/#setting-a-custom-link-domain), you should also add an entry for `applinks:[mycustomdomainorsubdomain]`.
@@ -154,11 +174,15 @@ If you use a [custom domain or subdomain for your Branch links]({{base.url}}/get
 <dict>
     <key>com.apple.developer.associated-domains</key>
     <array>
-        <string>applinks:bnc.lt</string>
+        <string>applinks:[branchsubdomain]</string>
     </array>
 </dict>
 </plist>
 {% endhighlight %}
+
+{% caution title="Support for legacy links" %}
+If any of your links use the legacy `bnc.lt` domain, you must also include the following entry: `<string>applinks:bnc.lt</string>`
+{% endcaution %}
 
 {% protip title="Using a custom domain or subdomain?" %}
 If you use a [custom domain or subdomain for your Branch links]({{base.url}}/getting-started/dashboard-guide/guide/#setting-a-custom-link-domain), you should also add a key for `<string>[mycustomdomainorsubdomain]</string>`.
@@ -349,9 +373,21 @@ Add the following entry to your application's `config.xml`:
 {% highlight xml %}
 <branch-config>
     <android-prefix value="READ_FROM_DASHBOARD" />
-    <host name="bnc.lt" scheme="https" />
+    <host name="[branchsubdomain]" scheme="https" />
 </branch-config>
 {% endhighlight %}
+
+{% caution title="Support for legacy links" %}
+If any of your links use the legacy `bnc.lt` domain, you must also include the following entry:
+
+{% highlight xml %}
+<branch-config>
+<ios-team-id value="your_ios_team_id" />
+<host name="bnc.lt" scheme="https" />
+</branch-config>
+{% endhighlight %}
+
+{% endcaution %}
 
 {% protip title="Notes" %}
 - If you enabled iOS Universal Links, some of these keys will already exist and should not be entered again.
@@ -374,9 +410,18 @@ Add the following entry to your application's `config.xml`:
     <action android:name="android.intent.action.VIEW" />
     <category android:name="android.intent.category.DEFAULT" />
     <category android:name="android.intent.category.BROWSABLE" />
-    <data android:scheme="https" android:host="bnc.lt" android:pathPrefix="READ_FROM_DASHBOARD" />
+    <data android:scheme="https" android:host="[branchsubdomain]" android:pathPrefix="READ_FROM_DASHBOARD" />
 </intent-filter>
 {% endhighlight %}
+
+{% caution title="Support for legacy links" %}
+If any of your links use the legacy `bnc.lt` domain, you must also include the following entry:
+
+{% highlight xml %}
+<data android:scheme="https" android:host="bnc.lt" android:pathPrefix="READ_FROM_DASHBOARD" />
+{% endhighlight %}
+
+{% endcaution %}
 
 {% protip title="Using a custom domain or subdomain?" %}
 If you use a [custom domain or subdomain for your Branch links]({{base.url}}/getting-started/dashboard-guide/guide/#setting-a-custom-link-domain), you should also add an entry for:
@@ -519,7 +564,7 @@ No support information available for this platform.
 
 ## What happens to existing links? 
 
-### If you use bnc.lt as your domain
+### If your links use the legacy bnc.lt domain
 Universal Links are of the form `https://bnc.lt/«four-letter-identifier»/«link-hash»`. Existing links created prior to enabling Universal Links are of the form `https://bnc.lt/m/«link-hash»` or `https://bnc.lt/l/«link-hash»` and will continue to function as non-Universal Links.
 
 Aliased links on the bnc.lt domain (e.g., `bnc.lt/download`) are not compatible with Universal Links.
@@ -558,9 +603,6 @@ Unfortunately, Universal Links don't work quite everywhere yet. We'll maintain t
 - Google, Gmail, Inbox, Twitter, Facebook, FB Messenger, WeChat -- Universal Links only work when you have a webview already open. In other words, they do not work in-app from the feed / main views. Again, they also *must* be cross-domain, aka if your user is on yourapp.com and clicks a Universal Link also for yourapp.com, it will not work. However, clicking from yourapp.com to bnc.lt will trigger the link to function as a Universal Link and open your app directly.
 
 ## Troubleshooting Universal Links
-
-##### Is it definitely a Universal Link?
-Universal Links are in the form https://bnc.lt/<<four-letter-identifier>>/<<link-hash>>. If there is a four letter code between two slashes, then it's a Universal Link. If it isn't a Universal Link, follow the above instructions to enable Universal Links, and double check that your Branch Dashboard Settings > Link Settings for iOS have "Enable Universal Links" checked. Note that aliased links bnc.lt/<custom label> don't work unless you're using a white labeled domain. 
 
 ##### Are you testing by manually entering into Safari?
 Universal Links don't work properly when entered into Safari. Use Notes or iMessage for testing.

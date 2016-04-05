@@ -122,12 +122,12 @@ branch.deepview(options, {
 
 ## Troubleshooting
 
-### Calls to bnc.lt blocked
+### Calls to [branchdomain] blocked
 
-Please make sure to add `bnc.lt` to the CSP header for your pages. We've seen some browsers that attempt to block it outright. You can deliver this in an HTTP header from your web server or you can add a simple metatag to your site like so:
+Please make sure to add `[branchsubdomain]` to the CSP header for your pages. We've seen some browsers that attempt to block it outright. You can deliver this in an HTTP header from your web server or you can add a simple metatag to your site like so:
 
 {% highlight html %}
-<meta http-equiv="Content-Security-Policy" content="default-src https://bnc.lt; child-src 'none'; object-src 'none'"> 
+<meta http-equiv="Content-Security-Policy" content="default-src https://[branchsubdomain]; child-src 'none'; object-src 'none'"> 
 {% endhighlight %}
 
 {% endif %}

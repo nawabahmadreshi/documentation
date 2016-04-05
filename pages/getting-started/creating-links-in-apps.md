@@ -488,10 +488,10 @@ You can build a Branch link dynamically by appending query parameters. This meth
 Try out the [Dynamic Link Builder]({{base.url}}/getting-started/dynamic-link-builder) to easily construct links of this type, or verify that links you have created are valid.
 {% endprotip %}
 
-1. Start with the Branch link domain: **http://bnc.lt** (you can also use your custom domain/subdomain here).
-2. Append `/a/your_Branch_key`: **http://bnc.lt/a/your_branch_key**
-3. Append `?` to start the query params string: **http://bnc.lt/a/your_branch_key?**
-4. [optional] Append any additional key/value pairs, and analytics or link control parameters.
+1. Start with your Branch link domain: **http://[branchsubdomain]**.
+1. Append `/a?` to start the query params string: **http://[branchsubdomain]/a/?**
+   - If you're using the legacy `bnc.lt` domain as the base for your links, instead append `/a/your_Branch_key?`: **http://bnc.lt/a/your_branch_key?**
+1. [optional] Append any additional key/value pairs, and analytics or link control parameters.
 
 {% example %}
 
@@ -507,13 +507,14 @@ Here's an example of a finalized dynamic link with the following keys:
 | **name** | Alex |
 
 {% highlight sh %}
-https://bnc.lt/a/key_live_jbgnjxvlhSb6PGH23BhO4hiflcp3y7ky?$deeplink_path=article%2Fjan%2F123&%24fallback_url=https%3A%2F%2Fgoogle.com&channel=facebook&feature=affiliate&user_id=4562&name=Alex
+https://[branchsubdomain]/a?$deeplink_path=article%2Fjan%2F123&%24fallback_url=https%3A%2F%2Fgoogle.com&channel=facebook&feature=affiliate&user_id=4562&name=Alex
 {% endhighlight %}
 
 {% endexample %}
 
-{% caution title="Use URL encoding" %}
-Please make sure to URL encode everything, lest the link will break.
+{% caution title="Link URL considerations" %}
+1. Don't forget to URL encode everything, otherwise the link will break.
+1. If any of your links use the legacy `bnc.lt` domain, be sure to include your custom domain **and** `bnc.lt` when configuring the [Associated Domains entitlement]({{base.url}}/getting-started/universal-app-links/guide/ios/#add-your-branch-link-domains) for iOS Universal Links.
 {% endcaution %}
 
 ## Web SDK
@@ -556,7 +557,7 @@ branch.link({
 {% highlight js %}
 callback(
     "Error message",
-    'https://bnc.lt/l/3HZMytU-BW' // Branch shortlink URL
+    'https://[branchsubdomain]/l/3HZMytU-BW' // Branch shortlink URL
 );
 {% endhighlight %}
 
@@ -581,7 +582,7 @@ https://api.branch.io/v1/url
 This will return Branch shortlink:
 
 {% highlight sh %}
-{"url":"https://bnc.lt/m/BqmToC9Ion"}
+{"url":"https://[branchsubdomain]/m/BqmToC9Ion"}
 {% endhighlight %}
 
 ## Dashboard

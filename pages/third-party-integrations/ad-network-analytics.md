@@ -72,7 +72,7 @@ Now you simply deliver your Branch link to the advertising network. You probably
 
 Instead, just replace the base URL (everything before the `?`), with your Branch link:
 
-`https://bnc.lt/l/125AdD-F?campaign={campaign_id}&adgroup={creative_id}`
+`https://[branchsubdomain]/l/125AdD-F?campaign={campaign_id}&adgroup={creative_id}`
 
 **This is the link to provide to your ad partner.**
 

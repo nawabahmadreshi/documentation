@@ -733,7 +733,7 @@ function DeepLinkHandler(data) {
 {% endhighlight %}
 
 {% caution title="Watch out for content security policies" %}
-If `data` is null and `err` contains a string denoting a request timeout, make sure to whitelist `api.branch.io` and `bnc.lt` in your app's [content security policies](https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy).
+If `data` is null and `err` contains a string denoting a request timeout, make sure to whitelist `api.branch.io` and `[branchsubdomain]` in your app's [content security policies](https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy).
 {% endcaution %}
 
 {% endif %}
