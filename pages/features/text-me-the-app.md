@@ -241,6 +241,12 @@ A: This occurs when a carrier filters you SMS out due to spam. We try our hardes
 
 ##### Q: How come my (non US) phone number isn't working?
 
-A: With full numbers, you are required to use the "+" and the country code. If you know your users are only in a certain country, you could automatically append the + and the country code so that they only need to append their number without the country code.
+A: With full numbers, you are required to use "+" and the country code. If you know your users are only in a certain country, you can automatically prepend "+" and the country code so that they only need to enter their regular number. To do this, you must [configure a custom url](/features/text-me-the-app/guide/#configure-custom-url-in-branch-dashboard) and complete subsequent steps to create a custom text-me-the-app page. Then, you can alter the code snippet in [step 2](/features/text-me-the-app/guide/#insert-sendsms-snippet-into-your-page) with the following:
+
+{% highlight js %}
+    var phone = "+91" + form.phone.value;
+{% endhighlight %}
+
+In the example above, "+91" is the code for the country your users are based in.
 
 {% endif %}
