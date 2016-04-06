@@ -246,23 +246,9 @@ dependencies {
 {% if page.xamarin %}
 ## iOS: Configure Xcode Project
 
-In your project's `YourProject-Info.plist` file:
-
-1. In https://dashboard.branch.io/#/settings/link, tick `I have an iOS App` checkbox and enter your URI Scheme (e.g.: `yourapp://`) into the text box.
-
-2. You can register your app to respond to direct deep links (`yourapp://` in a mobile browser) by adding `CFBundleURLTypes` block. Also, make sure to change `yourapp` to a unique string that represents your app name. 
+In your project's `YourProject-Info.plist` file, you can register your app to respond to direct deep links (`yourapp://` in a mobile browser) by adding a `CFBundleURLTypes` block. Also, make sure to change `yourapp` to a unique string that represents your app name. 
 
 {% image src='/img/pages/getting-started/sdk-integration-guide/xamarin_branch_ios_uri.png' full center alt='iOS URI' %}
-
-### iOS: Enable Universal Links
-
-In iOS 9.2, Apple dropped support for URI scheme redirects. You must enable Universal Links if you want Branch-generated links to work in your iOS app. To do this:
-
-1. enable `Associated Domains` capability on the Apple Developer portal when you create your app's bundle identifier. 
-2. In https://dashboard.branch.io/#/settings/link, tick the `Enable Universal Links` checkbox and provide the Bundle Identifier and Apple Team ID in the appropriate boxes. 
-3. Finally, create a new file named `Entitlements.plist` in the root directory of your project. Enable `associated-domains` and add `applinks:bnc.lt`. You may add more entitlement keys if you have any.
-
-{% image src='/img/pages/getting-started/sdk-integration-guide/xamarin_branch_ios_domains.png' full center alt='Associated Domains' %}
 
 {% endif %}
 

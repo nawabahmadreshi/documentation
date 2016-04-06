@@ -72,7 +72,7 @@ branch.banner(options, {
 {% highlight javascript %}
 branch.banner(options, {
     data: {
-      '$deeplink_path': window.location.split('com/')[1],
+      '$deeplink_path': window.location.pathname + window.location.search + window.location.hash,
     }
 });
 {% endhighlight %}

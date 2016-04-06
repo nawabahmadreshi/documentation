@@ -2,10 +2,8 @@
 type: recipe
 directory: features
 title: "Content Sharing"
-ios_page_title: iOS Deep Links for Content Sharing
-android_page_title: Android Deep Links for Content Sharing
-ios_description: How to create deep links programmatically to share content and how to route to content within your iOS app. With objective-c and swift code snippets.
-android_description: How to create deep links programmatically to share content and how to route to content within your Android app. With code snippets.
+page_title: Deep Links for Content Sharing
+description: How to create deep links programmatically to share content and how to route to content within your app. With code snippets.
 ios_keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Content Sharing, Content, Routing, SMS, iOS, objective-c, swift
 android_keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views,Content Sharing, Content, Routing, SMS, Android
 platforms:
@@ -41,7 +39,7 @@ Let's say you have developed an app called **Branch Monster Factory**. You want 
 
 ## Generate sharing links
 
-The first thing we need to do is allow your users to create links. These links will to contain references to the content being shared, which generate analytics data and allow your app to route straight back to that content when a link is opened.
+The first thing we need to do is allow your users to create links. These links will contain references to the content being shared, which generate analytics data and allow your app to route straight back to that content when a link is opened.
 
 <!--- iOS -->
 {% if page.ios %}

@@ -1,7 +1,7 @@
 ---
 type: recipe
 directory: getting-started
-title: "Deep Link Routing"
+title: "4. Deep Link Routing"
 page_title: Set up deep link routing in your app
 description: This page will tell you how to set up your Android, iOS, Cordova, Phonegap, Xamarin, Unity, Air, Titanium, or React Native app for deep link routing.
 platforms:
@@ -557,7 +557,7 @@ In your app's Manifest, add this meta-data key to the definition of the Activity
 {% if page.android %}{% else %}
 
 {% caution title="Incomplete support on iOS" %}
-[Universal Links]({{base.url}}/getting-started/universal-app-links) and [Spotlight]({{base.url}}/features/spotlight-indexing) do not support URI paths. We recommend avoiding this approach to deep link routing if possible.
+[Universal Links]({{base.url}}/getting-started/universal-app-links) and [Spotlight]({{base.url}}/features/spotlight-indexing) do not support deep linking via URI paths. If possible, we recommend not using `$deeplink_path` and its platform-specific variants as your only deep link routing method.
 {% endcaution %}
 
 {% endif %}
