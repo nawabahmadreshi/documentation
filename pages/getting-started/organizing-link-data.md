@@ -31,7 +31,9 @@ Below is the filtering bar on the [Source Analytics page](https://dashboard.bran
 
 ## See link and click data in real time
 
-The [Content Analytics page](https://dashboard.branch.io/#/analytics/content){:target="_blank"} allows you to see data on content your users are sharing, and which pieces of content are the most popular. You can also use the tabs on the [Live View page](https://dashboard.branch.io/#/liveview){:target="_blank"} to see generated links and link clicks in real time.
+Tabs for links, clicks, events, content, and more on the [Live View page](https://dashboard.branch.io/#/liveview){:target="_blank"} allow you to see generated data in real time.
+
+{% image src='/img/pages/getting-started/organizing-link-data/live-view-events.png' full center alt='analytics filtering options' %}
 
 ## Setting a custom link domain
 

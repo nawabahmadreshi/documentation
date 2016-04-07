@@ -23,7 +23,7 @@ contents: list
 
 {% ingredient quickstart-prerequisite %}{% endingredient %}
 
-In-app engagement and user value metrics are just as important as the click, install, and open metrics that Branch [automatically provides]({{base.url}}/getting-started/growth-attribution). You can define your own post-install events for Branch to track, and view them in the dashboard.
+In-app engagement and user value metrics are just as important as the click, install, and re-open metrics that Branch [automatically provides]({{base.url}}/getting-started/growth-attribution#automatic-event-tracking). You can define your own post-install events for Branch to track, and view them in the dashboard.
 
 ## Custom event tracking
 
@@ -182,7 +182,11 @@ branch.userCompletedAction("purchase_event", {sku: 12346789});
 
 ## Measuring custom events
 
-You can see one custom event at a time in the dashboard by using the dropdown picker above [Marketing](https://dashboard.branch.io/#/marketing){:target="_blank"} and [Source Analytics](https://dashboard.branch.io/#/analytics/source){:target="_blank"} data. Custom events columns on these pages show total events count and events %, where the percentage is total events over total app sessions (installs + re-opens). You can see these metrics for individual links, campaigns, channels, tags, stages, and features.
+You can see data for one custom event at a time in the dashboard by using the dropdown picker above [Marketing](https://dashboard.branch.io/#/marketing){:target="_blank"} and [Source Analytics](https://dashboard.branch.io/#/analytics/source){:target="_blank"} data. 
+
+{% image src='/img/pages/getting-started/user-value-attribution/events-dropdown.png' third center alt='Branch dashboard' %}
+
+Custom events columns on these pages show total events count and events %, where the percentage is total events over total Branch-referred app sessions (installs + re-opens). You can see these metrics for individual links, campaigns, channels, tags, stages, and features.
 
 {% image src='/img/pages/getting-started/user-value-attribution/custom-events-source.png' full center alt='Branch dashboard' %}
 
