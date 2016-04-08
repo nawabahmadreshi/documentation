@@ -11,14 +11,16 @@
         - creating-links-other-ways
         - configuring-links
     - deep-link-routing
-    - dashboard-guide
+    - title: 5. Dashboard Guide
+      children:
+        - organizing-link-data
+        - growth-attribution
+        - user-value-attribution
     - title: Advanced
       children:
         - integration-testing
         - matching-accuracy
         - branch-universal-object
-        - tracking-events
-        - setting-identities
         - webhooks
 - title: Features
   directory: features

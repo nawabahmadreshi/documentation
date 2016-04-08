@@ -69,7 +69,7 @@ The following keys have been embedded:
 
 {% caution title="Link URL considerations" %}
 1. Don't forget to URL encode everything, otherwise the link will break.
-1. If you're using **bnc.lt** as the base for your links and you also have a [custom link domain](https://dev.branch.io/getting-started/dashboard-guide/guide/#setting-a-custom-link-domain), be sure to include your custom domain **and** `bnc.lt` when configuring the [Associated Domains entitlement]({{base.url}}/getting-started/universal-app-links/guide/ios/#add-your-branch-link-domains) for iOS Universal Links.
+1. If you're using **bnc.lt** as the base for your links and you also have a [custom link domain]({{base.url}}/getting-started/organizing-link-data#setting-a-custom-link-domain), be sure to include your custom domain **and** `bnc.lt` when configuring the [Associated Domains entitlement]({{base.url}}/getting-started/universal-app-links/guide/ios/#add-your-branch-link-domains) for iOS Universal Links.
 {% endcaution %}
 
 ## Web SDK
