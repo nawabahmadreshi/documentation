@@ -79,6 +79,12 @@ You can retrieve your app's Bundle Identifier under the `General` tab of your Xc
 
 {% image src='/img/pages/getting-started/universal-app-links/dashboard_enable_universal_links.png' 3-quarters center alt='enable Universal Links on Branch dashboard' %}
 
+{% caution title="bnc.lt links with your Test Key?" %}
+
+Due to a change in iOS 9.3.1, Universal Links will not work on *Test* apps using the `bnc.lt` domain. We're working on resolving this. Please test Universal Links with your Live app, where they will work as expected. [Read more](http://status.branch.io/incidents/b0c19p6hpq58){:target="_blank"}. 
+{% endcaution %}
+
+
 ## Add the entitlement to your project
 
 {% if page.ios or page.unity or page.adobe or page.react %}
@@ -595,6 +601,9 @@ These logs can be found for physical devices connected to Xcode by navigating to
 
 ##### Using Facebook's SDK?
 We've recently discovered a bug with Facebook's SDK returning `NO` for `application:didFinishLaunchingWithOptions` preventing Universal Links from working on cold start. Call `accountForFacebookSDKPreventingAppLaunch` on your Branch instance before initializing the session.
+
+##### `bnc.lt` links with your Test Key?
+Due to a change in iOS 9.3.1, Universal Links will not work on *Test* apps using the `bnc.lt` domain. We're working on resolving this. Please test Universal Links with your Live app, where they will work as expected. [Read more](http://status.branch.io/incidents/b0c19p6hpq58){:target="_blank"}. 
 
 ## What changed in iOS 9 and 9.2?
 
