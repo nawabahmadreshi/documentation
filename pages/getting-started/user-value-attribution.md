@@ -99,6 +99,10 @@ branch.userCompletedAction("custom_action_1");
 {% endhighlight %}
 {% endif %}
 
+{% caution title="Names reserved for Branch events" %}
+`click`, `view`, `served`, `install`, `open`, `install_bypass`, `open_bypass`, `install_assist`, and `open_assist` are reserved for Branch events, and these are filtered out of [custom events in the dashboard](#measuring-custom-events). Please choose distinct names for your custom events.
+{% endcaution %}
+
 ## Appending custom metadata
 
 You can also include additional information when creating a custom event:
