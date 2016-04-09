@@ -22,7 +22,7 @@ contents: list
 
 A `BranchUniversalObject` is a container that Branch uses to organize and track pieces of content within your app. As a single, self-contained object associated with each thing that you want to share, it provides convenient methods for sharing, deep linking, and tracking how often that thing is viewed.
 
-{% if page.xamarin or page.adobe %}
+{% if page.adobe %}
 
 Unfortunately `BranchUniversalObject` is not yet supported on this platform. Please see the [Creating Links in Apps]({{base.url}}/getting-started/creating-links-in-apps) page for alternatives!
 
@@ -99,15 +99,31 @@ Branch.createBranchUniversalObject({
 
 {% endif %}
 
+{% if page.xamarin %}
+
+{% highlight c# %}
+
+BranchUniversalObject universalObject = new BranchUniversalObject();
+universalObject.canonicalIdentifier = "content/12345";
+universalObject.title = "My Content Title";
+universalObject.contentDescription = "My Content Description";
+universalObject.imageUrl = "https://example.com/mycontent-12345.png";
+universalObject.metadata.Add("product_picture", "1234");
+universalObject.metadata.Add("user_id", "6789");
+{% endhighlight %}
+
+{% endif %}
+
 {% if page.unity %}
 
 {% highlight c# %}
 BranchUniversalObject universalObject = new BranchUniversalObject();
-universalObject.canonicalIdentifier = "id12345";
-universalObject.title = "id12345 title";
-universalObject.contentDescription = "My awesome piece of content!";
-universalObject.imageUrl = "https://s3-us-west-1.amazonaws.com/branchhost/mosaic_og.png";
-universalObject.metadata.Add("foo", "bar");
+universalObject.canonicalIdentifier = "content/12345";
+universalObject.title = "My Content Title";
+universalObject.contentDescription = "My Content Description";
+universalObject.imageUrl = "https://example.com/mycontent-12345.png";
+universalObject.metadata.Add("product_picture", "1234");
+universalObject.metadata.Add("user_id", "6789");
 {% endhighlight %}
 
 {% endif %}
@@ -199,6 +215,20 @@ Some of these parameters automatically [populate the link parameters]({{base.url
 | contentImageUrl | The image URL for the content | $og_image_url
 | contentMetadata | Any extra parameters you'd like to associate with the Branch Universal Object. These will be made available to you after the user clicks the link and opens up the app, and are used for [Deep Link Routing Routing]({{base.url}}/getting-started/deep-link-routing).
 | contentIndexingMode | Can be set to either `public` or `private`. Public indicates that you'd like this content to be discovered by other apps* | $publicly_indexable
+{% endif %}
+
+{% if page.xamarin %}
+| Parameter | Usage | Link Parameter
+| --- | --- | ---
+| canonicalIdentifier | This is the unique identifier for content that will help Branch dedupe across many instances of the same thing. Suitable options: a website with pathing, or a database with identifiers for entities | $canonical_identifier
+| title | The name for the piece of content | $og_title 
+| contentDescription | A description for the content | $og_description
+| contentImageUrl | The image URL for the content | $og_image_url
+| metadata | Any extra parameters you'd like to associate with the Branch Universal Object. These will be made available to you after the user clicks the link and opens up the app, and are used for [Deep Link Routing Routing]({{base.url}}/getting-started/deep-link-routing).
+| type | This is a label for the type of content present. Apple recommends that you use uniform type identifier as [described here](https://developer.apple.com/library/prerelease/ios/documentation/MobileCoreServices/Reference/UTTypeRef/index.html)* | $content_type
+| contentIndexMode | Can be set to either `ContentIndexModePublic` or `ContentIndexModePrivate`. Public indicates that you'd like this content to be discovered by other apps* | $publicly_indexable
+| keywords | Keywords for which this content should be discovered by. Just assign an array of strings with the keywords you'd like to use* | $keywords
+| expirationDate | The date when the content will not longer be available or valid* | $exp_date
 {% endif %}
 
 {% if page.unity %}

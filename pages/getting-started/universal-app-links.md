@@ -1,7 +1,7 @@
 ---
 type: recipe
 directory: getting-started
-title: Universal and App Links
+title: 2. Universal and App Links
 page_title: "Set up Universal & App Links with Branch"
 description: "Learn how to enable iOS 9 Universal Links and Android App Links with Branch deep links for tracking and deep linking."
 keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Android App Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Dashboard, iOS9
@@ -79,9 +79,15 @@ You can retrieve your app's Bundle Identifier under the `General` tab of your Xc
 
 {% image src='/img/pages/getting-started/universal-app-links/dashboard_enable_universal_links.png' 3-quarters center alt='enable Universal Links on Branch dashboard' %}
 
+{% caution title="bnc.lt links with your Test Key?" %}
+
+Due to a change in iOS 9.3.1, Universal Links will not work on *Test* apps using the `bnc.lt` domain. We're working on resolving this. Please test Universal Links with your Live app, where they will work as expected. [Read more](http://status.branch.io/incidents/b0c19p6hpq58){:target="_blank"}. 
+{% endcaution %}
+
+
 ## Add the entitlement to your project
 
-{% if page.ios or page.xamarin or page.unity or page.adobe or page.react %}
+{% if page.ios or page.unity or page.adobe or page.react %}
 ### Enable Associated Domains in Xcode
 
 1. Go to the `Capabilities` tab of your project file.
@@ -126,6 +132,18 @@ Add the following entry to your application's `config.xml`:
 {% protip title="Notes" %}
 - You can get your **iOS Team ID** from the Your Account page on the [Apple Developer Portal](https://developer.apple.com/membercenter/index.action#accountSummary).
 - If you use a custom domain or subdomain for your Branch links, you should also add a key for `<host name="mycustomdomainorsubdomain" scheme="https" />`.
+{% endprotip %}
+
+{% endif %}
+
+{% if page.xamarin %}
+
+Create a new file named `Entitlements.plist` in the root directory of your project. Enable `associated-domains` and add `applinks:bnc.lt`.
+
+{% image src='/img/pages/getting-started/universal-app-links/xamarin_branch_ios_domains.png' full center alt='Associated Domains' %}
+
+{% protip title="Using a custom domain or subdomain?" %}
+If you use a [custom domain or subdomain for your Branch links]({{base.url}}/getting-started/dashboard-guide/guide/#setting-a-custom-link-domain), you should also add an entry for `applinks:[mycustomdomainorsubdomain]`.
 {% endprotip %}
 
 {% endif %}
@@ -238,7 +256,7 @@ public override bool ContinueUserActivity (UIApplication application,
     NSUserActivity userActivity,
     UIApplicationRestorationHandler completionHandler)
 {
-    bool handledByBranch = BranchIOS.getInstance ().ContinueUserActivity (userActivity, app);
+    bool handledByBranch = BranchIOS.getInstance ().ContinueUserActivity (userActivity);
     return handledByBranch;
 }
 {% endhighlight %}
@@ -583,6 +601,9 @@ These logs can be found for physical devices connected to Xcode by navigating to
 
 ##### Using Facebook's SDK?
 We've recently discovered a bug with Facebook's SDK returning `NO` for `application:didFinishLaunchingWithOptions` preventing Universal Links from working on cold start. Call `accountForFacebookSDKPreventingAppLaunch` on your Branch instance before initializing the session.
+
+##### `bnc.lt` links with your Test Key?
+Due to a change in iOS 9.3.1, Universal Links will not work on *Test* apps using the `bnc.lt` domain. We're working on resolving this. Please test Universal Links with your Live app, where they will work as expected. [Read more](http://status.branch.io/incidents/b0c19p6hpq58){:target="_blank"}. 
 
 ## What changed in iOS 9 and 9.2?
 

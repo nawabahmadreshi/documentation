@@ -2,10 +2,8 @@
 type: recipe
 directory: features
 title: "Referral Programs"
-ios_page_title: Creating referral programs for iOS apps
-android_page_title: Creating referral programs for iOS apps
-ios_description: How to set up Referral Links and Reward Schemes for iOS apps using deep links.
-android_description: How to set up App Invites, Referral Links and Reward Schemes for Android apps using deep links.
+page_title: Creating referral programs for apps
+description: How to set up App Invites, Referral Links and Reward Schemes for apps using deep links.
 ios_keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Referral Links, App Invites, Reward Schemes, Promotion codes, iOS, objective-c, swift
 android_keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Referral Links, App Invites, Reward Schemes, Promotion codes, Android
 platforms:
@@ -157,7 +155,7 @@ Branch.loadRewards().then(function (rewards) {
 {% if page.xamarin %}
 {% highlight c# %}
 Branch branch = Branch.GetInstance ();
-await branch.LoadRewardsAsync(this);
+await branch.LoadRewards(this);
 {% endhighlight %}
 
 After you've registered the class as a delegate of `IBranchRewardsInterface`
@@ -353,7 +351,7 @@ Branch.redeemRewards(5, "default").then(function (res) {
 {% if page.xamarin %}
 {% highlight c# %}
 Branch branch = Branch.GetInstance ();
-await branch.RedeemRewardsAsync(this, 5, "default");
+await branch.RedeemRewards(this, 5, "default");
 {% endhighlight %}
 
 After you've registered the class as a delegate of `IBranchRewardsInterface`
@@ -440,7 +438,7 @@ Branch.redeemRewards(5, "myBucket").then(function (res) {
 {% if page.xamarin %}
 {% highlight c# %}
 Branch branch = Branch.GetInstance ();
-await branch.RedeemRewardsAsync(this, 5, "myBucket");
+await branch.RedeemRewards(this, 5, "myBucket");
 {% endhighlight %}
 {% endif %}
 

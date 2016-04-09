@@ -1,7 +1,7 @@
 ---
 type: recipe
 directory: getting-started
-title: "Deep Link Routing"
+title: "4. Deep Link Routing"
 page_title: Set up deep link routing in your app
 description: This page will tell you how to set up your Android, iOS, Cordova, Phonegap, Xamarin, Unity, Air, Titanium, or React Native app for deep link routing.
 platforms:
@@ -557,7 +557,7 @@ In your app's Manifest, add this meta-data key to the definition of the Activity
 {% if page.android %}{% else %}
 
 {% caution title="Incomplete support on iOS" %}
-[Universal Links]({{base.url}}/getting-started/universal-app-links) and [Spotlight]({{base.url}}/features/spotlight-indexing) do not support URI paths. We recommend avoiding this approach to deep link routing if possible.
+[Universal Links]({{base.url}}/getting-started/universal-app-links) and [Spotlight]({{base.url}}/features/spotlight-indexing) do not support deep linking via URI paths. If possible, we recommend not using `$deeplink_path` and its platform-specific variants as your only deep link routing method.
 {% endcaution %}
 
 {% endif %}
@@ -622,17 +622,16 @@ LinkProperties linkProperties = new LinkProperties()
 {% if page.cordova %}
 
 {% highlight js %}
-branch.link({
-    channel: 'sms',
-    feature: 'share',
-    data: {
-		"article_id": "1234",
-		"$deeplink_path": "content/1234"
-    }
-}, function(err, link) {
-	if (!err) {
-    	console.log("Ready to share my " + link);
-	}
+branchUniversalObj.generateShortUrl({
+  // put your link properties here
+  "feature" : "sharing",
+  "channel" : "facebook"
+}, {
+  // put your control parameters here
+  "$deeplink_path" : "content/1234",
+}).then(function (res) {
+    // Success Callback
+    console.log(res.generatedUrl);
 });
 {% endhighlight %}
 {% endif %}
@@ -641,12 +640,10 @@ branch.link({
 
 {% if page.xamarin %}
 {% highlight c# %}
-var data = new Dictionary<string, object>(); 
-data.Add("article_id", "1234");
-data.Add("$deeplink_path", "content/1234");
-
-Branch branch = Branch.GetInstance ();
-await branch.GetShortUrlAsync(this, data, "sms", "share");
+BranchLinkProperties linkProperties = new BranchLinkProperties();
+linkProperties.feature = "sharing";
+linkProperties.channel = "facebook";
+linkProperties.controlParams.Add("$deeplink_path", "content/1234");
 {% endhighlight %}
 {% endif %}
 
@@ -656,11 +653,8 @@ await branch.GetShortUrlAsync(this, data, "sms", "share");
 
 {% highlight objective-c %}
 BranchLinkProperties linkProperties = new BranchLinkProperties();
-linkProperties.tags.Add("tag1");
-linkProperties.tags.Add("tag2");
-linkProperties.feature = "invite";
-linkProperties.channel = "Twitter";
-linkProperties.stage = "2";
+linkProperties.feature = "sharing";
+linkProperties.channel = "facebook";
 linkProperties.controlParams.Add("$deeplink_path", "content/1234");
 {% endhighlight %}
 

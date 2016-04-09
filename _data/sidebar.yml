@@ -4,23 +4,23 @@
   directory: getting-started
   children:
     - sdk-integration-guide
-    - title: 2. Create Links
+    - universal-app-links
+    - title: 3. Create Links
       children:
         - creating-links-in-apps
         - creating-links-other-ways
         - configuring-links
-    - title: 3. Set Up Deep Linking
+    - deep-link-routing
+    - title: 5. Dashboard Guide
       children:
-        - deep-link-routing
-        - universal-app-links
-    - dashboard-guide
+        - organizing-link-data
+        - growth-attribution
+        - user-value-attribution
     - title: Advanced
       children:
         - integration-testing
         - matching-accuracy
         - branch-universal-object
-        - tracking-events
-        - setting-identities
         - webhooks
 - title: Features
   directory: features

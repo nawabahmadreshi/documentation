@@ -2,10 +2,8 @@
 type: recipe
 directory: features
 title: Custom Onboarding
-ios_page_title: Personalized Onboarding Flow for iOS Apps
-android_page_title: Personalized Onboarding for Android Apps
-ios_description: How to set up a personalized invite system and onboarding flow for iOS Apps using Branch deep links. With objective-c and swift code snippets.
-android_description: How to set up a personalized invite system and onboarding flow for Android Apps using Branch deep links. With code snippets.
+page_title: Personalized Onboarding Flow for Apps
+description: How to set up a personalized invite system and onboarding flow for Apps using Branch deep links. With code snippets.
 ios_keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Personalized onboarding, onboarding, welcome screen, iOS, objective-c, swift
 android_keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Personalized onboarding, onboarding, welcome screen, Android
 platforms:
@@ -220,18 +218,32 @@ branchUniversalObj.generateShortUrl({
 
 {% if page.xamarin %}
 
-Build a link containing details about the user who is inviting friends. In the example, our properties reflect that this is an invitation and the user selected Facebook as the destination:
+Create a `BranchUniversalObject` containing details about the user who is inviting friends:
 
 {% highlight c# %}
-var data = new Dictionary<string, object>(); 
-data.Add("userId", "12345");
-data.Add("userName", "Josh");
-data.Add("$og_title", "Josh wants you to try Branch Monster Factory");
-data.Add("$og_description", "Your friend Josh has invited you to download Branch Monster Factory create awesome monsters!");
-data.Add("$og_image_url", "https://example.com/profile-pic-12345.png");
+BranchUniversalObject universalObject = new BranchUniversalObject();
+universalObject.canonicalIdentifier = "invite/12345";
+universalObject.title = "Josh wants you to try Branch Monster Factory";
+universalObject.contentDescription = "Your friend Josh has invited you to meet his awesome monster, Mr. Squiggles!";
+universalObject.imageUrl = "https://example.com/profile-pic-12345.png";
+universalObject.metadata.Add("userId", "1234");
+universalObject.metadata.Add("userName", "Josh");
+{% endhighlight %}
 
-Branch branch = Branch.GetInstance ();
-await branch.GetShortUrlAsync(this, data, "facebook", "invite");
+Then define the properties of the link. In the example, our properties reflect that this is an invitation and the user selected Facebook as the destination:
+
+{% highlight c# %}
+BranchLinkProperties linkProperties = new BranchLinkProperties();
+linkProperties.feature = "sharing";
+linkProperties.channel = "facebook";
+{% endhighlight %}
+
+Lastly, create the link to be shared by referencing the `BranchUniversalObject`:
+
+{% highlight c# %}
+Branch.GetInstance().GetShortURL (callback,
+                              universalObject,
+                              linkProperties);
 {% endhighlight %}
 
 After you've registered the class as a delegate of `IBranchUrlInterface`, you would next use the returned link and help the user post it to (in this example) Facebook.

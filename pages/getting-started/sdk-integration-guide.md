@@ -4,15 +4,6 @@ directory: getting-started
 title: 1. SDK Integration Guide
 page_title: Add the Branch SDK to your app
 description: This page will tell you how to quickly add the Branch SDK to your Android, iOS, Cordova, Phonegap, Xamarin, Unity, Air or Titanium app.
-redirect_from:
-- /recipes/add_the_sdk/
-- /recipes/add_the_sdk/ios/
-- /recipes/add_the_sdk/android/
-- /recipes/add_the_sdk/cordova/
-- /recipes/add_the_sdk/xamarin/
-- /recipes/add_the_sdk/unity/
-- /recipes/add_the_sdk/adobe/
-- /recipes/add_the_sdk/titanium/
 platforms:
 - ios
 - android
@@ -47,7 +38,14 @@ The recommended way to install the SDK is via CocoaPods:
 1. Add `pod "Branch"` to your podfile.
 1. Run `pod install` from the command line.
 
-{% protip title="If you do not use CocoaPods" %}
+### Install with Carthage
+
+Alternatively, you could install the SDK via Carthage:
+
+1. Add `github "BranchMetrics/iOS-Deferred-Deep-Linking-SDK"` to your Cartfile.
+1. Run `carthage update` from the command line.
+
+{% protip title="If you do not use CocoaPods or Carthage" %}
 
 You can [install the SDK manually]({{base.url}}/getting-started/sdk-integration-guide/advanced/ios#install-the-sdk-manually).
 
@@ -126,17 +124,12 @@ phonegap plugin add https://github.com/BranchMetrics/Cordova-Ionic-PhoneGap-Defe
 
 ### Install as a NuGet Package
 
-The Branch Xamarin SDK is available as a [NuGet package](https://www.nuget.org/packages/Branch-Xamarin-Linking-SDK). You need to add this package separately to each project in your solution so that the correct platform-specific initialization call can be made. For apps using Xamarin Forms, this means adding the package separately to iOS, Android, *and* Forms projects.
+The Branch Xamarin SDK is now available as a [NuGet package](https://www.nuget.org/packages/Branch-Xamarin-Linking-SDK).  You will need to add the package to your Android, iOS and Forms (if applicable) projects.  
 
-1. Right click on each project and select `Add` -> `Add NuGet Package` or double click on the Packages folder to bring up the NuGet package dialog in Xamarin Studio.
-1. Find the `Branch Xamarin Linking SDK` and select it. This will add the required assemblies to your project.
-1. Repeat for other platform projects.
-
-{% protip title="Install Manually" %}
+1. Right click on each project and select `Add` -> `Add NuGet Package` or double click on the Packages folder to bring up the NuGet package dialog in Xamarin Studio.  
+2. Find the _Branch Xamarin Linking SDK_ and select it.  This will add the required assemblies to your projects.  You need to do this for each project that will use Branch calls.  This includes the Android and iOS projects even if this is a Forms based app _since an initialization call needs to be added to each of the platform specific projects._
 
 You can also [build and reference the assemblies directly]({{base.url}}/getting-started/sdk-integration-guide/advanced/xamarin#install-the-sdk-manually).
-
-{% endprotip %}
 
 {% endif %}
 <!--- /Xamarin -->
@@ -249,8 +242,18 @@ dependencies {
 {% endif %}
 <!--- /React -->
 
-{% if page.ios or page.xamarin or page.react %}
-## {% if page.xamarin or page.react %}iOS: {% endif %}Configure Xcode Project
+
+{% if page.xamarin %}
+## iOS: Configure Xcode Project
+
+In your project's `YourProject-Info.plist` file, you can register your app to respond to direct deep links (`yourapp://` in a mobile browser) by adding a `CFBundleURLTypes` block. Also, make sure to change `yourapp` to a unique string that represents your app name. 
+
+{% image src='/img/pages/getting-started/sdk-integration-guide/xamarin_branch_ios_uri.png' full center alt='iOS URI' %}
+
+{% endif %}
+
+{% if page.ios or page.react %}
+## {% if page.react %}iOS: {% endif %}Configure Xcode Project
 
 ### Add your Branch key
  
@@ -353,36 +356,30 @@ Register an `Application` class in your Manifest as follows:
 {% if page.xamarin %}
 ## Android: Configure Manifest
 
-### Add your Branch key
+In your project's `manifest` file, you can register your app to respond to direct deep links (`yourapp://` in a mobile browser) by adding the second intent filter block. Also, make sure to change `yourapp` to a unique string that represents your app name.
 
-1. Retrieve your Branch Key on the [Settings](https://dashboard.branch.io/#/settings) page of the Branch dashboard.
-1. Open your `AndroidManifest.xml` and add the following `<meta-data>` tag:
+Make sure that this activity is launched as a `singleTask`. This is important to handle proper deep linking from other apps like Facebook.
 
-{% highlight xml %}
-<application>
-    <!-- Other existing entries -->
+{% highlight c# %}
+[Activity (Label = "Your app label", MainLauncher = true, Icon = "@mipmap/icon",
+        LaunchMode = LaunchMode.SingleTask)]
 
-    <meta-data android:name="io.branch.sdk.BranchKey" android:value="key_live_xxxxxxxxxxxxxxx" />
-
-</application>
+[IntentFilter (new[]{"android.intent.action.VIEW"},
+        Categories=new[]{"android.intent.category.DEFAULT", 
+        "android.intent.category.BROWSABLE"},
+        DataScheme="yourapp",
+        DataHost="open")]
 {% endhighlight %}
 
-### Register a URI scheme
+Make sure that your project has permissions:
 
-Branch opens your app by using its URI scheme (`yourapp://`), which should be unique to your app.
+- AccessNetworkState
+- Internet
 
-1. On the [Link Settings](https://dashboard.branch.io/#/settings/link) page of the Branch dashboard, ensure that **I have an Android App** is checked and **Android URI Scheme** is filled.
-1. Choose the `Activity` you want to open up when a link is clicked. This is typically your `SplashActivity` or a `BaseActivity` that all other activities inherit from.
-1. Within the `Activity` definition, insert the intent filter provided below. Change `yourApp` under `android:scheme` to the URI scheme you've selected.
+To understand how to work with android manifest, read Xamarin documentation:
 
-{% highlight xml %}
-<intent-filter>
-	<data android:scheme="yourApp" android:host="open" />
-	<action android:name="android.intent.action.VIEW" />
-	<category android:name="android.intent.category.DEFAULT" />
-	<category android:name="android.intent.category.BROWSABLE" />
-</intent-filter>
-{% endhighlight %}
+- [Working with android manifest](https://developer.xamarin.com/guides/android/advanced_topics/working_with_androidmanifest.xml/)
+- [Add permissions to android manifest](https://developer.xamarin.com/recipes/android/general/projects/add_permissions_to_android_manifest/)
 
 {% endif %}
 
@@ -738,35 +735,6 @@ If `data` is null and `err` contains a string denoting a request timeout, make s
 If your app doesn't use Xamarin Forms, please follow [these alternative instructions]({{base.url}}/getting-started/sdk-integration-guide/advanced/xamarin#initialization-for-non-forms-apps).
 {% endprotip %}
 
-### Generic Xamarin initialization
-
-In your **App.cs** file, modify your `App` class to include the following:
-
-{% highlight c# %}
-public class App : Application, IBranchSessionInterface
-{
-    protected override void OnResume ()
-    {
-        Branch branch = Branch.GetInstance ();
-        branch.InitSessionAsync (this);
-    }
-
-    #region IBranchSessionInterface implementation
-
-    public void InitSessionComplete (Dictionary<string, object> data)
-    {
-        // Do something with the referring link data...
-    }
-
-    public void SessionRequestError (BranchError error)
-    {
-        // Handle the error case here
-    }
-
-    #endregion
-}
-{% endhighlight %}
-
 ### Android initialization
 
 Add calls to the `OnCreate` and `OnNewIntent` methods of either your Application class or the first Activity you start. Be sure to replace `key_live_xxxxxxxxxxxxxxx` with your Branch key from the [Settings](https://dashboard.branch.io/#/settings) page of the Branch dashboard.
@@ -780,12 +748,9 @@ public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsApplicat
 
         global::Xamarin.Forms.Forms.Init (this, savedInstanceState);
 
-        BranchAndroid.Init (this, "key_live_xxxxxxxxxxxxxxx", Intent.Data, Intent.Extras);
-        
         App app = new App ();
-        
-        // Call this method to enable automatic session management
-        BranchAndroid.getInstance().SetLifeCycleHandlerCallback (this, app);
+
+        BranchAndroid.Init (this, "Your Branch key here", app);
 
         LoadApplication (app);
     }
@@ -810,35 +775,39 @@ public class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDe
     {
         global::Xamarin.Forms.Forms.Init ();
 
-        NSUrl url = null;
-        if ((launchOptions != null) && launchOptions.ContainsKey(UIApplication.LaunchOptionsUrlKey)) {
-            url = (NSUrl)launchOptions.ValueForKey (UIApplication.LaunchOptionsUrlKey);
-        }
+        App app = new App ();
 
-        BranchIOS.Init ("key_live_xxxxxxxxxxxxxxx", url, true);
+        // Enable debug mode. 
+        BranchIOS.Debug = true;
+        BranchIOS.Init ("Your Branch key here", launchOptions, app);
 
-        LoadApplication (new App ());
+        LoadApplication (app);
+
         return base.FinishedLaunching (uiApplication, launchOptions);
     }
 
-    // Ensure we get the updated link identifier when the app is opened from the
-    // background with a new link.
+    // For direct deep linking
     public override bool OpenUrl(UIApplication application,
         NSUrl url,
         string sourceApplication,
         NSObject annotation)
     {
-        BranchIOS.getInstance ().SetNewUrl (url);
-        return true;
+        return BranchIOS.getInstance ().OpenUrl (url);
     }
-    
-    // Support Universal Links
+
+    // For Universal Links
     public override bool ContinueUserActivity (UIApplication application,
         NSUserActivity userActivity,
         UIApplicationRestorationHandler completionHandler)
     {
-        bool handledByBranch = BranchIOS.getInstance ().ContinueUserActivity (userActivity, app);
-        return handledByBranch;
+        return BranchIOS.getInstance ().ContinueUserActivity (userActivity);
+    }
+    
+    // For Push Nitifications
+    public override void ReceivedRemoteNotification (UIApplication application,
+        NSDictionary userInfo)
+    {
+        BranchIOS.getInstance ().HandlePushNotification (userInfo);
     }
 }
 {% endhighlight %}
@@ -1066,6 +1035,7 @@ Here are some recommended next steps:
 - **Enable [Universal & App Links]({{base.url}}/getting-started/universal-app-links)** — traditional URI scheme links are no longer supported in many situations on iOS 9.2+, and are a less than ideal solution on new versions of Android. To get full functionality from your Branch links on iOS devices, **you should enable Universal Links as soon as possible.**
 - **Learn about [Creating Links in Apps]({{base.url}}/getting-started/creating-links-in-apps)** — let your users share content and invite friends from inside your app.
 -  **Set up [Deep Link Routing]({{base.url}}/getting-started/deep-link-routing)** — send incoming visitors directly to specific content in your app based on the Branch link they opened.
+-  Track **[Custom Events]({{base.url}}/getting-started/user-value-attribution#custom-event-tracking)** — make in-app activity beyond clicks, installs, and opens — like purchases and signups — available for analysis in the dashboard.
 
 {% elsif page.advanced %}
 
@@ -1191,10 +1161,8 @@ public class MainActivity: Activity, IBranchSessionInterface
     {
         base.OnCreate (savedInstanceState);
 
-        BranchAndroid.Init (this, "key_live_xxxxxxxxxxxxxxx", Intent.Data);
-
-        // Call this method to enable automatic session management and initialize
-        BranchAndroid.getInstance().SetLifeCycleHandlerCallback (this, this);
+        BranchAndroid.Debug = true;
+        BranchAndroid.Init (this, "Your Branch key here", this);
     }
 
     // Ensure we get the updated link identifier when the app is opened from the
@@ -1229,37 +1197,35 @@ public class AppDelegate : UIApplicationDelegate, IBranchSessionInterface
 {
     public override bool FinishedLaunching (UIApplication uiApplication, NSDictionary launchOptions)
     {
-        NSUrl url = null;
-        if ((launchOptions != null) && launchOptions.ContainsKey(UIApplication.LaunchOptionsUrlKey)) {
-            url = (NSUrl)launchOptions.ValueForKey (UIApplication.LaunchOptionsUrlKey);
-        }
-
-        BranchIOS.Init ("key_live_xxxxxxxxxxxxxxx", url, true);
-
-        Branch branch = Branch.GetInstance ();
-        branch.InitSessionAsync (this);
+        // Enable debug mode. 
+        BranchIOS.Debug = true;
+        BranchIOS.Init ("Your Branch key here", launchOptions, this);
 
         // Do your remaining launch stuff here...
     }
-
-    // Ensure we get the updated link identifier when the app is opened from the
-    // background with a new link.
+    
+    // For direct deep linking
     public override bool OpenUrl(UIApplication application,
         NSUrl url,
         string sourceApplication,
         NSObject annotation)
     {
-        BranchIOS.getInstance ().SetNewUrl (url);
-        return true;
+        return BranchIOS.getInstance ().OpenUrl (url);
     }
 
-    // Support Universal Links
+    // For Universal Links
     public override bool ContinueUserActivity (UIApplication application,
         NSUserActivity userActivity,
         UIApplicationRestorationHandler completionHandler)
     {
-        bool handledByBranch = BranchIOS.getInstance ().ContinueUserActivity (userActivity, this);
-        return handledByBranch;
+        return BranchIOS.getInstance ().ContinueUserActivity (userActivity);
+    }
+    
+    // For Push Notifications
+    public override void ReceivedRemoteNotification (UIApplication application,
+        NSDictionary userInfo)
+    {
+        BranchIOS.getInstance ().HandlePushNotification (userInfo);
     }
     
     #region IBranchSessionInterface implementation
