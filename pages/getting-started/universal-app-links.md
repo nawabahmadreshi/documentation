@@ -431,9 +431,10 @@ No advanced information available for this platform.
 
 ### Custom ROOT domain (branch.com)
 
-1. Follow [CloudFlare's instructions](https://support.cloudflare.com/hc/en-us/articles/200169046-How-do-I-add-a-CNAME-record-) to set up your root domain with a CNAME to `custom.bnc.lt`
-1. Using the CloudFlare control panel, proxy your traffic to the domain `custom.bnc.lt` by clicking the cloud with the arrow to make it _orange_. {% image src='/img/pages/getting-started/universal-app-links/orange_cloud.png' full center alt='cloudflare TLS configuration' %}
-1. Make your Crypto settings match this screenshot. This is done by enabling SSL. {% image src='/img/pages/getting-started/universal-app-links/ssl.png' 3-quarters center alt='cloudflare TLS' %}
+1. Go to [Link Settings](https://dashboard.branch.io/#/settings/link){:target="_blank"} on the Branch dashboard, and find the **Custom Link Domain** section.
+1. Enter your custom domain into the text box and click the `Save` button. (If the validation status doesn't update with nameservers please **refresh the page.**) {% image src='/img/pages/getting-started/universal-app-links/custom_domain_nameservers_error.png' full center alt='root domain nameservers' %}
+1. Go to your DNS configuration for your custom domain, and update your nameserver records with the Branch-provided nameservers.
+1. Click the `Save` button on the Branch dashboard again.
 
 ## Custom continueUserActivity configuration
 

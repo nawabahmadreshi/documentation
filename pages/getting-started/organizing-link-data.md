@@ -61,7 +61,7 @@ Branch automatically handles HTTPS traffic for custom subdomains and root domain
 ### Custom ROOT domain (branch.com)
 
 1. Go to [Link Settings](https://dashboard.branch.io/#/settings/link){:target="_blank"} on the Branch dashboard, and find the **Custom Link Domain** section.
-1. Enter your custom domain into the text box and click the `Save` button. (If the validation status doesn't update with nameservers please **refresh the page.**) {% image src='/img/pages/getting-started/universal-app-links/custom_domain_nameservers_error.png' full center alt='root domain nameservers' %}
+1. Enter your custom domain into the text box and click the `Save` button. (If the validation status doesn't update with nameservers please **refresh the page.**) {% image src='/img/pages/getting-started/organizing-link-data/custom_domain_nameservers_error.png' full center alt='root domain nameservers' %}
 1. Go to your DNS configuration for your custom domain, and update your nameserver records with the Branch-provided nameservers.
 1. Click the `Save` button on the Branch dashboard again.
 
