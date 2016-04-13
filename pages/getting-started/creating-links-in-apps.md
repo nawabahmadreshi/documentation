@@ -136,6 +136,10 @@ branchUniversalObject.getShortUrlWithLinkProperties(linkProperties,  andCallback
 {% endtab %}
 {% endtabs %}
 
+{% protip title="Use the Branch share sheet" %}
+If you don't want to handle the link yourself, you can also use Branch's [preconfigured share sheet]({{base.url}}/getting-started/branch-universal-object/guide/ios/#showsharesheetwithlinkproperties).
+{% endprotip %}
+
 {% endif %}
 <!--- /iOS -->
 
@@ -187,6 +191,10 @@ branchUniversalObject.generateShortUrl(this, linkProperties, new BranchLinkCreat
 });
 {% endhighlight %}
 
+{% protip title="Use the Branch share sheet" %}
+If you don't want to handle the link yourself, you can also use Branch's [preconfigured share sheet]({{base.url}}/getting-started/branch-universal-object/guide/android/#showsharesheet).
+{% endprotip %}
+
 {% endif %}
 <!--- /Android -->
 
@@ -228,6 +236,10 @@ branchUniversalObj.generateShortUrl({
     console.log(res.generatedUrl);
 });
 {% endhighlight %}
+
+{% protip title="Use the Branch share sheet" %}
+If you don't want to handle the link yourself, you can also use Branch's [preconfigured share sheet]({{base.url}}/getting-started/branch-universal-object/guide/cordova/#showsharesheet).
+{% endprotip %}
 
 {% endif %}
 
@@ -334,6 +346,10 @@ Branch.getShortURL(universalObject, linkProperties, (url, error) => {
 });
 {% endhighlight %}
 
+{% protip title="Use the Branch share sheet" %}
+If you don't want to handle the link yourself, you can also use Branch's [preconfigured share sheet]({{base.url}}/getting-started/branch-universal-object/guide/unity/#sharelink).
+{% endprotip %}
+
 {% endif %}
 
 <!--- Adobe -->
@@ -423,6 +439,10 @@ The event listener `bio:generateShortUrl` returns a `string` object containing t
 {% highlight js %}
 branchUniversalObject.addEventListener("bio:generateShortUrl", $.onGenerateUrlFinished);
 {% endhighlight %}
+
+{% protip title="Use the Branch share sheet" %}
+If you don't want to handle the link yourself, you can also use Branch's [preconfigured share sheet]({{base.url}}/getting-started/branch-universal-object/guide/titanium/#showsharesheet).
+{% endprotip %}
 
 {% endif %}
 
