@@ -300,6 +300,10 @@ Branch opens your app by using its URI scheme (`yourapp://`), which should be un
 </application>
 {% endhighlight %}
 
+{% protip title="Internet Permissions" %}
+Your app needs to have internet permissions in order to communicate with the Branch service. Make sure you set `<uses-permission android:name="android.permission.INTERNET" />`
+{% endprotip %}
+
 ### Register for Google Play Install Referrer
 
 Add this snippet to your `AndroidManifest.xml`:
