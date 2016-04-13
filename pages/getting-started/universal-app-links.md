@@ -416,7 +416,7 @@ Here are some recommended next steps:
 {% elsif page.advanced %}
 
 {% if page.android %}
-No advanced information available for this platform.
+<!-- No advanced info except note on click-tracking -->
 {% else %}
 
 ## Using a custom domain or subdomain
@@ -517,6 +517,10 @@ Branch *branch = [Branch getInstance];
 {% endexample %}
 
 {% endif %}
+
+## Third-party click tracking
+
+{% ingredient disable-click-tracking %}{% endingredient %}
 
 {% elsif page.support %}
 
