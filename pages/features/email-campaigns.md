@@ -56,11 +56,6 @@ If you need more flexibility, you might also be interested in building links by 
 
 {% elsif page.advanced %}
 
-## Third-party click tracking
-
-Email providers often add redirects to URLs embedded in email messages. Unfortunately this breaks Universal Link and App Link functionality so you will need to disable click tracking. Here are instructions for some common platforms:
-
-- [MailChimp](http://kb.mailchimp.com/reports/enable-and-view-click-tracking#Turn-Click-Tracking-On-or-Off)
-- [Mandrill](https://mandrill.zendesk.com/hc/en-us/articles/205582927-Can-I-disable-click-tracking-on-selected-links-in-my-email)
+{% ingredient disable-click-tracking %}{% endingredient %}
 
 {% endif %}
