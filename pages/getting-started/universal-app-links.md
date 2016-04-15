@@ -518,8 +518,6 @@ Branch *branch = [Branch getInstance];
 
 {% endif %}
 
-## Third-party click tracking
-
 {% ingredient disable-click-tracking %}{% endingredient %}
 
 {% elsif page.support %}
