@@ -568,13 +568,20 @@ Unfortunately, Universal Links don't work quite everywhere yet. We'll maintain t
 
 ## Links with custom labels/aliases
 
+| Link | Universal Links Support
+| --- | ---
+| bnc.lt/oTLf/x7daC5fDzs | Yes
+| bnc.lt/app-download | No
+| yourdomain.com/oTLf/x7daC5fDzs | Yes
+| yourdomain.com/app-download | Yes
+
 ### Using the bnc.lt domain
 
-When a Universal Link is opened, iOS searches for any app on the device that has registered to handle that URL. Because the bnc.lt domain is used by hundreds of apps, Branch appends a unique four-letter identifer (ex., `mGmA`) that ties links to the correct app. Links with custom labels/aliases do not have this four-letter identifier, so these links are incompatible with Universal Links.
+When a Universal Link is opened, iOS searches for any app on the device that has registered to handle that URL. Because the bnc.lt domain is used by hundreds of apps, Branch appends a unique four-letter identifer (i.e., `mGmA`) that ties links to the correct app. Links with custom labels/aliases (i.e., `bnc.lt/yourapp`) do not have this four-letter identifier, so these links are incompatible with Universal Links.
 
 ### Using a custom domain or subdomain
 
-Custom domains and subdomains are unique to your app and not shared, so there is no need for a unique four-letter identifier. All links on a custom domain or subdomain are compatible with Universal Links, including those with link labels/aliases.
+Custom domains and subdomains are unique to your app and not shared. All links on a custom domain or subdomain are compatible with Universal Links, including those with link labels/aliases (i.e., `yourdomain.com/yourapp`).
 
 ## Troubleshooting Universal Links
 
