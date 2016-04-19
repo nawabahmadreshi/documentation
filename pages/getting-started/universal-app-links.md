@@ -566,6 +566,23 @@ Unfortunately, Universal Links don't work quite everywhere yet. We'll maintain t
 - Universal Links cannot be triggered via Javascript (in `window.onload` or via a `.click()` call on an `<a>` element), unless it is part of a user action.
 - Google, Gmail, Inbox, Twitter, Facebook, FB Messenger, WeChat -- Universal Links only work when you have a webview already open. In other words, they do not work in-app from the feed / main views. Again, they also *must* be cross-domain, aka if your user is on yourapp.com and clicks a Universal Link also for yourapp.com, it will not work. However, clicking from yourapp.com to bnc.lt will trigger the link to function as a Universal Link and open your app directly.
 
+## Links with custom labels/aliases
+
+| Link | Universal Links Support
+| --- | ---
+| bnc.lt/oTLf/x7daC5fDzs | Yes
+| bnc.lt/app-download | No
+| yourdomain.com/oTLf/x7daC5fDzs | Yes
+| yourdomain.com/app-download | Yes
+
+### Using the bnc.lt domain
+
+When a Universal Link is opened, iOS searches for any app on the device that has registered to handle that URL. Because the bnc.lt domain is used by hundreds of apps, Branch appends a unique four-letter identifer (i.e., `mGmA`) that ties links to the correct app. Links with custom labels/aliases (i.e., `bnc.lt/yourapp`) do not have this four-letter identifier, so these links are incompatible with Universal Links.
+
+### Using a custom domain or subdomain
+
+Custom domains and subdomains are unique to your app and not shared. All links on a custom domain or subdomain are compatible with Universal Links, including those with link labels/aliases (i.e., `yourdomain.com/yourapp`).
+
 ## Troubleshooting Universal Links
 
 ##### Is it definitely a Universal Link?
@@ -573,9 +590,6 @@ Universal Links are in the form https://bnc.lt/<<four-letter-identifier>>/<<link
 
 ##### Are you testing by manually entering into Safari?
 Universal Links don't work properly when entered into Safari. Use Notes or iMessage for testing.
-
-##### Are your applinks entitlements correct?
-Confirm the domains you configured in Xcode are correct
 
 ##### Is the entitlements file included for your build target?
 It seems that Xcode, by default, will not include the `.entitlements` file in your build. You have to check the box in the right sidebar against the correct target to ensure it's included in your app.
