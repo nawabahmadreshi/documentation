@@ -94,10 +94,15 @@ Unfortunately, Facebook uses a different mechanism for showing the preview ads t
 
 If you see that someone liked your ad, do not bother trying to click and test it. Clicking your own ad that shows up in notifications **will not deep link**.
 
+## Conflicts with Facebook SDK (iOS)
+
+If your app integrates the FBSDK, be certain you are *not* using the [`FBSDKAppLinkUtility` method](https://developers.facebook.com/docs/reference/ios/current/class/FBSDKAppLinkUtility/). This has been known to cause conflicts with Branch when handling incoming deep links.
+
 ## Issues reading Facebook App Links
 
-If Facebook is having trouble reading the AppLinks from the Branch link, you might see this message while trying to test out the flow. This means that there is something corrupted in the OG tags causing Facebook to not parse it.
+If Facebook is having trouble reading the App Links from the Branch link, you might see messages like these while trying to test out the flow. This means that there is something corrupted in the OG tags causing Facebook to not parse your link.
 
+{% image src='/img/pages/features/facebook-ads/invalid-app-links-error.png' half center alt='Invalid app links' %}
 {% image src='/img/pages/features/facebook-ads/missing_applinks.png' quarter center alt='troubleshooting' %}
 
 ### Rescrape the OG tags
@@ -123,7 +128,17 @@ curl --insecure "https://graph.facebook.com/?id=[YOUR-URL-TO-SCRAPE]&scrape=true
 1. If errors from the output window pertain to OG tags i.e. missing title, description etc. then examine link OG tags by appending `?debug=true` as described on the [Integration Testing page]({{base.url}}/getting-started/integration-testing/guide/#debugging-an-individual-link).
 1. If you haven't set OG tags on a per link level, then please check your Dashboard's global Social Media Display Customization settings from the [Link Settings](https://dashboard.branch.io/#/settings/link) page.
 
-If your OG tags look fine and you're still getting errors, please reach out to support@branch.io immediately.
+### Use a direct deep link
+
+As a last resort, you can manually input a direct deep link. To retrieve this:
+
+1. Go to Facebook's [Open Graph Object Debugger](https://developers.facebook.com/tools/debug/og/object/)
+1. Input the Branch link you want to use for your ad
+1. Click **Fetch new scrape information**
+1. Find the `al:ios:url` line (it should look like `<meta property="al:ios:url" content="myapp://open?link_click_id=link-242052337263342024" />`)
+1. Copy the value of this (`myapp://open?link_click_id=link-242052337263342024`) and input it as the Deep Link value of your ad
+
+If none of these approaches work, please reach out to support@branch.io immediately.
 
 
 ## Common issues with Facebook Authentication
