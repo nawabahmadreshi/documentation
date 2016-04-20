@@ -568,12 +568,12 @@ Unfortunately, Universal Links don't work quite everywhere yet. We'll maintain t
 
 ## Links with custom labels/aliases
 
-| Link | Universal Links Support
-| --- | ---
-| bnc.lt/oTLf/x7daC5fDzs | Yes
-| bnc.lt/app-download | No
-| yourdomain.com/oTLf/x7daC5fDzs | Yes
-| yourdomain.com/app-download | Yes
+| Example | Link Domain/Subdomain | Link Alias | Universal Links Support |
+| --- | --- | --- | --- |
+| bnc.lt/oTLf/x7daC5fDzs | default | default | Yes |
+| bnc.lt/app-download | default | custom | No |
+| yourdomain.com/oTLf/x7daC5fDzs | custom | default | Yes |
+| yourdomain.com/app-download | custom | custom | Yes |
 
 ### Using the bnc.lt domain
 
