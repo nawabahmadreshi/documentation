@@ -365,6 +365,35 @@ Add the following entry to your application's `config.xml`:
 - If you use a custom domain or subdomain for your Branch links, you should also add a key for `<host name="mycustomdomainorsubdomain" scheme="https" />`.
 {% endprotip %}
 
+{% elsif page.xamarin %}
+
+## Add Intent Filter to Activity
+
+1. Choose the `Activity` you want to open up when a link is clicked. This is typically your `SplashActivity` or a `BaseActivity` that all over activities inherit from (and likely the same one you selected in the [SDK Integration Guide]({{base.url}}/getting-started/sdk-integration-guide)).
+1. At the top of the class declaration for the `Activity`, insert the intent filter provided below.
+   - Replace `READ_FROM_DASHBOARD` with the value provided underneath the **SHA256 Cert Fingerprints** field on the Branch dashboard. It will look something like this: `DataPathPrefix="/WSuf"`
+
+{% highlight c# %}
+[IntentFilter(new [] { Android.Content.Intent.ActionView },
+    DataScheme="https",
+    DataHost="bnc.lt",
+    DataPathPrefix="READ_FROM_DASHBOARD",
+    Categories=new [] { Android.Content.Intent.CategoryDefault, Android.Content.Intent.CategoryBrowsable })]
+public class SplashActivity : Activity {
+{% endhighlight %}
+
+{% protip title="Using a custom domain or subdomain?" %}
+If you use a [custom domain or subdomain for your Branch links]({{base.url}}/getting-started/dashboard-guide/guide/#setting-a-custom-link-domain), you should also add an entry for:
+
+{% highlight c# %}
+[IntentFilter(new [] { Android.Content.Intent.ActionView },
+    DataScheme="https",
+    DataHost="mycustomdomainorsubdomain",
+    DataPathPrefix="READ_FROM_DASHBOARD",
+    Categories=new [] { Android.Content.Intent.CategoryDefault, Android.Content.Intent.CategoryBrowsable })]
+{% endhighlight %}
+{% endprotip %}
+
 {% else %}
 
 ## Add Intent Filter to Manifest
