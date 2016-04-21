@@ -79,6 +79,12 @@ You can retrieve your app's Bundle Identifier under the `General` tab of your Xc
 
 {% image src='/img/pages/getting-started/universal-app-links/dashboard_enable_universal_links.png' 3-quarters center alt='enable Universal Links on Branch dashboard' %}
 
+{% caution title="bnc.lt links with your Test Key?" %}
+
+Due to a change in iOS 9.3.1, Universal Links will not work on *Test* apps using the `bnc.lt` domain. We're working on resolving this. Please test Universal Links with your Live app, where they will work as expected. [Read more](http://status.branch.io/incidents/b0c19p6hpq58){:target="_blank"}. 
+{% endcaution %}
+
+
 ## Add the entitlement to your project
 
 {% if page.ios or page.unity or page.adobe or page.react %}
@@ -455,7 +461,7 @@ Here are some recommended next steps:
 {% elsif page.advanced %}
 
 {% if page.android %}
-No advanced information available for this platform.
+<!-- No advanced info except note on click-tracking -->
 {% else %}
 
 ## Using a custom domain or subdomain
@@ -470,9 +476,10 @@ No advanced information available for this platform.
 
 ### Custom ROOT domain (branch.com)
 
-1. Follow [CloudFlare's instructions](https://support.cloudflare.com/hc/en-us/articles/200169046-How-do-I-add-a-CNAME-record-) to set up your root domain with a CNAME to `custom.bnc.lt`
-1. Using the CloudFlare control panel, proxy your traffic to the domain `custom.bnc.lt` by clicking the cloud with the arrow to make it _orange_. {% image src='/img/pages/getting-started/universal-app-links/orange_cloud.png' full center alt='cloudflare TLS configuration' %}
-1. Make your Crypto settings match this screenshot. This is done by enabling SSL. {% image src='/img/pages/getting-started/universal-app-links/ssl.png' 3-quarters center alt='cloudflare TLS' %}
+1. Go to [Link Settings](https://dashboard.branch.io/#/settings/link){:target="_blank"} on the Branch dashboard, and find the **Custom Link Domain** section.
+1. Enter your custom domain into the text box and click the `Save` button. (If the validation status doesn't update with nameservers please **refresh the page.**) {% image src='/img/pages/getting-started/universal-app-links/custom_domain_nameservers_error.png' full center alt='root domain nameservers' %}
+1. Go to your DNS configuration for your custom domain, and update your nameserver records with the Branch-provided nameservers.
+1. Click the `Save` button on the Branch dashboard again.
 
 ## Custom continueUserActivity configuration
 
@@ -556,6 +563,8 @@ Branch *branch = [Branch getInstance];
 
 {% endif %}
 
+{% ingredient disable-click-tracking %}{% endingredient %}
+
 {% elsif page.support %}
 
 {% if page.android %}
@@ -602,13 +611,27 @@ Unfortunately, Universal Links don't work quite everywhere yet. We'll maintain t
 - Universal Links cannot be triggered via Javascript (in `window.onload` or via a `.click()` call on an `<a>` element), unless it is part of a user action.
 - Google, Gmail, Inbox, Twitter, Facebook, FB Messenger, WeChat -- Universal Links only work when you have a webview already open. In other words, they do not work in-app from the feed / main views. Again, they also *must* be cross-domain, aka if your user is on yourapp.com and clicks a Universal Link also for yourapp.com, it will not work. However, clicking from yourapp.com to bnc.lt will trigger the link to function as a Universal Link and open your app directly.
 
+## Links with custom labels/aliases
+
+| Example | Link Domain/Subdomain | Link Alias | Universal Links Support |
+| --- | --- | --- | --- |
+| bnc.lt/oTLf/x7daC5fDzs | default | default | Yes |
+| bnc.lt/app-download | default | custom | No |
+| yourdomain.com/oTLf/x7daC5fDzs | custom | default | Yes |
+| yourdomain.com/app-download | custom | custom | Yes |
+
+### Using the bnc.lt domain
+
+When a Universal Link is opened, iOS searches for any app on the device that has registered to handle that URL. Because the bnc.lt domain is used by hundreds of apps, Branch appends a unique four-letter identifer (i.e., `mGmA`) that ties links to the correct app. Links with custom labels/aliases (i.e., `bnc.lt/yourapp`) do not have this four-letter identifier, so these links are incompatible with Universal Links.
+
+### Using a custom domain or subdomain
+
+Custom domains and subdomains are unique to your app and not shared. All links on a custom domain or subdomain are compatible with Universal Links, including those with link labels/aliases (i.e., `yourdomain.com/yourapp`).
+
 ## Troubleshooting Universal Links
 
 ##### Are you testing by manually entering into Safari?
 Universal Links don't work properly when entered into Safari. Use Notes or iMessage for testing.
-
-##### Are your applinks entitlements correct?
-Confirm the domains you configured in Xcode are correct
 
 ##### Is the entitlements file included for your build target?
 It seems that Xcode, by default, will not include the `.entitlements` file in your build. You have to check the box in the right sidebar against the correct target to ensure it's included in your app.
@@ -637,6 +660,9 @@ These logs can be found for physical devices connected to Xcode by navigating to
 
 ##### Using Facebook's SDK?
 We've recently discovered a bug with Facebook's SDK returning `NO` for `application:didFinishLaunchingWithOptions` preventing Universal Links from working on cold start. Call `accountForFacebookSDKPreventingAppLaunch` on your Branch instance before initializing the session.
+
+##### `bnc.lt` links with your Test Key?
+Due to a change in iOS 9.3.1, Universal Links will not work on *Test* apps using the `bnc.lt` domain. We're working on resolving this. Please test Universal Links with your Live app, where they will work as expected. [Read more](http://status.branch.io/incidents/b0c19p6hpq58){:target="_blank"}. 
 
 ## What changed in iOS 9 and 9.2?
 

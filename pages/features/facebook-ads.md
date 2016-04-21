@@ -94,10 +94,15 @@ Unfortunately, Facebook uses a different mechanism for showing the preview ads t
 
 If you see that someone liked your ad, do not bother trying to click and test it. Clicking your own ad that shows up in notifications **will not deep link**.
 
+## Conflicts with Facebook SDK (iOS)
+
+If your app integrates the FBSDK, be certain you are *not* using the [`FBSDKAppLinkUtility` method](https://developers.facebook.com/docs/reference/ios/current/class/FBSDKAppLinkUtility/). This has been known to cause conflicts with Branch when handling incoming deep links.
+
 ## Issues reading Facebook App Links
 
-If Facebook is having trouble reading the AppLinks from the Branch link, you might see this message while trying to test out the flow. This means that there is something corrupted in the OG tags causing Facebook to not parse it.
+If Facebook is having trouble reading the App Links from the Branch link, you might see messages like these while trying to test out the flow. This means that there is something corrupted in the OG tags causing Facebook to not parse your link.
 
+{% image src='/img/pages/features/facebook-ads/invalid-app-links-error.png' half center alt='Invalid app links' %}
 {% image src='/img/pages/features/facebook-ads/missing_applinks.png' quarter center alt='troubleshooting' %}
 
 ### Rescrape the OG tags
@@ -123,7 +128,17 @@ curl --insecure "https://graph.facebook.com/?id=[YOUR-URL-TO-SCRAPE]&scrape=true
 1. If errors from the output window pertain to OG tags i.e. missing title, description etc. then examine link OG tags by appending `?debug=true` as described on the [Integration Testing page]({{base.url}}/getting-started/integration-testing/guide/#debugging-an-individual-link).
 1. If you haven't set OG tags on a per link level, then please check your Dashboard's global Social Media Display Customization settings from the [Link Settings](https://dashboard.branch.io/#/settings/link) page.
 
-If your OG tags look fine and you're still getting errors, please reach out to support@branch.io immediately.
+### Use a direct deep link
+
+As a last resort, you can manually input a direct deep link. To retrieve this:
+
+1. Go to Facebook's [Open Graph Object Debugger](https://developers.facebook.com/tools/debug/og/object/)
+1. Input the Branch link you want to use for your ad
+1. Click **Fetch new scrape information**
+1. Find the `al:ios:url` line (it should look like `<meta property="al:ios:url" content="myapp://open?link_click_id=link-242052337263342024" />`)
+1. Copy the value of this (`myapp://open?link_click_id=link-242052337263342024`) and input it as the Deep Link value of your ad
+
+If none of these approaches work, please reach out to support@branch.io immediately.
 
 
 ## Common issues with Facebook Authentication
@@ -141,5 +156,33 @@ If you have entered the correct App ID and Secret but are still getting issues, 
 So if you have enabled "Native or desktop app", then your advanced options should appear like the following:
 
 {% image src='/img/pages/features/facebook-ads/facebook_secret.png' 2-thirds center alt='Client Secret' %}
+
+## Debugging Commong Discrepancies Between Branch and Facebook Counts
+
+While we should always expect around a 5% discrepancy due to time zone differents and the like, if you are seeing significant discrepancies, it could be an indication of a broader problem.
+
+### Not Collecting Advertising ID
+
+If you see absolutely 0 data coming through from your integration, it's possible that you're not collecting Google Advertising ID (GAID) on Android or IDFA on iOS.
+
+- iOS: Add the AdSupport.framework and read this extra info about [submitting](https://dev.branch.io/getting-started/sdk-integration-guide/guide/ios/#submitting-to-the-app-store) to the store.
+- Android: Add Google Play Services so that we can collect GAID. See [here](https://dev.branch.io/getting-started/sdk-integration-guide/advanced/android/#use-google-advertising-id).
+
+### Intercepting Deep Links Before Branch
+
+We recently discovered a discrepancy where and app was calling Facebook's SDK to fetch the deferred app link within their iOS and Android app. Branch calls uses this same mechanism via a direct API integration, but if Facebook's SDK retrieves it before we do, Branch will not see any deep link data. Please ensure to comment out any calls to the following API within your app:
+
+- [Android: fetchDeferredAppLink](https://developers.facebook.com/docs/reference/android/current/class/AppLinkData/)
+- [iOS: fetchDeferredAppLink](https://developers.facebook.com/docs/reference/ios/current/class/FBSDKAppLinkUtility/)
+
+### Installs Counted as Opens on Branch
+
+One discrepancy root cause we've seen before is the scenario where Branch will classify an install as an 'open'. We remember the history of a particular user via their IDFA (in addition to using a few other methods) and will detect whether the user is actually a new user or a returning user who had previously unistalled your app. Facebook doesn't do this.
+
+We've seen Facebook classify 're-installs' as fresh installs, where Branch will correctly classify them as 're-opens'. If you're comparing the raw install numbers on Branch, and ignoring the 're-opens', it's possibe you'll see a discrepancy. To check sum up the 'installs' and 'reopens' for the given link and compare it to Facebook's total installs.
+
+{% image src='/img/pages/features/facebook-ads/installs_plus_opens.png' 2-thirds center alt='installs and opens' %}
+
+If it's close, you know that this is the root cause.
 
 {% endif %}

@@ -57,7 +57,7 @@ You may select between the following default events:
 | `referred session` | Triggered *in addition* to install, open or web session start if a user comes from a Branch link
 | `web session start` | Triggered when the user views a webpage using the Branch Web SDK.
 | `click` | Triggered whenever a Branch link is clicked on any platform
-| `-- other --` | Enter an event you [created through the Branch SDK]({{base.url}}/getting-started/tracking-events#custom-events), or a wildcard (`*`) to return every single event tracked through Branch.
+| `-- other --` | Enter an event you [created through the Branch SDK]({{base.url}}/getting-started/user-value-attribution#custom-event-tracking), or a wildcard (`*`) to return every single event tracked through Branch.
 
 {% protip %}
 The `referred session` and `web session start` options will only appear after at least one event of that type has been recorded.
@@ -293,7 +293,7 @@ When a Branch link is opened, triggering a `click` event, you may access:
 
 ### All other events
 
-When a user triggers an event inside your app, either one [created by you]({{base.url}}/getting-started/tracking-events) or one tracked by Branch automatically (`install`, `open`, `referred session`, and `web session start`), you may access:
+When a user triggers an event inside your app, either one [created by you]({{base.url}}/getting-started/user-value-attribution#custom-event-tracking) or one tracked by Branch automatically (`install`, `open`, `referred session`, and `web session start`), you may access:
 
 - Properties of the event.
 - Session properties of the user who triggered the event.
@@ -325,7 +325,7 @@ Except for `identity.id`, these will not be populated if the user installed your
 
 | Key | Description
 | --- | ---
-| identity.id | ID you set [using setIdentity]({{base.url}}/getting-started/setting-identities) for the user who triggered the event
+| identity.id | ID you set [using setIdentity]({{base.url}}/getting-started/growth-attribution#setting-identities) for the user who triggered the event
 | identity.referring_identity.id | User ID you set for the user who created the link that drove this user's install
 | identity.referring_device.hardware_id | Device ID of the user who created the link that drove this user's install
 
@@ -416,7 +416,7 @@ Check to see if you are in [Test Mode]({{base.url}}/getting-started/integration-
 
 ##### How can I ensure a webhook is from Branch?
 
-Right now, we do not support a encryption method to verify requests come from Branch. As a workaround, if you [create events through the Branch SDK]({{base.url}}/getting-started/tracking-events#custom-events), you can specify a secret key inside the event metadata to pass through inside the URL of the webhook itself. 
+Right now, we do not support a encryption method to verify requests come from Branch. As a workaround, if you [create events through the Branch SDK]({{base.url}}/getting-started/user-value-attribution#custom-event-tracking), you can specify a secret key inside the event metadata to pass through inside the URL of the webhook itself. 
 
 ##### What's the difference between first referring data and session referring data?
 

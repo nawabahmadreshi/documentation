@@ -1,11 +1,11 @@
 ---
 type: recipe
 directory: getting-started
-title: "Setting Identities"
-page_title: Identify your users with Branch
-description: Branch allows you identify your users, bringing additional insight to analytics and referral data
-keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Attribution, Analytics, Dashboard, App Install, App Open, Conversion, iOS, objective-c, swift
-android_keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Attribution, Analytics, Dashboard, App Install, App Open, Conversion, Android
+title: Growth Attribution
+page_title: Growth attribution in the Branch dashboard
+description: "Use the Branch dashboard to grow your app with event and user identity tracking"
+android_description: "Learn about some advanced features of the Branch dashboard: How to set up a custom link domain and identify your best users."
+keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Dashboard, custom link domain, conversion funnel, funnels, influencers
 hide_section_selector: true
 platforms:
 - ios
@@ -21,13 +21,34 @@ sections:
 contents: list
 ---
 
-Identifying your users will help you associate all activities and links created to a particular person. This can show you which of your users are the most influential.
-
 {% ingredient quickstart-prerequisite %}{% endingredient %}
+
+You can measure your app growth in the [Dashboard](https://dashboard.branch.io){:target="_blank"} through automatic event tracking and user identity tracking.
+
+## Automatic event tracking
+
+Branch _automatically_ creates events whenever a user accesses your site or your app. We measure installs, re-opens and web page visits with separate events. Here is a list of the auto-created ones:
+
+| Event | Description
+| --- | ---
+| `install` | Triggered the first time a user launches your app
+| `open` | Trigged when the user opens the app after the very first launch OR if a user reinstalls the app after uninstalling it
+| `web session start` | Triggered when the user views a webpage using the Branch Web SDK.
+| `referred session` | Triggered _in addition_ to install, open or web session start if a user comes from a Branch link
+
+{% protip title="Receiving Postbacks" %}
+You can be notified via a postback to your server every time that an event occurs. Visit the [Webhooks](/getting-started/webhooks/) page for more information on configuring postbacks.
+{% endprotip %}
+
+You can also define as many custom events (signups, purchases, shares, etc.) as you wish - see the [User Value Attribution]({{base.url}}/getting-started/user-value-attribution) guide for more on tracking custom events. You can see these events as they occur on the [Live View > Events](https://dashboard.branch.io/#/liveview/events/view){:target="_blank"} page.
+
+## Setting identities
+
+Identifying your users will help you associate all activities and links created to a particular person. This can show you which of your users are the most influential.
 
 {% if page.ios %}
 
-## Log in
+### Log in
 
 Add a `setIdentity` call wherever you create or login a user. This should be done after you have successfully initialized a Branch session. Only call `setIdentity` when the user first logs in. We will cache the identity for future sessions.
 
@@ -46,7 +67,7 @@ Branch.getInstance().setIdentity("your user id")
 {% endtab %}
 {% endtabs %}
 
-## Log out
+### Log out
 
 Add a `logout` call anywhere you allow the user to logout. `Logout` should only be called when the user logs out. Calling it at other times could lead to hard-to-discover errors. Failing to call `logout` can likewise lead to bugs if multiple users log in on the same device.
 
@@ -68,7 +89,7 @@ Branch.getInstance().logout()
 
 {% if page.android %}
 
-## Log in
+### Log in
 
 Add a `setIdentity` call wherever you create or login a user. This should be done after you have successfully initialized a Branch session. Only call `setIdentity` when the user first logs in. We will cache the identity for future sessions.
 
@@ -77,7 +98,7 @@ Add a `setIdentity` call wherever you create or login a user. This should be don
 Branch.getInstance().setIdentity("your user id");
 {% endhighlight %}
 
-## Log out
+### Log out
 
 Add a `logout` call anywhere you allow the user to logout. `Logout` should only be called when the user logs out. Calling it at other times could lead to hard-to-discover errors. Failing to call `logout` can likewise lead to bugs if multiple users log in on the same device.
 
@@ -89,7 +110,7 @@ Branch.getInstance().logout();
 
 {% if page.cordova %}
 
-## Log in
+### Log in
 
 Add a `setIdentity` call wherever you create or login a user. This should be done after you have successfully initialized a Branch session. Only call `setIdentity` when the user first logs in. We will cache the identity for future sessions.
 
@@ -101,7 +122,7 @@ Branch.setIdentity("your user id").then(function (res) {
 });
 {% endhighlight %}
 
-## Log out
+### Log out
 
 Add a `logout` call anywhere you allow the user to logout. `Logout` should only be called when the user logs out. Calling it at other times could lead to hard-to-discover errors. Failing to call `logout` can likewise lead to bugs if multiple users log in on the same device.
 
@@ -112,7 +133,7 @@ Branch.logout();
 
 {% if page.xamarin %}
 
-## Log in
+### Log in
 
 Add a `SetIdentity` call wherever you create or login a user. This should be done after you have successfully initialized a Branch session. Only call `SetIdentityAsync` when the user first logs in. We will cache the identity for future sessions.
 
@@ -121,7 +142,7 @@ Branch branch = Branch.GetInstance ();
 branch.SetIdentity("your user id", this);
 {% endhighlight %}
 
-## Log out
+### Log out
 
 Add a `LogoutAsync` call anywhere you allow the user to logout. `LogoutAsync` should only be called when the user logs out. Calling it at other times could lead to hard-to-discover errors. Failing to call `LogoutAsync` can likewise lead to bugs if multiple users log in on the same device.
 
@@ -133,7 +154,7 @@ Branch.GetInstance(getApplicationContext()).LogoutAsync(this);
 
 {% if page.unity %}
 
-## Log in
+### Log in
 
 Add a `setIdentity` call wherever you create or login a user. This should be done after you have successfully initialized a Branch session. Only call `setIdentity` when the user first logs in. We will cache the identity for future sessions.
 
@@ -141,7 +162,7 @@ Add a `setIdentity` call wherever you create or login a user. This should be don
 Branch.setIdentity("your user id");
 {% endhighlight %}
 
-## Log out
+### Log out
 
 Add a `logout` call anywhere you allow the user to logout. `Logout` should only be called when the user logs out. Calling it at other times could lead to hard-to-discover errors. Failing to call `logout` can likewise lead to bugs if multiple users log in on the same device.
 
@@ -152,7 +173,7 @@ Branch.logout();
 
 {% if page.adobe %}
 
-## Log in
+### Log in
 
 Add a `setIdentity` call wherever you create or login a user. This should be done after you have successfully initialized a Branch session. Only call `setIdentity` when the user first logs in. We will cache the identity for future sessions.
 
@@ -160,7 +181,7 @@ Add a `setIdentity` call wherever you create or login a user. This should be don
 branch.setIdentity("your user id");
 {% endhighlight %}
 
-## Log out
+### Log out
 
 Add a `logout` call anywhere you allow the user to logout. `Logout` should only be called when the user logs out. Calling it at other times could lead to hard-to-discover errors. Failing to call `logout` can likewise lead to bugs if multiple users log in on the same device.
 
@@ -171,7 +192,7 @@ branch.logout();
 
 {% if page.titanium %}
 
-## Log in
+### Log in
 
 Add a `setIdentity` call wherever you create or login a user. This should be done after you have successfully initialized a Branch session. Only call `setIdentity` when the user first logs in. We will cache the identity for future sessions.
 
@@ -179,7 +200,7 @@ Add a `setIdentity` call wherever you create or login a user. This should be don
 branch.setIdentity("your user id");
 {% endhighlight %}
 
-## Log out
+### Log out
 
 Add a `logout` call anywhere you allow the user to logout. `Logout` should only be called when the user logs out. Calling it at other times could lead to hard-to-discover errors. Failing to call `logout` can likewise lead to bugs if multiple users log in on the same device.
 
@@ -209,4 +230,14 @@ branch.logout();
 
 {% protip title="Retroactive event attribution" %}
 The **first** time an identity is set for each unique user ID, it will retroactively associate any previously recorded events from the current device with that user ID. This only occurs once.
+{% endprotip %}
+
+## Measuring influencers
+
+The [Influencers page](https://dashboard.branch.io/#/referrals/influencers){:target="_blank"} on the dashboard will show you who is driving the most new signups.
+
+{% image src='/img/pages/getting-started/growth-attribution/influencers.png' full center alt='analytics filtering options' %}
+
+{% protip %}
+You must [identify your users](#setting-identities) in order for the `User ID` column to be populated. The `Branch ID` refers to the internal Branch ID associated with that user. It is set automatically in the SDK.
 {% endprotip %}

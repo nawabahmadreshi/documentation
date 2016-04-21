@@ -4,15 +4,6 @@ directory: getting-started
 title: 1. SDK Integration Guide
 page_title: Add the Branch SDK to your app
 description: This page will tell you how to quickly add the Branch SDK to your Android, iOS, Cordova, Phonegap, Xamarin, Unity, Air or Titanium app.
-redirect_from:
-- /recipes/add_the_sdk/
-- /recipes/add_the_sdk/ios/
-- /recipes/add_the_sdk/android/
-- /recipes/add_the_sdk/cordova/
-- /recipes/add_the_sdk/xamarin/
-- /recipes/add_the_sdk/unity/
-- /recipes/add_the_sdk/adobe/
-- /recipes/add_the_sdk/titanium/
 platforms:
 - ios
 - android
@@ -308,6 +299,10 @@ Branch opens your app by using its URI scheme (`yourapp://`), which should be un
 
 </application>
 {% endhighlight %}
+
+{% protip title="Internet Permissions" %}
+Your app needs to have internet permissions in order to communicate with the Branch service. Make sure you set `<uses-permission android:name="android.permission.INTERNET" />`
+{% endprotip %}
 
 ### Register for Google Play Install Referrer
 
@@ -722,7 +717,7 @@ initialize: function() {
 },
 {% endhighlight %}
 
-Then add the method `DeepLinkHandler()` which will act as our callback when the session beings. The deep link data will be included here:
+Then add the method `DeepLinkHandler()` which will act as our callback when the session begins. The deep link data will be included here:
 
 {% highlight js %}
 function DeepLinkHandler(data) {
@@ -1042,6 +1037,7 @@ Here are some recommended next steps:
 - **Enable [Universal & App Links]({{base.url}}/getting-started/universal-app-links)** — traditional URI scheme links are no longer supported in many situations on iOS 9.2+, and are a less than ideal solution on new versions of Android. To get full functionality from your Branch links on iOS devices, **you should enable Universal Links as soon as possible.**
 - **Learn about [Creating Links in Apps]({{base.url}}/getting-started/creating-links-in-apps)** — let your users share content and invite friends from inside your app.
 -  **Set up [Deep Link Routing]({{base.url}}/getting-started/deep-link-routing)** — send incoming visitors directly to specific content in your app based on the Branch link they opened.
+-  Track **[Custom Events]({{base.url}}/getting-started/user-value-attribution#custom-event-tracking)** — make in-app activity beyond clicks, installs, and opens — like purchases and signups — available for analysis in the dashboard.
 
 {% elsif page.advanced %}
 

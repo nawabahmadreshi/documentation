@@ -35,7 +35,7 @@ The simplest way to make Branch and Google Analytics work together is by allowin
 
 We use webhooks to set up a connection where Branch event data gets sent to Google Analytics [Measurement Protocol](https://developers.google.com/analytics/devguides/collection/protocol/v1/devguide). In addition to event data, you can tack on any extra data you choose as appropriate based off the listed parameters found on [this Google reference document](https://developers.google.com/analytics/devguides/collection/protocol/v1/devguide).
 
-When you [track events through Branch's SDK]({{base.url}}/getting-started/tracking-events), you can specify meta data as part of the event you send to Google Analytics in addition to the standard event data you send for a user ID.
+When you [track events through Branch's SDK]({{base.url}}/getting-started/user-value-attribution#appending-custom-metadata), you can specify meta data as part of the event you send to Google Analytics in addition to the standard event data you send for a user ID.
 
 ## Collect Google Analytics properties
 
@@ -90,7 +90,7 @@ Branch.getInstance().userCompletedAction("purchase", data);
 
 Once you have saved these events inside your app, Branch will track each time the event `purchase` occurred, with the exact user, and will retain meta data for each user-event. 
 
-{% protip title="Identities" %}Since Branch [tracks identity]({{base.url}}/getting-started/setting-identities), we recommend you keep the property `cid` the same as what you would use if you were calling `setIdentity` through the Branch SDK.{% endprotip %}
+{% protip title="Identities" %}Since Branch [tracks identity]({{base.url}}/getting-started/growth-attribution#setting-identities), we recommend you keep the property `cid` the same as what you would use if you were calling `setIdentity` through the Branch SDK.{% endprotip %}
 
 ## Build a template URL
 

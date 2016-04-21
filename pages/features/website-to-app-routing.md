@@ -25,6 +25,11 @@ If you maintain a mobile website, Branch allows you to deep link mobile visitors
 
 {% elsif page.guide %}
 
+{% prerequisite %}
+
+- Your Branch links need to have [fallback control parameters]({{base.url}}/getting-started/configuring-links/guide/#fallback-url-customization). These should point at the URL on your website where you are implementing the steps in this guide. 
+{% endprerequisite %}
+
 ## Initialize the Deepview SDK on page load
 
 Add the following code somewhere inside the `<head></head>` tags on your website and customize the [link parameters]({{base.url}}/getting-started/configuring-links) to suit your needs.
@@ -60,7 +65,7 @@ branch.deepview(
 
 ## Add a Call To Action
 
-Trigger the `branch.deepviewCta()` function with a button or hyperlink on your page.
+Trigger the `branch.deepviewCta()` function with a button or hyperlink on your page. Executing this function (whether by button, link, or some other method) 'clicks' the link you defined using `branch.deepview()` above.
 
 | Platform | Result of Call To Action
 | --- | ---

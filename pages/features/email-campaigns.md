@@ -10,6 +10,7 @@ hide_platform_selector: true
 sections:
 - overview
 - guide
+- advanced
 ---
 
 {% if page.overview %}
@@ -52,5 +53,9 @@ It's that simple! The [Branch dashboard](https://dashboard.branch.io/#) will tra
 
 If you need more flexibility, you might also be interested in building links by [appending query parameters]({{base.url}}/getting-started/creating-links-other-ways/#appending-query-parameters).
 {% endprotip %}
+
+{% elsif page.advanced %}
+
+{% ingredient disable-click-tracking %}{% endingredient %}
 
 {% endif %}
