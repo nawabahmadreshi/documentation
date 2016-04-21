@@ -71,6 +71,8 @@ The following keys have been embedded:
 1. Don't forget to URL encode everything, otherwise the link will break.
 1. If any of your links use the legacy `bnc.lt` domain be sure to include your custom domain **and** `bnc.lt` when configuring the [Associated Domains entitlement]({{base.url}}/getting-started/universal-app-links/guide/ios/#add-your-branch-link-domains) for iOS Universal Links.
 
+{% endcaution %}
+
 ## Web SDK
 
 You can use the Branch Web SDK to create links in several ways:
