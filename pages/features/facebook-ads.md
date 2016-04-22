@@ -74,6 +74,10 @@ To view more details stats, click the _small button that looks like a bar chart_
 
 {% elsif page.support %}
 
+## Don't use setDebug
+
+Facebook ads are incompatible with [debug mode]({{base.url}}/getting-started/integration-testing/guide/ios/#use-debug-mode-to-simulate-fresh-installs), as this prevents us from sending the correct hardware ID to Facebook.
+
 ## Testing deep linked ads
 
 The only way to test the deep linking functionality is outside of the actual ads system. Follow these instructions to test the deep linking functionality:
