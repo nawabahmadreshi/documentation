@@ -109,7 +109,7 @@ Please ensure...
 {% image src='/img/pages/getting-started/universal-app-links/add_domain.png' 3-quarters center alt='xcode add domain' %}
 
 {% caution title="Support for legacy links" %}
-If the `Default domain name` box shows the legacy `bnc.lt` domain, you should use the following entry instead: `applinks:bnc.lt`
+If the **Default domain name** box shows the legacy `bnc.lt` domain, you should use the following entry instead: `applinks:bnc.lt`
 {% endcaution %}
 
 {% protip title="Using a custom domain or subdomain?" %}
@@ -139,7 +139,7 @@ If you use a [custom domain or subdomain for your Branch links]({{base.url}}/get
 {% endhighlight %}
 
 {% caution title="Support for legacy links" %}
-If the `Default domain name` box shows the legacy `bnc.lt` domain, you should use the following entry instead:
+If the **Default domain name** box shows the legacy `bnc.lt` domain, you should use the following entry instead:
 
 {% highlight xml %}
 <branch-config>
@@ -176,7 +176,7 @@ If the `Default domain name` box shows the legacy `bnc.lt` domain, you should us
 {% image src='/img/pages/getting-started/universal-app-links/xamarin_branch_ios_domains.png' full center alt='Associated Domains' %}
 
 {% caution title="Support for legacy links" %}
-If the `Default domain name` box shows the legacy `bnc.lt` domain, you should use the following entry instead: `applinks:bnc.lt`
+If the **Default domain name** box shows the legacy `bnc.lt` domain, you should use the following entry instead: `applinks:bnc.lt`
 {% endcaution %}
 
 {% protip title="Using a custom domain or subdomain?" %}
@@ -208,7 +208,7 @@ If you use a [custom domain or subdomain for your Branch links]({{base.url}}/get
 {% endhighlight %}
 
 {% caution title="Support for legacy links" %}
-If the `Default domain name` box shows the legacy `bnc.lt` domain, you should use the following entry instead: `<string>applinks:bnc.lt</string>`
+If the **Default domain name** box shows the legacy `bnc.lt` domain, you should use the following entry instead: `<string>applinks:bnc.lt</string>`
 {% endcaution %}
 
 {% protip title="Using a custom domain or subdomain?" %}
@@ -407,7 +407,7 @@ You can insert both your debug and production fingerprints for testing. Simply s
 {% endhighlight %}
 
 {% caution title="Support for legacy links" %}
-If the `Default domain name` box shows the legacy `bnc.lt` domain, you should use the following entry instead:
+If the **Default domain name** box shows the legacy `bnc.lt` domain, you should use the following entry instead:
 
 {% highlight xml %}
 <branch-config>
@@ -455,7 +455,7 @@ If the `Default domain name` box shows the legacy `bnc.lt` domain, you should us
 {% endhighlight %}
 
 {% caution title="Support for legacy links" %}
-If the `Default domain name` box shows the legacy `bnc.lt` domain, you should use the following entry instead:
+If the **Default domain name** box shows the legacy `bnc.lt` domain, you should use the following entry instead:
 
 {% highlight xml %}
 <intent-filter android:autoVerify="true">
