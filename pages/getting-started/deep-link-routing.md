@@ -571,7 +571,7 @@ All of the examples below create links that will cause Branch to display `myapp:
 If you're creating a link by appending query parameters, just append the control parameters to the URL. Please make sure to URL encode everything, lest the link will break.
 
 {% highlight javascript %}
-"https://bnc.lt/a/key_live_jbgnjxvlhSb6PGH23BhO4hiflcp3y7ky?%24deeplink_path=content%2F1234"
+"https://[branchsubdomain]/a?%24deeplink_path=content%2F1234"
 {% endhighlight %}
 
 {% endexample %}
@@ -842,7 +842,9 @@ branch.getFirstReferringParams((params) => { });
 {% if page.ios %}
 ## Branch links in push notifications
 
-You can use Branch links with push notifications. When creating a push notification, you should specify the Branch link in the `userInfo` dictionary. It should be an NSString, and the key in `userInfo` should be Branch. So, for example: `@{ @"branch" : @"https://bnc.lt/ALMc/e03OVEJLUq" }`.
+You can use Branch links with push notifications. When creating a push notification, you should specify the Branch link in the `userInfo` dictionary. It should be an NSString, and the key in `userInfo` should be Branch. So, for example: `@{ @"branch" : @"https://[branchsubdomain]/ALMc/e03OVEJLUq" }`.
+
+{% ingredient branchsubdomain %}{% endingredient %}
 
 You must also configure your app to allow Branch to handle push notifications:
 
@@ -886,7 +888,7 @@ Assuming you have the right permissions for push notifications and can reliably 
 {% highlight java %}
 
 Intent resultIntent = new Intent(this, DeepLinkActivity.class);
-intent.putExtra("branch","http://bnc.lt/abcde12345");
+intent.putExtra("branch","http://[branchsubdomain]/abcde12345");
 PendingIntent resultPendingIntent =  PendingIntent.getActivity(this, 0, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
 {% endhighlight %}

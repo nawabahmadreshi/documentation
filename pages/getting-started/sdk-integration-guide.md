@@ -371,7 +371,7 @@ Make sure that this activity is launched as a `singleTask`. This is important to
 [IntentFilter (new[]{"android.intent.action.VIEW"},
         Categories=new[]{"android.intent.category.DEFAULT", 
         "android.intent.category.BROWSABLE"},
-        DataScheme="yourapp",
+        DataScheme="yourApp",
         DataHost="open")]
 {% endhighlight %}
 
@@ -410,8 +410,6 @@ To understand how to work with android manifest, read Xamarin documentation:
     <!-- other stuff -->
     <application>
         <meta-data android:name="io.branch.sdk.BranchKey" android:value="key_live_xxxxxxxxxxxxxxx" />
-        <meta-data android:name="io.branch.sdk.BranchKey.test" android:value="key_test_yyyyyyy" />
-        <meta-data android:name="io.branch.sdk.TestMode" android:value="false" />
         <activity android:name="io.branch.nativeExtensions.branch.BranchActivity" android:launchMode="singleTask" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
     </application>
 ]]></manifestAdditions></android>
@@ -728,7 +726,7 @@ function DeepLinkHandler(data) {
 {% endhighlight %}
 
 {% caution title="Watch out for content security policies" %}
-If `data` is null and `err` contains a string denoting a request timeout, make sure to whitelist `api.branch.io` and `bnc.lt` in your app's [content security policies](https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy).
+If `data` is null and `err` contains a string denoting a request timeout, make sure to whitelist `api.branch.io` and `[branchsubdomain]` ([click here]({{base.url}}/getting-started/link-domain-subdomain/guide/#the-default-applink-subdomain) to read about `[branchsubdomain]`) in your app's [content security policies](https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy).
 {% endcaution %}
 
 {% endif %}
@@ -754,7 +752,7 @@ public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsApplicat
 
         App app = new App ();
 
-        BranchAndroid.Init (this, "Your Branch key here", app);
+        BranchAndroid.Init (this, "key_live_xxxxxxxxxxxxxxx", app);
 
         LoadApplication (app);
     }
@@ -783,7 +781,7 @@ public class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDe
 
         // Enable debug mode. 
         BranchIOS.Debug = true;
-        BranchIOS.Init ("Your Branch key here", launchOptions, app);
+        BranchIOS.Init ("key_live_xxxxxxxxxxxxxxx", launchOptions, app);
 
         LoadApplication (app);
 

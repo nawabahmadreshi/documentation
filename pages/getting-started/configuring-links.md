@@ -70,9 +70,11 @@ Use analytics labels to help _organize your data_. Track updates, run A/B tests 
 
 | Key | Usage | Default
 | --- | --- | ---
-| alias | Specify a link alias in place of the standard encoded short URL (e.g., `bnc.lt/youralias` or `yourdomain.co/youralias`). Link aliases are unique, immutable objects that cannot be deleted. **Aliases on the bnc.lt domain are incompatible with [Universal Links]({{base.url}}/getting-started/universal-app-links) and [Spotlight]({{base.url}}/features/spotlight-indexing)**
+| alias | Specify a link alias in place of the standard encoded short URL (e.g., `[branchsubdomain]/youralias` or `yourdomain.co/youralias`). Link aliases are unique, immutable objects that cannot be deleted. **Aliases on the legacy `bnc.lt` domain are incompatible with [Universal Links]({{base.url}}/getting-started/universal-app-links) and [Spotlight]({{base.url}}/features/spotlight-indexing)**
 | duration | *(Deprecated. Use `$match_duration`)* Lets you control the fingerprinting match timeout (the time that a click will wait for an app open to match) also known as attribution window. Specified in seconds | `7200`
 | type | *(Advanced)* Set to `1` to limit deep linking behavior of the generated link to a single use. Set type to `2` to make link show up under [Marketing page](https://dashboard.branch.io/#/marketing) in the dashboard | `0`
+
+{% ingredient branchsubdomain %}{% endingredient %}
 
 ## Link control parameters
 
@@ -190,7 +192,7 @@ In addition to specifying parameters when creating a link, you can also append a
 To pass a key/value pair of `$deeplink_path : article/jan/123` on a specific instance of a link:
 
 {% highlight sh %}
-https://bnc.lt/l/3HZMytU-BW?$deeplink_path=article%2Fjan%2F123
+https://[branchsubdomain]/l/3HZMytU-BW?$deeplink_path=article%2Fjan%2F123
 {% endhighlight %}
 
 The following parameters can **only** be specified by appending to a link:
@@ -207,5 +209,5 @@ If you append your own custom query parameters to a link, this data will also be
 To pass a key/value pair of `myparameter : testvalue` on a specific instance of a link:
 
 {% highlight sh %}
-https://bnc.lt/l/3HZMytU-BW?myparameter=testvalue
+https://[branchsubdomain]/l/3HZMytU-BW?myparameter=testvalue
 {% endhighlight %}
