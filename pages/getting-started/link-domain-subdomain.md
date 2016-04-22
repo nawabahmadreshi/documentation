@@ -14,14 +14,10 @@ sections:
 
 ## The default app.link subdomain
 
-{% protip %}
-The new `app.link` domain is currently being assigned to all new Branch app configurations. In the near future we will be rolling out the ability to select your subdomain prefix (e.g., `branch.app.link`) for both new and existing apps.
-{% endprotip %}
-
 Every app on the Branch platform is assigned a subdomain of the form `xxxx.app.link`. This is unique to your app and must be used in several places when integrating the SDK.
 
 {% protip %}
-Because of the way that Apple implements Universal Links, every app also has a shadow subdomain of the form `xxxx-alternate.app-link`. This is used in select places but will never be shown to your users.
+Because of the way that Apple implements Universal Links, every app also has a shadow subdomain of the form `xxxx-alternate.app-link`. This is used in select places but will not be shown to your users.
 {% endprotip %}
 
 ### Retriving the subdomain assigned to your app
