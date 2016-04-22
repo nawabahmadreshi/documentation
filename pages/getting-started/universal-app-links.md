@@ -79,12 +79,6 @@ You can retrieve your app's Bundle Identifier under the `General` tab of your Xc
 
 {% image src='/img/pages/getting-started/universal-app-links/dashboard_enable_universal_links.png' 3-quarters center alt='enable Universal Links on Branch dashboard' %}
 
-{% caution title="bnc.lt links with your Test Key?" %}
-
-Due to a change in iOS 9.3.1, Universal Links will not work on *Test* apps using the `bnc.lt` domain. Please test `bnc.lt` Universal Links with your Live app, where they will work as expected. [Read more](http://status.branch.io/incidents/b0c19p6hpq58){:target="_blank"}.
-{% endcaution %}
-
-
 ## Add the entitlement to your project
 
 {% if page.ios or page.unity or page.adobe or page.react %}
@@ -115,7 +109,7 @@ Please ensure...
 {% image src='/img/pages/getting-started/universal-app-links/add_domain.png' 3-quarters center alt='xcode add domain' %}
 
 {% caution title="Support for legacy links" %}
-If any of your links use the legacy `bnc.lt` domain, you must also include the following entry: `applinks:bnc.lt`
+If the `Default domain name` box shows the legacy `bnc.lt` domain, you should use the following entry instead: `applinks:bnc.lt`
 {% endcaution %}
 
 {% protip title="Using a custom domain or subdomain?" %}
@@ -145,10 +139,13 @@ If you use a [custom domain or subdomain for your Branch links]({{base.url}}/get
 {% endhighlight %}
 
 {% caution title="Support for legacy links" %}
-If any of your links use the legacy `bnc.lt` domain, you must also include the following key:
+If the `Default domain name` box shows the legacy `bnc.lt` domain, you should use the following entry instead:
 
 {% highlight xml %}
-<host name="bnc.lt" scheme="https" />
+<branch-config>
+    <ios-team-id value="your_ios_team_id" />
+    <host name="bnc.lt" scheme="https" />
+</branch-config>
 {% endhighlight %}
 
 {% endcaution %}
@@ -179,7 +176,7 @@ If any of your links use the legacy `bnc.lt` domain, you must also include the f
 {% image src='/img/pages/getting-started/universal-app-links/xamarin_branch_ios_domains.png' full center alt='Associated Domains' %}
 
 {% caution title="Support for legacy links" %}
-If any of your links use the legacy `bnc.lt` domain, you must also include the following entry: `applinks:bnc.lt`
+If the `Default domain name` box shows the legacy `bnc.lt` domain, you should use the following entry instead: `applinks:bnc.lt`
 {% endcaution %}
 
 {% protip title="Using a custom domain or subdomain?" %}
@@ -211,7 +208,7 @@ If you use a [custom domain or subdomain for your Branch links]({{base.url}}/get
 {% endhighlight %}
 
 {% caution title="Support for legacy links" %}
-If any of your links use the legacy `bnc.lt` domain, you must also include the following entry: `<string>applinks:bnc.lt</string>`
+If the `Default domain name` box shows the legacy `bnc.lt` domain, you should use the following entry instead: `<string>applinks:bnc.lt</string>`
 {% endcaution %}
 
 {% protip title="Using a custom domain or subdomain?" %}
@@ -410,11 +407,13 @@ You can insert both your debug and production fingerprints for testing. Simply s
 {% endhighlight %}
 
 {% caution title="Support for legacy links" %}
-If any of your links use the legacy `bnc.lt` domain, you must also include the following keys:
+If the `Default domain name` box shows the legacy `bnc.lt` domain, you should use the following entry instead:
 
 {% highlight xml %}
-<android-prefix value="READ_FROM_DASHBOARD" />
-<host name="bnc.lt" scheme="https" />
+<branch-config>
+    <android-prefix value="READ_FROM_DASHBOARD" />
+    <host name="bnc.lt" scheme="https" />
+</branch-config>
 {% endhighlight %}
 
 `READ_FROM_DASHBOARD` is the four-character value in front of all your links. You can find it underneath the field labeled **SHA256 Cert Fingerprints** on the dashboard. It will look something like this: `/WSuf` (the initial `/` character should be included).
@@ -456,10 +455,15 @@ If any of your links use the legacy `bnc.lt` domain, you must also include the f
 {% endhighlight %}
 
 {% caution title="Support for legacy links" %}
-If any of your links use the legacy `bnc.lt` domain, you must also include the following entry:
+If the `Default domain name` box shows the legacy `bnc.lt` domain, you should use the following entry instead:
 
 {% highlight xml %}
-<data android:scheme="https" android:host="bnc.lt" android:pathPrefix="READ_FROM_DASHBOARD" />
+<intent-filter android:autoVerify="true">
+    <action android:name="android.intent.action.VIEW" />
+    <category android:name="android.intent.category.DEFAULT" />
+    <category android:name="android.intent.category.BROWSABLE" />
+    <data android:scheme="https" android:host="bnc.lt" android:pathPrefix="READ_FROM_DASHBOARD" />
+</intent-filter>
 {% endhighlight %}
 
 `READ_FROM_DASHBOARD` is the four-character value in front of all your links. You can find it underneath the field labeled **SHA256 Cert Fingerprints** on the dashboard. It will look something like this: `/WSuf` (the initial `/` character should be included).
