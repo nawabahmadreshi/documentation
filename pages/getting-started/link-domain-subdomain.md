@@ -14,9 +14,17 @@ sections:
 
 ## The default app.link subdomain
 
-Every app on the Branch platform is assigned a subdomain of the form `XXXX.app.link`. This is unique to your app and must be used in several places when integrating the SDK.
+{% protip %}
+The new `app.link` domain is currently being assigned to all new Branch app configurations. In the near future we will be rolling out the ability to select your subdomain prefix (e.g., `branch.app.link`) for both new and existing apps.
+{% endprotip %}
 
-{% protip title="Retriving the subdomain assigned to your app" %}
+Every app on the Branch platform is assigned a subdomain of the form `xxxx.app.link`. This is unique to your app and must be used in several places when integrating the SDK.
+
+{% protip %}
+Because of the way that Apple implements Universal Links, every app also has a shadow subdomain of the form `xxxx-alternate.app-link`. This is used in select places but will never be shown to your users.
+{% endprotip %}
+
+### Retriving the subdomain assigned to your app
 
 1. Go to the [Link Settings](https://dashboard.branch.io/#/settings/link) page on the dashboard.
 1. Scroll down to the **Custom Link Domain** area.
@@ -24,11 +32,9 @@ Every app on the Branch platform is assigned a subdomain of the form `XXXX.app.l
 
 {% image src='/img/pages/getting-started/link-domain-subdomain/default-link-domain.png' half center alt='retrieving the default link subdomain' %}
 
-{% endprotip %}
-
 {% caution title="Test environment domain" %}
 
-The assigned subdomain for your [test environment]({{base.url}}/getting-started/integration-testing#the-test-sandbox-environment) is of the form `XXX.test-app-link` and must be configured separately.
+The assigned subdomain for your [test environment]({{base.url}}/getting-started/integration-testing#the-test-sandbox-environment) is of the form `xxxx.test-app-link` and must be configured separately.
 
 {% endcaution %}
 
