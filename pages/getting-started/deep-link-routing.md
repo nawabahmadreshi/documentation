@@ -539,7 +539,7 @@ In addition to any custom key/value pairs specified in the link data dictionary,
 | **+is_first_session** | Denotes whether this is the first session (install) or any other session (open)
 | **+clicked_branch_link** | Denotes whether or not the user clicked a Branch link that triggered this session
 | **+click_timestamp** | Epoch timestamp of when the click occurred
-| **+url** | The full URL of the link that drove the install/open, if present (e.g. [branchsubdomain]/m/abcde12345)
+| **+url** | The full URL of the link that drove the install/open, if present (e.g. bnc.lt/m/abcde12345)
 
 ## Support existing deep link routes
 

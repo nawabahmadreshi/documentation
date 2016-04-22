@@ -100,8 +100,6 @@ If you're creating a link by appending query parameters, just append the paramet
 {% endhighlight %}
 {% endexample %}
 
-{% ingredient branchsubdomain %}{% endingredient %}
-
 {% example title="When using a mobile SDK" %}
 When you create links via a mobile SDK, you simply need to set the OG tag parameters.
 
