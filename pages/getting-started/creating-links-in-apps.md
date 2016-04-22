@@ -513,6 +513,8 @@ You can build a Branch link dynamically by appending query parameters. This meth
 Try out the [Dynamic Link Builder]({{base.url}}/getting-started/dynamic-link-builder) to easily construct links of this type, or verify that links you have created are valid.
 {% endprotip %}
 
+{% ingredient branchsubdomain %}{% endingredient %}
+
 1. Start with your Branch link domain: **http://[branchsubdomain]**.
 1. Append `/a?` to start the query params string: **http://[branchsubdomain]/a/?**
    - If you're using the legacy `bnc.lt` domain as the base for your links, instead append `/a/your_Branch_key?`: **http://bnc.lt/a/your_branch_key?**

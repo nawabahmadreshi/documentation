@@ -74,6 +74,8 @@ Use analytics labels to help _organize your data_. Track updates, run A/B tests 
 | duration | *(Deprecated. Use `$match_duration`)* Lets you control the fingerprinting match timeout (the time that a click will wait for an app open to match) also known as attribution window. Specified in seconds | `7200`
 | type | *(Advanced)* Set to `1` to limit deep linking behavior of the generated link to a single use. Set type to `2` to make link show up under [Marketing page](https://dashboard.branch.io/#/marketing) in the dashboard | `0`
 
+{% ingredient branchsubdomain %}{% endingredient %}
+
 ## Link control parameters
 
 These parameters are used to customize the functionality of each individual Branch link, either by specifying a property or overriding a global default.

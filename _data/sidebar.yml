@@ -13,6 +13,7 @@
     - deep-link-routing
     - title: 5. Dashboard Guide
       children:
+        - link-domain-subdomain
         - organizing-link-data
         - growth-attribution
         - user-value-attribution

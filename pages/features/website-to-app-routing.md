@@ -129,6 +129,8 @@ branch.deepview(options, {
 
 ### Calls to [branchdomain] blocked
 
+{% ingredient branchsubdomain %}{% endingredient %}
+
 Please make sure to add `[branchsubdomain]` to the CSP header for your pages. We've seen some browsers that attempt to block it outright. You can deliver this in an HTTP header from your web server or you can add a simple metatag to your site like so:
 
 {% highlight html %}

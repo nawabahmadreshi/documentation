@@ -29,6 +29,11 @@ Testing Branch functionality can be challenging. Many functions require two part
 
 Branch maintains both a **Live** environment and a **Test** sandbox for every app. You can think of these as separate apps in the Branch system that are simply available from the same Dashboard for convenience. There is no data crossover between the **Live** environment and the **Test** sandbox, both offer identical configuration options, and you use different Branch keys to access each one. Links respect the configuration settings of the Branch key under which they are created.
 
+### Link domains
+
+- Links created with your **Live** key will begin with `XXXX.app.link`
+- Links created with your **Test** key will begin with `XXXX.test-app.link`
+
 ### Switching environments on the dashboard
 
 Toggling between these two modes on the Branch dashboard is simple:

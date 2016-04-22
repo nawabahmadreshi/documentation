@@ -81,7 +81,7 @@ You can retrieve your app's Bundle Identifier under the `General` tab of your Xc
 
 {% caution title="bnc.lt links with your Test Key?" %}
 
-Due to a change in iOS 9.3.1, Universal Links will not work on *Test* apps using the `bnc.lt` domain. We're working on resolving this. Please test Universal Links with your Live app, where they will work as expected. [Read more](http://status.branch.io/incidents/b0c19p6hpq58){:target="_blank"}. 
+Due to a change in iOS 9.3.1, Universal Links will not work on *Test* apps using the `bnc.lt` domain. We're working on resolving this. Please test Universal Links with your Live app, where they will work as expected. [Read more](http://status.branch.io/incidents/b0c19p6hpq58){:target="_blank"}.
 {% endcaution %}
 
 
@@ -107,12 +107,14 @@ Please ensure...
 
 1. In the `Domains` section, click the `+` icon and add the following entry: `applinks:[branchsubdomain]` {% image src='/img/pages/getting-started/universal-app-links/add_domain.png' 3-quarters center alt='xcode add domain' %}
 
+{% ingredient branchsubdomain %}{% endingredient %}
+
 {% caution title="Support for legacy links" %}
 If any of your links use the legacy `bnc.lt` domain, you must also include the following entry: `applinks:bnc.lt`
 {% endcaution %}
 
 {% protip title="Using a custom domain or subdomain?" %}
-If you use a [custom domain or subdomain for your Branch links]({{base.url}}/getting-started/dashboard-guide/guide/#setting-a-custom-link-domain), you should also add an entry for `applinks:[mycustomdomainorsubdomain]`.
+If you use a [custom domain or subdomain for your Branch links]({{base.url}}/getting-started/link-domain-subdomain/guide/#setting-a-custom-link-domain), you should also add an entry for `applinks:[mycustomdomainorsubdomain]`.
 {% endprotip %}
 
 ### Add entitlements file to the build target
@@ -158,12 +160,14 @@ Create a new file named `Entitlements.plist` in the root directory of your proje
 
 {% image src='/img/pages/getting-started/universal-app-links/xamarin_branch_ios_domains.png' full center alt='Associated Domains' %}
 
+{% ingredient branchsubdomain %}{% endingredient %}
+
 {% caution title="Support for legacy links" %}
 If any of your links use the legacy `bnc.lt` domain, you must also include the following entry: `applinks:bnc.lt`
 {% endcaution %}
 
 {% protip title="Using a custom domain or subdomain?" %}
-If you use a [custom domain or subdomain for your Branch links]({{base.url}}/getting-started/dashboard-guide/guide/#setting-a-custom-link-domain), you should also add an entry for `applinks:[mycustomdomainorsubdomain]`.
+If you use a [custom domain or subdomain for your Branch links]({{base.url}}/getting-started/link-domain-subdomain/guide/#setting-a-custom-link-domain), you should also add an entry for `applinks:[mycustomdomainorsubdomain]`.
 {% endprotip %}
 
 {% endif %}
@@ -186,12 +190,14 @@ If you use a [custom domain or subdomain for your Branch links]({{base.url}}/get
 </plist>
 {% endhighlight %}
 
+{% ingredient branchsubdomain %}{% endingredient %}
+
 {% caution title="Support for legacy links" %}
 If any of your links use the legacy `bnc.lt` domain, you must also include the following entry: `<string>applinks:bnc.lt</string>`
 {% endcaution %}
 
 {% protip title="Using a custom domain or subdomain?" %}
-If you use a [custom domain or subdomain for your Branch links]({{base.url}}/getting-started/dashboard-guide/guide/#setting-a-custom-link-domain), you should also add a key for `<string>[mycustomdomainorsubdomain]</string>`.
+If you use a [custom domain or subdomain for your Branch links]({{base.url}}/getting-started/link-domain-subdomain/guide/#setting-a-custom-link-domain), you should also add a key for `<string>[mycustomdomainorsubdomain]</string>`.
 {% endprotip %}
 
 #### Support Universal Links on Cold Start
@@ -383,13 +389,15 @@ Add the following entry to your application's `config.xml`:
 </branch-config>
 {% endhighlight %}
 
+{% ingredient branchsubdomain %}{% endingredient %}
+
 {% caution title="Support for legacy links" %}
 If any of your links use the legacy `bnc.lt` domain, you must also include the following entry:
 
 {% highlight xml %}
 <branch-config>
-<ios-team-id value="your_ios_team_id" />
-<host name="bnc.lt" scheme="https" />
+    <ios-team-id value="your_ios_team_id" />
+    <host name="bnc.lt" scheme="https" />
 </branch-config>
 {% endhighlight %}
 
@@ -420,6 +428,8 @@ If any of your links use the legacy `bnc.lt` domain, you must also include the f
 </intent-filter>
 {% endhighlight %}
 
+{% ingredient branchsubdomain %}{% endingredient %}
+
 {% caution title="Support for legacy links" %}
 If any of your links use the legacy `bnc.lt` domain, you must also include the following entry:
 
@@ -430,7 +440,7 @@ If any of your links use the legacy `bnc.lt` domain, you must also include the f
 {% endcaution %}
 
 {% protip title="Using a custom domain or subdomain?" %}
-If you use a [custom domain or subdomain for your Branch links]({{base.url}}/getting-started/dashboard-guide/guide/#setting-a-custom-link-domain), you should also add an entry for:
+If you use a [custom domain or subdomain for your Branch links]({{base.url}}/getting-started/link-domain-subdomain/guide/#setting-a-custom-link-domain), you should also add an entry for:
 
 {% highlight xml %}
 <data android:scheme="https" android:host="mycustomdomainorsubdomain" android:pathPrefix="READ_FROM_DASHBOARD" />

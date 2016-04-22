@@ -35,36 +35,6 @@ Tabs for links, clicks, events, content, and more on the [Live View page](https:
 
 {% image src='/img/pages/getting-started/organizing-link-data/live-view-events.png' full center alt='analytics filtering options' %}
 
-## Setting a custom link domain
-
-While you may enjoy Branch, it doesn’t mean you need to have `bnc.lt` as a part of every link you send out. Setting up a custom domain or subdomain is simple. 
-
-{% caution title="Avoid switching later" %}
-We recommend that you choose one domain or subdomain to use with Branch and stick with it, as switching can cause significant problems with your existing links.
-{% endcaution %}
-
-{% protip title="SSL for custom domains and subdomains" %}
-Branch automatically handles HTTPS traffic for custom subdomains and root domains. Branch will acquire the necessary SSL certificate if you follow the simple setup instructions below. Branch will also automatically renew the certificates when needed.
-{% endprotip %}
-
-{% image src='/img/pages/getting-started/organizing-link-data/custom_link_domain.png' full center alt='configuring a custom subdomain' %}
-
-### Custom SUBDOMAIN (go.branch.com)
-
-1. Create a CNAME for your subdomain and point it to `custom.bnc.lt`
-1. Go to [Link Settings](https://dashboard.branch.io/#/settings/link){:target="_blank"} on the Branch dashboard, and find the **Custom Link Domain** section.
-1. You should see a message telling you the status of your domain under the `Domain name` field. If you don't, please type your domain in again.
-1. Click the `Save` button.
-
-{% image src='/img/pages/getting-started/universal-app-links/custom-domain-success.png' full center alt='successful custom subdomain configuration' %}
-
-### Custom ROOT domain (branch.com)
-
-1. Go to [Link Settings](https://dashboard.branch.io/#/settings/link){:target="_blank"} on the Branch dashboard, and find the **Custom Link Domain** section.
-1. Enter your custom domain into the text box and click the `Save` button. (If the validation status doesn't update with nameservers please **refresh the page.**) {% image src='/img/pages/getting-started/organizing-link-data/custom_domain_nameservers_error.png' full center alt='root domain nameservers' %}
-1. Go to your DNS configuration for your custom domain, and update your nameserver records with the Branch-provided nameservers.
-1. Click the `Save` button on the Branch dashboard again.
-
 ## Controlling default link redirection behavior
 
 By default, Branch will attempt to launch your app every single time a link is opened, before redirecting to the App Store or Play Store. On iOS 9, this can cause an ugly error message if the app is not yet installed. To reverse this default behavior, you can uncheck the **Always try to open app** box on the [Link Settings page](https://dashboard.branch.io/#/settings/link){:target="_blank"}:

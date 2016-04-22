@@ -844,6 +844,8 @@ branch.getFirstReferringParams((params) => { });
 
 You can use Branch links with push notifications. When creating a push notification, you should specify the Branch link in the `userInfo` dictionary. It should be an NSString, and the key in `userInfo` should be Branch. So, for example: `@{ @"branch" : @"https://[branchsubdomain]/ALMc/e03OVEJLUq" }`.
 
+{% ingredient branchsubdomain %}{% endingredient %}
+
 You must also configure your app to allow Branch to handle push notifications:
 
 {% tabs %}

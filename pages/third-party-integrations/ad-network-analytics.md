@@ -74,6 +74,8 @@ Instead, just replace the base URL (everything before the `?`), with your Branch
 
 `https://[branchsubdomain]/l/125AdD-F?campaign={campaign_id}&adgroup={creative_id}`
 
+{% ingredient branchsubdomain %}{% endingredient %}
+
 **This is the link to provide to your ad partner.**
 
 {% endif %}
