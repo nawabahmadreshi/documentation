@@ -81,7 +81,7 @@ You can retrieve your app's Bundle Identifier under the `General` tab of your Xc
 
 {% caution title="bnc.lt links with your Test Key?" %}
 
-Due to a change in iOS 9.3.1, Universal Links will not work on *Test* apps using the `bnc.lt` domain. We're working on resolving this. Please test Universal Links with your Live app, where they will work as expected. [Read more](http://status.branch.io/incidents/b0c19p6hpq58){:target="_blank"}.
+Due to a change in iOS 9.3.1, Universal Links will not work on *Test* apps using the `bnc.lt` domain. Please test `bnc.lt` Universal Links with your Live app, where they will work as expected. [Read more](http://status.branch.io/incidents/b0c19p6hpq58){:target="_blank"}.
 {% endcaution %}
 
 
@@ -105,9 +105,14 @@ Please ensure...
 
 ### Add your Branch link domains
 
-1. In the `Domains` section, click the `+` icon and add the following entry: `applinks:[branchsubdomain]` {% image src='/img/pages/getting-started/universal-app-links/add_domain.png' 3-quarters center alt='xcode add domain' %}
+1. Go to the [Link Settings](https://dashboard.branch.io/#/settings/link) page on the dashboard.
+1. Scroll down to the `Custom Link Domain` area.
+1. Locate the value inside the `Default domain name` box.{% image src='/img/pages/getting-started/universal-app-links/default-link-domain.png' half center alt='retrieving the default link subdomain' %}
+1. In the `Domains` section, click the `+` icon and add the following entries: (making sure that `xxxx` matches the four-character value on the dashboard)
+   * `applinks:xxxx.app.link`
+   * `applinks:xxxx-alternate.app.link`
 
-{% ingredient branchsubdomain %}{% endingredient %}
+{% image src='/img/pages/getting-started/universal-app-links/add_domain.png' 3-quarters center alt='xcode add domain' %}
 
 {% caution title="Support for legacy links" %}
 If any of your links use the legacy `bnc.lt` domain, you must also include the following entry: `applinks:bnc.lt`
@@ -126,41 +131,52 @@ If you use a [custom domain or subdomain for your Branch links]({{base.url}}/get
 
 {% if page.cordova %}
 
-Add the following entry to your application's `config.xml`:
+1. Go to the [Link Settings](https://dashboard.branch.io/#/settings/link) page on the dashboard.
+1. Scroll down to the `Custom Link Domain` area.
+1. Locate the value inside the `Default domain name` box.{% image src='/img/pages/getting-started/universal-app-links/default-link-domain.png' half center alt='retrieving the default link subdomain' %}
+1. Add the following entry to your application's `config.xml` (making sure that `xxxx` matches the four-character value on the dashboard)
 
 {% highlight xml %}
 <branch-config>
     <ios-team-id value="your_ios_team_id" />
-    <host name="[branchsubdomain]" scheme="https" />
+    <host name="xxxx.app.link" scheme="https" />
+    <host name="xxxx-alternate.app.link" scheme="https" />
 </branch-config>
 {% endhighlight %}
 
 {% caution title="Support for legacy links" %}
-If any of your links use the legacy `bnc.lt` domain, you must also include the following entry:
+If any of your links use the legacy `bnc.lt` domain, you must also include the following key:
 
 {% highlight xml %}
-<branch-config>
-<ios-team-id value="your_ios_team_id" />
 <host name="bnc.lt" scheme="https" />
-</branch-config>
 {% endhighlight %}
 
 {% endcaution %}
 
 {% protip title="Notes" %}
 - You can get your **iOS Team ID** from the Your Account page on the [Apple Developer Portal](https://developer.apple.com/membercenter/index.action#accountSummary).
-- If you use a custom domain or subdomain for your Branch links, you should also add a key for `<host name="mycustomdomainorsubdomain" scheme="https" />`.
+- If you use a custom domain or subdomain for your Branch links, you should also add a key for:
+
+{% highlight xml %}
+<host name="mycustomdomainorsubdomain" scheme="https" />
+{% endhighlight %}
+
 {% endprotip %}
 
 {% endif %}
 
 {% if page.xamarin %}
 
-Create a new file named `Entitlements.plist` in the root directory of your project. Enable `associated-domains` and add `applinks:[branchsubdomain]`.
+1. Go to the [Link Settings](https://dashboard.branch.io/#/settings/link) page on the dashboard.
+1. Scroll down to the `Custom Link Domain` area.
+1. Locate the value inside the `Default domain name` box.{% image src='/img/pages/getting-started/universal-app-links/default-link-domain.png' half center alt='retrieving the default link subdomain' %}
+1. Create a new file named `Entitlements.plist` in the root directory of your project.
+1. Enable `associated-domains`
+1. In the `Domains` section, click the `+` icon and add the following entries: (making sure that `xxxx` matches the four-character value on the dashboard)
+    * `applinks:xxxx.app.link`
+    * `applinks:xxxx-alternate.app.link`
 
 {% image src='/img/pages/getting-started/universal-app-links/xamarin_branch_ios_domains.png' full center alt='Associated Domains' %}
-
-{% ingredient branchsubdomain %}{% endingredient %}
 
 {% caution title="Support for legacy links" %}
 If any of your links use the legacy `bnc.lt` domain, you must also include the following entry: `applinks:bnc.lt`
@@ -174,8 +190,11 @@ If you use a [custom domain or subdomain for your Branch links]({{base.url}}/get
 
 {% if page.titanium %}
 
+1. Go to the [Link Settings](https://dashboard.branch.io/#/settings/link) page on the dashboard.
+1. Scroll down to the `Custom Link Domain` area.
+1. Locate the value inside the `Default domain name` box.{% image src='/img/pages/getting-started/universal-app-links/default-link-domain.png' half center alt='retrieving the default link subdomain' %}
 1. Create a new file named `Entitlements.plist` in the same directory as your Titanium app's `tiapp.xml`
-1. Insert the following snippet:
+1. Insert the following snippet (making sure that `xxxx` matches the four-character value on the dashboard)
 
 {% highlight xml %}
 <?xml version="1.0" encoding="UTF-8"?>
@@ -184,13 +203,12 @@ If you use a [custom domain or subdomain for your Branch links]({{base.url}}/get
 <dict>
     <key>com.apple.developer.associated-domains</key>
     <array>
-        <string>applinks:[branchsubdomain]</string>
+        <string>applinks:xxxx.app.link</string>
+        <string>applinks:xxxx-alternate.app.link</string>
     </array>
 </dict>
 </plist>
 {% endhighlight %}
-
-{% ingredient branchsubdomain %}{% endingredient %}
 
 {% caution title="Support for legacy links" %}
 If any of your links use the legacy `bnc.lt` domain, you must also include the following entry: `<string>applinks:bnc.lt</string>`
@@ -380,43 +398,52 @@ You can insert both your debug and production fingerprints for testing. Simply s
 
 ## Configure project
 
-Add the following entry to your application's `config.xml`:
+1. Go to the [Link Settings](https://dashboard.branch.io/#/settings/link) page on the dashboard.
+1. Scroll down to the `Custom Link Domain` area.
+1. Locate the value inside the `Default domain name` box.{% image src='/img/pages/getting-started/universal-app-links/default-link-domain.png' half center alt='retrieving the default link subdomain' %}
+1. Add the following entry to your application's `config.xml` (making sure that `xxxx` matches the four-character value on the dashboard)
 
 {% highlight xml %}
 <branch-config>
-    <android-prefix value="READ_FROM_DASHBOARD" />
-    <host name="[branchsubdomain]" scheme="https" />
+    <host name="xxxx.app.link" scheme="https" />
 </branch-config>
 {% endhighlight %}
-
-{% ingredient branchsubdomain %}{% endingredient %}
 
 {% caution title="Support for legacy links" %}
-If any of your links use the legacy `bnc.lt` domain, you must also include the following entry:
+If any of your links use the legacy `bnc.lt` domain, you must also include the following keys:
 
 {% highlight xml %}
-<branch-config>
-    <ios-team-id value="your_ios_team_id" />
-    <host name="bnc.lt" scheme="https" />
-</branch-config>
+<android-prefix value="READ_FROM_DASHBOARD" />
+<host name="bnc.lt" scheme="https" />
 {% endhighlight %}
+
+`READ_FROM_DASHBOARD` is the four-character value in front of all your links. You can find it underneath the field labeled **SHA256 Cert Fingerprints** on the dashboard. It will look something like this: `/WSuf` (the initial `/` character should be included).
 
 {% endcaution %}
 
 {% protip title="Notes" %}
 - If you enabled iOS Universal Links, some of these keys will already exist and should not be entered again.
-- `READ_FROM_DASHBOARD` is the four-character value in front of all your links. You can find it underneath the field labeled **SHA256 Cert Fingerprints** on the dashboard. It will look something like this: `/WSuf` (the initial `/` character should be included).
-- If you use a custom domain or subdomain for your Branch links, you should also add a key for `<host name="mycustomdomainorsubdomain" scheme="https" />`.
+- If you use a custom domain or subdomain for your Branch links, you should also add a key for:
+
+{% highlight xml %}
+<android-prefix value="READ_FROM_DASHBOARD" />
+<host name="mycustomdomainorsubdomain" scheme="https" />
+{% endhighlight %}
+
+`READ_FROM_DASHBOARD` is the four-character value in front of all your links. You can find it underneath the field labeled **SHA256 Cert Fingerprints** on the dashboard. It will look something like this: `/WSuf` (the initial `/` character should be included).
+
 {% endprotip %}
 
 {% else %}
 
 ## Add Intent Filter to Manifest
 
+1. Go to the [Link Settings](https://dashboard.branch.io/#/settings/link) page on the dashboard.
+1. Scroll down to the `Custom Link Domain` area.
+1. Locate the value inside the `Default domain name` box.{% image src='/img/pages/getting-started/universal-app-links/default-link-domain.png' half center alt='retrieving the default link subdomain' %}
 1. Choose the `Activity` you want to open up when a link is clicked. This is typically your `SplashActivity` or a `BaseActivity` that all other activities inherit from (and likely the same one you selected in the [SDK Integration Guide]({{base.url}}/getting-started/sdk-integration-guide)).
 1. Inside your `AndroidManifest.xml`, locate where the selected `Activity` is defined.
-1. Within the `Activity` definition, insert the intent filter provided below.
-   - Replace `READ_FROM_DASHBOARD` with the value provided underneath the **SHA256 Cert Fingerprints** field on the Branch dashboard. It will look something like this: `android:pathPrefix="/WSuf"`
+1. Within the `Activity` definition, insert the intent filter provided below (making sure that `xxxx` matches the four-character value on the dashboard)
 
 {% highlight xml %}
 <!-- AppLink example -->
@@ -424,11 +451,9 @@ If any of your links use the legacy `bnc.lt` domain, you must also include the f
     <action android:name="android.intent.action.VIEW" />
     <category android:name="android.intent.category.DEFAULT" />
     <category android:name="android.intent.category.BROWSABLE" />
-    <data android:scheme="https" android:host="[branchsubdomain]" android:pathPrefix="READ_FROM_DASHBOARD" />
+    <data android:scheme="https" android:host="xxxx.app.link" />
 </intent-filter>
 {% endhighlight %}
-
-{% ingredient branchsubdomain %}{% endingredient %}
 
 {% caution title="Support for legacy links" %}
 If any of your links use the legacy `bnc.lt` domain, you must also include the following entry:
@@ -436,6 +461,8 @@ If any of your links use the legacy `bnc.lt` domain, you must also include the f
 {% highlight xml %}
 <data android:scheme="https" android:host="bnc.lt" android:pathPrefix="READ_FROM_DASHBOARD" />
 {% endhighlight %}
+
+`READ_FROM_DASHBOARD` is the four-character value in front of all your links. You can find it underneath the field labeled **SHA256 Cert Fingerprints** on the dashboard. It will look something like this: `/WSuf` (the initial `/` character should be included).
 
 {% endcaution %}
 
@@ -445,6 +472,9 @@ If you use a [custom domain or subdomain for your Branch links]({{base.url}}/get
 {% highlight xml %}
 <data android:scheme="https" android:host="mycustomdomainorsubdomain" android:pathPrefix="READ_FROM_DASHBOARD" />
 {% endhighlight %}
+
+`READ_FROM_DASHBOARD` is the four-character value in front of all your links. You can find it underneath the field labeled **SHA256 Cert Fingerprints** on the dashboard. It will look something like this: `/WSuf` (the initial `/` character should be included).
+
 {% endprotip %}
 
 {% endif %}
@@ -482,7 +512,7 @@ Here are some recommended next steps:
 1. You should see a message telling you the status of your domain under the `Domain name` field. If you don't, please type your domain in again.
 1. Click the `Save` button.
 
-{% image src='/img/pages/getting-started/universal-app-links/custom-domain-success.png' full center alt='successful custom subdomain configuration' %}
+{% image src='/img/pages/getting-started/universal-app-links/enable-custom-subdomain.png' 2-thirds center alt='successful custom subdomain configuration' %}
 
 ### Custom ROOT domain (branch.com)
 
