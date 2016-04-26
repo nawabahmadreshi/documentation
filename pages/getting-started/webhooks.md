@@ -406,6 +406,17 @@ The `session.link_data` keys refer to the link that initiated the session.
 | session.link_data.+url | The full URL of the link, e.g. [branchsubdomain]/m/abcde12345
 | session.link_data.key | Any key value you specified in the link's data dictionary
 
+## Webhook server IP addresses
+
+If you need to whitelist the webhook server IP addresses for security purposes, they are listed below.
+
+52.9.159.121/32
+52.9.176.205/32
+
+Reserved for future use:
+52.9.188.221/32
+52.9.188.236/32
+
 {% elsif page.support %}
 
 ## FAQs

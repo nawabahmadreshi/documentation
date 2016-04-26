@@ -717,7 +717,7 @@ initialize: function() {
 },
 {% endhighlight %}
 
-Then add the method `DeepLinkHandler()` which will act as our callback when the session begins. The deep link data will be included here:
+Then add a global method `DeepLinkHandler()` which will act as our callback when the session begins. The deep link data will be included here:
 
 {% highlight js %}
 function DeepLinkHandler(data) {
