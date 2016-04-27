@@ -232,9 +232,9 @@ Branch.getInstance(getApplicationContext()).loadRewards(new BranchReferralStateC
 	public void onStateChanged(boolean changed, Branch.BranchError error) {
 		// changed boolean will indicate if the balance changed from what is currently in memory
 
-		if (error != null) {
+		if (error == null) {
 		    String bucket = "myBucket";
-		    Branch.getInstance(getApplicationContext()).getCreditsForBucket(bucket)
+		    Branch.getInstance(getApplicationContext()).getCreditsForBucket(bucket);
 		}
 	}
 });
