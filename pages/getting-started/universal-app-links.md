@@ -40,8 +40,6 @@ Branch makes it simple to enable Universal Links and App Links, and even improve
 <!-- do nothing -->
 {% else %}
 
-{% ingredient quickstart-prerequisite %}{% endingredient %}
-
 ## Add the Associated Domains entitlement
 
 ### Enable Associated Domains on Apple Developer Portal
@@ -367,7 +365,7 @@ After completing this guide and installing a new build of your app on your testi
 ## Generate signing certificate fingerprint
 
 {% if page.android %}
-{% ingredient quickstart-prerequisite %}{% endingredient %}
+
 {% else %}
 {% protip %}
 The following steps are only required if you wish you enable Android App Links. 

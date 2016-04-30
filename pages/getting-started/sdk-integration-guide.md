@@ -103,7 +103,7 @@ cordova plugin add https://github.com/BranchMetrics/Cordova-Ionic-PhoneGap-Defer
 
 {% tab npm %}
 {% highlight sh %}
-npm install branch-cordova-sdk --variable BRANCH_KEY=key_live_xxxxxxxxxxxxxxx --variable URI_SCHEME=yourApp
+npm install branch-cordova-sdk
 {% endhighlight %}
 
 {% endtab %}
@@ -148,6 +148,7 @@ You can also [build and reference the assemblies directly]({{base.url}}/getting-
 1. Specify your `branchUri` and `branchKey` in the properties.
    - `branchKey`: get your Branch key from [the Branch dashboard](https://dashboard.branch.io/#/settings){:target="_blank"}.
    - `branchUri`: this must be the same value as you entered in [the Branch link settings](https://dashboard.branch.io/#/settings/link){:target="_blank"}. Do **not** include the `://` characters.
+   - `androidPathPrefix`: This is your Branch android path prefix. This is the four-character value in front of all your links. You can find it underneath the field labeled **SHA256 Cert Fingerprints** on the dashboard. It will look something like this: `/WSuf` (the initial `/` character should be included).
 
 {% image src='/img/pages/getting-started/sdk-integration-guide/unity_branch_key.png' full center alt='Unity plugin installation' %}
 
