@@ -37,7 +37,7 @@ Try out the [Dynamic Link Builder]({{base.url}}/getting-started/dynamic-link-bui
 {% ingredient branchsubdomain %}{% endingredient %}
 
 1. Start with your Branch link domain: **http://[branchsubdomain]**.
-1. Append `/a?` to start the query params string: **http://[branchsubdomain]/a?**
+1. Append `?` to start the query params string: **http://[branchsubdomain]?**
    - If you're using the legacy `bnc.lt` domain as the base for your links, instead append `/a/your_Branch_key?`: **http://bnc.lt/a/your_branch_key?**
 1. [optional] Append any additional key/value pairs, and analytics or link control parameters.
 
@@ -46,7 +46,7 @@ Try out the [Dynamic Link Builder]({{base.url}}/getting-started/dynamic-link-bui
 Here's an example of a finalized dynamic link (line breaks added for legibility): 
 
 {% highlight sh %}
-https://[branchsubdomain]/a?
+https://[branchsubdomain]?
 	%24deeplink_path=article%2Fjan%2F123&
 	%24fallback_url=https%3A%2F%2Fgoogle.com&
 	channel=facebook&
