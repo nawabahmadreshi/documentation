@@ -96,7 +96,7 @@ If you want to use OG tags you host elsewhere, leave these parameters empty and 
 If you're creating a link by appending query parameters, just append the parameters to the URL. Please make sure to URL encode everything, lest the link will break.
 
 {% highlight javascript %}
-"https://[branchsubdomain]/a?%24og_title=MyApp%20is%20disrupting%20apps&$og_image_url=http%3A%2F%2Fmyapp.com%2Fimage.png"
+"https://[branchsubdomain]?%24og_title=MyApp%20is%20disrupting%20apps&$og_image_url=http%3A%2F%2Fmyapp.com%2Fimage.png"
 {% endhighlight %}
 {% endexample %}
 
@@ -296,7 +296,7 @@ If you're creating a link by appending query parameters, you simply need to appe
 Here's how to enable iOS and desktop Deepviews:
 
 {% highlight javascript %}
-"https://[branchsubdomain]/a?%24ios_deepview=default_template&%24desktop_deepview=default_template"
+"https://[branchsubdomain]?%24ios_deepview=default_template&%24desktop_deepview=default_template"
 {% endhighlight %}
 {% endexample %}
 

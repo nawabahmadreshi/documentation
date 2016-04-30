@@ -571,7 +571,7 @@ All of the examples below create links that will cause Branch to display `myapp:
 If you're creating a link by appending query parameters, just append the control parameters to the URL. Please make sure to URL encode everything, lest the link will break.
 
 {% highlight javascript %}
-"https://[branchsubdomain]/a?%24deeplink_path=content%2F1234"
+"https://[branchsubdomain]?%24deeplink_path=content%2F1234"
 {% endhighlight %}
 
 {% endexample %}
