@@ -753,7 +753,7 @@ public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsApplicat
 
         App app = new App ();
 
-        BranchAndroid.Init (this, "key_live_xxxxxxxxxxxxxxx", app);
+        BranchAndroid.Init (this, "key_live_xxxxxxxxxxxxxxx", this);
 
         LoadApplication (app);
     }
@@ -761,9 +761,10 @@ public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsApplicat
     // Ensure we get the updated link identifier when the app is opened from the
     // background with a new link.
     protected override void OnNewIntent(Intent intent) {
-        BranchAndroid.getInstance().SetNewUrl(intent.Data);
+        this.Intent = intent;
     }
 }
+
 {% endhighlight %}
 
 ### iOS initialization
@@ -774,6 +775,8 @@ Add these methods to your `AppDelegate.cs` file. Be sure to replace `key_live_xx
 [Register ("AppDelegate")]
 public class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDelegate
 {
+    private App app = null;
+
     public override bool FinishedLaunching (UIApplication uiApplication, NSDictionary launchOptions)
     {
         global::Xamarin.Forms.Forms.Init ();
@@ -806,7 +809,7 @@ public class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDe
         return BranchIOS.getInstance ().ContinueUserActivity (userActivity);
     }
     
-    // For Push Nitifications
+    // For Push Notifications
     public override void ReceivedRemoteNotification (UIApplication application,
         NSDictionary userInfo)
     {
@@ -1233,14 +1236,13 @@ public class MainActivity: Activity, IBranchSessionInterface
     {
         base.OnCreate (savedInstanceState);
 
-        BranchAndroid.Debug = true;
-        BranchAndroid.Init (this, "Your Branch key here", this);
+        BranchAndroid.Init (this, "key_live_xxxxxxxxxxxxxxx", this);
     }
 
     // Ensure we get the updated link identifier when the app is opened from the
     // background with a new link.
     protected override void OnNewIntent(Intent intent) {
-        BranchAndroid.getInstance().SetNewUrl(intent.Data);
+        this.Intent = intent;
     }
 
     #region IBranchSessionInterface implementation
@@ -1269,9 +1271,8 @@ public class AppDelegate : UIApplicationDelegate, IBranchSessionInterface
 {
     public override bool FinishedLaunching (UIApplication uiApplication, NSDictionary launchOptions)
     {
-        // Enable debug mode. 
-        BranchIOS.Debug = true;
-        BranchIOS.Init ("Your Branch key here", launchOptions, this);
+
+        BranchIOS.Init ("key_live_xxxxxxxxxxxxxxx", launchOptions, this);
 
         // Do your remaining launch stuff here...
     }

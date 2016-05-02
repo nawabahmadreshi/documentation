@@ -155,7 +155,7 @@ Branch.loadRewards().then(function (rewards) {
 {% if page.xamarin %}
 {% highlight c# %}
 Branch branch = Branch.GetInstance ();
-await branch.LoadRewards(this);
+branch.LoadRewards(this);
 {% endhighlight %}
 
 After you've registered the class as a delegate of `IBranchRewardsInterface`
@@ -351,7 +351,7 @@ Branch.redeemRewards(5, "default").then(function (res) {
 {% if page.xamarin %}
 {% highlight c# %}
 Branch branch = Branch.GetInstance ();
-await branch.RedeemRewards(this, 5, "default");
+branch.RedeemRewards(this, 5, "default");
 {% endhighlight %}
 
 After you've registered the class as a delegate of `IBranchRewardsInterface`
@@ -438,7 +438,7 @@ Branch.redeemRewards(5, "myBucket").then(function (res) {
 {% if page.xamarin %}
 {% highlight c# %}
 Branch branch = Branch.GetInstance ();
-await branch.RedeemRewards(this, 5, "myBucket");
+branch.RedeemRewards(this, 5, "myBucket");
 {% endhighlight %}
 {% endif %}
 
