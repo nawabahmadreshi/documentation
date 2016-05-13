@@ -53,7 +53,7 @@ Using the **Test** environment in your app is easy:
 
 1. Go to [Settings](https://dashboard.branch.io/#/settings)
 1. Make sure the toggle switch is in "Test" mode
-1. Grab the Branch Key (it will start with `key_test_`). 
+1. Grab the Branch Key (it will start with `key_test_`).
 1. Rerun the [plugin installation command]({{base.url}}/getting-started/sdk-integration-guide/guide/cordova/#command-line-module-install):
 	- For the `BRANCH_KEY` value, use the test environment key you just retrieved from the dashboard.
 	- Use the same URI scheme as when you originally installed the plugin.
@@ -91,7 +91,7 @@ Your **live** and **test** environments have different four-digit link prefixes.
 
 1. Go to [Settings](https://dashboard.branch.io/#/settings)
 1. Make sure the toggle switch is in "Test" mode
-1. Grab the Branch Key (it will start with `key_test_`). 
+1. Grab the Branch Key (it will start with `key_test_`).
 1. Simply replace the **Live** key in your app with this one (but be sure to switch it back before release!)
 
 {% if page.ios %}
@@ -251,15 +251,11 @@ Debug mode is currently not supported on Air ANE :(
 
 Branch intentionally adds a lot of restrictions to prevent `install` events from being triggered on app updates and reinstalls. Of course this can make it a challenge to simulate fresh installs while testing, so we have created a debug mode to help you manually override these restrictions.
 
-{% if page.android %}
+{% if page.android or page.ios %}
 <!-- do nothing -->
-{% elsif page.ios %}
-{% protip title="Debug mode and the Test Environment" %}
-If you have [configured your app with both **test** and **live** keys](#switching-environments-in-your-app), using `setDebug` will *also* cause all links created in your app to use your **test** environment.
-{% endprotip %}
 {% else %}
 {% protip title="Debug mode and the Test Environment" %}
-If you have [configured your app with both **test** and **live** keys](#switching-environments-in-your-app), using `setDebug` will *also* cause all links created in the iOS version of your app to use your **test** environment. 
+If you have [configured your app with both **test** and **live** keys](#switching-environments-in-your-app), using `setDebug` will *also* cause all links created in the iOS version of your app to use your **test** environment.
 
 *The Android version of your app will continue to use the* ***live*** *environment*.
 {% endprotip %}
@@ -434,7 +430,7 @@ Make sure to disable debug mode before releasing your app. You can do this simpl
 After debug mode is enabled, do the following steps to verify your new installs are being tracked as expected:
 
 1. Uninstall your app from your device
-1. On your device, open any Branch link 
+1. On your device, open any Branch link
 1. Re-install your app
 1. Confirm an install event occurs by looking through the SDK's session initialization callbacks
 
