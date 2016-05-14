@@ -116,6 +116,15 @@ phonegap plugin add https://github.com/BranchMetrics/Cordova-Ionic-PhoneGap-Defe
 {% endtab %}
 
 {% endtabs %}
+
+{% protip title="Android build errors" %}
+In rare situations, you may get an error on Android that gradle cannot find the `io.branch.sdk.android:library:1.+` dependency. If this occurs, go to your `build.gradle` file, find **dependencies**, and add the following inside:
+
+{% highlight js %}
+compile "io.branch.sdk.android:library:1.+"
+{% endhighlight %}
+
+{% endprotip %}
 {% endif %}
 <!--- /Cordova -->
 
@@ -124,9 +133,9 @@ phonegap plugin add https://github.com/BranchMetrics/Cordova-Ionic-PhoneGap-Defe
 
 ### Install as a NuGet Package
 
-The Branch Xamarin SDK is now available as a [NuGet package](https://www.nuget.org/packages/Branch-Xamarin-Linking-SDK){:target="_blank"}.  You will need to add the package to your Android, iOS and Forms (if applicable) projects.  
+The Branch Xamarin SDK is now available as a [NuGet package](https://www.nuget.org/packages/Branch-Xamarin-Linking-SDK){:target="_blank"}.  You will need to add the package to your Android, iOS and Forms (if applicable) projects.
 
-1. Right click on each project and select `Add` -> `Add NuGet Package` or double click on the Packages folder to bring up the NuGet package dialog in Xamarin Studio.  
+1. Right click on each project and select `Add` -> `Add NuGet Package` or double click on the Packages folder to bring up the NuGet package dialog in Xamarin Studio.
 2. Find the _Branch Xamarin Linking SDK_ and select it.  This will add the required assemblies to your projects.  You need to do this for each project that will use Branch calls.  This includes the Android and iOS projects even if this is a Forms based app _since an initialization call needs to be added to each of the platform specific projects._
 
 You can also [build and reference the assemblies directly]({{base.url}}/getting-started/sdk-integration-guide/advanced/xamarin#install-the-sdk-manually){:target="_blank"}.
@@ -247,7 +256,7 @@ dependencies {
 {% if page.xamarin %}
 ## iOS: Configure Xcode Project
 
-In your project's `YourProject-Info.plist` file, you can register your app to respond to direct deep links (`yourapp://` in a mobile browser) by adding a `CFBundleURLTypes` block. Also, make sure to change `yourapp` to a unique string that represents your app name. 
+In your project's `YourProject-Info.plist` file, you can register your app to respond to direct deep links (`yourapp://` in a mobile browser) by adding a `CFBundleURLTypes` block. Also, make sure to change `yourapp` to a unique string that represents your app name.
 
 {% image src='/img/pages/getting-started/sdk-integration-guide/xamarin_branch_ios_uri.png' full center alt='iOS URI' %}
 
@@ -257,7 +266,7 @@ In your project's `YourProject-Info.plist` file, you can register your app to re
 ## {% if page.react %}iOS: {% endif %}Configure Xcode Project
 
 ### Add your Branch key
- 
+
 1. Retrieve your Branch Key on the [Settings](https://dashboard.branch.io/#/settings){:target="_blank"} page of the Branch dashboard.
 1. In Xcode, open your project's Info.plist file in the Navigator (on the left side).
 1. Mouse hover "Information Property List" (the root item under the Key column).
@@ -386,7 +395,7 @@ Make sure that this activity is launched as a `singleTask`. This is important to
         LaunchMode = LaunchMode.SingleTask)]
 
 [IntentFilter (new[]{"android.intent.action.VIEW"},
-        Categories=new[]{"android.intent.category.DEFAULT", 
+        Categories=new[]{"android.intent.category.DEFAULT",
         "android.intent.category.BROWSABLE"},
         DataScheme="yourApp",
         DataHost="open")]
@@ -638,7 +647,7 @@ Finally, add these two new methods to your **AppDelegate.m** file. The first res
 // Respond to Universal Links
 - (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray *restorableObjects))restorationHandler {
     BOOL handledByBranch = [[Branch getInstance] continueUserActivity:userActivity];
-    
+
     return handledByBranch;
 }
 {% endhighlight %}
@@ -799,7 +808,7 @@ public class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDe
 
         App app = new App ();
 
-        // Enable debug mode. 
+        // Enable debug mode.
         BranchIOS.Debug = true;
         BranchIOS.Init ("key_live_xxxxxxxxxxxxxxx", launchOptions, app);
 
@@ -824,7 +833,7 @@ public class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDe
     {
         return BranchIOS.getInstance ().ContinueUserActivity (userActivity);
     }
-    
+
     // For Push Notifications
     public override void ReceivedRemoteNotification (UIApplication application,
         NSDictionary userInfo)
@@ -905,7 +914,7 @@ Be sure to have the INIT_SUCCESSED event called, otherwise read the bEvt.informa
 
 {% if page.titanium %}
 Initialize the SDK by inserting the following snippet into your `index.js` file:
- 
+
 {% highlight js %}
 $.initialize = function(params) {
     $.window.open();
@@ -1007,7 +1016,7 @@ public class MainActivity extends ReactActivity {
         this.setIntent(intent);
     }
 
-    // ...  
+    // ...
 }
 {% endhighlight %}
 
@@ -1090,7 +1099,7 @@ After integrating the Branch SDK, you need to let Apple know that you use the ID
 
 1. Answer `Yes` to the question **Does this app use the Advertising Identifier (IDFA)?**
 1. Check the two boxes for:
-   - **Attribute this app installation to a previously served advertisement** 
+   - **Attribute this app installation to a previously served advertisement**
    - **Attribute an action taken within this app to a previously served advertisement**
 
 {% image src='/img/pages/getting-started/submitting-apps/idfa.png' center full alt='IDFA configuration on iTunes Connect' %}
@@ -1267,7 +1276,7 @@ public class MainActivity: Activity, IBranchSessionInterface
     {
         // Do something with the referring link data...
     }
-    
+
     public void SessionRequestError (BranchError error)
     {
         // Handle the error case here
@@ -1292,7 +1301,7 @@ public class AppDelegate : UIApplicationDelegate, IBranchSessionInterface
 
         // Do your remaining launch stuff here...
     }
-    
+
     // For direct deep linking
     public override bool OpenUrl(UIApplication application,
         NSUrl url,
@@ -1309,14 +1318,14 @@ public class AppDelegate : UIApplicationDelegate, IBranchSessionInterface
     {
         return BranchIOS.getInstance ().ContinueUserActivity (userActivity);
     }
-    
+
     // For Push Notifications
     public override void ReceivedRemoteNotification (UIApplication application,
         NSDictionary userInfo)
     {
         BranchIOS.getInstance ().HandlePushNotification (userInfo);
     }
-    
+
     #region IBranchSessionInterface implementation
 
     public void InitSessionComplete (Dictionary<string, object> data)
