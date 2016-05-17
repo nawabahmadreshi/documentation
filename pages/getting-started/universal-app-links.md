@@ -23,7 +23,7 @@ sections:
 
 {% if page.overview %}
 
-iOS Universal Links and Android App Links both route directly to your app when opened, bypassing the web browser and URI scheme combination typically used for the redirection process. App Links were introduced with Android M, and enabling them results in a more seamless experience for your users. Universal Links were introduced with iOS 9, and became the only fully-functional deep linking option on iOS after [Apple stopped supporting URI schemes for deep linking in iOS 9.2](https://blog.branch.io/ios-9.2-redirection-update-uri-scheme-and-universal-links). 
+iOS Universal Links and Android App Links both route directly to your app when opened, bypassing the web browser and URI scheme combination typically used for the redirection process. App Links were introduced with Android M, and enabling them results in a more seamless experience for your users. Universal Links were introduced with iOS 9, and became the only fully-functional deep linking option on iOS after [Apple stopped supporting URI schemes for deep linking in iOS 9.2](https://blog.branch.io/ios-9.2-redirection-update-uri-scheme-and-universal-links).
 
 {% caution title="Universal Links are critical on iOS!" %}
 You must enable Universal Links before Branch can function correctly on iOS 9.2+{% endcaution %}
@@ -265,7 +265,7 @@ Open your **AppDelegate.m** file and add the following method (if you completed 
 {% highlight objc %}
 - (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray *restorableObjects))restorationHandler {
     BOOL handledByBranch = [[Branch getInstance] continueUserActivity:userActivity];
-    
+
     return handledByBranch;
 }
 {% endhighlight %}
@@ -284,11 +284,32 @@ func application(application: UIApplication, continueUserActivity userActivity: 
 {% endtab %}
 {% endtabs %}
 
+{% caution title="Issues with Facebook SDK" %}
+
+In certain situations, the Facebook SDK can cause `didFinishLaunchingWithOptions` to return `NO`. When this happens, handling for all Universal Links is blocked. We have incorporated a workaround into our SDK, which you can enable by inserting the following line immediately before your `initSessionWithLaunchOptions` call:
+
+{% tabs %}
+{% tab objective-c %}
+
+{% highlight objc %}
+[branch accountForFacebookSDKPreventingAppLaunch];
+{% endhighlight %}
+{% endtab %}
+{% tab swift %}
+
+{% highlight swift %}
+branch.accountForFacebookSDKPreventingAppLaunch()
+{% endhighlight %}
+{% endtab %}
+{% endtabs %}
+
+{% endcaution %}
+
 {% endif %}
 
 {% if page.xamarin %}
 
-Open your **AppDelegate.cs** file and add the following method (if you completed the [SDK Integration Guide]({{base.url}}/getting-started/sdk-integration-guide), this is likely already present). Note that there are different versions depending on whether you are using Xamarin Forms or not. 
+Open your **AppDelegate.cs** file and add the following method (if you completed the [SDK Integration Guide]({{base.url}}/getting-started/sdk-integration-guide), this is likely already present). Note that there are different versions depending on whether you are using Xamarin Forms or not.
 
 {% tabs %}
 {% tab forms %}
@@ -368,7 +389,7 @@ After completing this guide and installing a new build of your app on your testi
 
 {% else %}
 {% protip %}
-The following steps are only required if you wish you enable Android App Links. 
+The following steps are only required if you wish you enable Android App Links.
 {% endprotip %}
 {% endif %}
 
@@ -384,7 +405,7 @@ Start by generating a SHA256 fingerprint of your app's signing certificate. This
 1. Toggle the **Enable App Links** checkbox in the Android section.
 1. Paste the copied fingerprint value into the **SHA256 Cert Fingerprints** field that appears. {% image src='/img/pages/getting-started/universal-app-links/enable_app_links.png' full center alt='enable app links' %}
 1. Scroll down and click `Save`.
- 
+
 {% protip title="Using multiple fingerprints" %}
 You can insert both your debug and production fingerprints for testing. Simply separate them with a comma.
 {% endprotip %}
@@ -617,7 +638,7 @@ Branch *branch = [Branch getInstance];
    return YES;
 }
 
-//Entry point for iOS 8.X users and lower 
+//Entry point for iOS 8.X users and lower
 
 -(BOOL) application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
    [[Branch getInstance] handleDeepLink:url];
@@ -652,7 +673,7 @@ Branch *branch = [Branch getInstance];
 No support information available for this platform.
 {% else %}
 
-## What happens to existing links? 
+## What happens to existing links?
 
 ### If your links use the legacy bnc.lt domain
 Universal Links are of the form `https://bnc.lt/«four-letter-identifier»/«link-hash»`. Existing links created prior to enabling Universal Links are of the form `https://bnc.lt/m/«link-hash»` or `https://bnc.lt/l/«link-hash»` and will continue to function as non-Universal Links.
@@ -743,11 +764,11 @@ These logs can be found for physical devices connected to Xcode by navigating to
 We've recently discovered a bug with Facebook's SDK returning `NO` for `application:didFinishLaunchingWithOptions` preventing Universal Links from working on cold start. Call `accountForFacebookSDKPreventingAppLaunch` on your Branch instance before initializing the session.
 
 ##### `bnc.lt` links with your Test Key?
-Due to a change in iOS 9.3.1, Universal Links will not work on *Test* apps using the `bnc.lt` domain. We're working on resolving this. Please test Universal Links with your Live app, where they will work as expected. [Read more](http://status.branch.io/incidents/b0c19p6hpq58){:target="_blank"}. 
+Due to a change in iOS 9.3.1, Universal Links will not work on *Test* apps using the `bnc.lt` domain. We're working on resolving this. Please test Universal Links with your Live app, where they will work as expected. [Read more](http://status.branch.io/incidents/b0c19p6hpq58){:target="_blank"}.
 
 ## What changed in iOS 9 and 9.2?
 
-Apple introduced Universal Links in iOS 9.0, as an alternative to the conventional method of JavaScript/URL-scheme link routing. Apple made it impossible to use JavaScript/URL-scheme routing beginning with iOS 9.2, leaving Universal Links as the only supported method. 
+Apple introduced Universal Links in iOS 9.0, as an alternative to the conventional method of JavaScript/URL-scheme link routing. Apple made it impossible to use JavaScript/URL-scheme routing beginning with iOS 9.2, leaving Universal Links as the only supported method.
 
 We have published a number of resources that can help you understand the changes and how it impacts your app:
 
