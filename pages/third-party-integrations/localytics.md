@@ -91,4 +91,10 @@ It takes 10 minutes to attribute after you enable the **Attribution ID**. This m
 
 This is likely because 10 minutes haven't passed yet. Since your Localytics account is configured to accept 3rd party attributions, they have a 10 minute time window to accept, and will only display data after the 10 minute window has passed.
 
+##### What is "Branch Campaign" in my Localytics dashboard?
+If you don't set a campaign tag in your Branch links, then any installs from those links will appear generically tagged with "Branch Campaign" in the Localytics dashboard. 
+
+##### I only see campaign tags in my Localytics dashboard (not channel, tags, feature or other data)
+At this time we only pass the campaign tag to Localytics. We're improving this soon to give you richer data.
+
 {% endif %}
