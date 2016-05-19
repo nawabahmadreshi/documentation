@@ -256,15 +256,17 @@ var branchUniversalObject = branch.createBranchUniversalObject({
 <!--- /React -->
 {% if page.react %}
 {% highlight js %}
-var branchUniversalObject = {
-   metadata:{  
-      "$og_video" : "http://mysite/video.mpg"
-   },
-   "canonicalIdentifier" : "content/12345",
-   "contentTitle" : "My Content Title",
-   "contentDescription" : "My Content Description",
-   "contentImageUrl" : "https://example.com/mycontent-12345.png"
-};
+let branchUniversalObject = branch.createBranchUniversalObject(
+  'content/12345', // canonical identifier
+  {
+    contentTitle: 'My Content Title',
+    contentImageUrl: 'https://example.com/mycontent-12345.png',
+    contentDescription: 'My Content Description',
+    metadata: {
+      $og_video: 'http://mysite/video.mpg'
+    }
+  }
+)
 {% endhighlight %}
 {% endif %}
 <!--- /React -->
@@ -432,9 +434,19 @@ branchUniversalObject.addEventListener("bio:generateShortUrl", $.onGenerateUrlFi
 
 <!--- React -->
 {% if page.react %}
-{% protip title="Unsupported in React Native" %}
-Link control parameters are currently unsupported in the React Native SDK. We hope to include them soon, and would also gladly accept pull requests to our [GitHub repo](https://github.com/BranchMetrics/React-Native-Deep-Linking-SDK)!
-{% endprotip %}
+{% highlight js %}
+let linkProperties = {
+  feature: 'share',
+  channel: 'facebook'
+}
+
+let controlParams = {
+  "$ios_deepview": "default_template",
+  "$android_deepview": "default_template"
+}
+
+let {url} = await branchUniversalObject.generateShortUrl(linkProperties, controlParams)
+{% endhighlight %}
 {% endif %}
 <!--- /React -->
 

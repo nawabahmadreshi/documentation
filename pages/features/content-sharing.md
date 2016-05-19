@@ -25,8 +25,6 @@ sections:
 
 If your users are creating content in your app, they will probably want to share that content with their friends. You can encourage this by making it easy to generate sharing links that open your app *and* route back exactly to the piece of content that was originally shared. This will even work when the user who opens the link doesn't have your app installed yet.
 
-**By using Branch deep links, you can take users directly to where they want to go in your app!**
-
 {% getstarted title="Get started with content sharing" %}{% endgetstarted %}
 
 {% elsif page.guide %}
@@ -112,34 +110,38 @@ linkProperties.channel = "facebook"
 {% endtab %}
 {% endtabs %}
 
-Lastly, create the link to be shared by referencing the `BranchUniversalObject`:
+Use Branch's preconfigured `UIActivityItemProvider` to share a piece of content without having to create a link. Calling this method will automatically generate a Branch link with the appropriate analytics channel when the user selects a sharing destination.
 
 {% tabs %}
 {% tab objective-c %}
 {% highlight objc %}
-[branchUniversalObject getShortUrlWithLinkProperties:linkProperties andCallback:^(NSString *url, NSError *error) {
-    if (!error) {
-        NSLog(@"got my Branch invite link to share: %@", url);
-    }
+[branchUniversalObject showShareSheetWithLinkProperties:linkProperties
+                                           andShareText:@"Super amazing thing I want to share!"
+                                     fromViewController:self
+                                            andCallback:^{
+    NSLog(@"finished presenting");
 }];
 {% endhighlight %}
 {% endtab %}
+
 {% tab swift %}
 {% highlight swift %}
-branchUniversalObject.getShortUrlWithLinkProperties(linkProperties,  andCallback: { (url: String?, error: NSError?) -> Void in
-    if error == nil {
-        NSLog("got my Branch invite link to share: %@", url)
-    }
+branchUniversalObject.showShareSheetWithLinkProperties(linkProperties,
+                                        andShareText: "Super amazing thing I want to share!",
+                                        fromViewController: self,
+                                        andCallback: { () -> Void in
+    NSLog("done showing share sheet!")
 })
 {% endhighlight %}
 {% endtab %}
 {% endtabs %}
 
-You would next use the returned link and help the user post it to (in this example) Facebook.
+Here's an example of what you'll see:
+
+{% image src='/img/pages/getting-started/branch-universal-object/ios_share_sheet.png' actual center alt='ios share sheet' %}
 
 {% endif %}
 <!--- /iOS -->
-
 
 <!--- Android -->
 {% if page.android %}
@@ -161,7 +163,7 @@ Create a `BranchUniversalObject` containing details about the content that is be
 The `canonicalIdentifier` parameter greatly improves the content analytics data Branch captures. It should be unique to that piece of content and helps Branch dedupe across many instances of the same thing. Suitable options: a website with pathing, or a database with identifiers for entities.
 {% endprotip %}
 
-Then define the properties of the link. In the example, our properties reflect that this is shared content and the user selected Facebook as the destination:
+Use Branch's custom share sheet to share a piece of content without having to create a link. Calling this method will automatically generate a Branch link with the appropriate analytics channel when the user selects a sharing destination. First, define the properties of the link. In the example, our properties reflect that this is shared content and the user selected Facebook as the destination:
 
 {% highlight java %}
 LinkProperties linkProperties = new LinkProperties()
@@ -169,20 +171,33 @@ LinkProperties linkProperties = new LinkProperties()
                .setFeature("sharing")
 {% endhighlight %}
 
+You can customize the styling with the ShareSheetStyle class:
+
+{% highlight java %}
+ShareSheetStyle shareSheetStyle = new ShareSheetStyle(MainActivity.this, "Check this out!", "This stuff is awesome: ")
+                        .setCopyUrlStyle(getResources().getDrawable(android.R.drawable.ic_menu_send), "Copy", "Added to clipboard")
+                        .setMoreOptionStyle(getResources().getDrawable(android.R.drawable.ic_menu_search), "Show more")
+                        .addPreferredSharingOption(SharingHelper.SHARE_WITH.FACEBOOK)
+                        .addPreferredSharingOption(SharingHelper.SHARE_WITH.EMAIL);
+{% endhighlight %}
+
 Lastly, create the link to be shared by referencing the `BranchUniversalObject`:
 
 {% highlight java %}
-branchUniversalObject.generateShortUrl(this, linkProperties, new BranchLinkCreateListener() {
+branchUniversalObject.showShareSheet(this,
+                                      linkProperties,
+                                      shareSheetStyle,
+                                       new Branch.BranchLinkShareListener() {
     @Override
-    public void onLinkCreate(String url, BranchError error) {
-        if (error == null) {
-            Log.i("MyApp", "got my Branch link to share: " + url);
-        }
+    public void onShareLinkDialogDismissed() {
     }
 });
 {% endhighlight %}
 
-You would next use the returned link and help the user post it to (in this example) Facebook.
+Here's an example of what you'll see:
+
+{% image src='/img/pages/getting-started/branch-universal-object/android_share_sheet.png' actual center alt='android share sheets' %}
+
 
 {% endif %}
 <!--- /Android -->
@@ -214,19 +229,28 @@ Branch.createBranchUniversalObject({
 The `canonicalIdentifier` parameter greatly improves the content analytics data Branch captures. It should be unique to that piece of content and helps Branch dedupe across many instances of the same thing. Suitable options: a website with pathing, or a database with identifiers for entities.
 {% endprotip %}
 
-Then, create the link to be shared by referencing the `BranchUniversalObject` and defining the properties of the link. In the example, our properties reflect that this is shared content and the user selected Facebook as the destination. We also added a default redirect to a website on the desktop.
+Use Branch's custom share sheet to share a piece of content without having to create a link. Calling this method will automatically generate a Branch link with the appropriate analytics channel when the user selects a sharing destination.
 
 {% highlight js %}
-branchUniversalObj.generateShortUrl({
+branchUniversalObj.showShareSheet({
   // put your link properties here
-  "feature" : "sharing",
+  "feature" : "share",
   "channel" : "facebook"
 }, {
   // put your control parameters here
-  "$desktop_url" : "http://desktop-url.com/monster/12345",
-}).then(function (res) {
-    // Success Callback
-    console.log(res.generatedUrl);
+  "$desktop_url" : "http://desktop-url.com",
+});
+{% endhighlight %}
+
+Here's an example of what you'll see by platform:
+
+{% image src='/img/pages/getting-started/branch-universal-object/combined_share_sheet.png' actual center alt='ios and android share sheets' %}
+
+The dismissed event fires when the share sheet is dismissed.
+
+{% highlight js %}
+branchUniversalObj.onShareSheetDismissed(function () {
+  console.log('Share sheet dimissed');
 });
 {% endhighlight %}
 
@@ -253,7 +277,7 @@ universalObject.metadata.Add("monsterName", "Mr. Squiggles");
 The `canonicalIdentifier` parameter greatly improves the content analytics data Branch captures. It should be unique to that piece of content and helps Branch dedupe across many instances of the same thing. Suitable options: a website with pathing, or a database with identifiers for entities.
 {% endprotip %}
 
-Then define the properties of the link. In the example, our properties reflect that this is shared content and the user selected Facebook as the destination:
+Use Branch's custom share sheet to share a piece of content without having to create a link. Calling this method will automatically generate a Branch link with the appropriate analytics channel when the user selects a sharing destination. First, define the properties of the link. In the example, our properties reflect that this is shared content and the user selected Facebook as the destination:
 
 {% highlight c# %}
 
@@ -266,21 +290,24 @@ linkProperties.channel = "facebook";
 Lastly, create the link to be shared by referencing the `BranchUniversalObject`:
 
 {% highlight c# %}
-
-Branch.GetInstance().GetShortURL (callback,
-                              universalObject,
-                              linkProperties);
-
+Branch.GetInstance().ShareLink (IBranchLinkShareInterface callback,
+           universalObject,
+           linkProperties,
+           "Check this out!")
 {% endhighlight %}
 
-After you've registered the class as a delegate of `IBranchUrlInterface`, you would next use the returned link and help the user post it to (in this example) Facebook.
+Here's an example of what you'll see by platform:
+
+{% image src='/img/pages/getting-started/branch-universal-object/combined_share_sheet.png' actual center alt='ios and android share sheets' %}
+
+If you want to be notified when the user returns from the share sheet, implement the delegate of `IBranchLinkShareInterface`
 
 {% highlight c# %}
-#region IBranchUrlInterface implementation
+#region IBranchLinkShareInterface implementation
 
-public void ReceivedUrl (Uri uri)
+public void LinkShareResponse (string sharedLink, string sharedChannel)
 {
-    // Do something with the new link...
+    // handle completion
 }
 #endregion
 {% endhighlight %}
@@ -307,7 +334,7 @@ universalObject.metadata.Add("monsterName", "Mr. Squiggles");
 The `canonicalIdentifier` parameter greatly improves the content analytics data Branch captures. It should be unique to that piece of content and helps Branch dedupe across many instances of the same thing. Suitable options: a website with pathing, or a database with identifiers for entities.
 {% endprotip %}
 
-Then define the properties of the link. In the example, our properties reflect that this is shared content and the user selected Facebook as the destination:
+Use Branch's custom share sheet to share a piece of content without having to create a link. Calling this method will automatically generate a Branch link with the appropriate analytics channel when the user selects a sharing destination. In order to initiate a share, define the properties of the link. In the example, our properties reflect that this is shared content and the user selected Facebook as the destination:
 
 {% highlight c# %}
 BranchLinkProperties linkProperties = new BranchLinkProperties();
@@ -315,19 +342,21 @@ linkProperties.feature = "share";
 linkProperties.channel = "facebook";
 {% endhighlight %}
 
-Lastly, create the link to be shared by referencing the `BranchUniversalObject`:
+Lastly, share the link by referencing the `BranchUniversalObject` and `LinkProperties`:
 
 {% highlight c# %}
-Branch.getShortURL(universalObject, linkProperties, (url, error) => {
+Branch.shareLink(universalObject, linkProperties, "hello there with short url", (url, error) => {
     if (error != null) {
-        Debug.LogError("Branch.getShortURL failed: " + error);
+        Debug.LogError("Branch.shareLink failed: " + error);
     } else {
-        Debug.Log("Branch.getShortURL shared params: " + url);
+        Debug.Log("Branch.shareLink shared params: " + url);
     }
 });
 {% endhighlight %}
 
-You would next use the returned link and help the user post it to (in this example) Facebook.
+Here's an example of what you'll see by platform:
+
+{% image src='/img/pages/getting-started/branch-universal-object/combined_share_sheet.png' actual center alt='ios and android share sheets' %}
 
 {% endif %}
 
@@ -362,8 +391,6 @@ var dataToInclude:Object = {
 branch.getShortUrl(tags, "facebook", BranchConst.FEATURE_TAG_SHARE, JSON.stringify(dataToInclude));
 {% endhighlight %}
 
-You would next use the returned link and help the user post it to (in this example) Facebook.
-
 {% endif %}
 
 <!--- Titanium -->
@@ -390,21 +417,34 @@ var branchUniversalObject = branch.createBranchUniversalObject({
 The `canonicalIdentifier` parameter greatly improves the content analytics data Branch captures. It should be unique to that piece of content and helps Branch dedupe across many instances of the same thing. Suitable options: a website with pathing, or a database with identifiers for entities.
 {% endprotip %}
 
-Then define the properties of the link. In the example, our properties reflect that this is shared content and the user selected Facebook as the destination:
+Use Branch's custom share sheet to share a piece of content without having to create a link. Calling this method will automatically generate a Branch link with the appropriate analytics channel when the user selects a sharing destination. In order to initiate a share, use the following `showShareSheet` method on your `branchUniversalObject`
 
 {% highlight js %}
-branchUniversalObject.generateShortUrl({
+branchUniversalObject.showShareSheet({
   "feature" : "share",
   "channel" : "facebook"
 }, {
+  "$desktop_url" : "http://desktop-url.com/monster/12345",
 });
 {% endhighlight %}
 
-To implement the callback, you must add a listener to the event `bio:generateShortUrl`. The event returns a string object containing the generated link. You would next use the returned link and help the user post it to (in this example) Facebook.
+#### Share sheet callbacks
+
+To implement the callback, you must add listeners to the following events:
+
+##### shareLinkDialogDismissed
+
+The event fires when the share sheet is dismissed.
 
 {% highlight js %}
-branchUniversalObject.addEventListener("bio:generateShortUrl", $.onGenerateUrlFinished);
+branchUniversalObject.shareLinkDialogDismissed(function () {
+  console.log('Share sheet dimissed');
+});
 {% endhighlight %}
+
+Here's an example of what you'll see by platform:
+
+{% image src='/img/pages/getting-started/branch-universal-object/combined_share_sheet.png' actual center alt='ios and android share sheets' %}
 
 {% endif %}
 
@@ -415,30 +455,52 @@ branchUniversalObject.addEventListener("bio:generateShortUrl", $.onGenerateUrlFi
 Create a `BranchUniversalObject` containing details about the user who is inviting friends:
 
 {% highlight js %}
-var branchUniversalObject = {
-   metadata:{  
-      "userId" : "12345",
-      "userName" : "Josh",
-      "monsterName" : "Mr. Squiggles"
-   },
-   "canonicalIdentifier" : "monster/12345",
-   "contentTitle" : "Meet Mr. Squiggles",
-   "contentDescription" : "Your friend Josh has invited you to meet his awesome monster, Mr. Squiggles!",
-   "contentImageUrl" : "https://example.com/monster-pic-12345.png"
-};
+let branchUniversalObject = branch.createBranchUniversalObject(
+  'monster/12345', // canonical identifier
+  {
+    contentTitle: 'Meet Mr. Squiggles',
+    contentImageUrl: 'https://example.com/monster-pic-12345.png',
+    contentDescription: 'Your friend Josh has invited you to meet his awesome monster, Mr. Squiggles!',
+    metadata: {
+      userId: '12345',
+      userName: 'Josh',
+      monsterName : "Mr. Squiggles"
+    }
+  }
+)
 {% endhighlight %}
 
 {% protip %}
 The `canonicalIdentifier` parameter greatly improves the content analytics data Branch captures. It should be unique to that piece of content and helps Branch dedupe across many instances of the same thing. Suitable options: a website with pathing, or a database with identifiers for entities.
 {% endprotip %}
 
-Then, create the link to be shared by referencing the `BranchUniversalObject` and defining the properties of the link.
+Use Branch's custom share sheet to share a piece of content without having to create a link. Calling this method will automatically generate a Branch link with the appropriate analytics channel when the user selects a sharing destination. First, define the properties of the link.
 
-{% protip title="Unsupported in React Native" %}
-A stand-alone link creation method is currently not available in the React Native SDK. We hope to include one soon, and would also gladly accept pull requests to our [GitHub repo](https://github.com/BranchMetrics/React-Native-Deep-Linking-SDK)!
+{% highlight js %}
+let linkProperties = {
+  feature: 'share',
+  channel: 'facebook'
+}
 
-In the meantime, you can use the `showShareSheet` method instead. [Read more about it here]({{base.url}}/getting-started/branch-universal-object/guide/react/#showsharesheet).
-{% endprotip %}
+let controlParams = {
+  $desktop_url: 'http://desktop-url.com/monster/12345'
+}
+{% endhighlight %}
+
+Then, lastly, customize and show the share sheet.
+
+{% highlight js %}
+let shareOptions = {
+  messageHeader: 'Check this out',
+  messageBody: 'No really, check this out!'
+}
+
+let {channel, completed, error} = await branchUniversalObject.showShareSheet(shareOptions, linkProperties, controlParams)
+{% endhighlight %}
+
+Here's an example of what you'll see by platform:
+
+{% image src='/img/pages/getting-started/branch-universal-object/combined_share_sheet.png' actual center alt='ios and android share sheets' %}
 
 {% endif %}
 
@@ -463,9 +525,188 @@ The [Analytics page](https://dashboard.branch.io/#/analytics/content) on the Bra
 
 {% protip %}
 The [Influencers page](https://dashboard.branch.io/#/referrals/influencers) on the dashboard will show you who is driving the most new signups.
-{% endprotip %} 
+{% endprotip %}
 
 {% elsif page.advanced %}
+
+## Creating dynamic links without the share sheet
+
+If you've built your own share sheet and you want to just create a Branch link for an individual share message or have another use case, you can create deep links directly with the following call:
+
+<!--- iOS -->
+{% if page.ios %}
+
+{% tabs %}
+{% tab objective-c %}
+{% highlight objc %}
+[branchUniversalObject getShortUrlWithLinkProperties:linkProperties andCallback:^(NSString *url, NSError *error) {
+    if (!error) {
+        NSLog(@"got my Branch invite link to share: %@", url);
+    }
+}];
+{% endhighlight %}
+{% endtab %}
+{% tab swift %}
+{% highlight swift %}
+branchUniversalObject.getShortUrlWithLinkProperties(linkProperties,  andCallback: { (url: String?, error: NSError?) -> Void in
+    if error == nil {
+        NSLog("got my Branch invite link to share: %@", url)
+    }
+})
+{% endhighlight %}
+{% endtab %}
+{% endtabs %}
+
+You can find examples of `linkProperties` on the previous guide page. You would next use the returned link and help the user post it to (in this example) Facebook.
+
+{% endif %}
+<!--- /iOS -->
+
+
+<!--- Android -->
+{% if page.android %}
+
+{% highlight java %}
+branchUniversalObject.generateShortUrl(this, linkProperties, new BranchLinkCreateListener() {
+    @Override
+    public void onLinkCreate(String url, BranchError error) {
+        if (error == null) {
+            Log.i("MyApp", "got my Branch link to share: " + url);
+        }
+    }
+});
+{% endhighlight %}
+
+You can find examples of `linkProperties` on the previous guide page. You would next use the returned link and help the user post it to (in this example) Facebook.
+
+{% endif %}
+<!--- /Android -->
+
+{% if page.cordova %}
+
+{% highlight js %}
+branchUniversalObj.generateShortUrl({
+  // put your link properties here
+  "feature" : "sharing",
+  "channel" : "facebook"
+}, {
+  // put your control parameters here
+  "$desktop_url" : "http://desktop-url.com/monster/12345",
+}).then(function (res) {
+    // Success Callback
+    console.log(res.generatedUrl);
+});
+{% endhighlight %}
+
+{% endif %}
+
+{% if page.xamarin %}
+
+{% highlight c# %}
+Branch.GetInstance().GetShortURL (callback,
+                              universalObject,
+                              linkProperties);
+
+{% endhighlight %}
+
+You can find examples of `linkProperties` and the `universalObject` on the previous guide page. After you've registered the class as a delegate of `IBranchUrlInterface`, you would next use the returned link and help the user post it to (in this example) Facebook.
+
+{% highlight c# %}
+#region IBranchUrlInterface implementation
+
+public void ReceivedUrl (Uri uri)
+{
+    // Do something with the new link...
+}
+#endregion
+{% endhighlight %}
+{% endif %}
+
+<!--- Unity -->
+
+{% if page.unity %}
+
+{% highlight c# %}
+Branch.getShortURL(universalObject, linkProperties, (url, error) => {
+    if (error != null) {
+        Debug.LogError("Branch.getShortURL failed: " + error);
+    } else {
+        Debug.Log("Branch.getShortURL shared params: " + url);
+    }
+});
+{% endhighlight %}
+
+You can find examples of `linkProperties` and the `universalObject` on the previous guide page. You would next use the returned link and help the user post it to (in this example) Facebook.
+
+{% endif %}
+
+<!--- Adobe -->
+
+{% if page.adobe %}
+
+{% highlight java %}
+//be sure to add the event listeners:
+branch.addEventListener(BranchEvent.GET_SHORT_URL_FAILED, getShortUrlFailed);
+branch.addEventListener(BranchEvent.GET_SHORT_URL_SUCCESSED, getShortUrlSuccessed);
+
+private function getShortUrlSuccessed(bEvt:BranchEvent):void {
+    trace("BranchEvent.GET_SHORT_URL_SUCCESSED", "got my Branch invite link to share: " + bEvt.informations);
+}
+
+private function getShortUrlFailed(bEvt:BranchEvent):void {
+    trace("BranchEvent.GET_SHORT_URL_FAILED", bEvt.informations);
+}
+
+var dataToInclude:Object = {
+  "userId": "12345",
+  "userName": "Josh",
+  "monsterName": "Mr. Squiggles",
+  "$og_title": "Meet Mr. Squiggles",
+  "$og_description": "Your friend Josh has invited you to meet his awesome monster, Mr. Squiggles!",
+  "$og_image_url": "https://example.com/monster-pic-12345.png",
+  "$desktop_url" : "http://desktop-url.com/monster/12345"
+};
+
+branch.getShortUrl(tags, "facebook", BranchConst.FEATURE_TAG_SHARE, JSON.stringify(dataToInclude));
+{% endhighlight %}
+
+You would next use the returned link and help the user post it to (in this example) Facebook.
+
+{% endif %}
+
+<!--- Titanium -->
+
+{% if page.titanium %}
+
+{% highlight js %}
+branchUniversalObject.generateShortUrl({
+  "feature" : "share",
+  "channel" : "facebook"
+}, {}
+  // put your control parameters here
+  "$desktop_url" : "http://desktop-url.com/monster/12345"
+});
+{% endhighlight %}
+
+To implement the callback, you must add a listener to the event `bio:generateShortUrl`. The event returns a string object containing the generated link. You would next use the returned link and help the user post it to (in this example) Facebook.
+
+{% highlight js %}
+branchUniversalObject.addEventListener("bio:generateShortUrl", $.onGenerateUrlFinished);
+{% endhighlight %}
+
+{% endif %}
+
+<!--- React -->
+
+{% if page.react %}
+
+{% highlight js %}
+let {url} = await branchUniversalObject.generateShortUrl(linkProperties, controlParams)
+{% endhighlight %}
+
+You can find examples of `linkProperties` and the `controlParams` on the previous guide page. You would next use the returned link and help the user post it to (in this example) Facebook.
+
+{% endif %}
 
 ## Previewing and debugging links
 

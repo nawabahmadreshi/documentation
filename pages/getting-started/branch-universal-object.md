@@ -149,16 +149,18 @@ var branchUniversalObject = branch.createBranchUniversalObject({
 {% if page.react %}
 
 {% highlight js %}
-var branchUniversalObject = {
-   metadata:{  
-      "product_picture" : "12345",
-      "user_id" : "6789"
-   },
-   "canonicalIdentifier" : "content/12345",
-   "contentTitle" : "My Content Title",
-   "contentDescription" : "My Content Description",
-   "contentImageUrl" : "https://example.com/mycontent-12345.png"
-};
+let branchUniversalObject = branch.createBranchUniversalObject(
+  'content/12345', // canonical identifier
+  {
+    contentTitle: 'My Content Title',
+    contentImageUrl: 'https://example.com/mycontent-12345.png',
+    contentDescription: 'My Content Description',
+    metadata: {
+      product_picture: '12345',
+      user_id: '6789'
+    }
+  }
+)
 {% endhighlight %}
 
 {% endif %}
@@ -272,7 +274,7 @@ Some of these parameters automatically [populate the link parameters]({{base.url
 {% if page.react %}
 
 {% protip title="Partial support in React Native" %}
-Only a subset of link parameters are currently supported in the React Native SDK. We hope to include more soon, and would also gladly accept pull requests to our [GitHub repo](https://github.com/BranchMetrics/React-Native-Deep-Linking-SDK)!
+Only a subset of link parameters are currently supported in the React Native SDK. We hope to include more soon, and would also gladly accept pull requests to our [GitHub repo](https://github.com/BranchMetrics/React-Native-Deferred-Deep-Linking-SDK)!
 {% endprotip %}
 
 | Parameter | Usage | Link Parameter
@@ -281,7 +283,8 @@ Only a subset of link parameters are currently supported in the React Native SDK
 | contentTitle | The name for the piece of content | $og_title 
 | contentDescription | A description for the content | $og_description
 | contentImageUrl | The image URL for the content | $og_image_url
-| metadata | Any extra parameters you'd like to associate with the Branch Universal Object. These will be made available to you after the user clicks the link and opens up the app, and are used for [Deep Link Routing Routing]({{base.url}}/getting-started/deep-link-routing).
+| contentIndexingMode | Can be set to either `public` or `private`. Public indicates that you'd like this content to be discovered by other apps* | $publicly_indexable
+| contentMetadata | Any extra parameters you'd like to associate with the Branch Universal Object. These will be made available to you after the user clicks the link and opens up the app, and are used for [Deep Link Routing Routing]({{base.url}}/getting-started/deep-link-routing).
 
 {% endif %}
 
@@ -313,6 +316,27 @@ branchUniversalObject.registerView()
 ### getShortUrlWithLinkProperties
 
 Create a link to a piece of content. Visit the [Creating Links in Apps]({{base.url}}/getting-started/creating-links-in-apps) page to learn more.
+
+{% tabs %}
+{% tab objective-c %}
+{% highlight objc %}
+[branchUniversalObject getShortUrlWithLinkProperties:linkProperties andCallback:^(NSString *url, NSError *error) {
+    if (!error) {
+        NSLog(@"success getting url! %@", url);
+    }
+}];
+{% endhighlight %}
+{% endtab %}
+{% tab swift %}
+{% highlight swift %}
+branchUniversalObject.getShortUrlWithLinkProperties(linkProperties,  andCallback: { (url: String?, error: NSError?) -> Void in
+    if error == nil {
+        NSLog("got my Branch link to share: %@", url)
+    }
+})
+{% endhighlight %}
+{% endtab %}
+{% endtabs %}
 
 ### showShareSheetWithLinkProperties
 
@@ -350,6 +374,27 @@ branchUniversalObject.showShareSheetWithLinkProperties(linkProperties,
 
 List your piece of content on Spotlight. Visit the [iOS Spotlight Indexing]({{base.url}}/features/spotlight-indexing) page to learn more.
 
+{% tabs %}
+{% tab objective-c %}
+{% highlight objc %}
+[branchUniversalObject listOnSpotlightWithIdentifierCallback:^(NSString *url, NSString *spotlightIdentifier, NSError *error) {
+    if (!error) {
+        NSLog(@"success getting url! %@", url);
+    }
+}];
+{% endhighlight %}
+{% endtab %}
+{% tab swift %}
+{% highlight swift %}
+branchUniversalObject. listOnSpotlightWithIdentifierCallback((url: String?, spotlightIdentifier: String?, error: NSError?) -> Void in
+    if error == nil {
+        NSLog("got my Branch link to share: %@", url)
+    }
+})
+{% endhighlight %}
+{% endtab %}
+{% endtabs %}
+
 {% endif %}
 
 {% if page.android %}
@@ -365,6 +410,17 @@ branchUniversalObject.registerView();
 ### generateShortUrl
 
 Create a link to a piece of content. Visit the [Creating Links in Apps]({{base.url}}/getting-started/creating-links-in-apps) page to learn more.
+
+{% highlight java %}
+branchUniversalObject.generateShortUrl(this, linkProperties, new BranchLinkCreateListener() {
+    @Override
+    public void onLinkCreate(String url, BranchError error) {
+        if (error == null) {
+            Log.i("MyApp", "got my Branch link to share: " + url);
+        }
+    }
+});
+{% endhighlight %}
 
 ### showShareSheet
 
@@ -419,6 +475,20 @@ branchUniversalObj.registerView();
 
 Create a link to a piece of content. Visit the [Creating Links in Apps]({{base.url}}/getting-started/creating-links-in-apps) page to learn more.
 
+{% highlight js %}
+branchUniversalObj.generateShortUrl({
+  // put your link properties here
+  "feature" : "sharing",
+  "channel" : "facebook"
+}, {
+  // put your control parameters here
+  "$desktop_url" : "http://desktop-url.com/monster/12345",
+}).then(function (res) {
+    // Success Callback
+    console.log(res.generatedUrl);
+});
+{% endhighlight %}
+
 ### showShareSheet
 
 Use Branch's custom share sheet to share a piece of content without having to create a link. Calling this method will automatically generate a Branch link with the appropriate analytics channel when the user selects a sharing destination.
@@ -433,7 +503,6 @@ branchUniversalObj.showShareSheet({
   "feature" : "sample-feature",
   "channel" : "sample-channel",
   "stage" : "sample-stage",
-  "duration" : 1,
 }, {
   // put your control parameters here
   "$desktop_url" : "http://desktop-url.com",
@@ -490,6 +559,82 @@ branchUniversalObj.onChannelSelected(function (res) {
 
 {% endif %}
 
+{% if page.xamarin %}
+### registerView
+
+Call this method when the page loads to track how many times a piece of content is viewed.
+
+{% highlight c# %}
+Branch.GetInstance().RegisterView (BranchUniversalObject universalObject)
+{% endhighlight %}
+
+### getShortURL
+
+Create a link to a piece of content. Visit the [Creating Links in Apps]({{base.url}}/getting-started/creating-links-in-apps) page to learn more. First define the properties of the link. In the example, our properties reflect that this is shared content and the user selected Facebook as the destination:
+
+{% highlight c# %}
+BranchLinkProperties linkProperties = new BranchLinkProperties();
+linkProperties.feature = "share";
+linkProperties.channel = "facebook";
+{% endhighlight %}
+
+Then call getShortUrl with the `universalObject` and `linkProperties`. Make sure to pass in a reference where you've registered a delegate to `IBranchUrlInterface` as below.
+
+{% highlight c# %}
+Branch.GetInstance().GetShortURL (IBranchUrlInterface callback,
+                              universalObject,
+                              linkProperties);
+
+{% endhighlight %}
+
+Now define the delegate implementation for `IBranchUrlInterface`.
+
+{% highlight c# %}
+#region IBranchUrlInterface implementation
+
+public void ReceivedUrl (Uri uri)
+{
+    // Do something with the new link...
+}
+#endregion
+{% endhighlight %}
+
+### shareLink
+
+Use Branch's custom share sheet to share a piece of content without having to create a link. Calling this method will automatically generate a Branch link with the appropriate analytics channel when the user selects a sharing destination.
+
+{% image src='/img/pages/getting-started/branch-universal-object/combined_share_sheet.png' actual center alt='ios and android share sheets' %}
+
+First define the properties of the link. In the example, our properties reflect that this is shared content and the user selected Facebook as the destination:
+
+{% highlight c# %}
+BranchLinkProperties linkProperties = new BranchLinkProperties();
+linkProperties.feature = "share";
+linkProperties.channel = "facebook";
+{% endhighlight %}
+
+Then use the following `shareLink` method on your `branchUniversalObject`
+
+{% highlight c# %}
+Branch.GetInstance().ShareLink (IBranchLinkShareInterface callback,
+           universalObject,
+           linkProperties,
+           "Check this out!")
+{% endhighlight %}
+
+If you want to be notified when the user returns from the share sheet, implement the delegate of `IBranchLinkShareInterface`
+
+{% highlight c# %}
+#region IBranchLinkShareInterface implementation
+
+public void LinkShareResponse (string sharedLink, string sharedChannel)
+{
+    // handle completion
+}
+#endregion
+{% endhighlight %}
+{% endif %}
+
 {% if page.unity %}
 
 ### registerView
@@ -504,13 +649,33 @@ Branch.registerView(universalObject);
 
 Create a link to a piece of content. Visit the [Creating Links in Apps]({{base.url}}/getting-started/creating-links-in-apps) page to learn more.
 
+First define the properties of the link. In the example, our properties reflect that this is shared content and the user selected Facebook as the destination:
+
+{% highlight c# %}
+BranchLinkProperties linkProperties = new BranchLinkProperties();
+linkProperties.feature = "share";
+linkProperties.channel = "facebook";
+{% endhighlight %}
+
+Then call getShortUrl to retrieve the Branch link with the customized properties.
+
+{% highlight c# %}
+Branch.getShortURL(universalObject, linkProperties, (url, error) => {
+    if (error != null) {
+        Debug.LogError("Branch.getShortURL failed: " + error);
+    } else {
+        Debug.Log("Branch.getShortURL shared params: " + url);
+    }
+});
+{% endhighlight %}
+
 ### shareLink
 
 Use Branch's custom share sheet to share a piece of content without having to create a link. Calling this method will automatically generate a Branch link with the appropriate analytics channel when the user selects a sharing destination.
 
 {% image src='/img/pages/getting-started/branch-universal-object/combined_share_sheet.png' actual center alt='ios and android share sheets' %}
 
-To implement it, use the following `shareLink` method on your `branchUniversalObject`
+Then use the following `shareLink` method on your `branchUniversalObject`
 
 {% highlight c# %}
 Branch.shareLink(universalObject, linkProperties, "hello there with short url", (url, error) => {
@@ -536,6 +701,23 @@ branchUniversalObject.registerView();
 ### generateShortUrl
 
 Create a link to a piece of content. Visit the [Creating Links in Apps]({{base.url}}/getting-started/creating-links-in-apps) page to learn more.
+
+{% highlight js %}
+branchUniversalObject.generateShortUrl({
+  "feature" : "sample-feature",
+  "alias" : "sample-alias",
+  "channel" : "sample-channel",
+  "stage" : "sample-stage"
+}, {
+  "$desktop_url" : "http://desktop-url.com",
+});
+{% endhighlight %}
+
+The event listener `bio:generateShortUrl` returns a `string` object containing the generated link:
+
+{% highlight js %}
+branchUniversalObject.addEventListener("bio:generateShortUrl", $.onGenerateUrlFinished);
+{% endhighlight %}
 
 ### showShareSheet
 
@@ -601,8 +783,8 @@ The event fires when a channel is selected.
 branchUniversalObject.shareChannelSelected(function (res) {
   console.log('Channel selected: ' + JSON.stringify(res));
 });
-{% endhighlight %}
 
+{% endhighlight %}
 
 {% endif %}
 
@@ -618,9 +800,20 @@ let viewResult = await branchUniversalObject.registerView()
 
 ### getShortUrl
 
-{% protip title="Unsupported in React Native" %}
-This method is currently unsupported in the React Native SDK. We hope to include it soon, and would also gladly accept pull requests to our [GitHub repo](https://github.com/BranchMetrics/React-Native-Deep-Linking-SDK)!
-{% endprotip %}
+Create a link to a piece of content. Visit the [Creating Links in Apps]({{base.url}}/getting-started/creating-links-in-apps) page to learn more.
+
+{% highlight js %}
+let linkProperties = {
+  feature: 'share',
+  channel: 'facebook'
+}
+
+let controlParams = {
+  $desktop_url: 'http://desktop-url.com/monster/12345'
+}
+
+let {url} = await branchUniversalObject.generateShortUrl(linkProperties, controlParams)
+{% endhighlight %}
 
 ### showShareSheet
 
@@ -631,16 +824,20 @@ Use Branch’s custom share sheet to share a piece of content without having to 
 To implement it, first set your `shareOptions`
 
 {% highlight js %}
-var shareOptions = {
-	"messageHeader" : "Check this out!", //Only used on Android
-	"messageBody" : "Check this cool thing out: "
-};
+let shareOptions = {
+  messageHeader: 'Check this out',
+  messageBody: 'No really, check this out!'
+}
+
+let {channel, completed, error} = await branchUniversalObject.showShareSheet(shareOptions, linkProperties, controlParams)
 {% endhighlight %}
 
-Then use the following `showShareSheet` method on your `branchUniversalObject`
+### listOnSpotlight
+
+For iOS apps only, you can list content on Spotlight search with the following method:
 
 {% highlight js %}
-branch.showShareSheet(shareOptions, branchUniversalObject, linkProperties, ({channel, completed, error}) => {});
+let spotlightResult = await branchUniversalObject.listOnSpotlight()
 {% endhighlight %}
 
 {% endif %}

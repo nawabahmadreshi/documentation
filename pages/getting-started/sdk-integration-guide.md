@@ -210,14 +210,14 @@ We attempt to automatically add an Android manifest flag to support deep linking
 {% if page.react %}
 
 1. Run `npm install rnpm -g` (skip this step if `rnpm` is already installed on your system).
-1. Navigate go your root project directory and download the Branch SDK package: `npm install --save branch-react-native-sdk`.
-1. Configure the package: `rnpm link branch-react-native-sdk`.
+1. Navigate go your root project directory and download the Branch SDK package: `npm install --save react-native-branch`.
+1. Configure the package: `rnpm link react-native-branch`.
 
 ### iOS project installation
 
-1. Navigate into the SDK package directory: `cd node_modules/branch-react-native-sdk`.
+1. Navigate into the SDK package directory: `cd node_modules/react-native-branch`.
 1. Use CocoaPods to install dependencies: `pod install`.
-1. Drag **/node_modules/branch-react-native-sdk/Pods/Pods.xcodeproj** into the **Libraries** folder of your Xcode project. {% image src='/img/pages/getting-started/sdk-integration-guide/pod-import.png' full center alt='Import CocoaPods project' %}
+1. Drag **/node_modules/react-native-branch/Pods/Pods.xcodeproj** into the **Libraries** folder of your Xcode project. {% image src='/img/pages/getting-started/sdk-integration-guide/pod-import.png' full center alt='Import CocoaPods project' %}
 1. In Xcode, drag the `libBranch.a` Product from **Pods.xcodeproj** into your the **Link Binary with Libraries** section of **Build Phases** for your project's target. {% image src='/img/pages/getting-started/sdk-integration-guide/link-pod-binary.png' full center alt='Link Pod product with project binary' %}
 
 {% protip %}
@@ -233,10 +233,10 @@ Sometimes `rnpm` link creates incorrect relative paths, leading to compilation e
 {% highlight js %}
 ...
 
-include ':branch-react-native-sdk', ':app'
+include ':react-native-branch', ':app'
 
-// The relative path to the branch-react-native-sdk directory tends to often be prefixed with one too many "../"s
-project(':branch-react-native-sdk').projectDir = new File(rootProject.projectDir, '../node_modules/branch-react-native-sdk/android')
+// The relative path to the react-native-branch directory tends to often be prefixed with one too many "../"s
+project(':react-native-branch').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-branch/android')
 {% endhighlight %}
 
 #### android/app/build.gradle
@@ -246,7 +246,7 @@ project(':branch-react-native-sdk').projectDir = new File(rootProject.projectDir
 
 dependencies {
     ...
-    compile project(':branch-react-native-sdk')
+    compile project(':react-native-branch')
 }
 {% endhighlight %}
 {% endif %}

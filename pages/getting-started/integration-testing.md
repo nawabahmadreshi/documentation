@@ -418,10 +418,13 @@ $.initialize = function(params) {
 To enable this mode in your test builds, add a `setDebug()` call function. Your code will end up looking something like this:
 
 {% highlight js %}
-var branch = require('branch-react-native-sdk');
+import branch from 'react-native-branch'
 
-//Receives the initSession's result as soon as it becomes available
-branch.getInitSessionResultPatiently(({params, error}) => { });
+// Subscribe to incoming links (both branch & non-branch)
+branch.subscribe(({params, error, uri}) => {
+  if (params) { /* handle branch link */ }
+  else { /* handle uri */ }
+})
 
 branch.setDebug();
 {% endhighlight %}
