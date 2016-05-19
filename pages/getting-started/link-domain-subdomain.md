@@ -48,6 +48,10 @@ Branch automatically handles HTTPS traffic for custom subdomains and root domain
 
 ### Custom SUBDOMAIN (go.branch.com)
 
+{% caution title="Do not use www" %}
+Some browsers have special rules for processing URLs beginning with `www`. We strongly recommend you do not a `www` prefix in your custom subdomain.
+{% endcaution %}
+
 1. Create a CNAME for your subdomain and point it to `custom.bnc.lt`
 1. Go to [Link Settings](https://dashboard.branch.io/#/settings/link){:target="_blank"} on the Branch dashboard, and find the **Custom Link Domain** section.
 1. Check the **Enable custom domain** box.
@@ -58,10 +62,14 @@ Branch automatically handles HTTPS traffic for custom subdomains and root domain
 
 ### Custom ROOT domain (branch.com)
 
+{% caution title="Use this domain for Branch links only" %}
+Once you enable this root domain for Branch links, you will not be able to use it for hosting anything else. We recommend using a subdomain, or purchasing a new root domain for this purpose. **You cannot use your main website domain for hosting Branch links**.
+{% endcaution %}
+
 1. Go to [Link Settings](https://dashboard.branch.io/#/settings/link){:target="_blank"} on the Branch dashboard, and find the **Custom Link Domain** section.
 1. Check the **Enable custom domain** box.{% image src='/img/pages/getting-started/link-domain-subdomain/enable-custom-domain.png' 2-thirds center alt='successful custom domain configuration' %}
 1. Enter your custom domain into the text box and click the `Save` button. (If the validation status doesn't update with nameservers please **refresh the page.**) {% image src='/img/pages/getting-started/link-domain-subdomain/custom_domain_nameservers_error.png' fullcenter alt='root domain nameservers' %}
-1. Go to your DNS configuration for your custom domain, and update your nameserver records with the Branch-provided nameservers.
+1. Work with your domain registrar to make the Branch-provided nameservers authoritative for your domain. **Note that this means you cannot host anything else on this domain — only Branch links**
 1. Click the `Save` button on the Branch dashboard again.
 
 ## About the legacy bnc.lt domain
