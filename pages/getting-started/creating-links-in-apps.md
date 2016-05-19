@@ -424,14 +424,13 @@ var branchUniversalObject = branch.createBranchUniversalObject({
 
 {% ingredient buo-overview %}{% endingredient %}
 
-## Assemble link parameters
+## Assemble link parameters and generate the links
 
 Define the analytics tags and control parameters, and generate the link by referencing the `BranchUniversalObject` you created:
 
 {% highlight js %}
 branchUniversalObject.generateShortUrl({
   "feature" : "sample-feature",
-  "alias" : "sample-alias",
   "channel" : "sample-channel",
   "stage" : "sample-stage"
 }, {
@@ -458,16 +457,18 @@ If you don't want to handle the link yourself, you can also use Branch's [precon
 Create a `BranchUniversalObject` for the piece of content that you'd like to link to, defining any custom key/value pairs as `metadata` parameters:
 
 {% highlight js %}
-var branchUniversalObject = {
-   metadata:{
-      "product_picture" : "12345",
-      "user_id" : "6789"
-   },
-   "canonicalIdentifier" : "content/12345",
-   "contentTitle" : "My Content Title",
-   "contentDescription" : "My Content Description",
-   "contentImageUrl" : "https://example.com/mycontent-12345.png"
-};
+let branchUniversalObject = branch.createBranchUniversalObject(
+  'content/12345', // canonical identifier
+  {
+    contentTitle: 'My Content Title',
+    contentImageUrl: 'https://example.com/mycontent-12345.png',
+    contentDescription: 'My Content Description',
+    metadata: {
+      product_picture: '12345',
+      user_id: '6789'
+    }
+  }
+)
 {% endhighlight %}
 
 {% ingredient buo-overview %}{% endingredient %}
@@ -477,24 +478,26 @@ var branchUniversalObject = {
 Define the analytics tags and control parameters, and generate the link by referencing the `BranchUniversalObject` you created:
 
 {% highlight js %}
-var linkProperties = {
-	"feature" : "sharing",
-	"channel" : "RNApp"
-};
-{% endhighlight %}
+let linkProperties = {
+  feature: 'sample-feature',
+  channel: 'sample-channel'
+}
 
-{% protip title="Partial support in React Native" %}
-Only a subset of link parameters are currently supported in the React Native SDK. We hope to include more soon, and would also gladly accept pull requests to our [GitHub repo](https://github.com/BranchMetrics/React-Native-Deep-Linking-SDK)!
-{% endprotip %}
+let controlParams = {
+  '$desktop_url': 'http://desktop-url.com'
+}
+{% endhighlight %}
 
 ## Generate the link
 
-Finally, generate the link by referencing the `BranchUniversalObject` you created:
+Finally, generate the link by referencing the `BranchUniversalObject` and parameters you created:
 
-{% protip title="Unsupported in React Native" %}
-A stand-alone link creation method is currently not available in the React Native SDK. We hope to include one soon, and would also gladly accept pull requests to our [GitHub repo](https://github.com/BranchMetrics/React-Native-Deep-Linking-SDK)!
+{% highlight js %}
+let {url} = await branchUniversalObject.generateShortUrl(linkProperties, controlParams)
+{% endhighlight %}
 
-In the meantime, you can use the `showShareSheet` method instead. [Read more about it here]({{base.url}}/getting-started/branch-universal-object/guide/react/#showsharesheet).
+{% protip title="Use the Branch share sheet" %}
+If you don't want to handle the link yourself, you can also use Branch's [preconfigured share sheet]({{base.url}}/getting-started/branch-universal-object/guide/react/#showsharesheet).
 {% endprotip %}
 
 {% endif %}

@@ -180,7 +180,7 @@ branch.userCompletedAction("purchase_event", {
 
 {% if page.react %}
 {% highlight js %}
-branch.userCompletedAction("purchase_event", {sku: 12346789});
+branch.userCompletedAction("purchase_event", { sku: 12346789 });
 {% endhighlight %}
 {% endif %}
 

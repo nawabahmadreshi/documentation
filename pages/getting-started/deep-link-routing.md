@@ -469,18 +469,14 @@ $.onInitSessionFinished = function(data) {
 Inside the callback where Branch is initialized, you will want to examine the dictionary passed in the callback to see if the user opened a link to content. Below is an example assuming that the links correspond to pictures.
 
 {% highlight js %}
-var branch = require('branch-react-native-sdk');
+import branch from 'react-native-branch'
 
 //Receives the initSession's result as soon as it becomes available
-branch.getInitSessionResultPatiently(({params, error}) => {
-
-    if (data["picture_id"]) {
-        // load the view to show the picture
-    } else {
-        // load your normal view
-    }
-    
-});
+// Subscribe to incoming links (both branch & non-branch)
+branch.subscribe(({params, error, uri}) => {
+  if (params) { /* handle branch link */ }
+  else { /* handle uri */ }
+})
 {% endhighlight %}
 
 {% endif %}
@@ -695,9 +691,18 @@ branchUniversalObject.generateShortUrl({
 
 {% if page.react %}
 
-{% protip title="Unsupported in React Native" %}
-Link control parameters are currently unsupported in the React Native SDK. We hope to include them soon, and would also gladly accept pull requests to our [GitHub repo](https://github.com/BranchMetrics/React-Native-Deep-Linking-SDK)!
-{% endprotip %}
+{% highlight js %}
+let linkProperties = {
+  feature: 'share',
+  channel: 'facebook'
+}
+
+let controlParams = {
+  $desktop_url: 'http://desktop-url.com/monster/12345'
+}
+
+let {url} = await branchUniversalObject.generateShortUrl(linkProperties, controlParams)
+{% endhighlight %}
 
 {% endif %}
 
@@ -773,7 +778,7 @@ var sessionParams = branch.getLatestReferringParams();
 
 {% if page.react %}
 {% highlight js %}
-branch.getLatestReferringParams((params) => { });
+let lastParams = await branch.getLatestReferringParams()
 {% endhighlight %}
 {% endif %}
 
@@ -835,7 +840,7 @@ var installParams = branch.getFirstReferringParams();
 
 {% if page.react %}
 {% highlight js %}
-branch.getFirstReferringParams((params) => { });
+let installParams = await branch.getFirstReferringParams()
 {% endhighlight %}
 {% endif %}
 

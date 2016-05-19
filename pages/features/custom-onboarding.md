@@ -379,26 +379,38 @@ The first thing we need to do is allow your users to create links to share. Thes
 Create a `BranchUniversalObject` containing details about the user who is inviting friends:
 
 {% highlight js %}
-var branchUniversalObject = {
-   metadata:{  
-      "userId" : "12345",
-      "userName" : "Josh"
-   },
-   "canonicalIdentifier" : "invite/12345",
-   "contentTitle" : "Josh wants you to try Branch Monster Factory",
-   "contentDescription" : "Your friend Josh has invited you to download Branch Monster Factory create awesome monsters!",
-   "contentImageUrl" : "https://example.com/profile-pic-12345.png"
-};
+let branchUniversalObject = branch.createBranchUniversalObject(
+  'invite/12345', // canonical identifier
+  {
+    contentTitle: 'Josh wants you to try Branch Monster Factory',
+    contentImageUrl: 'https://example.com/profile-pic-12345.png',
+    contentDescription: 'Your friend Josh has invited you to download Branch Monster Factory create awesome monsters!',
+    metadata: {
+      userId: '12345',
+      userName: 'Josh'
+    }
+  }
+)
 {% endhighlight %}
 
-{% ingredient buo-overview %}{% endingredient %}
+Then define the properties of the link. In the example, our properties reflect that this is an invitation and the user selected Facebook as the destination:
+
+{% highlight js %}
+let linkProperties = {
+  feature: 'share',
+  channel: 'facebook'
+}
+
+let controlParams = {
+  $desktop_url: 'http://desktop-url.com/monster/12345'
+}
+{% endhighlight %}
 
 Then, create the link to be shared by referencing the `BranchUniversalObject` and defining the properties of the link.
 
-{% protip title="Unsupported in React Native" %}
-A stand-alone link creation method is currently not available in the React Native SDK. We hope to include one soon, and would also gladly accept pull requests to our [GitHub repo](https://github.com/BranchMetrics/React-Native-Deep-Linking-SDK)!
-
-In the meantime, you can use the `showShareSheet` method instead. [Read more about it here]({{base.url}}/getting-started/branch-universal-object/guide/react/#showsharesheet).
+{% highlight js %}
+let {url} = await branchUniversalObject.generateShortUrl(linkProperties, controlParams)
+{% endhighlight %}
 {% endprotip %}
 
 {% endif %}
