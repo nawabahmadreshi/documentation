@@ -117,7 +117,7 @@ Use Branch's preconfigured `UIActivityItemProvider` to share a piece of content 
 {% highlight objc %}
 [branchUniversalObject showShareSheetWithLinkProperties:linkProperties
                                            andShareText:@"Super amazing thing I want to share!"
-                                     fromViewController:self 
+                                     fromViewController:self
                                             andCallback:^{
     NSLog(@"finished presenting");
 }];
@@ -126,7 +126,7 @@ Use Branch's preconfigured `UIActivityItemProvider` to share a piece of content 
 
 {% tab swift %}
 {% highlight swift %}
-branchUniversalObject.showShareSheetWithLinkProperties(linkProperties, 
+branchUniversalObject.showShareSheetWithLinkProperties(linkProperties,
                                         andShareText: "Super amazing thing I want to share!",
                                         fromViewController: self,
                                         andCallback: { () -> Void in
@@ -184,7 +184,7 @@ ShareSheetStyle shareSheetStyle = new ShareSheetStyle(MainActivity.this, "Check 
 Lastly, create the link to be shared by referencing the `BranchUniversalObject`:
 
 {% highlight java %}
-branchUniversalObject.showShareSheet(this, 
+branchUniversalObject.showShareSheet(this,
                                       linkProperties,
                                       shareSheetStyle,
                                        new Branch.BranchLinkShareListener() {
@@ -342,7 +342,7 @@ linkProperties.feature = "share";
 linkProperties.channel = "facebook";
 {% endhighlight %}
 
-Lastly, share the link to be shared by referencing the `BranchUniversalObject` and `LinkProperties`:
+Lastly, share the link by referencing the `BranchUniversalObject` and `LinkProperties`:
 
 {% highlight c# %}
 Branch.shareLink(universalObject, linkProperties, "hello there with short url", (url, error) => {
@@ -525,13 +525,13 @@ The [Analytics page](https://dashboard.branch.io/#/analytics/content) on the Bra
 
 {% protip %}
 The [Influencers page](https://dashboard.branch.io/#/referrals/influencers) on the dashboard will show you who is driving the most new signups.
-{% endprotip %} 
+{% endprotip %}
 
 {% elsif page.advanced %}
 
 ## Creating dynamic links without the share sheet
 
-If you've built your own share sheet and you want to just create a Branch link for an individual share message or have another use case, you can create deep links directly with the follow call:
+If you've built your own share sheet and you want to just create a Branch link for an individual share message or have another use case, you can create deep links directly with the following call:
 
 <!--- iOS -->
 {% if page.ios %}

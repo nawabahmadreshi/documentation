@@ -411,7 +411,6 @@ Then, create the link to be shared by referencing the `BranchUniversalObject` an
 {% highlight js %}
 let {url} = await branchUniversalObject.generateShortUrl(linkProperties, controlParams)
 {% endhighlight %}
-{% endprotip %}
 
 {% endif %}
 
@@ -436,7 +435,7 @@ You can use the dashboard's [Live View page](https://dashboard.branch.io/#/livev
 
 {% protip %}
 The [Influencers page](https://dashboard.branch.io/#/referrals/influencers) on the dashboard will show you who is driving the most new signups.
-{% endprotip %} 
+{% endprotip %}
 
 {% elsif page.advanced %}
 
