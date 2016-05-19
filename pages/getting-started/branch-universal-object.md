@@ -530,7 +530,7 @@ Branch.shareLink(universalObject, linkProperties, "hello there with short url", 
 Call this method in `viewDidLoad` or `viewDidAppear` to track how many times a piece of content is viewed.
 
 {% highlight js %}
-Branch.registerView(universalObject);
+branchUniversalObject.registerView();
 {% endhighlight %}
 
 ### generateShortUrl
@@ -610,9 +610,11 @@ branchUniversalObject.shareChannelSelected(function (res) {
 
 ### registerView
 
-{% protip title="Unsupported in React Native" %}
-This method is currently unsupported in the React Native SDK. We hope to include it soon, and would also gladly accept pull requests to our [GitHub repo](https://github.com/BranchMetrics/React-Native-Deep-Linking-SDK)!
-{% endprotip %}
+Call this method in `viewDidLoad` or `viewDidAppear` to track how many times a piece of content is viewed.
+
+{% highlight js %}
+let viewResult = await branchUniversalObject.registerView()
+{% endhighlight %}
 
 ### getShortUrl
 
