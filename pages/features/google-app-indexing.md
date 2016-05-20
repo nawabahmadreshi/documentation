@@ -44,7 +44,7 @@ We're working with Google to ensure that we can properly transfer all of your li
 
 A `BranchUniversalObject` is a container that Branch uses to organize and track pieces of content within your app. As a single, self-contained object associated with each thing that you want to index with Google, it provides convenient methods for sharing, deep linking, and tracking how often that thing is viewed.
 
-You build a `BranchUniversalObject` by assembling parameters. After the parameters are assembled, you can call `registerView` to ensure Branch adds the content to the index.
+You build a `BranchUniversalObject` by assembling parameters. After the parameters are assembled, you call a method to ensure Branch adds the content to the index.
 
 {% if page.ios %}
 
@@ -118,7 +118,7 @@ Branch.createBranchUniversalObject({
   }
 }).then(function (newBranchUniversalObj) {
   branchUniversalObj = newBranchUniversalObj;
-  
+
   // register a view to add to the index
   branchUniversalObj.registerView();
 });
@@ -219,7 +219,7 @@ Once you enable this, your app will be included in our nightly job to automatica
 
 ## When does Google scrape?
 
-After you've given us permission to create sitemap, how can you know that Google has even seen your content? We've created a graph, which is currently located at the bottom of the Dashboard's [Summary](https://dashboard.branch.io/#) page. This graph lists four pieces of information:
+After you've enabled App Indexing, how can you know that Google has even seen your content? We've created a graph, which is currently located at the bottom of the Dashboard's [Summary](https://dashboard.branch.io/#) page. This graph lists four pieces of information:
 
 1. The date the sitemap files were last generated (and included at least one of your links)
 2. The total number of links to unique pieces content that Branch has included in sitemaps
