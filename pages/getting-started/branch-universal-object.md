@@ -509,7 +509,7 @@ branchUniversalObj.showShareSheet({
 });
 {% endhighlight %}
 
-#### Share sheet callbacks (Android ONLY)
+#### Share sheet callbacks
 
 {% protip %}
 Callbacks in iOS are ignored. There is no need to implement them as the events are handled by `UIActivityViewController`.
@@ -537,7 +537,7 @@ branchUniversalObj.onShareSheetDismissed(function () {
 });
 {% endhighlight %}
 
-##### onLinkShareResponse
+##### onLinkShareResponse (Android ONLY)
 
 The event returns a dictionary of the response data.
 
@@ -547,7 +547,7 @@ branchUniversalObj.onLinkShareResponse(function (res) {
 });
 {% endhighlight %}
 
-##### onChannelSelected
+##### onChannelSelected (Android ONLY)
 
 The event fires when a channel is selected.
 
