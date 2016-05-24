@@ -353,11 +353,11 @@ Branch opens your app by using its URI scheme (`yourapp://`), which should be un
 1. On the [Link Settings](https://dashboard.branch.io/#/settings/link){:target="_blank"} page of the Branch dashboard, ensure that **I have an Android App** is checked and **Android URI Scheme** is filled.
 1. Choose the `Activity` you want to open up when a link is clicked. This is typically your `SplashActivity` or a `BaseActivity` that all other activities inherit from.
 1. Inside your `AndroidManifest.xml`, locate where the selected `Activity` is defined.
-1. Within the `Activity` definition, insert the intent filter provided below. Change `yourApp` under `android:scheme` to the URI scheme you've selected.
+1. Within the `Activity` definition, insert the intent filter provided below. Change `yourapp` under `android:scheme` to the URI scheme you've selected.
 
 {% highlight xml %}
 <intent-filter>
-	<data android:scheme="yourApp" android:host="open" />
+	<data android:scheme="yourapp" android:host="open" />
 	<action android:name="android.intent.action.VIEW" />
 	<category android:name="android.intent.category.DEFAULT" />
 	<category android:name="android.intent.category.BROWSABLE" />
@@ -366,19 +366,14 @@ Branch opens your app by using its URI scheme (`yourapp://`), which should be un
 
 ### Enable Auto Session Management
 
-Register an `Application` class in your Manifest as follows:
+Simply create a Branch instance in your `Application#onCreate()` method:
 
-{% highlight xml %}
- <application
-    android:name="io.branch.referral.BranchApp">
+{% highlight java %}
+public void onCreate() {
+    super.onCreate();
+    Branch.getAutoInstance(this);
+}
 {% endhighlight %}
-
-{% protip title="Alternative Configurations" %}
-
-- [I already have a custom Application class]({{base.url}}/getting-started/sdk-integration-guide/advanced/android#using-an-existing-custom-application-class){:target="_blank"}
-- [I need to support pre-14 Android]({{base.url}}/getting-started/sdk-integration-guide/advanced/android#supporting-pre-14-android){:target="_blank"}
-
-{% endprotip %}
 
 {% endif %}
 <!---       /Android-specific Branch Key -->
@@ -710,10 +705,6 @@ public void onNewIntent(Intent intent) {
     this.setIntent(intent);
 }
 {% endhighlight %}
-
-{% protip title="If you are not using automatic session management" %}
-You will need to initialize the session using `Branch branch = Branch.getInstance(getApplicationContext());` instead of `Branch branch = Branch.getInstance();` in the snippet above.
-{% endprotip %}
 
 {% protip title="If you are calling this method inside a fragment"%}
 `this.getIntent().getData()` refers to the data associated with an incoming intent. Please use `getActivity()` instead of passing in `this`.
@@ -1158,19 +1149,6 @@ Follow these directions install the Branch SDK framework files without using Coc
 [Back to the Guide]({{base.url}}/getting-started/sdk-integration-guide/guide/ios#get-the-sdk-files)
 
 {% elsif page.android %}
-
-## Using an existing custom Application class
-
-Simply create a Branch instance in your `Application#onCreate()` method:
-
-{% highlight java %}
-public void onCreate() {
-    super.onCreate();
-    Branch.getAutoInstance(this);
-}
-{% endhighlight %}
-
-[Back to the Guide]({{base.url}}/getting-started/sdk-integration-guide/guide/android#enable-auto-session-management)
 
 ## Supporting pre-14 Android
 

@@ -44,9 +44,19 @@ To get started, contact support@branch.io or your Branch account manager with th
 
 Ensure that you are capturing both the [Google Advertising Identifier (GAID) on Android]({{base.url}}/getting-started/sdk-integration-guide/advanced/android/#use-google-advertising-id), and the [IDFA on iOS]({{base.url}}/getting-started/sdk-integration-guide/advanced/ios/#install-the-sdk-manually) (by importing the `AdSupport.framework`).
 
+## Enable Branch on TUNE Dashboard
+
+When you are ready to have Branch send data to TUNE, you must make sure Branch is an enabled provider under your **Partners** in your TUNE dashboard. In order to do so, click into the **Integrated Partners** section on your TUNE dashboard. From there, enter in Branch inside the search box, and click enable. 
+
+## Grab Advertiser ID and Site ID(s)
+
+After enabling Branch, for each mobile property you have, be sure to grab the **Site ID**. Start by clicking **Mobile Apps** on the left hand pane of your TUNE dashboard. From there, select the app you're interested in, and select **Edit App Details** under the app settings. You will see an **App ID** (which is an un-editable field). This is your Site ID.
+
+In order to grab advertiser ID, go to **Testing** on the left hand pane of your TUNE dashboard. Select **Test Mobile App**, and select your app. Under the **Measurement Info** box, you will see Advertiser ID. Grab this value.
+
 {% elsif page.advanced %}
 
-## Ensure Google Play Install Referrer is added
+## Add Google Play Install Referrer (Android)
 
 When you integrate the Tune SDK, ensure you add the install referrer snippet provided Tune [here](https://help.tune.com/marketing-console/how-google-play-install-referrer-works/).
 
