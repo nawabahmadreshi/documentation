@@ -96,7 +96,7 @@ You can install the Branch SDK by using one of several different command line to
 {% tabs %}
 {% tab cordova %}
 {% highlight sh %}
-cordova plugin add https://github.com/BranchMetrics/Cordova-Ionic-PhoneGap-Deferred-Deep-Linking-SDK.git --variable BRANCH_KEY=key_live_xxxxxxxxxxxxxxx --variable URI_SCHEME=yourApp
+cordova plugin add https://github.com/BranchMetrics/Cordova-Ionic-PhoneGap-Deferred-Deep-Linking-SDK.git --variable BRANCH_KEY=key_live_xxxxxxxxxxxxxxx --variable URI_SCHEME=yourapp
 {% endhighlight %}
 
 {% endtab %}
@@ -110,7 +110,7 @@ npm install branch-cordova-sdk
 
 {% tab phonegap %}
 {% highlight sh %}
-phonegap plugin add https://github.com/BranchMetrics/Cordova-Ionic-PhoneGap-Deferred-Deep-Linking-SDK.git --variable BRANCH_KEY=key_live_xxxxxxxxxxxxxxx --variable URI_SCHEME=yourApp
+phonegap plugin add https://github.com/BranchMetrics/Cordova-Ionic-PhoneGap-Deferred-Deep-Linking-SDK.git --variable BRANCH_KEY=key_live_xxxxxxxxxxxxxxx --variable URI_SCHEME=yourapp
 {% endhighlight %}
 
 {% endtab %}
@@ -392,7 +392,7 @@ Make sure that this activity is launched as a `singleTask`. This is important to
 [IntentFilter (new[]{"android.intent.action.VIEW"},
         Categories=new[]{"android.intent.category.DEFAULT",
         "android.intent.category.BROWSABLE"},
-        DataScheme="yourApp",
+        DataScheme="yourapp",
         DataHost="open")]
 {% endhighlight %}
 
@@ -443,7 +443,7 @@ To understand how to work with android manifest, read Xamarin documentation:
 Branch opens your app by using its URI scheme (`yourapp://`), which should be unique to your app.
 
 1. On the [Link Settings](https://dashboard.branch.io/#/settings/link){:target="_blank"} page of the Branch dashboard, ensure that **I have an iOS App** and/or **I have an Android App** is checked and **iOS URI Scheme** and/or **Android URI Scheme** is filled.
-1. In your project's `*-app.xml` file, insert the platform-specific snippet(s) below. Change `yourApp` to the URI scheme you've selected.
+1. In your project's `*-app.xml` file, insert the platform-specific snippet(s) below. Change `yourapp` to the URI scheme you've selected.
 
 ### iOS Projects
 
@@ -453,7 +453,7 @@ Branch opens your app by using its URI scheme (`yourapp://`), which should be un
     <dict>
         <key>CFBundleURLSchemes</key>
         <array>
-            <string>yourApp</string>
+            <string>yourapp</string>
         </array>
     </dict>
 </array>
@@ -464,7 +464,7 @@ Branch opens your app by using its URI scheme (`yourapp://`), which should be un
 {% highlight xml %}
 <activity>
     <intent-filter>
-        <data android:scheme="yourApp" />
+        <data android:scheme="yourapp" />
         <action android:name="android.intent.action.VIEW" />
         <category android:name="android.intent.category.DEFAULT" />
         <category android:name="android.intent.category.BROWSABLE" />
@@ -485,7 +485,7 @@ Branch opens your app by using its URI scheme (`yourapp://`), which should be un
 
 1. Retrieve your Branch Key on the [Settings](https://dashboard.branch.io/#/settings){:target="_blank"} page of the Branch dashboard.
 1. On the [Link Settings](https://dashboard.branch.io/#/settings/link){:target="_blank"} page of the Branch dashboard, ensure that **I have an iOS App** is checked and **iOS URI Scheme** and is filled.
-1. In your project's `tiapp.xml` file, insert the snippet below. Change `yourApp` to the URI scheme you've selected.
+1. In your project's `tiapp.xml` file, insert the snippet below. Change `yourapp` to the URI scheme you've selected.
 
 {% highlight xml %}
   <ios>
@@ -500,7 +500,7 @@ Branch opens your app by using its URI scheme (`yourapp://`), which should be un
           <dict>
             <key>CFBundleURLSchemes</key>
             <array>
-              <string>yourApp</string>
+              <string>yourapp</string>
             </array>
           </dict>
         </array>
@@ -532,11 +532,11 @@ Branch opens your app by using its URI scheme (`yourapp://`), which should be un
 1. On the [Link Settings](https://dashboard.branch.io/#/settings/link){:target="_blank"} page of the Branch dashboard, ensure that **I have an Android App** is checked and **Android URI Scheme** is filled.
 1. Choose the `Activity` you want to open up when a link is clicked. This is typically your `SplashActivity` or a `BaseActivity` that all other activities inherit from.
 1. Inside your `tiapp.xml`, locate where the selected `Activity` is defined.
-1. Within the `Activity` definition, insert the intent filter provided below. Change `yourApp` under `android:scheme` to the URI scheme you've selected.
+1. Within the `Activity` definition, insert the intent filter provided below. Change `yourapp` under `android:scheme` to the URI scheme you've selected.
 
 {% highlight xml %}
 <intent-filter>
-	<data android:scheme="yourApp" android:host="open" />
+	<data android:scheme="yourapp" android:host="open" />
 	<action android:name="android.intent.action.VIEW" />
 	<category android:name="android.intent.category.DEFAULT" />
 	<category android:name="android.intent.category.BROWSABLE" />

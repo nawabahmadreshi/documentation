@@ -49,7 +49,7 @@ Branch automatically handles HTTPS traffic for custom subdomains and root domain
 ### Custom SUBDOMAIN (go.branch.com)
 
 {% caution title="Do not use www" %}
-Some browsers have special rules for processing URLs beginning with `www`. We strongly recommend you do not a `www` prefix in your custom subdomain.
+Some browsers have special rules for processing URLs beginning with `www`. We strongly recommend you do include not a `www` prefix in your custom subdomain.
 {% endcaution %}
 
 1. Create a CNAME for your subdomain and point it to `custom.bnc.lt`
