@@ -63,21 +63,21 @@ Here is an example of the full plugin installation command:
 {% tabs %}
 {% tab cordova %}
 {% highlight sh %}
-cordova plugin install https://github.com/BranchMetrics/Cordova-Ionic-PhoneGap-Deferred-Deep-Linking-SDK.git --variable BRANCH_KEY=key_test_xxxxxxxxxxxxxxx --variable URI_SCHEME=yourApp
+cordova plugin install https://github.com/BranchMetrics/Cordova-Ionic-PhoneGap-Deferred-Deep-Linking-SDK.git --variable BRANCH_KEY=key_test_xxxxxxxxxxxxxxx --variable URI_SCHEME=yourapp
 {% endhighlight %}
 
 {% endtab %}
 
 {% tab phonegap %}
 {% highlight sh %}
-phonegap plugin add https://github.com/BranchMetrics/Cordova-Ionic-PhoneGap-Deferred-Deep-Linking-SDK.git --variable BRANCH_KEY=key_test_xxxxxxxxxxxxxxx --variable URI_SCHEME=yourApp
+phonegap plugin add https://github.com/BranchMetrics/Cordova-Ionic-PhoneGap-Deferred-Deep-Linking-SDK.git --variable BRANCH_KEY=key_test_xxxxxxxxxxxxxxx --variable URI_SCHEME=yourapp
 {% endhighlight %}
 
 {% endtab %}
 
 {% tab npm %}
 {% highlight sh %}
-npm install branch-cordova-sdk --variable BRANCH_KEY=key_test_xxxxxxxxxxxxxxx --variable URI_SCHEME=yourApp
+npm install branch-cordova-sdk --variable BRANCH_KEY=key_test_xxxxxxxxxxxxxxx --variable URI_SCHEME=yourapp
 {% endhighlight %}
 
 {% endtab %}
