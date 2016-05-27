@@ -1164,7 +1164,7 @@ Follow these directions install the Branch SDK framework files without using Coc
 
 ## Using the default Application class
 
-If your app doesn't use a custom Application class, simply add an `android:name` parameter to your `<application>` definition in **AndroidManifest.xml**:
+If your app doesn't use a custom Application class, simply add the `android:name="io.branch.referral.BranchApp"` parameter to your `<application>` definition in **AndroidManifest.xml**:
 
 {% highlight xml %}
 <application
