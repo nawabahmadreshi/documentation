@@ -366,15 +366,24 @@ Branch opens your app by using its URI scheme (`yourapp://`), which should be un
 
 ### Enable Auto Session Management
 
-In your **AndroidManifest.xml**, add an `android:name` parameter to your `<application>` definition:
+If your app uses a custom Application class, add `Branch.getAutoInstance(this);` so that it matches the following:
 
-{% highlight xml %}
-<application
-    android:name="io.branch.referral.BranchApp">
+{% highlight java %}
+public final class CustomApplicationClass {
+  @Override
+  public void onCreate() {
+      super.onCreate();
+      Branch.getAutoInstance(this);
+  }
+}
 {% endhighlight %}
 
+{% caution title="Make sure this is the correct onCreate()!" %}
+Your `Activity` also has an `onCreate()` method. Be sure you do not mix the two up!
+{% endcaution %}
+
 {% protip title="Alternative Configurations" %}
-- [I already have a custom Application class]({{base.url}}/getting-started/sdk-integration-guide/advanced/android#using-an-existing-custom-application-class){:target="_blank"}
+- [I don't use a custom application class]({{base.url}}/getting-started/sdk-integration-guide/advanced/android#using-the-default-application-class){:target="_blank"}
 - [I need to support pre-14 Android]({{base.url}}/getting-started/sdk-integration-guide/advanced/android#supporting-pre-14-android){:target="_blank"}
 {% endprotip %}
 
@@ -1149,56 +1158,20 @@ Follow these directions install the Branch SDK framework files without using Coc
 `SafariServices.framework` enables cookie-based matching on iOS 9+, which allows us to [guarantee link matching with 100% accuracy]({{base.url}}/getting-started/matching-accuracy). Please test to make sure the invisible `SFSafariViewController` does not alter your view controller stack. Delete the app and reinstall to trigger the invisible SFSafariViewController to be presented on first launch. Please note that you cannot use 100% matching while [setDebug is turned on]({{base.url}}/getting-started/integration-testing/guide/ios/#use-debug-mode-to-simulate-fresh-installs).
 {% endcaution %}
 
-[Back to the Guide]({{base.url}}/getting-started/sdk-integration-guide/guide/ios#get-the-sdk-files)
+[Back to the Guide]({{base.url}}/getting-started/sdk-integration-guide/guide/ios/#get-the-sdk-files)
 
 {% elsif page.android %}
 
-## Using an existing custom Application class
+## Using the default Application class
 
-If you already have a custom Application class, there are two options:
-
-### 1. Extend your Application class with the BranchApp class
-
-This is the simplest approach. Register the custom Application class in your `AndroidManifext.xml` like this:
+If your app doesn't use a custom Application class, simply add an `android:name` parameter to your `<application>` definition in **AndroidManifest.xml**:
 
 {% highlight xml %}
 <application
-      android:name="com.your.app" >
+    android:name="io.branch.referral.BranchApp">
 {% endhighlight %}
 
-Your custom Application class definition will look like this:
-
-{% highlight java %}
-public final class CustomBranchApp extends BranchApp {
-  @Override
-  public void onCreate() {
-      super.onCreate();
-  }
-}
-{% endhighlight %}
-
-### 2. Integrate directly into your custom application class
-
-A more custom approach, for advanced implementations. Register the custom Application class in your `AndroidManifext.xml` like this:
-
-{% highlight xml %}
-<application
-      android:name="com.your.app" >
-{% endhighlight %}
-
-And then configure your custom Application class as follows:
-
-{% highlight java %}
-public final class CustomBranchApp {
-  @Override
-  public void onCreate() {
-      super.onCreate();
-      Branch.getAutoInstance(this);
-  }
-}
-{% endhighlight %}
-
-[Back to the Guide]({{base.url}}/getting-started/sdk-integration-guide/guide/android#enable-auto-session-management)
+[Back to the Guide]({{base.url}}/getting-started/sdk-integration-guide/guide/android/#enable-auto-session-management)
 
 ## Supporting pre-14 Android
 
