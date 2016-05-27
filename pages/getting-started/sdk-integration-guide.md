@@ -366,14 +366,17 @@ Branch opens your app by using its URI scheme (`yourapp://`), which should be un
 
 ### Enable Auto Session Management
 
-Simply create a Branch instance in your `Application#onCreate()` method:
+In your **AndroidManifest.xml**, add an `android:name` parameter to your `<application>` definition:
 
-{% highlight java %}
-public void onCreate() {
-    super.onCreate();
-    Branch.getAutoInstance(this);
-}
+{% highlight xml %}
+<application
+    android:name="io.branch.referral.BranchApp">
 {% endhighlight %}
+
+{% protip title="Alternative Configurations" %}
+- [I already have a custom Application class]({{base.url}}/getting-started/sdk-integration-guide/advanced/android#using-an-existing-custom-application-class){:target="_blank"}
+- [I need to support pre-14 Android]({{base.url}}/getting-started/sdk-integration-guide/advanced/android#supporting-pre-14-android){:target="_blank"}
+{% endprotip %}
 
 {% endif %}
 <!---       /Android-specific Branch Key -->
@@ -1149,6 +1152,53 @@ Follow these directions install the Branch SDK framework files without using Coc
 [Back to the Guide]({{base.url}}/getting-started/sdk-integration-guide/guide/ios#get-the-sdk-files)
 
 {% elsif page.android %}
+
+## Using an existing custom Application class
+
+If you already have a custom Application class, there are two options:
+
+### 1. Extend your Application class with the BranchApp class
+
+This is the simplest approach. Register the custom Application class in your `AndroidManifext.xml` like this:
+
+{% highlight xml %}
+<application
+      android:name="com.your.app" >
+{% endhighlight %}
+
+Your custom Application class definition will look like this:
+
+{% highlight java %}
+public final class CustomBranchApp extends BranchApp {
+  @Override
+  public void onCreate() {
+      super.onCreate();
+  }
+}
+{% endhighlight %}
+
+### 2. Integrate directly into your custom application class
+
+A more custom approach, for advanced implementations. Register the custom Application class in your `AndroidManifext.xml` like this:
+
+{% highlight xml %}
+<application
+      android:name="com.your.app" >
+{% endhighlight %}
+
+And then configure your custom Application class as follows:
+
+{% highlight java %}
+public final class CustomBranchApp {
+  @Override
+  public void onCreate() {
+      super.onCreate();
+      Branch.getAutoInstance(this);
+  }
+}
+{% endhighlight %}
+
+[Back to the Guide]({{base.url}}/getting-started/sdk-integration-guide/guide/android#enable-auto-session-management)
 
 ## Supporting pre-14 Android
 
