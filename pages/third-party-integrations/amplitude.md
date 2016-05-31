@@ -53,20 +53,20 @@ If you need to upgrade, make sure you're using the Branch iOS SDK 0.12.2 or grea
 
 ## Custom identity support
 
-You can use the following code to let Branch know what device_id and user_id should be sent to Amplitude.
+You can use the following code to let Branch know what device_id and user_id should be sent to Amplitude. Please make sure you are using SDK version 0.12.2 or later.
 
 iOS:
 
 {% highlight objc %}
-[[Branch getInstance] setRequestMetadataKey:@"$amplitude_device_id value:@"Device A"];
-[[Branch getInstance] setRequestMetadataKey:@"$amplitude_user_id value:@"User A"];
+[[Branch getInstance] setRequestMetadataKey:@"$amplitude_device_id" value:@"Device A"];
+[[Branch getInstance] setRequestMetadataKey:@"$amplitude_user_id" value:@"User A"];
 {% endhighlight %}
 
 Android:
 
 {% highlight java %}
-Branch.getInstance().setRequestMetadata(“$amplitude_device_id”, “12345”);
-Branch.getInstance().setRequestMetadata(“$amplitude_user_id”, “user-12345”);
+Branch.getInstance().setRequestMetadata("$amplitude_device_id", "12345");
+Branch.getInstance().setRequestMetadata("$amplitude_user_id", "user-12345");
 {% endhighlight %}
 
 {% endif %}
