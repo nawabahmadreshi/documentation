@@ -63,6 +63,7 @@
         - mixpanel
         - ad-network-analytics
         - tune
+        - amplitude
     - strategic-partners-guide
 - title: Reference
   directory: methods-endpoints
