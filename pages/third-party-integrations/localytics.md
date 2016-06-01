@@ -14,6 +14,10 @@ sections:
 
 {% if page.overview %}
 
+{% protip title="The Localytics V2 integration is currently in private beta" %}
+To request access to the Localytics V2 integration, please contact [support@branch.io](mailto:support@branch.io) or your Branch account manager. 
+{% endprotip %}
+
 We've partnered with Localytics to provide an easy way to deliver Branch installs and attributions to your Localytics dashboard. This is great for segmenting your users and providing higher granularity for your organic cohorts vs paid cohorts.
 
 {% getstarted title="Get started with Localytics integration" %}{% endgetstarted %}
@@ -26,6 +30,10 @@ We've partnered with Localytics to provide an easy way to deliver Branch install
 - You also need to [sign up for a Localytics account](https://www.localytics.com/free-trial-signup/) and [install the Localytics SDK](http://docs.localytics.com/).
 
 {% endprerequisite %}
+
+## Contact your Branch Account Manager
+
+To get started, contact support@branch.io or your Branch account manager and give them your Localytics iOS and Android API keys.
 
 ## How it works
 
@@ -42,13 +50,6 @@ Through automatically configured webhooks, we have built a custom integration to
 {% protip title="What does this mean?" %}
 Once you have selected to allow third-party attribution, Localytics will attribute non-Localytics installs to your dashboard. **This information is delayed by 10 minutes.**
 {% endprotip %}
-
-
-## Configure Branch dashboard
-
-1. Navigate to the [Webhooks](https://dashboard.branch.io/#/webhook) tab on the Branch dashboard.
-1. Click the Localytics button.
-1. You need to select the platform and paste the Localytics **Attribution ID** from the previous step. {% image src='/img/pages/third-party-integrations/localytics/localytics-save.png' 2-thirds center alt='branch-localytics-settings' %}
 
 {% caution %}
 When [creating a Branch]({{base.url}}/getting-started/creating-links-other-ways) link to use with Localytics, be sure to specify a **campaign** and **channel**.
