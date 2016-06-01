@@ -50,7 +50,7 @@ To locate your Mixpanel Token, navigate to mixpanel.com and login to the Dashboa
 
 Please ensure you're using the Branch iOS SDK 0.12.2 or greater, and Android SDK v1.12.1 or greater. If you implemented Branch after May 28th 2016, you are likely already on this version or later.
 
-In addition to the basic integration, you should add a tiny amount of code to your app. This will allow the Branch SDK to pass correct Distinct Id to our servers, which will then pass that Distinct Id to Mixpanel when logging any event.
+In addition to the basic integration, you should add a tiny amount of code to your app. This will allow the Branch SDK to pass the user's Mixpanel Distinct Id to our servers. Branch will then pass that Distinct Id to Mixpanel when logging any event.
 
 **iOS:**
 
