@@ -11,7 +11,6 @@ sections:
 - overview
 - guide
 - advanced
-contents: list
 ---
 
 {% if page.overview %}
