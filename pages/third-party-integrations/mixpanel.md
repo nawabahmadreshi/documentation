@@ -6,9 +6,6 @@ page_title: Sync Branch data with Mixpanel
 description: Learn how to synchronize your Branch data with Mixpanel, for example to track in-app events, segment users from Branch installs and calculate LTV.
 ios_keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Mixpanel, user segmentation, life time value, LTV
 android_keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Mixpanel, user segmentation, life time value, LTV
-platforms:
-- ios
-- android
 sections:
 - overview
 - guide
@@ -114,7 +111,7 @@ The User then gets placed into a drip email campaign, targeted for re-engagement
 
 The referred event associated with 5678 is not associated with 1234 / "User A".
 
-In order for any additional events on this device to be associated with "User A", the app should invoke the one line of code as recommended in the section [Pass Mixpanel Distinct Id](/third-party-integrations/mixpanel/guide/ios/#pass-mixpanel-distinct-id-recommended). Example:
+In order for any additional events on this device to be associated with "User A", the app should invoke the one line of code as recommended in the section [Pass Mixpanel Distinct Id](/third-party-integrations/mixpanel/guide/#pass-mixpanel-distinct-id-recommended). Example:
 
 {% highlight objc %}
 [[Branch getInstance] setRequestMetadataKey:@"$mixpanel_distinct_id" value:@"User A"];
