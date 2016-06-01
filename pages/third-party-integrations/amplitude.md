@@ -45,9 +45,7 @@ Ensure that you are capturing both the [Google Advertising Identifier (GAID) on 
 
 ## Upgrade to the latest SDKs [if necessary]
 
-Ensure you're using the latest integrations. If you implemented Branch after May 28th 2016, you'll likely be using the latest version of the SDK.
-
-If you need to upgrade, make sure you're using the Branch iOS SDK 0.12.2 or greater, and Android SDK v1.12.1 or greater.
+Please ensure you're using the Branch iOS SDK 0.12.2 or greater, and Android SDK v1.12.1 or greater. If you implemented Branch after May 28th 2016, you are likely already on this version or later.
 
 {% elsif page.advanced %}
 
@@ -55,14 +53,14 @@ If you need to upgrade, make sure you're using the Branch iOS SDK 0.12.2 or grea
 
 You can use the following code to let Branch know what device_id and user_id should be sent to Amplitude. Please make sure you are using SDK version 0.12.2 or later.
 
-iOS:
+**iOS:**
 
 {% highlight objc %}
 [[Branch getInstance] setRequestMetadataKey:@"$amplitude_device_id" value:@"Device A"];
 [[Branch getInstance] setRequestMetadataKey:@"$amplitude_user_id" value:@"User A"];
 {% endhighlight %}
 
-Android:
+**Android:**
 
 {% highlight java %}
 Branch.getInstance().setRequestMetadata("$amplitude_device_id", "12345");
