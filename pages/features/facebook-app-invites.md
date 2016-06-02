@@ -104,7 +104,7 @@ Branch.getInstance().getShortURLWithParams(params, "facebook", "app_invite" andC
     if error == nil, let url = optUrl {
         var inviteContent: FBSDKAppInviteContent = FBSDKAppInviteContent()
                     
-        inviteContent.appLinkURL = NSURL(String: url!)!
+        inviteContent.appLinkURL = NSURL(String: url)!
         
         inviteDialog.content = inviteContent
         inviteDialog.delegate = self
