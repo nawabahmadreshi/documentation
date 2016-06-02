@@ -607,7 +607,7 @@ Here is a generic **AppDeledate.m** snippet with these methods implemented:
 Branch *branch = [Branch getInstance];
 
    [branch initSessionWithLaunchOptions:launchOptions andRegisterDeepLinkHandler:^(NSDictionary *params, NSError *error) {
-      if (!error) {
+      if (!error && params) {
          if (params[@"$deeplink_path"] && !self.ignoreDeeplinkPath) {
             NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"your-uri-scheme://%@", params[@"$deeplink_path"]]];
             // handle the URL!

@@ -153,7 +153,7 @@ In your **AppDelegate.m** file, find this method inside `didFinishLaunchingWithO
 
 {% highlight objc %}
 [branch initSessionWithLaunchOptions:launchOptions andRegisterDeepLinkHandler:^(NSDictionary *params, NSError *error) {
-    if (!error) {
+    if (!error && params) {
         // params are the deep linked params associated with the link that the user clicked -> was re-directed to this app
         // params will be empty if no data found
         // ... insert custom logic here ...
@@ -168,8 +168,8 @@ In your **AppDelegate.m** file, find this method inside `didFinishLaunchingWithO
 In your **AppDelegate.swift** file, find this method inside `didFinishLaunchingWithOptions` (you would have added it in the [SDK Configuration Guide]({{base.url}}/getting-started/sdk-integration-guide)):
 
 {% highlight swift %}
-branch.initSessionWithLaunchOptions(launchOptions, andRegisterDeepLinkHandler: { params, error in
-    if (error == nil) {
+branch.initSessionWithLaunchOptions(launchOptions, andRegisterDeepLinkHandler: { optParams, error in
+    if error == nil, let params = optParams {
         // params are the deep linked params associated with the link that the user clicked -> was re-directed to this app
         // params will be empty if no data found
         // ... insert custom logic here ...
@@ -297,10 +297,9 @@ Inside the `andRegisterDeepLinkHandler` callback in your AppDelegate, you will w
 {% highlight swift %}
 func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     let branch: Branch = Branch.getInstance()
-    branch.initSessionWithLaunchOptions(launchOptions, true, andRegisterDeepLinkHandler: { params, error in
-
+    branch.initSessionWithLaunchOptions(launchOptions, true, andRegisterDeepLinkHandler: { optParams, error in
         // If the key 'pictureId' is present in the deep link dictionary
-        if (params["+clicked_branch_link"] && params["pictureId"]) {
+        if let params = optParams where params["+clicked_branch_link"] && params["pictureId"] {
             NSLog("clicked picture link!")
             // load the view to show the picture
         } else {

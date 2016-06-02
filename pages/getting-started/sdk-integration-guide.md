@@ -572,7 +572,7 @@ Underneath this line, add the following snippet:
 {% highlight objc %}
 Branch *branch = [Branch getInstance];
 [branch initSessionWithLaunchOptions:launchOptions andRegisterDeepLinkHandler:^(NSDictionary *params, NSError *error) {
-    if (!error) {
+    if (!error && params) {
         // params are the deep linked params associated with the link that the user clicked -> was re-directed to this app
         // params will be empty if no data found
         // ... insert custom logic here ...
@@ -586,7 +586,7 @@ Branch *branch = [Branch getInstance];
 {% highlight swift %}
 let branch: Branch = Branch.getInstance()
 branch.initSessionWithLaunchOptions(launchOptions, andRegisterDeepLinkHandler: { params, error in
-    if (error == nil) {
+    if error == nil, let params = optParams {
         // params are the deep linked params associated with the link that the user clicked -> was re-directed to this app
         // params will be empty if no data found
         // ... insert custom logic here ...
