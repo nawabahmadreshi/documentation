@@ -96,7 +96,7 @@ If you want to use OG tags you host elsewhere, leave these parameters empty and 
 If you're creating a link by appending query parameters, just append the parameters to the URL. Please make sure to URL encode everything, lest the link will break.
 
 {% highlight javascript %}
-"https://[branchsubdomain]/a?%24og_title=MyApp%20is%20disrupting%20apps&$og_image_url=http%3A%2F%2Fmyapp.com%2Fimage.png"
+"https://[branchsubdomain]?%24og_title=MyApp%20is%20disrupting%20apps&$og_image_url=http%3A%2F%2Fmyapp.com%2Fimage.png"
 {% endhighlight %}
 {% endexample %}
 
@@ -256,15 +256,17 @@ var branchUniversalObject = branch.createBranchUniversalObject({
 <!--- /React -->
 {% if page.react %}
 {% highlight js %}
-var branchUniversalObject = {
-   metadata:{  
-      "$og_video" : "http://mysite/video.mpg"
-   },
-   "canonicalIdentifier" : "content/12345",
-   "contentTitle" : "My Content Title",
-   "contentDescription" : "My Content Description",
-   "contentImageUrl" : "https://example.com/mycontent-12345.png"
-};
+let branchUniversalObject = branch.createBranchUniversalObject(
+  'content/12345', // canonical identifier
+  {
+    contentTitle: 'My Content Title',
+    contentImageUrl: 'https://example.com/mycontent-12345.png',
+    contentDescription: 'My Content Description',
+    metadata: {
+      $og_video: 'http://mysite/video.mpg'
+    }
+  }
+)
 {% endhighlight %}
 {% endif %}
 <!--- /React -->
@@ -296,7 +298,7 @@ If you're creating a link by appending query parameters, you simply need to appe
 Here's how to enable iOS and desktop Deepviews:
 
 {% highlight javascript %}
-"https://[branchsubdomain]/a?%24ios_deepview=default_template&%24desktop_deepview=default_template"
+"https://[branchsubdomain]?%24ios_deepview=default_template&%24desktop_deepview=default_template"
 {% endhighlight %}
 {% endexample %}
 
@@ -432,9 +434,19 @@ branchUniversalObject.addEventListener("bio:generateShortUrl", $.onGenerateUrlFi
 
 <!--- React -->
 {% if page.react %}
-{% protip title="Unsupported in React Native" %}
-Link control parameters are currently unsupported in the React Native SDK. We hope to include them soon, and would also gladly accept pull requests to our [GitHub repo](https://github.com/BranchMetrics/React-Native-Deep-Linking-SDK)!
-{% endprotip %}
+{% highlight js %}
+let linkProperties = {
+  feature: 'share',
+  channel: 'facebook'
+}
+
+let controlParams = {
+  "$ios_deepview": "default_template",
+  "$android_deepview": "default_template"
+}
+
+let {url} = await branchUniversalObject.generateShortUrl(linkProperties, controlParams)
+{% endhighlight %}
 {% endif %}
 <!--- /React -->
 

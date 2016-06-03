@@ -28,25 +28,21 @@ You can create links on the [Marketing page](https://dashboard.branch.io/#/marke
 
 ## Appending query parameters
 
-You can build a Branch link dynamically by appending query parameters. This method is useful if you don't want to wait for a server callback, and don't need to display the resulting (long) link to the user.
-
-{% protip %}
-Try out the [Dynamic Link Builder]({{base.url}}/getting-started/dynamic-link-builder) to easily construct links of this type, or verify that links you have created are valid.
-{% endprotip %}
+You can dynamically append additional query parameters to any existing Branch link, or even build a new Branch link by appending query parameters to the base link domain (this method can be useful if you don't want to wait for a server callback and don't care whether the link is short or not because you won't be displaying it to users).
 
 {% ingredient branchsubdomain %}{% endingredient %}
 
-1. Start with your Branch link domain: **http://[branchsubdomain]**.
-1. Append `/a?` to start the query params string: **http://[branchsubdomain]/a?**
-   - If you're using the legacy `bnc.lt` domain as the base for your links, instead append `/a/your_Branch_key?`: **http://bnc.lt/a/your_branch_key?**
+1. Start with an exiting Branch link, or your Branch link domain: **http://[branchsubdomain]**.
+1. Append `?` to start the query params string: **http://[branchsubdomain]?**
+   - If you're creating a new link and and you're using the legacy `bnc.lt` domain or a custom domain/subdomain as the base for your links, instead append `/a/your_Branch_key?`: **http://bnc.lt/a/your_branch_key?**
 1. [optional] Append any additional key/value pairs, and analytics or link control parameters.
 
 {% example %}
 
-Here's an example of a finalized dynamic link (line breaks added for legibility): 
+Here's an example of a finalized dynamic link (line breaks added for legibility):
 
 {% highlight sh %}
-https://[branchsubdomain]/a?
+https://[branchsubdomain]?
 	%24deeplink_path=article%2Fjan%2F123&
 	%24fallback_url=https%3A%2F%2Fgoogle.com&
 	channel=facebook&
@@ -66,7 +62,6 @@ The following keys have been embedded:
 | **user_id** | 4562 |
 | **name** | Alex |
 
-
 {% endexample %}
 
 {% caution title="Link URL considerations" %}
@@ -74,6 +69,14 @@ The following keys have been embedded:
 1. If any of your links use the legacy `bnc.lt` domain be sure to include your custom domain **and** `bnc.lt` when configuring the [Associated Domains entitlement]({{base.url}}/getting-started/universal-app-links/guide/ios/#add-your-branch-link-domains) for iOS Universal Links.
 
 {% endcaution %}
+
+### URL formats by base domain type
+
+| Link Type | bnc.lt | wxyz.app.link | customdomain.com |
+| --- | --- | --- | --- |
+| New link | https://bnc.lt/a/key_live_xxxxxxxxxxxxxxx?param=value | https://wxyz.app.link?param=value | https://customdomain.com/a/key_live_xxxxxxxxxxxxxxx?param=value
+| Existing SDK link | https://bnc.lt/wxyz/KDSYTMnSZs?param=value | https://wxyz.app.link/KDSYTMnSZs?param=value | https://customdomain.com/wxyz/KDSYTMnSZs?param=value
+| Existing marketing link | https://bnc.lt/linkslug?param=value | https://wxyz.app.link/linkslug?param=value | https://customdomain.com/linkslug?param=value
 
 ## Web SDK
 

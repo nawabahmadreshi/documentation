@@ -102,15 +102,15 @@ Let's say you want to give 10 credits to each new user who signs up through a fr
 
 {% if page.react %}
 
-{% protip title="Unsupported in React Native" %}
-Viewing credits is currently unsupported in the React Native SDK. We hope to include this soon, and would also gladly accept pull requests to our [GitHub repo](https://github.com/BranchMetrics/React-Native-Deep-Linking-SDK)!
-{% endprotip %}
+Once users have credits, they should be able to redeem them. Checking the balance involves loading the most recent balance from the server and then checking the balance.
+
+{% highlight js %}
+let rewards = await branch.loadRewards()
+{% endhighlight %}
 
 {% else %}
 
-Once users have credits, they should be able to redeem them.
-
-Checking the balance involves loading the most recent balance from the server and then checking the balance. These can be two separate steps but for the sake of simplicity we have combined them into one example:
+Once users have credits, they should be able to redeem them. Checking the balance involves loading the most recent balance from the server and then checking the balance. These can be two separate steps but for the sake of simplicity we have combined them into one example:
 
 <!-- iOS -->
 {% if page.ios %}
@@ -155,7 +155,7 @@ Branch.loadRewards().then(function (rewards) {
 {% if page.xamarin %}
 {% highlight c# %}
 Branch branch = Branch.GetInstance ();
-await branch.LoadRewards(this);
+branch.LoadRewards(this);
 {% endhighlight %}
 
 After you've registered the class as a delegate of `IBranchRewardsInterface`
@@ -232,9 +232,9 @@ Branch.getInstance(getApplicationContext()).loadRewards(new BranchReferralStateC
 	public void onStateChanged(boolean changed, Branch.BranchError error) {
 		// changed boolean will indicate if the balance changed from what is currently in memory
 
-		if (error != null) {
+		if (error == null) {
 		    String bucket = "myBucket";
-		    Branch.getInstance(getApplicationContext()).getCreditsForBucket(bucket)
+		    Branch.getInstance(getApplicationContext()).getCreditsForBucket(bucket);
 		}
 	}
 });
@@ -312,9 +312,11 @@ branch.addEventListener("bio:loadRewards", $.onLoadRewardFinished);
 
 {% if page.react %}
 
-{% protip title="Unsupported in React Native" %}
-Redeeming credits is currently unsupported in the React Native SDK. We hope to include this soon, and would also gladly accept pull requests to our [GitHub repo](https://github.com/BranchMetrics/React-Native-Deep-Linking-SDK)!
-{% endprotip %}
+When users spend credits, you can make a simple call to redeem their credits.
+
+{% highlight js %}
+let redeemResult = await branch.redeemRewards(amount, "default")
+{% endhighlight %}
 
 {% else %}
 
@@ -351,7 +353,7 @@ Branch.redeemRewards(5, "default").then(function (res) {
 {% if page.xamarin %}
 {% highlight c# %}
 Branch branch = Branch.GetInstance ();
-await branch.RedeemRewards(this, 5, "default");
+branch.RedeemRewards(this, 5, "default");
 {% endhighlight %}
 
 After you've registered the class as a delegate of `IBranchRewardsInterface`
@@ -438,7 +440,7 @@ Branch.redeemRewards(5, "myBucket").then(function (res) {
 {% if page.xamarin %}
 {% highlight c# %}
 Branch branch = Branch.GetInstance ();
-await branch.RedeemRewards(this, 5, "myBucket");
+branch.RedeemRewards(this, 5, "myBucket");
 {% endhighlight %}
 {% endif %}
 

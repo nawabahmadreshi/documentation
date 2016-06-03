@@ -8,6 +8,11 @@ keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplink
 platforms:
 - ios
 - android
+- cordova
+- xamarin
+- unity
+- titanium
+- react
 sections:
 - overview
 - guide
@@ -35,7 +40,176 @@ We're working with Google to ensure that we can properly transfer all of your li
 
 {% endprerequisite %}
 
-## How to list content in Google through Branch
+## Index your content with Branch
+
+A `BranchUniversalObject` is a container that Branch uses to organize and track pieces of content within your app. As a single, self-contained object associated with each thing that you want to index with Google, it provides convenient methods for sharing, deep linking, and tracking how often that thing is viewed.
+
+You build a `BranchUniversalObject` by assembling parameters. After the parameters are assembled, you call a method to ensure Branch adds the content to the index.
+
+{% if page.ios %}
+
+{% tabs %}
+{% tab objective-c %}
+{% highlight objc %}
+BranchUniversalObject *branchUniversalObject = [[BranchUniversalObject alloc] initWithCanonicalIdentifier:@"item/12345"];
+branchUniversalObject.canonicalUrl = "http://mypage.com/content/12345";
+branchUniversalObject.title = @"My Content Title";
+branchUniversalObject.contentDescription = @"My Content Description";
+branchUniversalObject.imageUrl = @"https://example.com/mycontent-12345.png";
+[branchUniversalObject addMetadataKey:@"property1" value:@"blue"];
+[branchUniversalObject addMetadataKey:@"property2" value:@"red"];
+
+// register a view to add the item to the index
+[branchUniversalObject registerView];
+{% endhighlight %}
+{% endtab %}
+
+{% tab swift %}
+{% highlight swift %}
+let branchUniversalObject: BranchUniversalObject = BranchUniversalObject(canonicalIdentifier: "item/12345")
+branchUniversalObject.canonicalUrl = "http://mypage.com/content/12345"
+branchUniversalObject.title = "My Content Title"
+branchUniversalObject.contentDescription = "My Content Description"
+branchUniversalObject.imageUrl = "https://example.com/mycontent-12345.png"
+branchUniversalObject.addMetadataKey("property1", value: "blue")
+branchUniversalObject.addMetadataKey("property2", value: "red")
+
+// register a view to add the item to the index
+branchUniversalObject.registerView()
+{% endhighlight %}
+{% endtab %}
+{% endtabs %}
+
+{% endif %}
+
+{% if page.android %}
+
+{% highlight java %}
+ BranchUniversalObject branchUniversalObject = new BranchUniversalObject()
+                .setCanonicalIdentifier("item/12345")
+                .setCanonicalUrl("http://mypage.com/content/12345") // optional
+                .setTitle("My Content Title")
+                .setContentDescription("My Content Description")
+                .setContentImageUrl("https://example.com/mycontent-12345.png")
+                .setContentIndexingMode(BranchUniversalObject.CONTENT_INDEX_MODE.PUBLIC)
+                .addContentMetadata("property1", "blue")
+                .addContentMetadata("property2", "red");
+
+// call list on Google Search to add the item to the index
+branchUniversalObject.listOnGoogleSearch();
+{% endhighlight %}
+
+{% endif %}
+
+{% if page.cordova %}
+
+{% highlight js %}
+var branchUniversalObj = null;
+
+Branch.createBranchUniversalObject({
+  canonicalIdentifier: 'content/12345',
+  canonicalUrl: 'http://mypage.com/content/12345', // optional
+  title: 'My Content Title',
+  contentDescription: 'My Content Description',
+  contentImageUrl: 'https://example.com/mycontent-12345.png',
+  contentMetadata: {
+    'product_picture': '12345',
+    'user_id': '6789'
+  }
+}).then(function (newBranchUniversalObj) {
+  branchUniversalObj = newBranchUniversalObj;
+
+  // register a view to add to the index
+  branchUniversalObj.registerView();
+});
+{% endhighlight %}
+
+{% endif %}
+
+{% if page.xamarin %}
+
+{% highlight c# %}
+BranchUniversalObject universalObject = new BranchUniversalObject();
+universalObject.canonicalIdentifier = "content/12345";
+universalObject.canonicalUrl = "http://mypage.com/content/12345"; // optional
+universalObject.title = "My Content Title";
+universalObject.contentDescription = "My Content Description";
+universalObject.imageUrl = "https://example.com/mycontent-12345.png";
+universalObject.metadata.Add("product_picture", "1234");
+universalObject.metadata.Add("user_id", "6789");
+
+// register a view to add to the index
+Branch.registerView(universalObject);
+{% endhighlight %}
+
+{% endif %}
+
+{% if page.unity %}
+
+{% highlight c# %}
+BranchUniversalObject universalObject = new BranchUniversalObject();
+universalObject.canonicalIdentifier = "content/12345";
+universalObject.canonicalUrl = "http://mypage.com/content/12345"; // optional
+universalObject.title = "My Content Title";
+universalObject.contentDescription = "My Content Description";
+universalObject.imageUrl = "https://example.com/mycontent-12345.png";
+universalObject.metadata.Add("product_picture", "1234");
+universalObject.metadata.Add("user_id", "6789");
+
+// register a view to add to the index
+Branch.registerView(universalObject);
+{% endhighlight %}
+
+{% endif %}
+
+{% if page.titanium %}
+
+{% highlight js %}
+var branchUniversalObject = branch.createBranchUniversalObject({
+  "canonicalIdentifier" : "content/12345",
+  "canonicalUrl": "http://mypage.com/content/12345", // optional
+  "title" : "My Content Title",
+  "contentDescription" : "My Content Description",
+  "contentImageUrl" : "https://example.com/mycontent-12345.png",
+  "contentIndexingMode" : "public",
+  "contentMetadata" : {
+      "product_picture" : "12345",
+      "user_id" : "6789"
+  },
+});
+
+// register a view to add to the index
+branchUniversalObject.registerView();
+{% endhighlight %}
+
+{% endif %}
+
+{% if page.react %}
+
+{% highlight js %}
+let branchUniversalObject = branch.createBranchUniversalObject(
+	'content/12345', // canonical identifier
+	{
+		canonicalUrl: 'http://mypage.com/content/12345', // optional
+		contentTitle: 'My Content Title!',
+		contentImageUrl: 'https://example.com/mycontent-12345.png',
+		contentDescription: 'Cool Content Description',
+		metadata: {
+			product_picture: '12345',
+			user_id: '6789'
+		}
+	}
+)
+
+// register a view to add to the index
+let viewResult = await branchUniversalObject.registerView()
+{% endhighlight %}
+
+{% endif %}
+
+If you'd like to view all associated customizations with the Branch Universal Object, see [more details here]({{base.url}}/getting-started/branch-universal-object/guide/).
+
+## Enable App Indexing for Google
 
 If you have completed the prerequisites, you've done the hard part! Now you should go enable automatic sitemap generation on the [Settings](https://dashboard.branch.io/#/settings) page of the Branch Dashboard. Look for the option `Automatic sitemap generation (for Google App Indexing)`.
 
@@ -45,7 +219,7 @@ Once you enable this, your app will be included in our nightly job to automatica
 
 ## When does Google scrape?
 
-After you've given us permission to create sitemap, how can you know that Google has even seen your content? We've created a graph, which is currently located at the bottom of the Dashboard's [Summary](https://dashboard.branch.io/#) page. This graph lists four pieces of information:
+After you've enabled App Indexing, how can you know that Google has even seen your content? We've created a graph, which is currently located at the bottom of the Dashboard's [Summary](https://dashboard.branch.io/#) page. This graph lists four pieces of information:
 
 1. The date the sitemap files were last generated (and included at least one of your links)
 2. The total number of links to unique pieces content that Branch has included in sitemaps

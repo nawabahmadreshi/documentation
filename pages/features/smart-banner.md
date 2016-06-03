@@ -57,13 +57,13 @@ Like all Branch deep links, you can pass custom parameters by specifying keys in
 {% example %}This example will take the visitor straight to a picture with id “12345” after installing and opening the app.
 
 {% highlight javascript %}
-branch.banner(options, {
+branch.banner({
     data: {
         '$deeplink_path': 'picture/12345',
         'picture_id': '12345',
         'user_id': '45123'
     }
-});
+}, {});
 {% endhighlight %}
 {% endexample %}
 
