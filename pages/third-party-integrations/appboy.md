@@ -13,11 +13,13 @@ sections:
 
 {% if page.overview %}
 
+{% protip title="The Appboy integration is currently in private beta" %}
+To request access to the Appboy integration, please contact [support@branch.io](mailto:support@branch.io) or your Branch account manager. 
+{% endprotip %}
+
 The Branch partnership with [Appboy](https://www.appboy.com) provides a push-button way to deliver Branch installs and attributions to your Appboy dashboard. This allows you to analyze your users coming in from Branch deep linked campaigns.
 
-{% caution title="iOS only" %}
 At this time, our integration only applies to the iOS platform.
-{% endcaution %}
 
 {% getstarted title="Get started with Appboy" %}{% endgetstarted %}
 
@@ -27,9 +29,13 @@ At this time, our integration only applies to the iOS platform.
 
 - This guide requires you to have already [integrated the Branch SDK]({{base.url}}/getting-started/sdk-integration-guide) into your app.
 - You also need to [sign up for an Appboy account](https://dashboard.appboy.com/developers/sign_up) and [install the Appboy SDK](https://documentation.appboy.com/).
-- Ensure Appboy's SDK is [collecting the IDGA](https://documentation.appboy.com/iOS/#optional-idfa-collection).
+- Ensure Appboy's SDK is [collecting the IDFA](https://documentation.appboy.com/iOS/#optional-idfa-collection).
 
 {% endprerequisite %}
+
+## Contact your Branch Account Manager
+
+To get started, contact support@branch.io or your Branch account manager and give them your Appboy API key.
 
 ## How it works
 
@@ -41,16 +47,8 @@ Through automatically configured webhooks, we have built a custom integration to
 
 On the Appboy dashboard, navigate to the **App Settings** section, and click **3rd Party Integrations**. From there, grab your API key (this'll be the same for all attribution partners listed on the page).
 
-## Configure Branch dashboard
-
-1. Navigate to the [Webhooks](https://dashboard.branch.io/#/webhook) tab on the Branch dashboard.
-1. Click the Appboy button.
-1. Input your 3rd party API key from the previous step.
-
-{% image src='/img/pages/third-party-integrations/appboy/appboy-add.png' 2-thirds center alt='branch-appboy-settings' %}
-
 {% caution %}
-When [creating a Branch]({{base.url}}/getting-started/creating-links-other-ways) link to use with Appboy, be sure to specify a **campaign** and **channel**.
+When [creating a Branch link]({{base.url}}/getting-started/creating-links-other-ways) to use with Appboy, be sure to specify a **campaign** and **channel**.
 {% endcaution %}
 
 ## Testing

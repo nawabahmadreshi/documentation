@@ -40,3 +40,21 @@ Tabs for links, clicks, events, content, and more on the [Live View page](https:
 By default, Branch will attempt to launch your app every single time a link is opened, before redirecting to the App Store or Play Store. On iOS 9, this can cause an ugly error message if the app is not yet installed. To reverse this default behavior, you can uncheck the **Always try to open app** box on the [Link Settings page](https://dashboard.branch.io/#/settings/link){:target="_blank"}:
 
 {% image src='/img/pages/getting-started/organizing-link-data/always_open_app.png' full center alt='setting link redirection default behavior' %}
+
+## UTM parameters and the Branch dashboard
+
+To make it easier for you to get rich attribution data in your dashboard, Branch will map UTM parameters to the Branch Analytics Tags.
+
+Currently, this is available only for parameters appended to **[dynamic Branch links]({{base.url}}/getting-started/creating-links-other-ways#appending-query-parameters)**. At this time, it is not enabled for parameters on $fallback_url or for other links, like Marketing links - coming soon!
+
+The mapping is as follows:
+
+| UTM Parameter Tag |	Branch Analytics Tag |
+| --- | --- |
+| utm_source | Channel |
+| utm_medium | Feature |
+| utm_campaign | Campaign |
+| utm_content | Tags |
+| utm_term | Keywords (not visible in Dashboard charts) |
+
+By default, UTM parameters will only fill in Branch Analytics Tags that are not already specified. You can change this behavior by going to the **Advanced Settings** section of the [Link Settings](https://dashboard.branch.io/#/settings/link) page on the Branch dashboard and checking the **Use UTM tags for analytics (for dynamically-created links)** box.

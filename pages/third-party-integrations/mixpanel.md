@@ -6,153 +6,118 @@ page_title: Sync Branch data with Mixpanel
 description: Learn how to synchronize your Branch data with Mixpanel, for example to track in-app events, segment users from Branch installs and calculate LTV.
 ios_keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Mixpanel, user segmentation, life time value, LTV
 android_keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Mixpanel, user segmentation, life time value, LTV
-platforms:
-- ios
-- android
 sections:
 - overview
 - guide
 - advanced
-contents: list
 ---
 
 {% if page.overview %}
 
-Whether you simply leverage Mixpanel to track in-app events, or have a more complex implementation such as segmenting users from Branch installs to calculate LTV, we can support you. The two methods available are:
+{% protip title="The Mixpanel integration is currently in private beta" %}
+To request access to the Mixpanel integration, please contact [support@branch.io](mailto:support@branch.io) or your Branch account manager. 
+{% endprotip %}
 
-1. Branch SDK callbacks to to Mixpanel (simpler integration, but provides less flexibility).
-1. Templated Webhooks to deliver data to your backend, which can then send that data to Mixpanel (advanced integration, but provides a bit more flexibility).
+With a push of a button you can send your Branch data to your Mixpanel dashboard, helping you understand the power of Branch as an acquisition pathway. 
 
-{% getstarted title="Get started with Mixpanel integration" %}{% endgetstarted %}
+{% getstarted title="Get started with the Mixpanel integration" %}{% endgetstarted %}
 
 {% elsif page.guide %}
 
-## Track through SDK
-
 {% prerequisite %}
 
-- This guide requires you to have already [integrated the Branch SDK]({{base.url}}/getting-started/sdk-integration-guide) into your app.
-- You also need to [install the Mixpanel SDK](https://mixpanel.com/help/reference/).
-- Know which methods inside your app will be sending event data to Mixpanel.
+- This guide requires you to have already [integrated the Branch SDK]({{base.url}}/getting-started/sdk-integration-guide) and the Mixpanel SDK into your app.
 
 {% endprerequisite %}
 
-The easiest way to send event data that comes in from Branch is to invoke the Mixpanel event tracking function inside any Branch callback.
+## Contact Branch to enable the beta
 
-In this example, we'll take an instance of an install through a Branch link. You can determine if an install (or referred session if a user already had the app) occurred through Branch by examining the `referred` parameter.
+To get started, contact support@branch.io or your Branch account manager with the following information.
 
-{% if page.ios %}
+1. Whether you'd like to enable iOS or Android, or both
+1. Your Mixpanel Token
 
-{% highlight objc %}
-[branch initSessionWithLaunchOptions:launchOptions andRegisterDeepLinkHandler:^(NSDictionary *params, NSError *error) {
-    if (!error) {
-        if ([params[BRANCH_INIT_KEY_CLICKED_BRANCH_LINK] boolValue]) {
-           // Add call here to let MP know a Branch-driven install occurred
-           [[Mixpanel sharedInstance] track:@"install" properties:params];
-        }
-    }
-}];
-{% endhighlight %}
+To locate your Mixpanel Token, navigate to mixpanel.com and login to the Dashboard. Click on "Account" in the navigation bar at the top of the page. Choose "Projects" in the modal that appears, then copy your app’s Token:
 
-{% endif %}
+{% image src="/img/pages/third-party-integrations/mixpanel/mixpanel-token.png" half center alt='Example Ad' %}
 
-{% if page.android %}
 
-{% highlight java %}
-String projectToken = YOUR-PROJECT-TOKEN // given via Mixpanel.
+## Pass Mixpanel Distinct Id (recommended)
 
-Branch.getInstance().initSession(new BranchReferralInitListener(){
-    @Override
-    public void onInitFinished(JSONObject referringParams, Branch.BranchError error) {
-        if (error == null) {
-            MixpanelAPI mp = MixpanelAPI.getInstance(getContext(), projectToken);
-            if (params.optBoolean("+clicked_branch_link")) {
-                mp.track("install", referringParams);
-            }
-        }
-    }
-{% endhighlight %}
+Please ensure you're using the Branch iOS SDK 0.12.2 or greater, and Android SDK v1.12.1 or greater. If you implemented Branch after May 28th 2016, you are likely already on this version or later.
 
-{% endif %}
+In addition to the basic integration, you should add a tiny amount of code to your app. This will allow the Branch SDK to pass the user's Mixpanel Distinct Id to our servers. Branch will then pass that Distinct Id to Mixpanel when logging any event.
 
-Mixpanel then receives the Branch install event, and you know Branch is responsible because `referred` would equal `true` inside the `properties` argument.
+**iOS:**
 
-{% example title="Identity and customer segments/profiles" %}
-
-Let's say you want to take it a step further and track Branch-specific installs and users inside your Mixpanel segments. The way to leverage that would be with the following:
-
-- After a successfully initiating Branch session, [set an identity]({{base.url}}/getting-started/growth-attribution#setting-identities).
-- [Set an identity in Mixpanel](http://mixpanel.github.io/mixpanel-android/com/mixpanel/android/mpmetrics/MixpanelAPI.html#identify-java.lang.String-).
-- Track events.
-
-Since you set identity depending on your user authentication flow, we'd recommend taking care of that first. When that's done, all you need to do is the following:
-
-{% if page.ios %}
+Please add the following before initializing the Branch session:
 
 {% highlight objc %}
-[[Branch getInstance] userCompletedAction:@"purchase" withState:@{@"item":@"123-AB-456"}];
-[[Mixpanel sharedInstance] track:@"purchase" properties:@{@"item":@"123-AB-456"}];
+[[Branch getInstance] setRequestMetadataKey:@"$mixpanel_distinct_id" value:[Mixpanel sharedInstance].distinctId];
 {% endhighlight %}
 
-{% endif %}
+**Android:**
 
-{% if page.android %}
+Please call the following line right after you initialize Branch in your Application’s #onCreate or Activity’s #onCreate:
 
 {% highlight java %}
-JSONObject data = new JSONObject();
-data.put("item", "123-AB-456");
-
-Branch.getInstance().userCompletedAction("purchase", data);
-Mixpanel.getInstance().track("purchase", data);
+MixpanelAPI mp = MixpanelAPI.getInstance(this, "<your project token>");
+Branch.getInstance().setRequestMetadata("$mixpanel_distinct_id", mp.getDistinctId());
 {% endhighlight %}
 
-{% endif %}
-
-{% endexample %}
 
 {% elsif page.advanced %}
 
-## Track through Webhooks
 
-{% prerequisite %}
+## What Branch Sends to Mixpanel
 
-- A server that accepts GET or POST commands
-- Mixpanel back-end SDK configured to upload data to Mixpanel account
 
-{% endprerequisite %}
+| Property Name | Value | Sourced from | Example | Req 
+| --- | --- | --- | --- | --- | ---
+| event | Branch event | event name | [Branch] install | Y
+| properties.distinct_id | Unique ID for device/user | [see section below](#why-we-recommend-passing-mixpanel-distinct-id) | AEBE52E7-03EE-455A-B3C4-E57283966239 | N 
+| properties.token | Mixpanel Token | Branch Dashboard | eed14a8aaa8c8ef777b8e9cb30826399 | Y 
+| properties.time | Event creation date | event | 1461878903 | N 
+| properties.ANY-KEY (many) | The value associated with the key | event metadata or referring link data | ~channel: facebook | N
 
-In this methodology, you will need to configure the GET or POST with our webhooks. You will specify what parameter is passed through to your server in addition to the data we provide, which is found below: 
 
-{% highlight js %}
-{
-   "event": "open",
-   "metadata": {
-      "ip": "73.222.120.96",
-      "referred": false
-   },
-   "session_referring_link_data": {
-      "app_id": "98444119008870744",
-      "tag": null,
-      "campaign": null,
-      "channel": null,
-      "feature": "marketing",
-      "stage": null,
-      "tags": null,
-   "data": {
-      "$marketing_title": "Testing Mixpanel K/V",
-      "extra_data": "1234"
-   },
-      "state": null,
-      "alias": null,
-      "date": "2015-04-27T18:25:36.402Z",
-      "href": "/l/4ix6DwE_4U",
-      "branch_id": "121303087695532448"
-   },
-   "os": "Android",
-   "os_version": "19"
-}
+## Why We Recommend Passing Mixpanel Distinct Id
+
+Branch will automatically specify the Distinct Id requested by Mixpanel, if any of the identifiers that Mixpanel uses are available. On iOS, Branch will send the IDFA if present, or the identifierForVendor (IDFV) if present, otherwise it will omit Distinct Id. On Android Branch will send the Google Advertising ID if present, or the Android ID (hardware ID) if present, otherwise it will omit Distinct Id.
+
+On iOS, the Mixpanel SDK by default will use the IDFA if present, otherwise it will use the identifierForVendor (IDFV) (also known as the vendor ID or identifierForVendor). In rare cases where the identifierForVendor (IDFV) is not available, it will generate a random UUID. In order for IDFA to be available, please be sure you have included AdSupport.framework.
+
+On Android, the Mixpanel SDK by default does not use the Google Advertising ID or the Android ID (hardware ID). Instead, it generates a random UUID. This means that on Android, if you do not pass Branch the Mixpanel Distinct Id, we cannot properly associate Branch-generated events with users as identified by Mixpanel.
+
+
+## Nuances with Multiple Devices and Mixpanel Identities/Aliases
+
+If you at any point change the Mixpanel distinct id for a user as she’s using your app, you should invoke the same one line of code as above. This way, future calls from Branch to Mixpanel use the updated distinct id.
+
+Additionally, there is one scenario in which the event will be logged to Mixpanel but not associated with the correct user. This is due to limitations with identities on Mixpanel’s end.
+
+**Here is an example scenario:**
+
+The User has an iPhone and an iPad
+
+iPhone has IDFA 1234XXXX-XXXX-XXXX-XXXXXXXXXXXX -- 1234 for short
+
+iPad has IDFA 5678XXXX-XXXX-XXXX-XXXXXXXXXXXX -- 5678 for short
+
+The User opens the app organically (not from a Branch link), and is automatically assigned the distinctId 1234 (this is the IDFA). Then the user finishes signing up, and alias() is called with value "User A", linking 1234 <> "User A". All is well so far.
+
+The User then gets placed into a drip email campaign, targeted for re-engagement. She's checking her email on her iPad and clicks on a Branch link to the app. The app is opened. We send Mixpanel a referred event with an automatically assigned distinctId 5678 (this is the IDFA). Then the user logs in, and identify() is called with value "User A". Identify() is called because we want the user to match across both devices with the same identity = User A. If we called alias() in this second case, then there would be two distinctIds (and in Mixpanel’s logic, two different people) - one with distinctId 1234 and another with distinctId 5678. In order to merge them, we have to identify() the user on the second device. An unfortunate side effect of this logic is that actions before identify() are not associated with the same user, as there are briefly two distinctIds..
+
+The referred event associated with 5678 is not associated with 1234 / "User A".
+
+In order for any additional events on this device to be associated with "User A", the app should invoke the one line of code as recommended in the section [Pass Mixpanel Distinct Id](/third-party-integrations/mixpanel/guide/#pass-mixpanel-distinct-id-recommended). Example:
+
+{% highlight objc %}
+[[Branch getInstance] setRequestMetadataKey:@"$mixpanel_distinct_id" value:@"User A"];
 {% endhighlight %}
 
-This is the base body that we send over, but you will use `[[Branch getInstance] trackEvent:”@exciting_event” withState:state]]` to attach any state variables you need (state being a JSON Dictionary).
+If there are ever workarounds for this, we will update this guide and notify our partners accordingly. [Here is more information](https://mixpanel.com/help/questions/articles/how-do-i-use-alias-and-identify) on how Mixpanel manages identities.
+
 
 {% endif %}
+
