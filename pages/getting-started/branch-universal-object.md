@@ -321,7 +321,7 @@ Create a link to a piece of content. Visit the [Creating Links in Apps]({{base.u
 {% tab objective-c %}
 {% highlight objc %}
 [branchUniversalObject getShortUrlWithLinkProperties:linkProperties andCallback:^(NSString *url, NSError *error) {
-    if (!error) {
+    if (!error && url) {
         NSLog(@"success getting url! %@", url);
     }
 }];
@@ -330,7 +330,7 @@ Create a link to a piece of content. Visit the [Creating Links in Apps]({{base.u
 {% tab swift %}
 {% highlight swift %}
 branchUniversalObject.getShortUrlWithLinkProperties(linkProperties,  andCallback: { (url: String?, error: NSError?) -> Void in
-    if error == nil {
+    if error == nil, let url = optUrl {
         NSLog("got my Branch link to share: %@", url)
     }
 })
