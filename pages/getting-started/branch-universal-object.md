@@ -329,9 +329,8 @@ Create a link to a piece of content. Visit the [Creating Links in Apps]({{base.u
 {% endtab %}
 {% tab swift %}
 {% highlight swift %}
-branchUniversalObject.getShortUrlWithLinkProperties(linkProperties,  andCallback: { (url: String?, error: NSError?) -> Void in
-    if error == nil, let url = optUrl {
-        NSLog("got my Branch link to share: %@", url)
+branchUniversalObject.getShortUrlWithLinkProperties(linkProperties, andCallback: { (optUrl: String?, error: NSError?) -> Void in    if error == nil, let url = optUrl {
+        print("got my Branch link to share: %@", url)
     }
 })
 {% endhighlight %}
@@ -364,7 +363,7 @@ branchUniversalObject.showShareSheetWithLinkProperties(linkProperties,
                                         andShareText: "Super amazing thing I want to share!",
                                         fromViewController: self,
                                         andCallback: { () -> Void in
-    NSLog("done showing share sheet!")
+    print("done showing share sheet!")
 })
 {% endhighlight %}
 {% endtab %}
@@ -388,7 +387,7 @@ List your piece of content on Spotlight. Visit the [iOS Spotlight Indexing]({{ba
 {% highlight swift %}
 branchUniversalObject. listOnSpotlightWithIdentifierCallback((url: String?, spotlightIdentifier: String?, error: NSError?) -> Void in
     if error == nil {
-        NSLog("got my Branch link to share: %@", url)
+        print("got my Branch link to share: %@", url)
     }
 })
 {% endhighlight %}

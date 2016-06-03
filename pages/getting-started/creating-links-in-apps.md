@@ -130,7 +130,7 @@ Finally, generate the link by referencing the `BranchUniversalObject` you create
 {% highlight swift %}
 branchUniversalObject.getShortUrlWithLinkProperties(linkProperties,  andCallback: { (optUrl: String?, error: NSError?) -> Void in
     if error == nil, let url = optUrl {
-        NSLog("got my Branch link to share: %@", url)
+        print("got my Branch link to share: %@", url)
     }
 })
 {% endhighlight %}

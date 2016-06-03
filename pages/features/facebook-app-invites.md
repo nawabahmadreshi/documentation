@@ -138,11 +138,11 @@ Then use the Facebook SDK's `appInviteDialog` method ([documentation here](https
 {% tab swift %}
 {% highlight swift %}
 func appInviteDialog(appInviteDialog: FBSDKAppInviteDialog!, didCompleteWithResults results: [NSObject : AnyObject]!) {
-    println("Complete invite without error")
+    NSLog("Complete invite without error")
 }
 
 func appInviteDialog(appInviteDialog: FBSDKAppInviteDialog!, didFailWithError error: NSError!) {
-    println("Error in invite \(error)")
+    NSLog("Error in invite \(error)")
 }
 {% endhighlight %}
 {% endtab %}
@@ -260,7 +260,7 @@ func application(application: UIApplication, didFinishLaunchingWithOptions launc
     branch.initSessionWithLaunchOptions(launchOptions, andRegisterDeepLinkHandler: { optParams, error in
         if error == nil, let params = optParams {
             if (params["+clicked_branch_link"]) {
-                NSLog("new session was referred by %@", params["referring_user_name"])
+                print("new session was referred by %@", params["referring_user_name"])
                 // show personal welcome view controller
             }
         }

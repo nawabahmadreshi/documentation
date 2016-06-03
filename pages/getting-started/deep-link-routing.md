@@ -157,7 +157,7 @@ In your **AppDelegate.m** file, find this method inside `didFinishLaunchingWithO
         // params are the deep linked params associated with the link that the user clicked -> was re-directed to this app
         // params will be empty if no data found
         // ... insert custom logic here ...
-        NSLog(@"params: %@", params.description);
+        print(@"params: %@", params.description);
     }
 }];
 {% endhighlight %}
@@ -173,7 +173,7 @@ branch.initSessionWithLaunchOptions(launchOptions, andRegisterDeepLinkHandler: {
         // params are the deep linked params associated with the link that the user clicked -> was re-directed to this app
         // params will be empty if no data found
         // ... insert custom logic here ...
-        NSLog("params: %@", params.description)
+        print("params: %@", params.description)
     }
 })
 {% endhighlight %}
@@ -300,7 +300,7 @@ func application(application: UIApplication, didFinishLaunchingWithOptions launc
     branch.initSessionWithLaunchOptions(launchOptions, true, andRegisterDeepLinkHandler: { optParams, error in
         // If the key 'pictureId' is present in the deep link dictionary
         if let params = optParams where params["+clicked_branch_link"] && params["pictureId"] {
-            NSLog("clicked picture link!")
+            print("clicked picture link!")
             // load the view to show the picture
         } else {
             // load your normal view

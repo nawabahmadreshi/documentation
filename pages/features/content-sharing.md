@@ -119,9 +119,7 @@ Use Branch's preconfigured `UIActivityItemProvider` to share a piece of content 
                                            andShareText:@"Super amazing thing I want to share!"
                                      fromViewController:self
                                             andCallback:^{
-    if (!error && url) {
-        NSLog(@"finished presenting");
-    }
+    NSLog(@"finished presenting");
 }];
 {% endhighlight %}
 {% endtab %}
@@ -132,9 +130,7 @@ branchUniversalObject.showShareSheetWithLinkProperties(linkProperties,
                                         andShareText: "Super amazing thing I want to share!",
                                         fromViewController: self,
                                         andCallback: { () -> Void in
-    if error == nil, let url = optUrl {
-        NSLog("done showing share sheet!")
-    }
+    print("done showing share sheet!")
 })
 {% endhighlight %}
 {% endtab %}
@@ -554,7 +550,7 @@ If you've built your own share sheet and you want to just create a Branch link f
 {% highlight swift %}
 branchUniversalObject.getShortUrlWithLinkProperties(linkProperties,  andCallback: { (url: String?, error: NSError?) -> Void in
     if error == nil {
-        NSLog("got my Branch invite link to share: %@", url)
+        print("got my Branch invite link to share: %@", url)
     }
 })
 {% endhighlight %}
