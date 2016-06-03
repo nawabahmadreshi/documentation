@@ -62,22 +62,23 @@ You need to decide *where* to define a user attribute from the previous step. Se
     // The deep link handler is called on every install/open to tell you if the user had just clicked a deep link
     Branch *branch = [Branch getInstance];
     [branch initSessionWithLaunchOptions:launchOptions andRegisterDeepLinkHandler:^(NSDictionary *params, NSError *error){
+        if (!error && params) {
+            // set Attribute inside callback
+            if ([params objectForKey:@"channel"] != nil) {
+                [Apptimize setUserAttributeString:@"facebook" forKey:@"channel"];
+            }
 
-        // set Attribute inside callback
-        if ([params objectForKey:@"channel"] != nil) {
-            [Apptimize setUserAttributeString:@"facebook" forKey:@"channel"];
+            [Apptimize runTest:@"Branch Experiment" withBaseline:^{
+                // baseline
+                UINavigationController *navController = (UINavigationController *)self.window.rootViewController;
+                AuthViewController *vc = [[AuthViewController alloc] init];
+                [navController setViewControllers:@[vc] animated:YES];
+            } andVariations:@{@"Call-to-Action variant": ^{
+                UINavigationController *navController = (UINavigationController *)self.window.rootViewController;
+                ProductViewController *vc = [[ProductViewController alloc] initWithItem:[params objectForKey:@"product_id"]];
+                [navController setViewControllers:@[vc] animated:YES];
+            }}];
         }
-
-        [Apptimize runTest:@"Branch Experiment" withBaseline:^{
-            // baseline
-            UINavigationController *navController = (UINavigationController *)self.window.rootViewController;
-            AuthViewController *vc = [[AuthViewController alloc] init];
-            [navController setViewControllers:@[vc] animated:YES];
-        } andVariations:@{@"Call-to-Action variant": ^{
-            UINavigationController *navController = (UINavigationController *)self.window.rootViewController;
-            ProductViewController *vc = [[ProductViewController alloc] initWithItem:[params objectForKey:@"product_id"]];
-            [navController setViewControllers:@[vc] animated:YES];
-        }}];
     }];
 }
 {% endhighlight %}

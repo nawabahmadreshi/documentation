@@ -148,7 +148,7 @@ This is the same strategy used for other SaaSquatch payment systems integrations
 
     // initialize the session, setup a deep link handler
     [[Branch getInstance]initSessionWithLaunchOptions:launchOptions andRegisterDeepLinkHandler:^(NSDictionary *params, NSError *error){
-        if (error == nil) {
+        if (error == nil && params) {
             // params contains Referral SaasQuatch info
             if ([params contains:@"sq_referralCode"]) {
                 // referral attributed, add UI

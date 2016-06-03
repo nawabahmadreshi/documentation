@@ -82,13 +82,15 @@ Then create the Branch link and pass it to the Facebook SDK:
                                  andChannel:@"facebook"
                                  andFeature:@"app_invite"
                                 andCallback:^(NSString *url, NSError* error) {
-    FBSDKAppInviteDialog *inviteDialog = [FBSDKAppInviteDialog new];
-    if ([inviteDialog canShow]) {
-        inviteDialog.content =[[FBSDKAppInviteContent alloc] init];
-        inviteDialog.content.appLinkURL = [NSURL URLWithString:url];
-        inviteDialog.content.appInvitePreviewImageURL = [NSURL URLWithString:@"https://s3-us-west-1.amazonaws.com/host/zackspic.png"];
-                                        
-        [inviteDialog show];
+    if (!error && url) {
+        FBSDKAppInviteDialog *inviteDialog = [FBSDKAppInviteDialog new];
+        if ([inviteDialog canShow]) {
+            inviteDialog.content =[[FBSDKAppInviteContent alloc] init];
+            inviteDialog.content.appLinkURL = [NSURL URLWithString:url];
+            inviteDialog.content.appInvitePreviewImageURL = [NSURL URLWithString:@"https://s3-us-west-1.amazonaws.com/host/zackspic.png"];
+                                            
+            [inviteDialog show];
+        }
     }
 }];
 {% endhighlight %}
@@ -98,14 +100,16 @@ Then create the Branch link and pass it to the Facebook SDK:
 {% highlight swift %}
 params["referring_user_id"] = "1234"
 params["referring_user_name"] = "Zack Zuckerberg"
-Branch.getInstance().getShortURLWithParams(params, "facebook", "app_invite" andCallback: { (url: String?, error: NSError?) -> Void in
-    var inviteContent: FBSDKAppInviteContent = FBSDKAppInviteContent()
-                
-    inviteContent.appLinkURL = NSURL(String: url!)!
-    
-    inviteDialog.content = inviteContent
-    inviteDialog.delegate = self
-    inviteDialog.show()
+Branch.getInstance().getShortURLWithParams(params, "facebook", "app_invite" andCallback: { (optUrl: String?, error: NSError?) -> Void in
+    if error == nil, let url = optUrl {
+        var inviteContent: FBSDKAppInviteContent = FBSDKAppInviteContent()
+                    
+        inviteContent.appLinkURL = NSURL(String: url)!
+        
+        inviteDialog.content = inviteContent
+        inviteDialog.delegate = self
+        inviteDialog.show()
+    }
 })
 {% endhighlight %}
 {% endtab %}
@@ -234,8 +238,10 @@ Then modify your **AppDelegate.m** file to handle the incoming links:
 {
     [[Branch getInstance] initSessionWithLaunchOptions:launchOptions
                             andRegisterDeepLinkHandler:^(NSDictionary *params, NSError *error) {
-        if ([[params objectForKey:@"+clicked_branch_link"] boolValue]) {
-            // show personal welcome
+        if (!error && params) {
+            if ([[params objectForKey:@"+clicked_branch_link"] boolValue]) {
+                // show personal welcome
+            }
         }
     }];
     
@@ -251,10 +257,12 @@ Then modify your **AppDelegate.swift** file to handle the incoming links:
 
 {% highlight swift %}
 func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-    branch.initSessionWithLaunchOptions(launchOptions, andRegisterDeepLinkHandler: { params, error in
-        if (params["+clicked_branch_link"]) {
-            NSLog("new session was referred by %@", params["referring_user_name"])
-            // show personal welcome view controller
+    branch.initSessionWithLaunchOptions(launchOptions, andRegisterDeepLinkHandler: { optParams, error in
+        if error == nil, let params = optParams {
+            if (params["+clicked_branch_link"]) {
+                NSLog("new session was referred by %@", params["referring_user_name"])
+                // show personal welcome view controller
+            }
         }
     })
 
@@ -398,6 +406,19 @@ curl --insecure "https://graph.facebook.com/?id=[YOUR-URL-TO-SCRAPE]&scrape=true
 1. If you haven't set OG tags on a per link level, then please check your Dashboard's global Social Media Display Customization settings from the [Link Settings](https://dashboard.branch.io/#/settings/link) page.
 
 If your OG tags look fine and you're still getting errors, please reach out to support@branch.io immediately.
+
+## Known issue with App Restrictions
+
+We recently discovered a bug within the Facebook system that prevents App Links from being read by the robot if you change any of these values from the defaults in your Advanced Facebook App Settings tab. Please make sure
+
+- Contains Alcohol is set to **No**
+- Age Restriction is set to **Anyone (13+)**
+- Social Discovery is set to **Yes**
+- Country Restricted is set to **No**
+
+It has to look like this **exactly**:
+{% image src='/img/pages/features/facebook-ads/app_restrictions.png' 3-quarters center alt='app restrictions troubleshooting' %}
+
 
 ## Common issues with Facebook Authentication
 

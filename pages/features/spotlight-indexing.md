@@ -67,7 +67,7 @@ Then call the `listOnSpotlightWithCallback` method on your `BranchUniversalObjec
 {% tab objective-c %}
 {% highlight objc %}
 [branchUniversalObject listOnSpotlightWithCallback:^(NSString *url, NSError *error) {
-    if (!error) {
+    if (!error && url) {
         NSLog(@"success getting url! %@", url);
     }
 }];
@@ -75,8 +75,8 @@ Then call the `listOnSpotlightWithCallback` method on your `BranchUniversalObjec
 {% endtab %}
 {% tab swift %}
 {% highlight swift %}
-branchUniversalObject.listOnSpotlightWithCallback((url: String?, error: NSError?) -> Void in
-    if error == nil {
+branchUniversalObject.listOnSpotlightWithCallback((optUrl: String?, error: NSError?) -> Void in
+    if error == nil, let url = optUrl {
         NSLog("got my Branch link to share: %@", url)
     }
 })
@@ -127,7 +127,7 @@ If you need to update or delete your content after submitting it to Spotlight, y
 {% tab objective-c %}
 {% highlight objc %}
 [branchUniversalObject listOnSpotlightWithIdentifierCallback:^(NSString *url, NSString *spotlightIdentifier, NSError *error) {
-    if (!error) {
+    if (!error && url) {
         NSLog(@"success getting url! %@", url);
     }
 }];
@@ -135,8 +135,8 @@ If you need to update or delete your content after submitting it to Spotlight, y
 {% endtab %}
 {% tab swift %}
 {% highlight swift %}
-branchUniversalObject. listOnSpotlightWithIdentifierCallback((url: String?, spotlightIdentifier: String?, error: NSError?) -> Void in
-    if error == nil {
+branchUniversalObject. listOnSpotlightWithIdentifierCallback((optUrl: String?, spotlightIdentifier: String?, error: NSError?) -> Void in
+    if error == nil, let url = optUrl {
         NSLog("got my Branch link to share: %@", url)
     }
 })
@@ -156,7 +156,7 @@ You can use our identifier when indexing to perform advanced customizations of t
                                     @"$og_thumb": @"https://s3-us-west-1.amazonaws.com/branchhost/mosaic_og.png",
                                     @"object_id": @"1234"}
                          callback:^(NSDictionary *params, NSError *error) {
-    if (!error) {
+    if (!error && params) {
         // params will contain @"url" and @"spotlight_identifier"
         // the example below shows where to use them
         

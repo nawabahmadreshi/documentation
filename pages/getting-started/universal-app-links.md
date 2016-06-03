@@ -109,7 +109,7 @@ Please ensure...
 {% image src='/img/pages/getting-started/universal-app-links/add_domain.png' 3-quarters center alt='xcode add domain' %}
 
 {% caution title="Support for legacy links" %}
-If the `Default domain name` box shows the legacy `bnc.lt` domain, you should use the following entry instead: `applinks:bnc.lt`
+If the **Default domain name** box shows the legacy `bnc.lt` domain, you should use the following entry instead: `applinks:bnc.lt`
 {% endcaution %}
 
 {% protip title="Using a custom domain or subdomain?" %}
@@ -139,7 +139,7 @@ If you use a [custom domain or subdomain for your Branch links]({{base.url}}/get
 {% endhighlight %}
 
 {% caution title="Support for legacy links" %}
-If the `Default domain name` box shows the legacy `bnc.lt` domain, you should use the following entry instead:
+If the **Default domain name** box shows the legacy `bnc.lt` domain, you should use the following entry instead:
 
 {% highlight xml %}
 <branch-config>
@@ -176,7 +176,7 @@ If the `Default domain name` box shows the legacy `bnc.lt` domain, you should us
 {% image src='/img/pages/getting-started/universal-app-links/xamarin_branch_ios_domains.png' full center alt='Associated Domains' %}
 
 {% caution title="Support for legacy links" %}
-If the `Default domain name` box shows the legacy `bnc.lt` domain, you should use the following entry instead: `applinks:bnc.lt`
+If the **Default domain name** box shows the legacy `bnc.lt` domain, you should use the following entry instead: `applinks:bnc.lt`
 {% endcaution %}
 
 {% protip title="Using a custom domain or subdomain?" %}
@@ -208,7 +208,7 @@ If you use a [custom domain or subdomain for your Branch links]({{base.url}}/get
 {% endhighlight %}
 
 {% caution title="Support for legacy links" %}
-If the `Default domain name` box shows the legacy `bnc.lt` domain, you should use the following entry instead: `<string>applinks:bnc.lt</string>`
+If the **Default domain name** box shows the legacy `bnc.lt` domain, you should use the following entry instead: `<string>applinks:bnc.lt</string>`
 {% endcaution %}
 
 {% protip title="Using a custom domain or subdomain?" %}
@@ -407,7 +407,7 @@ You can insert both your debug and production fingerprints for testing. Simply s
 {% endhighlight %}
 
 {% caution title="Support for legacy links" %}
-If the `Default domain name` box shows the legacy `bnc.lt` domain, you should use the following entry instead:
+If the **Default domain name** box shows the legacy `bnc.lt` domain, you should use the following entry instead:
 
 {% highlight xml %}
 <branch-config>
@@ -417,6 +417,8 @@ If the `Default domain name` box shows the legacy `bnc.lt` domain, you should us
 {% endhighlight %}
 
 `READ_FROM_DASHBOARD` is the four-character value in front of all your links. You can find it underneath the field labeled **SHA256 Cert Fingerprints** on the dashboard. It will look something like this: `/WSuf` (the initial `/` character should be included).
+
+{% image src='/img/pages/getting-started/universal-app-links/app_links_prefix.png' full center alt='app links prefix' %}
 
 {% endcaution %}
 
@@ -431,6 +433,39 @@ If the `Default domain name` box shows the legacy `bnc.lt` domain, you should us
 
 `READ_FROM_DASHBOARD` is the four-character value in front of all your links. You can find it underneath the field labeled **SHA256 Cert Fingerprints** on the dashboard. It will look something like this: `/WSuf` (the initial `/` character should be included).
 
+{% image src='/img/pages/getting-started/universal-app-links/app_links_prefix.png' full center alt='app links prefix' %}
+
+{% endprotip %}
+
+{% elsif page.xamarin %}
+
+## Add Intent Filter to Activity
+
+1. Choose the `Activity` you want to open up when a link is clicked. This is typically your `SplashActivity` or a `BaseActivity` that all over activities inherit from (and likely the same one you selected in the [SDK Integration Guide]({{base.url}}/getting-started/sdk-integration-guide)).
+1. At the top of the class declaration for the `Activity`, insert the intent filter provided below.
+   - Replace `READ_FROM_DASHBOARD` with the value provided underneath the **SHA256 Cert Fingerprints** field on the Branch dashboard. It will look something like this: `DataPathPrefix="/WSuf"`
+
+{% image src='/img/pages/getting-started/universal-app-links/app_links_prefix.png' full center alt='app links prefix' %}
+
+{% highlight c# %}
+[IntentFilter(new [] { Android.Content.Intent.ActionView },
+    DataScheme="https",
+    DataHost="bnc.lt",
+    DataPathPrefix="READ_FROM_DASHBOARD",
+    Categories=new [] { Android.Content.Intent.CategoryDefault, Android.Content.Intent.CategoryBrowsable })]
+public class SplashActivity : Activity {
+{% endhighlight %}
+
+{% protip title="Using a custom domain or subdomain?" %}
+If you use a [custom domain or subdomain for your Branch links]({{base.url}}/getting-started/dashboard-guide/guide/#setting-a-custom-link-domain), you should also add an entry for:
+
+{% highlight c# %}
+[IntentFilter(new [] { Android.Content.Intent.ActionView },
+    DataScheme="https",
+    DataHost="mycustomdomainorsubdomain",
+    DataPathPrefix="READ_FROM_DASHBOARD",
+    Categories=new [] { Android.Content.Intent.CategoryDefault, Android.Content.Intent.CategoryBrowsable })]
+{% endhighlight %}
 {% endprotip %}
 
 {% else %}
@@ -455,7 +490,7 @@ If the `Default domain name` box shows the legacy `bnc.lt` domain, you should us
 {% endhighlight %}
 
 {% caution title="Support for legacy links" %}
-If the `Default domain name` box shows the legacy `bnc.lt` domain, you should use the following entry instead:
+If the **Default domain name** box shows the legacy `bnc.lt` domain, you should use the following entry instead:
 
 {% highlight xml %}
 <intent-filter android:autoVerify="true">
@@ -468,6 +503,8 @@ If the `Default domain name` box shows the legacy `bnc.lt` domain, you should us
 
 `READ_FROM_DASHBOARD` is the four-character value in front of all your links. You can find it underneath the field labeled **SHA256 Cert Fingerprints** on the dashboard. It will look something like this: `/WSuf` (the initial `/` character should be included).
 
+{% image src='/img/pages/getting-started/universal-app-links/app_links_prefix.png' full center alt='app links prefix' %}
+
 {% endcaution %}
 
 {% protip title="Using a custom domain or subdomain?" %}
@@ -478,6 +515,8 @@ If you use a [custom domain or subdomain for your Branch links]({{base.url}}/get
 {% endhighlight %}
 
 `READ_FROM_DASHBOARD` is the four-character value in front of all your links. You can find it underneath the field labeled **SHA256 Cert Fingerprints** on the dashboard. It will look something like this: `/WSuf` (the initial `/` character should be included).
+
+{% image src='/img/pages/getting-started/universal-app-links/app_links_prefix.png' full center alt='app links prefix' %}
 
 {% endprotip %}
 
@@ -568,7 +607,7 @@ Here is a generic **AppDeledate.m** snippet with these methods implemented:
 Branch *branch = [Branch getInstance];
 
    [branch initSessionWithLaunchOptions:launchOptions andRegisterDeepLinkHandler:^(NSDictionary *params, NSError *error) {
-      if (!error) {
+      if (!error && params) {
          if (params[@"$deeplink_path"] && !self.ignoreDeeplinkPath) {
             NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"your-uri-scheme://%@", params[@"$deeplink_path"]]];
             // handle the URL!

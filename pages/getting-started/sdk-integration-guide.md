@@ -572,7 +572,7 @@ Underneath this line, add the following snippet:
 {% highlight objc %}
 Branch *branch = [Branch getInstance];
 [branch initSessionWithLaunchOptions:launchOptions andRegisterDeepLinkHandler:^(NSDictionary *params, NSError *error) {
-    if (!error) {
+    if (!error && params) {
         // params are the deep linked params associated with the link that the user clicked -> was re-directed to this app
         // params will be empty if no data found
         // ... insert custom logic here ...
@@ -586,7 +586,7 @@ Branch *branch = [Branch getInstance];
 {% highlight swift %}
 let branch: Branch = Branch.getInstance()
 branch.initSessionWithLaunchOptions(launchOptions, andRegisterDeepLinkHandler: { params, error in
-    if (error == nil) {
+    if error == nil, let params = optParams {
         // params are the deep linked params associated with the link that the user clicked -> was re-directed to this app
         // params will be empty if no data found
         // ... insert custom logic here ...
@@ -717,7 +717,7 @@ initialize: function() {
 },
 {% endhighlight %}
 
-Then add the method `DeepLinkHandler()` which will act as our callback when the session begins. The deep link data will be included here:
+Then add a global method `DeepLinkHandler()` which will act as our callback when the session begins. The deep link data will be included here:
 
 {% highlight js %}
 function DeepLinkHandler(data) {
@@ -992,6 +992,75 @@ public class MainActivity extends ReactActivity {
 {% endhighlight %}
 
 {% endif %}
+## Recommended: Track in-app events
+
+In-app engagement and user value metrics are just as important as the click, install, and re-open metrics that Branch [automatically provides]({{base.url}}/getting-started/growth-attribution#automatic-event-tracking). You can define your own post-install events, like purchase, signup, or share, and [view them in the dashboard]({{base.url}}/getting-started/user-value-attribution#measuring-custom-events) for each link, campaign, or channel.
+
+Track custom events in your app with a simple call to the Branch SDK:
+
+{% if page.ios %}
+
+{% tabs %}
+{% tab objective-c %}
+{% highlight objc %}
+[[Branch getInstance] userCompletedAction:@"customAction"];
+{% endhighlight %}
+{% endtab %}
+{% tab swift %}
+{% highlight swift %}
+Branch.getInstance().userCompletedAction("customAction")
+{% endhighlight %}
+{% endtab %}
+{% endtabs %}
+
+{% endif %}
+<!--- /iOS -->
+
+{% if page.android %}
+{% highlight java %}
+Branch.getInstance(getApplicationContext()).userCompletedAction("custom_action_1");
+{% endhighlight %}
+{% endif %}
+<!--- /Android -->
+
+{% if page.cordova %}
+{% highlight js %}
+Branch.userCompletedAction("custom_action_1");
+{% endhighlight %}
+{% endif %}
+
+{% if page.xamarin %}
+{% highlight c# %}
+Branch branch = Branch.GetInstance ();
+await branch.UserCompletedAction("custom_action_1");
+{% endhighlight %}
+{% endif %}
+
+{% if page.unity %}
+{% highlight c# %}
+Branch.userCompletedAction("custom_action_1");
+{% endhighlight %}
+{% endif %}
+
+{% if page.adobe %}
+{% highlight java %}
+Currently not supported in the ANE
+{% endhighlight %}
+{% endif %}
+
+{% if page.titanium %}
+{% highlight js %}
+branch.userCompletedAction("custom_action_1");
+{% endhighlight %}
+{% endif %}
+
+{% if page.react %}
+{% highlight js %}
+branch.userCompletedAction("custom_action_1");
+{% endhighlight %}
+{% endif %}
+
+For more information on tracking and configuring custom events, see the [user value attribution]({{base.url}}/getting-started/user-value-attribution) guide.
 
 {% if page.android %}{% else %}
 
@@ -1037,7 +1106,7 @@ Here are some recommended next steps:
 - **Enable [Universal & App Links]({{base.url}}/getting-started/universal-app-links)** — traditional URI scheme links are no longer supported in many situations on iOS 9.2+, and are a less than ideal solution on new versions of Android. To get full functionality from your Branch links on iOS devices, **you should enable Universal Links as soon as possible.**
 - **Learn about [Creating Links in Apps]({{base.url}}/getting-started/creating-links-in-apps)** — let your users share content and invite friends from inside your app.
 -  **Set up [Deep Link Routing]({{base.url}}/getting-started/deep-link-routing)** — send incoming visitors directly to specific content in your app based on the Branch link they opened.
--  Track **[Custom Events]({{base.url}}/getting-started/user-value-attribution#custom-event-tracking)** — make in-app activity beyond clicks, installs, and opens — like purchases and signups — available for analysis in the dashboard.
+-  **Set up [Custom Event Tracking]({{base.url}}/getting-started/user-value-attribution#custom-event-tracking)** if you skipped the step above — make in-app activity beyond clicks, installs, and opens — like purchases and signups — available for analysis in the dashboard.
 
 {% elsif page.advanced %}
 

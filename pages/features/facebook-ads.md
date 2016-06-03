@@ -74,6 +74,10 @@ To view more details stats, click the _small button that looks like a bar chart_
 
 {% elsif page.support %}
 
+## Don't use setDebug
+
+Facebook ads are incompatible with [debug mode]({{base.url}}/getting-started/integration-testing/guide/ios/#use-debug-mode-to-simulate-fresh-installs), as this prevents us from sending the correct hardware ID to Facebook.
+
 ## Testing deep linked ads
 
 The only way to test the deep linking functionality is outside of the actual ads system. Follow these instructions to test the deep linking functionality:
@@ -139,6 +143,18 @@ As a last resort, you can manually input a direct deep link. To retrieve this:
 1. Copy the value of this (`myapp://open?link_click_id=link-242052337263342024`) and input it as the Deep Link value of your ad
 
 If none of these approaches work, please reach out to support@branch.io immediately.
+
+## Known issue with App Restrictions
+
+We recently discovered a bug within the Facebook system that prevents App Links from being read by the robot if you change any of these values from the defaults in your Advanced Facebook App Settings tab. Please make sure
+
+- Contains Alcohol is set to **No**
+- Age Restriction is set to **Anyone (13+)**
+- Social Discovery is set to **Yes**
+- Country Restricted is set to **No**
+
+It has to look like this **exactly**:
+{% image src='/img/pages/features/facebook-ads/app_restrictions.png' 2-thirds center alt='app restrictions troubleshooting' %}
 
 
 ## Common issues with Facebook Authentication
