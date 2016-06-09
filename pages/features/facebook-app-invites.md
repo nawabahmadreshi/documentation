@@ -82,13 +82,15 @@ Then create the Branch link and pass it to the Facebook SDK:
                                  andChannel:@"facebook"
                                  andFeature:@"app_invite"
                                 andCallback:^(NSString *url, NSError* error) {
-    FBSDKAppInviteDialog *inviteDialog = [FBSDKAppInviteDialog new];
-    if ([inviteDialog canShow]) {
-        inviteDialog.content =[[FBSDKAppInviteContent alloc] init];
-        inviteDialog.content.appLinkURL = [NSURL URLWithString:url];
-        inviteDialog.content.appInvitePreviewImageURL = [NSURL URLWithString:@"https://s3-us-west-1.amazonaws.com/host/zackspic.png"];
-                                        
-        [inviteDialog show];
+    if (!error && url) {
+        FBSDKAppInviteDialog *inviteDialog = [FBSDKAppInviteDialog new];
+        if ([inviteDialog canShow]) {
+            inviteDialog.content =[[FBSDKAppInviteContent alloc] init];
+            inviteDialog.content.appLinkURL = [NSURL URLWithString:url];
+            inviteDialog.content.appInvitePreviewImageURL = [NSURL URLWithString:@"https://s3-us-west-1.amazonaws.com/host/zackspic.png"];
+                                            
+            [inviteDialog show];
+        }
     }
 }];
 {% endhighlight %}
@@ -98,14 +100,16 @@ Then create the Branch link and pass it to the Facebook SDK:
 {% highlight swift %}
 params["referring_user_id"] = "1234"
 params["referring_user_name"] = "Zack Zuckerberg"
-Branch.getInstance().getShortURLWithParams(params, "facebook", "app_invite" andCallback: { (url: String?, error: NSError?) -> Void in
-    var inviteContent: FBSDKAppInviteContent = FBSDKAppInviteContent()
-                
-    inviteContent.appLinkURL = NSURL(String: url!)!
-    
-    inviteDialog.content = inviteContent
-    inviteDialog.delegate = self
-    inviteDialog.show()
+Branch.getInstance().getShortURLWithParams(params, "facebook", "app_invite" andCallback: { (optUrl: String?, error: NSError?) -> Void in
+    if error == nil, let url = optUrl {
+        var inviteContent: FBSDKAppInviteContent = FBSDKAppInviteContent()
+                    
+        inviteContent.appLinkURL = NSURL(String: url)!
+        
+        inviteDialog.content = inviteContent
+        inviteDialog.delegate = self
+        inviteDialog.show()
+    }
 })
 {% endhighlight %}
 {% endtab %}
@@ -134,11 +138,11 @@ Then use the Facebook SDK's `appInviteDialog` method ([documentation here](https
 {% tab swift %}
 {% highlight swift %}
 func appInviteDialog(appInviteDialog: FBSDKAppInviteDialog!, didCompleteWithResults results: [NSObject : AnyObject]!) {
-    println("Complete invite without error")
+    print("Complete invite without error")
 }
 
 func appInviteDialog(appInviteDialog: FBSDKAppInviteDialog!, didFailWithError error: NSError!) {
-    println("Error in invite \(error)")
+    NSLog("Error in invite \(error)")
 }
 {% endhighlight %}
 {% endtab %}
@@ -234,8 +238,10 @@ Then modify your **AppDelegate.m** file to handle the incoming links:
 {
     [[Branch getInstance] initSessionWithLaunchOptions:launchOptions
                             andRegisterDeepLinkHandler:^(NSDictionary *params, NSError *error) {
-        if ([[params objectForKey:@"+clicked_branch_link"] boolValue]) {
-            // show personal welcome
+        if (!error && params) {
+            if ([[params objectForKey:@"+clicked_branch_link"] boolValue]) {
+                // show personal welcome
+            }
         }
     }];
     
@@ -251,10 +257,12 @@ Then modify your **AppDelegate.swift** file to handle the incoming links:
 
 {% highlight swift %}
 func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-    branch.initSessionWithLaunchOptions(launchOptions, andRegisterDeepLinkHandler: { params, error in
-        if (params["+clicked_branch_link"]) {
-            NSLog("new session was referred by %@", params["referring_user_name"])
-            // show personal welcome view controller
+    branch.initSessionWithLaunchOptions(launchOptions, andRegisterDeepLinkHandler: { optParams, error in
+        if error == nil, let params = optParams {
+            if (params["+clicked_branch_link"]) {
+                print("new session was referred by %@", params["referring_user_name"])
+                // show personal welcome view controller
+            }
         }
     })
 

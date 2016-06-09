@@ -482,7 +482,7 @@ This is a simple three-part process:
 {% highlight objc %}
 [[Branch getInstance] loadRewardsWithCallback:^(BOOL changed, NSError *error) {
     if (!error && [[Branch getInstance] getCredits] > 5) {
-        [[Branch getInstance] redeemRewards:5 callback:^(BOOL success, NSError *error) {
+        [[Branch getInstance] redeemRewards:5 callback:^(BOOL success, NSError *err) {
             if (!err) {
                 NSInteger newBalance = [[Branch getInstance] getCredits];
                 NSString *successMsg = [NSString stringWithFormat:@"You redeemed 5 credits! You have %ld remaining.", (long)newBalance];

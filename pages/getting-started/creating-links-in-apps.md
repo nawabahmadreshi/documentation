@@ -120,7 +120,7 @@ Finally, generate the link by referencing the `BranchUniversalObject` you create
 {% tab objective-c %}
 {% highlight objc %}
 [branchUniversalObject getShortUrlWithLinkProperties:linkProperties andCallback:^(NSString *url, NSError *error) {
-    if (!error) {
+    if (!error && url) {
         NSLog(@"success getting url! %@", url);
     }
 }];
@@ -128,9 +128,9 @@ Finally, generate the link by referencing the `BranchUniversalObject` you create
 {% endtab %}
 {% tab swift %}
 {% highlight swift %}
-branchUniversalObject.getShortUrlWithLinkProperties(linkProperties,  andCallback: { (url: String?, error: NSError?) -> Void in
-    if error == nil {
-        NSLog("got my Branch link to share: %@", url)
+branchUniversalObject.getShortUrlWithLinkProperties(linkProperties,  andCallback: { (optUrl: String?, error: NSError?) -> Void in
+    if error == nil, let url = optUrl {
+        print("got my Branch link to share: %@", url)
     }
 })
 {% endhighlight %}
