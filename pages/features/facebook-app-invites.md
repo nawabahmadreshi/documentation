@@ -138,7 +138,7 @@ Then use the Facebook SDK's `appInviteDialog` method ([documentation here](https
 {% tab swift %}
 {% highlight swift %}
 func appInviteDialog(appInviteDialog: FBSDKAppInviteDialog!, didCompleteWithResults results: [NSObject : AnyObject]!) {
-    NSLog("Complete invite without error")
+    print("Complete invite without error")
 }
 
 func appInviteDialog(appInviteDialog: FBSDKAppInviteDialog!, didFailWithError error: NSError!) {
