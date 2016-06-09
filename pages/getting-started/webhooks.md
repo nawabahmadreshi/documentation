@@ -406,16 +406,19 @@ The `session.link_data` keys refer to the link that initiated the session.
 | session.link_data.+url | The full URL of the link, e.g. [branchsubdomain]/m/abcde12345
 | session.link_data.key | Any key value you specified in the link's data dictionary
 
-## Webhook server IP addresses
+## Authenticating Webook events
 
 If you need to whitelist the webhook server IP addresses for security purposes, they are listed below.
 
-52.9.159.121/32
-52.9.176.205/32
+- `52.9.159.121/32`
+- `52.9.176.205/32`
 
 Reserved for future use:
-52.9.188.221/32
-52.9.188.236/32
+
+- `52.9.188.221/32`
+- `52.9.188.236/32`
+
+You can also [create events through the Branch SDK]({{base.url}}/getting-started/user-value-attribution#custom-event-tracking), and specify a secret key inside the event metadata to pass through inside the URL of the webhook itself. 
 
 {% elsif page.support %}
 
@@ -424,10 +427,6 @@ Reserved for future use:
 ##### Why is my app not sending a device ID?
 
 Check to see if you are in [Test Mode]({{base.url}}/getting-started/integration-testing) with your SDK. If we are sending a fake ID to simulate installs, we will not send it inside a webhook.
-
-##### How can I ensure a webhook is from Branch?
-
-Right now, we do not support a encryption method to verify requests come from Branch. As a workaround, if you [create events through the Branch SDK]({{base.url}}/getting-started/user-value-attribution#custom-event-tracking), you can specify a secret key inside the event metadata to pass through inside the URL of the webhook itself. 
 
 ##### What's the difference between first referring data and session referring data?
 
