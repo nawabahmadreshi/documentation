@@ -80,6 +80,14 @@ Since Branch is not responsible for all installs, you need to hit `Reset Content
 
 ## FAQ
 
+##### How do my Branch analytics tags map to Localytics' tags?
+
+Branch Analytics Tag | Localytics Data Placeholder Tag
+--- | ---
+Campaign | Campaign
+Channel | Ad Group 
+Feature | Creative Name
+
 ##### My Localytics webhook returned a 404
 
 The most common case is that you used the wrong key. You'll need to use the **Attribution ID**, found under the Attribution Settings section of your Localytics dashboard. Navigate to the `Set Up Localytics` section for more information.
