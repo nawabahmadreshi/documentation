@@ -18,14 +18,14 @@
 				{% sidebar %}
 			</div>
 		</div>
-		<div class={% if page.contents == 'number'%}
-				"inner__content content-guide"
-			{% elsif page.contents == 'list' %}
-				"inner__content"
-			{% elsif page.guide %}
-				"inner__content content-guide"
-			{% else %}"inner__content"{% endif %}>
-			<div class="inner__container">
+		<div class="inner__container">
+			<div class={% if page.contents == 'number'%}
+					"inner__content content-guide"
+				{% elsif page.contents == 'list' %}
+					"inner__content"
+				{% elsif page.guide %}
+					"inner__content content-guide"
+				{% else %}"inner__content"{% endif %}>
 	
 				{% if page.hide_platform_selector != true and page.overview != true %}
 				  {% platform_selector %}
