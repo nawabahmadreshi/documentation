@@ -25,37 +25,39 @@
 			{% elsif page.guide %}
 				"inner__content content-guide"
 			{% else %}"inner__content"{% endif %}>
+			<div class="inner__container">
 	
-			{% if page.hide_platform_selector != true and page.overview != true %}
-			  {% platform_selector %}
-			{% endif %}
+				{% if page.hide_platform_selector != true and page.overview != true %}
+				  {% platform_selector %}
+				{% endif %}
 
-			{% breadcrumbs %}
-			<h1> {{ page.title }} </h1>
+				{% breadcrumbs %}
+				<h1> {{ page.title }} </h1>
 
-			{% if page.hide_section_selector == true %}
-				<span class="hide-selector">{% section_selector %}</span>
-			{% else %}
-				{% section_selector %}
-			{% endif %}
+				{% if page.hide_section_selector == true %}
+					<span class="hide-selector">{% section_selector %}</span>
+				{% else %}
+					{% section_selector %}
+				{% endif %}
 
-			{% if page.contents == 'list' %}
-				{{ content | toc_generate:'list' }}
-			{% elsif page.contents == 'number' %}
-				{{ content | toc_generate:'number' }}
-			{% elsif page.contents == 'hide' %}
-				{{ content }}
-			{% elsif page.guide %}
-			  {{ content | toc_generate:'number' }}
-			{% elsif page.advanced or page.support %}
-			  {{ content | toc_generate:"list" }}
-			{% else %}
-			  {{ content }}
-			{% endif %}
+				{% if page.contents == 'list' %}
+					{{ content | toc_generate:'list' }}
+				{% elsif page.contents == 'number' %}
+					{{ content | toc_generate:'number' }}
+				{% elsif page.contents == 'hide' %}
+					{{ content }}
+				{% elsif page.guide %}
+				  {{ content | toc_generate:'number' }}
+				{% elsif page.advanced or page.support %}
+				  {{ content | toc_generate:"list" }}
+				{% else %}
+				  {{ content }}
+				{% endif %}
+			</div>
 		</div>
 	</div>
 	<div class="inner__supportbar">
-		<a href="https://support.branch.io">Help & Support</a><a href="mailto:support@branch.io">Contact</a>
+		<a href="https://support.branch.io">Help & Support</a>
 	</div>
 	<span class="inner__footer">{% include footer.html %}<span>
   </body>
