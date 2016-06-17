@@ -25,6 +25,10 @@
 			{% elsif page.guide %}
 				"inner__content content-guide"
 			{% else %}"inner__content"{% endif %}>
+	
+			{% if page.hide_platform_selector != true and page.overview != true %}
+			  {% platform_selector %}
+			{% endif %}
 
 			{% breadcrumbs %}
 			<h1> {{ page.title }} </h1>
@@ -33,10 +37,6 @@
 				<span class="hide-selector">{% section_selector %}</span>
 			{% else %}
 				{% section_selector %}
-			{% endif %}
-
-			{% if page.hide_platform_selector != true and page.overview != true %}
-			  {% platform_selector %}
 			{% endif %}
 
 			{% if page.contents == 'list' %}
