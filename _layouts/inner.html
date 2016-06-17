@@ -22,6 +22,9 @@
 			</div>
 		</div>
 		<div class="inner__container">
+			{% if page.hide_platform_selector != true and page.overview != true %}
+				{% platform_selector %}
+			{% endif %}
 			<div class={% if page.contents == 'number'%}
 					"inner__content content-guide"
 				{% elsif page.contents == 'list' %}
@@ -29,10 +32,6 @@
 				{% elsif page.guide %}
 					"inner__content content-guide"
 				{% else %}"inner__content"{% endif %}>
-	
-				{% if page.hide_platform_selector != true and page.overview != true %}
-				  {% platform_selector %}
-				{% endif %}
 
 				{% breadcrumbs %}
 				<h1> {{ page.title }} </h1>
@@ -63,6 +62,21 @@
 		<a href="https://support.branch.io">Help & Support</a>
 	</div>
 	<span class="inner__footer">{% include footer.html %}<span>
+	<script>
+		var platformSelector = $("#platform-selector");
+
+			$(".inner__container").scroll(function() {
+
+				if (this.scrollTop > 264) {
+					platformSelector.addClass("fixed");
+				}
+				else {
+					platformSelector.removeClass("fixed");
+				}
+
+			});
+
+		</script>
   </body>
 
 </html>
