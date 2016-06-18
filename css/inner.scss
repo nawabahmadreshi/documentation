@@ -12,7 +12,7 @@
 	padding: 0;
 }
 
-.inner__container {
+.content {
 	top: 0;
 	right: 0;
 	left: 275px;
@@ -330,7 +330,7 @@
   font-feature-settings: 'liga';
 }
 
-@media (max-width: $screen-sm-max) {
+@media (max-width: $screen-xs-max) {
   .inner__content {
     margin-left: 0;
   }
@@ -356,7 +356,7 @@
   }
 }
 
-@media (max-width: $screen-sm-max) {
+@media (max-width: $screen-xs-max) {
   .inner__supportbar {
     width: 100%;
     position: relative;
