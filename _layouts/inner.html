@@ -8,20 +8,25 @@
 
   <body>
 	<div class="container inner container-height">
-		<div class="inner__searchbar">
-      <div class="logo">
-	      <a href="/" class="logo-container">
-        	<img src="/img/branch_docs_logo.png" alt="Branch docs" title="Branch docs">
-				</a>
-      </div>
-			{% searchbar %}
-		</div>
-		<div class="inner__sidebar">
-			<div class="inner__sidebar__fixed">
-				{% sidebar %}
+		<div class="sidebar">
+			<div class="inner__searchbar">
+	      <div class="logo">
+		      <a href="/" class="logo-container">
+	        	<img src="/img/branch_docs_logo.png" alt="Branch docs" title="Branch docs">
+					</a>
+	      </div>
+				{% searchbar %}
+			</div>
+			<div class="inner__sidebar">
+				<div class="inner__sidebar__fixed">
+					{% sidebar %}
+				</div>
+			</div>
+			<div class="inner__supportbar">
+				<a href="https://support.branch.io">Help & Support</a>
 			</div>
 		</div>
-		<div class="inner__container">
+		<div class="content">
 			<div class={% if page.contents == 'number'%}
 					"inner__content content-guide"
 				{% elsif page.contents == 'list' %}
@@ -68,25 +73,22 @@
 			</div>
 		</div>
 	</div>
-	<div class="inner__supportbar">
-		<a href="https://support.branch.io">Help & Support</a>
-	</div>
-	<span class="inner__footer">{% include footer.html %}<span>
+
 	<script>
 		var platformSelector = $("#platform-selector");
 
-			$(".inner__container").scroll(function() {
+		$(".inner__container").scroll(function() {
 
-				if (this.scrollTop > 264) {
-					platformSelector.addClass("fixed");
-				}
-				else {
-					platformSelector.removeClass("fixed");
-				}
+			if (this.scrollTop > 264) {
+				platformSelector.addClass("fixed");
+			}
+			else {
+				platformSelector.removeClass("fixed");
+			}
 
-			});
+		});
+	</script>
 
-		</script>
   </body>
 
 </html>

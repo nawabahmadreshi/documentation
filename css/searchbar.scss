@@ -240,7 +240,7 @@ select:active, select:hover {
   }
 }
 
-@media (max-width: $screen-sm-max) {
+@media (max-width: $screen-xs-max) {
   .inner__searchbar {
     width: 100%;
     position: relative;
