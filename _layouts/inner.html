@@ -49,7 +49,7 @@
 				{% platform_selector %}
 			{% endif %}
 
-			<div class={% if page.contents == 'number'%}
+			<div id="main-content" class={% if page.contents == 'number'%}
 					"inner__content content-guide"
 				{% elsif page.contents == 'list' %}
 					"inner__content"
@@ -76,14 +76,17 @@
 
 	<script>
 		var platformSelector = $("#platform-selector");
+		var mainContent = $("#main-content");
 
 		$(".content").scroll(function() {
 
 			if (this.scrollTop > 264) {
 				platformSelector.addClass("fixed");
+				mainContent.addClass("no-selector");
 			}
 			else {
 				platformSelector.removeClass("fixed");
+				mainContent.removeClass("no-selector");
 			}
 
 		});
