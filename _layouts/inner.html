@@ -6,11 +6,14 @@
     <meta name="robots" content="noindex" />
 {% endif %}
 
-	{% webasset navbar branch_base='{{site.branch_base}}' subtitle='docs' sub_href='https://dev.branch.io' hide_options='true' no_fixed='true' width='1200' %}
   <body>
 	<div class="container inner container-height">
 		<div class="inner__searchbar">
-			<div class="inner__title"><a href="/">Documentation</a></div>
+      <div class="logo">
+	      <a href="/" class="logo-container">
+        	<img src="/img/branch_docs_logo.png" alt="Branch docs" title="Branch docs">
+				</a>
+      </div>
 			{% searchbar %}
 		</div>
 		<div class="inner__sidebar">
@@ -26,10 +29,6 @@
 				{% elsif page.guide %}
 					"inner__content content-guide"
 				{% else %}"inner__content"{% endif %}>
-	
-				{% if page.hide_platform_selector != true and page.overview != true %}
-				  {% platform_selector %}
-				{% endif %}
 
 				{% breadcrumbs %}
 				<h1> {{ page.title }} </h1>
@@ -39,6 +38,19 @@
 				{% else %}
 					{% section_selector %}
 				{% endif %}
+			</div>
+
+			{% if page.hide_platform_selector != true and page.overview != true %}
+				{% platform_selector %}
+			{% endif %}
+
+			<div class={% if page.contents == 'number'%}
+					"inner__content content-guide"
+				{% elsif page.contents == 'list' %}
+					"inner__content"
+				{% elsif page.guide %}
+					"inner__content content-guide"
+				{% else %}"inner__content"{% endif %}>
 
 				{% if page.contents == 'list' %}
 					{{ content | toc_generate:'list' }}
@@ -60,6 +72,21 @@
 		<a href="https://support.branch.io">Help & Support</a>
 	</div>
 	<span class="inner__footer">{% include footer.html %}<span>
+	<script>
+		var platformSelector = $("#platform-selector");
+
+			$(".inner__container").scroll(function() {
+
+				if (this.scrollTop > 264) {
+					platformSelector.addClass("fixed");
+				}
+				else {
+					platformSelector.removeClass("fixed");
+				}
+
+			});
+
+		</script>
   </body>
 
 </html>

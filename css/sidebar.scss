@@ -2,7 +2,7 @@
 	.sidebar-group {
 		display:block;
 		list-style:none;
-		padding-left: 15px;
+		padding-left: 10px;
 		margin-left: 3px;
 		border-left: 1px solid rgba(255, 255, 255, 0.1);
 		li {
@@ -59,7 +59,7 @@
 	background-color:#364351;
 	width: 275px;
 	position: fixed;
-	top: 160px;
+	top: 110px;
 	bottom: 41px;
 	overflow-y: scroll;
 	&::-webkit-scrollbar {
@@ -76,7 +76,7 @@
 }
 
 .inner__sidebar__fixed {
-	padding: 0 15px 10px 15px;
+	padding: 0 0 10px 15px;
 }
 
 @media (max-width: $screen-sm-max) {

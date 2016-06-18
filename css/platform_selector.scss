@@ -1,15 +1,39 @@
+.platform-selector.fixed {
+  z-index: 1;
+  width: auto;
+  position: fixed;
+  left: 275px;
+  right: 0px;
+  top: 0;
+  background-color: #1D2A38;
+  border-bottom: none;
+  height: initial;
+
+  .btn-group {
+    .btn-default {
+      color: #ffffff;
+      background-color: #1cadce;
+      border-bottom: none;
+      padding: 8px 15px;
+    }
+    .btn-inactive {
+      color: #ffffff;
+      background-color: #1D2A38;
+      &:hover {
+        background-color:#364351;
+      }
+    }
+  }
+}
 .platform-selector {
   line-height: 1;
-  .btn-group {
-    z-index: 1;
-    width: auto;
-    position: fixed;
-    left: 275px;
-    right: 0px;
-    top: 57px;
-    padding: 0;
-    background-color: #1D2A38;
+  padding-left: 30px;
+  border-bottom: 4px solid #eeeeee;
+  margin: 0 -4000px 0 0px;
+  height: 37px;
+  transition: background-color 0.2s ease-in;
 
+  .btn-group {
     @media (max-width: $screen-xs-max) {
       position: static;
       width: 100%;
@@ -19,21 +43,26 @@
 
     .btn-default {
       margin: 0;
-      color: #ffffff;
+      color: #1cadce;
       border: none;
       border-radius: 0;
       padding: 8px 15px;
       font-weight: 700;
       font-size: 12px;
-      background-color: #1cadce;
       transition: all 0.2s ease-in;
+      border-bottom: 4px solid #1cadce;
+      &:hover {
+        color: #1cadce;
+        background-color: transparent;
+      }
     }
     .btn-inactive {
-      color: #FFFFFF;
-      background-color: #1D2A38;
+      color: #444444;
       font-weight: 700;
+      border-bottom: 4px solid #eeeeee;
       &:hover {
-        background-color:#364351;
+        color: #1cadce;
+        background-color: transparent;
       }
     }
   }

@@ -138,15 +138,17 @@ select:active, select:hover {
 
 .inner__searchbar {
   position: fixed;
-  top: 50px;
+  top: 0;
   width: 275px;
   background-color: #1D2A38;
   padding: 15px;
-  padding-top: 30px;
   color: #ffffff;
   text-align: center;
   z-index: 2;
   transition: height 0.2s ease-in;
+  .logo {
+    padding: 0 20px 0 40px;
+  }
   .inner__title {
     text-transform: uppercase;
     font-weight: bold;
@@ -184,7 +186,7 @@ select:active, select:hover {
     .search-icon {
       position: absolute;
       right: 20px;
-      top: 69px;
+      top: 80px;
       z-index: 1;
       i {
         font-size: 20px;
