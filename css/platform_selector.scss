@@ -27,10 +27,6 @@
 }
 .platform-selector {
   line-height: 1;
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 264px;
   padding-left: 30px;
   border-bottom: 4px solid #eeeeee;
   margin: 0 -4000px 0 0px;
@@ -47,7 +43,7 @@
 
     .btn-default {
       margin: 0;
-      color: #444444;
+      color: #1cadce;
       border: none;
       border-radius: 0;
       padding: 8px 15px;
@@ -56,7 +52,8 @@
       transition: all 0.2s ease-in;
       border-bottom: 4px solid #1cadce;
       &:hover {
-        background-color:#eeeeee;
+        color: #1cadce;
+        background-color: transparent;
       }
     }
     .btn-inactive {
@@ -64,7 +61,8 @@
       font-weight: 700;
       border-bottom: 4px solid #eeeeee;
       &:hover {
-        background-color:#eeeeee;
+        color: #1cadce;
+        background-color: transparent;
       }
     }
   }
