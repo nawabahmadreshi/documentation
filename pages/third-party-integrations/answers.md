@@ -1,7 +1,7 @@
 ---
 type: recipe
 directory: third-party-integrations
-title: "Fabric Answers"
+title: "Answers"
 page_title: Send Attribution Data to Answers
 description: This guide teaches you how to find and send deep link data to Fabric's Answers platform through your Branch integration.
 ios_keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Fabric Answers, Answers, iOS, Webhook

@@ -61,10 +61,12 @@
         - amplitude
         - google-analytics
         - mixpanel
-        - answers
         - localytics
         - ad-network-analytics
         - tune
+    - title: Fabric
+      children:
+        - answers
     - strategic-partners-guide
 - title: Reference
   directory: methods-endpoints
