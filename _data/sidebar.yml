@@ -66,7 +66,7 @@
         - tune
     - title: Fabric
       children:
-        - answers
+        - fabric-answers
     - strategic-partners-guide
 - title: Reference
   directory: methods-endpoints
