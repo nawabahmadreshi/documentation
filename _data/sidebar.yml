@@ -58,12 +58,15 @@
         - appboy
     - title: Measurement Platforms
       children:
+        - amplitude
         - google-analytics
-        - localytics
         - mixpanel
+        - localytics
         - ad-network-analytics
         - tune
-        - amplitude
+    - title: Fabric
+      children:
+        - answers
     - strategic-partners-guide
 - title: Reference
   directory: methods-endpoints
