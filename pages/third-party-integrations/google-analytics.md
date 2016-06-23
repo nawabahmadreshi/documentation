@@ -6,131 +6,149 @@ page_title: Send Deep Link Data to Google Analytics
 description: This guide teaches you how to find and send deep link data to Google Analytics through your Branch Metrics implementation.
 ios_keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Google Analytics, iOS, Webhook
 android_keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Google Analytics, Android, Webhook
-platforms:
-- ios
-- android
 sections:
 - overview
 - guide
+- advanced
 ---
 
 {% if page.overview %}
 
-If you use Google Analytics to track all mobile application analytics data, you can send data to Google Analytics through your Branch implementation. If you're interested in the segment of users coming into your apps through Branch and want to measure their events against your other cohorts, this guide can help.
+{% protip title="The Google Analytics integration is currently in private beta" %}
+To request access to the Google Analytics integration, please contact [support@branch.io](mailto:support@branch.io) or your Branch account manager. 
+{% endprotip %}
 
-The simplest way to make Branch and Google Analytics work together is by allowing Branch to track events specific to users who come via a Branch link, and letting GA track the other events.
+With a push of a button you can send your Branch data to your Google Analytics dashboard, helping you understand the power of Branch as an acquisition pathway. If you're interested in the segment of users coming into your apps through Branch and want to measure their events against your other cohorts, this guide can help.
 
-{% getstarted title="Get started with Google Analytics integration" %}{% endgetstarted %}
+{% getstarted title="Get started with the Google Analytics integration" %}{% endgetstarted %}
 
 {% elsif page.guide %}
 
 {% prerequisite %}
 
-- This guide requires you to have already [integrated the Branch SDK]({{base.url}}/getting-started/sdk-integration-guide) into your app.
-- You also need a Google Analytics account with a [mobile property created](https://support.google.com/analytics/answer/2614741?hl=en) and [install the Google Analytics SDK]({% if page.ios %}https://developers.google.com/analytics/devguides/collection/ios{% elsif page.android %}https://developers.google.com/analytics/devguides/collection/android{% endif %}).
+- This guide requires you to have already [integrated the Branch SDK]({{base.url}}/getting-started/sdk-integration-guide) and the Google Analytics SDK into your app.
 
 {% endprerequisite %}
 
-## How it works
+## Contact Branch to enable the beta
 
-We use webhooks to set up a connection where Branch event data gets sent to Google Analytics [Measurement Protocol](https://developers.google.com/analytics/devguides/collection/protocol/v1/devguide). In addition to event data, you can tack on any extra data you choose as appropriate based off the listed parameters found on [this Google reference document](https://developers.google.com/analytics/devguides/collection/protocol/v1/devguide).
+To get started, contact support@branch.io or your Branch account manager with the following information.
 
-When you [track events through Branch's SDK]({{base.url}}/getting-started/user-value-attribution#appending-custom-metadata), you can specify meta data as part of the event you send to Google Analytics in addition to the standard event data you send for a user ID.
+1. Whether you'd like to enable iOS or Android, or both
+1. Your Google Analytics Tracking ID (tid), also known as the Property ID
 
-## Collect Google Analytics properties
+To locate your Google Analytics Tracking ID, navigate to https://analytics.google.com and log in. Click on "Home" in the navigation bar at the top of the page. You should see your app(s), with accompanying Tracking ID. Copy the Tracking ID of whichever app you’re going to use with Branch. Here’s an example:
 
-Before we can start sending data, we need to collect [some properties](https://developers.google.com/analytics/devguides/collection/protocol/v1/parameters) from your Google Analytics account:
+{% image src="/img/pages/third-party-integrations/google-analytics/tid.png" half center alt='Example Ad' %}
 
-| Name | Parameter | Description
-| --- | --- | ---
-| Protocol Version | `v` | The protocol version. The value should be 1.
-| Tracking ID | `tid` | Your Google Analytics property ID (e.g. `UA-XXXXXX-X`)
-| Client ID | `cid` | The anonymous client ID you collect for the Google Analytics SDK
-| Hit Type | `t` | The type of hit. Must be one of 'pageview', 'screenview', 'event', 'transaction', 'item', 'social', 'exception', 'timing'.
-| Event Category | `ec` | The event category. Must not be empty.
-| Event Action | `ea` | The event action. Must not be empty.
+## Set up Google Analytics to use standard hardware or advertising identifiers (recommended)
 
-## Save Branch event inside app
+In addition to the basic integration, you should add a tiny amount of code to your app. This will ensure that Google Analytics uses the correct device-specific identifier for client ID (cid) with the logic Branch uses. As a result, the cid’s for SDK and webhook should match up and result in unified user data on the GA Dashboard.
 
-Next, we need to create the event in your app and record it to the Branch system, with a minimum of the six properties from the previous step:
+**iOS:**
 
-{% if page.ios %}
+On iOS, please add the following when tracking events, screen views, etc. It will ensure that the GA SDK uses the IDFA when available, and uses the IDFV if not.
+
+Please add the following to your Google Analytics code when the app first starts
 
 {% highlight objc %}
-NSDictionary *state = @{
-    @"v":@"1",
-    @"tid":@"UA-XXXXXX-X",
-    @"cid":@"67890",
-    @"t":@"event",
-    @"ec":@"commerce",
-    @"ea": @"purchase",
-    @"el": @"red_shoes", /* event label */
-    @"ea": 300 /* event value */ };
+#import <AdSupport/AdSupport.h>
 
-// event tracking via our SDK
-[[Branch getInstance] userCompletedAction:@"purchase" withState:state];
+// before tracking screen, event, etc.
+Class ASIdentifierManagerClass = NSClassFromString(@"ASIdentifierManager");
+if (ASIdentifierManagerClass && [[ASIdentifierManager sharedManager] isAdvertisingTrackingEnabled]) {
+	NSUUID *idfa = [[ASIdentifierManager sharedManager] advertisingIdentifier];
+    [tracker set:kGAIClientId value:[idfa UUIDString]];
+}
+else if (NSClassFromString(@"UIDevice")) {
+    [tracker set:kGAIClientId value:[[UIDevice currentDevice].identifierForVendor UUIDString]];
+}
 {% endhighlight %}
-{% endif %}
 
-{% if page.android %}
+In order for IDFA to be available, please be sure you have included AdSupport.framework. 
+
+{% protip title="iOS 10 and Ad Tracking Limited" %}
+If ad tracking is limited, the IDFA will be set to "00000000-0000-0000-0000-000000000000" [documentation](https://developer.apple.com/reference/adsupport/asidentifiermanager). The alternative approach below allows you to specify a `cid` manually, which avoids this issue.
+{% endprotip %}
+
+**Android:**
+
+On Android, please add the following when tracking events, screen views, etc. It will ensure that the GA SDK uses the GAID when available, and uses the Android ID (hardware ID) if not.
+
 {% highlight java %}
-JSONObject data = new JSONObject();
-data.put("v", "1");
-data.put("tid", "UA-XXXXXX-X");
-data.put("cid", "67890");
-data.put("t", "event");
-data.put("ec", "commerce");
-data.put("ea", "purchase");
-data.put("el", "red_shoes"); // event label
-data.put("ea", "300"); // event value
-
-Branch.getInstance().userCompletedAction("purchase", data);
-{% endhighlight %}
-{% endif %}
-
-Once you have saved these events inside your app, Branch will track each time the event `purchase` occurred, with the exact user, and will retain meta data for each user-event. 
-
-{% protip title="Identities" %}Since Branch [tracks identity]({{base.url}}/getting-started/growth-attribution#setting-identities), we recommend you keep the property `cid` the same as what you would use if you were calling `setIdentity` through the Branch SDK.{% endprotip %}
-
-## Build a template URL
-
-Because you will not know the values for some of the specified keys until the event is actually recorded, we will need to build a dynamic URL with [Branch's webhook templating system]({{base.url}}/getting-started/webhooks/advanced/#templating) to send the data back to Google Analytics.
-
-The Google Analytics base endpoint is `http://www.google-analytics.com/collect`, to which you append your keys as query parameters. Here is a sample URL containing the templated parameters from the earlier example (line breaks added for legibility — **remove before using**):
-
-{% highlight sh %}
-{% raw %}
-http://www.google-analytics.com/collect?
-	v=1&
-	tid=UA-XXXXXX-X&
-	cid={{ event.metadata.cid }}&
-	t=event&
-	ec={{ event.metadata.ec }}&
-	ea={{ event.metadata.ea }}&
-	el={{ event.metadata.el }}&
-	z=42
-{% endraw %}
+// Enable Advertising Features.
+mTracker.enableAdvertisingIdCollection(true);
 {% endhighlight %}
 
-{% protip title="Why the Z parameter?" %}Sometimes, `GET` requests can be cached. In order to 'bust' the cache, Google recommends appending a parameter, labeled Z, with a random number, so that every `GET` request is fresh. [More information](https://developers.google.com/analytics/devguides/collection/protocol/v1/parameters#z){% endprotip %}
+### Alternative approach to Client ID - pass to Branch directly
 
-## Configure a Branch webhook
+If you specify $google_analytics_client_id, we can pass that to Google (as *cid*). 
 
-Now that you're saving events through Branch's SDK, it's time to deliver the data to Google Analytics.
+Please ensure you're using the Branch iOS SDK 0.12.2 or greater, and Android SDK v1.12.1 or greater. If you implemented Branch after May 28th 2016, you are likely already on this version or later.
 
-1. Open the [Webhooks](https://dashboard.branch.io/#/webhook) page.
-1. Click **Add a new webhook**.
-1. Enter the following data into the webhook configuration screen:
+**iOS:**
 
-| Property | Value
-| --- | ---
-| Webhook URL | Your templated URL from the previous step.
-| Postback method | Choose `GET`.
-| Event frequency | Select `every time`.
-| Event trigger | Select `-- other --` and enter the name of the event you created in your app (e.g., `purchase`)
+Please add the following before initializing the Branch session:
 
-## Testing
+{% highlight objc %}
+[[Branch getInstance] setRequestMetadataKey:@"$google_analytics_client_id" value:@"CLIENT-ID-HERE"];
+{% endhighlight %}
 
-We recommend you [use RequestBin]({{base.url}}/getting-started/webhooks/guide/#testing) first to ensure that every time your Branch event is hit, that the proper values are sent in the `GET` request. When that is taken care of, you can add the webhook with the proper URL and start sending events to Google Analytics!
+**Android:**
+
+Please call the following line right after you initialize Branch in your Application’s #onCreate or Activity’s #onCreate:
+
+{% highlight java %}
+Branch.getInstance().setRequestMetadata("$google_analytics_client_id", "CLIENT-ID-HERE");
+{% endhighlight %}
+
+
+{% elsif page.advanced %}
+
+## Optional Parameter - User ID
+
+If you specify $google_analytics_user_id, we can pass that to Google (as `uid`).
+
+**iOS:**
+
+You can add the following before initializing the Branch session:
+
+{% highlight objc %}
+[[Branch getInstance] setRequestMetadataKey:@"$google_analytics_user_id" value:@"USER-ID-HERE"];
+{% endhighlight %}
+
+**Android:**
+
+You can call the following line right after you initialize Branch in your Application’s #onCreate or Activity’s #onCreate:
+
+{% highlight java %}
+Branch.getInstance().setRequestMetadata("$google_analytics_user_id", "USER-ID-HERE");
+{% endhighlight %}
+
+## What Branch Sends to Google Analytics
+
+| Property Name | Value | Sourced from | Example | Req 
+| --- | --- | --- | --- | --- | ---
+| v | API version | [fixed] | 1 | Y
+| tid | Tracking ID | Branch Dashboard | UA-XXXXXX-Y | Y
+| ds | Source (mobile SDK) | [fixed] | app | Y
+| an | Application Name | [fixed] | BRANCH-APP | Y
+| t | Type | [fixed] | event | Y
+| ec | Event Category | [fixed] | BranchEvent | Y
+| cid | Client ID | (discussed above, includes $google_analytics_client_id) | AEBE52E7-03EE-455A-B3C4-E57283966239 | Y
+| uid | User Id | $google_analytics_user_id | User A | N
+| cn | Campaign Name | utm_campaign -or- Branch campaign  | "Beaches and breezes" | N
+| cs | Campaign Source | utm_source -or- Branch channel | "Twitter" | N
+| cm | Campaign Medium | utm_medium -or- Branch feature  | "480banner" | N
+| ck | Campaign Keywords | utm_term -or- Branch $keywords | ["Keyword1", "keyword3"] | N
+| cc | Campaign Content | utm_content -or- Branch tags | "Some content" | N
+| ea | Event Action (Name) | event name | install | Y
+| sc | Session Control (set to true for install and open only) | [fixed] | start | N
+| uip | User’s IP Address | collected by Branch SDK | 111.111.111.111 | N
+| z | Cache buster | [unix time + random number] | 1461878903666 | N
+
+{% protip title="`anonymous` Client ID" %}
+If for some reason Branch does not receive an advertising identifier or hardware identifier, and you do not explicitly specify a "$google_analytics_client_id", then Branch will send "anonymous" as the Client ID (`cid`). This is a required field by Google Analytics.
+{% endprotip %}
 
 {% endif %}
