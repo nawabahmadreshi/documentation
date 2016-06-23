@@ -37,7 +37,7 @@ To get started, contact support@branch.io or your Branch account manager with th
 1. Whether you'd like to enable iOS or Android, or both
 1. Your Google Analytics Tracking ID (tid), also known as the Property ID
 
-To locate your Google Analytics Tracking ID, navigate to https://analytics.google.com and log in. Click on "Home" in the navigation bar at the top of the page. You should see your app(s), with accompanying Tracking ID. Copy the Tracking ID of whichever app you’re going to use with Branch. Here’s an example:
+To locate your Google Analytics Tracking ID, navigate to [https://analytics.google.com](https://analytics.google.com) and log in. Click on "Home" in the navigation bar at the top of the page. You should see your app(s), with accompanying Tracking ID. Copy the Tracking ID of whichever app you’re going to use with Branch. Here’s an example:
 
 {% image src="/img/pages/third-party-integrations/google-analytics/tid.png" half center alt='Example Ad' %}
 
@@ -65,7 +65,7 @@ else if (NSClassFromString(@"UIDevice")) {
 }
 {% endhighlight %}
 
-In order for IDFA to be available, please be sure you have included AdSupport.framework. 
+In order for IDFA to be available, please be sure you have included `AdSupport.framework`. 
 
 {% protip title="iOS 10 and Ad Tracking Limited" %}
 If ad tracking is limited, the IDFA will be set to "00000000-0000-0000-0000-000000000000" [documentation](https://developer.apple.com/reference/adsupport/asidentifiermanager). The alternative approach below allows you to specify a `cid` manually, which avoids this issue.
@@ -82,7 +82,7 @@ mTracker.enableAdvertisingIdCollection(true);
 
 ### Alternative approach to Client ID - pass to Branch directly
 
-If you specify $google_analytics_client_id, we can pass that to Google (as *cid*). 
+If you specify `$google_analytics_client_id`, we can pass that to Google (as *cid*). 
 
 Please ensure you're using the Branch iOS SDK 0.12.2 or greater, and Android SDK v1.12.1 or greater. If you implemented Branch after May 28th 2016, you are likely already on this version or later.
 
@@ -107,7 +107,7 @@ Branch.getInstance().setRequestMetadata("$google_analytics_client_id", "CLIENT-I
 
 ## Optional Parameter - User ID
 
-If you specify $google_analytics_user_id, we can pass that to Google (as `uid`).
+If you specify `$google_analytics_user_id`, we can pass that to Google (as `uid`).
 
 **iOS:**
 
@@ -148,7 +148,7 @@ Branch.getInstance().setRequestMetadata("$google_analytics_user_id", "USER-ID-HE
 | z | Cache buster | [unix time + random number] | 1461878903666 | N
 
 {% protip title="`anonymous` Client ID" %}
-If for some reason Branch does not receive an advertising identifier or hardware identifier, and you do not explicitly specify a "$google_analytics_client_id", then Branch will send "anonymous" as the Client ID (`cid`). This is a required field by Google Analytics.
+If for some reason Branch does not receive an advertising identifier or hardware identifier, and you do not explicitly specify a `$google_analytics_client_id`, then Branch will send `anonymous` as the Client ID (`cid`). This is a required field by Google Analytics.
 {% endprotip %}
 
 {% endif %}
