@@ -40,33 +40,6 @@ Branch makes it simple to enable Universal Links and App Links, and even improve
 <!-- do nothing -->
 {% else %}
 
-## Add the Associated Domains entitlement
-
-### Enable Associated Domains on Apple Developer Portal
-
-1. Log in to the [Apple Developer Portal](https://developer.apple.com/membercenter/).
-1. Click on `Certificates, Identifiers & Profiles`.
-1. Click on `Identifiers`.
-
-#### If your app already has an App Identifier
-1. Select your app and press the `Edit` button.
-1. Check the box to enable `Associated Domains`. {% image src='/img/pages/getting-started/universal-app-links/background_ass_domains_existing.png' 3-quarters center alt='enable associated domains' %}
-1. Scroll down and click `Save`.
-
-#### If your app does not yet have an App Identifier
-
-1. Click the `+` button to begin the Register an App ID process.
-1. Enter whatever you wish in the `Name` field.
-1. Enter your app's Bundle Identifier in the `Bundle ID` field. {% image src='/img/pages/getting-started/universal-app-links/background_bundle.png' 3-quarters center alt='bundle identifier' %}
-1. In the App Services section, check the box to enable `Associated Domains`. {% image src='/img/pages/getting-started/universal-app-links/background_ass_domains_new.png' 3-quarters center alt='enable associated domains' %}
-1. Scroll down and click `Save`.
-
-{% protip title="Finding your Bundle Identifier" %}
-You can retrieve your app's Bundle Identifier under the `General` tab of your Xcode project.
-
-{% image src='/img/pages/getting-started/universal-app-links/background_bundle_xcode.png' full center alt='bundle identifier xcode' %}
-{% endprotip %}
-
 ## Enable Universal Links on the Branch dashboard
 
 1. Navigate to [Link Settings](https://dashboard.branch.io/#/settings/link) in the Branch Dashboard.
@@ -77,7 +50,7 @@ You can retrieve your app's Bundle Identifier under the `General` tab of your Xc
 
 {% image src='/img/pages/getting-started/universal-app-links/dashboard_enable_universal_links.png' 3-quarters center alt='enable Universal Links on Branch dashboard' %}
 
-## Add the entitlement to your project
+## Add the Associated Domains entitlement to your project
 
 {% if page.ios or page.unity or page.adobe or page.react %}
 ### Enable Associated Domains in Xcode
