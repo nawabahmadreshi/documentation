@@ -73,6 +73,10 @@
     background-color: #1D2A38;
     padding:30px;
   }
+	.logo img {
+		padding-bottom: 10px;
+		max-width: 300px;
+	}
 	.inner__searchbar {
 	  position: relative;
 	  top: 0;
@@ -86,7 +90,10 @@
 	  .search-icon {
 			position: absolute;
 	    right: 26px;
-	    top: 87px;
+	    top: 26px;
+			i {
+				font-size: 24px;
+			}
 	  }
 	  .search-results {
 	    position: absolute;

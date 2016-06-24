@@ -1,0 +1,52 @@
+{% comment %}
+The following variables can/should be passed in
+- page_title
+- site_title
+- description
+- head (any other head elements)
+- url (absolute path to the url of the page)
+- thumbnail (absolute path)
+{% endcomment %}
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="google-site-verification" content="TjxI6VvF3pLe6Qr2OhNOUSsre9hRagslXmUgegVJaPg" />
+
+	<title>{{ include.page_title }}{% if page.title %} - {% endif %}{{ include.site_title | default: 'Branch Documentation' }}</title>
+
+	<meta name="keywords" content="{% if include.ios != "true" and include.android != "true" %}{{ include.keywords | default: 'Mobile, Referral, Deep, Linking, Personalized, Install, Attribution, Growth, Hacking, Sharing' }}{% endif %}{% if include.ios == "true" %}{{ include.ios_keywords }}{% endif %}{% if include.android == "true" %}{{ include.android_keywords }}{% endif %}" />
+	<meta name="description" content="{% if include.ios != "true" and include.android != "true" %}{{ include.description | default: 'Branch helps mobile apps grow with deep links that power referral systems, sharing links, invites and marketing links with full attribution and analytics' }}{% endif %}{% if include.ios == "true" %}{{ include.ios_description }}{% endif %}{% if include.android == "true" %}{{ include.android_description }}{% endif %}" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-touch-fullscreen" content="yes" />
+
+	<link rel="apple-touch-icon" sizes="57x57" href="https://branch.io/img/favicon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="https://branch.io/img/favicon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="https://branch.io/img/favicon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="https://branch.io/img/favicon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="https://branch.io/img/favicon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="https://branch.io/img/favicon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://branch.io/img/favicon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="https://branch.io/img/favicon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="https://branch.io/img/favicon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="https://branch.io/img/favicon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="https://branch.io/img/favicon/favicon-32x32.png" sizes="32x32">
+
+  <meta name="msapplication-TileColor" content="#65d3f7">
+  <meta name="msapplication-TileImage" content="https://branch.io/img/favicon/mstile-144x144.png">
+
+	<meta property="og:title" content="{% if include.page_title %}{{ include.page_title }} - {% endif %}{{ include.site_title | default: 'Branch' }}" />
+	<meta property="og:type" content="website" />
+	{% if include.url %}
+	<meta property="og:url" content="{{ include.url }}" />
+	{% endif %}
+	<meta property="og:image" content="{{ include.thumbnail | default: '/img/og_image.png' }}" />
+	<meta property="og:description" content="{{ include.description | default: 'Branch helps mobile apps grow with contextual deep links that power referral systems, sharing links, invites and marketing links with full attribution and analytics' }}" />
+
+	<link href="//fonts.googleapis.com/css?family=Open+Sans:400,700,600,300" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+
+	{{ include.head }}
+</head>
