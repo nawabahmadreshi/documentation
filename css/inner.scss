@@ -13,13 +13,16 @@
 }
 
 .content {
+	position: fixed;
 	top: 0;
 	right: 0;
-	left: 275px;
-	position: fixed;
 	overflow-y: scroll;
 	overflow-x: hidden;
 	height: 100%;
+	z-index: -1;
+	@media (min-width: $screen-sm-max) {
+		left: 275px;
+	}
 }
 .inner__content.no-selector {
 	margin-top: 37px;
@@ -334,37 +337,9 @@
   font-feature-settings: 'liga';
 }
 
-@media (max-width: $screen-xs-max) {
+@media (max-width: $screen-sm-max) {
   .inner__content {
     margin-left: 0;
-  }
-}
-
-.inner__supportbar {
-  position: fixed;
-  bottom: 0px;
-  background-color: #1D2A38;
-  color: #ffffff;
-  text-align: right;
-  a {
-    font-size: 14px;
-    padding: 10px 0px;
-		width: 275px;
-		text-align: center;
-    display: inline-block;
-    color: #cecece;
-    &:hover {
-      color: #ffffff;
-      background-color: #2A3745;
-    }
-  }
-}
-
-@media (max-width: $screen-xs-max) {
-  .inner__supportbar {
-    width: 100%;
-    position: relative;
-    bottom: 0;
   }
 }
 

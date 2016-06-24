@@ -2,7 +2,6 @@
 	list-style:none;
 }
 
-
 /* Main */
 .inner__content .homepage-section {
 	display:block;
@@ -80,11 +79,12 @@
 	  margin: auto;
 	  width: 100%;
 	  max-width: 500px;
-    padding-top:15px;
+    padding:15px;
 	  h2 {
 	  	margin-bottom: 0;
 	  }
 	  .search-icon {
+			position: absolute;
 	    right: 26px;
 	    top: 87px;
 	  }
