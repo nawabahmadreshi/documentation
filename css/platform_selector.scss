@@ -31,8 +31,9 @@
 }
 .platform-selector {
   line-height: 1;
-  background-color: #EFF4F5;
+  background-color: #EEEEEE;
   transition: background-color 0.2s ease-in;
+  border-bottom: 3px solid #EEEEEE;
   @media (min-width: $screen-sm-max) {
     margin: 0 -4000px 0 0px;
     padding-left: 30px;
@@ -44,7 +45,7 @@
     .btn-default {
       margin: 0;
       color: #1cadce;
-      background-color: #EFF4F5;
+      background-color: #EEEEEE;
       border: none;
       border-radius: 0;
       padding: 8px 15px;
