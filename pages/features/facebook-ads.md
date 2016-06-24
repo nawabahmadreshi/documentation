@@ -5,7 +5,9 @@ title: "Facebook Ads"
 page_title: "Advertising with Deep Links: Facebook Ads"
 description: Learn how to create Facebook ads that are powered by Branch Metrics deep links. It’s simple - configure the dashboard, generate links and set up your app.
 keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Advertising, Ads, Facebook Ads, Facebook Authentication
-hide_platform_selector: true
+platforms:
+- ios
+- android
 sections:
 - overview
 - guide
@@ -29,13 +31,43 @@ Branch links can be used together with Facebook ads, allowing you to track ad-dr
 
 {% endprerequisite %}
 
-## Authenticate Branch with Facebook
+## Connect Branch to Facebook
+
+There are two options for connecting Branch to Facebook, and either can be done depending on your context. The first option doesn't require any native app code changes and should be used if you don't have the Facebook SDK. The second option is for if you want Branch to just connect to the Facebook SDK via a client side integration. 
+
+### **Option 1** Connect Without Using Facebook SDK
 
 In order for Branch to properly run a Facebook deep linked ad campaign, you must first allow Branch to access your Facebook app information.
 
 1. Log in to Facebook, navigate to [developers.facebook.com/apps](http://developers.facebook.com/apps) and choose your app. You'll need the **App ID** and **App Secret**.{% image src='/img/pages/features/facebook-ads/fb_auth_fb.png' 3-quarters center alt='Facebook Auth' %}
 1. On the Branch Dashboard, go to [Link Settings](https://dashboard.branch.io/#/settings/link) and scroll down to 'Authenticate for Facebook Install Ads'. Enter your **App ID** and **App Secret** from Facebook.{% image src='/img/pages/features/facebook-ads/fb_auth_branch.png' 3-quarters center alt='Facebook Auth' %}
 1. Press 'Authenticate'.
+
+### **Option 2** Connect Branch to the Facebook SDK
+
+In order to use this option, you must be using iOS SDK v0.12.2 or Android SDK v1.12.0. These have the code necessary to wrap the Facebook SDK.
+
+{% if page.ios %}
+On iOS, you simply need to give Branch the class that Facebook uses for deferred deep linking. In the `AppDelegate.m`, first import the correct header file.
+
+{% highlight objc %}
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+{% endhighlight %}
+
+Next, you need to register the app link utility class with Branch before you call initSession.
+
+{% highlight objc %}
+// You must call this before you call initSession
+[[Branch getInstance] registerFacebookDeepLinkingClass:[FBSDKAppLinkUtility class]];
+[[Branch getInstance] initSession......
+{% endhighlight %}
+{% endif %}
+
+{% if page.android %}
+On Android, we use reflection to automatically call [`fetchDeferredAppLinkData`](https://developers.facebook.com/docs/reference/android/current/class/AppLinkData/). This means that you don't actually need to do anything except have the Facebook SDK integrated _in addition_ to Branch. Note that you cannot call `fetchDeferredAppLinkData` in addition to us, lest you risk consuming the attribution event before the Branch SDK can.
+{% endif %}
+
+You're all set!
 
 ## Create a Marketing link on the Branch dashboard
 
