@@ -3,9 +3,8 @@
 
 $branch-font-path: "/font";
 
-@import "../_includes/branch-web-assets/styles/global";
-@import "../_includes/branch-web-assets/components/footer/footer";
-@import "../_includes/branch-web-assets/components/header/header";
+@import "./global";
+@import "./footer";
 @import "./headers";
 @import "./tabs";
 @import "./sidebar";
@@ -18,7 +17,6 @@ $branch-font-path: "/font";
 @import "./inner";
 @import "./breadcrumbs";
 @import "./searchbar";
-@import "../_includes/branch-web-assets/components/navbar/navbar";
 
 .btn-inactive {
 	border-color: white;

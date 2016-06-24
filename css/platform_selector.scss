@@ -5,7 +5,7 @@
   left: 275px;
   right: 0px;
   top: 0;
-  background-color: #1D2A38;
+  background-color: #364351;
   border-bottom: none;
   height: initial;
 
@@ -15,51 +15,49 @@
       background-color: #1cadce;
       border-bottom: none;
       padding: 8px 15px;
+      &:hover {
+        color: #ffffff;
+      }
     }
     .btn-inactive {
       color: #ffffff;
-      background-color: #1D2A38;
+      background-color: #364351;
       &:hover {
-        background-color:#364351;
+        color: #ffffff;
+        background-color:#1D2A38;
       }
     }
   }
 }
 .platform-selector {
   line-height: 1;
-  padding-left: 30px;
-  border-bottom: 4px solid #eeeeee;
-  margin: 0 -4000px 0 0px;
-  height: 37px;
+  background-color: #EFF4F5;
   transition: background-color 0.2s ease-in;
+  @media (min-width: $screen-sm-max) {
+    margin: 0 -4000px 0 0px;
+    padding-left: 30px;
+  }
 
   .btn-group {
-    @media (max-width: $screen-xs-max) {
-      position: static;
-      width: 100%;
-      margin-bottom: 30px;
-      margin-top: -30px;
-    }
+
 
     .btn-default {
       margin: 0;
       color: #1cadce;
+      background-color: #EFF4F5;
       border: none;
       border-radius: 0;
       padding: 8px 15px;
       font-weight: 700;
       font-size: 12px;
       transition: all 0.2s ease-in;
-      border-bottom: 4px solid #1cadce;
       &:hover {
         color: #1cadce;
-        background-color: transparent;
       }
     }
     .btn-inactive {
-      color: #444444;
+      color: #333333;
       font-weight: 700;
-      border-bottom: 4px solid #eeeeee;
       &:hover {
         color: #1cadce;
         background-color: transparent;

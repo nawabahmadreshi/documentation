@@ -13,13 +13,19 @@
 }
 
 .content {
-	top: 0;
-	right: 0;
-	left: 275px;
-	position: fixed;
-	overflow-y: scroll;
-	overflow-x: hidden;
-	height: 100%;
+	@media (min-width: $screen-sm-max) {
+		top: 0;
+		right: 0;
+		position: fixed;
+		overflow-y: scroll;
+		overflow-x: hidden;
+		height: 100%;
+		left: 275px;
+	}
+	@media (max-width: $screen-sm-max) {
+		margin-top: 53px;
+		margin-bottom: 53px;
+	}
 }
 .inner__content.no-selector {
 	margin-top: 37px;
@@ -30,8 +36,13 @@
 	font-size: 14px;
 	line-height: 2;
 	color: #444444;
-
 	max-width: 870px;
+	&.no-selector {
+		margin-top: 37px;
+	}
+	@media (max-width: $screen-sm-max) {
+		padding: 30px 15px 0 15px;
+	}
 	h1 {
 		padding-bottom: 10px;
 		margin: 45px 0 5px 0;
@@ -255,9 +266,7 @@
     background-color: #ffffff;
     margin-left: -45px;
     margin-right: -3045px;
-    padding-right: 3045px;
-    padding: 45px;
-    padding-right: 3045px;
+    padding: 45px 3045px 45px 45px;
     &.panel-dark {
       background-color: #f9f9f9;
     }
@@ -285,6 +294,9 @@
       position: absolute;
       text-align: right !important;
       width: 75px;
+			@media(max-width: $screen-sm-max) {
+				width: 45px;
+			}
     }
     h2 {
       padding-left: 50px;
@@ -337,34 +349,6 @@
 @media (max-width: $screen-xs-max) {
   .inner__content {
     margin-left: 0;
-  }
-}
-
-.inner__supportbar {
-  position: fixed;
-  bottom: 0px;
-  background-color: #1D2A38;
-  color: #ffffff;
-  text-align: right;
-  a {
-    font-size: 14px;
-    padding: 10px 0px;
-		width: 275px;
-		text-align: center;
-    display: inline-block;
-    color: #cecece;
-    &:hover {
-      color: #ffffff;
-      background-color: #2A3745;
-    }
-  }
-}
-
-@media (max-width: $screen-xs-max) {
-  .inner__supportbar {
-    width: 100%;
-    position: relative;
-    bottom: 0;
   }
 }
 

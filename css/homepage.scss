@@ -2,7 +2,6 @@
 	list-style:none;
 }
 
-
 /* Main */
 .inner__content .homepage-section {
 	display:block;
@@ -74,19 +73,27 @@
     background-color: #1D2A38;
     padding:30px;
   }
+	.logo img {
+		padding-bottom: 10px;
+		max-width: 300px;
+	}
 	.inner__searchbar {
 	  position: relative;
 	  top: 0;
 	  margin: auto;
 	  width: 100%;
 	  max-width: 500px;
-    padding-top:15px;
+    padding:15px;
 	  h2 {
 	  	margin-bottom: 0;
 	  }
 	  .search-icon {
+			position: absolute;
 	    right: 26px;
-	    top: 87px;
+	    top: 26px;
+			i {
+				font-size: 24px;
+			}
 	  }
 	  .search-results {
 	    position: absolute;

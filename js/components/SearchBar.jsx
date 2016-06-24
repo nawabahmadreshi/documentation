@@ -86,7 +86,7 @@ var SearchBar = React.createClass({
 					<i className={this.state.iconClass} onClick={this.handleClose}>{this.state.iconContent}</i>
 				</div>
 				<div className="search-bar">
-					<form className="navbar-form">
+					<form>
 						<input
 							type="text"
 							name="search"
