@@ -63,7 +63,6 @@
 
 .homepage.inner__content {
 	padding: 0;
-	padding-bottom: 50px;
 	margin-left: 0;
 	max-width: 100%;
 	a {
@@ -75,7 +74,8 @@
   }
 	.logo img {
 		padding-bottom: 10px;
-		max-width: 300px;
+		padding-left: 30px;
+		max-width: 200px;
 	}
 	.inner__searchbar {
 	  position: relative;
@@ -146,5 +146,9 @@
 	    text-decoration: none;
 	    color: #ffffff;
 	  }
+	}
+	.partner-logos {
+		padding: 40px 0;
+		background-color: #fafafa;
 	}
 }
