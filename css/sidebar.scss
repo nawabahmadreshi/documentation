@@ -30,7 +30,7 @@
 		position: fixed;
 		top: 0;
 		width: 275px;
-		padding: 15px 35px 0px 55px;
+		padding: 15px 55px 0px 75px;
 		@media (max-width: $screen-sm-max) {
 			width: 100%;
 			padding: 5px 10px;
@@ -60,7 +60,7 @@
 	.inner__searchbar {
 		@media (min-width: $screen-sm-max) {
 			position: fixed;
-		  top: 64px;
+		  top: 53px;
 		  width: 275px;
 		}
 	  .search {
@@ -95,7 +95,7 @@
 		@media (min-width: $screen-sm-max) {
 			position: fixed;
 			bottom: 41px;
-			top: 125px;
+			top: 114px;
 			width: 275px;
 			&::-webkit-scrollbar {
 		    width: 10px;
