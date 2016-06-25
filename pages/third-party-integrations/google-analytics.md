@@ -43,6 +43,9 @@ To locate your Google Analytics Tracking ID, navigate to [https://analytics.goog
 
 ## Set up Google Analytics to use standard hardware or advertising identifiers (recommended)
 
+Please ensure you're using the Branch iOS SDK 0.12.2 or greater, and Android SDK v1.12.1 or greater. If you implemented Branch after May 28th 2016, you are likely already on this version or later.
+
+
 In addition to the basic integration, you should add a tiny amount of code to your app. This will ensure that Google Analytics uses the correct device-specific identifier for client ID (cid) with the logic Branch uses. As a result, the cid’s for SDK and webhook should match up and result in unified user data on the GA Dashboard.
 
 **iOS:**
@@ -83,8 +86,6 @@ mTracker.enableAdvertisingIdCollection(true);
 ### Alternative approach to Client ID - pass to Branch directly
 
 If you specify `$google_analytics_client_id`, we can pass that to Google (as *cid*). 
-
-Please ensure you're using the Branch iOS SDK 0.12.2 or greater, and Android SDK v1.12.1 or greater. If you implemented Branch after May 28th 2016, you are likely already on this version or later.
 
 **iOS:**
 
@@ -147,7 +148,7 @@ Branch.getInstance().setRequestMetadata("$google_analytics_user_id", "USER-ID-HE
 | uip | User’s IP Address | collected by Branch SDK | 111.111.111.111 | N
 | z | Cache buster | [unix time + random number] | 1461878903666 | N
 
-{% protip title="`anonymous` Client ID" %}
+{% protip title=""anonymous" Client ID" %}
 If for some reason Branch does not receive an advertising identifier or hardware identifier, and you do not explicitly specify a `$google_analytics_client_id`, then Branch will send `anonymous` as the Client ID (`cid`). This is a required field by Google Analytics.
 {% endprotip %}
 
