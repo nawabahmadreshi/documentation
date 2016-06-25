@@ -1,5 +1,86 @@
 
-{% webasset footer branch_base='{{site.branch_base}}' %}
+<footer class="footer">
+	<div class="footer__top">
+		<div class="container">
+
+			<div class="col-md-2 col-md-offset-1">
+				<span class="footer__title"><a class="inherit" href="{{ include.branch_base | default: 'https://branch.io' }}/">Branch Metrics</a></span>
+				<ul>
+					<li><a href="{{ include.branch_base | default: 'https://branch.io' }}/about">About Us</a></li>
+					<li><a href="{{ include.branch_base | default: 'https://branch.io' }}/partners">Partners</a></li>
+					<li><a href="https://support.branch.io/support/tickets/new" target="_blank">Contact Us</a></li>
+					<li><a href="{{ include.branch_base | default: 'https://branch.io' }}/privacy_policy">Privacy Policy</a></li>
+					<li><a href="{{ include.branch_base | default: 'https://branch.io' }}/terms_and_conditions">Terms and Conditions</a></li>
+
+				</ul>
+			</div>
+
+			<div class="col-md-2">
+				<span class="footer__title"><a class="inherit" href="{{ include.branch_base | default: 'https://branch.io' }}/learn">Learn</a></span>
+				<ul>
+					<li><a href="{{ include.branch_base | default: 'https://branch.io' }}/what-is-deep-linking">What Is Deep Linking?</a></li>
+					<li><a href="{{ include.branch_base | default: 'https://branch.io' }}/case-studies">Case Studies</a></li>
+					<li><a href="{{ include.branch_base | default: 'https://branch.io' }}/resources">Resources</a></li>
+					<li><a href="https://blog.branch.io" target="_blank">Blog</a></li>
+					<li><a href="{{ include.branch_base | default: 'https://branch.io' }}/press">Press</a></li>
+				</ul>
+			</div>
+
+			<div class="col-md-2">
+				<span class="footer__title"><a class="inherit" href="{{ include.branch_base | default: 'https://branch.io' }}/features">Product</a></span>
+				<ul>
+					<li><a href="{{ include.branch_base | default: 'https://branch.io' }}/features">Features</a></li>
+					<li><a href="{{ include.branch_base | default: 'https://branch.io' }}/pricing">Pricing</a></li>
+					<li><a href="{{ include.branch_base | default: 'https://branch.io' }}/how-branch-links-work">How Links Work</a></li>
+					<li><a href="https://dev.branch.io/getting-started/supported-standards" target="_blank">Supported Standards</a></li>
+					<li><a href="{{ include.branch_base | default: 'https://branch.io' }}/why-branch">How Branch Differs</a></li>
+				</ul>
+			</div>
+
+			<div class="col-md-2">
+				<span class="footer__title">Get Involved</span>
+				<ul>
+					<li><a href="{{ include.branch_base | default: 'https://branch.io' }}/strategic-partners">Strategic Partners</a></li>
+					<li><a href="{{ include.branch_base | default: 'https://branch.io' }}/careers">Careers</a></li>
+					<li><a href="http://www.meetup.com/pro/mobilegrowth/" target="_blank">Meetups</a></li>
+					<li><a href="{{ include.branch_base | default: 'https://branch.io' }}/branch-referral-program">Refer a Developer</a></li>
+					<li><a href="{{ include.branch_base | default: 'https://branch.io' }}/branch-ambassadors">Be an Ambassador</a></li>
+				</ul>
+			</div>
+
+			<div class="col-md-2">
+				<span class="footer__title"><a class="inherit" href="https://dev.branch.io" target="_blank">Documentation</a></span>
+				<ul>
+					<li><a href="https://start.branch.io" target="_blank">Get Started</li>
+					<li><a href="https://dev.branch.io/getting-started/configuring-links/guide/">Link Configuration</a></li>
+					<li><a href="https://dev.branch.io/getting-started/sdk-integration-guide/guide/">SDK Integration</a></li>
+					<li><a href="https://support.branch.io/support/solutions/6000021753" target="_blank">FAQ</a></li>
+					<li><a href="https://support.branch.io" target="_blank">Support</a></li>
+				</ul>
+			</div>
+
+
+		</div>
+	</div>
+	<div class="footer__bottom">
+		<div class="container">
+			<div class="col-md-6 text-left">
+				<div class="footer__copyright">
+					&copy; 2016 <span style="font-weight:500">Branch Metrics</span>. All rights reserved.
+				</div>
+			</div>
+			<div class="col-md-6 text-right">
+				<a href="https://plus.google.com/+BranchIoMobile" title="Google Plus" target="_blank" class="footer__social-media"><i class="branch-icon branch-gplus"></i></a>
+				<a href="https://www.twitter.com/branchmetrics" title="Twitter" target="_blank" class="footer__social-media"><i class="branch-icon branch-twitter"></i></a>
+				<a href="https://www.facebook.com/branchmetrics" title="Facebook" target="_blank" class="footer__social-media"><i class="branch-icon branch-facebook"></i></a>
+				<a href="https://www.linkedin.com/company/3813083?trk=prof-0-ovw-curr_pos" title="Linkedin" target="_blank" class="footer__social-media"><i class="branch-icon branch-linkedin"></i></a>
+				<a href="https://soundcloud.com/branchmetrics/" title="SoundCloud" target="_blank" class="footer__social-media"><i class="branch-icon branch-soundcloud"></i></a>
+				<a href="https://blog.branch.io/rss/" title="RSS feed" target="_blank" class="footer__social-media"><i class="branch-icon branch-rss"></i></a>
+			</div>
+		</div>
+	</div>
+</footer>
+
 
 <script type="text/javascript">
 PlatformActions.loadDefaulted({

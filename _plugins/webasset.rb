@@ -13,7 +13,7 @@ module Jekyll
         data[m[0]] = Liquid::Template.parse(m[1]).render!(context)
       }
 
-      partial = Liquid::Template.parse(File.read(File.join("_includes/branch-web-assets/components", @asset, @asset + ".html")))
+      partial = Liquid::Template.parse(File.read(File.join("_includes", @asset, @asset + ".html")))
 
       context.stack do
         context['include'] = data
