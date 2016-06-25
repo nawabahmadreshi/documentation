@@ -34,7 +34,7 @@
       children:
         - deepviews
         - website-to-app-routing
-        - smart-banner
+        - journeys
         - text-me-the-app
     - title: Marketing for Mobile
       children:
