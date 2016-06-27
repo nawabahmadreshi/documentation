@@ -16,7 +16,7 @@ sections:
 {% if page.overview %}
 
 {% protip title="The Amplitude integration is currently in private beta" %}
-To request access to the Amplitude integration, please contact [support@branch.io](mailto:support@branch.io) or your Branch account manager. 
+To request access to the Amplitude integration, please contact [integrations@branch.io](mailto:integrations@branch.io) or your Branch account manager. 
 {% endprotip %}
 
 With a push of a button you can send your Branch data to your Amplitude dashboard, helping you understand the power of Branch as an acquisition pathway. 
@@ -33,7 +33,7 @@ With a push of a button you can send your Branch data to your Amplitude dashboar
 
 ## Contact Branch to enable the beta
 
-To get started, contact support@branch.io or your Branch account manager with the following information.
+To get started, contact integrations@branch.io or your Branch account manager with the following information.
 
 1. Whether you'd like to enable iOS or Android, or both
 1. Your Amplitude API key

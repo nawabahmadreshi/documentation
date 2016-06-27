@@ -15,7 +15,7 @@ sections:
 {% if page.overview %}
 
 {% protip title="The Localytics V2 integration is currently in private beta" %}
-To request access to the Localytics V2 integration, please contact [support@branch.io](mailto:support@branch.io) or your Branch account manager. 
+To request access to the Localytics V2 integration, please contact [integrations@branch.io](mailto:integrations@branch.io) or your Branch account manager. 
 {% endprotip %}
 
 We've partnered with Localytics to provide an easy way to deliver Branch installs and attributions to your Localytics dashboard. This is great for segmenting your users and providing higher granularity for your organic cohorts vs paid cohorts.
@@ -33,7 +33,7 @@ We've partnered with Localytics to provide an easy way to deliver Branch install
 
 ## Contact your Branch Account Manager
 
-To get started, contact support@branch.io or your Branch account manager and give them your Localytics iOS and Android API keys.
+To get started, contact integrations@branch.io or your Branch account manager and give them your Localytics iOS and Android API keys.
 
 ## How it works
 

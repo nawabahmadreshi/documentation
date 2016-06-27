@@ -27,7 +27,7 @@ To learn more about becoming a Branch Strategic Partner, please [click here](htt
 
 First, you will need a Branch partner token that gives you the ability to create Branch apps via the API. You can, of course, create apps via the normal signup form and dashboard manually without this. It's required for the API access though.
 
-Send a note to [support@branch.io](mailto:support@branch.io) to request the `user_id` token. The token will be in the form of a long series of numbers like this: `19190933253783894`.
+Send a note to [integrations@branch.io](mailto:integrations@branch.io) to request the `user_id` token. The token will be in the form of a long series of numbers like this: `19190933253783894`.
 
 ### Create and update the Branch app config
 

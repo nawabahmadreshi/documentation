@@ -15,7 +15,7 @@ sections:
 ## Data Export API
 
 #### Configuration
-In order to use this API you must have an App ID and a Branch Public Key. You must also be whitelisted to use the API. If you'd like to be whitelisted for the Export API, please contact [support@branch.io](mailto:support@branch.io).
+In order to use this API you must have an App ID and a Branch Public Key. You must also be whitelisted to use the API. If you'd like to be whitelisted for the Export API, please contact [integrations@branch.io](mailto:integrations@branch.io).
 
 You can find your keys at: https://dashboard.branch.io/#/settings
 
