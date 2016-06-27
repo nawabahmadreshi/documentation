@@ -48,22 +48,23 @@
       children:
         - google-app-indexing
         - spotlight-indexing
-- title: Third-Party Integrations
+- title: Integrations
   directory: third-party-integrations
   children:
-    - title: Growth Tools
+    - title: Data Integrations
+      children:
+        - amplitude
+        - appboy
+        - google-analytics
+        - kochava
+        - localytics
+        - mixpanel
+        - tune
+    - title: Third Party Tools
       children:
         - apptimize
         - referral-saasquatch
-        - appboy
-    - title: Measurement Platforms
-      children:
-        - amplitude
-        - google-analytics
-        - mixpanel
-        - localytics
         - ad-network-analytics
-        - tune
     - title: Fabric
       children:
         - fabric-answers
