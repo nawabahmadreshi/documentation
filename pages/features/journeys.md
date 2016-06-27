@@ -14,13 +14,13 @@ sections:
 
 {% if page.overview %}
 
-Did you know that Google organic search gives companies **more free installs** than all of Facebook's paid install product on a daily basis. There is a ton of traffic hitting your mobile site that is interested in your app. Branch's Journeys Web To App product will help you convert those users into high quality, long term retained, native mobile app users.
+Did you know that Google organic search gives companies **more free installs** than all of Facebook's paid install product on a daily basis? Branch's Journeys Web To App product will help you convert those users into high quality, long term retained, native mobile app users.
 
-Journeys is a huge leap forward in the functionality of the Branch platform. It allows to design a mobile web banner, interstitial or call to action which will route the user to the App/Play Store when clicked. You can create advanced targeting rules to limit who and when the mobile web experience shows to optimally drive the right users to your app.
+Journeys is a huge leap forward in the functionality of the Branch platform. It allows to design a mobile web banner, interstitial or call to action which will route the user to the App/Play Store when clicked. You can create advanced targeting rules to limit who and when the mobile web experience shows to optimally drive the right users to your app, then measure the performance of every flow.
 
 {% image src='/img/pages/features/journeys/journeys-intro.png' full center alt='Journeys intro' %}
 
-{% getstarted title="Get started with the Journeys" %}{% endgetstarted %}
+{% getstarted title="Get started with Journeys" %}{% endgetstarted %}
 
 {% elsif page.guide %}
 
@@ -40,41 +40,31 @@ To use Journeys, you must have the Web SDK on your website. Don't worry, it's ju
 
 ## Create Your Journey
 
-Head to the [Branch Journeys dashboard](http://dashboard.branch.io/journeys), and click the ‘New Journey’ button to get started. In the modal that appears, enter the name you'd like to use for later reference.
+Head to the [Branch Journeys dashboard](http://dashboard.branch.io/journeys), and click the `New Journey` button to get started. In the modal that appears, enter the name you'd like to use for later reference.
 
-{% image src='/img/pages/features/journeys/journeys-name.png' third center alt='name' %}
+{% image src='/img/pages/features/journeys/journeys-name.png' half center alt='name' %}
 
 ## Design Your Audience
 
 Start customizing your audience by choosing the target platform, device, and region.
 
-{% image src='/img/pages/features/journeys/audience-rules.png' third center alt='audience' %}
+{% image src='/img/pages/features/journeys/audience-rules.png' full center alt='audience' %}
 
-1) Platform.
-
- For now, Branch offers Journeys on one platform: the mobile web, for display on your website. You don’t need to change any platform settings.
-
-2) Operating systems
-
-Would you like to target users on all devices, or only iOS or Android users? For example, if you only have an iOS app, then you might only want to show a Branch View to users viewing your mobile website on iOS.
-
-3) What regions
-
-Where would you like your Branch View to show? If you have users in many different countries, you might want to create distinct Journeys with Branch Views in different languages.
-
-4) Advanced options
-
-There are many advanced options for audiences that can be found [here]({{base.url}}/features/journeys/advanced/#advanced-audience-rules).
+1. **Platform**: For now, Branch offers Journeys on one platform: the mobile web, for display on your website. You don’t need to change any platform settings.
+2. **Operating systems**: Would you like to target users on all devices, or only iOS or Android users? For example, if you only have an iOS app, then you might only want to show a Branch View to users viewing your mobile website on iOS.
+3. **Regions**: Where would you like your Branch View to show? If you have users in many different countries, you might want to create distinct Journeys with Branch Views in different languages.
+4. **Advanced options**: There are many advanced options for audiences that can be found [here]({{base.url}}/features/journeys/advanced/#advanced-audience-rules).
 
 ## Configure Branch View Templates
 
 You can choose which Branch Views your audience will see, and how much of your audience will see it. First, click `Select Template` to choose customize the template you'd like to show for this Journey.
 
-{% image src='/img/pages/features/journeys/select-template.png' third center alt='select templates' %}
+{% image src='/img/pages/features/journeys/select-template.png' half center alt='select templates' %}
 
 ### Select your template
 
 This opens a WYSIWYG editor where you can change the style and content of your Branch View. First, choose the type of template that you want to show. You can choose from a:
+
 - Full page injected interstitial (SEO friendly!)
 - Half page injected banner (SEO friendly!)
 - Floating app banner
@@ -96,11 +86,11 @@ Here, you can change the template name so you can easily find it later. To edit 
 
 Want to test multiple Branch Views? Click `Add Rule` to split your audience so that. For instance, 60% see one Branch View, and 40% see another. You’ll be able to see analytics for each of these later. You’ll also have to select a template for each rule you add.
 
-{% image src='/img/pages/features/journeys/multiple-templates.png' third center alt='multiple templates' %}
+{% image src='/img/pages/features/journeys/multiple-templates.png' half center alt='multiple templates' %}
 
 ### Validation and testing
 
-You can test your different Branch Views by clicking the links provided on this page. Lastly, use the validation step to check whether you have everything properly configured to run your journey successfully. Here are some potential errors and warnings that you might encounter.
+You can test your different Branch Views by clicking the links provided on this page. You'll also note that a few validation checks run to make sure everything is properly configured to run successfully. Here are some potential errors and warnings that you might encounter:
 
 **Web SDK errors**: You must have the web SDK installed on your website to run a journey - setup instructions [here]({{base.url}}/features/journeys/guide/#prerequisite-install-the-web-sdk).
 
@@ -126,7 +116,7 @@ Note that you must `clone` or `pause` a live journey to edit it. They are read o
 
 You can access your Journey’s performance direct from the actions menu in the Journeys Manager. Journeys map to standard Branch analytics tags:
 
-- All Journeys: `feature` = `journeys`
+- All Journeys: `feature`: `journeys`
 - Each Journey:	`campaign`:	`<journey name>`
 - Branch Views:	`tags`: `<branch view name>`
 
@@ -149,13 +139,13 @@ To compare Branch View segments within one Journey:
 
 You can target users on a more granular level - based on behavior like where they came from, whether they already have your app installed, and what they’ve done on your website or in your app.
 
-{% image src='/img/pages/features/journeys/advanced-audience-rules.png' 2-thirds center alt='Advanced audience' %}
+{% image src='/img/pages/features/journeys/advanced-audience-rules.png' full center alt='Advanced audience' %}
 
 **Completed event**
 
 If you have custom event tracking set up, you can target users based on events that you define. For instance, you might want to show a Branch View to users who make a purchase, or who add an item to their shopping cart more than three times.
 
-** Referred from site**
+**Referred from site**
 
 You can target a user based on the last touch point before they entered your website. For example, if you want to target users that found you through Google Search, you can select “Referred from site” and fill in `google.com`. Currently, we only support domain names in the Referred from site field.
 
