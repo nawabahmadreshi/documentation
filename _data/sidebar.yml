@@ -60,6 +60,10 @@
         - localytics
         - mixpanel
         - tune
+    - title: Deep Linked Email
+      children:
+        - responsys
+        - sailthru
     - title: Third Party Tools
       children:
         - apptimize
