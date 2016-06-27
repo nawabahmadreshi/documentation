@@ -174,7 +174,7 @@ As a last resort, you can manually input a direct deep link. To retrieve this:
 1. Find the `al:ios:url` line (it should look like `<meta property="al:ios:url" content="myapp://open?link_click_id=link-242052337263342024" />`)
 1. Copy the value of this (`myapp://open?link_click_id=link-242052337263342024`) and input it as the Deep Link value of your ad
 
-If none of these approaches work, please reach out to support@branch.io immediately.
+If none of these approaches work, please reach out to integrations@branch.io immediately.
 
 ## Known issue with App Restrictions
 

@@ -15,7 +15,7 @@ sections:
 {% if page.overview %}
 
 {% protip title="The Google Analytics integration is currently in private beta" %}
-To request access to the Google Analytics integration, please contact [support@branch.io](mailto:support@branch.io) or your Branch account manager. 
+To request access to the Google Analytics integration, please contact [integrations@branch.io](mailto:integrations@branch.io) or your Branch account manager. 
 {% endprotip %}
 
 With a push of a button you can send your Branch data to your Google Analytics dashboard, helping you understand the power of Branch as an acquisition pathway. If you're interested in the segment of users coming into your apps through Branch and want to measure their events against your other cohorts, this guide can help.
@@ -32,7 +32,7 @@ With a push of a button you can send your Branch data to your Google Analytics d
 
 ## Contact Branch to enable the beta
 
-To get started, contact support@branch.io or your Branch account manager with the following information.
+To get started, contact integrations@branch.io or your Branch account manager with the following information.
 
 1. Whether you'd like to enable iOS or Android, or both
 1. Your Google Analytics Tracking ID (tid), also known as the Property ID
