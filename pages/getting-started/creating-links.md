@@ -22,7 +22,7 @@ hide_section_selector: true
 The Web SDK offers several useful features:
 
 - **[Text-Me-The-App]({{base.url}}/features/text-me-the-app)**
-- **[Smart Banner]({{base.url}}/features/smart-banner)**
+- **[Journeys Web To App Platform]({{base.url}}/features/journeys)**
 - **[Website To App Routing]({{base.url}}/features/website-to-app-routing)**
 - **[Generic link() function](creating-links-in-other-ways/#link-function)**
 

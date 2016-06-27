@@ -83,7 +83,7 @@ The following keys have been embedded:
 You can use the Branch Web SDK to create links in several ways:
 
 - [Text-Me-The-App]({{base.url}}/features/text-me-the-app)
-- [Smart Banner]({{base.url}}/features/smart-banner)
+- [Journeys Web To App Platform]({{base.url}}/features/journeys)
 - [Website To App Routing]({{base.url}}/features/website-to-app-routing)
 
 #### Link() function
