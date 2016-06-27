@@ -68,7 +68,7 @@ Please ensure you're using the Branch iOS SDK 0.12.2 or greater, and Android SDK
 | adid | GAID | collected by Branch SDK | AEBE52E7-03EE-455A-B3C4-E57283966239 | * 
 | device_id | Unique ID for device | $amplitude_device_id | AEBE52E7-03EE-455A-B3C4-E57283966239 | N 
 | user_id | Unique ID for user | $amplitude_user_id | User A | N 
-| ip | User’s IP Address | collected by Branch SDK | 192.168.3.6 | N 
+| ip | User’s IP Address | collected by Branch SDK | 111.111.111.111 | N 
 | event_properties.ANY-KEY (many) | The value associated with the key | event metadata or referring link data | ~channel: facebook | N
 
 * On iOS, `idfa` or `idfv` is required. On Android, `adid` is required.
