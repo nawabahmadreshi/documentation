@@ -110,15 +110,15 @@ You can activate a journey directly from the creation flow, or from “Start” 
 
 {% image src='/img/pages/features/journeys/edit-journeys.png' third center alt='edit journeys' %}
 
-Note that you must `clone` or `pause` a live journey to edit it. They are read only while live.
+Note that you must `clone` or `stop` a live journey to edit it. They are read only while live.
 
 ## Visualizing Journeys Performance
 
 You can access your Journey’s performance direct from the actions menu in the Journeys Manager. Journeys map to standard Branch analytics tags:
 
-- All Journeys: `feature`: `journeys`
-- Each Journey:	`campaign`:	`<journey name>`
-- Branch Views:	`tags`: `<branch view name>`
+- All Journeys: `feature` = `journeys`
+- Each Journey:	`campaign` = `<journey id>`
+- Branch Views:	`tags` = `<branch view name>`
 
 {% image src='/img/pages/features/journeys/view-performance.png' 2-thirds center alt='view performance' %}
 
@@ -129,8 +129,8 @@ You can also access Journeys analytics by selecting the above filters in Source 
 
 To compare Branch View segments within one Journey:
 
-1. Filter by feature = journeys
-2. Filter by campaign = Journey name
+1. Filter by feature = `journeys`
+2. Filter by campaign = `<journey id>`
 3. Group by tags
 
 {% elsif page.advanced %}
@@ -184,5 +184,73 @@ branch.setBranchViewData({
 {% endhighlight %}
 
 Note, calling `banner()` will also override the custom deep link parameters on the Journey that gets shown on that site. The actually banner will not be displayed when a Journey is shown, but the deep link data will be used. This is done to make it easy to migrate from the banner to Journeys.
+
+## Web To App Routing Without Journeys
+
+If you maintain a mobile website, Branch allows you to deep link mobile visitors directly into your app, or easily and automatically give them the option of downloading it. Here's a diagram that describes how it works:
+
+{% image src='/img/pages/features/website-to-app-routing/deepview-websdk-routing.png' center full alt='Deepviews web routing' %}
+
+### Open app if installed
+
+Add the following code somewhere inside the `<head></head>` tags on your website and customize the [link parameters]({{base.url}}/getting-started/configuring-links) to suit your needs.
+
+{% protip %}
+What this script does is move a lot of the Branch redirection logic to the Javascript on your own page, effectively 'clicking a Branch link' on page load.
+{% endprotip %}
+
+{% highlight javascript %}
+<script type="text/javascript">
+// load the Branch SDK file
+{% ingredient web-sdk-initialization %}{% endingredient %}
+// define the deepview structure
+branch.deepview(
+    {
+      'channel': 'mobile_web',
+      'feature': 'deepview',
+      data : {
+        '$deeplink_path': 'page/1234',
+        'user_profile': '7890',
+        'page_id': '1234',
+        'custom_data': 1234
+      }
+    },
+    {
+      'open_app': true  // If true, Branch attempts to open your app immediately when the page loads. If false, users will need to press a button. Defaults to true
+    }
+);
+</script>
+{% endhighlight %}
+
+{% ingredient replace-branch-key %}{% endingredient %}
+
+### Add an Install Call To Action
+
+Trigger the `branch.deepviewCta()` function with a button or hyperlink on your page. Executing this function (whether by button, link, or some other method) 'clicks' the link you defined using `branch.deepview()` above.
+
+| Platform | Result of Call To Action
+| --- | ---
+| Mobile, app installed | Open app, deep link directly to content [if configured]({{base.url}}/features/website-to-app-routing/advanced/#deep-linking-from-your-website). This is a failsafe action in case the 'link click' on page load didn't fire correctly.
+| Mobile, app NOT installed | Open App Store or Play Store page for your app, deep link directly to content after download [if configured]({{base.url}}/features/website-to-app-routing/advanced/#deep-linking-from-your-website).
+| Desktop | Redirect to `$desktop_url` specified in the `deepview()` call, or fall back to your default web url from [Link Settings](https://dashboard.branch.io/#/settings/link).
+
+{% example %}Here's how to add a simple hyperlink call to action:
+
+{% highlight html %}
+<a id='downloadapp' onclick='branch.deepviewCta()'>View this in app</a>
+{% endhighlight %}
+{% endexample %}
+
+## Troubleshooting
+
+### Calls to [branchdomain] blocked
+
+{% ingredient branchsubdomain %}{% endingredient %}
+
+Please make sure to add `[branchsubdomain]` to the CSP header for your pages. We've seen some browsers that attempt to block it outright. You can deliver this in an HTTP header from your web server or you can add a simple metatag to your site like so:
+
+{% highlight html %}
+<meta http-equiv="Content-Security-Policy" content="default-src https://[branchsubdomain]; child-src 'none'; object-src 'none'"> 
+{% endhighlight %}
 
 {% endif %}
