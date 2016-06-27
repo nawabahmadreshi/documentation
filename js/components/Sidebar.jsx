@@ -80,12 +80,12 @@ var LinkGroup = React.createClass({
 	getInitialState: function() {
 		return {
 			selected: false,
-			expand: (this.props.directory == this.props.current_path.split('/')[this.props.level])
+			expand: true
 		};
 	},
 	_toggle: function() {
 		this.setState({
-			expand: !this.state.expand
+			expand: true
 		});
 	},
 	_setSelected: function() {
@@ -122,20 +122,10 @@ var LinkGroup = React.createClass({
 		}.bind(this));
 		if (props.group.children) {
 			var selectedClass = '',
-				groupClass = 'sidebar-group',
-				arrowClass = 'fa fa-caret-right';
-				plusContent = '+'
-			if (this.state.expand) {
-				groupClass += ' sidebar-group--expand';
-				arrowClass = 'fa fa-caret-down';
-				plusContent = '-'
-			}
-			if (this.state.selected) {
-				selectedClass += 'sidebar-group-selected';
-			}
+				groupClass = 'sidebar-group'
 			return (<div className={ selectedClass }>
 				<h4 className="sidebar-group-title" onClick={ this._toggle }>
-					{ props.level == 0 ? <i className={ arrowClass } /> : <span className="plus-minus">{ plusContent }</span> } { props.group.title }
+					{ props.group.title }
 				</h4>
 				<ul className={ groupClass }>{ links(props.group.children) }</ul>
 			</div>);

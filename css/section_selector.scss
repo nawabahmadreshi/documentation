@@ -1,5 +1,5 @@
 .section-selector {
-  margin: 30px 0;
+  margin: 30px 0 0 0;
   .section-group {
     border-bottom: 4px solid #eeeeee;
     height: 53px;
@@ -36,9 +36,6 @@
 }
 
 .hide-selector {
-  .section-group {
-    height: auto;
-  }
   .section {
     display: none !important;
   }
