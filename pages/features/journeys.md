@@ -177,4 +177,22 @@ You might choose to only show a Branch View that asks a user to open the app to 
 
 ## Dynamic Deep Linking with Journeys
 
+You have the option of dynamically configuring the Branch link that powers the Journey presented to the user. You'd want to do this if you want to pass custom deep link data on every page of your site. For now, you'll need to do this by calling `setBranchViewData` on the Branch Web SDK.
+
+{% highlight javascript %}
+<script type="text/javascript">
+{% ingredient web-sdk-initialization %}{% endingredient %}
+// You'll need to set the deep link data here, in the block where you call init().
+branch.setBranchViewData({
+  data: {
+    mydata: 'something',
+    product_id: '12345',
+    '$deeplink_path': 'open/item/1234'
+  }
+});
+</script>
+{% endhighlight %}
+
+Note, calling `banner()` will also override the custom deep link parameters on the Journey that gets shown on that site. The actually banner will not be displayed when a Journey is shown, but the deep link data will be used. This is done to make it easy to migrate from the banner to Journeys.
+
 {% endif %}
