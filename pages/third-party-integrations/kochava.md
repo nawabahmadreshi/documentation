@@ -13,9 +13,9 @@ sections:
 
 {% if page.overview %}
 
-Kochava offers unique, holistic and unbiased app measurement. From attribution and analytics to optimization, the Kochava platform provides precise, real-time visualization of campaign and app performance from ad impression through user lifetime value. Kochava customers enjoy a suite of optimization tools including Configurable Attribution, Fraud Detection and over 2200 certified network & publisher integrations including super publishers like Facebook, Instagram, Google and Pandora.
+The Kochava integration sends **all clicks on a Branch link** from Branch to Kochava, for the enabled platform. Now you can see your valuable Branch attribution data in your Kochava dashboard. 
 
-The Kochava integration sends **all clicks on a Branch link** from Branch to Kochava, for the enabled platform. 
+Kochava offers unique, holistic and unbiased app measurement. From attribution and analytics to optimization, the Kochava platform provides precise, real-time visualization of campaign and app performance from ad impression through user lifetime value. Kochava customers enjoy a suite of optimization tools including Configurable Attribution, Fraud Detection and over 2200 certified network & publisher integrations including super publishers like Facebook, Instagram, Google and Pandora.
 
 {% getstarted title="Get started with the Kochava integration" %}{% endgetstarted %}
 
