@@ -24,6 +24,7 @@ If you're running Google AdWords campaigns, whether they're of the Search or Dis
 
 - To track installs from Google Ads you should [integrate the Branch SDK]({{base.url}}/getting-started/sdk-integration-guide) into your app.
 - If you want to deep link from your ads directly content, you should [configure deep link routing]({{base.url}}/getting-started/deep-link-routing).
+- Search Install Ad campaigns on Android do not accept any tracking links. As a result, Branch cannot support Search Install Ad campaigns on Android. iOS is supported.
 
 {% endprerequisite %}
 
