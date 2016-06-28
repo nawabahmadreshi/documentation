@@ -14,10 +14,6 @@ sections:
 
 {% if page.overview %}
 
-{% protip title="The Mixpanel integration is currently in private beta" %}
-To request access to the Mixpanel integration, please contact [integrations@branch.io](mailto:integrations@branch.io) or your Branch account manager. 
-{% endprotip %}
-
 With a push of a button you can send your Branch data to your Mixpanel dashboard, helping you understand the power of Branch as an acquisition pathway. 
 
 {% getstarted title="Get started with the Mixpanel integration" %}{% endgetstarted %}
@@ -52,16 +48,19 @@ Branch events are similar to Mixpanel events in that they can be used in your ex
 
 {% endprerequisite %}
 
-## Contact Branch to enable the beta
+## Enter your Mixpanel Token
 
-To get started, contact integrations@branch.io or your Branch account manager with the following information.
+For the basic, codeless integration: find your Mixpanel Token and enter it into the Branch Dashboard.
 
-1. Whether you'd like to enable iOS or Android, or both
-1. Your Mixpanel Token
-
-To locate your Mixpanel Token, navigate to mixpanel.com and login to the Dashboard. Click on "Account" in the navigation bar at the top of the page. Choose "Projects" in the modal that appears, then copy your app’s Token:
+To locate your Mixpanel Token, navigate to mixpanel.com and login to the Dashboard. Click on “Account” in the navigation bar at the top of the page. Choose “Projects” in the modal that appears, then copy your app’s Token:
 
 {% image src="/img/pages/third-party-integrations/mixpanel/mixpanel-token.png" half center alt='Example Ad' %}
+
+On the Branch Dashboard (dashboard.branch.io), navigate to the Webhook Marketplace page. Locate Mixpanel and choose “Enable”. If you have not yet entered billing information, please do so now. After that, enter your Mixpanel Token.
+
+{% image src="/img/pages/third-party-integrations/mixpanel/mixpanel-marketplace.png" half center alt='Example Ad' %}
+
+Please test your integration. Branch is not responsible for inaccurate tokens.
 
 
 ## Pass Mixpanel Distinct Id (recommended)
