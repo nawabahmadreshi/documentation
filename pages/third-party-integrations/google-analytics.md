@@ -6,6 +6,7 @@ page_title: Send Deep Link Data to Google Analytics
 description: This guide teaches you how to find and send deep link data to Google Analytics through your Branch Metrics implementation.
 ios_keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Google Analytics, iOS, Webhook
 android_keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Google Analytics, Android, Webhook
+hide_platform_selector: true
 sections:
 - overview
 - guide
@@ -14,11 +15,25 @@ sections:
 
 {% if page.overview %}
 
-{% protip title="The Google Analytics integration is currently in private beta" %}
-To request access to the Google Analytics integration, please contact [integrations@branch.io](mailto:integrations@branch.io) or your Branch account manager. 
-{% endprotip %}
-
 With a push of a button you can send your Branch data to your Google Analytics dashboard, helping you understand the power of Branch as an acquisition pathway. If you're interested in the segment of users coming into your apps through Branch and want to measure their events against your other cohorts, this guide can help.
+
+{% ingredient paid-integration %}{% endingredient %}
+
+{% getstarted title="Get started with the Google Analytics integration" %}{% endgetstarted %}
+
+## How does it work?
+
+Once the Branch SDK is integrated into an app, Branch can detect which links are leading to installs, re-opens, and users' actions. Enabling this integration and providing your Google Analytics Tracking Id will result in Branch automatically forwarding referred events to Google Analytics, in the exact format Google Analytics expects. This includes automatically setting various UTM tags that can be used to determine the source of new users.
+
+## What events does Branch send?
+
+Branch will send *referred* **installs** and **opens**, as well as any **custom events** you track with Branch. Non-referred events, clicks, web session starts, and pageviews will be excluded. Branch also sends over analytics data that is attached to the link, whether it's UTM tags or fields set on the Branch Dashboard (e.g. Campaign, Channel, Feature). This will allow you to analyze which campaigns, channels, etc. are helping you acquire and engage users. You can see the list of fields that we send to Google Analytics [here](/third-party-integrations/google-analytics/advanced/#what-branch-sends-to-google-analytics).
+
+## What does it look like?
+
+Branch events will appear alongside your other tracked events in Google Analytics. Here is an example of the Sources screen with test information set.
+
+{% image src="/img/pages/third-party-integrations/google-analytics/google-analytics-sources.png" 3-quarters center %}
 
 {% getstarted title="Get started with the Google Analytics integration" %}{% endgetstarted %}
 
@@ -30,23 +45,34 @@ With a push of a button you can send your Branch data to your Google Analytics d
 
 {% endprerequisite %}
 
-## Contact Branch to enable the beta
+## Enter your Google Analytics Tracking ID
 
-To get started, contact integrations@branch.io or your Branch account manager with the following information.
+For the basic, codeless integration: find your Google Analytics Tracking ID (tid) and enter it into the Branch Dashboard.
 
-1. Whether you'd like to enable iOS or Android, or both
-1. Your Google Analytics Tracking ID (tid), also known as the Property ID
+1. To locate your Google Analytics Tracking ID, navigate to https://analytics.google.com and log in.
+1. Click on **Home** in the navigation bar at the top of the page. You should see your app(s), with accompanying Tracking ID.
+1. Copy the Tracking ID of whichever app you’re going to use with Branch. This is also known as the Property ID, and it is of the form UA-XXXXXX-YY (e.g. UA-000000-01). Here’s an example: {% image src="/img/pages/third-party-integrations/google-analytics/tid.png" half center alt='Example Ad' %}
 
-To locate your Google Analytics Tracking ID, navigate to [https://analytics.google.com](https://analytics.google.com) and log in. Click on "Home" in the navigation bar at the top of the page. You should see your app(s), with accompanying Tracking ID. Copy the Tracking ID of whichever app you’re going to use with Branch. Here’s an example:
 
-{% image src="/img/pages/third-party-integrations/google-analytics/tid.png" half center alt='Example Ad' %}
+## Configure the Branch Dashboard
+
+1. On the Branch Dashboard (dashboard.branch.io), navigate to the [Integrations page](https://dashboard.branch.io/integrations).
+1. Locate Google Analytics and choose **Enable**.
+  * If you have not yet entered billing information, please do so now.
+1. Enter your Google Analytics Tracking ID and hit **Save**
+
+{% image src="/img/pages/third-party-integrations/google-analytics/enable-google-analytics-integration.png" half center alt='Enable Integration' %}
+
+{% caution title="Please test your integration!" %}
+Branch is not responsible for inaccurate API keys.
+{% endcaution %}
+
 
 ## Set up Google Analytics to use standard hardware or advertising identifiers (recommended)
 
 Please ensure you're using the Branch iOS SDK 0.12.2 or greater, and Android SDK v1.12.1 or greater. If you implemented Branch after May 28th 2016, you are likely already on this version or later.
 
-
-In addition to the basic integration, you should add a tiny amount of code to your app. This will ensure that Google Analytics uses the correct device-specific identifier for client ID (cid) with the logic Branch uses. As a result, the cid’s for SDK and webhook should match up and result in unified user data on the GA Dashboard.
+In addition to the basic integration, you should add a tiny amount of code to your app. This will ensure that Google Analytics uses the correct device-specific identifier for client ID (cid) with the logic Branch uses. As a result, the CIDs for SDK and integration should match up and result in unified user data on the GA Dashboard.
 
 **iOS:**
 

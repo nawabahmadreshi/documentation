@@ -13,13 +13,19 @@ sections:
 
 {% if page.overview %}
 
-{% protip title="The Appboy integration is currently in private beta" %}
-To request access to the Appboy integration, please contact [integrations@branch.io](mailto:integrations@branch.io) or your Branch account manager. 
-{% endprotip %}
-
 The Branch partnership with [Appboy](https://www.appboy.com) provides a push-button way to deliver Branch installs and attributions to your Appboy dashboard. This allows you to analyze your users coming in from Branch deep linked campaigns.
 
-At this time, our integration only applies to the iOS platform.
+**At this time, our integration only applies to the iOS platform.**
+
+{% ingredient paid-integration %}{% endingredient %}
+
+{% getstarted title="Get started with Appboy" %}{% endgetstarted %}
+
+## How it works
+
+We have built a custom integration to automatically send all Branch install data to Appboy without any extra work on your side (besides integrating both SDKs). Simply click a button, and you'll be good to go!
+
+{% protip title="How do we differentiate Appboy and Branch installs?" %}We rely on a Branch link being clicked, which leads to an install. This sets an internal boolean that an install came from Branch.{% endprotip %}
 
 {% getstarted title="Get started with Appboy" %}{% endgetstarted %}
 
@@ -33,34 +39,23 @@ At this time, our integration only applies to the iOS platform.
 
 {% endprerequisite %}
 
-## Contact your Branch Account Manager
-
-To get started, contact integrations@branch.io or your Branch account manager and give them your Appboy API key.
-
-## How it works
-
-Through automatically configured webhooks, we have built a custom integration to automatically send all Branch install data to Appboy without any extra work on your side (besides integrating both SDKs). Simply click a button, and you'll be good to go!
-
-{% protip title="How do we differentiate Appboy and Branch installs?" %}We rely on a Branch link being clicked, which leads to an install. This sets an internal boolean that an install came from Branch, which then fires the webhook.{% endprotip %}
-
 ## Get the Appboy API key
 
-On the Appboy dashboard, navigate to the **App Settings** section, and click **3rd Party Integrations**. From there, grab your API key (this'll be the same for all attribution partners listed on the page).
+1. On the Appboy dashboard, navigate to the **App Settings** section, and click **3rd Party Integrations**.
+1. From there, grab your API key (this will be the same for all attribution partners listed on the page).
 
-{% caution %}
-When [creating a Branch link]({{base.url}}/getting-started/creating-links-other-ways) to use with Appboy, be sure to specify a **campaign** and **channel**.
+
+## Configure the Branch Dashboard
+
+1. On the Branch Dashboard (dashboard.branch.io), navigate to the [Integrations page](https://dashboard.branch.io/integrations).
+1. Locate Appboy and choose **Enable**.
+  * If you have not yet entered billing information, please do so now.
+1. Enter your Appboy iOS API Key and hit **Save**.
+
+{% image src="/img/pages/third-party-integrations/appboy/enable-appboy-integration.png" half center alt='Enable Integration' %}
+
+{% caution title="Please test your integration!" %}
+Branch is not responsible for inaccurate API keys.
 {% endcaution %}
-
-## Testing
-
-Now that your Branch account is configured to send data to Appboy, we'll tell you the best strategy to test.
-
-1. Grab a Branch link from your dashboard, paste it in mobile Safari, and hit go.
-1. Once the click is registered, run (Command+R) your application. This will allow Branch's SDK to match the "link-click" from earlier and confirm a Branch install just occurred (instead of another type of install).
-1. Navigate back to the Webhooks section of the Branch dashboard and click the Appboy webhook you're testing. If it worked, you'll notice a successful webhook sent, with a response code of `200`. Appboy's dashboard will indicate a Branch install hit their servers with a green button and a timestamp of the last successful install.
-
-{% protip title="Simulating a fresh install" %}
-Inside XCode's iOS Simulator, select `Reset Content and Settings` under `File`. The next time you run your app, it will simulate a new install. You need to continually do this every time you want to test an attribution.
-{% endprotip %}
 
 {% endif %}
