@@ -18,13 +18,17 @@ Did you know that Google organic search gives companies **more free installs** t
 
 Journeys is a huge leap forward in the functionality of the Branch platform. It allows you to design a mobile web banner, interstitial or call to action which will route the user to the App/Play Store when clicked. You can create advanced targeting rules to limit who and when the mobile web experience shows to optimally drive the right users to your app, then measure the performance of every flow.
 
+{% protip %}
+Journeys is a premium feature with a 14 day free trial period. You can find out more about the pricing [here](https://branch.io/pricing).
+{% endprotip %}
+
 {% image src='/img/pages/features/journeys/journeys-intro.png' full center alt='Journeys intro' %}
 
 {% getstarted title="Get started with Journeys" %}{% endgetstarted %}
 
 {% elsif page.guide %}
 
-All configuration, aside from the one time setup, can be done from the [Journeys tab](http://dashboard.branch.io/journeys) on the Branch dashboard. Note that Journeys is a premium feature, although we let you try it out for 14 days free. You can find out more about the pricing [here](https://branch.io/pricing).
+All configuration, aside from the one time setup, is done from the [Journeys tab](http://dashboard.branch.io/journeys) on the Branch dashboard.
 
 ## Prequisite: Install the Web SDK
 
@@ -94,9 +98,9 @@ You can test your different Branch Views by clicking the links provided on this 
 
 **Web SDK errors**: You must have the web SDK installed on your website to run a journey - setup instructions [here]({{base.url}}/features/journeys/guide/#prerequisite-install-the-web-sdk).
 
-**App SDK warnings**: If you choose to target iOS or Android users but haven’t integrated those SDKs, your journeys will still show on the correct devices and direct users to your app. However, you won’t be able to get any download attribution for your journeys, like installs, re-opens, or in-app events. Integration instructions can be found [here]({{base.url}}/getting-started/sdk-integration-guide).
+**App SDK warnings**: If you choose to target iOS or Android users but haven’t integrated those SDKs, your journeys will still show on the correct devices and direct users to your app. However, you won’t be able to get any download attribution for your journeys, like installs, re-opens, or in-app events. SDK integration instructions can be found [here]({{base.url}}/getting-started/sdk-integration-guide).
 
-**Audience rule errors**: You’ll see a warning if your audience rules don’t add up to 100%.  If it’s less than 100%, we won’t show a Branch View to the remainder of your audience - they’ll see whatever is normal behavior for your app. To change the frequency, simply press the back button.
+**Audience rule errors**: You’ll see a warning if your audience rules don’t add up to 100%.  If it’s less than 100%, we won’t show a Branch View to the remainder of your audience - they’ll see whatever is normal behavior for your website. To change the frequency, simply press the back button.
 
 ## Managing Your Journeys
 
@@ -106,11 +110,11 @@ The Journeys Manager is your homepage for all of the personalized experiences yo
 - **Active**: Live for your users, read-only
 - **Archived**: Not live for your users, hidden from default manager view
 
-You can activate a journey directly from the creation flow, or from “Start” in the Actions menus in the Journeys Manager. Editing and Archiving are also accessible from the Actions menus.
+You can activate a journey directly from the creation flow, or from **Start** in the Actions menus in the Journeys Manager. Editing and Archiving are also accessible from the Actions menus.
 
 {% image src='/img/pages/features/journeys/edit-journeys.png' third center alt='edit journeys' %}
 
-Note that you must `clone` or `stop` a live journey to edit it. They are read only while live.
+Note that you must **Clone** or **Stop** a live journey to edit it. They are read-only while live.
 
 ## Visualizing Journeys Performance
 
@@ -143,7 +147,7 @@ You can target users on a more granular level - based on behavior like where the
 
 **Completed event**
 
-If you have custom event tracking set up, you can target users based on events that you define. For instance, you might want to show a Branch View to users who make a purchase, or who add an item to their shopping cart more than three times.
+If you have [custom event tracking]({{base-url}}/getting-started/user-value-attribution/) set up, you can target users based on events that you define. For instance, you might want to show a Branch View to users who make a purchase, or who add an item to their shopping cart more than three times.
 
 **Referred from site**
 
@@ -183,7 +187,9 @@ branch.setBranchViewData({
 </script>
 {% endhighlight %}
 
-Note, calling `banner()` will also override the custom deep link parameters on the Journey that gets shown on that site. The actual banner will not be displayed when a Journey is shown, but the deep link data will be used. This is done to make it easy to migrate from the banner to Journeys.
+{% caution title="Migrating from the Smart Banner" %}
+Calling the `branch.banner()` function will override the custom deep link parameters of any Journey shown on that page. The banner itself will not be displayed when a Journey is shown, but its deep link data will be used. This is done to make it easy to migrate from the smart banner to Journeys.
+{% endcaution %}
 
 ## Web to App Routing without Journeys
 
