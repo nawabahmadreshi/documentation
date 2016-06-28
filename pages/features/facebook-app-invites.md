@@ -405,7 +405,7 @@ curl --insecure "https://graph.facebook.com/?id=[YOUR-URL-TO-SCRAPE]&scrape=true
 1. If errors from the output window pertain to OG tags i.e. missing title, description etc. then examine link OG tags by appending `?debug=true` as described on the [Integration Testing page]({{base.url}}/getting-started/integration-testing/guide/#debugging-an-individual-link).
 1. If you haven't set OG tags on a per link level, then please check your Dashboard's global Social Media Display Customization settings from the [Link Settings](https://dashboard.branch.io/#/settings/link) page.
 
-If your OG tags look fine and you're still getting errors, please reach out to support@branch.io immediately.
+If your OG tags look fine and you're still getting errors, please reach out to integrations@branch.io immediately.
 
 ## Known issue with App Restrictions
 

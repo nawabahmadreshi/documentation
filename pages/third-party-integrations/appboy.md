@@ -14,7 +14,7 @@ sections:
 {% if page.overview %}
 
 {% protip title="The Appboy integration is currently in private beta" %}
-To request access to the Appboy integration, please contact [support@branch.io](mailto:support@branch.io) or your Branch account manager. 
+To request access to the Appboy integration, please contact [integrations@branch.io](mailto:integrations@branch.io) or your Branch account manager. 
 {% endprotip %}
 
 The Branch partnership with [Appboy](https://www.appboy.com) provides a push-button way to deliver Branch installs and attributions to your Appboy dashboard. This allows you to analyze your users coming in from Branch deep linked campaigns.
@@ -35,7 +35,7 @@ At this time, our integration only applies to the iOS platform.
 
 ## Contact your Branch Account Manager
 
-To get started, contact support@branch.io or your Branch account manager and give them your Appboy API key.
+To get started, contact integrations@branch.io or your Branch account manager and give them your Appboy API key.
 
 ## How it works
 
