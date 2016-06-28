@@ -17,7 +17,6 @@ platforms:
 sections:
 - overview
 - guide
-- advanced
 ---
 
 {% if page.overview %}

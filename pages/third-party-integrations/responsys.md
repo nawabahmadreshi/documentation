@@ -98,7 +98,9 @@ With link tracking enabled, you can still use Branch links in emails.
 
 ### Enable remote deep linking functionality
 
-After you contact your Branch Account Manager to enable remote deep linking functionality, the remote configuration page will be unlocked. On this page you can input settings to control a custom deep link remotely. 
+{% caution %}
+Your Branch account manager will do this with you. The full instructions are only here for reference. There is also a [tutorial video](https://www.youtube.com/watch?v=u8h8KlqFvo4) that walks through these steps.
+{% endcaution %}
 
 {% example title="Link & Secret Key" %} 
 You will be provided with a custom link format that will look like this:
@@ -203,7 +205,7 @@ Apple requires that the file is hosted on a “secure” domain. To qualify as s
  
 {% image src="/img/pages/third-party-integrations/responsys/deep-linked-email-universal-links.png" center full alt='Deep Linked Email Universal Links' %}
 
-## Coming Soon: “Don’t Deep Link”
+## Coming soon: “Don’t deep link”
 In some cases you may have content on web that isn’t in the app - for example, a temporary Mother’s Day promotion. In this case, ideally you would be able to specify in the email that that link should not deep link. Using an alternate domain or path would be the best solution to arrive at this desired behavior, as Universal Links will not parse individual URLs for information without changes being made in the AASA file that specify unique paths. 
 
 We're working with Oracle Responsys to identify a solution for this.
