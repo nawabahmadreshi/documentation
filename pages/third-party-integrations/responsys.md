@@ -33,9 +33,9 @@ When a link is clicked by a user without the app, it will route that user to the
 
 {% endprerequisite %}
 
-## One Time Setup:
+## One time setup
 
-1. Enable remote deep linking functionality 
+### Enable remote deep linking functionality 
 
 Contact your Branch Account Manager or [accounts@branch.io](mailto:accounts@branch.io) to enable remote deep linking functionality. 
 
@@ -43,13 +43,14 @@ Contact your Branch Account Manager or [accounts@branch.io](mailto:accounts@bran
 After your Branch Account Manager enables remote deep linking functionality, the remote configuration page will be unlocked. On this page, you or your Branch Account Manager can input settings to control a custom deep link remotely. 
 {% endprotip %}
 
-2. Ensure compatibility on iOS 9+ with Responsys
-
-In most cases deep linking on iOS 9+ devices requires Apple’s Universal Link technology. Branch will provide you with almost everything you need, but Responsys will have to host an apple-app-site-association file over a secure connection for the click tracking domain. 
+{% caution title="Ensure compatibility on iOS 9+ with Responsys" %}
+In most cases deep linking on iOS 9+ devices requires Apple’s Universal Link technology. Branch will provide you with almost everything you need, but Responsys will have to host an apple-app-site-association file over a secure connection for the click tracking domain.
 
 Don’t worry, your Branch Account Manager or [accounts@branch.io](mailto:accounts@branch.io) will help you with this step as well. 
+{% endcaution %} 
 
-## On-Going Use
+
+## On-going use
 
 Once you’ve completed the one time setup steps, it’s time to send your first email. 
 
@@ -57,27 +58,26 @@ Branch’s script will convert your web URLs to deep links. Simply identify the 
 
 {% elsif page.advanced %}
 
-## One Time Setup 
+## One time setup 
 
-1. Enable Remote Deep Linking Functionality
+### Enable remote deep linking functionality
 
 After you contact your Branch Account Manager to enable remote deep linking functionality, the remote configuration page will be unlocked. On this page you can input settings to control a custom deep link remotely. 
 
-{% example %}Link & Secret Key 
+{% example title="Link & Secret Key" %} 
 You will be provided with a custom link format that will look like this:
-https://bnc.lt/AT6n/3p?%243p=rs&%24original_url=
+'https://bnc.lt/AT6n/3p?%243p=rs&%24original_url=''
 
 As well as a Branch secret key that looks like this:
-HoRywe971pl569DMpU1RzbRTap4ewnbNeqEcisz4FjQ=
+'HoRywe971pl569DMpU1RzbRTap4ewnbNeqEcisz4FjQ=''
 {% endexample%}
 
-2. Upload the Branch deep link conversion file to Responsys
+### Upload the Branch deep link conversion file to Responsys
+
 As part of your one-time setup, Responsys will have to host an apple-app-site-association file over a secure connection for the click tracking domain.
 
 {% prerequisite %}
-
-- You must have an EMD (Email Message Designer) enabled account in order to use the Branch integration. If you do not have one, or if you’re not sure, please talk to your Responsys Account Manager.
-
+You must have an EMD (Email Message Designer) enabled account in order to use the Branch integration. If you do not have one, or if you’re not sure, please talk to your Responsys Account Manager.
 {% endprerequisite %}
 
 Navigate to your Content Manager, and under “All Content,” create a new folder called “Branch_SDK.” In that folder, create a new document called “branch-sdk.”
@@ -89,17 +89,17 @@ Paste the following code snippet into the file, and put your secret key in it:
 <#macro tracked_deeplink link_to_be_wrapped><#assign branch_hash_secret="enter your secret key"><#assign deeplink=branch_base_url + link_to_be_wrapped?url('ISO-8859-1')><#assign hash=messagedigest(branch_hash_secret+deeplink+branch_hash_secret,"SHA","hex")><#assign deeplink=deeplink+'&%24hash='+hash></#macro>
 {% endhighlight %}
 
-{% example %} Create a Folder for the Branch SDK
+{% example title="Create a Folder for the Branch SDK" %}
 {% image src="/img/pages/third-party-integrations/responsys/deep-linked-email-create-doc.png" half center alt='Example Create Folder' %}
 {% endexample%}
 
-{% example %} Your file structure should look as follows
+{% example title="Your file structure should look as follows" %} 
 {% image src="/img/pages/third-party-integrations/responsys/deep-linked-email-manage-content.png" half center alt='Example Manage Content' %}
 {% endexample%}
 
-## On-going Use
+## On-going use
 
-1. Prepare Your Template
+### Prepare your template
 
 To use the Branch deep link generator, you must make a small change to the document templates that you use for your emails.
 
@@ -111,24 +111,25 @@ Add the link given to you as the branch_base_url value.
 <#include "cms://contentlibrary/Branch_SDK/branch-sdk.htm"><#assign branch_base_url='https://bnc.lt/AT6n/3p?%243p=rs&%24original_url='>
 {% endhighlight %}
 
-2. Create Deep Links 
+### Create deep links 
 
 Once you create the email, and identify the original link, Branch will convert those original links into Branch Links. Responsys identifies the Branch links and turns them into click tracking urls. The email is then sent.
 
 {% image src="/img/pages/third-party-integrations/responsys/deep-linked-email-creation-flow.png" center full alt='Deep Linked Email Creation Flow' %}
 
-{% example %} With Link Tracking Disabled
-Creating deep links is simple. Wherever you are using <a> tags in your email templates, replace those with <@deeplink> tags as follows:
+{% example title="With Link Tracking Disabled" %}
+Creating deep links is simple. Wherever you are using '<a>'' tags in your email templates, replace those with '<@deeplink>'tags.
+Before:
 {% highlight objc %}
-<a href=“https://branch.io”>Example link</a>
+'<a href=“https://branch.io”>Example link</a>''
 {% endhighlight %}
-becomes 
+After: 
 {% highlight objc %}
-<@deeplink “https://branch.io”>Example link</@deeplink>
+'<@deeplink “https://branch.io”>Example link</@deeplink>''
 {% endhighlight %}
 {% endexample%}
 
-{% example %} With Link Tracking Enabled
+{% example title="With Link Tracking Enabled" %} 
 With link tracking enabled, you can still use Branch links in emails. To create a deep link, you’ll need to make a small, one-time change to your template
 
 Before:
@@ -142,7 +143,7 @@ After:
 {% endhighlight %}
 {% endexample%}
 
-3. Redirect Behavior and Tracking
+### Redirect behavior and tracking
 
 When your customer clicks the click tracking link in an email, the browser will generally open. Once in the browser, the click tracking redirect will happen, followed by an instant redirect to the Branch link. At this point, Branch will either stay in the browser, and load the original URL (if the app is not installed, or the customer is on a desktop device), or Branch will open the app and deep link to content. Branch uses the information from the original URL to deep link to the correct in-app content. 
 
@@ -154,7 +155,7 @@ There is an alternate case where Universal Links are concerned on Apple iOS 9+ d
 
 {% elsif page.support %}
 
-## Three stages of a link:
+## Three stages of a link
 
 | Link name| Link example | Link description 
 | --- | --- | --- | --- 
@@ -163,9 +164,9 @@ There is an alternate case where Universal Links are concerned on Apple iOS 9+ d
 | Click Tracking URL | https://email.shop.com/click/abcde12345 | A Responsys generated click tracking URL. The URL doesn’t signify anything, but when clicked, records the click and redirects to a given destination.
 
 ## Styling
-If you include style tags within your <a> tags, you’ll need to separate those out into a separate div inside the <@deeplink> tag. If you use tracked links with <a> tags, those will work fine.
+If you include style tags within your '<a>'' tags, you’ll need to separate those out into a separate div inside the '<@deeplink>'' tag. If you use tracked links with <a> tags, those will work fine.
 
-{% example %} Style Tags within your <a> tags
+{% example title="Style Tags within your '<a>'' tags" %} 
 Before:
 {% highlight objc %}
 <a href="https://branch.io/" style="color:#000001; text-decoration:none;">Branch Website</a>
@@ -176,29 +177,30 @@ After:
 {% endhighlight %}
 {% endexample%}
 
-## Launch Failed Error
-You’ll see this error if you haven’t included the {% highlight objc %}<#import >{% endhighlight %} snippet in your template. Make sure you complete Step 1: Preparing your template.
+## Launch failed error
+You’ll see this error if you haven’t included the '<#import >'' snippet in your template. 
 
-{% example %} Launch Failed Error
+{% example title="Launch failed error" %} 
 {% highlight objc %}
 Launch Failed: Launch failed: Template /contentlibrary/branch test campaign/My Default Template.htm caused an execution error: on line 183, column 92 in cms://contentlibrary/branch test campaign/Content.htm: deeplink is not a user-defined directive. It is a freemarker.template.SimpleScalar
 {% endhighlight %}
 {% endexample%}
 
-## Using Dynamic Data From Profile Extension Tables
+## Using dynamic data from profile extension tables
 {% example %}
-The {% highlight objc %}<@deeplink >{% endhighlight %} and {% highlight objc %}<@tracked_deeplink >{% endhighlight %} tags even work with dynamic links injected via RPL.
+The '<@deeplink >' and '<@tracked_deeplink >'' tags even work with dynamic links injected via RPL.
 {% highlight objc %}<@deeplink “${latestProduct.url}”>${latestProduct.name}</@deeplink>{% endhighlight %}
 {% endexample%}
 
-## Universal Links and Click Tracking
+## Universal links and click tracking
 For Universal Links to work, Apple requires that a file called an “Apple-App-Site-Association” (AASA) file must be hosted on the domain of the link in question. When the link is clicked, Apple will check for the presence of this file to decide whether or not to open the app. All Branch links are Universal Links, because we will host this file securely on your Branch link domain.
 
 When you click a Branch link directly from an email inside the Mail app on iOS 9+, it functions as a Universal Link - it redirects directly into the desired app. However, if you put a Branch Universal Link behind a click tracking URL, it won’t deep link into the app. This is because generally, a click tracking URL is not a Universal Link. If you’re not hosting that AASA file on the click tracking URL’s domain, you aren’t going to get Universal Link behavior for that link.
 
 {% protip title="iOS 9+ Redirect Failure" %}
 When a normal click tracking URL is clicked, it redirects to a Branch Universal Link. However, due to an Apple-imposed technical limitation, Universal Links won’t work behind a redirect. So, generally, when click tracking is enabled, Universal Links won’t work - the user always falls back to mobile web, even if they have the app.  
-**Solution**
+{% endprotip %}
+{% protip title="Solution" %}
 To solve this, Responsys will host the AASA file on your click tracking domain. We’ll help you get set up with this, but it’s Responsys who will actually host the file. 
 Apple requires that the file is hosted on a “secure” domain. To qualify as secure, the domain must have a website security certificate. Branch will provide the file to Responsys, but you must provide the security certificate to the Responsys.
 {% endprotip %}
@@ -207,16 +209,5 @@ Apple requires that the file is hosted on a “secure” domain. To qualify as s
 
 ## Coming Soon: “Don’t Deep Link”
 In some cases you may have content on web that isn’t in the app - for example, a temporary Mother’s Day promotion. In this case, ideally you would be able to specify in the email that that link should not deep link. Using an alternate domain or path would be the best solution to arrive at this desired behavior, as Universal Links will not parse individual URLs for information without changes being made in the AASA file that specify unique paths. 
-
-
-### Calls to [branchdomain] blocked
-
-{% ingredient branchsubdomain %}{% endingredient %}
-
-Please make sure to add `[branchsubdomain]` to the CSP header for your pages. We've seen some browsers that attempt to block it outright. You can deliver this in an HTTP header from your web server or you can add a simple metatag to your site like so:
-
-{% highlight html %}
-<meta http-equiv="Content-Security-Policy" content="default-src https://[branchsubdomain]; child-src 'none'; object-src 'none'"> 
-{% endhighlight %}
 
 {% endif %}
