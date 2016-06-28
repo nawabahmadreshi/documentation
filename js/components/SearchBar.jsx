@@ -62,7 +62,7 @@ var SearchBar = React.createClass({
 		  iconContent: 'search'
 		});
 	},
-	handleClick: function() {
+	startSearch: function() {
 		if (!this.state.isLoaded && !this.state.isLoading) { SearchActions.loadIndex(); }
 	},
 	render: function() {
@@ -94,7 +94,7 @@ var SearchBar = React.createClass({
 							autoComplete="off"
 							placeholder="Search"
 							onChange={this.inputChanged}
-							onClick={this.handleClick}
+							onFocus={this.startSearch}
 							value={this.state.field} />
 					</form>
 				</div>
