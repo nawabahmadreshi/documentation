@@ -144,17 +144,7 @@ There is an alternate case where Universal Links are concerned on Apple iOS 9+ d
 ## Styling
 Your `<a>` tags can be styled however your email links are usually styled. In fact, you don’t need a `<a>` tag at all -- you can just use {deeplink} anywhere you would have used the original URL.
 
-
-## Ignore Branch deeplink builder
-You can safely ignore {% highlight objc %}{*Branch deeplink builder*}...{*end Branch deeplink builder*}{% endhighlight %}
-
-## Using dynamic data from profile extension tables
-{% example %}
-The '<@deeplink >' and '<@tracked_deeplink >'' tags even work with dynamic links injected via RPL.
-{% highlight objc %}<@deeplink “${latestProduct.url}”>${latestProduct.name}</@deeplink>{% endhighlight %}
-{% endexample%}
-
-## Universal links and click tracking
+## Universal Links and click tracking
 For Universal Links to work, Apple requires that a file called an “Apple-App-Site-Association” (AASA) file must be hosted on the domain of the link in question. When the link is clicked, Apple will check for the presence of this file to decide whether or not to open the app. All Branch links are Universal Links, because we will host this file securely on your Branch link domain.
 
 When you click a Branch link directly from an email inside the Mail app on iOS 9+, it functions as a Universal Link - it redirects directly into the desired app. However, if you put a Branch Universal Link behind a click tracking URL, it won’t deep link into the app. This is because generally, a click tracking URL is not a Universal Link. If you’re not hosting that AASA file on the click tracking URL’s domain, you aren’t going to get Universal Link behavior for that link.
