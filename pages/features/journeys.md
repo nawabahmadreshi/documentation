@@ -14,9 +14,9 @@ sections:
 
 {% if page.overview %}
 
-Did you know that Google organic search gives companies **more free installs** than all of Facebook's paid install product on a daily basis? Branch's Journeys Web To App product will help you convert those users into high quality, long term retained, native mobile app users.
+Did you know that Google organic search gives companies **more free installs** than all of Facebook's paid install products on a daily basis? Branch's Journeys Web to App product will help you convert those users into high quality, long term retained, native mobile app users.
 
-Journeys is a huge leap forward in the functionality of the Branch platform. It allows to design a mobile web banner, interstitial or call to action which will route the user to the App/Play Store when clicked. You can create advanced targeting rules to limit who and when the mobile web experience shows to optimally drive the right users to your app, then measure the performance of every flow.
+Journeys is a huge leap forward in the functionality of the Branch platform. It allows you to design a mobile web banner, interstitial or call to action which will route the user to the App/Play Store when clicked. You can create advanced targeting rules to limit who and when the mobile web experience shows to optimally drive the right users to your app, then measure the performance of every flow.
 
 {% image src='/img/pages/features/journeys/journeys-intro.png' full center alt='Journeys intro' %}
 
@@ -57,7 +57,7 @@ Start customizing your audience by choosing the target platform, device, and reg
 
 ## Configure Branch View Templates
 
-You can choose which Branch Views your audience will see, and how much of your audience will see it. First, click `Select Template` to choose customize the template you'd like to show for this Journey.
+You can choose which Branch Views your audience will see, and how much of your audience will see it. First, click `Select Template` to choose and customize the template you'd like to show for this Journey.
 
 {% image src='/img/pages/features/journeys/select-template.png' half center alt='select templates' %}
 
@@ -84,7 +84,7 @@ Here, you can change the template name so you can easily find it later. To edit 
 
 ### Split your audience
 
-Want to test multiple Branch Views? Click `Add Rule` to split your audience so that. For instance, 60% see one Branch View, and 40% see another. You’ll be able to see analytics for each of these later. You’ll also have to select a template for each rule you add.
+Want to test multiple Branch Views? Click `Add Rule` to split your audience so that, for instance, 60% see one Branch View, and 40% see another. You’ll be able to see analytics for each of these later. You’ll also have to select a template for each rule you add.
 
 {% image src='/img/pages/features/journeys/multiple-templates.png' half center alt='multiple templates' %}
 
@@ -96,11 +96,11 @@ You can test your different Branch Views by clicking the links provided on this 
 
 **App SDK warnings**: If you choose to target iOS or Android users but haven’t integrated those SDKs, your journeys will still show on the correct devices and direct users to your app. However, you won’t be able to get any download attribution for your journeys, like installs, re-opens, or in-app events. Integration instructions can be found [here]({{base.url}}/getting-started/sdk-integration-guide).
 
-**Audience rule errors** You’ll see a warning if your audience rules don’t add up to 100%.  If it’s less than 100%, we won’t show a Branch View to the remainder of your audience - they’ll see whatever is normal behavior for your app. To change the frequency, simply press the back button.
+**Audience rule errors**: You’ll see a warning if your audience rules don’t add up to 100%.  If it’s less than 100%, we won’t show a Branch View to the remainder of your audience - they’ll see whatever is normal behavior for your app. To change the frequency, simply press the back button.
 
 ## Managing Your Journeys
 
-The Journeys Manager is your homepage for all of the personalized experiences you’ve created. Here you can turn journeys on and off, clone them, or view performance. A Journey can have one of three states:
+The Journeys Manager is your homepage for all of the personalized experiences you’ve created. Here you can turn Journeys on and off, clone them, or view performance. A Journey can have one of three states:
 
 - **Draft**: Not live for your users, still editable
 - **Active**: Live for your users, read-only
@@ -124,14 +124,14 @@ You can access your Journey’s performance direct from the actions menu in the 
 
 You can also access Journeys analytics by selecting the above filters in Source Analytics. To compare all of your Journeys:
 
-1. Filter by feature = journeys
-2. Group by campaign
+1. Filter by `feature` = `journeys`
+2. Group by `campaign`
 
 To compare Branch View segments within one Journey:
 
-1. Filter by feature = `journeys`
-2. Filter by campaign = `<journey id>`
-3. Group by tags
+1. Filter by `feature` = `journeys`
+2. Filter by `campaign` = `<journey id>`
+3. Group by `tags`
 
 {% elsif page.advanced %}
 
@@ -151,7 +151,7 @@ You can target a user based on the last touch point before they entered your web
 
 **Current website url**
 
-You can define which subsets of your website the Journey will appear. For example, maybe you have a page `yoursite.com/settings` and yoursite.com/products/1234`. You could fill in `products` here and only users visiting a URL with that substring present would see the Journey.
+You can define which subsets of your website the Journey will appear. For example, maybe you have a page `yoursite.com/settings` and `yoursite.com/products/1234`. You could fill in `products` here and only users visiting a URL with that substring present would see the Journey.
 
 **Visited web**
 
@@ -183,15 +183,15 @@ branch.setBranchViewData({
 </script>
 {% endhighlight %}
 
-Note, calling `banner()` will also override the custom deep link parameters on the Journey that gets shown on that site. The actually banner will not be displayed when a Journey is shown, but the deep link data will be used. This is done to make it easy to migrate from the banner to Journeys.
+Note, calling `banner()` will also override the custom deep link parameters on the Journey that gets shown on that site. The actual banner will not be displayed when a Journey is shown, but the deep link data will be used. This is done to make it easy to migrate from the banner to Journeys.
 
-## Web To App Routing Without Journeys
+## Web to App Routing without Journeys
 
 If you maintain a mobile website, Branch allows you to deep link mobile visitors directly into your app, or easily and automatically give them the option of downloading it. Here's a diagram that describes how it works:
 
 {% image src='/img/pages/features/website-to-app-routing/deepview-websdk-routing.png' center full alt='Deepviews web routing' %}
 
-### Open app if installed
+### Open App if Installed
 
 Add the following code somewhere inside the `<head></head>` tags on your website and customize the [link parameters]({{base.url}}/getting-started/configuring-links) to suit your needs.
 
@@ -224,7 +224,7 @@ branch.deepview(
 
 {% ingredient replace-branch-key %}{% endingredient %}
 
-### Add an Install Call To Action
+### Add an Install Call to Action
 
 Trigger the `branch.deepviewCta()` function with a button or hyperlink on your page. Executing this function (whether by button, link, or some other method) 'clicks' the link you defined using `branch.deepview()` above.
 
@@ -243,7 +243,7 @@ Trigger the `branch.deepviewCta()` function with a button or hyperlink on your p
 
 ## Troubleshooting
 
-### Calls to [branchdomain] blocked
+### Calls to [branchdomain] Blocked
 
 {% ingredient branchsubdomain %}{% endingredient %}
 
