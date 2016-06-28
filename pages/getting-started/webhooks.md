@@ -192,43 +192,6 @@ The end product would look like this:
 If you want to filter on just a key being present, you can put a `*` in the value box.
 {% endprotip %}
 
-## Integrating with a third-party service
-
-Let's say you want a webhook to fire for all `install` events driven by a single Branch link. This typically occurs if you run a campaign with an ad provider and they need install information posted back to their servers. You can use filters to accomplish this goal.
-
-1. Create a link through the [Marketing page](https://dashboard.branch.io/#/marketing). This is the link you will give to your ad provider.
-1. Once you have added necessary data to the link and saved it, you must grab its ID. The simplest way to do this is by taking the full link (**https://[branchsubdomain]/abcd/a1b2c3d4e5**), and appending `?debug=1` to the end (**https://[branchsubdomain]/abcd/a1b2c3d4e5?debug=1**).
-1. Enter that URL inside your browser. You will see all of the link's details, including a section that says `Data`. Inside that section, the ID of the link itself is present (~id). Grab the value for that ID. For our example, let's assume the ID is 12345.
-1. With this information handy, go to the [Webhooks page](https://dashboard.branch.io/#/webhook) and set one up for `install` events.
-1. Go to the filters drop down for that webhook, and add the following key/values pairs:
-
-| Key | Value
-| --- | ---
-| identity.link_data.~id | 12345
-| event.metadata.referred | true
-
-Since these filters are ANDs (not ORs), both filter values must be satisfied at the time of the event for the webhook to fire. In this example, that means **only** someone installing your app after clicking the Branch link with an ID of 12345 will fire this webhook.
-
-The picture below show cases what a webhook would look like with proper filters.
-
-{% image src="/img/pages/getting-started/webhooks/filters1.png" 3-quarters center alt="webhook filter configuration" %}
-
-{% protip title="Testing Branch Tracking Links" %}
-
-Once filters are correctly set, you will want to test using your device. Since installs are uniquely tracked per device, you must ensure that you are [in debug mode]({{base.url}}/getting-started/integration-testing#use-debug-mode-to-simulate-fresh-installs).
-
-After debug mode is enabled, do the following steps to verify your webhook works as expected:
-
-1. Uninstall your app from your device
-1. On your device, open the Branch link you wish to test 
-1. Re-install your app
-1. Confirm an install event occurs by looking through the SDK's session initialization callbacks and verifying `+clicked_branch_link` and `+is_first_session` both equal `1`.
-
-If all steps are met, your webhook will fire as expected.
-
-{% endprotip %}
-
-
 ## Templating
 
 If your backend relies on a dynamic URL structure to receive events, then we can support you with our webhooks. This is typically used for marketing campaigns, where a unique parameter needs to be appended to each link-click, and consequently posted back to a URL. You can also expose data we collect on the URL itself.
