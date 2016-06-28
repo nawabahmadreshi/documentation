@@ -14,10 +14,6 @@ sections:
 
 {% if page.overview %}
 
-{% protip title="The Google Analytics integration is currently in private beta" %}
-To request access to the Google Analytics integration, please contact [integrations@branch.io](mailto:integrations@branch.io) or your Branch account manager. 
-{% endprotip %}
-
 With a push of a button you can send your Branch data to your Google Analytics dashboard, helping you understand the power of Branch as an acquisition pathway. If you're interested in the segment of users coming into your apps through Branch and want to measure their events against your other cohorts, this guide can help.
 
 {% getstarted title="Get started with the Google Analytics integration" %}{% endgetstarted %}
@@ -32,7 +28,7 @@ Branch will send *referred* **installs** and **opens**, as well as any **custom 
 
 ## What does it look like?
 
-Branch events will appear alongside your other tracked events in Google Analytics. These events will automatically have `[Branch]` prepended. Here is an example of the Sources screen with test information set.
+Branch events will appear alongside your other tracked events in Google Analytics. Here is an example of the Sources screen with test information set.
 
 {% image src="/img/pages/third-party-integrations/google-analytics/google-analytics-sources.png" 3-quarters center %}
 
@@ -46,16 +42,20 @@ Branch events will appear alongside your other tracked events in Google Analytic
 
 {% endprerequisite %}
 
-## Contact Branch to enable the beta
+## Enter your Google Analytics Tracking ID
 
-To get started, contact integrations@branch.io or your Branch account manager with the following information.
+For the basic, codeless integration: find your Google Analytics Tracking ID (tid) and enter it into the Branch Dashboard. 
 
-1. Whether you'd like to enable iOS or Android, or both
-1. Your Google Analytics Tracking ID (tid), also known as the Property ID
-
-To locate your Google Analytics Tracking ID, navigate to [https://analytics.google.com](https://analytics.google.com) and log in. Click on "Home" in the navigation bar at the top of the page. You should see your app(s), with accompanying Tracking ID. Copy the Tracking ID of whichever app you’re going to use with Branch. Here’s an example:
+This is also known as the Property ID, and it is of the form UA-XXXXXX-YY (e.g. UA-000000-01). To locate your Google Analytics Tracking ID, navigate to https://analytics.google.com and log in. Click on “Home” in the navigation bar at the top of the page. You should see your app(s), with accompanying Tracking ID. Copy the Tracking ID of whichever app you’re going to use with Branch. Here’s an example:
 
 {% image src="/img/pages/third-party-integrations/google-analytics/tid.png" half center alt='Example Ad' %}
+
+On the Branch Dashboard (dashboard.branch.io), navigate to the Webhook Marketplace page. Locate Google Analytics and choose “Enable”. If you have not yet entered billing information, please do so now. After that, enter your Google Analytics Tracking ID.
+
+{% image src="/img/pages/third-party-integrations/google-analytics/google-analytics-marketplace.png" half center alt='Example Ad' %}
+
+Please test your integration. Branch is not responsible for inaccurate Tracking IDs.
+
 
 ## Set up Google Analytics to use standard hardware or advertising identifiers (recommended)
 

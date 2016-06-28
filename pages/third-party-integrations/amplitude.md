@@ -15,10 +15,6 @@ sections:
 
 {% if page.overview %}
 
-{% protip title="The Amplitude integration is currently in private beta" %}
-To request access to the Amplitude integration, please contact [integrations@branch.io](mailto:integrations@branch.io) or your Branch account manager. 
-{% endprotip %}
-
 With a push of a button you can send your Branch data to your Amplitude dashboard, helping you understand the power of Branch as an acquisition pathway. 
 
 {% getstarted title="Get started with the Amplitude integration" %}{% endgetstarted %}
@@ -53,16 +49,20 @@ Branch events are similar to Amplitude events in that they can be used in your e
 
 {% endprerequisite %}
 
-## Contact Branch to enable the beta
+## Enter your Amplitude API Key
 
-To get started, contact integrations@branch.io or your Branch account manager with the following information.
-
-1. Whether you'd like to enable iOS or Android, or both
-1. Your Amplitude API key
+For the basic, codeless integration: find your Amplitude API Key and enter it into the Branch Dashboard.
 
 To locate your Amplitude API Key, navigate to https://amplitude.com/settings and log in. On the Settings page you should see your app(s), with accompanying API Key. Copy the API Key of whichever app you’re going to use with Branch. Here’s an example:
 
 {% image src="/img/pages/third-party-integrations/amplitude/amplitude-api-key.png" half center alt='Example Ad' %}
+
+On the Branch Dashboard (dashboard.branch.io), navigate to the Webhook Marketplace page. Locate Amplitude and choose “Enable”. If you have not yet entered billing information, please do so now. After that, enter your Amplitude API Key.
+
+{% image src="/img/pages/third-party-integrations/amplitude/amplitude-marketplace.png" half center alt='Example Ad' %}
+
+Please test your integration. Branch is not responsible for inaccurate API keys.
+
 
 ## Capture IDFA/GAID
 
