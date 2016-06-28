@@ -11,34 +11,26 @@ sections:
 - overview
 - guide
 - advanced
-- support
 
 ---
 
 {% if page.overview %}
 
-{% protip title="The Tune integration is currently in private beta" %}
-To request access to the Tune integration, please contact [integrations@branch.io](mailto:integrations@branch.io) or your Branch account manager. 
-{% endprotip %}
+With a push of a button you can send your Branch data to your Tune dashboard, helping you segment users and calculate LTV.
 
-With a push of a button you can send your Branch data to your Tune dashboard, helping you segment users and calculate LTV. 
+{% ingredient paid-integration %}{% endingredient %}
 
 {% getstarted title="Get started with the Tune integration" %}{% endgetstarted %}
 
 {% elsif page.guide %}
 
-## Contact Branch to enable the beta
-
 {% prerequisite %}
 
-- This guide requires you to have already [integrated the Branch SDK]({{base.url}}/getting-started/sdk-integration-guide) and the Tune SDK into your app
+- This guide requires you to have already [integrated the Branch SDK]({{base.url}}/getting-started/sdk-integration-guide).
+- You also need to be a Tune customer and have the Tune SDK ([iOS](http://developers.mobileapptracking.com/ios-sdk/), [Android](http://developers.mobileapptracking.com/android-sdk/)) installed in your app.
 
 {% endprerequisite %}
 
-To get started, contact integrations@branch.io or your Branch account manager with the following information.
-
-1. Whether you'd like to enable iOS or Android, or both
-1. Your Tune Site IDs per platform
 
 ## Capture IDFA/GAID
 
@@ -46,7 +38,18 @@ Ensure that you are capturing both the [Google Advertising Identifier (GAID) on 
 
 ## Enable Branch on TUNE Dashboard
 
-When you are ready to have Branch send data to TUNE, you must make sure Branch is an enabled provider under your **Partners** in your TUNE dashboard. In order to do so, click into the **Integrated Partners** section on your TUNE dashboard. From there, enter in Branch inside the search box, and click enable. 
+When you are ready to have Branch send data to TUNE, you must make sure Branch is an enabled provider under your **Partners** in your TUNE dashboard. In order to do so, click into the **Integrated Partners** section on your TUNE dashboard. From there, enter in Branch inside the search box, and click enable.
+
+
+## Configure the Branch Dashboard
+
+1. On the Branch Dashboard (dashboard.branch.io), navigate to the [Integrations page](https://dashboard.branch.io/integrations).
+1. Locate Tune and choose **Enable**.
+  * If you have not yet entered billing information, please do so now.
+1. Enter your Tune Advertiser ID and platform-specific Tune Site ID
+1. Hit **Save**.
+
+{% image src="/img/pages/third-party-integrations/tune/enable-tune-integration.png" half center alt='Enable Integration' %}
 
 ## Grab Advertiser ID and Site ID(s)
 
@@ -60,28 +63,25 @@ In order to grab advertiser ID, go to **Testing** on the left hand pane of your 
 
 When you integrate the Tune SDK, ensure you add the install referrer snippet provided Tune [here](https://help.tune.com/marketing-console/how-google-play-install-referrer-works/).
 
-{% elsif page.support %}
 
-## FAQ
-
-##### How do my Branch analytics tags map to Tune's?
+## What Branch sends to Tune
 
 Branch Analytics Tag | Tune Data Placeholder Tag
 --- | ---
 Campaign | sub_campaign
-Channel | sub_placement 
-Tags | sub_keyword 
-Branch Click ID | tracking_id 
+Channel | sub_placement
+Tags | sub_keyword
+Branch Click ID | tracking_id
 
-##### What are the methods Branch uses to let TUNE know an install came from Branch?
+## What are the methods Branch uses to let TUNE know an install came from Branch?
 
-We rely on 3 methods to match attributions into TUNE’s dashboard. 
+We rely on 3 methods to match attributions into TUNE’s dashboard.
 
-1. The first is fingerprinting, which is the most basic. This is when we send a click event to Tune with IP address and User Agent and Tune completes the attribution. 
+1. The first is fingerprinting, which is the most basic. This is when we send a click event to Tune with IP address and User Agent and Tune completes the attribution.
 1. The next method is passing the Google Advertising Id or IDFA on iOS. This occurs when a Universal or App link drove open the app session via Branch (meaning a click never touched the browser). In this case, we can attribute Branch correctly in TUNE’s dashboard 100% of the time, because TUNE receives the IDFA / GAID from Branch while also keeping reference to it through their own SDK.
 1. The third method is passing along Branch’s click ID through the install referrer on Android, and the URI scheme on iOS. The TUNE SDK consumes the click ID through these mechanisms and then Branch sends that same click id back to TUNE. This also results in a 100% match.
 
-By following all the steps listed in this guide, you’ll automatically have all 3 available. 
+By following all the steps listed in this guide, you’ll automatically have all 3 available.
 
 ##### How can I test this integration?
 

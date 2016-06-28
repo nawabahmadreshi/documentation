@@ -15,7 +15,9 @@ sections:
 
 {% if page.overview %}
 
-With a push of a button you can send your Branch data to your Amplitude dashboard, helping you understand the power of Branch as an acquisition pathway. 
+With a push of a button you can send your Branch data to your Amplitude dashboard, helping you understand the power of Branch as an acquisition pathway.
+
+{% ingredient paid-integration %}{% endingredient %}
 
 {% getstarted title="Get started with the Amplitude integration" %}{% endgetstarted %}
 
@@ -45,39 +47,47 @@ Branch events are similar to Amplitude events in that they can be used in your e
 
 {% prerequisite %}
 
-- This guide requires you to have already [integrated the Branch SDK]({{base.url}}/getting-started/sdk-integration-guide) and the Amplitude SDK into your app.
+- This guide requires you to have already [integrated the Branch SDK]({{base.url}}/getting-started/sdk-integration-guide).
+- You also need to be an Amplitude customer and have the [Amplitude SDK installed](https://amplitude.zendesk.com/hc/en-us/articles/205406607-SDKs) in your app.
 
 {% endprerequisite %}
 
-## Enter your Amplitude API Key
+
+## Retrieve your Amplitude API Key
 
 For the basic, codeless integration: find your Amplitude API Key and enter it into the Branch Dashboard.
 
-To locate your Amplitude API Key, navigate to https://amplitude.com/settings and log in. On the Settings page you should see your app(s), with accompanying API Key. Copy the API Key of whichever app you’re going to use with Branch. Here’s an example:
+1. Navigate to [https://amplitude.com/settings](https://amplitude.com/settings) and log in.
+1. On the Settings page you should see your app(s), with accompanying API Key.
+1. Copy the API Key of whichever app you’re going to use with Branch. Here’s an example: {% image src="/img/pages/third-party-integrations/amplitude/amplitude-api-key.png" half center alt='Example Ad' %}
 
-{% image src="/img/pages/third-party-integrations/amplitude/amplitude-api-key.png" half center alt='Example Ad' %}
 
-On the Branch Dashboard (dashboard.branch.io), navigate to the Webhook Marketplace page. Locate Amplitude and choose “Enable”. If you have not yet entered billing information, please do so now. After that, enter your Amplitude API Key.
+## Configure the Branch Dashboard
+
+1. On the Branch Dashboard (dashboard.branch.io), navigate to the [Integrations page](https://dashboard.branch.io/integrations).
+1. Locate Amplitude and choose **Enable**.
+  * If you have not yet entered billing information, please do so now.
+1. Enter your Amplitude API Key and hit **Save**
 
 {% image src="/img/pages/third-party-integrations/amplitude/amplitude-marketplace.png" half center alt='Example Ad' %}
 
-Please test your integration. Branch is not responsible for inaccurate API keys.
+{% caution title="Please test your integration!" %}
+Branch is not responsible for inaccurate API keys.
+{% endcaution %}
 
 
 ## Capture IDFA/GAID
 
 Ensure that you are capturing both the [Google Advertising Identifier (GAID) on Android]({{base.url}}/getting-started/sdk-integration-guide/advanced/android/#use-google-advertising-id), and the [IDFA on iOS]({{base.url}}/getting-started/sdk-integration-guide/advanced/ios/#install-the-sdk-manually) (by importing the `AdSupport.framework`).
 
+
 ## Upgrade to the latest SDKs [if necessary]
 
 Please ensure you're using the Branch iOS SDK 0.12.2 or greater, and Android SDK v1.12.1 or greater. If you implemented Branch after May 28th 2016, you are likely already on this version or later.
 
-
 {% elsif page.advanced %}
 
-
 ## What Branch Sends to Amplitude
-
 
 | Property Name | Value | Sourced from | Example | Req 
 | --- | --- | --- | --- | --- | ---

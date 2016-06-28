@@ -6,6 +6,7 @@ page_title: Send Deep Link Data to Google Analytics
 description: This guide teaches you how to find and send deep link data to Google Analytics through your Branch Metrics implementation.
 ios_keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Google Analytics, iOS, Webhook
 android_keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Google Analytics, Android, Webhook
+hide_platform_selector: true
 sections:
 - overview
 - guide
@@ -15,6 +16,8 @@ sections:
 {% if page.overview %}
 
 With a push of a button you can send your Branch data to your Google Analytics dashboard, helping you understand the power of Branch as an acquisition pathway. If you're interested in the segment of users coming into your apps through Branch and want to measure their events against your other cohorts, this guide can help.
+
+{% ingredient paid-integration %}{% endingredient %}
 
 {% getstarted title="Get started with the Google Analytics integration" %}{% endgetstarted %}
 
@@ -44,25 +47,32 @@ Branch events will appear alongside your other tracked events in Google Analytic
 
 ## Enter your Google Analytics Tracking ID
 
-For the basic, codeless integration: find your Google Analytics Tracking ID (tid) and enter it into the Branch Dashboard. 
+For the basic, codeless integration: find your Google Analytics Tracking ID (tid) and enter it into the Branch Dashboard.
 
-This is also known as the Property ID, and it is of the form UA-XXXXXX-YY (e.g. UA-000000-01). To locate your Google Analytics Tracking ID, navigate to https://analytics.google.com and log in. Click on “Home” in the navigation bar at the top of the page. You should see your app(s), with accompanying Tracking ID. Copy the Tracking ID of whichever app you’re going to use with Branch. Here’s an example:
+1. To locate your Google Analytics Tracking ID, navigate to https://analytics.google.com and log in.
+1. Click on **Home** in the navigation bar at the top of the page. You should see your app(s), with accompanying Tracking ID.
+1. Copy the Tracking ID of whichever app you’re going to use with Branch. This is also known as the Property ID, and it is of the form UA-XXXXXX-YY (e.g. UA-000000-01). Here’s an example: {% image src="/img/pages/third-party-integrations/google-analytics/tid.png" half center alt='Example Ad' %}
 
-{% image src="/img/pages/third-party-integrations/google-analytics/tid.png" half center alt='Example Ad' %}
 
-On the Branch Dashboard (dashboard.branch.io), navigate to the Webhook Marketplace page. Locate Google Analytics and choose “Enable”. If you have not yet entered billing information, please do so now. After that, enter your Google Analytics Tracking ID.
+## Configure the Branch Dashboard
 
-{% image src="/img/pages/third-party-integrations/google-analytics/google-analytics-marketplace.png" half center alt='Example Ad' %}
+1. On the Branch Dashboard (dashboard.branch.io), navigate to the [Integrations page](https://dashboard.branch.io/integrations).
+1. Locate Google Analytics and choose **Enable**.
+  * If you have not yet entered billing information, please do so now.
+1. Enter your Google Analytics Tracking ID and hit **Save**
 
-Please test your integration. Branch is not responsible for inaccurate Tracking IDs.
+{% image src="/img/pages/third-party-integrations/google-analytics/enable-google-analytics-integration.png" half center alt='Enable Integration' %}
+
+{% caution title="Please test your integration!" %}
+Branch is not responsible for inaccurate API keys.
+{% endcaution %}
 
 
 ## Set up Google Analytics to use standard hardware or advertising identifiers (recommended)
 
 Please ensure you're using the Branch iOS SDK 0.12.2 or greater, and Android SDK v1.12.1 or greater. If you implemented Branch after May 28th 2016, you are likely already on this version or later.
 
-
-In addition to the basic integration, you should add a tiny amount of code to your app. This will ensure that Google Analytics uses the correct device-specific identifier for client ID (cid) with the logic Branch uses. As a result, the cid’s for SDK and webhook should match up and result in unified user data on the GA Dashboard.
+In addition to the basic integration, you should add a tiny amount of code to your app. This will ensure that Google Analytics uses the correct device-specific identifier for client ID (cid) with the logic Branch uses. As a result, the CIDs for SDK and integration should match up and result in unified user data on the GA Dashboard.
 
 **iOS:**
 
