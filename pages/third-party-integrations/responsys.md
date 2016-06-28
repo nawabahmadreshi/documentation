@@ -118,14 +118,14 @@ Once you create the email, and identify the original link, Branch will convert t
 {% image src="/img/pages/third-party-integrations/responsys/deep-linked-email-creation-flow.png" center full alt='Deep Linked Email Creation Flow' %}
 
 {% example title="With Link Tracking Disabled" %}
-Creating deep links is simple. Wherever you are using '<a>'' tags in your email templates, replace those with '<@deeplink>'tags.
+Creating deep links is simple. Wherever you are using "<a>"" tags in your email templates, replace those with "<@deeplink>" tags.
 Before:
 {% highlight objc %}
-'<a href=“https://branch.io”>Example link</a>''
+<a href=“https://branch.io”>Example link</a>
 {% endhighlight %}
 After: 
 {% highlight objc %}
-'<@deeplink “https://branch.io”>Example link</@deeplink>''
+<@deeplink “https://branch.io”>Example link</@deeplink>
 {% endhighlight %}
 {% endexample%}
 
@@ -207,7 +207,7 @@ Apple requires that the file is hosted on a “secure” domain. To qualify as s
  
 {% image src="/img/pages/third-party-integrations/responsys/deep-linked-email-universal-links.png" center full alt='Deep Linked Email Universal Links' %}
 
-## Coming Soon: “Don’t Deep Link”
+## Coming soon: “Don’t deep link”
 In some cases you may have content on web that isn’t in the app - for example, a temporary Mother’s Day promotion. In this case, ideally you would be able to specify in the email that that link should not deep link. Using an alternate domain or path would be the best solution to arrive at this desired behavior, as Universal Links will not parse individual URLs for information without changes being made in the AASA file that specify unique paths. 
 
 {% endif %}
