@@ -4,8 +4,8 @@ directory: third-party-integrations
 title: "Amplitude"
 page_title: Sync Branch data with Amplitude
 description: Learn how to synchronize your Branch data with Amplitude to segment users from Branch installs and calculate LTV.
-ios_keywords: Contextual Deep Linking, Deep links, Amplitude, HasOffers, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Mixpanel, user segmentation, life time value, LTV
-android_keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Mixpanel, user segmentation, life time value, LTV
+ios_keywords: Contextual Deep Linking, Deep links, Amplitude, HasOffers, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Amplitude, user segmentation, life time value, LTV
+android_keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Amplitude, user segmentation, life time value, LTV
 hide_platform_selector: true
 sections:
 - overview
@@ -20,6 +20,28 @@ To request access to the Amplitude integration, please contact [integrations@bra
 {% endprotip %}
 
 With a push of a button you can send your Branch data to your Amplitude dashboard, helping you understand the power of Branch as an acquisition pathway. 
+
+{% getstarted title="Get started with the Amplitude integration" %}{% endgetstarted %}
+
+## How does it work?
+
+Once the Branch SDK is integrated into an app, Branch can detect which links are leading to installs, re-opens, and users' actions. Enabling this integration and providing your Amplitude API Key will result in Branch automatically forwarding referred events to Amplitude, in the exact format Amplitude expects.
+
+## What events does Branch send?
+
+Branch will send *referred* **installs** and **opens**, as well as any **custom events** you track with Branch. Non-referred events, clicks, web session starts, and pageviews will be excluded. Branch also sends all the data that is attached to the link that drove the referred event. This will allow you to analyze which campaigns, channels, etc. are helping you acquire and engage users. You can see the list of fields that we send to Amplitude [here](/third-party-integrations/amplitude/advanced/#what-branch-sends-to-amplitude).
+
+## What does it look like?
+
+Branch events will appear alongside your other tracked events in Amplitude. These events will automatically have `[Branch]` prepended. Here is an example of a Branch event in the Real Time Activity view:
+
+{% image src="/img/pages/third-party-integrations/amplitude/amplitude-live-view.png" 3-quarters center %}
+
+Additionally, individual events, such as those seen in Live View or visible when looking at individual users, will have Branch link data included. Here's an example:
+
+{% image src="/img/pages/third-party-integrations/amplitude/branch-amplitude.png" half center %}
+
+Branch events are similar to Amplitude events in that they can be used in your existing funnels and tracked on the various pages and dashboards. However, unlike normal events, Branch events contain invaluable information about how users ended up in your app in the first place.
 
 {% getstarted title="Get started with the Amplitude integration" %}{% endgetstarted %}
 

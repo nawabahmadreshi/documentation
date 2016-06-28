@@ -22,6 +22,22 @@ With a push of a button you can send your Branch data to your Google Analytics d
 
 {% getstarted title="Get started with the Google Analytics integration" %}{% endgetstarted %}
 
+## How does it work?
+
+Once the Branch SDK is integrated into an app, Branch can detect which links are leading to installs, re-opens, and users' actions. Enabling this integration and providing your Google Analytics Tracking Id will result in Branch automatically forwarding referred events to Google Analytics, in the exact format Google Analytics expects. This includes automatically setting various UTM tags that can be used to determine the source of new users.
+
+## What events does Branch send?
+
+Branch will send *referred* **installs** and **opens**, as well as any **custom events** you track with Branch. Non-referred events, clicks, web session starts, and pageviews will be excluded. Branch also sends over analytics data that is attached to the link, whether it's UTM tags or fields set on the Branch Dashboard (e.g. Campaign, Channel, Feature). This will allow you to analyze which campaigns, channels, etc. are helping you acquire and engage users. You can see the list of fields that we send to Google Analytics [here](/third-party-integrations/google-analytics/advanced/#what-branch-sends-to-google-analytics).
+
+## What does it look like?
+
+Branch events will appear alongside your other tracked events in Google Analytics. These events will automatically have `[Branch]` prepended. Here is an example of the Sources screen with test information set.
+
+{% image src="/img/pages/third-party-integrations/google-analytics/google-analytics-sources.png" 3-quarters center %}
+
+{% getstarted title="Get started with the Google Analytics integration" %}{% endgetstarted %}
+
 {% elsif page.guide %}
 
 {% prerequisite %}

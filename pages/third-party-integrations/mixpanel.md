@@ -22,6 +22,28 @@ With a push of a button you can send your Branch data to your Mixpanel dashboard
 
 {% getstarted title="Get started with the Mixpanel integration" %}{% endgetstarted %}
 
+## How does it work?
+
+Once the Branch SDK is integrated into an app, Branch can detect which links are leading to installs, re-opens, and users' actions. Enabling this integration and providing your Mixpanel Token will result in Branch automatically forwarding referred events to Mixpanel, in the exact format Mixpanel expects.
+
+## What events does Branch send?
+
+Branch will send *referred* **installs** and **opens**, as well as any **custom events** you track with Branch. Non-referred events, clicks, web session starts, and pageviews will be excluded. Branch also sends all the data that is attached to the link that drove the referred event. This will allow you to analyze which campaigns, channels, etc. are helping you acquire and engage users. You can see the list of fields that we send to Mixpanel [here](/third-party-integrations/mixpanel/advanced/#what-branch-sends-to-mixpanel).
+
+## What does it look like?
+
+Branch events will appear alongside your other tracked events in Mixpanel. These events will automatically have `[Branch]` prepended.  
+
+{% image src="/img/pages/third-party-integrations/mixpanel/branch-mixpanel.png" 3-quarters center %}
+
+Additionally, individual events, such as those seen in Live View or visible when looking at People, will have Branch link data included. Here's an example:
+
+{% image src="/img/pages/third-party-integrations/mixpanel/mixpanel-live-view.png" center %}
+
+Branch events are similar to Mixpanel events in that they can be used in your existing funnels and tracked on the various pages and dashboards. However, unlike normal events, Branch events contain invaluable information about how users ended up in your app in the first place.
+
+{% getstarted title="Get started with the Mixpanel integration" %}{% endgetstarted %}
+
 {% elsif page.guide %}
 
 {% prerequisite %}
