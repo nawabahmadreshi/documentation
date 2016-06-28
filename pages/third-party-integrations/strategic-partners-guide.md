@@ -61,7 +61,7 @@ If you want to create links manually or via the API, there many mechanisms to do
 
 If you want to configure the web SDK on your site, it's a few lines of code depending on the feature you're interested in. Here is a list of the most commonly used features:
 
-1. **[Smart app banner]({{base.url}}/features/smart-banner)**
+1. **[Journeys Web To App Platform]({{base.url}}/features/journeys)**
 2. **[Desktop SMS to download]({{base.url}}/features/text-me-the-app)**
 
 ## Receive or monitor Branch data for your apps
