@@ -1,10 +1,10 @@
 ---
 type: recipe
 directory: third-party-integrations
-title: "Localytics"
-page_title: Send Deep Link Install Data to Localytics
-description: We’ve partnered with Localytics to provide an easy way to deliver Branch installs and attributions to your Localytics dashboard. Learn how to set it up.
-keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Analytics, Install Data, Localytics
+title: "Kochava"
+page_title: Send Deep Link Install Data to Kochava
+description: We’ve partnered with Kochava to provide an easy way to deliver Branch installs and attributions to your Kochava dashboard. Learn how to set it up.
+keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Analytics, Install Data, Kochava
 hide_platform_selector: true
 sections:
 - overview
@@ -15,7 +15,7 @@ sections:
 {% if page.overview %}
 
 {% protip title="The Localytics V2 integration is currently in private beta" %}
-To request access to the Localytics V2 integration, please contact [support@branch.io](mailto:support@branch.io) or your Branch account manager. 
+To request access to the Localytics V2 integration, please contact [integrations@branch.io](mailto:integrations@branch.io) or your Branch account manager. 
 {% endprotip %}
 
 We've partnered with Localytics to provide an easy way to deliver Branch installs and attributions to your Localytics dashboard. This is great for segmenting your users and providing higher granularity for your organic cohorts vs paid cohorts.
@@ -33,7 +33,7 @@ We've partnered with Localytics to provide an easy way to deliver Branch install
 
 ## Contact your Branch Account Manager
 
-To get started, contact support@branch.io or your Branch account manager and give them your Localytics iOS and Android API keys.
+To get started, contact integrations@branch.io or your Branch account manager and give them your Localytics iOS and Android API keys.
 
 ## How it works
 
