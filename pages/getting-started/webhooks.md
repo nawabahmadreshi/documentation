@@ -369,7 +369,7 @@ The `session.link_data` keys refer to the link that initiated the session.
 | session.link_data.+url | The full URL of the link, e.g. [branchsubdomain]/m/abcde12345
 | session.link_data.key | Any key value you specified in the link's data dictionary
 
-## Authenticating Webook events
+## Authenticating Webhook events
 
 If you need to whitelist the webhook server IP addresses for security purposes, they are listed below.
 
