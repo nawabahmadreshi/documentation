@@ -205,7 +205,7 @@ So if you have enabled "Native or desktop app", then your advanced options shoul
 
 {% image src='/img/pages/features/facebook-ads/facebook_secret.png' 2-thirds center alt='Client Secret' %}
 
-## Debugging Commong Discrepancies Between Branch and Facebook Counts
+## Debugging Common Discrepancies Between Branch and Facebook Counts
 
 While we should always expect around a 5% discrepancy due to time zone differents and the like, if you are seeing significant discrepancies, it could be an indication of a broader problem.
 
