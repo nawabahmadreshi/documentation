@@ -169,6 +169,7 @@ If you do not specify a primary OG tag when creating a link, Branch will perform
 | $og_image_url | Set the image of the link as it will be seen in social media displays | yes
 | $og_image_width | Set the image's width in pixels for social media displays | yes
 | $og_image_height | Set the image's height in pixels for social media displays | yes
+| $og_video | Set a video as it will be seen in social media displays
 | $og_url | Set the base URL of the link as it will be seen in social media displays
 | $og_type | Set the type of custom card format link as it will be seen in social media displays
 | $og_redirect | *(Advanced, not recommended)* Set a custom URL that we redirect the social media robots to in order to retrieve all the appropriate tags
