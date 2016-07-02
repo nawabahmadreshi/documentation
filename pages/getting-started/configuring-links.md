@@ -167,6 +167,8 @@ If you do not specify a primary OG tag when creating a link, Branch will perform
 | $og_title | Set the title of the link as it will be seen in social media displays | yes
 | $og_description | Set the description of the link as it will be seen in social media displays | yes
 | $og_image_url | Set the image of the link as it will be seen in social media displays | yes
+| $og_image_width | Set the image's width in pixels for social media displays | yes
+| $og_image_height | Set the image's height in pixels for social media displays | yes
 | $og_video | Set a video as it will be seen in social media displays
 | $og_url | Set the base URL of the link as it will be seen in social media displays
 | $og_type | Set the type of custom card format link as it will be seen in social media displays
@@ -182,6 +184,8 @@ If you do not specify a primary OG tag when creating a link, Branch will perform
 | $twitter_description | Set the description of the Twitter card
 | $twitter_site | Set the site for Twitter
 | $twitter_app_country | Set the app country for the app card
+| $twitter_player_width | Set the player's width in pixels
+| $twitter_player_height | Set the player's height in pixels
 
 ## Appending query parameters to links
 
