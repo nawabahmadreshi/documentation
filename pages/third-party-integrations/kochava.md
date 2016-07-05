@@ -54,8 +54,11 @@ For each platform (iOS and Android) you should create campaign IDs. You will do 
 1. Enter the Tracker Name.
 1. Select `Tracker Type>3rd Party Tracking` (default setting)
 1. Select `Select A Network > Branch`
-1. Copy and retain the Campaign ID.
 1. Click submit. (If no further trackers need to be created).
+
+Once you've clicked `Submit` you should see a screen with the campaign ID.
+
+{% image src="/img/pages/third-party-integrations/kochava/kochava-dashboard.png" half center alt='Branch Campaign ID in Kochava' %}
 
 ## Configure the Branch Dashboard
 
@@ -64,6 +67,6 @@ For each platform (iOS and Android) you should create campaign IDs. You will do 
 1. Enter your Kochava campaign ID for the relevant platform
 1. Hit **Save**
 
-{% image src="/img/pages/third-party-integrations/kochava/enable-kochava-integration.png" half center alt='Enable Integration' %}
+{% image src="/img/pages/third-party-integrations/kochava/enable-kochava-integration.png" half center alt='Enable Kochava Integration' %}
 
 {% endif %}
