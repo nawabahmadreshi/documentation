@@ -67,14 +67,16 @@ You can choose which Branch Views your audience will see, and how much of your a
 
 ### Select your template
 
-This opens a WYSIWYG editor where you can change the style and content of your Branch View. First, choose the type of template that you want to show. You can choose from a:
+This opens a WYSIWYG editor where you can change the style and content of your Branch View. First, select the type of template that you want to show. For now, we only offer an app banner. 
+
+{% image src='/img/pages/features/journeys/select-template-type.png' half center alt='select template type' %}
+
+In the future, you will be able to choose from: 
 
 - Full page injected interstitial (SEO friendly!)
 - Half page injected banner (SEO friendly!)
 - Floating app banner
 - Floating button
-
-{% image src='/img/pages/features/journeys/select-template-type.png' half center alt='select template type' %}
 
 Next, to make changes to the styling or text, click `Customize`.
 
