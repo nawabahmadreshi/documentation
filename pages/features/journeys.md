@@ -80,7 +80,7 @@ Next, to make changes to the styling or text, click `Customize`.
 
 ### Customize your template
 
-Here, you can change the template name so you can easily find it later. To edit an element on the template, simply select it and change colors, fonts, or sizes. If you can't achieve what you're attempting in the designer, you can also use the dropdown at the top to edit the HTML, CSS, or JS. 
+Here, you can change the template name so you can easily find it later. To edit an element on the template, simply select it and change colors, fonts, or sizes.
 
 {% image src='/img/pages/features/journeys/customize-template.png' 2-thirds center alt='customize template' %}
 
@@ -90,7 +90,7 @@ Here, you can change the template name so you can easily find it later. To edit 
 
 Want to test multiple Branch Views? Click `Add Rule` to split your audience so that, for instance, 60% see one Branch View, and 40% see another. You’ll be able to see analytics for each of these later. You’ll also have to select a template for each rule you add.
 
-{% image src='/img/pages/features/journeys/multiple-templates.png' half center alt='multiple templates' %}
+{% image src='/img/pages/features/journeys/multiple-templates.png' center alt='multiple templates' %}
 
 ### Validation and testing
 
