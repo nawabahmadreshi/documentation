@@ -80,6 +80,10 @@ Branch is not responsible for inaccurate API keys.
 
 Ensure that you are capturing both the [Google Advertising Identifier (GAID) on Android]({{base.url}}/getting-started/sdk-integration-guide/advanced/android/#use-google-advertising-id), and the [IDFA on iOS]({{base.url}}/getting-started/sdk-integration-guide/advanced/ios/#install-the-sdk-manually) (by importing the `AdSupport.framework`).
 
+{% caution title="Google Advertising ID is required" %}
+Amplitude now requires the Google Advertising ID to be sent. Android ID (the hardware ID) alone is not enough.
+{% endcaution %}
+
 
 ## Upgrade to the latest SDKs [if necessary]
 
