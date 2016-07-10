@@ -456,7 +456,9 @@ ShareSheetStyle shareSheetStyle = new ShareSheetStyle(MainActivity.this, "Check 
                         .setCopyUrlStyle(getResources().getDrawable(android.R.drawable.ic_menu_send), "Copy", "Added to clipboard")
                         .setMoreOptionStyle(getResources().getDrawable(android.R.drawable.ic_menu_search), "Show more")
                         .addPreferredSharingOption(SharingHelper.SHARE_WITH.FACEBOOK)
-                        .addPreferredSharingOption(SharingHelper.SHARE_WITH.EMAIL);
+                        .addPreferredSharingOption(SharingHelper.SHARE_WITH.EMAIL)
+                        .setAsFullWidthStyle(true)
+                        .setSharingTitle("Share With");
 {% endhighlight %}
 
 {% endif %}
