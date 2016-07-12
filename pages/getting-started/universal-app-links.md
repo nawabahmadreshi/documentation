@@ -435,18 +435,28 @@ If the **Default domain name** box shows the legacy `bnc.lt` domain, you should 
 
 1. Choose the `Activity` you want to open up when a link is clicked. This is typically your `SplashActivity` or a `BaseActivity` that all over activities inherit from (and likely the same one you selected in the [SDK Integration Guide]({{base.url}}/getting-started/sdk-integration-guide)).
 1. At the top of the class declaration for the `Activity`, insert the intent filter provided below.
-   - Replace `READ_FROM_DASHBOARD` with the value provided underneath the **SHA256 Cert Fingerprints** field on the Branch dashboard. It will look something like this: `DataPathPrefix="/WSuf"`
 
-{% image src='/img/pages/getting-started/universal-app-links/app_links_prefix.png' full center alt='app links prefix' %}
+{% highlight c# %}
+[IntentFilter(new [] { Android.Content.Intent.ActionView },
+    DataScheme="https",
+    DataHost="xxxx.app.link",
+    Categories=new [] { Android.Content.Intent.CategoryDefault, Android.Content.Intent.CategoryBrowsable })]
+{% endhighlight %}
 
+{% caution title="Support for legacy links" %}
 {% highlight c# %}
 [IntentFilter(new [] { Android.Content.Intent.ActionView },
     DataScheme="https",
     DataHost="bnc.lt",
     DataPathPrefix="READ_FROM_DASHBOARD",
     Categories=new [] { Android.Content.Intent.CategoryDefault, Android.Content.Intent.CategoryBrowsable })]
-public class SplashActivity : Activity {
 {% endhighlight %}
+
+`READ_FROM_DASHBOARD` is the four-character value in front of all your links. You can find it underneath the field labeled **SHA256 Cert Fingerprints** on the dashboard. It will look something like this: `/WSuf` (the initial `/` character should be included).
+
+{% image src='/img/pages/getting-started/universal-app-links/app_links_prefix.png' full center alt='app links prefix' %}
+
+{% endcaution %}
 
 {% protip title="Using a custom domain or subdomain?" %}
 If you use a [custom domain or subdomain for your Branch links]({{base.url}}/getting-started/dashboard-guide/guide/#setting-a-custom-link-domain), you should also add an entry for:
@@ -458,6 +468,11 @@ If you use a [custom domain or subdomain for your Branch links]({{base.url}}/get
     DataPathPrefix="READ_FROM_DASHBOARD",
     Categories=new [] { Android.Content.Intent.CategoryDefault, Android.Content.Intent.CategoryBrowsable })]
 {% endhighlight %}
+
+`READ_FROM_DASHBOARD` is the four-character value in front of all your links. You can find it underneath the field labeled **SHA256 Cert Fingerprints** on the dashboard. It will look something like this: `/WSuf` (the initial `/` character should be included).
+
+{% image src='/img/pages/getting-started/universal-app-links/app_links_prefix.png' full center alt='app links prefix' %}
+
 {% endprotip %}
 
 {% else %}

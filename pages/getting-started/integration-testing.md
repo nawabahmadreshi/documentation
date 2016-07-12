@@ -34,6 +34,136 @@ Branch maintains both a **Live** environment and a **Test** sandbox for every ap
 - Links created with your **Live** key will begin with `XXXX.app.link`
 - Links created with your **Test** key will begin with `XXXX.test-app.link`
 
+{% if page.ios %}
+
+{% protip title="Universal Links in the Test environment" %}
+To enable Universal Link behavior for links created with your **Test** key, you need to add the following Associated Domains entries:
+
+- `applinks:xxxx.test-app.link`
+- `applinks:xxxx-alternate.test-app.link`
+
+[See here]({{base.url}}/getting-started/universal-app-links/guide/ios/#add-the-associated-domains-entitlement-to-your-project) for more detailed instructions.
+{% endprotip %}
+
+{% elsif page.android %}
+
+{% protip title="App Links in the Test environment" %}
+To enable App Links behavior for links created with your **Test** key, you need to add the following Intent Filter tag to your Activity definition:
+
+- `<data android:scheme="https" android:host="xxxx.test-app.link" />`
+
+[See here]({{base.url}}/getting-started/universal-app-links/guide/android/#add-intent-filter-to-manifest) for more detailed instructions.
+{% endprotip %}
+
+{% elsif page.cordova %}
+
+{% protip title="Universal & App Links in the Test environment" %}
+To enable Universal Link and App Link behavior for links created with your **Test** key, you need to add the following keys to your `config.xml` file:
+
+- `<host name="xxxx.app.link" scheme="https" />`
+- `<host name="xxxx-alternate.app.link" scheme="https" />`
+
+[See here]({{base.url}}/getting-started/universal-app-links/guide/cordova/#add-the-associated-domains-entitlement-to-your-project) for more detailed instructions.
+
+{% endprotip %}
+
+{% elsif page.xamarin %}
+
+{% protip title="Universal & App Links in the Test environment" %}
+To enable Universal Link behavior for links created with your **Test** key, you need to add the following Associated Domains entries:
+
+- `applinks:xxxx.test-app.link`
+- `applinks:xxxx-alternate.test-app.link`
+
+[See here]({{base.url}}/getting-started/universal-app-links/guide/xamarin/#add-the-associated-domains-entitlement-to-your-project) for more detailed instructions.
+
+To enable App Links behavior for links created with your **Test** key, you need to add the following Intent Filter tag to your Activity definition:
+
+{% highlight c# %}
+[IntentFilter(new [] { Android.Content.Intent.ActionView },
+    DataScheme="https",
+    DataHost="xxxx.test-app.link",
+    Categories=new [] { Android.Content.Intent.CategoryDefault, Android.Content.Intent.CategoryBrowsable })]
+{% endhighlight %}
+
+[See here]({{base.url}}/getting-started/universal-app-links/guide/xamarin/#add-intent-filter-to-activity) for more detailed instructions.
+
+{% endprotip %}
+
+{% elsif page.unity %}
+
+{% protip title="Universal & App Links in the Test environment" %}
+To enable Universal Link behavior for links created with your **Test** key, you need to add the following Associated Domains entries:
+
+- `applinks:xxxx.test-app.link`
+- `applinks:xxxx-alternate.test-app.link`
+
+[See here]({{base.url}}/getting-started/universal-app-links/guide/unity/#add-the-associated-domains-entitlement-to-your-project) for more detailed instructions.
+
+To enable App Links behavior for links created with your **Test** key, you need to add the following Intent Filter tag to your Activity definition:
+
+- `<data android:scheme="https" android:host="xxxx.test-app.link" />`
+
+[See here]({{base.url}}/getting-started/universal-app-links/guide/unity/#add-intent-filter-to-manifest) for more detailed instructions.
+
+{% endprotip %}
+
+{% elsif page.adobe %}
+
+{% protip title="Universal & App Links in the Test environment" %}
+To enable Universal Link behavior for links created with your **Test** key, you need to add the following Associated Domains entries:
+
+- `applinks:xxxx.test-app.link`
+- `applinks:xxxx-alternate.test-app.link`
+
+[See here]({{base.url}}/getting-started/universal-app-links/guide/adobe/#add-the-associated-domains-entitlement-to-your-project) for more detailed instructions.
+
+To enable App Links behavior for links created with your **Test** key, you need to add the following Intent Filter tag to your Activity definition:
+
+- `<data android:scheme="https" android:host="xxxx.test-app.link" />`
+
+[See here]({{base.url}}/getting-started/universal-app-links/guide/adobe/#add-intent-filter-to-manifest) for more detailed instructions.
+
+{% endprotip %}
+
+{% elsif page.titanium %}
+
+{% protip title="Universal & App Links in the Test environment" %}
+To enable Universal Link behavior for links created with your **Test** key, you need to add the following keys to your `Entitlements.plist` file:
+
+- `<string>applinks:xxxx.app.link</string>`
+- `<string>applinks:xxxx-alternate.app.link</string>`
+
+[See here]({{base.url}}/getting-started/universal-app-links/guide/titanium/#add-the-associated-domains-entitlement-to-your-project) for more detailed instructions.
+
+To enable App Links behavior for links created with your **Test** key, you need to add the following Intent Filter tag to your Activity definition:
+
+- `<data android:scheme="https" android:host="xxxx.test-app.link" />`
+
+[See here]({{base.url}}/getting-started/universal-app-links/guide/unity/#add-intent-filter-to-manifest) for more detailed instructions.
+
+{% endprotip %}
+
+{% elsif page.react %}
+
+{% protip title="Universal & App Links in the Test environment" %}
+To enable Universal Link behavior for links created with your **Test** key, you need to add the following Associated Domains entries:
+
+- `applinks:xxxx.test-app.link`
+- `applinks:xxxx-alternate.test-app.link`
+
+[See here]({{base.url}}/getting-started/universal-app-links/guide/adobe/#add-the-associated-domains-entitlement-to-your-project) for more detailed instructions.
+
+To enable App Links behavior for links created with your **Test** key, you need to add the following Intent Filter tag to your Activity definition:
+
+- `<data android:scheme="https" android:host="xxxx.test-app.link" />`
+
+[See here]({{base.url}}/getting-started/universal-app-links/guide/adobe/#add-intent-filter-to-manifest) for more detailed instructions.
+
+{% endprotip %}
+
+{% endif %}
+
 ### Switching environments on the dashboard
 
 Toggling between these two modes on the Branch dashboard is simple:
