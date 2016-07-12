@@ -271,11 +271,14 @@ In your project's `YourProject-Info.plist` file, you can register your app to re
 1. In Xcode, open your project's Info.plist file in the Navigator (on the left side).
 1. Mouse hover "Information Property List" (the root item under the Key column).
 1. After about half a second, you will see a `+` sign appear. Click it.
-1. Add a new row with the following values:
+1. Add new rows with the following values, with the `String` entry inside the `Dictionary`:
 
 | Key | Type | Value |
 | :--- | --- | --- |
-| branch_key | String | [your Branch Key] |
+| branch_key | Dictionary | |
+| live | String | [key_live_xxxxxxxxxxxxxxx] |
+
+{% image src="/img/pages/getting-started/sdk-integration-guide/branch-multi-key-plist.png" actual center alt="environment toggle" %}
 
 ### Register a URI scheme
 
