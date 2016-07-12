@@ -30,7 +30,7 @@ Because of the way that Apple implements Universal Links, every app also has a s
 
 {% caution title="Test environment domain" %}
 
-The assigned subdomain for your [test environment]({{base.url}}/getting-started/integration-testing#the-test-sandbox-environment) is of the form `xxxx.test-app-link` and must be configured separately.
+The assigned subdomain for your [test environment]({{base.url}}/getting-started/integration-testing#the-test-sandbox-environment) is of the form `xxxx.test-app-link` and must be configured separately. Branch automatically handles HTTPS traffic for custom subdomains and root domains. Branch will acquire the necessary SSL certificate if you follow the simple setup instructions below. Branch will also automatically renew the certificates when needed.
 
 {% endcaution %}
 
@@ -42,8 +42,10 @@ If you want to use a custom domain or subdomain for your Branch links instead of
 We recommend that you choose one domain or subdomain to use with Branch and stick with it, as switching can cause significant problems with your existing links.
 {% endcaution %}
 
-{% protip title="SSL for custom domains and subdomains" %}
-Branch automatically handles HTTPS traffic for custom subdomains and root domains. Branch will acquire the necessary SSL certificate if you follow the simple setup instructions below. Branch will also automatically renew the certificates when needed.
+{% protip title="Updates to Universal & App Links configuration" %}
+
+If you enable (or change) your link domain/subdomain, you will need to make updates to your Universal Links (iOS) and App Links (Android) configuration. Review the [configuration guide]({{base.url}}/getting-started/universal-app-links/overview/) for these features.
+
 {% endprotip %}
 
 ### Custom SUBDOMAIN (go.branch.com)
