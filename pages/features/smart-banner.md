@@ -110,7 +110,7 @@ branch.banner(
     position: 'top',                        // Sets the position of the banner, options are: 'top' or 'bottom', and the default is 'top'
     mobileSticky: false,                    // Determines whether the mobile banner will be set `position: fixed;` (sticky) or `position: absolute;`, defaults to false *this property only applies when the banner position is 'top'
     desktopSticky: true,                    // Determines whether the desktop banner will be set `position: fixed;` (sticky) or `position: absolute;`, defaults to true *this property only applies when the banner position is 'top'
-    customCSS: '.title { color: #F00; }',   // Add your own custom styles to the banner that load last, and are gauranteed to take precedence, even if you leave the banner in an iframe
+    customCSS: '.title { color: #FF0000; }',   // Add your own custom styles to the banner that load last, and are gauranteed to take precedence, even if you leave the banner in an iframe
     make_new_link: false,                   // Should the banner create a new link, even if a link already exists?
     rating: 5,                              // Number of stars (should be your store rating)
     reviewCount: 1000,                      // Number of reviews that generate the rating (should be your store reviews)
@@ -121,9 +121,9 @@ branch.banner(
     buttonBackgroundColorHover: css color,
     buttonFontColorHover: css color
 },
-    
+
 // Here is where you define the deep link that you'd like to use
-{ 
+{
     tags: ['version12', 'trial-b'],
     feature: 'smart_banner',
     stage: 'shoe_page'
@@ -136,7 +136,7 @@ branch.banner(
 {% endhighlight %}
 
 {% caution %}
-If you would like to view analytics related to Smart Banner clicks then please do not override the channel. It is set to "app banner" by default. You will see analytics related to Smart Banner clicks in Dashboard > Summary via the "app banner" label in the channel dropdown. 
+If you would like to view analytics related to Smart Banner clicks then please do not override the channel. It is set to "app banner" by default. You will see analytics related to Smart Banner clicks in Dashboard > Summary via the "app banner" label in the channel dropdown.
 
 If this channel is set to something other than "app banner", then we will display clicks and opens in the Dashboard Summary's Deepview chart as well. This gives you ability to see conversion on your mobile website.
 {% endcaution %}
@@ -149,7 +149,7 @@ You can customize elements of the Smart Banner's appearance with the `customCSS`
 
 {% highlight javascript %}
 branch.banner({
-    customCSS: '.title{ color: #F00; }'
+    customCSS: '.title{ color: #FF0000; }'
 }, {});
 {% endhighlight %}
 {% endexample %}
@@ -189,13 +189,13 @@ branch.banner({
 
 ## Prepending country codes to phone numbers
 
-If your app audience is exclusively from one country, you can choose a specific country code to prepend to all phone numbers. You simply add the following code snippet after the `branch.init()` call. 
+If your app audience is exclusively from one country, you can choose a specific country code to prepend to all phone numbers. You simply add the following code snippet after the `branch.init()` call.
 
 {% highlight javascript %}
-var listener = function(event) { 
+var listener = function(event) {
     var banner_iframe = document.getElementById("branch-banner-iframe").contentWindow.document;
     var submit_btn = banner_iframe.getElementById("branch-sms-send");
-    
+
     submit_btn.addEventListener('click', function(e){
         var phone_number = banner_iframe.getElementById("branch-sms-phone");
         var country_code = "+2"
@@ -207,7 +207,7 @@ branch.addListener('didShowBanner', listener);
 {% endhighlight %}
 
 {% caution %}
-This will prepend the country code to whatever number is entered. You might need to do extra validation to ensure that the user didn't add the country code themselves. 
+This will prepend the country code to whatever number is entered. You might need to do extra validation to ensure that the user didn't add the country code themselves.
 {% endcaution %}
 
 ## Closing the app banner programmatically
