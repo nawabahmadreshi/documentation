@@ -1113,13 +1113,14 @@ The only situation in which you do not need to perform these steps is if you ins
 
 ## Submitting to the Play Store
 
-By default, Branch collects and uses the [Android ID](http://developer.android.com/reference/android/provider/Settings.Secure.html#ANDROID_ID){:target="_blank"}. No additional steps are required when submitting your app to the Play Store.
+If you'd like Branch to collect the [Google Advertising ID](https://support.google.com/googleplay/android-developer/answer/6048248) for advertising or tracking purposes instead of the Android ID, you must add Google Play Services to your app prior to release. After you complete these steps, Branch will handle the rest!
 
-{% protip title="Alternative Configuration" %}
+1. Add `compile 'com.google.android.gms:play-services:7.5.0'` or greater version to the dependencies section of your `build.gradle` file. You might already have it.
+1. Add the following line in your Proguard settings:
 
-- [I want to use the Google Advertising ID instead]({{base.url}}/getting-started/sdk-integration-guide/advanced/android#use-google-advertising-id){:target="_blank"}
-
-{% endprotip %}
+{% highlight xml %}
+-keep class com.google.android.gms.ads.identifier.** { *; }
+{% endhighlight %}
 
 {% endif %}
 
@@ -1215,19 +1216,6 @@ listener.onReceive(context, intent);
 {% endhighlight %}
 
 [Back to the Guide]({{base.url}}/getting-started/sdk-integration-guide/guide/android#register-for-google-play-install-referrer)
-
-## Use Google Advertising ID
-
-If you'd like Branch to collect the [Google Advertising ID](https://support.google.com/googleplay/android-developer/answer/6048248?hl=en) for advertising or tracking purposes instead of the Android ID, you must add Google Play Services to your app prior to release. After you complete these steps, Branch will handle the rest!
-
-1. Add `compile 'com.google.android.gms:play-services:7.5.0'` to the dependencies section of your `build.gradle` file.
-1. Add the following line in your ProGuard settings:
-
-{% highlight xml %}
--keep class com.google.android.gms.ads.identifier.** { *; }
-{% endhighlight %}
-
-[Back to the Guide]({{base.url}}/getting-started/sdk-integration-guide/guide/android#submitting-to-the-play-store)
 
 {% elsif page.xamarin %}
 
