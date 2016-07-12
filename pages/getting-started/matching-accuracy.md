@@ -26,7 +26,7 @@ For example, we'd call `myapp://open?link_click_id=123456` to open the app immed
 
 When a user clicks a Branch link for your app, and we've seen them click a link for another app on our partner network, we've already matched them up to a corresponding device identifier. This means that when they install the app, we know with 100% certainty that they just came from that link click.
 
-The fact that we have such a global network of apps with hundreds of millions of users clicking links, means that when you join the platform, you can benefit from the crowd-sourced accuracy gained through all our apps contributing the browser-app profiles. 
+The fact that we have such a global network of apps with hundreds of millions of users clicking links, means that when you join the platform, you can benefit from the crowd-sourced accuracy gained through all our apps contributing the browser-app profiles.
 
 ### Leveraging other match techniques
 
@@ -38,7 +38,7 @@ We've built out custom deep linking mechanisms that are specific to each platfor
 | **Android Google Play referrer** | Google Play supports passing a referrer through the install process that we listen for. It's notoriously unreliable and currently unsupported when redirecting from Chrome. However, we'll use it when available. Enabling this method is covered in the [SDK Integration Guide]({{base.url}}/getting-started/sdk-integration-guide/guide/android/#configure-manifest).
 | **iOS 9 Safari cookie passthrough** | We built a custom technique into our latest iOS SDK that will guarantee 100% accuracy on iOS 9 when you include SafariServices.framework in your app. This method is enabled by default when you complete the [SDK Integration Guide]({{base.url}}/getting-started/sdk-integration-guide).
 
-## Methods without 100% matching accuracy
+## Methods without 100% match accuracy
 
 ### Browser to app fingerprint match
 
@@ -55,3 +55,17 @@ If you are concerned that users may potentially have the same fingerprint, you c
 This means that if two users with the same fingerprint, on the same wifi, were to click a Branch link for your app, we would blacklist those digital fingerprints for the expiration duration. Therefore, when either user opens up your app, no match would be made.
 
 {% endprotip %}
+
+## Handling personally identifiable information
+
+{% caution %}
+Deep link usecases that include sensitive or personally identifiable information are discouraged. This is because there is always a slight possibility of mismatches occurring, which could lead to users seeing incorrect content.
+{% endcaution %}
+
+Our advice is to ensure that users are not able to abuse your system if they are deep linked incorrectly to your app. Examples of usecases to avoid are:
+
+1. Automatically logging users into your app by including usernames and passwords in Branch links.
+1. Deep linking users to items they have purchased, or allowing them to change the state of their order without having them log into your app first.
+1. Deep linking to explicit content.
+
+In the event that you choose to move forward with a usecase that does include sensitive information in your Branch links, you should check for the `+match_guaranteed: true` key-value pair in your initial Branch session callback, prior to routing to the deep linked content. Matching methods that provide `+match_guaranteed: true` are discussed in the [Methods with 100% match accuracy](#methods-with-100-match-accuracy) section above. Methods that return `+match_guaranteed: false` is discussed in [Methods without 100% match accuracy](#methods-without-100-match-accuracy).
