@@ -110,7 +110,7 @@ branch.banner(
     position: 'top',                        // Sets the position of the banner, options are: 'top' or 'bottom', and the default is 'top'
     mobileSticky: false,                    // Determines whether the mobile banner will be set `position: fixed;` (sticky) or `position: absolute;`, defaults to false *this property only applies when the banner position is 'top'
     desktopSticky: true,                    // Determines whether the desktop banner will be set `position: fixed;` (sticky) or `position: absolute;`, defaults to true *this property only applies when the banner position is 'top'
-    customCSS: '.title { color: #FF0000; }',   // Add your own custom styles to the banner that load last, and are gauranteed to take precedence, even if you leave the banner in an iframe
+    customCSS: '#branch-banner .title { color: #F00; }'   // Add your own custom styles to the banner that load last, and are gauranteed to take precedence, even if you leave the banner in an iframe
     make_new_link: false,                   // Should the banner create a new link, even if a link already exists?
     rating: 5,                              // Number of stars (should be your store rating)
     reviewCount: 1000,                      // Number of reviews that generate the rating (should be your store reviews)
@@ -149,7 +149,7 @@ You can customize elements of the Smart Banner's appearance with the `customCSS`
 
 {% highlight javascript %}
 branch.banner({
-    customCSS: '.title{ color: #FF0000; }'
+    customCSS: '#branch-banner .title { color: #F00; }'
 }, {});
 {% endhighlight %}
 {% endexample %}
