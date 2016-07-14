@@ -15,7 +15,7 @@ sections:
 {% if page.overview %}
 
 {% protip %}
-This premium functionality is available to customers upon request. Please contact your Branch Account Manager or support@branch.io to enable remote deep links.
+This premium functionality is available to customers upon request. Please contact your Branch Account Manager or the (Integrations team)[https://support.branch.io/support/tickets/new] to enable remote deep links.
 {% endprotip %}
 
 Remote Deep Links are special Branch links designed for use in enterprise marketing campaigns. They have the benefits of regular Branch links, but are simple to create from a web URL without hitting the Branch link creation API, hit a specially monitored endpoint, have UTM tag mapping, and have security parameters built in.
