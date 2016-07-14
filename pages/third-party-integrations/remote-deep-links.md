@@ -59,4 +59,8 @@ Here's an example.
 
 The deep linking and fallback behavior of the link is determined in the Branch dashboard. Your Branch account manager will set this up for you before starting.
 
+{% protip %}
+There are reference scripts in Python and Ruby [here](https://gist.github.com/derrickstaten/d9d710703e83d52f3eca90bd605aecd9).
+{% endprotip %}
+
 {% endif %}
