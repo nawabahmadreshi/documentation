@@ -103,21 +103,21 @@ branch.userCompletedAction("custom_action_1");
 `click`, `view`, `served`, `install`, `open`, `install_bypass`, `open_bypass`, `install_assist`, and `open_assist` are reserved for Branch events, and these are filtered out of [custom events in the dashboard](#measuring-custom-events). Please choose distinct names for your custom events.
 {% endcaution %}
 
-## Appending custom metadata
+## Tracking revenue (measurement coming soon)
 
-You can also include additional information when creating a custom event:
+To track revenue, please use the "purchase" event with the custom value "amount" in the state dictionary. Below is an example:
 
 {% if page.ios %}
 
 {% tabs %}
 {% tab objective-c %}
 {% highlight objc %}
-[[Branch getInstance] userCompletedAction:@"purchase" withState:@{@"item":@"123-AB-456"}];
+[[Branch getInstance] userCompletedAction:@"purchase" withState:@{@"amount":@"45.12"}];
 {% endhighlight %}
 {% endtab %}
 {% tab swift %}
 {% highlight swift %}
-Branch.getInstance().userCompletedAction("purchase", withState: ["item" : "123-AB-456"])
+Branch.getInstance().userCompletedAction("purchase", withState: ["amount" : "45.12"])
 {% endhighlight %}
 {% endtab %}
 {% endtabs %}
@@ -128,8 +128,8 @@ Branch.getInstance().userCompletedAction("purchase", withState: ["item" : "123-A
 {% if page.android %}
 {% highlight java %}
 JSONObject metaData = new JSONObject();
-metaData.put("key", "value");
-Branch.getInstance().userCompletedAction("custom_action_with_data", metaData);
+metaData.put("amount", "45.12");
+Branch.getInstance().userCompletedAction("purchase", metaData);
 {% endhighlight %}
 {% endif %}
 <!--- /Android -->
@@ -137,10 +137,10 @@ Branch.getInstance().userCompletedAction("custom_action_with_data", metaData);
 {% if page.cordova %}
 {% highlight js %}
 Branch.userCompletedAction(
-    "purchase_event",
+    "purchase",
     {
-      "sku": "12346789"
-  }
+      "amount": "45.12"
+  	}
 );
 {% endhighlight %}
 {% endif %}
@@ -149,8 +149,8 @@ Branch.userCompletedAction(
 {% highlight c# %}
 Branch branch = Branch.GetInstance ();
 Dictionary<string, object> data = new Dictionary<string, object>();
-data.Add("sku", "123456789");
-await branch.UserCompletedAction("purchase_event", data);
+data.Add("amount", "45.12");
+await branch.UserCompletedAction("purchase", data);
 {% endhighlight %}
 {% endif %}
 
@@ -158,9 +158,9 @@ await branch.UserCompletedAction("purchase_event", data);
 {% highlight c# %}
 Dictionary<string, object> stateItems = new Dictionary<string, object>
 {
-    { "sku", "12346789" }
+    { "amount", "45.12" }
 };
-Branch.userCompletedAction("purchase_event", stateItems);
+Branch.userCompletedAction("purchase", stateItems);
 {% endhighlight %}
 {% endif %}
 
@@ -172,15 +172,15 @@ Currently not supported in the ANE
 
 {% if page.titanium %}
 {% highlight js %}
-branch.userCompletedAction("purchase_event", {
-  "sku": "12346789"
+branch.userCompletedAction("purchase", {
+  "amount": "45.12"
 });
 {% endhighlight %}
 {% endif %}
 
 {% if page.react %}
 {% highlight js %}
-branch.userCompletedAction("purchase_event", { sku: 12346789 });
+branch.userCompletedAction("purchase", { amount: "45.12" });
 {% endhighlight %}
 {% endif %}
 
