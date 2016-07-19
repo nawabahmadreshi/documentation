@@ -64,10 +64,14 @@ Next, you need to register the app link utility class with Branch before you cal
 {% endif %}
 
 {% if page.android %}
-On Android, we use reflection to automatically call [`fetchDeferredAppLinkData`](https://developers.facebook.com/docs/reference/android/current/class/AppLinkData/). This means that you don't actually need to do anything except have the Facebook SDK integrated _in addition_ to Branch. Note that you cannot call `fetchDeferredAppLinkData` in addition to us, lest you risk consuming the attribution event before the Branch SDK can.
+On Android, you'll need to enable our Facebook App Links check process. Ideally, you should call this in your custom Application class when you call `getAutoInstance`.
+
+{% highlight java %}
+Branch.getAutoInstance().enableFacebookAppLinkCheck();
+{% endhighlight %}
 {% endif %}
 
-You're all set!
+Note that you cannot call `fetchDeferredAppLinkData` in addition to us, lest you risk consuming the attribution event before the Branch SDK can. Other than that, you're all set!
 
 ## Create a Marketing link on the Branch dashboard
 
