@@ -110,6 +110,60 @@ A URI (Uniform Resource Identifier) Scheme is similar to the typical URL that yo
 1. In Xcode, open the **AppDelegate.swift** file
 2. Directly underneath the line that reads: `import UIKit`, copy and paste `import Branch`
 
+### Handle incoming links
+
+Copy and paste the following code into **AppDelegate.swift** right before the very last `}` :
+
+{% highlight swift %}
+// Respond to URI scheme links
+func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
+    // pass the url to the handle deep link call
+    Branch.getInstance().handleDeepLink(url);
+
+    // do other deep link routing for the Facebook SDK, Pinterest SDK, etc
+    return true
+}
+
+// Respond to Universal Links
+func application(application: UIApplication, continueUserActivity userActivity: NSUserActivity, restorationHandler: ([AnyObject]?) -> Void) -> Bool {
+    // pass the url to the handle deep link call
+
+    return Branch.getInstance().continueUserActivity(userActivity)
+}
+{% endhighlight %}
+
+## Access Apple Developer Account
+
+Get your Team ID
+
+1. Select “Certificates, Identifiers, and Profiles” in the [Apple Developer Portal](http://developer.apple.com/account)
+2. In the top right corner of the page, click your name and select “View Account”
+3. Copy your “Team ID” from the Membership Information section
+
+## Setup Universal Links
+
+### Enable Universal Links on the Dashboard
+
+1. Navigate to the [Link Settings](https://dashboard.branch.io/#/settings/link) tab under **Settings** in the Dashboard
+2. Check the box that says **Enable Universal Links** in the “iOS redirects” section
+3. Type in your Apple App Prefix (Team ID that you copied)
+4. Scroll to the bottom and Save
+
+### Add the Associated Domains entitlement to your project
+
+1. Go to the “Capabilities” tab of your project file
+2. Scroll down and in the “Associated Domains” section flip the switch in the right hand side from “Off” to “On”- enabling Associated Domains
+  * A message may pop up asking you to select a “Development Team to use for provisioning”. Choose the name associated with your Apple Developer Account
+3. Go to the [Link Settings](https://dashboard.branch.io/#/settings/link) tab in the Dashboard Settings
+4. Locate the “Default domain name” box from the “Custom Link Domain” area
+4. In the “Domains” section of “Associated Domains” click the “+” and add the following entries:
+> * applinks:xxxx.app.link (example: if your default domain name is abcd.app.link, then type in “applinks:abcd.app.link”)
+> * Applinks:xxxx-alternate.app.link (example: if your default domain name is abcd.app.link, then type in “applinks:abcd-alternate.app.link”)
+
+
+
+
+
 
 
 
