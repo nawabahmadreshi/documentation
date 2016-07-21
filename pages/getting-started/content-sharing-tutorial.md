@@ -64,11 +64,11 @@ A URI (Uniform Resource Identifier) Scheme is similar to the typical URL that yo
 7. Go to Settings in the Branch Dashboard and go to Link Settings in the top navigation bar
 8. Make sure that I have an iOS App is checked off 
 9. Fill out “iOS URI Scheme”
-  {% example %}
-   * The URI Scheme must follow the format: `urischemename://`
 
-   If my app name is Cat Facts, my URI Scheme could be: `cat-facts://`
-  {% endexample %}
+	> * The URI Scheme must follow the format: `urischemename://`
+	>  
+	> If my app name is Cat Facts, my URI Scheme could be: `cat-facts://`
+
 10. Select **Custom URL** and type in your website's URL or `http://branch.io` if you don't have one
 11. Scroll to the bottom of the page and click "Save"
 
@@ -134,7 +134,7 @@ func application(application: UIApplication, continueUserActivity userActivity: 
 
 ## Access Apple Developer Account
 
-Get your Team ID
+### Get your Team ID
 
 1. Select “Certificates, Identifiers, and Profiles” in the [Apple Developer Portal](http://developer.apple.com/account)
 2. In the top right corner of the page, click your name and select “View Account”
@@ -156,9 +156,107 @@ Get your Team ID
   * A message may pop up asking you to select a “Development Team to use for provisioning”. Choose the name associated with your Apple Developer Account
 3. Go to the [Link Settings](https://dashboard.branch.io/#/settings/link) tab in the Dashboard Settings
 4. Locate the “Default domain name” box from the “Custom Link Domain” area
-4. In the “Domains” section of “Associated Domains” click the “+” and add the following entries:
-> * applinks:xxxx.app.link (example: if your default domain name is abcd.app.link, then type in “applinks:abcd.app.link”)
-> * Applinks:xxxx-alternate.app.link (example: if your default domain name is abcd.app.link, then type in “applinks:abcd-alternate.app.link”)
+5. In the “Domains” section of “Associated Domains” click the `+` and add the following entries:
+
+	> * `applinks:xxxx.app.link` (ex. if your default domain name is `abcd.app.link`, then type in `applinks:abcd.app.link`)
+	> * `applinks:xxxx-alternate.app.link` (ex. if your default domain name is `abcd.app.link`, then type in `applinks:abcd-alternate.app.link`)
+
+6. Select your [projectname].entitlements file in the Xcode navigator
+7. Open the right hand sidebar
+8. Ensure that the correct build target (your project name) is checked off in the right hand sidebar
+
+
+## Creating Links
+
+### Create a Share Button
+
+1. Select the **Main.storyboard** file
+2. In Xcode, create a UIButton by searching for “button” in the right hand sidebar and dragging and dropping the Button into the view controller that you wish to share links from  
+3. Select the Button you just created and in the bottom right hand corner of the storyboard window select the “Pin” icon
+4. If your button is placed in the bottom, left quadrant of the view controller- set the leading space constraint, bottom space constraint, height and width
+	> * The leading space constraint is set by clicking the left-most dashed, red line
+	> * The bottom space constraint is set by clicking the bottom-most dashed, red line
+5. Open the assistant editor by clicking the the two rings in the top right corner of Xcode
+6. Ctrl-click and hold the UIButton you created
+7. While still holding down the mouse, drag and drop the button (a connecting line will appear) into the associated view controller file
+8. A characteristics box will pop up for the UIButton that you just added to the class file
+9. Make sure that the Connection type of the button is “Action” when adding it to the class file and name the button whatever you like
+
+### Import the Branch Framework
+
+Copy and paste the following code at the top of the view controller file where you plan to create and share links from (the same view controller where the button was added): `import Branch`
+
+### Create a Branch Universal Object
+
+1. Look for the line of code that starts with: `@IBAction func [yourbuttonname] (sender: AnyObject) {`
+2. In the function body (after the first `{` ) of the button, insert the following code in order to create a universal object once the button is clicked:
+{% highlight swift %}
+let branchUniversalObject: BranchUniversalObject = BranchUniversalObject(canonicalIdentifier: "item/12345")
+branchUniversalObject.title = "Cat Facts"
+branchUniversalObject.contentDescription = "Here is a cat fact"
+branchUniversalObject.addMetadataKey("factWords", value: factWords)
+branchUniversalObject.addMetadataKey("imageLink", value: imageLink)
+{% endhighlight %}
+
+{% protip title="Key Value Pairs" %}
+The `addMetadataKey` method allows you to create key value pairs which can then be accessed upon opening the app from a Branch link
+{% endprotip %}
+
+### Assemble Parameters and Setup Share Sheet
+
+Also in the function body of the share button, add the following code which creates and opens a share sheet upon clicking the button that it is associated with: 
+{% highlight swift %}
+let linkProperties: BranchLinkProperties = BranchLinkProperties()
+linkProperties.feature = "sharing"
+branchUniversalObject.showShareSheetWithLinkProperties(linkProperties, 
+                                        andShareText: "Super amazing thing I want to share!",
+                                        fromViewController: self,
+                                        completion: { (String, Bool) -> Void in
+    print("done showing share sheet!")
+})
+{% endhighlight %}
+
+## Allow for Deep Link Routing
+
+Now that the links have been created, you must configure your app to let the SDK know where it should redirect the user to.
+
+### Configure View Controller to accept deep links
+
+1. In the view controller that you wish to deep link to, import the Branch framework by inserting the following code at the top of the associated file: 
+`import Branch`
+2. Setup you view controller so that it will be recognized as a view controller that is accessible from a deep link:
+   `class ExampleDeepLinkingController: UIViewController, BranchDeepLinkingController {`
+3. The following method will be called when the view controller is loaded from a link click. Copy and paste the following code into the view controller that you want your link to route to. The data keys “factWords” and “imageLink”  are the same keys that were created in the universal object:
+{% highlight swift %}
+func configureControlWithData(data: [NSObject : AnyObject]!){
+	factWords = data["factWords"] as! String
+        imageLink = data["imageLink"] as! String
+        if(alreadyLoaded){
+            factText.text = factWords
+            let url = NSURL(string: imageLink)
+            let data = NSData(contentsOfURL: url!)
+            catImage.image = UIImage(data: data!)
+            imageLink = String()
+            factWords = String()
+        }
+    }
+{% endhighlight %}
+4. Since the view controller is displayed modally, you must add a close button. Insert the following code underneath the previous function:
+{% highlight swift %}
+var deepLinkingCompletionDelegate: BranchDeepLinkingControllerCompletionDelegate?
+func closePressed() {
+    self.deepLinkingCompletionDelegate!.deepLinkingControllerCompleted()
+}
+{% endhighlight %}
+
+
+
+
+
+
+
+
+
 
 
 
