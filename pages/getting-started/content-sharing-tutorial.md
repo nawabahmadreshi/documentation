@@ -28,7 +28,7 @@ The tutorial is broken up into six parts: integrating the Branch SDK, setting up
 5. Select the project file in your project navigator
 6. Go to the Build Phases tab
 7. Go to Link Binary with Libraries
-8. Import the following frameworks by clicking the “+” button:
+8. Import the following frameworks by clicking the `+` button:
 
 > * AdSupport.framework  
 * CoreTelephony.framework  
@@ -44,7 +44,7 @@ The tutorial is broken up into six parts: integrating the Branch SDK, setting up
 4. Make sure the “General” tab is selected
 5. Copy your Branch Key
 6. In Xcode, open your project’s info.plist file from the project navigator
-7. Mouse hover over “Information Property List” until a “+” appears to the right. Click it.
+7. Mouse hover over “Information Property List” until a `+` appears to the right. Click it.
 8. A new row will have been added under “Information Property List.” Edit the new row to show:
 
 | Key | Type | Value |
@@ -58,11 +58,72 @@ A URI (Uniform Resource Identifier) Scheme is similar to the typical URL that yo
 1. In Xcode, select your project file in the navigator 
 2. Select the “Info” tab
 3. Expand the “URL Types” section at the bottom
-4. Click the “+” button
+4. Click the `+` button
 5. Add the iOS URI Scheme you came up with in Step 1 to the “URL Scheme” text field
 6. In the “Identifier” text field, input the “Bundle Identifier” from the General tab that is located in your project file
 7. Go to Settings in the Branch Dashboard and go to Link Settings in the top navigation bar
 8. Make sure that I have an iOS App is checked off 
 9. Fill out “iOS URI Scheme”
- * The URI Scheme can be whatever you like but must follow the format: `urischemename://` -for example, if my app name is Cat Facts, my URI Scheme could be: `cat-facts://`
+  {% example %}
+   * The URI Scheme must follow the format: `urischemename://`
+
+   If my app name is Cat Facts, my URI Scheme could be: `cat-facts://`
+  {% endexample %}
+10. Select **Custom URL** and type in your website's URL or `http://branch.io` if you don't have one
+11. Scroll to the bottom of the page and click "Save"
+
+### Support Strong Matching
+
+1. Go to [Settings](https://dashboard.branch.io/settings) in the Branch Dashboard
+2. Using the top navigation bar, go to [Link Settings](https://dashboard.branch.io/settings/link)
+3. Under **Custom Link Domain**, copy your **Default domain name** (if you have a Custom Link Domain then select that instead)
+4. In Xcode, open your project’s info.plist file
+5. Mouse hover over “Information Property List” until a `+` appears to the right. Click it.
+6. A new row will have been added under “Information Property List”
+7. Edit the new row to show:
+
+  | Key | Type | Value |
+  | :--- | --- | --- |
+  | branch_app_domain | String | [your default/custom domain name] |
+
+### Add a Bridging Header
+
+(This allows you to use the Branch framework which is written in Objective-C, with your Swift code)
+
+1. In Xcode, select your project folder
+2. Add a new file to your project folder (File -> New -> File..)
+3. Choose “Header File” and click “Next”
+4. Name the new header file YourAppName-Bridging-Header. For example, if my project name is “Cat Facts” then the file should be saved as “Cat-Facts-Bridging-Header”
+5. Before clicking “Create”, make sure that your app is selected in Targets
+6. Once the file has been created, open it up
+7. Delete all the text in the file and type in (do not copy and paste): `#import "Branch.h"`
+8. Open your project file
+9. Navigate to Build Settings
+10. Like in the screenshot below, search for “bridging header”
+11. Edit “Objective-C Bridging Header” so that its Tutorial Helper column reads: YourAppName/Your-Bridging-Header.h 
+  {% example %}
+   `Cat Facts/Cat-Facts-Bridging-Header.h`
+  {% endexample %}
+
+### Start a Branch Session
+
+1. In Xcode, open the **AppDelegate.swift** file
+2. Directly underneath the line that reads: `import UIKit`, copy and paste `import Branch`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
