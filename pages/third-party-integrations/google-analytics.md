@@ -132,6 +132,16 @@ Branch.getInstance().setRequestMetadata("$google_analytics_client_id", "CLIENT-I
 
 {% elsif page.advanced %}
 
+## Session management
+
+Google Analytics will automatically start a session when Branch sends over installs and opens. Because of this, you should remove any code that creates a new session when your application starts up. For example, on iOS, you may fire an event with the following:
+
+{% highlight objc %}
+[builder set:@"start" forKey:kGAISessionControl];
+{% endhighlight %}
+
+You should remove this so that your app does not start a new session. Otherwise you may see zero second sessions and your average session length drop.
+
 ## Optional Parameter - User ID
 
 If you specify `$google_analytics_user_id`, we can pass that to Google (as `uid`).
@@ -170,7 +180,6 @@ Branch.getInstance().setRequestMetadata("$google_analytics_user_id", "USER-ID-HE
 | ck | Campaign Keywords | utm_term -or- Branch $keywords | ["Keyword1", "keyword3"] | N
 | cc | Campaign Content | utm_content -or- Branch tags | "Some content" | N
 | ea | Event Action (Name) | event name | install | Y
-| sc | Session Control (set to true for install and open only) | [fixed] | start | N
 | uip | User’s IP Address | collected by Branch SDK | 111.111.111.111 | N
 | z | Cache buster | [unix time + random number] | 1461878903666 | N
 
