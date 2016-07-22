@@ -20,6 +20,7 @@ sections:
 contents: list
 ---
 
+
 A `BranchUniversalObject` is a container that Branch uses to organize and track pieces of content within your app. As a single, self-contained object associated with each thing that you want to share, it provides convenient methods for sharing, deep linking, and tracking how often that thing is viewed.
 
 {% if page.adobe %}
