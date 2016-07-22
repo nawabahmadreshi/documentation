@@ -6,6 +6,7 @@ page_title: Content Sharing Tutorial
 description: Learn how to create Branch Links and share content with your friends directly from your app!
 keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Link Properties, Redirect Customization, Mobile SDK, Web SDK, HTTP API
 hide_section_selector: true
+hide_platform_selector: true
 platforms:
 - ios
 sections:
@@ -15,7 +16,7 @@ content: list
 
 Welcome to the Branch Content Sharing Tutorial! Today you will be learning how to share deep linked content with your friends by simply pressing a button inside your app and generating a link with the Branch SDK.
 
-This tutorial assumes that you have created your own project in Xcode or are using the Branch sample project. Before you start, please make sure that you have [signed up](https://dashboard.branch.io/login) for a Branch user account, are logged in, and are in [dashboard.branch.io](https://dashboard.branch.io) in your browser. 
+This tutorial assumes that you have created your own project in Xcode or are using the Branch sample project. Before you start, please make sure that you have [signed up](https://dashboard.branch.io/login) for a Branch user account, are logged in, and are in [dashboard.branch.io](https://dashboard.branch.io) in your browser.
 
 The tutorial is broken up into six parts: integrating the Branch SDK, setting up your app in the Apple Developer Portal, setting up Universal Links, creating deep links, allowing for deep link routing, and testing your app. Let’s get started!
 
@@ -34,10 +35,10 @@ The tutorial is broken up into six parts: integrating the Branch SDK, setting up
 7. Go to Link Binary with Libraries
 8. Import the following frameworks by clicking the `+` button:
 
-> * AdSupport.framework  
-* CoreTelephony.framework  
-* CoreSpotlight.framework  
-* MobileCoreServices.framework  
+> * AdSupport.framework
+* CoreTelephony.framework
+* CoreSpotlight.framework
+* MobileCoreServices.framework
 * SafariServices.framework
 
 {% image src="/img/pages/getting-started/content-sharing-tutorial/tutorial-videos/add-frameworks.gif" center actual %}
@@ -67,22 +68,23 @@ The tutorial is broken up into six parts: integrating the Branch SDK, setting up
 
 A URI (Uniform Resource Identifier) Scheme is similar to the typical URL that you enter into your browser on a daily basis. It identifies the content of your app and places it under a single location.
 
-1. In Xcode, select your project file in the navigator 
+1. In Xcode, select your project file in the navigator
 2. Select the “Info” tab
 3. Expand the “URL Types” section at the bottom
 4. Click the `+` button
 {% image src="/img/pages/getting-started/content-sharing-tutorial/tutorial-videos/add-uri-scheme.gif" center 3-quarters %}
 5. In the “Identifier” text field, input the “Bundle Identifier” from the General tab that is located in your project file
+6. In the "URI Schemes" text field, put a URI scheme of your choice
 	{% image src="/img/pages/getting-started/content-sharing-tutorial/screenshots/general_identifier.png" center 3-quarters %}
 
 	{% image src="/img/pages/getting-started/content-sharing-tutorial/screenshots/info_identifier.png" center 3-quarters %}
 6. Go to Settings in the Branch Dashboard and go to Link Settings in the top navigation bar
-7. Make sure that I have an iOS App is checked off 
+7. Make sure that I have an iOS App is checked off
 8. Fill out “iOS URI Scheme”
 
-	> * The URI Scheme must follow the format: `urischemename://`
-	>  
-	> If my app name is Cat Facts, my URI Scheme could be: `cat-facts://`
+> * The URI Scheme must follow the format: `urischemename://`
+>
+> If my app name is Cat Facts, my URI Scheme could be: `cat-facts://`
 
 9. Select **Custom URL** and type in your website's URL or `http://branch.io` if you don't have one
 {% image src="/img/pages/getting-started/content-sharing-tutorial/screenshots/dashboard_custom_url.png" center actual %}
@@ -121,7 +123,7 @@ A URI (Uniform Resource Identifier) Scheme is similar to the typical URL that yo
 8. Open your project file
 9. Navigate to Build Settings
 10. Like in the screenshot below, search for “bridging header”
-11. Edit “Objective-C Bridging Header” so that its Tutorial Helper column reads: YourAppName/Your-Bridging-Header.h 
+11. Edit “Objective-C Bridging Header” so that its Tutorial Helper column reads: YourAppName/Your-Bridging-Header.h
   {% example %}
    `Cat Facts/Cat-Facts-Bridging-Header.h`
   {% endexample %}
@@ -168,7 +170,7 @@ func application(application: UIApplication, continueUserActivity userActivity: 
 3. Copy your “Team ID” from the Membership Information section
 {% image src="/img/pages/getting-started/content-sharing-tutorial/screenshots/team_id.png" center half %}
 
-## Setup Universal Links
+## Set up Universal Links
 
 ### Enable Universal Links on the Dashboard
 
@@ -176,6 +178,7 @@ func application(application: UIApplication, continueUserActivity userActivity: 
 2. Check the box that says **Enable Universal Links** in the “iOS redirects” section
 3. Type in your Apple App Prefix (Team ID that you copied)
 {% image src="/img/pages/getting-started/content-sharing-tutorial/screenshots/apple_app_prefix_in_dashboard.png" center 3-quarters %}
+4. Type in your Bundle Identifier from Xcode
 4. Scroll to the bottom and Save
 
 ### Add the Associated Domains entitlement to your project
@@ -205,7 +208,7 @@ func application(application: UIApplication, continueUserActivity userActivity: 
 ### Create a Share Button
 
 1. Select the **Main.storyboard** file
-2. In Xcode, create a UIButton by searching for “button” in the right hand sidebar and dragging and dropping the Button into the view controller that you wish to share links from  
+2. In Xcode, create a UIButton by searching for “button” in the right hand sidebar and dragging and dropping the Button into the view controller that you wish to share links from
 {% image src="/img/pages/getting-started/content-sharing-tutorial/tutorial-videos/share-button-view-controller.gif" center 3-quarters %}
 5. Open the assistant editor by clicking the the two rings in the top right corner of Xcode
 {% image src="/img/pages/getting-started/content-sharing-tutorial/screenshots/assistant_editor_button.png" center third %}
@@ -239,11 +242,11 @@ The `addMetadataKey` method allows you to create key value pairs which can then 
 
 ### Assemble Parameters and Setup Share Sheet
 
-Also in the function body of the share button, add the following code which creates and opens a share sheet upon clicking the button that it is associated with: 
+Also in the function body of the share button, add the following code which creates and opens a share sheet upon clicking the button that it is associated with:
 {% highlight swift %}
 let linkProperties: BranchLinkProperties = BranchLinkProperties()
 linkProperties.feature = "sharing"
-branchUniversalObject.showShareSheetWithLinkProperties(linkProperties, 
+branchUniversalObject.showShareSheetWithLinkProperties(linkProperties,
                                         andShareText: "Super amazing thing I want to share!",
                                         fromViewController: self,
                                         completion: { (String, Bool) -> Void in
@@ -259,7 +262,7 @@ Now that the links have been created, you must configure your app to let the SDK
 
 ### Configure View Controller to accept deep links
 
-1. In the view controller that you wish to deep link to, import the Branch framework by inserting the following code at the top of the associated file: 
+1. In the view controller that you wish to deep link to, import the Branch framework by inserting the following code at the top of the associated file:
 `import Branch`
 2. Setup you view controller so that it will be recognized as a view controller that is accessible from a deep link:
    `class ExampleDeepLinkingController: UIViewController, BranchDeepLinkingController {`
@@ -296,14 +299,14 @@ func closePressed() {
 {% image src="/img/pages/getting-started/content-sharing-tutorial/screenshots/identity_inspector_button.png" center quarter %}
 3. Fill out a Storyboard ID and check the “Use Storyboard ID” button
 {% image src="/img/pages/getting-started/content-sharing-tutorial/screenshots/set_storyboard_id.png" center half %}
-4. Find the line beginning with: 
+4. Find the line beginning with:
 `func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions:`
 
 Undernearneath it, immediately after the `{`, add the following code:
 {% highlight swift %}
 let branch: Branch = Branch.getInstance()
 var controller = UIStoryboard.init(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("FactViewController")
-        
+
         branch.registerDeepLinkController(controller, forKey: "image")
         branch.registerDeepLinkController(controller, forKey: "fact")
         branch.initSessionWithLaunchOptions(launchOptions, automaticallyDisplayDeepLinkController: true)
@@ -321,5 +324,3 @@ To ensure that everything is working properly, you are going to text yourself a 
 2. A Branch share sheet should pop up
 3. Select the Messages icon and type in your own contact
 4. When you receive the message, click the link and you should be taken directly to the content that you wanted to share
-
-
