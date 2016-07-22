@@ -299,7 +299,7 @@ func closePressed() {
 {% image src="/img/pages/getting-started/content-sharing-tutorial/screenshots/identity_inspector_button.png" center quarter %}
 3. Fill out a Storyboard ID and check the “Use Storyboard ID” button
 {% image src="/img/pages/getting-started/content-sharing-tutorial/screenshots/set_storyboard_id.png" center half %}
-4. Find the line beginning with:
+4. Inside the **AppDelegate.swift** file, find the line beginning with:
 `func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions:`
 
 Undernearneath it, immediately after the `{`, add the following code:
