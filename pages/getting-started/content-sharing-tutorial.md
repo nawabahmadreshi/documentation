@@ -230,8 +230,8 @@ Copy and paste the following code at the top of the view controller file where y
 let branchUniversalObject: BranchUniversalObject = BranchUniversalObject(canonicalIdentifier: "item/12345")
 branchUniversalObject.title = "Cat Facts"
 branchUniversalObject.contentDescription = "Here is a cat fact"
-branchUniversalObject.addMetadataKey("factWords", value: factWords)
-branchUniversalObject.addMetadataKey("imageLink", value: imageLink)
+branchUniversalObject.addMetadataKey("factWords", value: "Some Text")
+branchUniversalObject.addMetadataKey("imageLink", value: "https://branch.io")
 {% endhighlight %}
 
 {% image src="/img/pages/getting-started/content-sharing-tutorial/tutorial-videos/add-universal-object.gif" center 3-quarters %}
@@ -271,14 +271,6 @@ Now that the links have been created, you must configure your app to let the SDK
 func configureControlWithData(data: [NSObject : AnyObject]!){
 	factWords = data["factWords"] as! String
         imageLink = data["imageLink"] as! String
-        if(alreadyLoaded){
-            factText.text = factWords
-            let url = NSURL(string: imageLink)
-            let data = NSData(contentsOfURL: url!)
-            catImage.image = UIImage(data: data!)
-            imageLink = String()
-            factWords = String()
-        }
     }
 {% endhighlight %}
 
