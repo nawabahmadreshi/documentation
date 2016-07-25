@@ -37,6 +37,7 @@
         - text-me-the-app
     - title: Marketing for Mobile
       children:
+        - chrome-extension
         - email-campaigns
         - referral-programs
         - facebook-app-invites
