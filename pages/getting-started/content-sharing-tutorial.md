@@ -125,7 +125,7 @@ A URI (Uniform Resource Identifier) Scheme is similar to the typical URL that yo
 8. Open your **project _file_**
 9. Navigate to Build Settings
 10. Like in the screenshot below, search for “bridging header." In the top left corner, make sure that "All" is highlighted and not "Basic"
-  {% image src="/img/pages/getting-started/content-sharing-tutorial/screenshots/all-basic.png" center half %}
+  {% image src="/img/pages/getting-started/content-sharing-tutorial/screenshots/all-basic.png" center quarter %}
 11. Edit “Objective-C Bridging Header” so that its Tutorial Helper column reads: YourAppName/Your-Bridging-Header.h
   {% example %}
    `Cat Facts/Cat-Facts-Bridging-Header.h`
