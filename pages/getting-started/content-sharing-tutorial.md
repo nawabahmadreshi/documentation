@@ -241,7 +241,7 @@ branchUniversalObject.addMetadataKey("imageLink", value: "Example value for imag
 
 {% protip title="Key Value Pairs" %}
 The `addMetadataKey` method allows you to create key value pairs which can then be accessed upon opening the app from a Branch link  
-* "factWords" and "imageLink" are keys and can be edited to be called whatever you like
+* "factWords" and "imageLink" are keys and can be edited to be named whatever you like
 {% endprotip %}
 
 ### Assemble Parameters and Setup Share Sheet
