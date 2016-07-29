@@ -51,6 +51,10 @@
 - title: Integrations
   directory: third-party-integrations
   children:
+    - title: Deep Linked Emails
+      children:
+        - responsys
+        - sailthru
     - title: Data Integrations
       children:
         - amplitude

@@ -124,7 +124,9 @@ The Branch deep link script also works with Sailthru's Zephyr personalization la
 
 ## Setting up your link schema for email
 
-The Branch script turns your web url (`ORIGINAL_URL` in the example snippet in this guide) into a Branch link. There are four ways to do this:
+The Branch script turns your web url (`ORIGINAL_URL` in the example snippet in this guide) into a Branch link. 
+
+There are four ways to do this. Your Branch account manager will set your app configuration up according to the technique you use. 
 
 If you use your web URL as a deep link value:
 
@@ -133,10 +135,31 @@ If you use your web URL as a deep link value:
 
 If you use unique key/value data as deep link values:
 
-1. **Hosted deep link data:** You can host your deep link data on your website with a metatag that looks like this `<meta name="branch:deeplink:my_key" content="my_value" />` where `my_key` and `my_value` will become a key value pair in deep link data. For each web URL, Branch will look for those tags and embed the deep link data (if found) into the deep link.
+1. **Hosted deep link data:** You can host your deep link data on your website with a metatag that looks like this `<meta name="branch:deeplink:my_key" content="my_value" />` where `my_key` and `my_value` will become a key value pair in deep link data. For each web URL, Branch will look for those tags and embed the deep link data (if found) into the deep link. Note that Branch also accepts App Links tags for deep linking.
 1. **As query parameters:** Simply append query parameters on to your web url and Branch will take those parameters and put them in deep link data.
 
-## Universal Links
+{% protip title="Host deep link data for more than just emails" %}
+In future releases, the Branch marketing link creator and Chrome extension will also scrape your web URL for deep link data to make link creation even easier.
+{% endprotip %}
+
+## App changes for Universal Link support
+
+### Add your click tracking domain to your Associated Domains
+To enable Universal Links on your click tracking domain, you'll need to add the click tracking domain to your Associated Domains entitlement. Follow [these instructions](/getting-started/universal-app-links/guide/ios/#add-the-associated-domains-entitlement-to-your-project) to add your click tracking domain to Associated Domains. Your domain will likely be entered as `applinks:email.example.com`.
+
+### Handle links for web-only content
+
+If you have links to content that exists only on web, and not in the app (for example, an Unsubscribe button, or a temporary marketing webpage that isn't in the app) then this code snippet will ensure all links that have not had the deep linking script applied will open in a browser.
+
+**Objective C**
+
+{% highlight objc %}
+if (params[@"+non_branch_esp_universal_link"] && [params[@"+non_branch_esp_universal_link"] rangeOfString:@"?open_web_browser=true"].location != NSNotFound)
+{ [application openURL:[NSURL URLWithString:params[@"+non_branch_esp_universal_link"]]]; return ; }
+{% endhighlight %}
+
+
+## AASA file for Universal Link support
 
 Sailthru will host an Apple App Site Association (AASA) file for you, so that your click tracking domain appears to Apple as a Universal Link, and the app will open and deep link.
 
@@ -147,11 +170,6 @@ Apple recognizes the click tracking domain as a Universal Link, and opens the ap
 {% endprotip %}
 
 {% image src="/img/pages/third-party-integrations/responsys/deep-linked-email-post-click.png" center full alt='Deep Linked Email Post-Click Flow' %}
-
-
-### Redirect behavior and tracking
-
-When your customer clicks the click tracking link in an email, the browser will generally open. Once in the browser, the click tracking redirect will happen, followed by an instant redirect to the Branch link. At this point, Branch will either stay in the browser, and load the original URL (if the app is not installed, or the customer is on a desktop device), or Branch will open the app and deep link to content. Branch uses the information from the original URL to deep link to the correct in-app content. 
 
 {% elsif page.support %}
 
@@ -166,6 +184,10 @@ When your customer clicks the click tracking link in an email, the browser will 
 | Click Tracking URL | https://email.shop.com/click/abcde12345 | A Sailthru generated click tracking URL. The URL doesn’t signify anything, but when clicked, records the click and redirects to a given destination.
 
 {% image src="/img/pages/third-party-integrations/responsys/deep-linked-email-creation-flow.png" center full alt='Deep Linked Email Creation Flow' %}
+
+### Redirect behavior and tracking
+
+When your customer clicks the click tracking link in an email, the browser will generally open. Once in the browser, the click tracking redirect will happen, followed by an instant redirect to the Branch link. At this point, Branch will either stay in the browser, and load the original URL (if the app is not installed, or the customer is on a desktop device), or Branch will open the app and deep link to content. Branch uses the information from the original URL to deep link to the correct in-app content. 
 
 ## Styling
 Your `<a>` tags can be styled however your email links are usually styled. In fact, you don’t need a `<a>` tag at all -- you can just use {deeplink} anywhere you would have used the original URL.
