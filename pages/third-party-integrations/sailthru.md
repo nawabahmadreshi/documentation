@@ -151,11 +151,13 @@ To enable Universal Links on your click tracking domain, you'll need to add the 
 
 If you have links to content that exists only on web, and not in the app (for example, an Unsubscribe button, or a temporary marketing webpage that isn't in the app) then this code snippet will ensure all links that have not had the deep linking script applied will open in a browser.
 
+You should add this code snippet inside the `deepLinkHandler` code block in `application:didFinishLaunchingWithOptions:`. Note that this uses query `open_web_browser=true`, but you can choose whatever you like. This should match the web URL you enter in the email.
+
 **Objective C**
 
 {% highlight objc %}
-if (params[@"+non_branch_esp_universal_link"] && [params[@"+non_branch_esp_universal_link"] rangeOfString:@"?open_web_browser=true"].location != NSNotFound)
-{ [application openURL:[NSURL URLWithString:params[@"+non_branch_esp_universal_link"]]]; return ; }
+if (params[@"+non_branch_link"] && [params[@"+non_branch_link"] rangeOfString:@"?open_web_browser=true"].location != NSNotFound)
+{ [application openURL:[NSURL URLWithString:params[@"+non_branch_link"]]]; return ; }
 {% endhighlight %}
 
 
