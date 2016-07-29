@@ -67,7 +67,7 @@ Add `compile 'io.branch.sdk.android:library:2.+'` to the dependencies section of
 
 You can also install the SDK manually by [downloading the latest version](https://s3-us-west-1.amazonaws.com/branchhost/Branch-Android-SDK.zip){:target="_blank"} or [cloning our open-source GitHub repo](https://github.com/BranchMetrics/branch-android-sdk){:target="_blank"}.
 
-This requires minimum Android SDK level 14. If you want to support minimum SDK level 9 please consider using [version 1.14.5](https://github.com/BranchMetrics/android-branch-deep-linking/releases/tag/1.14.5)
+The Branch 2+ SDK version requires minimum Android SDK level 14. If you want to support minimum SDK level 9 please consider using [version 1.14.5](https://github.com/BranchMetrics/android-branch-deep-linking/releases/tag/1.14.5)
 {% endprotip %}
 
 {% endif %}
