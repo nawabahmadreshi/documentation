@@ -22,7 +22,7 @@ You must be using Chrome as your browser, as this extension will not work on any
 
 ### Install the extension
 
-Head to the Chrome Web Store and install the `Branch Link Creator`. You can find it [here](https://chrome.google.com/webstore/detail/branch-link-creator/pekdpppibljpmpbcjelehhnldnfbglg).
+Head to the Chrome Web Store and install the `Branch Link Creator`. You can find it [here](https://chrome.google.com/webstore/detail/branch-link-creator/pekdpppibljpmpbcjelehhnldnfbglgf).
 
 ### Enter your Branch key
 
