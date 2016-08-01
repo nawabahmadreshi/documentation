@@ -1,7 +1,7 @@
 ---
 type: recipe
 directory: third-party-integrations
-title: Responsys Integration
+title: Responsys
 page_title: Automatically convert your email links into multi-platform deep links.
 description: Add powerful, best in class deep linking to your email campaigns.
 keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Deep Linked Email
@@ -28,45 +28,52 @@ When a link is clicked by a user without the app, it will route that user to the
 {% elsif page.guide %}
 
 {% prerequisite %}
-You must have an EMD (Email Message Designer) enabled account in order to use the Branch integration. If you do not have one, or if you’re not sure, please talk to your Responsys Account Manager.
+
+- You must have an EMD (Email Message Designer) enabled account in order to use the Branch integration. If you do not have one, or if you’re not sure, please talk to your Responsys Account Manager.
+
+- This guide requires you to have already [integrated the Branch SDK]({{base.url}}/getting-started/sdk-integration-guide) into your app.
+
+- Your Branch account manager will walk you through the one time setup steps. Please see the Advanced tab for more detailed information.
 {% endprerequisite %}
 
 ## One time setup
 
 ### Enable remote deep linking functionality 
 
-Contact your Branch Account Manager or [accounts@branch.io](mailto:accounts@branch.io) to enable remote deep linking functionality. 
+Contact your Branch Account Manager or [accounts@branch.io](mailto:accounts@branch.io) to enable remote deep linking functionality and set up the Branch SDK inside Responsys.
+
+If you'd like to see the steps yourself, you can view them in the "Advanced" tab. 
 
 {% caution title="Ensure compatibility on iOS 9+ with Responsys" %}
-In most cases deep linking on iOS 9+ devices requires Apple’s Universal Link technology. Branch will provide you with almost everything you need, but Responsys will have to host an apple-app-site-association file over a secure connection for the click tracking domain.
-
-Don’t worry, your Branch Account Manager or [accounts@branch.io](mailto:accounts@branch.io) will help you with this step as well. 
+In most cases deep linking on iOS 9+ devices requires Apple’s Universal Link technology. Branch will provide you with almost everything you need, but Responsys will have to host an apple-app-site-association file over a secure connection for the click tracking domain. Your Branch account manager will help with this step as well.
 {% endcaution %} 
 
 ## On-going use
 
 Once you’ve completed the one time setup steps, it’s time to send your first email. 
 
-Branch’s script will convert your web URLs to deep links. Simply identify the links you want to deep link with Branch and your Branch Account Manager will help you get set up. 
+This step will identify which web links you'd like to open the app and deep link, as well as convert them to Branch links.
 
-### Prepare your template
+### Configure your Responsys email templates
 
-To use the Branch deep link generator, you must make a small change to the document templates that you use for your emails.
+This code is referred to as the "Branch script" - this script will convert your web URLs to deep links.  
+
+The Responsys integration requires you to add email template code in two places. 
+
+1. At the top of an email template
+2. Immediately before a hyperlink
 
 Copy the following snippet, and using the “Source” view, paste the snippet directly under the `<html>` tag for every template you plan to add deep linking to. 
 
-Add the link given to you as the branch_base_url value.
-
 ~~~~
-<#include "cms://contentlibrary/Branch_SDK/branch-sdk.htm"><#assign branch_base_url='https://bnc.lt/AT6n/3p?%243p=rs&%24original_url='>
+<#include "cms://contentlibrary/Branch_SDK/branch-sdk.htm">
 ~~~~
 
 ### Create deep links 
 
-Once you create the email, and identify the original link, Branch will convert those original links into Branch Links. Responsys identifies the Branch links and turns them into click tracking urls. The email is then sent.
+Wherever you are using `<a>` tags in your email templates, replace those with `<@deeplink>` tags, or `<@tracked_deeplink>` for web URLs that you would like to deep link.
 
 {% example title="With Link Tracking Disabled" %}
-Creating deep links is simple. Wherever you are using `<a>` tags in your email templates, replace those with `<@deeplink>` tags, or `<@tracked_deeplink>`
 
 **Before:**
 
@@ -86,49 +93,50 @@ With link tracking enabled, you can still use Branch links in emails.
 
 **After:**
 
-{% highlight html %}
-<@tracked_deeplink "https://branch.io/product/1234">
-<a href="${clickthrough('TEST_TRACKED_DEEPLINK' , 'deeplink=' + deeplink)}">Example link</a>
-{% endhighlight %}
+`<@tracked_deeplink "https://branch.io/product/1234">
+<a href="${clickthrough('TEST_TRACKED_DEEPLINK' , 'deeplink=' + deeplink)}">Example link</a>`
+
+This latter example pulls from a Link Table. Please work with your Branch Account Manager to make sure you have this set up properly.
+
 {% endexample %}
+
+{% image src="/img/pages/third-party-integrations/responsys/deep-linked-email-template.png" center full alt='Deep Linked Email Responsys Example' %}
+
 
 {% elsif page.advanced %}
 
 ## One time setup 
 
-### Enable remote deep linking functionality
+### Upload the Branch Responsys SDK
 
 {% caution %}
 Your Branch account manager will do this with you. The full instructions are only here for reference. There is also a [tutorial video](https://www.youtube.com/watch?v=u8h8KlqFvo4) that walks through these steps.
 {% endcaution %}
 
-{% example title="Link & Secret Key" %} 
-You will be provided with a custom link format that will look like this:
-'https://bnc.lt/AT6n/3p?%243p=rs&%24original_url=''
-
-As well as a Branch secret key that looks like this:
-'HoRywe971pl569DMpU1RzbRTap4ewnbNeqEcisz4FjQ=''
-{% endexample%}
-
-### Upload the Branch deep link conversion file to Responsys
-
-As part of your one-time setup, Responsys will have to host an apple-app-site-association file over a secure connection for the click tracking domain.
-
-Navigate to your Content Manager, and under “All Content,” create a new folder called “Branch_SDK.” In that folder, create a new document called “branch-sdk.”
+Navigate to your Content Manager, and under `All Content,` create a new folder called `Branch_SDK.` In that folder, create a new document called `branch-sdk.`
 
 Paste the following code snippet into the file, and put your secret key in it:
 
 ~~~~
-<#macro deeplink link_to_be_wrapped><#assign branch_hash_secret="fake secret"><#assign final_link=branch_base_url + link_to_be_wrapped?url('ISO-8859-1')><#assign hash=messagedigest(branch_hash_secret+final_link+branch_hash_secret,"SHA","hex")><#assign final_link=final_link+'&%24hash='+hash><a href="${final_link}"><#nested></a> </#macro> 
-<#macro tracked_deeplink link_to_be_wrapped><#assign branch_hash_secret="enter your secret key"><#assign deeplink=branch_base_url + link_to_be_wrapped?url('ISO-8859-1')><#assign hash=messagedigest(branch_hash_secret+deeplink+branch_hash_secret,"SHA","hex")><#assign deeplink=deeplink+'&%24hash='+hash></#macro>
+<#macro deeplink link_to_be_wrapped><#assign branch_base_url='BASE URL FROM BRANCH'><#assign branch_hash_secret='HASH SECRET FROM BRANCH'><#assign final_link=branch_base_url + link_to_be_wrapped?url('ISO-8859-1')><#assign hash=messagedigest(branch_hash_secret+final_link+branch_hash_secret,"SHA","hex")><#assign final_link=final_link+'&%24hash='+hash><a href="${final_link}"><#nested></a></#macro> 
+<#macro tracked_deeplink link_to_be_wrapped><#assign branch_base_url='BASE URL FROM BRANCH'><#assign branch_hash_secret='HASH SECRET FROM BRANCH'><#assign deeplink=branch_base_url + link_to_be_wrapped?url('ISO-8859-1')><#assign hash=messagedigest(branch_hash_secret+deeplink+branch_hash_secret,"SHA","hex")><#assign deeplink=deeplink+'&%24hash='+hash></#macro>
 ~~~~
 
-{% example title="Create a Folder for the Branch SDK" %}
-{% image src="/img/pages/third-party-integrations/responsys/deep-linked-email-create-doc.png" half center alt='Example Create Folder' %}
-{% endexample%}
+The code above does not include your base url or hash secret. You should obtain this from Branch. 
 
-{% example title="Your file structure should look as follows" %} 
-{% image src="/img/pages/third-party-integrations/responsys/deep-linked-email-manage-content.png" half center alt='Example Manage Content' %}
+{% example %}
+Create a file for the Branch SDK and paste in the following:
+ 
+~~~~
+<#macro deeplink link_to_be_wrapped><#assign branch_base_url='https://bnc.lt/abcd/3p?%243p=rs'><#assign branch_hash_secret='F+sNEMK3Jg/3yskR3pB9fEgLuNFcrbROYTJwQ8ABno0='><#assign final_link=branch_base_url + link_to_be_wrapped?url('ISO-8859-1')><#assign hash=messagedigest(branch_hash_secret+final_link+branch_hash_secret,"SHA","hex")><#assign final_link=final_link+'&%24hash='+hash><a href="${final_link}"><#nested></a></#macro> 
+<#macro tracked_deeplink link_to_be_wrapped><#assign branch_base_url='https://bnc.lt/abcd/3p?%243p=rs'><#assign branch_hash_secret='F+sNEMK3Jg/3yskR3pB9fEgLuNFcrbROYTJwQ8ABno0='><#assign deeplink=branch_base_url + link_to_be_wrapped?url('ISO-8859-1')><#assign hash=messagedigest(branch_hash_secret+deeplink+branch_hash_secret,"SHA","hex")><#assign deeplink=deeplink+'&%24hash='+hash></#macro>
+~~~~
+ 
+Screenshot:
+{% image src="/img/pages/third-party-integrations/responsys/deep-linked-email-create-doc.png" 3-quarters center alt='Example Create Folder' %}
+ 
+Your file structure should look as follows:
+{% image src="/img/pages/third-party-integrations/responsys/deep-linked-email-manage-content.png" 3-quarters center alt='Example Manage Content' %}
 {% endexample%}
 
 ### Redirect behavior and tracking
@@ -190,6 +198,8 @@ The '<@deeplink >' and '<@tracked_deeplink >'' tags even work with dynamic links
 {% endexample%}
 
 ## Universal links and click tracking
+Apple introduced Universal Links starting with iOS 9. Apple introduced Universal Links starting with iOS 9. You must configure your app and your links in a specific way to enable Universal Link functionality. Branch guides developers through this process so that Branch links function as Universal Links. 
+
 For Universal Links to work, Apple requires that a file called an “Apple-App-Site-Association” (AASA) file must be hosted on the domain of the link in question. When the link is clicked, Apple will check for the presence of this file to decide whether or not to open the app. All Branch links are Universal Links, because we will host this file securely on your Branch link domain.
 
 When you click a Branch link directly from an email inside the Mail app on iOS 9+, it functions as a Universal Link - it redirects directly into the desired app. However, if you put a Branch Universal Link behind a click tracking URL, it won’t deep link into the app. This is because generally, a click tracking URL is not a Universal Link. If you’re not hosting that AASA file on the click tracking URL’s domain, you aren’t going to get Universal Link behavior for that link.

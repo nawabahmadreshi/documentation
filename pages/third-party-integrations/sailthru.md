@@ -1,7 +1,7 @@
 ---
 type: recipe
 directory: third-party-integrations
-title: Sailthru Integration
+title: Sailthru
 page_title: Automatically convert your email links into multi-platform deep links.
 description: Add powerful, best in class deep linking to your email campaigns.
 keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Deep Linked Email, Sailthru
@@ -115,10 +115,6 @@ The Branch deep link script also works with Sailthru's Zephyr personalization la
 ~~~~
 
 {% endprotip %}
-
-{% caution %}
-**Note:** You’ll need to do this for every URL you’re going to place in the email at this time. In the future we plan to handle this automatically.
-{% endcaution %}
 
 {% elsif page.advanced %}
 
