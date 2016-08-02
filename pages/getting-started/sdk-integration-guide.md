@@ -1,4 +1,4 @@
-gl---
+---
 type: recipe
 directory: getting-started
 title: 1. SDK Integration Guide
