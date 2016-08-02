@@ -9,6 +9,7 @@ hide_platform_selector: true
 sections:
 - overview
 - guide
+- advanced
 ---
 
 {% if page.overview %}
@@ -59,6 +60,19 @@ Once you have selected to allow third-party attribution, Localytics will attribu
 
 {% caution title="Please test your integration!" %}
 Branch is not responsible for inaccurate API keys.
+
 {% endcaution %}
+
+{% elsif page.advanced %}
+
+## What Branch sends to Localytics
+
+Branch Analytics Tag | Localytics Data Placeholder Tag
+--- | ---
+Campaign | campaign
+Channel | adgroup
+Feature | creative_name
+
+Branch will also send any arbitrary parameters you attach to a link on to Localytics.
 
 {% endif %}

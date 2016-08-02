@@ -1,4 +1,4 @@
----
+gl---
 type: recipe
 directory: getting-started
 title: 1. SDK Integration Guide
@@ -61,13 +61,11 @@ With extensive use, the Android SDK footprint is **187 kb**.
 
 ### Install with Gradle
 
-Add `compile 'io.branch.sdk.android:library:2.+'` to the dependencies section of your `build.gradle` file.
+Add `compile 'io.branch.sdk.android:library:1.+'` to the dependencies section of your `build.gradle` file.
 
 {% protip %}
 
 You can also install the SDK manually by [downloading the latest version](https://s3-us-west-1.amazonaws.com/branchhost/Branch-Android-SDK.zip){:target="_blank"} or [cloning our open-source GitHub repo](https://github.com/BranchMetrics/branch-android-sdk){:target="_blank"}.
-
-The Branch 2+ SDK version requires minimum Android SDK level 14. If you want to support minimum SDK level 9 please consider using [version 1.14.5](https://github.com/BranchMetrics/android-branch-deep-linking/releases/tag/1.14.5)
 {% endprotip %}
 
 {% endif %}
@@ -1181,7 +1179,7 @@ If your app doesn't use a custom Application class, simply add the `android:name
 
 ## Supporting pre-14 Android
 
-Auto session tracking is only available for `minSdkVersion` 14 or above. If you need to support pre-14, you must use [SDK version 1.14.5](https://github.com/BranchMetrics/android-branch-deep-linking/releases/tag/1.14.5) and include Branch SDK methods in both `onStart()` and `onStop()` to avoid strange, difficult-to-diagnose behavior. Branch must know when the app opens or closes to properly handle the deep link parameters retrieval.
+Auto session tracking is only available for `minSdkVersion` 14 or above. If you need to support pre-14, you should include Branch SDK methods in both `onStart()` and `onStop()` to avoid strange, difficult-to-diagnose behavior. Branch must know when the app opens or closes to properly handle the deep link parameters retrieval.
 
 Please add this to every Activity for pre-14 support.
 
