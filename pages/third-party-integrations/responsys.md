@@ -38,14 +38,10 @@ When a link is clicked by a user without the app, it will route that user to the
 
 ## One time setup
 
-### Enable remote deep linking functionality 
-
-Contact your Branch Account Manager or [accounts@branch.io](mailto:accounts@branch.io) to enable remote deep linking functionality and set up the Branch SDK inside Responsys.
-
-If you'd like to see the steps yourself, you can view them in the "Advanced" tab. 
+Contact your Branch Account Manager or [accounts@branch.io](mailto:accounts@branch.io) to enable remote deep linking functionality for emails, set up your app and host the necessary files for Universal Links. You can find more details about the one time setup steps in the "Advanced" tab.
 
 {% caution title="Ensure compatibility on iOS 9+ with Responsys" %}
-In most cases deep linking on iOS 9+ devices requires Apple’s Universal Link technology. Branch will provide you with almost everything you need, but Responsys will have to host an apple-app-site-association file over a secure connection for the click tracking domain. Your Branch account manager will help with this step as well.
+Deep linking on iOS 9+ devices requires Apple’s Universal Link technology. Branch will provide you with almost everything you need, but Responsys will have to host an apple-app-site-association file over a secure connection for the click tracking domain. Your Branch account manager will help with this step as well.
 {% endcaution %} 
 
 ## On-going use
@@ -139,15 +135,73 @@ Your file structure should look as follows:
 {% image src="/img/pages/third-party-integrations/responsys/deep-linked-email-manage-content.png" 3-quarters center alt='Example Manage Content' %}
 {% endexample%}
 
-### Redirect behavior and tracking
+## Setting up your link schema for email
 
-When your customer clicks the click tracking link in an email, the browser will generally open. Once in the browser, the click tracking redirect will happen, followed by an instant redirect to the Branch link. At this point, Branch will either stay in the browser, and load the original URL (if the app is not installed, or the customer is on a desktop device), or Branch will open the app and deep link to content. Branch uses the information from the original URL to deep link to the correct in-app content. 
+The Branch script turns your web url (`ORIGINAL_URL` in the example snippet in this guide) into a Branch link. 
 
-{% protip title="Universal Links on iOS 9+" %}
-There is an alternate case where Universal Links are concerned on Apple iOS 9+ devices. In the case of Universal Links, the app will open immediately, without the browser opening. Once the app has opened, Branch will collect the referring URL that opened the app (at this time, it will be the click tracking url). Inside the app, Branch will robotically “click” the link, registering the click with the ESP, and returning the Branch link information to the Branch SDK inside the app. This information is then used to deep link the user to the correct in-app content. 
+There are four ways to do this. Your Branch account manager will set your app configuration up according to the technique you use. 
+
+If you use your web URL as a deep link value:
+
+1. **URL path:** If you use the path of your web URL as your  `$deeplink_path` value, or any other deep link value, then the configuration will automatically take the path of the URL and put it in deep link data.
+1. **Full URL:** If you use the full web URL as your `$deeplink_path` value, or any other deep link value, then the configuration will take the entire URL and put it in deep link data.
+
+If you use unique key/value data as deep link values:
+
+1. **Hosted deep link data:** You can host your deep link data on your website with a metatag that looks like this `<meta name="branch:deeplink:my_key" content="my_value" />` where `my_key` and `my_value` will become a key value pair in deep link data. For each web URL, Branch will look for those tags and embed the deep link data (if found) into the deep link. Note that Branch also accepts App Links tags for deep linking.
+1. **As query parameters:** Simply append query parameters on to your web url and Branch will take those parameters and put them in deep link data.
+
+{% protip title="Host deep link data for more than just emails" %}
+In future releases, the Branch marketing link creator and Chrome extension will also scrape your web URL for deep link data to make link creation even easier.
 {% endprotip %}
 
-{% image src="/img/pages/third-party-integrations/responsys/deep-linked-email-post-click.png" center full alt='Deep Linked Email Post-Click Flow' %}
+## App changes for Universal Link support
+
+### Add your click tracking domain to your Associated Domains
+To enable Universal Links on your click tracking domain, you'll need to add the click tracking domain to your Associated Domains entitlement. Follow [these instructions](/getting-started/universal-app-links/guide/ios/#add-the-associated-domains-entitlement-to-your-project) to add your click tracking domain to Associated Domains. Your domain will likely be entered as `applinks:email.example.com`.
+
+### Handle links for web-only content
+
+If you have links to content that exists only on web, and not in the app (for example, an Unsubscribe button, or a temporary marketing webpage that isn't in the app) then this code snippet will ensure all links that have not had the deep linking script applied will open in a browser.
+
+You should add this code snippet inside the `deepLinkHandler` code block in `application:didFinishLaunchingWithOptions:`. Note that this uses query `open_web_browser=true`, but you can choose whatever you like. This should match the web URL you enter in the email.
+
+**Objective C**
+
+{% highlight objc %}
+if (params[@"+non_branch_link"] && [params[@"+non_branch_link"] rangeOfString:@"open_web_browser=true"].location != NSNotFound) {
+  NSURL url = [NSURL URLWithString:params[@"+non_branch_link"]];
+  if (url) {
+    [application openURL:url];
+    // check to make sure your existing deep linking logic, if any, is not executed
+  }
+}
+{% endhighlight %}
+
+**Swift**
+
+{% highlight swift %}
+if let nonBranchLink = params["+non_branch_link"] {
+    if nonBranchLink.rangeOfString("open_web_browser=true") != nil, let url : NSURL = NSURL(string: params["+non_branch_link"]!) {
+        application.openURL(url)
+    }
+}
+{% endhighlight %}
+
+{% protip title="Don't open the app" %}
+In a future release (scheduled for September) customers will have the ability to choose not to open the app at all rather than open the app and launch a browser. 
+{% endprotip %}
+
+
+## AASA file for Universal Link support
+
+Responsys will host an Apple App Site Association (AASA) file for you, so that your click tracking domain appears to Apple as a Universal Link, and the app will open and deep link.
+
+To set up your AASA file, obtain the AASA file from your Branch account manager, send it to your Responsys CSM. Let them know that you'd like them to host this. 
+
+{% protip title="How does it work?"%}
+Apple recognizes the click tracking domain as a Universal Link, and opens the app immediately without the browser opening. Once the app has opened, Branch will collect the referring URL that opened the app (at this time, it will be the click tracking url). Inside the app, Branch will robotically “click” the link, registering the click with the ESP, and returning the Branch link information to the Branch SDK inside the app. This information is then used to deep link the user to the correct in-app content. See the "Support" tab for more information. 
+{% endprotip %}
 
 {% elsif page.support %}
 
@@ -162,6 +216,12 @@ There is an alternate case where Universal Links are concerned on Apple iOS 9+ d
 | Click Tracking URL | https://email.shop.com/click/abcde12345 | A Responsys generated click tracking URL. The URL doesn’t signify anything, but when clicked, records the click and redirects to a given destination.
 
 {% image src="/img/pages/third-party-integrations/responsys/deep-linked-email-creation-flow.png" center full alt='Deep Linked Email Creation Flow' %}
+
+### Redirect behavior and tracking
+
+When your customer clicks the click tracking link in an email, the browser will generally open. Once in the browser, the click tracking redirect will happen, followed by an instant redirect to the Branch link. At this point, Branch will either stay in the browser, and load the original URL (if the app is not installed, or the customer is on a desktop device), or Branch will open the app and deep link to content. Branch uses the information from the original URL to deep link to the correct in-app content. 
+
+{% image src="/img/pages/third-party-integrations/responsys/deep-linked-email-post-click.png" center full alt='Branch Email Deep Linking Redirects' %}
 
 ## Styling
 If you include style tags within your `<a>` tags, you’ll need to separate those out into a separate div inside the `<@deeplink>` tag. If you use tracked links with `<a>` tags, those will work fine.
@@ -204,20 +264,14 @@ For Universal Links to work, Apple requires that a file called an “Apple-App-S
 
 When you click a Branch link directly from an email inside the Mail app on iOS 9+, it functions as a Universal Link - it redirects directly into the desired app. However, if you put a Branch Universal Link behind a click tracking URL, it won’t deep link into the app. This is because generally, a click tracking URL is not a Universal Link. If you’re not hosting that AASA file on the click tracking URL’s domain, you aren’t going to get Universal Link behavior for that link.
 
-{% protip title="iOS 9+ Redirect Failure" %}
-When a normal click tracking URL is clicked, it redirects to a Branch Universal Link. However, due to an Apple-imposed technical limitation, Universal Links won’t work behind a redirect. So, generally, when click tracking is enabled, Universal Links won’t work - the user always falls back to mobile web, even if they have the app.  
-
 **Solution** 
 
 To solve this, Responsys will host the AASA file on your click tracking domain. We’ll help you get set up with this, but it’s Responsys who will actually host the file. 
-Apple requires that the file is hosted on a “secure” domain. To qualify as secure, the domain must have a website security certificate. Branch will provide the file to Responsys, but you must provide the security certificate to the Responsys.
-{% endprotip %}
+Apple requires that the file is hosted on a “secure” domain. To qualify as secure, the domain must have a website security certificate. Branch will provide the file to Responsys, but you must provide the security certificate to the Responsys. You probably did this when you first set up your account with Responsys, but your CSM can confirm. 
  
 {% image src="/img/pages/third-party-integrations/responsys/deep-linked-email-universal-links.png" center full alt='Deep Linked Email Universal Links' %}
 
-## Coming soon: “Don’t deep link”
-In some cases you may have content on web that isn’t in the app - for example, a temporary Mother’s Day promotion. In this case, ideally you would be able to specify in the email that that link should not deep link. Using an alternate domain or path would be the best solution to arrive at this desired behavior, as Universal Links will not parse individual URLs for information without changes being made in the AASA file that specify unique paths. 
-
-We're working with Oracle Responsys to identify a solution for this.
+## Coming soon: “Don’t open the app"
+In some cases you may have content on web that isn’t in the app - for example, a temporary Mother’s Day promotion or an unsubscribe button. In this case, ideally you would be able to specify in the email that that link should not open the app. At the moment, the app will open, and the customers will then be taken to a browser. Oracle Responsys and Branch are working together to provide a solution where the customers will never enter the app if the content doesn't live in the app. That feature is scheduled for release in September 2016. 
 
 {% endif %}

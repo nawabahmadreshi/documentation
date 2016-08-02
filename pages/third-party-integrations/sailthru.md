@@ -33,10 +33,8 @@ When a link is clicked by a user without the app, it will route that user to the
 
 ## One time setup
 
-### Enable remote deep linking functionality 
-
-Contact your Branch Account Manager or [accounts@branch.io](mailto:accounts@branch.io) to enable remote deep linking functionality. 
-
+Contact your Branch Account Manager or [accounts@branch.io](mailto:accounts@branch.io) to enable remote deep linking functionality for emails, set up your app and host the necessary files for Universal Links. You can find more details about the one time setup steps in the "Advanced" tab.
+ 
 {% protip %}
 After your Branch Account Manager enables remote deep linking functionality, the remote configuration page will be unlocked. On this page, you or your Branch Account Manager can input settings to control a custom deep link remotely. 
 {% endprotip %} 
@@ -45,16 +43,16 @@ After your Branch Account Manager enables remote deep linking functionality, the
 
 Once you’ve completed the one time setup steps, it’s time to send your first email. 
 
-Branch’s script will convert your web URLs to deep links. Simply identify the links you want to deep link with Branch and your Branch Account Manager will help you get set up.
+Sailthru allows you to automatically populate emails with content via Zephyr. This means that you can create a template once, then have all subsequent emails automatically configured to convert normal web URLs into deep links.
 
-You will need add a little bit of code in two places:
+The Sailthru integration requires you to add code in two places:
 
 1. At the top of an email template
 1. Immediately before a hyperlink
 
 ### Prepare your template
 
-At the top of each email template, you should specify branch_base_url and branch_hash_secret, both of which are provided by the Branch account manager. 
+At the top of each email template, you should simply copy and paste the following snippet. It specifies two variables that are used to automatically contruct deep links, `branch_base_url` and `branch_hash_secret`. This snippet will be provided by your Branch Account Manager. 
 
 Copy the below snippet and paste it above the `<head>` tag:
 
@@ -117,72 +115,70 @@ The Branch deep link script also works with Sailthru's Zephyr personalization la
 {% endprotip %}
 
 {% elsif page.advanced %}
-
+  
 ## Setting up your link schema for email
-
+ 
 The Branch script turns your web url (`ORIGINAL_URL` in the example snippet in this guide) into a Branch link. 
-
+ 
 There are four ways to do this. Your Branch account manager will set your app configuration up according to the technique you use. 
-
+ 
 If you use your web URL as a deep link value:
-
+ 
 1. **URL path:** If you use the path of your web URL as your  `$deeplink_path` value, or any other deep link value, then the configuration will automatically take the path of the URL and put it in deep link data.
 1. **Full URL:** If you use the full web URL as your `$deeplink_path` value, or any other deep link value, then the configuration will take the entire URL and put it in deep link data.
-
+ 
 If you use unique key/value data as deep link values:
-
+ 
 1. **Hosted deep link data:** You can host your deep link data on your website with a metatag that looks like this `<meta name="branch:deeplink:my_key" content="my_value" />` where `my_key` and `my_value` will become a key value pair in deep link data. For each web URL, Branch will look for those tags and embed the deep link data (if found) into the deep link. Note that Branch also accepts App Links tags for deep linking.
 1. **As query parameters:** Simply append query parameters on to your web url and Branch will take those parameters and put them in deep link data.
-
+ 
 {% protip title="Host deep link data for more than just emails" %}
 In future releases, the Branch marketing link creator and Chrome extension will also scrape your web URL for deep link data to make link creation even easier.
 {% endprotip %}
+ 
 
 ## App changes for Universal Link support
-
+ 
 ### Add your click tracking domain to your Associated Domains
 To enable Universal Links on your click tracking domain, you'll need to add the click tracking domain to your Associated Domains entitlement. Follow [these instructions](/getting-started/universal-app-links/guide/ios/#add-the-associated-domains-entitlement-to-your-project) to add your click tracking domain to Associated Domains. Your domain will likely be entered as `applinks:email.example.com`.
-
+ 
 ### Handle links for web-only content
-
+ 
 If you have links to content that exists only on web, and not in the app (for example, an Unsubscribe button, or a temporary marketing webpage that isn't in the app) then this code snippet will ensure all links that have not had the deep linking script applied will open in a browser.
-
+ 
 You should add this code snippet inside the `deepLinkHandler` code block in `application:didFinishLaunchingWithOptions:`. Note that this uses query `open_web_browser=true`, but you can choose whatever you like. This should match the web URL you enter in the email.
-
+ 
 **Objective C**
-
+ 
 {% highlight objc %}
 if (params[@"+non_branch_link"] && [params[@"+non_branch_link"] rangeOfString:@"open_web_browser=true"].location != NSNotFound) {
   NSURL url = [NSURL URLWithString:params[@"+non_branch_link"]];
-  if (url) {
-    [application openURL:url];
-    // check to make sure your existing deep linking logic, if any, is not executed
-  }
+   if (url) {
+     [application openURL:url];
+     // check to make sure your existing deep linking logic, if any, is not executed
+   }
 }
 {% endhighlight %}
-
+ 
 **Swift**
-
+ 
 {% highlight swift %}
 if let nonBranchLink = params["+non_branch_link"] {
     if nonBranchLink.rangeOfString("open_web_browser=true") != nil, let url : NSURL = NSURL(string: params["+non_branch_link"]!) {
-        application.openURL(url)
+         application.openURL(url)
     }
 }
 {% endhighlight %}
-
-
+ 
 ## AASA file for Universal Link support
-
+ 
 Sailthru will host an Apple App Site Association (AASA) file for you, so that your click tracking domain appears to Apple as a Universal Link, and the app will open and deep link.
-
+ 
 To set up your AASA file, obtain the AASA file from your Branch account manager, and follow the [instructions provided by Sailthru](https://getstarted.sailthru.com/mobile/apple-ios-app-universal-links/) for setting up the HTTPS certificates. 
-
+ 
 {% protip title="How does it work?"%}
-Apple recognizes the click tracking domain as a Universal Link, and opens the app immediately without the browser opening. Once the app has opened, Branch will collect the referring URL that opened the app (at this time, it will be the click tracking url). Inside the app, Branch will robotically “click” the link, registering the click with the ESP, and returning the Branch link information to the Branch SDK inside the app. This information is then used to deep link the user to the correct in-app content. 
-{% endprotip %}
-
-{% image src="/img/pages/third-party-integrations/responsys/deep-linked-email-post-click.png" center full alt='Deep Linked Email Post-Click Flow' %}
+Apple recognizes the click tracking domain as a Universal Link, and opens the app immediately without the browser opening. Once the app has opened, Branch will collect the referring URL that opened the app (at this time, it will be the click tracking url). Inside the app, Branch will robotically “click” the link, registering the click with the ESP, and returning the Branch link information to the Branch SDK inside the app. This information is then used to deep link the user to the correct in-app content. Visit the "Support" tab for additional information. 
+ {% endprotip %}
 
 {% elsif page.support %}
 
@@ -202,6 +198,8 @@ Apple recognizes the click tracking domain as a Universal Link, and opens the ap
 
 When your customer clicks the click tracking link in an email, the browser will generally open. Once in the browser, the click tracking redirect will happen, followed by an instant redirect to the Branch link. At this point, Branch will either stay in the browser, and load the original URL (if the app is not installed, or the customer is on a desktop device), or Branch will open the app and deep link to content. Branch uses the information from the original URL to deep link to the correct in-app content. 
 
+{% image src="/img/pages/third-party-integrations/responsys/deep-linked-email-post-click.png" center full alt='Branch Email Deep Linking Redirects' %}
+
 ## Styling
 Your `<a>` tags can be styled however your email links are usually styled. In fact, you don’t need a `<a>` tag at all -- you can just use {deeplink} anywhere you would have used the original URL.
 
@@ -210,10 +208,12 @@ For Universal Links to work, Apple requires that a file called an “Apple-App-S
 
 When you click a Branch link directly from an email inside the Mail app on iOS 9+, it functions as a Universal Link - it redirects directly into the desired app. However, if you put a Branch Universal Link behind a click tracking URL, it won’t deep link into the app. This is because generally, a click tracking URL is not a Universal Link. If you’re not hosting that AASA file on the click tracking URL’s domain, you aren’t going to get Universal Link behavior for that link.
 
+**Solution** 
 
-## Coming soon: “Don’t deep link”
-In some cases you may have content on web that isn’t in the app - for example, a temporary Mother’s Day promotion. In this case, ideally you would be able to specify in the email that that link should not deep link. Using an alternate domain or path would be the best solution to arrive at this desired behavior, as Universal Links will not parse individual URLs for information without changes being made in the AASA file that specify unique paths. 
+To solve this, Sailthru will host the AASA file on your click tracking domain. We’ll help you get set up with this, but it’s Sailthru who will actually host the file. 
+Apple requires that the file is hosted on a “secure” domain. To qualify as secure, the domain must have a website security certificate. Branch will provide the file to Sailthru, but you must provide the security certificate to the Sailthru.
 
-We're working with Sailthru to identify a solution for this.
+{% image src="/img/pages/third-party-integrations/responsys/deep-linked-email-universal-links.png" center full alt='Deep Linked Email Universal Links' %}
+
 
 {% endif %}
