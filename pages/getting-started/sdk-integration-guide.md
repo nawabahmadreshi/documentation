@@ -61,7 +61,7 @@ With extensive use, the Android SDK footprint is **187 kb**.
 
 ### Install with Gradle
 
-Add `compile 'io.branch.sdk.android:library:1.+'` to the dependencies section of your `build.gradle` file.
+Add `compile 'io.branch.sdk.android:library:2.+'` to the dependencies section of your `build.gradle` file.
 
 {% protip %}
 
