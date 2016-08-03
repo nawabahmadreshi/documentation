@@ -87,4 +87,61 @@ By following all the steps listed in this guide, you’ll automatically have all
 
 On Android, the easiest way to test is by building a Branch link, and simply clicking open the app from a browser. On iOS, the easiest way to test is by setting up Universal Links and clicking open the app on your device.
 
+## Using Tune data for network segmentation
+
+If you are interested in using data from your Branch links for network segmentation in Tune, you can use the same attribution parameters you'd append to a Tune Measurement URL with your Branch link. 
+
+1. Start with an existing [Branch marketing link](https://dev.branch.io/features/google-search-ads/guide/#create-a-marketing-link-on-the-branch-dashboard){:target="_blank"}, or your Branch link domain: **http://[branchsubdomain]**.
+1. Append `?` to start the query params string: **http://[branchsubdomain]?**
+   - If you're creating a new link and and you're using the legacy `bnc.lt` domain or a custom domain/subdomain as the base for your links, instead append `/a/your_Branch_key?`: **http://bnc.lt/a/your_branch_key?**
+   - If you're using a marketing link, simply append `?` to the end of your marketing link
+1. Next, [create a measurement URL](https://help.tune.com/marketing-console/creating-a-measurement-url/){:target="_blank"} in Tune's Attribution Analytics Dashboard.
+	- After creating the measurement URL, copy everything after **action=click&** and append the parameters to the end of your Branch link. 
+1. Your new URL will now pass useful paremeters to Tune. 
+
+{% example %}
+Here's an example of a finalized link with the ValueTrack Parameters for use in a Google App Install Campaign (line breaks added for legibility):
+
+{% highlight sh %}
+https://[branchsubdomain]?
+	publisher_id=123&
+	site_id=12345&
+	sub_publisher={network}&
+	sub_placement={placement}&
+	sub_ad={creative}&
+	sub_campaign={campaignid}&
+	attr_core=1&
+	sub_keyword={keyword}&
+	gdevice={device}&
+	gmodel={devicemodel}&
+	is_mobile={ifmobile:[value]}
+{% endhighlight %}
+{% endexample %}
+{% caution %}
+If there is a conflict between the custom parameters you append to your Branch link and the default parameters Branch automatically sends to Tune, the custom parameters will override the default data.
+{% endcaution %}
+
+## Sending Google ValueTrack Parameters to Tune
+
+For AdWords App Install Campaigns, you can append ValueTrack parameters to your Branch link by following the [instructions]({{base.url}}/third-party-integrations/tune/advanced/#using-tune-data-for-network-segmentation) highlighted above. 
+
+When you create a Measurement URL in the Tune dashboard, the following URL parameters will automatically be generated and should be appended to the end of your Branch link (line breaks added for legibility): 
+{% highlight sh %}
+https://[branchsubdomain]?
+	&sub_publisher={network}&
+	sub_placement={placement}&
+	sub_ad={creative}&
+	sub_campaign={campaignid}&
+	attr_core=1&
+	sub_keyword={keyword}&
+	gdevice={device}&
+	gmodel={devicemodel}&
+	is_mobile={ifmobile:[value]}
+{% endhighlight %}
+{% protip %}
+With the macros **{}**, Tune's Attribution Analytics will automatically map the Google AdWords ValueTrack parameters to Tune's  Attribution Analytics parameters.
+{% endprotip %}
+
+For a full list of supported value parameters for AdWords, check out Tune's [Google AdWords Integration](https://help.tune.com/marketing-console/google-adwords-integration/){:target="_blank"} documentation.
+
 {% endif %}
