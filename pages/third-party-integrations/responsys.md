@@ -114,8 +114,8 @@ Navigate to your Content Manager, and under `All Content`, create a new folder c
 Paste the following code snippet into the file, and put your secret key in it:
 
 {% highlight html %}
-<#macro deeplink link_to_be_wrapped><#assign branch_base_url='BASE URL FROM BRANCH'><#assign branch_hash_secret='HASH SECRET FROM BRANCH'><#assign final_link=branch_base_url + link_to_be_wrapped?url('ISO-8859-1')><#assign hash=messagedigest(branch_hash_secret+final_link+branch_hash_secret,"SHA","hex")><#assign final_link=final_link+'&%24hash='+hash><a href="${final_link}"><#nested></a></#macro>
-<#macro tracked_deeplink link_to_be_wrapped><#assign branch_base_url='BASE URL FROM BRANCH'><#assign branch_hash_secret='HASH SECRET FROM BRANCH'><#assign deeplink=branch_base_url + link_to_be_wrapped?url('ISO-8859-1')><#assign hash=messagedigest(branch_hash_secret+deeplink+branch_hash_secret,"SHA","hex")><#assign deeplink=deeplink+'&%24hash='+hash></#macro>
+<#macro deeplink link_to_be_wrapped><#assign branch_base_url='BASE URL FROM BRANCH'><#assign branch_hash_secret='HASH SECRET FROM BRANCH'><#assign final_link=branch_base_url + '&%24original_url=' + link_to_be_wrapped?url('ISO-8859-1')><#assign hash=messagedigest(branch_hash_secret+final_link+branch_hash_secret,"SHA","hex")><#assign final_link=final_link+'&%24hash='+hash><a href="${final_link}"><#nested></a></#macro>
+<#macro tracked_deeplink link_to_be_wrapped><#assign branch_base_url='BASE URL FROM BRANCH'><#assign branch_hash_secret='HASH SECRET FROM BRANCH'><#assign deeplink=branch_base_url + '&%24original_url=' + link_to_be_wrapped?url('ISO-8859-1')><#assign hash=messagedigest(branch_hash_secret+deeplink+branch_hash_secret,"SHA","hex")><#assign deeplink=deeplink+'&%24hash='+hash></#macro>
 {% endhighlight %}
 
 The code above does not include your base url or hash secret. You should obtain this from Branch.
@@ -124,8 +124,8 @@ The code above does not include your base url or hash secret. You should obtain 
 Create a file for the Branch SDK and paste in the following:
 
 {% highlight html %}
-<#macro deeplink link_to_be_wrapped><#assign branch_base_url='https://bnc.lt/abcd/3p?%243p=rs'><#assign branch_hash_secret='F+sNEMK3Jg/3yskR3pB9fEgLuNFcrbROYTJwQ8ABno0='><#assign final_link=branch_base_url + link_to_be_wrapped?url('ISO-8859-1')><#assign hash=messagedigest(branch_hash_secret+final_link+branch_hash_secret,"SHA","hex")><#assign final_link=final_link+'&%24hash='+hash><a href="${final_link}"><#nested></a></#macro>
-<#macro tracked_deeplink link_to_be_wrapped><#assign branch_base_url='https://bnc.lt/abcd/3p?%243p=rs'><#assign branch_hash_secret='F+sNEMK3Jg/3yskR3pB9fEgLuNFcrbROYTJwQ8ABno0='><#assign deeplink=branch_base_url + link_to_be_wrapped?url('ISO-8859-1')><#assign hash=messagedigest(branch_hash_secret+deeplink+branch_hash_secret,"SHA","hex")><#assign deeplink=deeplink+'&%24hash='+hash></#macro>
+<#macro deeplink link_to_be_wrapped><#assign branch_base_url='https://bnc.lt/abcd/3p?%243p=rs'><#assign branch_hash_secret='F+sNEMK3Jg/3yskR3pB9fEgLuNFcrbROYTJwQ8ABno0='><#assign final_link=branch_base_url + '&%24original_url=' + link_to_be_wrapped?url('ISO-8859-1')><#assign hash=messagedigest(branch_hash_secret+final_link+branch_hash_secret,"SHA","hex")><#assign final_link=final_link+'&%24hash='+hash><a href="${final_link}"><#nested></a></#macro>
+<#macro tracked_deeplink link_to_be_wrapped><#assign branch_base_url='https://bnc.lt/abcd/3p?%243p=rs'><#assign branch_hash_secret='F+sNEMK3Jg/3yskR3pB9fEgLuNFcrbROYTJwQ8ABno0='><#assign deeplink=branch_base_url + '&%24original_url=' + link_to_be_wrapped?url('ISO-8859-1')><#assign hash=messagedigest(branch_hash_secret+deeplink+branch_hash_secret,"SHA","hex")><#assign deeplink=deeplink+'&%24hash='+hash></#macro>
 {% endhighlight %}
 
 Screenshot:
