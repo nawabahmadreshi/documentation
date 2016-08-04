@@ -152,7 +152,7 @@ You should add this code snippet inside the `deepLinkHandler` code block in `app
 {% tab objective-c %}
 {% highlight objc %}
 if (params[@"+non_branch_link"] && [params[@"+non_branch_link"] rangeOfString:@"open_web_browser=true"].location != NSNotFound) {
-  NSURL url = [NSURL URLWithString:params[@"+non_branch_link"]];
+  NSURL *url = [NSURL URLWithString:params[@"+non_branch_link"]];
    if (url) {
      [application openURL:url];
      // check to make sure your existing deep linking logic, if any, is not executed
