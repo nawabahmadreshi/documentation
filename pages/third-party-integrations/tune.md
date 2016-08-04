@@ -11,14 +11,24 @@ sections:
 - overview
 - guide
 - advanced
-
+- support
 ---
 
 {% if page.overview %}
 
-With a push of a button you can send your Branch data to your Tune dashboard, helping you segment users and calculate LTV.
+With a push of a button you can send your Branch data to your Tune dashboard, helping you segment users, calculate LTV and understand the power of Branch links in acquiring users.
 
 {% ingredient paid-integration %}{% endingredient %}
+
+## What events does Branch send to Tune?
+
+Branch will send all **Branch link clicks** to Tune. Branch also sends all the data that is attached to the link. Tune then matches all downstream actions (installs, opens, custom events, payouts) back to the referring link. This will allow you to analyze which campaigns, channels, etc. are helping you acquire and engage users. You can see the list of fields that we send to Tune [here](/third-party-integrations/tune/advanced/#what-branch-sends-to-tune).
+
+## What does it look like?
+
+See your Branch organic acquition campaigns alongside your Tune data. You can also use Branch links with Tune measurement URL parameters to get the advantages of Branch deep linking with Tune's fine-grained attribution data and ROI analysis.
+
+{% image src="/img/pages/third-party-integrations/tune/tune-dashboard-example.png" 3-quarters center %}
 
 {% getstarted title="Get started with the Tune integration" %}{% endgetstarted %}
 
@@ -31,17 +41,19 @@ With a push of a button you can send your Branch data to your Tune dashboard, he
 
 {% endprerequisite %}
 
+## Get credentials from your Tune dashboard
 
-## Capture IDFA/GAID
+To set up the integration, you will need your Tune Advertiser ID (an account-level identifer) and your platform-specific Tune Site IDs (also known as App IDs).
 
-Ensure that you are capturing both the [Google Advertising Identifier (GAID) on Android]({{base.url}}/getting-started/sdk-integration-guide/advanced/android/#use-google-advertising-id), and the [IDFA on iOS]({{base.url}}/getting-started/sdk-integration-guide/advanced/ios/#install-the-sdk-manually) (by importing the `AdSupport.framework`).
+You can find your **Advertiser ID** by navigating to "Accounts > Advertiser Account" in the left hand sidebar and finding the Advertiser ID in the Account Details.
 
-## Enable Branch on TUNE Dashboard
+{% image src="/img/pages/third-party-integrations/tune/tune-advertiser-id.png" 3-quarters center %}
 
-When you are ready to have Branch send data to TUNE, you must make sure Branch is an enabled provider under your **Partners** in your TUNE dashboard. In order to do so, click into the **Integrated Partners** section on your TUNE dashboard. From there, enter in Branch inside the search box, and click enable.
+You can find your **Site ID** by navigating to "Mobile Apps" in the left hand sidebar and getting the relevant Site ID from the table.
 
+{% image src="/img/pages/third-party-integrations/tune/tune-app-ids.png" 3-quarters center %}
 
-## Configure the Branch Dashboard
+## Enable the Tune card in your Branch dashboard
 
 1. On the Branch Dashboard (dashboard.branch.io), navigate to the [Integrations page](https://dashboard.branch.io/integrations).
 1. Locate Tune and choose **Enable**.
@@ -51,26 +63,21 @@ When you are ready to have Branch send data to TUNE, you must make sure Branch i
 
 {% image src="/img/pages/third-party-integrations/tune/enable-tune-integration.png" half center alt='Enable Integration' %}
 
-## Grab Advertiser ID and Site ID(s)
-
-After enabling Branch, for each mobile property you have, be sure to grab the **Site ID**. Start by clicking **Mobile Apps** on the left hand pane of your TUNE dashboard. From there, select the app you're interested in, and select **Edit App Details** under the app settings. You will see an **App ID** (which is an un-editable field). This is your Site ID.
-
-In order to grab advertiser ID, go to **Testing** on the left hand pane of your TUNE dashboard. Select **Test Mobile App**, and select your app. Under the **Measurement Info** box, you will see Advertiser ID. Grab this value.
-
 {% elsif page.advanced %}
-
-## Add Google Play Install Referrer (Android)
-
-When you integrate the Tune SDK, ensure you add the install referrer snippet provided Tune [here](https://help.tune.com/marketing-console/how-google-play-install-referrer-works/).
-
 
 ## What Branch sends to Tune
 
+Branch will send any parameters that you append to a link on to Tune (see [below for adding advanced attribution parameters](/third-party-integrations/tune/advanced/#advanced-network-segmentation-with-tune)). By default, if you don't append any additional parameters to your link, Branch will pass Branch Analytics tags on to Tune with the below mapping. 
+
+{% caution %}
+If you enabled the Tune integration before August 4th 2016, your analytics tags will map to sub_publisher and sub_placement. To get the updated mappings please disable and re-enable the Tune card in your dashboard.
+{% endcaution %}
+
 Branch Analytics Tag | Tune Data Placeholder Tag
 --- | ---
-Campaign | sub_campaign
-Channel | sub_placement
-Tags | sub_keyword
+Campaign | my_campaign
+Channel | my_placement
+Feature | my_keyword
 Branch Click ID | tracking_id
 
 ## What are the methods Branch uses to let TUNE know an install came from Branch?
@@ -83,8 +90,97 @@ We rely on 3 methods to match attributions into TUNE’s dashboard.
 
 By following all the steps listed in this guide, you’ll automatically have all 3 available.
 
-##### How can I test this integration?
+## Advanced network segmentation with Tune
 
-On Android, the easiest way to test is by building a Branch link, and simply clicking open the app from a browser. On iOS, the easiest way to test is by setting up Universal Links and clicking open the app on your device.
+If you are interested in advanced network attribution segmentation in Tune, you can use the same attribution parameters you'd append to a Tune Measurement URL with your Branch link. 
+
+{% caution %}
+If you enabled the Tune integration before August 4th 2016, you will need to disable and re-enable the Tune card in your dashboard before carrying out the instructions below. Please note this will change your default mapping of Branch analytics tags from the sub_publisher and sub_placement values into the my_partner values as noted above.
+{% endcaution %}
+
+1. Start with an existing [Branch marketing link](/features/google-search-ads/guide/#create-a-marketing-link-on-the-branch-dashboard){:target="_blank"}
+1. Append `?` to the end of your marketing link to start the query params string. For example: **https://mylinks.app.link/8AHjQx0fyv?**
+1. Next, [create a measurement URL](https://help.tune.com/marketing-console/creating-a-measurement-url/){:target="_blank"} in Tune's Attribution Analytics Dashboard with the parameters you'd like to capture.
+	- Select the "Click" URL (as opposed to the Impression URL)
+	- After creating the measurement URL, copy everything after **action=click&** and append the parameters to the end of your Branch link. 
+
+{% image src="/img/pages/third-party-integrations/tune/tune-measurement-url.png" 3-quarters center alt='Tune Measurement URL' %}
+
+Your new URL will now pass useful parameters to Tune.
+
+{% example %}
+Here's an example of a finalized link for Tapjoy:
+
+{% highlight sh %}
+https://mylinks.app.link/8AHjQx0fyv?
+	publisher_id=334667&
+	site_id=128549&
+	sub_campaign=TapjoyBranchCampaign&
+	my_publisher=Tapjoy&
+	sub1=customtapjoyparameter&
+	android_id=TAPJOY_RESTORED_RAW_ADVERTISING_ID
+{% endhighlight %}
+{% endexample %}
+
+{% caution %}
+Branch automatically uses the my_* parameters for its link data. If there is a conflict between the custom parameters you append to your Branch link and the [default parameters Branch automatically sends to Tune](/third-party-integrations/tune/advanced/#what-branch-sends-to-tune), the custom parameters will override the default data.
+{% endcaution %}
+
+## Sending Google ValueTrack Parameters to Tune
+
+For AdWords App Install Campaigns, you can append ValueTrack parameters to your Branch link by following the same instructions highlighted above. 
+
+When you create a Measurement URL in the Tune dashboard, the following URL parameters will automatically be generated and should be appended to the end of your Branch link (line breaks added for legibility): 
+{% highlight sh %}
+https://mylinks.app.link/8AHjQx0fyv?
+	&sub_publisher={network}&
+	sub_placement={placement}&
+	sub_ad={creative}&
+	sub_campaign={campaignid}&
+	attr_core=1&
+	sub_keyword={keyword}&
+	gdevice={device}&
+	gmodel={devicemodel}&
+	is_mobile={ifmobile:[value]}
+{% endhighlight %}
+{% protip %}
+With the macros **{}**, Tune's Attribution Analytics will automatically map the Google AdWords ValueTrack parameters to Tune's  Attribution Analytics parameters.
+{% endprotip %}
+
+For a full list of supported value parameters for AdWords, check out Tune's [Google AdWords Integration](https://help.tune.com/marketing-console/google-adwords-integration/){:target="_blank"} documentation.
+
+{% elsif page.support %}
+
+## How can I test this integration?
+
+1. Enable the integration
+1. Create a Branch link
+1. Click the Branch link so the app opens or you are taken to the app store. If you're taken to the app store, download and open the app.
+1. Log in to your Tune dashboard, and click "Logs" on the left hand side bar.
+1. Check the "Click" logs for a click attributed to Branch (or the network if you are using measurement URL parameters)
+1. Check the "Installs" or "Opens" logs for a correctly attributed install.
+1. After 10-15 minutes, you should see an install or open appear in your Attribution Dashboard.
+
+Please note that to produce installs, you must delete the app and reset your advertising identifier, then click a Branch link and install the app.
+
+## Branch data not appearing in Tune
+
+Ensure Branch is an enabled provider under your **Partners** in your TUNE dashboard. This should happen automatically, but to verify, click into the **Integrated Partners** section on your TUNE dashboard. From there, enter in Branch inside the search box, and click enable.
+
+## Install discrepancies
+
+### Capture the GAID and IDFA device identifiers
+
+Ensure that you are capturing both the [Google Advertising Identifier (GAID) on Android]({{base.url}}/getting-started/sdk-integration-guide/advanced/android/#use-google-advertising-id), and the [IDFA on iOS]({{base.url}}/getting-started/sdk-integration-guide/advanced/ios/#install-the-sdk-manually) (by importing the `AdSupport.framework`).
+
+### Add Google Play Install Referrer (Android)
+
+When you integrate the Tune SDK, ensure you add the install referrer snippet provided Tune [here](https://help.tune.com/marketing-console/how-google-play-install-referrer-works/).
+
+## Issues with Facebook data discrepancies. 
+
+If you are finding data discrepancies between Branch, Tune and Facebook - please ensure you have followed the Facebook Ads setup and troubleshooting steps [here](/features/facebook-ads/guide/ios/). 
+
+If you're using the Tune integration and Branch links in Facebook ads, Branch must initialize and complete before the Tune SDK. When this happens, Branch will be able fetch the necessary attribution parameters and pass them to Tune via the integration.
 
 {% endif %}
