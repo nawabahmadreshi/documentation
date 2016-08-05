@@ -98,11 +98,12 @@ If you are interested in advanced network attribution segmentation in Tune, you 
 If you enabled the Tune integration before August 4th 2016, you will need to disable and re-enable the Tune card in your dashboard before carrying out the instructions below. Please note this will change your default mapping of Branch analytics tags from the sub_publisher and sub_placement values into the my_partner values as noted above.
 {% endcaution %}
 
-1. Start with an existing [Branch marketing link](/features/google-search-ads/guide/#create-a-marketing-link-on-the-branch-dashboard){:target="_blank"}
-1. Append `?` to the end of your marketing link to start the query params string. For example: **https://mylinks.app.link/8AHjQx0fyv?**
+1. Start with an existing Branch link, for example, a [ marketing link](/features/google-search-ads/guide/#create-a-marketing-link-on-the-branch-dashboard){:target="_blank"}.
+1. Append `?` to the end of your link to start the query params string. For example: **https://mylinks.app.link/8AHjQx0fyv?**
 1. Next, [create a measurement URL](https://help.tune.com/marketing-console/creating-a-measurement-url/){:target="_blank"} in Tune's Attribution Analytics Dashboard with the parameters you'd like to capture.
 	- Select the "Click" URL (as opposed to the Impression URL)
 	- After creating the measurement URL, copy everything after **action=click&** and append the parameters to the end of your Branch link. 
+	- You should remove `&site_id={value}` from the parameters, as Branch will automatically fill that in for your app depending on platform. 
 
 {% image src="/img/pages/third-party-integrations/tune/tune-measurement-url.png" 3-quarters center alt='Tune Measurement URL' %}
 
@@ -114,7 +115,6 @@ Here's an example of a finalized link for Tapjoy:
 {% highlight sh %}
 https://mylinks.app.link/8AHjQx0fyv?
 	publisher_id=334667&
-	site_id=128549&
 	sub_campaign=TapjoyBranchCampaign&
 	my_publisher=Tapjoy&
 	sub1=customtapjoyparameter&
@@ -144,7 +144,7 @@ https://mylinks.app.link/8AHjQx0fyv?
 	is_mobile={ifmobile:[value]}
 {% endhighlight %}
 {% protip %}
-With the macros **{}**, Tune's Attribution Analytics will automatically map the Google AdWords ValueTrack parameters to Tune's  Attribution Analytics parameters.
+With the macros **{}**, Google will insert the relevant values for each parameter, values which will then be passed to Tune's Attribution Analytics.
 {% endprotip %}
 
 For a full list of supported value parameters for AdWords, check out Tune's [Google AdWords Integration](https://help.tune.com/marketing-console/google-adwords-integration/){:target="_blank"} documentation.
