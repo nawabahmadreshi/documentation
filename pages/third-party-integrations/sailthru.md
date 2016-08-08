@@ -151,12 +151,12 @@ You should add this code snippet inside the `deepLinkHandler` code block in `app
 {% tabs %}
 {% tab objective-c %}
 {% highlight objc %}
-if (params[@"+non_branch_link"] && [params[@"+non_branch_link"] rangeOfString:@"open_web_browser=true"].location != NSNotFound) {
-  NSURL *url = [NSURL URLWithString:params[@"+non_branch_link"]];
-   if (url) {
-     [application openURL:url];
-     // check to make sure your existing deep linking logic, if any, is not executed
-   }
+if (params[@"+non_branch_link"] && [params[@"+from_email_ctd"] boolValue]) {
+    NSURL *url = [NSURL URLWithString:params[@"+non_branch_link"]];
+    if (url) {
+        [application openURL:url];
+        // check to make sure your existing deep linking logic, if any, is not executed, perhaps by returning early
+    }
 }
 {% endhighlight %}
 
@@ -164,9 +164,10 @@ if (params[@"+non_branch_link"] && [params[@"+non_branch_link"] rangeOfString:@"
 
 {% tab swift %}
 {% highlight swift %}
-if let nonBranchLink = params["+non_branch_link"] {
-    if nonBranchLink.rangeOfString("open_web_browser=true") != nil, let url : NSURL = NSURL(string: params["+non_branch_link"]!) {
-         application.openURL(url)
+if let nonBranchLink = params["+non_branch_link"] as? String, let fromEmailCtd = params["+from_email_ctd"] as? Bool {
+    if fromEmailCtd, let url : URL = URL(string: nonBranchLink) {
+        application.openURL(url)
+        // check to make sure your existing deep linking logic, if any, is not executed, perhaps by returning early
     }
 }
 {% endhighlight %}
