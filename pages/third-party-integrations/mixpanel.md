@@ -97,6 +97,8 @@ MixpanelAPI mp = MixpanelAPI.getInstance(this, "<your project token>");
 Branch.getInstance().setRequestMetadata("$mixpanel_distinct_id", mp.getDistinctId());
 {% endhighlight %}
 
+For more information, see [Why We Recommend Passing Mixpanel Distinct ID](/third-party-integrations/mixpanel/advanced/#why-we-recommend-passing-mixpanel-distinct-id).
+
 {% elsif page.advanced %}
 
 ## What Branch Sends to Mixpanel
