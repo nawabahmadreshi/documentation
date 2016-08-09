@@ -43,6 +43,7 @@
         - facebook-app-invites
         - facebook-ads
         - google-search-ads
+        - instagram-ads
         - twitter-ads
     - title: Content Indexing
       children:
