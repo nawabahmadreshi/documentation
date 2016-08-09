@@ -5,7 +5,6 @@
   children:
     - sdk-integration-guide
     - universal-app-links
-    
     - title: 3. Create Links
       children:
         - creating-links-in-apps
@@ -58,6 +57,7 @@
         - sailthru
     - title: Data Integrations
       children:
+        - adjust
         - amplitude
         - appboy
         - google-analytics
