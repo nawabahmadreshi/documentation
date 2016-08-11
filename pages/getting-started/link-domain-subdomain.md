@@ -6,6 +6,7 @@ page_title: Information about your app's custom subdomain
 description: Every app is assigned a custom app.link subdomain. Learn how to use this when setting up your Branch configuration
 keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Webhooks, data export, funnel, RequestBin, Filters, Tempting
 hide_platform_selector: true
+hide_section_selector: true
 sections:
 - guide
 ---
@@ -23,16 +24,34 @@ Because of the way that Apple implements Universal Links, every app also has a s
 ### Retriving the subdomain assigned to your app
 
 1. Go to the [Link Settings](https://dashboard.branch.io/#/settings/link) page on the dashboard.
-1. Scroll down to the **Custom Link Domain** area.
-1. Copy the value inside the **Default domain name** box.
+1. Scroll down to the **Link Domain** area.
+1. Copy the value listed there.
 
-{% image src='/img/pages/getting-started/link-domain-subdomain/default-link-domain.png' half center alt='retrieving the default link subdomain' %}
+{% image src='/img/pages/getting-started/link-domain-subdomain/subdomain-setting.png' full center alt='retrieving the default link subdomain' %}
 
 {% caution title="Test environment domain" %}
 
 The assigned subdomain for your [test environment]({{base.url}}/getting-started/integration-testing#the-test-sandbox-environment) is of the form `xxxx.test-app-link` and must be configured separately. Branch automatically handles HTTPS traffic for custom subdomains and root domains. Branch will acquire the necessary SSL certificate if you follow the simple setup instructions below. Branch will also automatically renew the certificates when needed.
 
 {% endcaution %}
+
+## Changing your app.link subdomain
+
+You can brand your links with a custom subdomain like `you.app.link`. 
+
+{% caution title="One change only" %}
+
+You can only change your app.link subdomain once. Keep in mind that if you change this and you have implemented [strong matching]({{base.url}}/getting-started/sdk-integration-guide/guide/#support-strong-matching-only-for-new-applink-domain) or [universal links]({{base.url}}/getting-started/universal-app-links/guide/#add-your-branch-link-domains), you must update your implementation. Your old links may not work.
+
+{% endcaution %}
+
+1. Go to [Link Settings](https://dashboard.branch.io/settings/link){:target="_blank"} in the dashboard.
+1. Scroll to the **Link Domain** setting at the bottom.
+1. Click `Change my app.link subdomain`.
+1. Choose a subdomain that matches your brand. You cannot choose one that is in use by someone else, and it cannot have special characters.
+1. Press `Get`.
+
+{% image src='/img/pages/getting-started/link-domain-subdomain/subdomain-setting.png' full center alt='Custom app.link subdomain configuration' %}
 
 ## Setting a custom link domain
 
@@ -55,12 +74,12 @@ Some browsers have special rules for processing URLs beginning with `www`. We st
 {% endcaution %}
 
 1. Create a CNAME for your subdomain and point it to `custom.bnc.lt`
-1. Go to [Link Settings](https://dashboard.branch.io/#/settings/link){:target="_blank"} on the Branch dashboard, and find the **Custom Link Domain** section.
-1. Check the **Enable custom domain** box.
-1. You should see a message telling you the status of your domain under the `Domain name` field. If you don't, please type your domain in again.
-1. Click the `Save` button.
+1. Go to [Link Settings](https://dashboard.branch.io/#/settings/link){:target="_blank"} on the Branch dashboard, and find the **Link Domain** section.
+1. Click `Use my own domain`.
+1. You should see a message telling you the status of your domain under the domain field. If you don't, please type your domain in again.
+1. Click `Confirm`.
 
-{% image src='/img/pages/getting-started/link-domain-subdomain/enable-custom-subdomain.png' 2-thirds center alt='successful custom subdomain configuration' %}
+{% image src='/img/pages/getting-started/link-domain-subdomain/domain-setting.png' half center alt='successful custom subdomain configuration' %}
 
 ### Custom ROOT domain (branch.com)
 
@@ -68,11 +87,12 @@ Some browsers have special rules for processing URLs beginning with `www`. We st
 Once you enable this root domain for Branch links, you will not be able to use it for hosting anything else. We recommend using a subdomain, or purchasing a new root domain for this purpose. **You cannot use your main website domain for hosting Branch links**.
 {% endcaution %}
 
-1. Go to [Link Settings](https://dashboard.branch.io/#/settings/link){:target="_blank"} on the Branch dashboard, and find the **Custom Link Domain** section.
-1. Check the **Enable custom domain** box.{% image src='/img/pages/getting-started/link-domain-subdomain/enable-custom-domain.png' 2-thirds center alt='successful custom domain configuration' %}
-1. Enter your custom domain into the text box and click the `Save` button. (If the validation status doesn't update with nameservers please **refresh the page.**) {% image src='/img/pages/getting-started/link-domain-subdomain/custom_domain_nameservers_error.png' fullcenter alt='root domain nameservers' %}
+1. Go to [Link Settings](https://dashboard.branch.io/#/settings/link){:target="_blank"} on the Branch dashboard, and find the **Link Domain** section.
+1. Click `Use my own domain`.{% image src='/img/pages/getting-started/link-domain-subdomain/subdomain-setting.png' full center alt='successful custom domain configuration' %}
+1. Enter your custom domain into the text box. 
+1. Resolve any errors. {% image src='/img/pages/getting-started/link-domain-subdomain/domain-error.png' two-thirds center alt='root domain nameservers' %}
 1. Work with your domain registrar to make the Branch-provided nameservers authoritative for your domain. **Note that this means you cannot host anything else on this domain — only Branch links**
-1. Click the `Save` button on the Branch dashboard again.
+1. Click `Confirm`.
 
 ## About the legacy bnc.lt domain
 
