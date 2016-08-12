@@ -120,7 +120,7 @@ Then the URL will include `/e/`, which is short for "exclusion". These links are
 Aliased links are supported. `/e/` will be inserted into the URL, e.g. `myapp.app.link/e/myalias`. When you create an aliased link, the alias you reserve is for both forms of the url, e.g. `myapp.app.link/myalias` and `myapp.app.link/e/myalias`. This is effectively the same link, though the web-only form will not open the app even if it is installed.
 
 {% caution %}
-This parameter is currently supported only on iOS.
+This parameter will not work with [Android App Links]({{base.url}}/getting-started/universal-app-links/).
 {% endcaution %}
 
 | Key | Value | Default
