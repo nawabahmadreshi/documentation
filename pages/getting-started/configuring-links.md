@@ -111,6 +111,18 @@ This parameter is currently supported only on iOS.
 | --- | ---
 | $after_click_url | URL redirect to after the main click redirect has completed
 
+#### Web-only links
+
+This lets you direct the user to the web, *even if they have the app installed*. 
+
+{% caution %}
+This parameter is currently supported only on iOS.
+{% endcaution %}
+
+| Key | Value | Default
+| --- | --- | ---
+| $web_only | TODO | todo
+
 ### Link behavior customization
 
 Use these keys to control how URI scheme deep linking functions when opening your app from a link.
