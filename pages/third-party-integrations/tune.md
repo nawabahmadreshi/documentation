@@ -20,6 +20,8 @@ With a push of a button you can send your Branch data to your Tune dashboard, he
 
 {% ingredient paid-integration %}{% endingredient %}
 
+{% getstarted title="Get started with the Tune integration" %}{% endgetstarted %}
+
 ## What events does Branch send to Tune?
 
 Branch will send all **Branch link clicks** to Tune. Branch also sends all the data that is attached to the link. Tune then matches all downstream actions (installs, opens, custom events, payouts) back to the referring link. This will allow you to analyze which campaigns, channels, etc. are helping you acquire and engage users. You can see the list of fields that we send to Tune [here](/third-party-integrations/tune/advanced/#what-branch-sends-to-tune).
@@ -29,8 +31,6 @@ Branch will send all **Branch link clicks** to Tune. Branch also sends all the d
 See your Branch organic acquition campaigns alongside your Tune data. You can also use Branch links with Tune measurement URL parameters to get the advantages of Branch deep linking with Tune's fine-grained attribution data and ROI analysis.
 
 {% image src="/img/pages/third-party-integrations/tune/tune-dashboard-example.png" 3-quarters center %}
-
-{% getstarted title="Get started with the Tune integration" %}{% endgetstarted %}
 
 {% elsif page.guide %}
 
@@ -70,7 +70,7 @@ You can find your **Site ID** by navigating to "Mobile Apps" in the left hand si
 Branch will send any parameters that you append to a link on to Tune (see [below for adding advanced attribution parameters](/third-party-integrations/tune/advanced/#advanced-network-segmentation-with-tune)). By default, if you don't append any additional parameters to your link, Branch will pass Branch Analytics tags on to Tune with the below mapping. 
 
 {% caution %}
-If you enabled the Tune integration before August 4th 2016, your analytics tags will map to sub_publisher and sub_placement. To get the updated mappings please disable and re-enable the Tune card in your dashboard.
+If you enabled the Tune integration before August 10th 2016, your analytics tags will map to sub_publisher and sub_placement. To get the updated mappings please disable and re-enable the Tune card in your dashboard.
 {% endcaution %}
 
 Branch Analytics Tag | Tune Data Placeholder Tag
@@ -95,7 +95,7 @@ By following all the steps listed in this guide, you’ll automatically have all
 If you are interested in advanced network attribution segmentation in Tune, you can use the same attribution parameters you'd append to a Tune Measurement URL with your Branch link. 
 
 {% caution %}
-If you enabled the Tune integration before August 4th 2016, you will need to disable and re-enable the Tune card in your dashboard before carrying out the instructions below. Please note this will change your default mapping of Branch analytics tags from the sub_publisher and sub_placement values into the my_partner values as noted above.
+If you enabled the Tune integration before August 10th 2016, you will need to disable and re-enable the Tune card in your dashboard before carrying out the instructions below. Please note this will change your default mapping of Branch analytics tags from the sub_publisher and sub_placement values into the my_partner values as noted above.
 {% endcaution %}
 
 1. Start with an existing Branch link, for example, a [ marketing link](/features/google-search-ads/guide/#create-a-marketing-link-on-the-branch-dashboard){:target="_blank"}.

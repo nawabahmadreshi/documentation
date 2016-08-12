@@ -10,31 +10,31 @@ hide_platform_selector: true
 sections:
 - overview
 - guide
-- support
+- advanced
 ---
 
 {% if page.overview %}
 
-Send data to Adjust to maximize you understanding of your mobile acquisition efforts, while deep linking your users through Branch.
+Send data to Adjust to maximize your understanding of your mobile acquisition efforts, while deep linking your users through Branch.
 
 {% ingredient paid-integration %}{% endingredient %}
 
+{% getstarted title="Get started with the Adjust integration" %}{% endgetstarted %}
+
 ## What events does Branch send to Adjust?
 
-The integration automatically sends **Branch link clicks** to Adjust. Unfortunately, we can only send a subset of all clicks from your links. The subset is:
+The integration automatically sends **Branch link clicks** to Adjust, specifically we send:
 
 * All Android clicks
 * iOS Universal Link clicks
 
-This means that for iOS install campaigns (where universal links wont work), you must use Adjust as your fallback URL.
+This means that for iOS install campaigns (which doesn't use Universal Links), you must use Adjust as your fallback URL.
 
-## What data can I expect?
+## What data can I expect to see in Adjust?
 
-Once you enable an integration with Adjust, we'll automatically send all eligible clicks to Adjust's servers. From there, you'll see how many users came from Branch. This will give you automatic segmentation and the ability to do follow up analysis with your Branch cohort.
+Once you enable an integration with Adjust, we'll automatically send all eligible clicks to Adjust's servers. From there, you'll see how many users came from Branch, along with installs, opens and downstream events attributed back to the Branch link. This will give you automatic segmentation and cohorting for users acquired via Branch links.
 
-We'll pass along all of the Branch link's analytics data, which will map to labels inside Adjust. Check the support section to see all of the labels.
-
-{% getstarted title="Get started with the Adjust integration" %}{% endgetstarted %}
+We'll pass along all of the Branch link's analytics data, which will map to labels inside Adjust. Check the "Advanced" section to see all of the labels.
 
 {% elsif page.guide %}
 
@@ -53,11 +53,9 @@ To set up the integration, you will need to navigate to your Adjust dashboard, a
 
 {% image src="/img/pages/third-party-integrations/adjust/adjust-tracker-setting.png" 3-quarters center %}
 
-
-From there, you will need to create a new tracker, which is found under Data Management > Trackers. Click Trackers, and create a new tracker below. Once created, grab the 6 digit value after the `app.adjust.com` portion. This is your tracker.
+From there, you will need to create a new tracker, which is found under Data Management > Trackers > Click Trackers, and "Create a new tracker" below. Be sure to call it "Branch." Once created, grab the 6 digit value after the `app.adjust.com` portion. This is your tracker.
 
 {% image src="/img/pages/third-party-integrations/adjust/adjust-tracker.png" 3-quarters center %}
-
 
 ## Enable the Adjust card in your Branch dashboard
 
@@ -69,26 +67,38 @@ From there, you will need to create a new tracker, which is found under Data Man
 
 {% image src="/img/pages/third-party-integrations/adjust/enable-adjust-integration.png" half center alt='Enable Integration' %}
 
+## Add Adjust tracking link to your Branch Settings
+
+If you'd like to track iOS installs from Branch links in Adjust, you'll need to create an Adjust tracking link and put in your Branch settings page.
+
+You need to point the iOS Custom Redirect to Adjust. Take the tracker you just created in Adjust and set the Custom Redirects of your [Branch Settings](https://dashboard.branch.io/settings/link) as follows. This means that Branch will fall back to the App Store via Adjust when your user doesn't have the app and isn't going to mobile web. Remember to click the "Save" button at the bottom of the Link Settings page.
+
+| Platform | URL
+| --- | ---
+| **iOS** | https://app.adjust.io/abcdef
+
+{% image src='/img/pages/third-party-integrations/adjust/adjust-redirect-settings.png' 2-thirds center alt='Custom redirect configuration' %}
+
 {% elsif page.advanced %}
 
 ## What Branch sends to Adjust
 
-Branch will send your analytics parameters to Adjust, along with identifying information that lets Adjust give Branch the credit for an install. In case you want to override your default tracker placed in the Adjust Data Integration card, simply put a key value pair with key `tracker_id` in your deep link data.
-
-{% image src="/img/pages/third-party-integrations/adjust/override-adjust.png" half center alt='Overriden Tracker' %}
+By default, Branch sends the following parameters to Adjust as part of the integration.
 
 Branch Analytics Tag | Adjust Data Tag
 --- | ---
 Campaign | campaign
 Channel | adgroup
 Feature | creative
-network | network
 Branch Click ID | external_click_id
 
-{% elsif page.support %}
+## Advanced network segmentation with Adjust
 
-## How do I enable iOS install campaigns with Adjust?
+By default, installs and events via Branch links will be attributed to Branch via your default tracker. If you'd like to use Branch links on your paid ad networks for deep linking, but you'd like more granular network attribution, you can create a new tracker in Adjust then use the tracker id in your Branch link. This will override the default Branch attribution.
 
-In order to account for install campaigns, you must create a Branch link, and set the $ios_url OR $fallback_url to your Adjust tracking link.
+1. Name your Adjust tracker something like "TapjoyBranch"
+1. Take the 6 letter identifier for your tracker and put it as a key value pair with key `tracker_id` in your deep link data for that specific link.
+
+{% image src="/img/pages/third-party-integrations/adjust/override-adjust.png" half center alt='Overriden Tracker' %}
 
 {% endif %}
