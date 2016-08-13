@@ -294,7 +294,7 @@ Branch opens your app by using its URI scheme (`yourapp://`), which should be un
 
 {% image src='/img/pages/getting-started/sdk-integration-guide/urlType.png' full center alt='URL Scheme Demo' %}
 
-### Support Strong Matching (only for new `app.link` domain)
+### Support Strong Matching (only for new **app.link** domain)
 
 1. Retrieve your app default domain name from [Link Settings](https://dashboard.branch.io/#/settings/link){:target="_blank"} page of the Branch dashboard under **Link Domain**
 1. In Xcode, open your project's Info.plist file in the Navigator (on the left side).

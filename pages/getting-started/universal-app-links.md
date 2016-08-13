@@ -554,23 +554,6 @@ Here are some recommended next steps:
 <!-- No advanced info except note on click-tracking -->
 {% else %}
 
-## Using a custom domain or subdomain
-
-### Custom SUBDOMAIN (go.branch.com)
-1. Create a CNAME for the subdomain and point it to `custom.bnc.lt`
-1. Go to [Link Settings](https://dashboard.branch.io/#/settings/link) on the Branch dashboard, and find the **Link Domain** section.
-1. Type in your custom domain.
-1. Click the `Confirm` button.
-
-{% image src='/img/pages/getting-started/universal-app-links/domain-setting.png' 2-thirds center alt='successful custom subdomain configuration' %}
-
-### Custom ROOT domain (branch.com)
-
-1. Go to [Link Settings](https://dashboard.branch.io/#/settings/link){:target="_blank"} on the Branch dashboard, and find the **Link Domain** section.
-1. Click `Use my own domain`.
-1. Enter your custom domain into the text box and click the `Confirm` button.
-1. Go to your DNS configuration for your custom domain, and update your nameserver records with the Branch-provided nameservers.
-
 ## Custom continueUserActivity configuration
 
 When users enter your app via a Universal Link, we check to see to see if the link URL contains `bnc.lt`. If so, `handledByBranch` will return `YES`. If not, `handledByBranch` will return `NO`. This allows us to explicitly confirm the incoming link is from Branch without making a server call.
