@@ -216,6 +216,7 @@ We attempt to automatically add an Android manifest flag to support deep linking
 ### iOS project installation
 
 1. Navigate into the SDK package directory: `cd node_modules/react-native-branch`.
+1. Add pod `Branch` as a dependency in your ios/Podfile. ([example](https://github.com/BranchMetrics/react-native-branch-deep-linking/blob/master/docs/installation.md#cocoa-pods))
 1. Use CocoaPods to install dependencies: `pod install`.
 1. Drag **/node_modules/react-native-branch/Pods/Pods.xcodeproj** into the **Libraries** folder of your Xcode project. {% image src='/img/pages/getting-started/sdk-integration-guide/pod-import.png' full center alt='Import CocoaPods project' %}
 1. In Xcode, drag the `libBranch.a` Product from **Pods.xcodeproj** into your the **Link Binary with Libraries** section of **Build Phases** for your project's target. {% image src='/img/pages/getting-started/sdk-integration-guide/link-pod-binary.png' full center alt='Link Pod product with project binary' %}
@@ -985,37 +986,50 @@ Finally, add these two new methods. The first responds to URI scheme links. The 
 
 ### Android initialization
 
-In **android/app/src/main/java/com/xxx/MainActivity.java**, add the following:
+1. Add RNBranchPackage to packages list in MainApplication.java (`android/app/src/[...]/MainApplication.java`)
+
+{% highlight java %}
+//...
+import io.branch.rnbranch.*; // <-- add this
+//...
+@Override
+  protected List<ReactPackage> getPackages() {
+    return Arrays.<ReactPackage>asList(
+            new MainReactPackage(),
+            new RNBranchPackage(), // <-- add this
+// ...
+{% endhighlight %}
+
+2. In **android/app/src/main/java/com/xxx/MainActivity.java**, add the following:
 
 {% highlight java %}
 import android.content.Intent; // <-- import
-import com.dispatcher.rnbranch.*; // <-- import
+import io.branch.rnbranch.*; // <-- import
 
 public class MainActivity extends ReactActivity {
-    // ...
 
     @Override
-    protected List<ReactPackage> getPackages() {
-        return Arrays.<ReactPackage>asList(
-            new MainReactPackage(),
-            new RNBranchPackage() // <-- add this line, if not already there
-        );
+    protected String getMainComponentName() {
+        return "base";
     }
 
-    // Add onStart
+    // Override onStart, onStop, onNewIntent:
     @Override
-    public void onStart() {
+    protected void onStart() {
         super.onStart();
-
         RNBranchModule.initSession(this.getIntent().getData(), this);
     }
 
-    // Add onNewIntent
+    @Override
+    protected void onStop() {
+        super.onStop();
+        RNBranchModule.onStop();
+    }
+
     @Override
     public void onNewIntent(Intent intent) {
         this.setIntent(intent);
     }
-
     // ...
 }
 {% endhighlight %}
