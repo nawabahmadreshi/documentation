@@ -71,8 +71,8 @@ Please ensure...
 ### Add your Branch link domains
 
 1. Go to the [Link Settings](https://dashboard.branch.io/#/settings/link) page on the dashboard.
-1. Scroll down to the `Custom Link Domain` area.
-1. Locate the value inside the `Default domain name` box.{% image src='/img/pages/getting-started/universal-app-links/default-link-domain.png' half center alt='retrieving the default link subdomain' %}
+1. Scroll down to the `Link Domain` area.
+1. Copy your domain name.{% image src='/img/pages/getting-started/universal-app-links/subdomain-setting.png' full center alt='retrieving the default link subdomain' %}
 1. In the `Domains` section, click the `+` icon and add the following entries: (making sure that `xxxx` matches the four-character value on the dashboard)
    * `applinks:xxxx.app.link`
    * `applinks:xxxx-alternate.app.link`
@@ -97,8 +97,8 @@ If you use a [custom domain or subdomain for your Branch links]({{base.url}}/get
 {% if page.cordova %}
 
 1. Go to the [Link Settings](https://dashboard.branch.io/#/settings/link) page on the dashboard.
-1. Scroll down to the `Custom Link Domain` area.
-1. Locate the value inside the `Default domain name` box.{% image src='/img/pages/getting-started/universal-app-links/default-link-domain.png' half center alt='retrieving the default link subdomain' %}
+1. Scroll down to the `Link Domain` area.
+1. Copy your domain name.{% image src='/img/pages/getting-started/universal-app-links/subdomain-setting.png' full center alt='retrieving the default link subdomain' %}
 1. Add the following entry to your application's `config.xml` (making sure that `xxxx` matches the four-character value on the dashboard)
 
 {% highlight xml %}
@@ -136,8 +136,8 @@ If the **Default domain name** box shows the legacy `bnc.lt` domain, you should 
 {% if page.xamarin %}
 
 1. Go to the [Link Settings](https://dashboard.branch.io/#/settings/link) page on the dashboard.
-1. Scroll down to the `Custom Link Domain` area.
-1. Locate the value inside the `Default domain name` box.{% image src='/img/pages/getting-started/universal-app-links/default-link-domain.png' half center alt='retrieving the default link subdomain' %}
+1. Scroll down to the `Link Domain` area.
+1. Copy your domain name.{% image src='/img/pages/getting-started/universal-app-links/subdomain-setting.png' full center alt='retrieving the default link subdomain' %}
 1. Create a new file named `Entitlements.plist` in the root directory of your project.
 1. Enable `associated-domains`
 1. In the `Domains` section, click the `+` icon and add the following entries: (making sure that `xxxx` matches the four-character value on the dashboard)
@@ -159,8 +159,8 @@ If you use a [custom domain or subdomain for your Branch links]({{base.url}}/get
 {% if page.titanium %}
 
 1. Go to the [Link Settings](https://dashboard.branch.io/#/settings/link) page on the dashboard.
-1. Scroll down to the `Custom Link Domain` area.
-1. Locate the value inside the `Default domain name` box.{% image src='/img/pages/getting-started/universal-app-links/default-link-domain.png' half center alt='retrieving the default link subdomain' %}
+1. Scroll down to the `Link Domain` area.
+1. Copy your domain name.{% image src='/img/pages/getting-started/universal-app-links/subdomain-setting.png' full center alt='retrieving the default link subdomain' %}
 1. Create a new file named `Entitlements.plist` in the same directory as your Titanium app's `tiapp.xml`
 1. Insert the following snippet (making sure that `xxxx` matches the four-character value on the dashboard)
 
@@ -388,8 +388,8 @@ You can insert both your debug and production fingerprints for testing. Simply s
 ## Configure project
 
 1. Go to the [Link Settings](https://dashboard.branch.io/#/settings/link) page on the dashboard.
-1. Scroll down to the `Custom Link Domain` area.
-1. Locate the value inside the `Default domain name` box.{% image src='/img/pages/getting-started/universal-app-links/default-link-domain.png' half center alt='retrieving the default link subdomain' %}
+1. Scroll down to the `Link Domain` area.
+1. Copy your domain name.{% image src='/img/pages/getting-started/universal-app-links/subdomain-setting.png' full center alt='retrieving the default link subdomain' %}
 1. Add the following entry to your application's `config.xml` (making sure that `xxxx` matches the four-character value on the dashboard)
 
 {% highlight xml %}
@@ -480,8 +480,8 @@ If you use a [custom domain or subdomain for your Branch links]({{base.url}}/get
 ## Add Intent Filter to Manifest
 
 1. Go to the [Link Settings](https://dashboard.branch.io/#/settings/link) page on the dashboard.
-1. Scroll down to the `Custom Link Domain` area.
-1. Locate the value inside the `Default domain name` box.{% image src='/img/pages/getting-started/universal-app-links/default-link-domain.png' half center alt='retrieving the default link subdomain' %}
+1. Scroll down to the `Link Domain` area.
+1. Copy your domain name.{% image src='/img/pages/getting-started/universal-app-links/subdomain-setting.png' full center alt='retrieving the default link subdomain' %}
 1. Choose the `Activity` you want to open up when a link is clicked. This is typically your `SplashActivity` or a `BaseActivity` that all other activities inherit from (and likely the same one you selected in the [SDK Integration Guide]({{base.url}}/getting-started/sdk-integration-guide)).
 1. Inside your `AndroidManifest.xml`, locate where the selected `Activity` is defined.
 1. Within the `Activity` definition, insert the intent filter provided below (making sure that `xxxx` matches the four-character value on the dashboard)
@@ -553,23 +553,6 @@ Here are some recommended next steps:
 {% if page.android %}
 <!-- No advanced info except note on click-tracking -->
 {% else %}
-
-## Using a custom domain or subdomain
-
-### Custom SUBDOMAIN (go.branch.com)
-1. Create a CNAME for the subdomain and point it to `custom.bnc.lt`
-1. Go to [Link Settings](https://dashboard.branch.io/#/settings/link) on the Branch dashboard, and find the **Custom Link Domain** section.
-1. You should see a message telling you the status of your domain under the `Domain name` field. If you don't, please type your domain in again.
-1. Click the `Save` button.
-
-{% image src='/img/pages/getting-started/universal-app-links/enable-custom-subdomain.png' 2-thirds center alt='successful custom subdomain configuration' %}
-
-### Custom ROOT domain (branch.com)
-
-1. Go to [Link Settings](https://dashboard.branch.io/#/settings/link){:target="_blank"} on the Branch dashboard, and find the **Custom Link Domain** section.
-1. Enter your custom domain into the text box and click the `Save` button. (If the validation status doesn't update with nameservers please **refresh the page.**) {% image src='/img/pages/getting-started/universal-app-links/custom_domain_nameservers_error.png' full center alt='root domain nameservers' %}
-1. Go to your DNS configuration for your custom domain, and update your nameserver records with the Branch-provided nameservers.
-1. Click the `Save` button on the Branch dashboard again.
 
 ## Custom continueUserActivity configuration
 
