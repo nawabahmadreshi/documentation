@@ -133,7 +133,7 @@ If you use unique key/value data as deep link values:
 1. **As query parameters:** Simply append query parameters on to your web url and Branch will take those parameters and put them in deep link data.
 
 {% protip title="Host deep link data for more than just emails" %}
-In future releases, the Branch marketing link creator and Chrome extension will also scrape your web URL for deep link data to make link creation even easier.
+In future releases, the Branch marketing link creator will also scrape your web URL for deep link data to make link creation even easier.
 {% endprotip %}
 
 
