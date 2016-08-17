@@ -60,7 +60,7 @@ ulimit -n 10000
 Then rerun Jekyll (it may take a couple of attempts):
 
 ```
-bundle exec jekyll serve --watch
+bundle exec jekyll serve
 ```
 
 You'll need to do this every time you open a new shell window.
@@ -81,7 +81,7 @@ If you run into trouble with either `bundle` or `npm` commands, you may need to 
 The output of Jekyll's `--trace` option can often be useful for debugging build problems:
 
 ```
-bundle exec jekyll serve --watch --trace
+bundle exec jekyll serve --trace
 ```
 
 ## Useful tools
@@ -99,7 +99,7 @@ htmlproof --href-ignore /^$/ ./_site/
 Search will not work locally until you create an index for it. First, generate the static site with:
 
 ```
-bundle exec jekyll serve --watch
+bundle exec jekyll serve
 ```
 
 When the build process has completed, and while the site is being served, run:
