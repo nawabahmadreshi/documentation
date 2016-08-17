@@ -55,6 +55,7 @@
       children:
         - responsys
         - sailthru
+        - sendgrid
     - title: Data Integrations
       children:
         - adjust
