@@ -13,37 +13,23 @@ If you're interested in building the documentation portal on your local machine,
 Open a shell and run these commands:
 
 ```
-$ gem install bundler
-$ xcode-select --install
-$ gem install nokogiri -v '1.6.6.2'
+gem install bundler;
+xcode-select --install;
+gem install nokogiri -v '1.6.6.2';
 ```
 
 ### 2. Clone repo
-In your shell, navigate to the location you want to store the documentation site. Next run: 
+In your shell, navigate to the location you want to store the documentation site. Next run:
 
 ```
-$ git clone https://github.com/BranchMetrics/documentation.git
+git clone https://github.com/BranchMetrics/documentation.git
 ```
 
-### 3. Initialize submodules
-Open the new directory:
-
-```
-$ cd documentation
-```
-
-Initialize and update the git submodules:
-
-```
-$ git submodule init
-$ git submodule update
-```
-
-### 4. Install Jekyll and Dependencies
+### 3. Install Jekyll and Dependencies
 Install all the required Node.js and Ruby packages:
 
 ```
-$ npm install && bundle install
+npm install && bundle install
 ```
 
 # Running the project
@@ -51,10 +37,10 @@ $ npm install && bundle install
 To generate the static site files and serve them, open a new shell window, navigate the the `documentation` folder in the cloned repo, and run:
 
 ```
-$ bundle exec jekyll serve --watch
+bundle exec jekyll serve
 ```
 
-Wait for the build process to finish, and then open [http://localhost:4000](http://localhost:4000) in your web browser. The `--watch` flag automatically regenerates the site whenever you make changes to component files.
+Wait for the build process to finish, and then open [http://localhost:4000](http://localhost:4000) in your web browser.
 
 ## Troubleshooting
 
@@ -64,17 +50,17 @@ Wait for the build process to finish, and then open [http://localhost:4000](http
 Conversion error: Jekyll::BrowserifyConverter encountered an error while converting 'js/all.js':
                     Connection refused - connect(2) for "localhost" port 20219
 ```
-                    
+
 If you get connection errors like the above from Jekyll, try increasing your open file limit:
 
 ```
-$ ulimit -n 10000
+ulimit -n 10000
 ```
 
 Then rerun Jekyll (it may take a couple of attempts):
 
 ```
-$ bundle exec jekyll serve --watch
+bundle exec jekyll serve --watch
 ```
 
 You'll need to do this every time you open a new shell window.
@@ -95,7 +81,7 @@ If you run into trouble with either `bundle` or `npm` commands, you may need to 
 The output of Jekyll's `--trace` option can often be useful for debugging build problems:
 
 ```
-$ bundle exec jekyll serve --watch --trace
+bundle exec jekyll serve --watch --trace
 ```
 
 ## Useful tools
@@ -105,7 +91,7 @@ $ bundle exec jekyll serve --watch --trace
 To check for broken links in the generated site, run:
 
 ```
-$ htmlproof --href-ignore /^$/ ./_site/
+htmlproof --href-ignore /^$/ ./_site/
 ```
 
 ### Building local search index
@@ -113,13 +99,13 @@ $ htmlproof --href-ignore /^$/ ./_site/
 Search will not work locally until you create an index for it. First, generate the static site with:
 
 ```
-$ bundle exec jekyll serve --watch
+bundle exec jekyll serve --watch
 ```
 
 When the build process has completed, and while the site is being served, run:
 
 ```
-$ npm run build_search
+npm run build_search
 ```
 
 # Guidelines for writing
@@ -132,7 +118,7 @@ For a sample file with the most common elements preloaded, see `features/templat
 
 It is recommended to make changes on a new branch, and then submit a pull request to `master`. Ask for someone to thumb it up before merging.
 
-***Important:*** `master` *is the production branch! If you push changes there, they will be deployed to [https://dev.branch.io](https://dev.branch.io)!* 
+***Important:*** `master` *is the production branch! If you push changes there, they will be deployed to [https://dev.branch.io](https://dev.branch.io)!*
 
 We also have a staging server. Any changes pushed to the `staging` branch will deploy to [http://dev.staging.branch.io.s3-website-us-west-1.amazonaws.com](http://dev.staging.branch.io.s3-website-us-west-1.amazonaws.com)
 
