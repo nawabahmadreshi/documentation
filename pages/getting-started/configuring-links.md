@@ -172,9 +172,9 @@ Most of these parameters can also be specified using the [BranchUniversalObject]
 
 Currently, these parameters are only used for [iOS Spotlight Indexing]({{base.url}}/features/spotlight-indexing) but will be used by Branch in the future.
 
-| Key | Usage
+| Key | Usage | Default
 | --- | --- | ---
-| $publicly_indexable | Can be set to either `public` or `private`. Public indicates that you'd like this content to be discovered by other apps
+| $publicly_indexable | If this content should be public and discovered by other apps. `1` indicates public, and `0` indicates private | `0`
 | $keywords | Keywords for which this content should be discovered by. Just assign an array of strings with the keywords you'd like to use
 | $canonical_identifier | This is the unique identifier for content that will help Branch dedupe across many instances of the same thing. Suitable options: a website with pathing, or a database with identifiers for entities
 | $exp_date | The date when the content will not longer be available or valid
