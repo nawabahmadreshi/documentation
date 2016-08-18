@@ -19,7 +19,7 @@ Deep Linked Email allows you to automatically convert your email links into mult
 
 {% image src="/img/pages/third-party-integrations/responsys/deep-linked-email.png" center full alt='With and Without Branch Deep Linked Email' %}
 
-With a script provided by Branch, you can dynamically create Branch links in email. In any place the script is called, the web URL is converted into its corresponding Branch link. The email is then sent.
+With a script provided by Branch, you can dynamically create Branch links in email. This script will help you automatically re-write normal web links to be Branch deep links.
 
 When a link is clicked by a user without the app, it will route that user to the original web URL (including on desktop). When a link is clicked by a user with your app, it will direct that user into the relevant in-app content regardless of platform or email client.
 
