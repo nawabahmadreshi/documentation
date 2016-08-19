@@ -1,7 +1,7 @@
 ---
 type: recipe
 directory: third-party-integrations
-title: SendGrid
+title: Other Email Service Providers
 page_title: Automatically convert your email links into multi-platform deep links.
 description: Add powerful, best in class deep linking to your email campaigns.
 keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Deep Linked Email
@@ -19,36 +19,92 @@ Deep Linked Email allows you to automatically convert your email links into mult
 
 {% image src="/img/pages/third-party-integrations/responsys/deep-linked-email.png" center full alt='With and Without Branch Deep Linked Email' %}
 
-With a script provided by Branch, you can dynamically create Branch links in email. This script will help you automatically re-write normal web links to be Branch deep links.
+With a script provided by Branch, you can dynamically create Branch links in email. In any place the script is called, the web URL is converted into its corresponding Branch link. The email is then sent.
 
 When a link is clicked by a user without the app, it will route that user to the original web URL (including on desktop). When a link is clicked by a user with your app, it will direct that user into the relevant in-app content regardless of platform or email client.
+
+## Email + Branch Deep Linking
+
+It has always been possible to put normal Branch deep links into emails and send them out. It has always been fairly time-consuming (you had to convert individual web links to Branch deep links). With iOS 9, things got much worse. Apple basically [forced developers to adopt Universal Links](https://blog.branch.io/ios-9.2-redirection-update-uri-scheme-and-universal-links), which did not work in emails that had click tracking enabled.
+
+Branch's solution to this has been to work with email service providers to make Universal Links work again. At the same time, we tackled the problem of manually creating Branch links for emails. Our solution allows marketers to paste normal web links into an email, then a script rewrites those links as Branch deep links.
+
+## Partnering with Branch
+
+If you are an email service provider and wish to partner with Branch to offer deep links in emails, please read this guide.
+
+If you use Branch and wish to use deep links in email but do not see your current email service provider listed in these docs, please reach out to them and send them this guide.
 
 {% getstarted %}{% endgetstarted %}
 
 {% elsif page.guide %}
 
-{% prerequisite %}
 
-- This guide requires you to have already [integrated the Branch SDK]({{base.url}}/getting-started/sdk-integration-guide) into your app.
 
-- Your Branch account manager will walk you through the one time setup steps. Please see the Advanced tab for more detailed information.
-{% endprerequisite %}
+## Two approaches to email: API vs UI (Dashboard)
 
-## One time setup
+Email Service Providers (ESPs) typically allow partners to send emails via two mechanisms: APIs and UIs, such as dashboards. Both mechanisms are valuable. The breakdown of responsibilities for converting normal emails to deep linked emails is slightly different for these two mechanisms.
 
-Contact your Branch Account Manager or [accounts@branch.io](mailto:accounts@branch.io) to enable remote deep linking functionality for emails, set up your app and host the necessary files for Universal Links. You can find more details about the one time setup steps in the "Advanced" tab.
+In short, when emails are sent via APIs, it is the partner's responsibility to convert normal web links to Branch deep links. Branch has examples of how to do this in both Javascript and Python. However, when emails are sent via an ESP dashboard, such as a template designer, this responsibility falls to the ESP. See the section on [Rewriting links](TODO) below.
 
-{% caution title="Ensure compatibility on iOS 9+ with SendGrid" %}
-Deep linking on iOS 9+ devices requires Apple’s Universal Link technology. Branch will provide you with almost everything you need. You will need to switch to using a custom, Branch-provided domain for click tracking within SendGrid. Your Branch account manager will help with this step as well.
-{% endcaution %}
+The following two sections cover sending emails via API versus ESP-provided UIs. Note that the initial steps are the same for both mechanisms.
 
-## On-going use
 
-Once you’ve completed the one time setup steps, it’s time to send your first email.
 
-This step will identify which web links you'd like to open the app and deep link, as well as convert them to Branch links.
+## Sending emails via API
 
-### Rewrite normal links as Branch links
+### One-time setup for Email Service Providers (ESP)
+
+ESPs must:
+
+1. Allow customizing the click tracking domain. A company should be able to provide a custom domain to the ESP, such as email-companyname.app.link. Then when the ESP rewrites links for click tracking, it should use this domain.
+2. Provide Branch with nameservers or CNAME information so that Branch can proxy requests from the custom click tracking domain through to the ESP.
+3. (Optional) Change backend to accept the X-Forwarded-For HTTP header, since Branch will be proxying requests through. This only matters if reporting provided by the ESP includes IP address of users.
+
+### One-time setup for Partners
+
+Partners using the ESP and Branch must:
+
+1. Ask Branch for custom click tracking domain, such as email-companyname.app.link, and provide that to the ESP
+2. Work with Branch to set up [redirect behavior and tracking](TODO)
+3. Rewrite normal web links as Branch deep links, [using a Branch-provided script](TODO) ("REWRITING LINKS")
+
+
+
+## Sending emails via UI (Dashboard)
+
+### One-time setup for Email Service Providers (ESP)
+
+ESPs must:
+
+1. Allow customizing the click tracking domain. A company should be able to provide a custom domain to the ESP, such as email-companyname.app.link. Then when the ESP rewrites links for click tracking, it should use this domain.
+2. Provide Branch with nameservers or CNAME information so that Branch can proxy requests from the custom click tracking domain through to the ESP.
+3. (Optional) Change backend to accept the X-Forwarded-For HTTP header, since Branch will be proxying requests through. This only matters if reporting provided by the ESP includes IP address of users.
+4. Rewrite normal web links as Branch deep links, [using a Branch-provided script](TODO) ("REWRITING LINKS")
+
+### One-time setup for Partners
+
+Partners using the ESP and Branch must:
+
+1. Ask Branch for custom click tracking domain, such as email-companyname.app.link, and provide that to the ESP
+2. Work with Branch to set up [redirect behavior and tracking](TODO)
+3. Indicate which links should be rewritten as Branch deep links. The ESP should provide a method, such as appending `?deeplink=true` to URLs, that allows the partner to indicate whether a link should be rewritten.
+
+
+
+## What Branch handles
+
+Regardless of whether emails are sent via API or UI (Dashboard), Branch is responsible for:
+
+1. Generating and hosting the apple-app-site-association file
+2. Generating a custom domain, such as email-companyname.app.link
+3. Proxying non-apple-app-site-association traffic to email-companyname.app.link through to the ESP
+4. Routing of all deep links, including Universal Links
+5. Automatic "clicking" of Universal Links. This allows ESPs to track clicks on Universal Links even though these links skip the browser entirely!
+
+
+
+## Rewriting links
 
 You will need to convert your links from normal web links to Branch deep links. We have provided [a script](https://gist.github.com/derrickstaten/f9b1e72e506f79628ab9127dd114dd83#file-branch-sdk-js) for doing so, as well as [an example](https://gist.github.com/derrickstaten/f9b1e72e506f79628ab9127dd114dd83#file-sendgrid-demo-js). The example takes an html email (as a string) and applies the script to it.
 
@@ -76,6 +132,8 @@ Here is how links look before and after (the latter being a Branch deep link).
 2. *After:* https://vza3.app.link/3p?%243p=st&%24original_url=http%3A%2F%2Fexample.com%2F%3Ffoo%3Dbar&%24hmac=221dd9fb333d809b22fbdfd9b87808de73e3cd94f99b8eb26e6181e962fcb438
 
 (note that these are simplified examples, not actual demo links)
+
+
 
 {% elsif page.advanced %}
 
