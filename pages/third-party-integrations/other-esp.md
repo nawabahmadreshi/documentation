@@ -135,6 +135,12 @@ Here is how links look before and after (the latter being a Branch deep link).
 
 
 
+## Web only content
+
+The ESP can determine which tracked links should function as Universal Links, i.e. should open the app. As an example, one ESP currently has their tracked links of the form `https://esp-tracking.com/{hash}` and `https://esp-tracking.com/uni/{hash}`. Then when Branch automatically generates the apple-app-site-association file, it specifies that only links of the form `https://esp-tracking.com/uni/{hash}` should open the app. This allows links without in-app content, such as unsubscribe links or password reset links, to not open the app. We highly recommend this approach. Please notify Branch of what path you wish to use for links that should open the app.
+
+
+
 {% elsif page.advanced %}
 
 
