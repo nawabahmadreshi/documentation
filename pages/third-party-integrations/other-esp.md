@@ -1,7 +1,7 @@
 ---
 type: recipe
 directory: third-party-integrations
-title: Other Email Service Providers
+title: Email Service Provider Integrations
 page_title: Automatically convert your email links into multi-platform deep links.
 description: Add powerful, best in class deep linking to your email campaigns.
 keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Deep Linked Email
@@ -25,7 +25,7 @@ When a link is clicked by a user without the app, it will route that user to the
 
 ## Email + Branch Deep Linking
 
-It has always been possible to put normal Branch deep links into emails and send them out. It has always been fairly time-consuming (you had to convert individual web links to Branch deep links). With iOS 9, things got much worse. Apple basically [forced developers to adopt Universal Links](https://blog.branch.io/ios-9.2-redirection-update-uri-scheme-and-universal-links), which did not work in emails that had click tracking enabled.
+It has always been possible to put normal Branch deep links into emails. However, it has always been fairly time-consuming (you had to convert individual web links to Branch deep links). Also, with iOS 9, Apple [required developers to adopt Universal Links](https://blog.branch.io/ios-9.2-redirection-update-uri-scheme-and-universal-links), which did not work in emails that had click tracking enabled.
 
 Branch's solution to this has been to work with email service providers to make Universal Links work again. At the same time, we tackled the problem of manually creating Branch links for emails. Our solution allows marketers to paste normal web links into an email, then a script rewrites those links as Branch deep links.
 
@@ -39,16 +39,13 @@ If you use Branch and wish to use deep links in email but do not see your curren
 
 {% elsif page.guide %}
 
-
-
-## Two approaches to email: API vs UI (Dashboard)
+## Two approaches to email: API vs UI 
 
 Email Service Providers (ESPs) typically allow partners to send emails via two mechanisms: APIs and UIs, such as dashboards. Both mechanisms are valuable. The breakdown of responsibilities for converting normal emails to deep linked emails is slightly different for these two mechanisms.
 
-In short, when emails are sent via APIs, it is the partner's responsibility to convert normal web links to Branch deep links. Branch has examples of how to do this in both Javascript and Python. However, when emails are sent via an ESP dashboard, such as a template designer, this responsibility falls to the ESP. See the section on [Rewriting links](TODO) below.
+In short, when emails are sent via APIs, it is the partner's responsibility to convert normal web links to Branch deep links. Branch has examples of how to do this in both Javascript and Python. However, when emails are sent via an ESP dashboard, such as a template designer, this responsibility falls to the ESP. See the section on [Rewriting links](/third-party-integrations/other-esp/guide/#rewriting-links) below.
 
 The following two sections cover sending emails via API versus ESP-provided UIs. Note that the initial steps are the same for both mechanisms.
-
 
 
 ## Sending emails via API
@@ -61,15 +58,14 @@ ESPs must:
 2. Provide Branch with nameservers or CNAME information so that Branch can proxy requests from the custom click tracking domain through to the ESP.
 3. (Optional) Change backend to accept the X-Forwarded-For HTTP header, since Branch will be proxying requests through. This only matters if reporting provided by the ESP includes IP address of users.
 
-### One-time setup for Partners
+### One-time setup for customers
 
 Partners using the ESP and Branch must:
 
-1. Ask Branch for custom click tracking domain, such as email-companyname.app.link, and provide that to the ESP
-2. Work with Branch to set up [redirect behavior and tracking](TODO)
-3. Rewrite normal web links as Branch deep links, [using a Branch-provided script](TODO) ("REWRITING LINKS")
-
-
+1. Set up custom click tracking domain, such as email-companyname.mydomain.com, and provide that to the ESP.
+1. Delegate that click tracking domain to Branch, who will then proxy all clicks to the ESP.
+1. Work with Branch to set up [redirect behavior and tracking](/third-party-integrations/other-esp/support/#redirect-behavior-and-tracking).
+1. Rewrite normal web links as Branch deep links, [using a Branch-provided script](/third-party-integrations/other-esp/guide/#rewriting-links) ("REWRITING LINKS").
 
 ## Sending emails via UI (Dashboard)
 
@@ -80,21 +76,21 @@ ESPs must:
 1. Allow customizing the click tracking domain. A company should be able to provide a custom domain to the ESP, such as email-companyname.app.link. Then when the ESP rewrites links for click tracking, it should use this domain.
 2. Provide Branch with nameservers or CNAME information so that Branch can proxy requests from the custom click tracking domain through to the ESP.
 3. (Optional) Change backend to accept the X-Forwarded-For HTTP header, since Branch will be proxying requests through. This only matters if reporting provided by the ESP includes IP address of users.
-4. Rewrite normal web links as Branch deep links, [using a Branch-provided script](TODO) ("REWRITING LINKS")
+4. Rewrite normal web links as Branch deep links, [using a Branch-provided script](/third-party-integrations/other-esp/guide/#rewriting-links) ("REWRITING LINKS")
 
 ### One-time setup for Partners
 
 Partners using the ESP and Branch must:
 
-1. Ask Branch for custom click tracking domain, such as email-companyname.app.link, and provide that to the ESP
-2. Work with Branch to set up [redirect behavior and tracking](TODO)
-3. Indicate which links should be rewritten as Branch deep links. The ESP should provide a method, such as appending `?deeplink=true` to URLs, that allows the partner to indicate whether a link should be rewritten.
-
+1. Set up custom click tracking domain, such as email-companyname.mydomain.com, and provide that to the ESP.
+1. Delegate that click tracking domain to Branch, who will then proxy all clicks to the ESP.
+1. Work with Branch to set up [redirect behavior and tracking](/third-party-integrations/other-esp/support/#redirect-behavior-and-tracking).
+1. Indicate which links should be rewritten as Branch deep links. The ESP should provide a method, such as appending ?deeplink=true to URLs, that allows the partner to indicate whether a link should be rewritten.
 
 
 ## What Branch handles
 
-Regardless of whether emails are sent via API or UI (Dashboard), Branch is responsible for:
+Regardless of whether emails are sent via API or UI, Branch is responsible for:
 
 1. Generating and hosting the apple-app-site-association file
 2. Generating a custom domain, such as email-companyname.app.link
@@ -103,10 +99,9 @@ Regardless of whether emails are sent via API or UI (Dashboard), Branch is respo
 5. Automatic "clicking" of Universal Links. This allows ESPs to track clicks on Universal Links even though these links skip the browser entirely!
 
 
-
 ## Rewriting links
 
-You will need to convert your links from normal web links to Branch deep links. We have provided [a script](https://gist.github.com/derrickstaten/f9b1e72e506f79628ab9127dd114dd83#file-branch-sdk-js) for doing so, as well as [an example](https://gist.github.com/derrickstaten/f9b1e72e506f79628ab9127dd114dd83#file-sendgrid-demo-js). The example takes an html email (as a string) and applies the script to it.
+For the best customer experience, we recommending giving customers a wait to easily convert their links from normal web links to Branch deep links. We have provided [a way](/third-party-integrations/remote-deep-links/guide/) for doing so, as well as [an example](https://gist.github.com/derrickstaten/f9b1e72e506f79628ab9127dd114dd83#file-sendgrid-demo-js). The example takes an html email (as a string) and applies the script to it.
 
 Here is the script:
 {% highlight js %}
@@ -133,83 +128,21 @@ Here is how links look before and after (the latter being a Branch deep link).
 
 (note that these are simplified examples, not actual demo links)
 
-
-
 ## Web only content
 
-The ESP can determine which tracked links should function as Universal Links, i.e. should open the app. As an example, one ESP currently has their tracked links of the form `https://esp-tracking.com/{hash}` and `https://esp-tracking.com/uni/{hash}`. Then when Branch automatically generates the apple-app-site-association file, it specifies that only links of the form `https://esp-tracking.com/uni/{hash}` should open the app. This allows links without in-app content, such as unsubscribe links or password reset links, to not open the app. We highly recommend this approach. Please notify Branch of what path you wish to use for links that should open the app.
+The ESP can determine which tracked links should function as Universal Links, i.e. should open the app. As an example, one ESP currently has their tracked links of the form `https://esp-tracking.com/{hash}` and `https://esp-tracking.com/uni/{hash}`. 
 
+Then when Branch automatically generates the apple-app-site-association file, it specifies that only links of the form `https://esp-tracking.com/uni/{hash}` should open the app. This allows links without in-app content, such as unsubscribe links or password reset links, to not open the app. We highly recommend this approach. 
 
+Please use the `/uni/` path for click tracking URLs that should open the app. Please notify Branch if you choose to use a different path.
 
 {% elsif page.advanced %}
 
-
-## Setting up your link schema for email
-
-The Branch script turns your web url (`ORIGINAL_URL` in the example snippet in this guide) into a Branch link.
-
-There are four ways to do this. Your Branch account manager will set your app configuration up according to the technique you use.
-
-If you use your web URL as a deep link value:
-
-1. **URL path:** If you use the path of your web URL as your  `$deeplink_path` value, or any other deep link value, then the configuration will automatically take the path of the URL and put it in deep link data.
-1. **Full URL:** If you use the full web URL as your `$deeplink_path` value, or any other deep link value, then the configuration will take the entire URL and put it in deep link data.
-
-If you use unique key/value data as deep link values:
-
-1. **Hosted deep link data:** You can host your deep link data on your website with a metatag that looks like this `<meta name="branch:deeplink:my_key" content="my_value" />` where `my_key` and `my_value` will become a key value pair in deep link data. For each web URL, Branch will look for those tags and embed the deep link data (if found) into the deep link. Note that Branch also accepts App Links tags for deep linking.
-1. **As query parameters:** Simply append query parameters on to your web url and Branch will take those parameters and put them in deep link data.
-
-{% protip title="Host deep link data for more than just emails" %}
-In future releases, the Branch marketing link creator will also scrape your web URL for deep link data to make link creation even easier.
-{% endprotip %}
-
-## App changes for Universal Link support
-
-### Add your click tracking domain to your Associated Domains
-To enable Universal Links on your click tracking domain, you'll need to add the click tracking domain to your Associated Domains entitlement. Follow [these instructions](/getting-started/universal-app-links/guide/ios/#add-the-associated-domains-entitlement-to-your-project) to add your click tracking domain to Associated Domains. Your domain will likely be entered as `applinks:email.example.com`.
-
-### Handle links for web-only content
-
-If you have links to content that exists only on web, and not in the app (for example, an Unsubscribe button, or a temporary marketing webpage that isn't in the app) then this code snippet will ensure all links that have not had the deep linking script applied will open in a browser.
-
-You should add this code snippet inside the `deepLinkHandler` code block in `application:didFinishLaunchingWithOptions:`. Note that this uses query `open_web_browser=true`, but you can choose whatever you like. This should match the web URL you enter in the email.
-
-{% tabs %}
-{% tab objective-c %}
-{% highlight objc %}
-if (params[@"+non_branch_link"] && [params[@"+from_email_ctd"] boolValue]) {
-    NSURL *url = [NSURL URLWithString:params[@"+non_branch_link"]];
-    if (url) {
-        [application openURL:url];
-        // check to make sure your existing deep linking logic, if any, is not executed, perhaps by returning early
-    }
-}
-{% endhighlight %}
-{% endtab %}
-
-{% tab swift %}
-{% highlight swift %}
-if let nonBranchLink = params["+non_branch_link"] as? String, let fromEmailCtd = params["+from_email_ctd"] as? Bool {
-    if fromEmailCtd, let url : URL = URL(string: nonBranchLink) {
-        application.openURL(url)
-        // check to make sure your existing deep linking logic, if any, is not executed, perhaps by returning early
-    }
-}
-{% endhighlight %}
-{% endtab %}
-{% endtabs %}
-
-{% protip title="Do not open the app" %}
-In a future release (scheduled for September) customers will have the ability to choose not to open the app at all rather than open the app and launch a browser.
-{% endprotip %}
-
-
 ## AASA file for Universal Link support
 
-We will host an Apple App Site Association (AASA) file for you, so that your click tracking domain appears to Apple as a Universal Link, and the app will open and deep link.
+Branch will host an Apple App Site Association (AASA) file for you, so that your click tracking domain using `/uni/` appears to Apple as a Universal Link, and the app will open and deep link.
 
-You will need to set up a click tracking domain with Branch and SendGrid. Contact your Branch Account Manager and we will provision a domain for you, which you can then provide to SendGrid.
+Branch will proxy traffic on to the ESP click tracking domain, allowing Universal Links to function and clicks to be recorded. 
 
 {% protip title="How does it work?"%}
 Apple recognizes the click tracking domain as a Universal Link, and opens the app immediately without the browser opening. Once the app has opened, Branch will collect the referring URL that opened the app (at this time, it will be the click tracking url). Inside the app, Branch will robotically “click” the link, registering the click with the ESP, and returning the Branch link information to the Branch SDK inside the app. This information is then used to deep link the user to the correct in-app content. See the "Support" tab for more information.
@@ -244,11 +177,8 @@ When you click a Branch link directly from an email inside the Mail app on iOS 9
 
 **Solution**
 
-To solve this, Branch will host the AASA file on your click tracking domain. We’ll help you get set up with this.
+To solve this, Branch will host the AASA file on your customers' click tracking domain. We’ll help you customers get set up with this.
 
 {% image src="/img/pages/third-party-integrations/responsys/deep-linked-email-universal-links.png" center full alt='Deep Linked Email Universal Links' %}
-
-## Coming soon: Don’t open the app
-In some cases you may have content on web that isn’t in the app - for example, a temporary Mother’s Day promotion or an unsubscribe button. In this case, ideally you would be able to specify in the email that that link should not open the app. At the moment, the app will open, and the customers will then be taken to a browser. Oracle Responsys and Branch are working together to provide a solution where the customers will never enter the app if the content doesn't live in the app. That feature is scheduled for release in September 2016.
 
 {% endif %}
