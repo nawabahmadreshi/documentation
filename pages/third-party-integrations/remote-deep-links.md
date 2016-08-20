@@ -60,7 +60,7 @@ Here's an example.
 The deep linking and fallback behavior of the link is determined in the Branch dashboard. Your Branch account manager will set this up for you before starting.
 
 {% protip %}
-There are reference scripts in Python and Javascript [here](https://gist.github.com/derrickstaten/aa7696a7a7a0aed5956fef6c030bd2c6).
+There are reference scripts in Python and Javascript [here](https://gist.github.com/derrickstaten/f9b1e72e506f79628ab9127dd114dd83#file-branch-sdk-js) as well as an example [of a full email conversion script](https://gist.github.com/derrickstaten/f9b1e72e506f79628ab9127dd114dd83#file-sendgrid-demo-js).
 {% endprotip %}
 
 {% endif %}
