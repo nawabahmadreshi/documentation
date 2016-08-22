@@ -137,12 +137,24 @@ var LinkGroup = React.createClass({
 					</div>);
 				}
 				else {
-					return (<div className={ selectedClass }>
-						<h4 className="sidebar-group-title" onClick={ this._toggle }>
-							{ props.group.title }
-						</h4>
-						<ul className={ groupClass }>{ links(props.group.children) }</ul>
-					</div>);
+					if (!props.level) {
+						return (<div className={ selectedClass }>
+							<a href={'/' + props.directory }>
+								<h4 className="sidebar-group-title" onClick={ this._toggle }>
+									{ props.group.title }
+								</h4>
+							</a>
+							<ul className={ groupClass }>{ links(props.group.children) }</ul>
+						</div>);
+					}
+					else {
+						return (<div className={ selectedClass }>
+							<h4 className="sidebar-group-title" onClick={ this._toggle }>
+								{ props.group.title }
+							</h4>
+							<ul className={ groupClass }>{ links(props.group.children) }</ul>
+						</div>);
+					}
 				}
 		}
 		else {

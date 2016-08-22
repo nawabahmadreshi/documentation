@@ -11,15 +11,12 @@ hide_section_selector: true
 
 Branch can integrate with a number of other platforms to enable powerful, customized workflows.
 
-#### Some popular integrations
-- Use **[Tune](tune)**, **[Localytics](localytics)** or **[Kochava](kochava)** to fully understand your organic and paid acquisition channels.
+#### Deep Linked Emails <i class="fa fa-star" aria-hidden="true"></i>
+-  Offer a better user experience by using our Email Service Provider integrations to send emails with Branch links inside. We work with **[Responsys](responsys)**, **[Sailthru](sailthru)**, and **[SendGrid](sendgrid)**, with more on the way!
+
+#### Data Integrations <i class="fa fa-star" aria-hidden="true"></i>
+- Use **[Tune](tune)**, **[Localytics](localytics)**, **[Adjust](adjust)**, or **[Kochava](kochava)** to fully understand your organic and paid acquisition channels.
 - Branch seamlessly integrates with **[Google Analytics](google-analytics),** **[Amplitude](amplitude)** and **[Mixpanel](mixpanel),** giving additional relevancy to your app analytics.
-
-{% protip title="Get started on the dashboard" %}
-The Data Integrations section shows our easiest push-button, premium integrations. 
-
-Visit [https://dashboard.branch.io/integrations](https://dashboard.branch.io/integrations) to get started.
-{% endprotip %}
 
 #### Deep linked ads
 
