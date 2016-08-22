@@ -11,12 +11,21 @@ hide_section_selector: true
 
 Branch can integrate with a number of other platforms to enable powerful, customized workflows.
 
-#### Deep Linked Emails <i class="fa fa-star" aria-hidden="true"></i>
--  Offer a better user experience by using our Email Service Provider integrations to send emails with Branch links inside. We work with **[Responsys](responsys)**, **[Sailthru](sailthru)**, and **[SendGrid](sendgrid)**, with more on the way!
+{% protip %}
 
-#### Data Integrations <i class="fa fa-star" aria-hidden="true"></i>
+<h3 style="margin-top:0;">Deep Linked Emails <i class="fa fa-star" style="margin-left:10px;" aria-hidden="true"></i></h3>
+
+Offer a better user experience by using our Email Service Provider integrations to send emails with Branch links inside. We work with **[Responsys](responsys)**, **[Sailthru](sailthru)**, and **[SendGrid](sendgrid)**, with more on the way!
+
+{% endprotip %}
+{% protip %}
+
+<h3 style="margin-top:0;">Data Integrations <i class="fa fa-star" style="margin-left:10px;" aria-hidden="true"></i></h3>
+
 - Use **[Tune](tune)**, **[Localytics](localytics)**, **[Adjust](adjust)**, or **[Kochava](kochava)** to fully understand your organic and paid acquisition channels.
-- Branch seamlessly integrates with **[Google Analytics](google-analytics),** **[Amplitude](amplitude)** and **[Mixpanel](mixpanel),** giving additional relevancy to your app analytics.
+- Send Branch data to **[Google Analytics](google-analytics),** **[Amplitude](amplitude)** and **[Mixpanel](mixpanel),** giving additional relevancy to your app analytics.
+
+{% endprotip %}
 
 #### Deep linked ads
 
