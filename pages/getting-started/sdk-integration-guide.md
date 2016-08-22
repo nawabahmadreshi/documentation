@@ -13,6 +13,8 @@ platforms:
 - adobe
 - titanium
 - react
+- mparticle_ios
+- mparticle_android
 sections:
 - guide
 - advanced
@@ -22,6 +24,10 @@ sections:
 
 {% prerequisite %}
 Before using the Branch SDK, you must first [sign up for an account](https://dashboard.branch.io){:target="_blank"} and complete the [onboarding process](https://start.branch.io/){:target="_blank"}.
+{% endprerequisite %}
+
+{% prerequisite %}
+Before enabling the Branch SDK on mParticle, you must first [sign up for an mParticle account](https://app.mparticle.com/){:target="_blank"} and complete the [setup and integration process](http://docs.mparticle.com/){:target="_blank"}.
 {% endprerequisite %}
 
 ## Get the SDK files
@@ -233,6 +239,50 @@ dependencies {
 {% endif %}
 <!--- /React -->
 
+<!-- mParticle iOS -->
+{% if page.mparticle_ios %}
+
+### Install with CocoaPods
+
+The recommended way to install the SDK is via CocoaPods:
+
+1. Add `pod 'mParticle-BranchMetrics', '~> 6.5.0'` to your podfile.
+1. Run `pod install` from the command line.
+
+### Install with Carthage
+
+Alternatively, you could install the SDK via Carthage:
+
+1. Add `github "mparticle-integrations/mparticle-apple-integration-branchmetrics" ~> 6.5.0` to your Cartfile.
+1. Run `carthage update` from the command line.
+
+{% endif %}
+<!-- /mParticle iOS -->
+
+<!-- mParticle Android -->
+
+{% if page.mparticle_android %}
+
+With extensive use, the Android SDK footprint is **187 kb**.
+
+### Install with Gradle
+
+Add `compile ‘com.mparticle:android-branch-kit:4.+’` to the dependencies section of your `build.gradle` file.
+
+{% endif %}
+<!-- /mParticle Android -->
+
+{% if page.mparticle_ios or page.mparticle_android %}
+##  Enable Branch on mParticle
+
+1. Retrieve your Branch Key on the [Settings](https://dashboard.branch.io/#/settings){:target="_blank"} page of the Branch dashboard.
+1. From your [mParticle dashboard](https://app.mparticle.com/){:target="_blank"} navigate to the Services page. (The paper airplane icon on the left side)
+1. Scroll down to the Branch tile, or enter Branch in the search bar.
+1. Click on the Branch tile and then select "Activate a Platform".
+1. Click on the {% if page.mparticle_ios %}Apple{% else %}Android{% endif %} icon, then toggle the status ON.
+1. Enter your Branch key in the marked field and click "Save".
+
+{% endif %}
 
 {% if page.xamarin %}
 ## iOS: Configure Xcode Project
@@ -243,7 +293,7 @@ In your project's `YourProject-Info.plist` file, you can register your app to re
 
 {% endif %}
 
-{% if page.ios or page.react %}
+{% if page.ios or page.react or page.mparticle_ios %}
 ## {% if page.react %}iOS: {% endif %}Configure Xcode Project
 
 ### Add your Branch key
@@ -252,6 +302,15 @@ In your project's `YourProject-Info.plist` file, you can register your app to re
 1. In Xcode, open your project's Info.plist file in the Navigator (on the left side).
 1. Mouse hover "Information Property List" (the root item under the Key column).
 1. After about half a second, you will see a `+` sign appear. Click it.
+{% if page.mparticle_ios %}
+1. Add a new row with the following value.
+
+| Key | Type | Value |
+| :--- | --- | --- |
+| Branch Key | String | [key_live_xxxxxxxxxxxxxxx] |
+
+{% else %}
+
 1. Add new rows with the following values, with the `String` entry inside the `Dictionary`:
 
 | Key | Type | Value |
@@ -260,6 +319,8 @@ In your project's `YourProject-Info.plist` file, you can register your app to re
 | live | String | [key_live_xxxxxxxxxxxxxxx] |
 
 {% image src="/img/pages/getting-started/sdk-integration-guide/branch-multi-key-plist.png" actual center alt="environment toggle" %}
+
+{% endif %}
 
 ### Register a URI scheme
 
@@ -293,9 +354,10 @@ This only applies to apps which have the `app.link` domain such as `h4vy.app.lin
 
 {% endif %}
 
-{% if page.android or page.react %}
+{% if page.android or page.react or page.mparticle_android %}
 ## {% if page.react %}Android: {% endif %}Configure Manifest
 
+{% if page.android or page.react %}
 ### Add your Branch key
 
 1. Retrieve your Branch Key on the [Settings](https://dashboard.branch.io/#/settings){:target="_blank"} page of the Branch dashboard.
@@ -329,7 +391,7 @@ Add this snippet to your `AndroidManifest.xml`:
 {% protip title="Alternative Configuration" %}
 - [I already use the Install Referrer in my app]({{base.url}}/getting-started/sdk-integration-guide/advanced/android#custom-install-referrer-class){:target="_blank"}
 {% endprotip %}
-
+{% endif %}
 ### Register a URI scheme
 
 Branch opens your app by using its URI scheme (`yourapp://`), which should be unique to your app.
@@ -348,6 +410,7 @@ Branch opens your app by using its URI scheme (`yourapp://`), which should be un
 </intent-filter>
 {% endhighlight %}
 
+{% if page.android or page.react %}
 ### Enable Auto Session Management
 
 If your app uses a custom Application class, add `Branch.getAutoInstance(this);` so that it matches the following:
@@ -370,6 +433,7 @@ Your `Activity` also has an `onCreate()` method. Be sure you do not mix the two 
 - [I don't use a custom application class]({{base.url}}/getting-started/sdk-integration-guide/advanced/android#using-the-default-application-class){:target="_blank"}
 - [I need to support pre-14 Android]({{base.url}}/getting-started/sdk-integration-guide/advanced/android#supporting-pre-14-android){:target="_blank"}
 {% endprotip %}
+{% endif %}
 
 {% endif %}
 <!---       /Android-specific Branch Key -->
@@ -554,7 +618,11 @@ To ensure proper deep linking from other apps such as Facebook, this Activity mu
 
 ## Start a Branch session
 
+{% if page.mparticle_ios or page.mparticle_android %}
+As with any kit, mParticle will automatically handle initializing Branch sessions. At this point you should start seeing your Branch session data - including installs, re-opens, and any custom events - in your Branch dashboard.
+{% else %}
 A Branch session needs to be started every single time your app opens. We check to see if the user came from a link and if so, the callback method returns any deep link parameters for that link. Please note that the callback function is always called, even when the network is out.
+{% endif %}
 
 <!---    iOS -->
 {% if page.ios %}
@@ -672,9 +740,10 @@ func application(application: UIApplication, continueUserActivity userActivity: 
 {% endif %}
 <!---    /iOS -->
 
+<!-- Android -->
 {% if page.android %}
 
-Open the `Activity` for which you registered the `intent` in the previous section, and hook into the `onStart` and `onNewIntent` lifecycle methods by adding these overrides:
+Open the `Activity` for which you registered the `Intent` in the previous section, and hook into the `onStart` and `onNewIntent` lifecycle methods by adding these overrides:
 
 {% highlight java %}
 @Override
@@ -706,7 +775,9 @@ public void onNewIntent(Intent intent) {
 `this.getIntent().getData()` refers to the data associated with an incoming intent. Please use `getActivity()` instead of passing in `this`.
 {% endprotip %}
 {% endif %}
+<!-- /Android -->
 
+<!-- Cordova -->
 {% if page.cordova %}
 
 Use the the following methods to initialize a Branch session when the `deviceready` event fires and every time the `resume` event fires.
@@ -737,7 +808,9 @@ If `data` is null and `err` contains a string denoting a request timeout, make s
 {% endcaution %}
 
 {% endif %}
+<!-- /Cordova -->
 
+<!-- Xamarin -->
 {% if page.xamarin %}
 
 {% protip title="Apps built without Xamarin Forms" %}
@@ -825,7 +898,9 @@ public class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDe
 {% endhighlight %}
 
 {% endif %}
+<!-- /Xamarin -->
 
+<!-- Unity -->
 {% if page.unity %}
 Insert the following methods into the main class of the scene to which you added BranchPrefab. The callback method should be visible from every scene in which you will use deep linked data.
 
@@ -854,7 +929,9 @@ public class MyCoolBehaviorScript : MonoBehaviour {
 {% endhighlight %}
 
 {% endif %}
+<!-- /Unity -->
 
+<!-- Adobe Air -->
 {% if page.adobe %}
 Inside your `Main.as` file, insert the following:
 
@@ -926,7 +1003,9 @@ $.onInitSessionFinished = function(data) {
 }
 {% endhighlight %}
 {% endif %}
+<!-- /Adobe Air -->
 
+<!-- React Native -->
 {% if page.react %}
 
 ### iOS initialization
@@ -1015,12 +1094,121 @@ public class MainActivity extends ReactActivity {
 {% endhighlight %}
 
 {% endif %}
+<!-- /React Native -->
+
+<!-- mParticle - iOS -->
+{% if page.mparticle_ios %}
+
+## Handle Incoming Links
+
+1. In Xcode, open your **AppDelegate.m** file.
+1. In the `didFinishLaunchingWithOptions` method, before you initialize your mParticle session, add the following:
+
+{% highlight objc %}
+NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+[notificationCenter addObserver:self
+                       selector:@selector(handleKitDidBecomeActive:)
+                           name:mParticleKitDidBecomeActiveNotification
+                         object:nil];
+{% endhighlight %}
+
+Add the following methods to your **AppDelegate.m** file:
+
+{% highlight objc %}
+- (void)handleKitDidBecomeActive:(NSNotification *)notification {
+    NSDictionary *userInfo = [notification userInfo];
+    NSNumber *kitNumber = userInfo[mParticleKitInstanceKey];
+    MPKitInstance kitInstance = (MPKitInstance)[kitNumber integerValue];
+    
+    if (kitInstance == MPKitInstanceBranchMetrics) {
+        [self checkForDeeplink];
+    }
+}
+
+- (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray * _Nullable))restorationHandler {
+    [self checkForDeeplink];
+    return YES;
+}
+
+- (void)checkForDeeplink {
+    MParticle * mParticle = [MParticle sharedInstance];
+    
+    [mParticle checkForDeferredDeepLinkWithCompletionHandler:^(NSDictionary<NSString *,NSString *> * _Nullable params, NSError * _Nullable error) {
+        //
+        // A few typical scenarios where this block would be invoked:
+        //
+        // (1) Base case:
+        //     - User does not tap on a link, and then opens the app (either after a fresh install or not)
+        //     - This block will be invoked with Branch Metrics' response indicating that this user did not tap on a link
+        //
+        // (2) Deferred deep link:
+        //     - User without the app installed taps on a link
+        //     - User is redirected from Branch Metrics to the App Store and installs the app
+        //     - User opens the app
+        //     - This block will be invoked with Branch Metrics' response containing the details of the link
+        //
+        // (3) Deep link with app installed:
+        //     - User with the app already installed taps on a link
+        //     - Application opens via openUrl/continueUserActivity, mParticle forwards launch options etc to Branch
+        //     - This block will be invoked with Branch Metrics' response containing the details of the link
+        //
+        // If the user navigates away from the app without killing it, this block could be invoked several times:
+        // once for the initial launch, and then again each time the user taps on a link to re-open the app.
+        
+        if (params) {
+            //Insert custom logic to inspect the params and route the user/customize the experience.
+            NSLog(@"params: %@", params.description);
+        }
+    }];
+}
+{% endhighlight %}
+
+{% endif %}
+<!-- mParticle - iOS -->
+
+<!-- mParticle - Android -->
+{% if page.mparticle_android %}
+
+## Handle Incoming Links
+
+Open the `Activity` for which you registered the `Intent` in the previous section, and hook into the `onStart` lifecycle method by adding this override:
+
+{% highlight java %}
+@Override
+public void onStart() {}
+  MParticle.getInstance().checkForDeepLink(new DeepLinkListener() {
+    @Override
+    public void onResult(DeepLinkResult result) {
+        //a deep link could contain the link itself that can be parsed and reacted to.
+        if (result.getLink().contains("/example/path")) {
+            //send user to intended path
+        }
+        //a deep link may also contain a set of keys/values, depending on the integration
+        if (result.getParameters().get("my_custom_key").equals("custom value")) {
+            //send user to intended path
+        }
+    }
+
+    @Override
+    public void onError(DeepLinkError error) {
+        //if an integration has an error, it will be surfaced via a DeepLinkError.
+        Log.d("my log tag", error.toString());
+    }
+  });
+}
+{% endhighlight %}
+{% endif %}
+<!-- /mParticle Android -->
+
 ## Recommended: Track in-app events
 
 In-app engagement and user value metrics are just as important as the click, install, and re-open metrics that Branch [automatically provides]({{base.url}}/getting-started/growth-attribution#automatic-event-tracking){:target="_blank"}. You can define your own post-install events, like purchase, signup, or share, and [view them in the dashboard]({{base.url}}/getting-started/user-value-attribution#measuring-custom-events){:target="_blank"} for each link, campaign, or channel.
 
+{% if page.mparticle_ios or page.mparticle_android %}
+Every custom event that you track with mParticle will be automatically forwarded to Branch.
+{% else %}
 Track custom events in your app with a simple call to the Branch SDK:
-
+{% endif %}
 {% if page.ios %}
 
 {% tabs %}
@@ -1083,11 +1271,17 @@ branch.userCompletedAction("custom_action_1");
 {% endhighlight %}
 {% endif %}
 
+{% if page.mparticle_ios %}
+{% highlight objc %}
+[[MParticle sharedInstance] logEvent:@"Food order" eventType:MPEventTypeTransaction];
+{% endhighlight %}
+{% endif %}
+
 For more information on tracking and configuring custom events, see the [user value attribution]({{base.url}}/getting-started/user-value-attribution){:target="_blank"} guide.
 
-{% if page.android %}{% else %}
+{% if page.android or page.mparticle_android %}{% else %}
 
-## {% if page.ios %}{% else %}iOS: {% endif %}Submitting to the App Store
+## {% if page.ios or page.mparticle_ios %}{% else %}iOS: {% endif %}Submitting to the App Store
 
 After integrating the Branch SDK, you need to let Apple know that you use the IDFA. To follow proper protocol when submitting your next release to the App Store, you should:
 
@@ -1106,7 +1300,7 @@ The only situation in which you do not need to perform these steps is if you ins
 
 {% endif %}
 
-{% if page.android %}
+{% if page.android or page.mparticle_android %}
 
 ## Submitting to the Play Store
 
