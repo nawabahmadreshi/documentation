@@ -13,7 +13,7 @@ Branch offers many useful features to improve your app's deep linking experience
 
 {% protip %}
 
-<h3 style="margin-top:0;">JOURNEYS <i class="fa fa-star" style="margin-left:10px;" aria-hidden="true"></i></h3>
+<h3 style="margin-top:0;">Journeys <i class="fa fa-star" style="margin-left:10px;" aria-hidden="true"></i></h3>
 Use **[Journeys Web to App](journeys)** to convert mobile web visitors into active app users.
 
 - Build custom smart banners and interstitials using our WYSIWYG editor.
