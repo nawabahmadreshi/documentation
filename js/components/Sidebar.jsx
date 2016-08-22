@@ -72,7 +72,12 @@ var LinkInternal = React.createClass({
 		if ((page.platforms[props.platform]) && (Object.keys(page.sections)[0] != 'overview')) {
 			path.push(props.platform);
 		}
-		return (<a href={ '/' + path.join('/') } className={ isCurrentPath ? 'sidebar-link-selected' : '' } onClick={ self._handleClick(Object.keys(page.sections)[0]) }>{ page.title }</a>);
+		if (page_key == 'journeys') { // Yuck...fix this
+			return (<a href={ '/' + path.join('/') } className={ isCurrentPath ? 'sidebar-link-selected' : '' } onClick={ self._handleClick(Object.keys(page.sections)[0]) }>{ page.title } <i className="fa fa-star premium" aria-hidden="true"></i></a>);
+		}
+		else {
+			return (<a href={ '/' + path.join('/') } className={ isCurrentPath ? 'sidebar-link-selected' : '' } onClick={ self._handleClick(Object.keys(page.sections)[0]) }>{ page.title }</a>);
+		}
 	}
 });
 
@@ -123,12 +128,22 @@ var LinkGroup = React.createClass({
 		if (props.group.children) {
 			var selectedClass = '',
 				groupClass = 'sidebar-group'
-			return (<div className={ selectedClass }>
-				<h4 className="sidebar-group-title" onClick={ this._toggle }>
-					{ props.group.title }
-				</h4>
-				<ul className={ groupClass }>{ links(props.group.children) }</ul>
-			</div>);
+				if (props.group.title == 'Data Integrations' || props.group.title == 'Deep Linked Emails') { // Yuck...fix this
+					return (<div className={ selectedClass }>
+						<h4 className="sidebar-group-title" onClick={ this._toggle }>
+							{ props.group.title } <i className="fa fa-star premium" aria-hidden="true"></i>
+						</h4>
+						<ul className={ groupClass }>{ links(props.group.children) }</ul>
+					</div>);
+				}
+				else {
+					return (<div className={ selectedClass }>
+						<h4 className="sidebar-group-title" onClick={ this._toggle }>
+							{ props.group.title }
+						</h4>
+						<ul className={ groupClass }>{ links(props.group.children) }</ul>
+					</div>);
+				}
 		}
 		else {
 			return (<ul className="sidebar-group">
