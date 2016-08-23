@@ -18,7 +18,7 @@ Use **[Journeys Web to App](journeys)** to convert mobile web visitors into acti
 
 - Build custom smart banners and interstitials using our WYSIWYG editor.
 - Define your audience using powerful real-time targeting rules.
-- Run A/B tests by setting multiple audience groups.
+- Run A/B tests with different design variations.
 - Easy initial setup, and no further website changes required!
 
 <a href="journeys" class="get-started btn btn-primary btn-lg" style="margin-bottom:0;">Get Started with Journeys</a>
