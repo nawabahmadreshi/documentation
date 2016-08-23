@@ -7,6 +7,7 @@ description: This guide teaches you how to find and send deep link data to Googl
 ios_keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Google Analytics, iOS, Webhook
 android_keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Google Analytics, Android, Webhook
 hide_platform_selector: true
+premium: true
 sections:
 - overview
 - guide
@@ -94,7 +95,7 @@ else if (NSClassFromString(@"UIDevice")) {
 }
 {% endhighlight %}
 
-In order for IDFA to be available, please be sure you have included `AdSupport.framework`. 
+In order for IDFA to be available, please be sure you have included `AdSupport.framework`.
 
 {% protip title="iOS 10 and Ad Tracking Limited" %}
 If ad tracking is limited, the IDFA will be set to "00000000-0000-0000-0000-000000000000" [documentation](https://developer.apple.com/reference/adsupport/asidentifiermanager). The alternative approach below allows you to specify a `cid` manually, which avoids this issue.
@@ -111,7 +112,7 @@ mTracker.enableAdvertisingIdCollection(true);
 
 ### Alternative approach to Client ID - pass to Branch directly
 
-If you specify `$google_analytics_client_id`, we can pass that to Google (as *cid*). 
+If you specify `$google_analytics_client_id`, we can pass that to Google (as *cid*).
 
 **iOS:**
 
@@ -164,7 +165,7 @@ Branch.getInstance().setRequestMetadata("$google_analytics_user_id", "USER-ID-HE
 
 ## What Branch Sends to Google Analytics
 
-| Property Name | Value | Sourced from | Example | Req 
+| Property Name | Value | Sourced from | Example | Req
 | --- | --- | --- | --- | --- | ---
 | v | API version | [fixed] | 1 | Y
 | tid | Tracking ID | Branch Dashboard | UA-XXXXXX-Y | Y
