@@ -78,9 +78,9 @@ You can design the template your audience will see, and what percentage of your 
 
 1. First, click the **Select a Template** button. {% image src='/img/pages/features/journeys/select-template.png' 2-thirds center alt='select templates' %}
 1. Next, click to select the type of template that you want to show. There are three template options:
-    - Banner at bottom of screen.
-    - Banner at top of screen
-    - Full screen interstitial (SEO friendly!)
+    - Smart Banner at bottom of screen.
+    - Smart Banner at top of screen
+    - Full Screen Interstitial (SEO friendly!)
     - _The fourth option shown is an alternate preconfiguration of the full screen interstitial_{% image src='/img/pages/features/journeys/select-template-type.png' 3-quarters center alt='select template type' %}
 1. Click **Customize** to make changes to the template.
 
@@ -240,9 +240,12 @@ You might choose to only show a Journey that asks a user to open the app to thos
 
 ## Template Customization Options
 
-The customization options available depend on the template chosen.
+The customization options available depend on the template chosen:
 
-### Banner (top or bottom)
+- [Smart Banner](#smart-banner)
+- [Full Screen Interstitial](#full-screen-interstitial)
+
+### Smart Banner
 
 The available configuration options are identical for banners at both the top and the bottom of the screen.
 
@@ -320,7 +323,7 @@ The available configuration options are identical for banners at both the top an
 | --- | --- |
 | App Icon | Enter the URL for your app icon, or upload an image |
 
-### Full screen interstitial
+### Full Screen Interstitial
 
 #### Background
 
