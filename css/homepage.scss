@@ -7,29 +7,12 @@
 	display:block;
 	text-align:center;
 	margin-bottom:30px;
-	padding: 0 30px 10px 30px;
+	padding: 0 5% 10px 5%;
   background-color: #fafafa;
   border: 1px solid #f0f0f0;
 	height: 162px;
 	&.premium {
 		border-color: #38c5e5;
-	}
-	@media (max-width: $screen-md-max) {
-		height: 198px;
-		h3 {
-			margin-top: 45px;
-		}
-	}
-	@media (max-width: $screen-xs-max) {
-		height: auto;
-		h3 {
-			margin-top: 30px;
-		}
-	}
-}
-@media (max-width: $screen-md-max) {
-	.col-xs-12 > div:nth-child(3) h3 {
-		margin-top: 30px;
 	}
 }
 
