@@ -7,6 +7,7 @@ description: Learn how to synchronize your Branch data with Tune to segment user
 ios_keywords: Contextual Deep Linking, Deep links, Tune, HasOffers, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Mixpanel, user segmentation, life time value, LTV
 android_keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Mixpanel, user segmentation, life time value, LTV
 hide_platform_selector: true
+premium: true
 sections:
 - overview
 - guide
@@ -67,7 +68,7 @@ You can find your **Site ID** by navigating to "Mobile Apps" in the left hand si
 
 ## What Branch sends to Tune
 
-Branch will send any parameters that you append to a link on to Tune (see [below for adding advanced attribution parameters](/third-party-integrations/tune/advanced/#advanced-network-segmentation-with-tune)). By default, if you don't append any additional parameters to your link, Branch will pass Branch Analytics tags on to Tune with the below mapping. 
+Branch will send any parameters that you append to a link on to Tune (see [below for adding advanced attribution parameters](/third-party-integrations/tune/advanced/#advanced-network-segmentation-with-tune)). By default, if you don't append any additional parameters to your link, Branch will pass Branch Analytics tags on to Tune with the below mapping.
 
 {% caution %}
 If you enabled the Tune integration before August 10th 2016, your analytics tags will map to sub_publisher and sub_placement. To get the updated mappings please disable and re-enable the Tune card in your dashboard.
@@ -92,7 +93,7 @@ By following all the steps listed in this guide, you’ll automatically have all
 
 ## Advanced network segmentation with Tune
 
-If you are interested in advanced network attribution segmentation in Tune, you can use the same attribution parameters you'd append to a Tune Measurement URL with your Branch link. 
+If you are interested in advanced network attribution segmentation in Tune, you can use the same attribution parameters you'd append to a Tune Measurement URL with your Branch link.
 
 {% caution %}
 If you enabled the Tune integration before August 10th 2016, you will need to disable and re-enable the Tune card in your dashboard before carrying out the instructions below. Please note this will change your default mapping of Branch analytics tags from the sub_publisher and sub_placement values into the my_partner values as noted above.
@@ -102,8 +103,8 @@ If you enabled the Tune integration before August 10th 2016, you will need to di
 1. Append `?` to the end of your link to start the query params string. For example: **https://mylinks.app.link/8AHjQx0fyv?**
 1. Next, [create a measurement URL](https://help.tune.com/marketing-console/creating-a-measurement-url/){:target="_blank"} in Tune's Attribution Analytics Dashboard with the parameters you'd like to capture.
 	- Select the "Click" URL (as opposed to the Impression URL)
-	- After creating the measurement URL, copy everything after **action=click&** and append the parameters to the end of your Branch link. 
-	- You should remove `&site_id={value}` from the parameters, as Branch will automatically fill that in for your app depending on platform. 
+	- After creating the measurement URL, copy everything after **action=click&** and append the parameters to the end of your Branch link.
+	- You should remove `&site_id={value}` from the parameters, as Branch will automatically fill that in for your app depending on platform.
 
 {% image src="/img/pages/third-party-integrations/tune/tune-measurement-url.png" 3-quarters center alt='Tune Measurement URL' %}
 
@@ -128,9 +129,9 @@ Branch automatically uses the my_* parameters for its link data. If there is a c
 
 ## Sending Google ValueTrack Parameters to Tune
 
-For AdWords App Install Campaigns, you can append ValueTrack parameters to your Branch link by following the same instructions highlighted above. 
+For AdWords App Install Campaigns, you can append ValueTrack parameters to your Branch link by following the same instructions highlighted above.
 
-When you create a Measurement URL in the Tune dashboard, the following URL parameters will automatically be generated and should be appended to the end of your Branch link (line breaks added for legibility): 
+When you create a Measurement URL in the Tune dashboard, the following URL parameters will automatically be generated and should be appended to the end of your Branch link (line breaks added for legibility):
 {% highlight sh %}
 https://mylinks.app.link/8AHjQx0fyv?
 	&sub_publisher={network}&
@@ -177,9 +178,9 @@ Ensure that you are capturing both the [Google Advertising Identifier (GAID) on 
 
 When you integrate the Tune SDK, ensure you add the install referrer snippet provided Tune [here](https://help.tune.com/marketing-console/how-google-play-install-referrer-works/).
 
-## Issues with Facebook data discrepancies. 
+## Issues with Facebook data discrepancies.
 
-If you are finding data discrepancies between Branch, Tune and Facebook - please ensure you have followed the Facebook Ads setup and troubleshooting steps [here](/features/facebook-ads/guide/ios/). 
+If you are finding data discrepancies between Branch, Tune and Facebook - please ensure you have followed the Facebook Ads setup and troubleshooting steps [here](/features/facebook-ads/guide/ios/).
 
 If you're using the Tune integration and Branch links in Facebook ads, Branch must initialize and complete before the Tune SDK. When this happens, Branch will be able fetch the necessary attribution parameters and pass them to Tune via the integration.
 

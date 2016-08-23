@@ -6,6 +6,7 @@ page_title: Automatically convert your email links into multi-platform deep link
 description: Add powerful, best in class deep linking to your email campaigns.
 keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Deep Linked Email
 hide_platform_selector: true
+premium: true
 sections:
 - overview
 - guide
@@ -39,7 +40,7 @@ If you use Branch and wish to use deep links in email but do not see your curren
 
 {% elsif page.guide %}
 
-## Two approaches to email: API vs UI 
+## Two approaches to email: API vs UI
 
 Email Service Providers (ESPs) typically allow partners to send emails via two mechanisms: APIs and UIs, such as dashboards. Both mechanisms are valuable. The breakdown of responsibilities for converting normal emails to deep linked emails is slightly different for these two mechanisms.
 
@@ -130,9 +131,9 @@ Here is how links look before and after (the latter being a Branch deep link).
 
 ## Web only content
 
-The ESP can determine which tracked links should function as Universal Links, i.e. should open the app. As an example, one ESP currently has their tracked links of the form `https://esp-tracking.com/{hash}` and `https://esp-tracking.com/uni/{hash}`. 
+The ESP can determine which tracked links should function as Universal Links, i.e. should open the app. As an example, one ESP currently has their tracked links of the form `https://esp-tracking.com/{hash}` and `https://esp-tracking.com/uni/{hash}`.
 
-Then when Branch automatically generates the apple-app-site-association file, it specifies that only links of the form `https://esp-tracking.com/uni/{hash}` should open the app. This allows links without in-app content, such as unsubscribe links or password reset links, to not open the app. We highly recommend this approach. 
+Then when Branch automatically generates the apple-app-site-association file, it specifies that only links of the form `https://esp-tracking.com/uni/{hash}` should open the app. This allows links without in-app content, such as unsubscribe links or password reset links, to not open the app. We highly recommend this approach.
 
 Please use the `/uni/` path for click tracking URLs that should open the app. Please notify Branch if you choose to use a different path.
 
@@ -142,7 +143,7 @@ Please use the `/uni/` path for click tracking URLs that should open the app. Pl
 
 Branch will host an Apple App Site Association (AASA) file for you, so that your click tracking domain using `/uni/` appears to Apple as a Universal Link, and the app will open and deep link.
 
-Branch will proxy traffic on to the ESP click tracking domain, allowing Universal Links to function and clicks to be recorded. 
+Branch will proxy traffic on to the ESP click tracking domain, allowing Universal Links to function and clicks to be recorded.
 
 {% protip title="How does it work?"%}
 Apple recognizes the click tracking domain as a Universal Link, and opens the app immediately without the browser opening. Once the app has opened, Branch will collect the referring URL that opened the app (at this time, it will be the click tracking url). Inside the app, Branch will robotically “click” the link, registering the click with the ESP, and returning the Branch link information to the Branch SDK inside the app. This information is then used to deep link the user to the correct in-app content. See the "Support" tab for more information.
