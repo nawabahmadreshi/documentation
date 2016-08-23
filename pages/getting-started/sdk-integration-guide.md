@@ -61,13 +61,19 @@ With extensive use, the Android SDK footprint is **187 kb**.
 
 ### Install with Gradle
 
-Add `compile 'io.branch.sdk.android:library:2.+'` to the dependencies section of your `build.gradle` file.
+Add `compile 'io.branch.sdk.android:library:2.+'` to the dependencies section of your `build.gradle` file. 
 
 {% protip %}
-
-You can also install the SDK manually by [downloading the latest version](https://s3-us-west-1.amazonaws.com/branchhost/Branch-Android-SDK.zip){:target="_blank"} or [cloning our open-source GitHub repo](https://github.com/BranchMetrics/branch-android-sdk){:target="_blank"}.
+You can also find the [source and JAR file here](https://github.com/BranchMetrics/android-branch-deep-linking){:target="_blank"}.
 {% endprotip %}
 
+Note that if you don't plan to use the Fabric Answers integration, you can use the following line:
+
+{% highlight sh %}
+compile ('io.branch.sdk.android:library:2.+') {
+  exclude module: 'answers-shim'
+}
+{% endhighlight %}
 {% endif %}
 <!--- /Android -->
 
