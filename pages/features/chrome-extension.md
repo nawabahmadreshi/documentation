@@ -12,7 +12,7 @@ sections:
 
 {% if page.guide %}
 
-The Branch Chrome Extension makes it very easy for you to create new links, and easily share via any channel for marketing purposes. In the guide below, I'll explain how to get setup and start linking!
+The Branch Chrome Extension makes it very easy for you to create new links, and easily share via any channel for marketing purposes. In the guide below, we'll explain how to get set up and start linking!
 
 {% image src='/img/pages/features/chrome-extension/chrome-extension-overview.png' 2-thirds center alt='Chrome extension example' %}
 

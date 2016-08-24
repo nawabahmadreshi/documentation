@@ -102,7 +102,7 @@ Regardless of whether emails are sent via API or UI, Branch is responsible for:
 
 ## Rewriting links
 
-For the best customer experience, we recommending giving customers a wait to easily convert their links from normal web links to Branch deep links. We have provided [a way](/third-party-integrations/remote-deep-links/guide/) for doing so, as well as [an example](https://gist.github.com/derrickstaten/f9b1e72e506f79628ab9127dd114dd83#file-sendgrid-demo-js). The example takes an html email (as a string) and applies the script to it.
+For the best customer experience, we recommending giving customers a way to easily convert their links from normal web links to Branch deep links. We have provided [a way](/third-party-integrations/remote-deep-links/guide/) for doing so, as well as [an example](https://gist.github.com/derrickstaten/f9b1e72e506f79628ab9127dd114dd83#file-sendgrid-demo-js). The example takes an html email (as a string) and applies the script to it.
 
 Here is the script:
 {% highlight js %}
