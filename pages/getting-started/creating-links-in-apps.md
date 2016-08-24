@@ -14,6 +14,8 @@ platforms:
 - adobe
 - titanium
 - react
+- mparticle_ios
+- mparticle_android
 sections:
 - overview
 - guide
@@ -35,7 +37,7 @@ You can read more about using the link data dictionary to define key/value pairs
 {% ingredient quickstart-prerequisite %}{% endingredient %}
 
 <!--- iOS -->
-{% if page.ios %}
+{% if page.ios or page.mparticle_ios %}
 
 ## Import framework
 
@@ -145,7 +147,7 @@ If you don't want to handle the link yourself, you can also use Branch's [precon
 
 
 <!--- Android -->
-{% if page.android %}
+{% if page.android or page.mparticle_android %}
 
 ## Create a Branch Universal Object
 
