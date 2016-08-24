@@ -12,6 +12,7 @@ sections:
 - overview
 - guide
 - advanced
+- support
 ---
 
 {% if page.overview %}
@@ -133,16 +134,6 @@ Branch.getInstance().setRequestMetadata("$google_analytics_client_id", "CLIENT-I
 
 {% elsif page.advanced %}
 
-## Session management
-
-Google Analytics will automatically start a session when Branch sends over installs and opens. Because of this, you should remove any code that creates a new session when your application starts up. For example, on iOS, you may fire an event with the following:
-
-{% highlight objc %}
-[builder set:@"start" forKey:kGAISessionControl];
-{% endhighlight %}
-
-You should remove this so that your app does not start a new session. Otherwise you may see zero second sessions and your average session length drop.
-
 ## Optional Parameter - User ID
 
 If you specify `$google_analytics_user_id`, we can pass that to Google (as `uid`).
@@ -187,5 +178,25 @@ Branch.getInstance().setRequestMetadata("$google_analytics_user_id", "USER-ID-HE
 {% protip title=""anonymous" Client ID" %}
 If for some reason Branch does not receive an advertising identifier or hardware identifier, and you do not explicitly specify a `$google_analytics_client_id`, then Branch will send `anonymous` as the Client ID (`cid`). This is a required field by Google Analytics.
 {% endprotip %}
+
+{% elsif page.support %}
+
+## Troubleshooting
+
+### Very short or nonexistent session lengths
+
+Google Analytics will automatically start a session when Branch sends over installs and opens. Because of this, you should remove any code that creates a new session when your application starts up. For example, on iOS, you may fire an event with the following:
+
+{% highlight objc %}
+[builder set:@"start" forKey:kGAISessionControl];
+{% endhighlight %}
+
+You should remove this so that your app does not start a new session. Otherwise you may see zero second sessions and your average session length drop.
+
+### Data not appearing in Google Analytics
+
+1. Check your property ID in the Branch dashboard matches the property ID in Google Analytics
+1. Ensure you are looking at the right part of the Google Analytics dashboard. The data should appear in `Acquisition > Sources > All`
+1. Check that your Google Analytics Views don't have any filters on them. For example, if your View filters out users in the United Kingdom, and your Branch opens are from users in the United Kingdom, you won't see this Branch data in your View.
 
 {% endif %}
