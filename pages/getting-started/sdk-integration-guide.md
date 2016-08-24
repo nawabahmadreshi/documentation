@@ -26,9 +26,11 @@ sections:
 Before using the Branch SDK, you must first [sign up for an account](https://dashboard.branch.io){:target="_blank"} and complete the [onboarding process](https://start.branch.io/){:target="_blank"}.
 {% endprerequisite %}
 
+{% if page.mparticle_ios or page.mparticle_android %}
 {% prerequisite %}
 Before enabling the Branch SDK on mParticle, you must first [sign up for an mParticle account](https://app.mparticle.com/){:target="_blank"} and complete the [setup and integration process](http://docs.mparticle.com/){:target="_blank"}.
 {% endprerequisite %}
+{% endif %}
 
 ## Get the SDK files
 

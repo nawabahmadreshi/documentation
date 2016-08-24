@@ -810,7 +810,7 @@ let sessionParams = Branch.getInstance().getLatestReferringParams()
 
 {% if page.android or page.mparticle_android %}
 {% highlight java %}
-JSONObject sessionParams = Branch.get{% if page.mparticle_android %}Test{% endif %}Instance().getLatestReferringParams();
+JSONObject sessionParams = Branch.get{% if page.mparticle_android %}Auto{% endif %}Instance().getLatestReferringParams();
 {% endhighlight %}
 {% endif %}
 
@@ -872,7 +872,7 @@ let firstParams = Branch.getInstance().getFirstReferringParams()
 
 {% if page.android or page.mparticle_android %}
 {% highlight java %}
-JSONObject installParams = Branch.get{% if page.mparticle_android %}Test{% endif %}Instance().getFirstReferringParams();
+JSONObject installParams = Branch.get{% if page.mparticle_android %}Auto{% endif %}Instance().getFirstReferringParams();
 {% endhighlight %}
 {% endif %}
 
