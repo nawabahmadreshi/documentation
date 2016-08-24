@@ -8,13 +8,8 @@ ios_keywords: Contextual Deep Linking, Deep links, Tune, HasOffers, Deeplinks, D
 android_keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Mixpanel, user segmentation, life time value, LTV
 hide_platform_selector: true
 sections:
-- overview
 - guide
-- advanced
-
 ---
-
-{% if page.overview %}
 
 Make it easy for your marketers to create links! If you host deep link data in your website source code, Branch can automatically convert a simple web URL into a corresponding Branch link that deep links to relevant content in your mobile app.
 
@@ -23,10 +18,6 @@ Furthermore, Branch can reliably parse your Content Analytics data and provide y
 {% protip %}
 Today, you can use this functionality for [Deep Linked Email](https://branch.io/email/), and in future releases the Branch [marketing link creator]({{base.url}}/getting-started/creating-links-other-ways/guide/#dashboard) and [Chrome extension]({{base.url}}/features/chrome-extension/) will also scrape your web URL for deep link data to make link creation even easier.
 {% endprotip %}
-
-{% getstarted title="Get started with hosted deep link data" %}{% endgetstarted %}
-
-{% elsif page.guide %}
 
 {% protip title="Using App Links already?" %}
 
@@ -84,10 +75,3 @@ Mother's day promotion | https://shop.com/your-mother-is-great | `<meta name="br
 Do not user Google Tag Manager (GTM) to insert your content metatags. GTM requires Javascript to load on the page, and the Branch link data scraper does not support Javascript execution at this time.
 
 {% endcaution %}
-
-{% elsif page.advanced %}
-
-## Content
-Here is some info.
-
-{% endif %}
