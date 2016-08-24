@@ -185,7 +185,7 @@ If for some reason Branch does not receive an advertising identifier or hardware
 
 ### Very short or nonexistent session lengths
 
-Google Analytics will automatically start a session when Branch sends over installs and opens. Because of this, you should remove any code that creates a new session when your application starts up. For example, on iOS, you may fire an event with the following:
+Google Analytics will automatically start a session when Branch sends over installs and opens. Because of this, you should remove any code that creates a new session when your application starts up. For example, on iOS, you may be firing an event with the following:
 
 {% highlight objc %}
 [builder set:@"start" forKey:kGAISessionControl];

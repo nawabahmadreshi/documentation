@@ -16,12 +16,12 @@ sections:
 
 {% if page.overview %}
 
-Make it easy for your marketers to create links! If you host deep link data in your website source code, Branch can automatically convert a simple web URL into a corresponding Branch link that deep links to relevant content in your mobile app. 
+Make it easy for your marketers to create links! If you host deep link data in your website source code, Branch can automatically convert a simple web URL into a corresponding Branch link that deep links to relevant content in your mobile app.
 
 Furthermore, Branch can reliably parse your Content Analytics data and provide you with more valuable information about which content is driving clicks, installs, opens, and in-app engagement.
 
 {% protip %}
-Today, you can use this functionality for [Deep Linked Email](https://branch.io/email/), and in future releases the Branch marketing link creator and Chrome extension will also scrape your web URL for deep link data to make link creation even easier.
+Today, you can use this functionality for [Deep Linked Email](https://branch.io/email/), and in future releases the Branch [marketing link creator]({{base.url}}/getting-started/creating-links-other-ways/guide/#dashboard) and [Chrome extension]({{base.url}}/features/chrome-extension/) will also scrape your web URL for deep link data to make link creation even easier.
 {% endprotip %}
 
 {% getstarted title="Get started with hosted deep link data" %}{% endgetstarted %}
@@ -54,7 +54,7 @@ Mother's day promotion | https://shop.com/your-mother-is-great | [No correspondi
 \* If you don't have corresponding app content, you can add the `$web_only=true` parameter to your site. Depending on the link creation mechanism, this means that either the link [will not open the app](/getting-started/configuring-links/guide/#web-only-links), or if it opens the app, you can [write logic to redirect the user to a browser](/third-party-integrations/sailthru/advanced/#handle-links-for-web-only-content).
 
 {% protip title="Setting up deep linking?"%}
-If you're just getting started with deep linking, you have a chance to keep things simple! If you choose one key, and a consistent value that easily maps from the web URL, you can easily create metatags and save yourself work down the line. 
+If you're just getting started with deep linking, you have a chance to keep things simple! If you choose one key, and a consistent value that easily maps from the web URL, you can easily create metatags and save yourself work down the line.
 
 For example:
 
@@ -67,7 +67,7 @@ Category page | https://shop.com/shoes | `deeplink=shoes`
 
 ## Adding metatags to your site
 
-You can host your deep link data on your website with a metatag in the format `<meta name="branch:deeplink:my_key" content="my_value" />` where `my_key` and `my_value` will become a key value pair in deep link data. 
+You can host your deep link data on your website with a metatag in the format `<meta name="branch:deeplink:my_key" content="my_value" />` where `my_key` and `my_value` will become a key value pair in deep link data.
 
 {% example title="Hosted Deep Link Data" %}
 
