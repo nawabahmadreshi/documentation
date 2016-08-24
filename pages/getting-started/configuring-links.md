@@ -206,7 +206,7 @@ If you do not specify a primary OG tag when creating a link, Branch will perform
 | $twitter_description | Set the description of the Twitter card
 | $twitter_site | Set the site for Twitter
 | $twitter_app_country | Set the app country for the app card
-| $twitter_player | Set the player's url. By default this gets the value specified in $og_video.
+| $twitter_player | Set the video player's URL. Defaults to the value of `$og_video`.
 | $twitter_player_width | Set the player's width in pixels
 | $twitter_player_height | Set the player's height in pixels
 
