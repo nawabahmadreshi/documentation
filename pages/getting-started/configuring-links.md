@@ -174,7 +174,7 @@ Currently, these parameters are only used for [iOS Spotlight Indexing]({{base.ur
 
 | Key | Usage | Default
 | --- | --- | ---
-| $publicly_indexable | If this content should be public and discovered by other apps. `1` indicates public, and `0` indicates private | `0`
+| $publicly_indexable | If this content should be public and discovered by other apps. `1` indicates public, and `0` indicates private | `1`
 | $keywords | Keywords for which this content should be discovered by. Just assign an array of strings with the keywords you'd like to use
 | $canonical_identifier | This is the unique identifier for content that will help Branch dedupe across many instances of the same thing. Suitable options: a website with pathing, or a database with identifiers for entities
 | $exp_date | The date when the content will not longer be available or valid
