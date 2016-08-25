@@ -14,6 +14,8 @@ platforms:
 - adobe
 - titanium
 - react
+- mparticle_ios
+- mparticle_android
 sections:
 - overview
 - guide
@@ -36,7 +38,7 @@ Branch makes it simple to enable Universal Links and App Links, and even improve
 
 {% elsif page.guide %}
 
-{% if page.android %}
+{% if page.android or page.mparticle_android %}
 <!-- do nothing -->
 {% else %}
 
@@ -52,7 +54,7 @@ Branch makes it simple to enable Universal Links and App Links, and even improve
 
 ## Add the Associated Domains entitlement to your project
 
-{% if page.ios or page.unity or page.adobe or page.react %}
+{% if page.ios or page.unity or page.adobe or page.react or page.mparticle_ios %}
 ### Enable Associated Domains in Xcode
 
 1. Go to the `Capabilities` tab of your project file.
@@ -224,7 +226,7 @@ if (OS_IOS) { // Don't forget this condition.
 
 {% endif %}
 
-{% if page.ios or page.xamarin or page.react %}
+{% if page.ios or page.xamarin or page.react or page.mparticle_ios %}
 ## Make your app aware of incoming Universal Links
 {% endif %}
 
@@ -342,6 +344,49 @@ Open your **AppDelegate.m** file and add the following method (if you completed 
 
 {% endif %}
 
+{% if page.mparticle_ios %}
+Open your **AppDelegate.m** file and add the following methods (if you completed the [SDK Integration Guide]({{base.url}}/getting-started/sdk-integration-guide), these are likely already present).
+
+{% highlight objc %}
+- (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray * _Nullable))restorationHandler {
+    [self checkForDeeplink];
+    return YES;
+}
+
+- (void)checkForDeeplink {
+    MParticle * mParticle = [MParticle sharedInstance];
+    
+    [mParticle checkForDeferredDeepLinkWithCompletionHandler:^(NSDictionary<NSString *,NSString *> * _Nullable params, NSError * _Nullable error) {
+        //
+        // A few typical scenarios where this block would be invoked:
+        //
+        // (1) Base case:
+        //     - User does not tap on a link, and then opens the app (either after a fresh install or not)
+        //     - This block will be invoked with Branch Metrics' response indicating that this user did not tap on a link
+        //
+        // (2) Deferred deep link:
+        //     - User without the app installed taps on a link
+        //     - User is redirected from Branch Metrics to the App Store and installs the app
+        //     - User opens the app
+        //     - This block will be invoked with Branch Metrics' response containing the details of the link
+        //
+        // (3) Deep link with app installed:
+        //     - User with the app already installed taps on a link
+        //     - Application opens via openUrl/continueUserActivity, mParticle forwards launch options etc to Branch
+        //     - This block will be invoked with Branch Metrics' response containing the details of the link
+        //
+        // If the user navigates away from the app without killing it, this block could be invoked several times:
+        // once for the initial launch, and then again each time the user taps on a link to re-open the app.
+        
+        if (params) {
+            //Insert custom logic to inspect the params and route the user/customize the experience.
+            NSLog(@"params: %@", params.description);
+        }
+    }];
+}
+{% endhighlight %}
+{% endif %}
+
 ## Test your Universal Links implementation
 
 After completing this guide and installing a new build of your app on your testing device, you can verify Universal Links are working correctly by following these steps:
@@ -352,13 +397,13 @@ After completing this guide and installing a new build of your app on your testi
 
 {% endif %}
 
-{% if page.ios %}
+{% if page.ios or page.mparticle_ios %}
 <!-- do nothing -->
 {% else %}
 
 ## Generate signing certificate fingerprint
 
-{% if page.android %}
+{% if page.android or page.mparticle_android %}
 
 {% else %}
 {% protip %}
@@ -550,7 +595,7 @@ Here are some recommended next steps:
 
 {% elsif page.advanced %}
 
-{% if page.android %}
+{% if page.android or page.mparticle_android %}
 <!-- No advanced info except note on click-tracking -->
 {% else %}
 
@@ -640,7 +685,7 @@ Branch *branch = [Branch getInstance];
 
 {% elsif page.support %}
 
-{% if page.android %}
+{% if page.android or page.mparticle_android %}
 No support information available for this platform.
 {% else %}
 

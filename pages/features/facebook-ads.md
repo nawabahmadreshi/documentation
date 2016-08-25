@@ -237,4 +237,8 @@ We've seen Facebook classify 're-installs' as fresh installs, where Branch will 
 
 If it's close, you know that this is the root cause.
 
+### Fewer Clicks Recorded in Branch
+
+The number of clicks on a link used inside of a Branch enabled Facebook Ad will be lower in Branch's dashboard than Facebook's. This is because Facebook routes users straight to the App/Play Store without letting Branch know that a link was clicked. If the user decides not to install the app/drops off at the App/Play Store, then Facebook will have recorded one more click than Branch. Branch does not increment the link's click count until the user enters into the app. This is why you'll see more clicks in Facebook's dashboard.
+
 {% endif %}

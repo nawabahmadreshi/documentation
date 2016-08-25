@@ -172,9 +172,9 @@ Most of these parameters can also be specified using the [BranchUniversalObject]
 
 Currently, these parameters are only used for [iOS Spotlight Indexing]({{base.url}}/features/spotlight-indexing) but will be used by Branch in the future.
 
-| Key | Usage
+| Key | Usage | Default
 | --- | --- | ---
-| $publicly_indexable | Can be set to either `public` or `private`. Public indicates that you'd like this content to be discovered by other apps
+| $publicly_indexable | If this content should be public and discovered by other apps. `1` indicates public, and `0` indicates private | `1`
 | $keywords | Keywords for which this content should be discovered by. Just assign an array of strings with the keywords you'd like to use
 | $canonical_identifier | This is the unique identifier for content that will help Branch dedupe across many instances of the same thing. Suitable options: a website with pathing, or a database with identifiers for entities
 | $exp_date | The date when the content will not longer be available or valid
@@ -206,6 +206,7 @@ If you do not specify a primary OG tag when creating a link, Branch will perform
 | $twitter_description | Set the description of the Twitter card
 | $twitter_site | Set the site for Twitter
 | $twitter_app_country | Set the app country for the app card
+| $twitter_player | Set the video player's URL. Defaults to the value of `$og_video`.
 | $twitter_player_width | Set the player's width in pixels
 | $twitter_player_height | Set the player's height in pixels
 
