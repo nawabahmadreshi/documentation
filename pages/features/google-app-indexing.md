@@ -1,9 +1,9 @@
 ---
 type: recipe
 directory: features
-title: "Google App Indexing"
-page_title: "Index and track your content with Google's App Indexing"
-description: Learn how to list your content in Google's App Index.
+title: "Firebase App Indexing"
+page_title: "Index and track your content with Google's Firebase App Indexing"
+description: Learn how to list your content in Google's Firebase App Index.
 keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, iOS9, iOS 9, Apple Spotlight Search
 platforms:
 - ios
@@ -21,15 +21,16 @@ sections:
 
 {% if page.overview %}
 
-Google is investing significant resources into a project called App Indexing, where they will try to expose ‘app results’ in Google searches performed on mobile devices.
+Google is investing significant resources into a project called App Indexing, where they will try to expose ‘app results’ in Google searches performed on mobile devices. Most recently, at the Google IO in 2016, they renamed this to Firebase App Indexing, although the functionality remained the same.
 
-{% image src="/img/pages/features/google-app-indexing/allthecooks-app-indexing.png" 2-thirds center alt="App indexing example" %}
+Here's how App Indexing works:
+- *important detail:* Web results, ranking and relevancy are based upon the web scrape. App Indexing does not improve relevancy.
+- App Indexing makes that web result _also_ open up your app. There are a few ways to achieve this:
+  - Make your existing website support Apple's Universal Links and Android's App Links. After this, all of your links will correctly open the app and you're done.
+  - Add the undocumented header `<link rel="alternate" ..` tags to your website for when Google crawls the page.
+  - 
 
-When you perform a search on Google, your results are drawn from content that Google scrapes from website pages. If the pages being scraped are properly configured for App Indexing, and that app is currently installed on the device performing the search, Google will open the app directly instead of going to the web page. Fortunately Branch has a database of all of your deep links, so we can easily help you take advantage of App Indexing.
-
-We're working with Google to ensure that we can properly transfer all of your links directly into their index. We automatically upload a deduped list of your links in a sitemap. Google then scrapes these sitemaps.
-
-{% getstarted title="Get started with Google App Indexing" %}{% endgetstarted %}
+{% getstarted title="Get started with Firebase App Indexing" %}{% endgetstarted %}
 
 {% elsif page.guide %}
 
