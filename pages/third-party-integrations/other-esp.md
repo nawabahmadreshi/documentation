@@ -66,7 +66,7 @@ Partners using the ESP and Branch must:
 1. Set up custom click tracking domain, such as email-companyname.mydomain.com, and provide that to the ESP.
 1. Delegate that click tracking domain to Branch, who will then proxy all clicks to the ESP.
 1. Work with Branch to set up [redirect behavior and tracking](/third-party-integrations/other-esp/support/#redirect-behavior-and-tracking).
-1. Rewrite normal web links as Branch deep links, [using a Branch-provided script](/third-party-integrations/other-esp/guide/#rewriting-links) ("REWRITING LINKS").
+1. Rewrite normal web links as Branch deep links, [using a Branch-provided script](/third-party-integrations/other-esp/guide/#rewriting-links).
 
 ## Sending emails via UI (Dashboard)
 
@@ -77,7 +77,7 @@ ESPs must:
 1. Allow customizing the click tracking domain. A company should be able to provide a custom domain to the ESP, such as email-companyname.app.link. Then when the ESP rewrites links for click tracking, it should use this domain.
 2. Provide Branch with nameservers or CNAME information so that Branch can proxy requests from the custom click tracking domain through to the ESP.
 3. (Optional) Change backend to accept the X-Forwarded-For HTTP header, since Branch will be proxying requests through. This only matters if reporting provided by the ESP includes IP address of users.
-4. Rewrite normal web links as Branch deep links, [using a Branch-provided script](/third-party-integrations/other-esp/guide/#rewriting-links) ("REWRITING LINKS")
+4. Rewrite normal web links as Branch deep links, [using a Branch-provided script](/third-party-integrations/other-esp/guide/#rewriting-links).
 
 ### One-time setup for Partners
 
