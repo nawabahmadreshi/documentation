@@ -118,14 +118,14 @@ module.exports = function(original_url, branch_base_url, branch_hmac_secret, thr
 
 	var pre_hmac_url = branch_base_url + (three_p_url ? '&%243p_url=' + encodeURIComponent(three_p_url) : '') + '&%24original_url=' + encodeURIComponent(original_url),
 		hmac = crypto.createHmac('sha256', branch_hmac_secret).update(pre_hmac_url).digest('hex');
-	return pre_hmac_url + '&%24hmac=' + hmac;
+	return pre_hmac_url + '&%24hash=' + hmac;
 };
 {% endhighlight %}
 
 Here is how links look before and after (the latter being a Branch deep link).
 
 1. *Before:* http://example.com/?foo=bar
-2. *After:* https://vza3.app.link/3p?%243p=st&%24original_url=http%3A%2F%2Fexample.com%2F%3Ffoo%3Dbar&%24hmac=221dd9fb333d809b22fbdfd9b87808de73e3cd94f99b8eb26e6181e962fcb438
+2. *After:* https://vza3.app.link/3p?%243p=st&%24original_url=http%3A%2F%2Fexample.com%2F%3Ffoo%3Dbar&%24hash=221dd9fb333d809b22fbdfd9b87808de73e3cd94f99b8eb26e6181e962fcb438
 
 (note that these are simplified examples, not actual demo links)
 
