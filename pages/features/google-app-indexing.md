@@ -1,9 +1,9 @@
 ---
 type: recipe
 directory: features
-title: "Google App Indexing"
-page_title: "Index and track your content with Google's App Indexing"
-description: Learn how to list your content in Google's App Index.
+title: "Firebase App Indexing"
+page_title: "Index and track your content with Google's Firebase App Indexing"
+description: Learn how to list your content in Google's Firebase App Index.
 keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, iOS9, iOS 9, Apple Spotlight Search
 platforms:
 - ios
@@ -21,22 +21,31 @@ sections:
 
 {% if page.overview %}
 
-Google is investing significant resources into a project called App Indexing, where they will try to expose ‘app results’ in Google searches performed on mobile devices.
+Google is investing significant resources into a project called App Indexing, where they will try to expose ‘app results’ in Google searches performed on mobile devices. Most recently, at the Google IO in 2016, they renamed this to Firebase App Indexing, although the functionality remained the same.
 
-{% image src="/img/pages/features/google-app-indexing/allthecooks-app-indexing.png" 2-thirds center alt="App indexing example" %}
+Here's how App Indexing works:
+- *important detail:* Results, ranking and relevancy are based upon the web scrape. App Indexing does not improve relevancy.
+- App Indexing makes that web result _also_ open up your app. There are a few ways to achieve this:
+  - Make your existing website support Apple's Universal Links and Android's App Links. After this, all of your links will correctly open the app and you're done.
+  - OR Add the undocumented header `<link rel="alternate" ..` tags to your website for when Google crawls the page.
+- If Google knows your website opens the app, when it shows up in a search result, and the user has the app installed, the app will open instead of the website
 
-When you perform a search on Google, your results are drawn from content that Google scrapes from website pages. If the pages being scraped are properly configured for App Indexing, and that app is currently installed on the device performing the search, Google will open the app directly instead of going to the web page. Fortunately Branch has a database of all of your deep links, so we can easily help you take advantage of App Indexing.
+**Branch's App Indexing integration is designed for businesses that don't have a website, and want Branch to host their site for them.** Note that in order for you to get traffic from this feature, your Branch link will need to appear in search results. So far, from about 8 months of offering this feature, we've yet to see it drive a substantial amount of traffic to a single app.
 
-We're working with Google to ensure that we can properly transfer all of your links directly into their index. We automatically upload a deduped list of your links in a sitemap. Google then scrapes these sitemaps.
-
-{% getstarted title="Get started with Google App Indexing" %}{% endgetstarted %}
+{% getstarted title="Get started with Firebase App Indexing" %}{% endgetstarted %}
 
 {% elsif page.guide %}
+
+{% protip title="This guide is for developers without a website" %}
+
+If you have a website, Branch can't do much to help with App Indexing at the moment, but you can read about how to setup your own site in [the advanced section.]({{base.url}}/features/google-app-indexing/advanced).
+
+{% endprotip %}
 
 {% prerequisite %}
 
 - For this to function as intended, you should [integrate the Branch SDK]({{base.url}}/getting-started/sdk-integration-guide) into your app and [configure deep link routing]({{base.url}}/getting-started/deep-link-routing).
-- We also recommend you enable either [Deepviews]({{base.url}}/features/deepviews) **OR** [Website-To-App Routing]({{base.url}}/features/website-to-app-routing), but this is not strictly required.
+- We also recommend you enable either [Deepviews]({{base.url}}/features/deepviews) so that users without your app will see a mobile web preview of this content.
 
 {% endprerequisite %}
 
@@ -209,7 +218,7 @@ let viewResult = await branchUniversalObject.registerView()
 
 If you'd like to view all associated customizations with the Branch Universal Object, see [more details here]({{base.url}}/getting-started/branch-universal-object/guide/).
 
-## Enable App Indexing for Google
+## Enable App Indexing for Google on Branch
 
 If you have completed the prerequisites, you've done the hard part! Now you should go enable automatic sitemap generation on the [Settings](https://dashboard.branch.io/#/settings) page of the Branch Dashboard. Look for the option `Automatic sitemap generation (for Google App Indexing)`.
 
@@ -232,55 +241,50 @@ Both the sitemap itself and statistics about Google scraping your links are upda
 
 {% elsif page.advanced %}
 
-## What Branch does for you
+## How to configure your own website for App Indexing
 
-A lot of what Branch does with App Indexing is behind the scenes and there's no direct feedback, so we want to make it clear how we help. Our goal is simple and twofold:
+If you already have your own website, we recommend that you configure your own site for App Indexing rather than use Branch's hosted App Indexing. You want your main website, with your domain and SEO juice to appear in Google rather than try to push your `app.link` domain into search results. Therefore, we recommend you go through a few steps to configure your site for App Indexing.
 
-1. Flag your existing website for App Indexing so you don't have to (if you use [Website-To-App Routing]({{base.url}}/features/website-to-app-routing)) **OR** be the website for your content if you don't have one (by using [Deepviews]({{base.url}}/features/deepviews)).
-1. Improve your website's SEO so that your content is ranked higher.
-1. (Optionally) List your app's content in automatically generated sitemap files so that it can be easily scraped by Google.
+App Indexing, despite the confusing amount of literature out there, simply opens up your app when installed and falls back to your website when not. You actually don't need to use any of Google's tools (Firebase App Indexing) to accomplish this. Merely configuring your domain for Universal Links on iOS and App Links on Android will do the trick. Here are more details:
 
-### Content and metadata
+### Recommended path: Add Universal Link and App Link support to your domain
 
-#### If you let Branch host your metadata
+This is by far the easiest way to take advantage of Google App Indexing, and the recommended way per conversations that we've had with their team. All you need to do is configure Universal Links and Android App Links on your domain and your corresponding apps.
 
-When Google scrapes a Branch link, in most situations we can automatically insert the appropriate App Indexing headers so they know this link should be flagged as an app result.
+We've put together some handy guides on our blogs:
+- [Enable Universal Links on your domain](https://blog.branch.io/how-to-setup-universal-links-to-deep-link-on-apple-ios-9)
+- [Enable Android App Links on your domain](https://blog.branch.io/how-to-set-up-android-m-6.0-marshmallow-app-links-with-deep-linking)
 
-{% highlight html %}
-<html>
-<head>
-  ...
-  <link rel="alternate" href="android-app://<com.yourapp>/<your_uri_scheme>/open?link_click_id=link-123456" />
-  <link rel="alternate" href="ios-app://<your_app_id>/<your_uri_scheme>/open?link_click_id=link-123456" />
-  ...
-</head>
-<body> … </body>
-{% endhighlight %}
+Feel free to drop us a line if you need help with this stuff.
 
-If you defined the `canonicalUrl` parameter when creating your `BranchUniversalObject`, we use that. If `canonicalUrl` is blank, we create a unique one for you.
+### Alternative path: Add metadata to your website's header
+
+Another alternative path if you don't want to use Universal or App Links is to add some simple configuration to your website that tells Google how to use your URI schemes to open up the app. 
+
+This requires:
+1. You configure a URI scheme for your app (example below shown as `<your_uri_scheme>`). You can see some examples of setting this up on our documentation page [here]({{base.url}}/getting-started/sdk-integration-guide/guide).
+2. You setup deep link paths (example below shown as `path/to/content`) that open up the specific content on the page
 
 {% highlight html %}
 <html>
 <head>
   ...
-  <link rel="canonical" href="http://yourapp.com/article/feburary/2014/123512" />
+  <link rel="alternate" href="android-app://<com.yourapp>/<your_uri_scheme>/path/to/content" />
+  <link rel="alternate" href="ios-app://<your_app_id>/<your_uri_scheme>/path/to/content" />
   ...
 </head>
 <body> … </body>
 {% endhighlight %}
 
-#### If you want to host your own metadata for your links
+For your Android app, you'd fill in the package name for `<com.yourapp>` and fill in the iOS App Store ID (string of integers) for the `<your_app_id>` section.
 
-In the less common situation that you choose to host your own link meta data (for example, by specifying the `$og_redirect` link parameter) we'll gently set 301 redirects to the URL that you've configured as the fallback.
-
-
-## Attribute app traffic to organic search
+## For Branch hosting: Attribute app traffic to organic search
 
 Curious as to how well your content is performing -- how many clicks and installs it is driving?
 
 We automatically tag clicks on these links as coming from Google App Indexing. In the Click Flow section of our Dashboard's [Summary](http://dashboard.dev2.branch.io/#) page, you can filter for these clicks. Just select either `channel: google_search` or `feature: google_app_index`.
 
-## Listing content as private
+## For Branch hosting: Hiding content from the index
 
 Not all content is public, and not all content should be publicly indexed. If you want to enable Branch's automatic sitemap generation but exclude certain pieces of content, you can mark that content as private. You should set the content indexing mode for the individual Branch Universal Object.
 
