@@ -61,15 +61,24 @@ Only do this step after you've given your Branch account manager your SendGrid c
 
 ## On-going use
 
-Once you’ve completed the one time setup steps, it’s time to send your first email.
+Once you’ve completed the one time setup steps, it’s time to send your first email! This step will identify which web links you'd like to open the app and deep link, as well as convert them to Branch links.
 
-This step will identify which web links you'd like to open the app and deep link, as well as convert them to Branch links.
+{% caution title="Flag your Universal Links" %}
+In order for SendGrid to know that the Universal Link should open the app, add `"universal=true"` to the HTML, for example:
 
-### Rewrite normal links as Branch links
+{% highlight html %}
+<a href="links.example.com" universal="true">Link to your app!</a>
+{% endhighlight %}
 
-You can use regular Branch links, or, if you'd like to automatically convert your web URLs to Branch links, use the simple link creation mechanism given here:
+{% endcaution %}
 
-We have provided [a way](/third-party-integrations/remote-deep-links/guide/) of easily converting web inks to Branch links, as well as [an example](https://gist.github.com/derrickstaten/f9b1e72e506f79628ab9127dd114dd83#file-sendgrid-demo-js). The example takes an html email (as a string) and applies the script to it.
+#### Using regular Branch links
+
+If you use a regular Branch link, please ensure you add the following key value pair to your link data: `$3p=sg`.
+
+#### Using email links
+
+We have provided [a way](/third-party-integrations/remote-deep-links/guide/) of easily converting web links to Branch links, as well as [an example](https://gist.github.com/derrickstaten/f9b1e72e506f79628ab9127dd114dd83#file-sendgrid-demo-js). The example takes an html email (as a string) and applies the script to it.
 
 To use this script, make sure you've set up deep links according to one of the [linking schemas outlined here](/third-party-integrations/sendgrid/advanced/#setting-up-your-link-schema-for-email).
 
