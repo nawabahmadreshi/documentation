@@ -67,7 +67,7 @@ SET @deeplink = CONCAT(@deeplink, CONCAT('&%24hash=', @hash))
 ~~~
 
 {% caution title="Add your details to the code snippet" %}
-The snippet above has placeholders for `@branch_hash_secret` and `@branch_base_url`. Work with your Branch Account Manager to get the right information in your snippet.
+The snippet above has placeholders for `@branch_hash_secret` and `@branch_base_url`. Work with your Branch Account Manager to get the right information in your snippet. 
 {% endcaution %}
 
 {% image src="/img/pages/third-party-integrations/exacttarget/et-paste-code-snippet.png" center full alt='With and Without Branch Deep Linked Email' %}
@@ -110,6 +110,10 @@ Wherever you are using `<a>` tags in your email templates, replace those with a 
 `<a href="%%=v(@deeplink)=%%">Example link</a>`
 
 {% endexample %}
+
+{% caution title="Content Area folder" %}
+Make sure your `deeplink` Content Area is in the right folder. Either change the folder to "My Contents" or change the path used by "ContentAreaByName" in the Branch script.
+{% endcaution %}
 
 {% elsif page.advanced %}
 
