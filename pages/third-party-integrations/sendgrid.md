@@ -64,7 +64,7 @@ Only do this step after you've given your Branch account manager your SendGrid c
 Once you’ve completed the one time setup steps, it’s time to send your first email! This step will identify which web links you'd like to open the app and deep link, as well as convert them to Branch links.
 
 {% caution title="Flag your Universal Links" %}
-In order for SendGrid to know that the Universal Link should open the app, add `"universal=true"` to the HTML, for example:
+In order for SendGrid to know that the Universal Link should open the app, add `universal="true"` to the HTML, for example:
 
 {% highlight html %}
 <a href="links.example.com" universal="true">Link to your app!</a>
