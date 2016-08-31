@@ -25,7 +25,6 @@ sections:
 {% prerequisite %}
 Before using the Branch SDK, you must first [sign up for an account](https://dashboard.branch.io){:target="_blank"} and complete the [onboarding process](https://start.branch.io/){:target="_blank"}.
 {% endprerequisite %}
-
 {% if page.mparticle_ios or page.mparticle_android %}
 {% prerequisite %}
 Before enabling the Branch SDK on mParticle, you must first [sign up for an mParticle account](https://app.mparticle.com/){:target="_blank"} and complete the [setup and integration process](http://docs.mparticle.com/){:target="_blank"}.
@@ -275,7 +274,7 @@ With extensive use, the Android SDK footprint is **187 kb**.
 
 ### Install with Gradle
 
-Add `compile ‘com.mparticle:android-branch-kit:4.+’` to the dependencies section of your `build.gradle` file.
+Add `compile 'com.mparticle:android-branch-kit:4.+'` to the dependencies section of your `build.gradle` file.
 
 {% endif %}
 <!-- /mParticle Android -->
@@ -1183,23 +1182,23 @@ Open the `Activity` for which you registered the `Intent` in the previous sectio
 
 {% highlight java %}
 @Override
-public void onStart() {}
+public void onStart() {
   MParticle.getInstance().checkForDeepLink(new DeepLinkListener() {
     @Override
     public void onResult(DeepLinkResult result) {
-        //a deep link could contain the link itself that can be parsed and reacted to.
-        if (result.getLink().contains("/example/path")) {
-            //send user to intended path
-        }
-        //a deep link may also contain a set of keys/values, depending on the integration
-        if (result.getParameters().get("my_custom_key").equals("custom value")) {
-            //send user to intended path
+        // Check for the existence of a given key in the link data and route accordingly.
+        try {
+            if ((result.getParameters().has("my_custom_key")) && (result.getParameters().get("my_custom_key").equals("custom value"))) {
+                // Send user to intended path
+            }
+        } catch (JSONException e) {
+
         }
     }
 
     @Override
     public void onError(DeepLinkError error) {
-        //if an integration has an error, it will be surfaced via a DeepLinkError.
+        // If an error occurred, it will be surfaced via a DeepLinkError.
         Log.d("my log tag", error.toString());
     }
   });
