@@ -39,9 +39,13 @@ When a link is clicked by a user without the app, it will route that user to the
 
 ## Contact Branch
 
-Contact your Branch Account Manager or [accounts@branch.io](mailto:accounts@branch.io) to enable the SendGrid integration.
+Contact your Branch Account Manager or [accounts@branch.io](mailto:accounts@branch.io) to enable the SendGrid integration and let your Branch Account Manager know you use SendGrid. You'll need to give your account manager two pieces of information.
 
-Give your Branch Account Manager your email click tracking domain (e.g. email.mydomain.com), and let them know you use SendGrid.
+1. Go to your SendGrid account, and go to Settings > Whitelabels > Email Links. 
+1. Find your email link whitelabeled domain, click on the gear icon and click "View" (or create a new whitelabel). {% image src='/img/pages/third-party-integrations/sendgrid/sendgrid-view-domain.png' 3-quarters center alt='xcode add domain' %}
+1. Note the "Host" email click tracking domain (e.g. email.mydomain.com) and the SendGrid domain under "Data". {% image src='/img/pages/third-party-integrations/sendgrid/sendgrid-whitelabel.png' 3-quarters center alt='xcode add domain' %}
+
+Provide both the click tracking domain and the SendGrid domain to your Branch Account Manager.
 
 ## Add your click tracking domain to your entitlements file
 
