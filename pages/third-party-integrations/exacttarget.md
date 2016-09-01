@@ -85,7 +85,7 @@ This step will identify which web links you'd like to open the app and deep link
 To create email links via API, please use the instructions on how to [create links via API](/getting-started/creating-links-other-ways/guide/#http-api), but include the following key value pairs in your call:
 
 1. `"$3p":"et"` This is required for Universal Link and click tracking functionality.
-1. `"$original_url":"{{your web url URI encoded}}"` For each piece of content, include a URI encoded version of your content's web URL. You can also add deep link data as query parameters on that web URL. This ensures accurate Content Analytics reporting. **Example: `"$original_url":"https%3A%2F%2Fshop.com%2Fshoes%2Fbrown-shoes%3Fmy_key%3Dmy_value%26campaign%3Dshoe_discounts"`**
+1. `"$original_url":"{your web url URI encoded}"` For each piece of content, include a URI encoded version of your content's web URL. You can also add deep link data as query parameters on that web URL. This ensures accurate Content Analytics reporting. **Example: `"$original_url":"https%3A%2F%2Fshop.com%2Fshoes%2Fbrown-shoes%3Fmy_key%3Dmy_value%26campaign%3Dshoe_discounts"`**
 
 ### Add deep linking to your ExactTarget email templates without using an API
 
