@@ -42,7 +42,7 @@ Branch makes it simple to enable Universal Links and App Links, and even improve
 
 {% if page.ios_imessage %}
 
-**Universal Links are not supported by iOS iMessage apps unfortunately!**.
+**Universal Links are not supported by iOS iMessage apps unfortunately!**
 
 {% endif %}
 

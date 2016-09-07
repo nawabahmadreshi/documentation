@@ -346,6 +346,7 @@ In your project's `YourProject-Info.plist` file, you can register your app to re
 {% image src="/img/pages/getting-started/sdk-integration-guide/branch-multi-key-plist.png" actual center alt="environment toggle" %}
 
 {% endif %}
+{% if page.ios or page.react or page.mparticle_ios %}
 
 ### Register a URI scheme
 
@@ -377,6 +378,7 @@ Branch opens your app by using its URI scheme (`yourapp://`), which should be un
 This only applies to apps which have the `app.link` domain such as `h4vy.app.link`. If your app's domain is `bnc.lt` or a custom one, you don't need this step.
 {% endcaution %}
 
+{% endif %}
 {% endif %}
 
 {% if page.android or page.react or page.mparticle_android %}
@@ -1299,7 +1301,7 @@ public void onStart() {}
 
 In-app engagement and user value metrics are just as important as the click, install, and re-open metrics that Branch [automatically provides]({{base.url}}/getting-started/growth-attribution#automatic-event-tracking){:target="_blank"}. You can define your own post-install events, like purchase, signup, or share, and [view them in the dashboard]({{base.url}}/getting-started/user-value-attribution#measuring-custom-events){:target="_blank"} for each link, campaign, or channel.
 
-{% if page.mparticle_ios or page.mparticle_android %}
+{% if page.mparticle_ios or page.mparticle_android or page.ios_imessage %}
 Every custom event that you track with mParticle will be automatically forwarded to Branch.
 {% else %}
 Track custom events in your app with a simple call to the Branch SDK:
