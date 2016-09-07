@@ -66,7 +66,7 @@ Partners using the ESP and Branch must:
 1. Set up custom click tracking domain, such as email-companyname.mydomain.com, and provide that to the ESP.
 1. Delegate that click tracking domain to Branch, who will then proxy all clicks to the ESP.
 1. Work with Branch to set up [redirect behavior and tracking](/third-party-integrations/other-esp/support/#redirect-behavior-and-tracking).
-1. Rewrite normal web links as Branch deep links, [using a Branch-provided script](/third-party-integrations/other-esp/guide/#rewriting-links) ("REWRITING LINKS").
+1. Rewrite normal web links as Branch deep links, [using a Branch-provided script](/third-party-integrations/other-esp/guide/#rewriting-links).
 
 ## Sending emails via UI (Dashboard)
 
@@ -77,7 +77,7 @@ ESPs must:
 1. Allow customizing the click tracking domain. A company should be able to provide a custom domain to the ESP, such as email-companyname.app.link. Then when the ESP rewrites links for click tracking, it should use this domain.
 2. Provide Branch with nameservers or CNAME information so that Branch can proxy requests from the custom click tracking domain through to the ESP.
 3. (Optional) Change backend to accept the X-Forwarded-For HTTP header, since Branch will be proxying requests through. This only matters if reporting provided by the ESP includes IP address of users.
-4. Rewrite normal web links as Branch deep links, [using a Branch-provided script](/third-party-integrations/other-esp/guide/#rewriting-links) ("REWRITING LINKS")
+4. Rewrite normal web links as Branch deep links, [using a Branch-provided script](/third-party-integrations/other-esp/guide/#rewriting-links).
 
 ### One-time setup for Partners
 
@@ -118,14 +118,14 @@ module.exports = function(original_url, branch_base_url, branch_hmac_secret, thr
 
 	var pre_hmac_url = branch_base_url + (three_p_url ? '&%243p_url=' + encodeURIComponent(three_p_url) : '') + '&%24original_url=' + encodeURIComponent(original_url),
 		hmac = crypto.createHmac('sha256', branch_hmac_secret).update(pre_hmac_url).digest('hex');
-	return pre_hmac_url + '&%24hmac=' + hmac;
+	return pre_hmac_url + '&%24hash=' + hmac;
 };
 {% endhighlight %}
 
 Here is how links look before and after (the latter being a Branch deep link).
 
 1. *Before:* http://example.com/?foo=bar
-2. *After:* https://vza3.app.link/3p?%243p=st&%24original_url=http%3A%2F%2Fexample.com%2F%3Ffoo%3Dbar&%24hmac=221dd9fb333d809b22fbdfd9b87808de73e3cd94f99b8eb26e6181e962fcb438
+2. *After:* https://vza3.app.link/3p?%243p=st&%24original_url=http%3A%2F%2Fexample.com%2F%3Ffoo%3Dbar&%24hash=221dd9fb333d809b22fbdfd9b87808de73e3cd94f99b8eb26e6181e962fcb438
 
 (note that these are simplified examples, not actual demo links)
 

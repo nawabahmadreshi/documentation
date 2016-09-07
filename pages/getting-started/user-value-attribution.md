@@ -105,19 +105,19 @@ branch.userCompletedAction("custom_action_1");
 
 ## Tracking revenue (measurement coming soon)
 
-To track revenue, please use the "purchase" event with the custom value "amount" in the state dictionary. Below is an example:
+To track revenue, please use the "purchase" event with the custom value "$amount" in the state dictionary. Below is an example:
 
 {% if page.ios %}
 
 {% tabs %}
 {% tab objective-c %}
 {% highlight objc %}
-[[Branch getInstance] userCompletedAction:@"purchase" withState:@{@"amount":@"45.12"}];
+[[Branch getInstance] userCompletedAction:@"purchase" withState:@{@"$amount":@"45.12"}];
 {% endhighlight %}
 {% endtab %}
 {% tab swift %}
 {% highlight swift %}
-Branch.getInstance().userCompletedAction("purchase", withState: ["amount" : "45.12"])
+Branch.getInstance().userCompletedAction("purchase", withState: ["$amount" : "45.12"])
 {% endhighlight %}
 {% endtab %}
 {% endtabs %}
@@ -128,7 +128,7 @@ Branch.getInstance().userCompletedAction("purchase", withState: ["amount" : "45.
 {% if page.android %}
 {% highlight java %}
 JSONObject metaData = new JSONObject();
-metaData.put("amount", "45.12");
+metaData.put("$amount", "45.12");
 Branch.getInstance().userCompletedAction("purchase", metaData);
 {% endhighlight %}
 {% endif %}
@@ -139,7 +139,7 @@ Branch.getInstance().userCompletedAction("purchase", metaData);
 Branch.userCompletedAction(
     "purchase",
     {
-      "amount": "45.12"
+      "$amount": "45.12"
   	}
 );
 {% endhighlight %}
@@ -149,7 +149,7 @@ Branch.userCompletedAction(
 {% highlight c# %}
 Branch branch = Branch.GetInstance ();
 Dictionary<string, object> data = new Dictionary<string, object>();
-data.Add("amount", "45.12");
+data.Add("$amount", "45.12");
 await branch.UserCompletedAction("purchase", data);
 {% endhighlight %}
 {% endif %}
@@ -158,7 +158,7 @@ await branch.UserCompletedAction("purchase", data);
 {% highlight c# %}
 Dictionary<string, object> stateItems = new Dictionary<string, object>
 {
-    { "amount", "45.12" }
+    { "$amount", "45.12" }
 };
 Branch.userCompletedAction("purchase", stateItems);
 {% endhighlight %}
@@ -173,14 +173,14 @@ Currently not supported in the ANE
 {% if page.titanium %}
 {% highlight js %}
 branch.userCompletedAction("purchase", {
-  "amount": "45.12"
+  "$amount": "45.12"
 });
 {% endhighlight %}
 {% endif %}
 
 {% if page.react %}
 {% highlight js %}
-branch.userCompletedAction("purchase", { amount: "45.12" });
+branch.userCompletedAction("purchase", { '$amount': "45.12" });
 {% endhighlight %}
 {% endif %}
 

@@ -54,8 +54,9 @@
     - title: Deep Linked Emails
       children:
         - responsys
-        - sailthru
+        - exacttarget
         - sendgrid
+        - sailthru
     - title: Data Integrations
       children:
         - adjust
