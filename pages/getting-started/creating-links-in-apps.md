@@ -142,6 +142,10 @@ branchUniversalObject.getShortUrlWithLinkProperties(linkProperties,  andCallback
 If you don't want to handle the link yourself, you can also use Branch's [preconfigured share sheet]({{base.url}}/getting-started/branch-universal-object/guide/ios/#showsharesheetwithlinkproperties).
 {% endprotip %}
 
+{% protip title="What happens if the internet goes out?" %}
+When the Branch SDK requests a short link, it will try three times before failing. In the event that the request fails, the SDK reverts to local link generation. Rather than not creating a link at all, the link parameters will be appended as query params, and then the link metadata is appended as base64 encoded data. If your app is generating unusually long links, check the device's internet connection.
+{% endprotip %}
+
 {% endif %}
 <!--- /iOS -->
 
@@ -195,6 +199,10 @@ branchUniversalObject.generateShortUrl(this, linkProperties, new BranchLinkCreat
 
 {% protip title="Use the Branch share sheet" %}
 If you don't want to handle the link yourself, you can also use Branch's [preconfigured share sheet]({{base.url}}/getting-started/branch-universal-object/guide/android/#showsharesheet).
+{% endprotip %}
+
+{% protip title="What happens if the internet goes out?" %}
+When the Branch SDK requests a short link, it will try three times before failing. In the event that the request fails, the SDK reverts to local link generation. Rather than not creating a link at all, the link parameters will be appended as query params, and then the link metadata is appended as base64 encoded data. If your app is generating unusually long links, check the device's internet connection.
 {% endprotip %}
 
 {% endif %}
