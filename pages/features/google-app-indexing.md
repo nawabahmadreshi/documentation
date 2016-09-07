@@ -24,6 +24,7 @@ sections:
 Google is investing significant resources into a project called App Indexing, where they will try to expose ‘app results’ in Google searches performed on mobile devices. Most recently, at the Google IO in 2016, they renamed this to Firebase App Indexing, although the functionality remained the same.
 
 Here's how App Indexing works:
+
 - *important detail:* Results, ranking and relevancy are based upon the web scrape. App Indexing does not improve relevancy.
 - App Indexing makes that web result _also_ open up your app. There are a few ways to achieve this:
   - Make your existing website support Apple's Universal Links and Android's App Links. After this, all of your links will correctly open the app and you're done.
