@@ -31,6 +31,22 @@ Unfortunately `BranchUniversalObject` is not yet supported on this platform. Ple
 
 {% ingredient quickstart-prerequisite %}{% endingredient %}
 
+## Best Practices for using Branch Universal Object
+
+Here are a set of best practices to ensure that your analytics are correct, and your content is ranking in search effectively.
+
+1. Set the `canonicalIdentifier` to a unique, de-duped value across instances of the app
+2. Ensure that the `title`, `contentDescription` and `imageUrl` properly represent the object
+3. Initialize the Branch Universal Object and call `userCompletedAction` with the corresponding platform view event **on page load**
+4. Call `showShareSheet` and `createShortLink` later in the life cycle, when the user takes an action that needs a link
+5. Call the additional object events (purchase, share completed, etc) when the corresponding user action is taken
+
+Practices to _avoid_:
+1. Don't set the same `title`, `contentDescription` and `imageUrl` across all objects
+2. Don't wait to initialize the object and register views until the user goes to share
+3. Don't wait to initialize the object until you conveniently need a link
+4. Don't create many objects at once and register views in a `for` loop.
+
 ## Defining a Branch Universal Object
 
 You build a `BranchUniversalObject` by assembling parameters. After the parameters are assembled, you can [create a link]({{base.url}}/getting-started/creating-links-in-apps) by referencing the `BranchUniversalObject`.
@@ -180,11 +196,10 @@ Some of these parameters automatically [populate the link parameters]({{base.url
 | contentDescription | A description for the content | $og_description
 | imageUrl | The image URL for the content | $og_image_url
 | metadata | Any extra parameters you'd like to associate with the Branch Universal Object. These will be made available to you after the user clicks the link and opens up the app, and are used for [Deep Link Routing]({{base.url}}/getting-started/deep-link-routing).
-| type | This is a label for the type of content present. Apple recommends that you use uniform type identifier as [described here](https://developer.apple.com/library/prerelease/ios/documentation/MobileCoreServices/Reference/UTTypeRef/index.html)* | $content_type
+| price | The price of the item
+| currency | The currency representing the price in [ISO 4217 currency code](http://en.wikipedia.org/wiki/ISO_4217). Default is USD.
 | contentIndexMode | Can be set to either `ContentIndexModePublic` or `ContentIndexModePrivate`. Public indicates that you'd like this content to be discovered by other apps* | $publicly_indexable
-| keywords | Keywords for which this content should be discovered by. Just assign an array of strings with the keywords you'd like to use* |$keywords
 | expirationDate | The date when the content will not longer be available or valid* | $exp_date
-| spotlightIdentifier | Unique identifier used for iOS Spotlight Indexing. Usually can be left blank
 
 **Currently, this parameter is only used for [iOS Spotlight Indexing]({{base.url}}/features/spotlight-indexing) but will be used by Branch in the future*
 
@@ -200,9 +215,9 @@ Some of these parameters automatically [populate the link parameters]({{base.url
 | setContentDescription | A description for the content | $og_description
 | imageUrl | The image URL for the content | $og_image_url
 | addContentMetadata | Any extra parameters you'd like to associate with the Branch Universal Object. These will be made available to you after the user clicks the link and opens up the app, and are used for [Deep Link Routing]({{base.url}}/getting-started/deep-link-routing).
-| type | This is a label for the type of content present. Apple recommends that you use uniform type identifier as [described here](https://developer.apple.com/library/prerelease/ios/documentation/MobileCoreServices/Reference/UTTypeRef/index.html)* | $content_type
+| price | The price of the item
+| currency | The currency representing the price in [ISO 4217 currency code](http://en.wikipedia.org/wiki/ISO_4217). Default is USD.
 | setContentIndexingMode | Can be set to either `BranchUniversalObject.CONTENT_INDEX_MODE.PUBLIC` or `BranchUniversalObject.CONTENT_INDEX_MODE.PRIVATE`. Public indicates that you'd like this content to be discovered by other apps* | $publicly_indexable
-| addKeywords | Keywords for which this content should be discovered by. Just assign an array of strings with the keywords you'd like to use. Can also be called as **addKeyword** with a `string`* | $keywords
 | setContentExpiration | The date when the content will not longer be available or valid. Set in milliseconds.* | $exp_date
 
 **Currently, this parameter is only used for [iOS Spotlight Indexing]({{base.url}}/features/spotlight-indexing) but will be used by Branch in the future*
@@ -228,9 +243,7 @@ Some of these parameters automatically [populate the link parameters]({{base.url
 | contentDescription | A description for the content | $og_description
 | contentImageUrl | The image URL for the content | $og_image_url
 | metadata | Any extra parameters you'd like to associate with the Branch Universal Object. These will be made available to you after the user clicks the link and opens up the app, and are used for [Deep Link Routing Routing]({{base.url}}/getting-started/deep-link-routing).
-| type | This is a label for the type of content present. Apple recommends that you use uniform type identifier as [described here](https://developer.apple.com/library/prerelease/ios/documentation/MobileCoreServices/Reference/UTTypeRef/index.html)* | $content_type
 | contentIndexMode | Can be set to either `ContentIndexModePublic` or `ContentIndexModePrivate`. Public indicates that you'd like this content to be discovered by other apps* | $publicly_indexable
-| keywords | Keywords for which this content should be discovered by. Just assign an array of strings with the keywords you'd like to use* | $keywords
 | expirationDate | The date when the content will not longer be available or valid* | $exp_date
 {% endif %}
 
@@ -244,9 +257,7 @@ Some of these parameters automatically [populate the link parameters]({{base.url
 | contentDescription | A description for the content | $og_description
 | imageUrl | The image URL for the content | $og_image_url
 | metadata | Any extra parameters you'd like to associate with the Branch Universal Object. These will be made available to you after the user clicks the link and opens up the app, and are used for [Deep Link Routing Routing]({{base.url}}/getting-started/deep-link-routing).
-| type | This is a label for the type of content present. Apple recommends that you use uniform type identifier as [described here](https://developer.apple.com/library/prerelease/ios/documentation/MobileCoreServices/Reference/UTTypeRef/index.html)* | $content_type
 | contentIndexMode | Can be set to either `ContentIndexModePublic` or `ContentIndexModePrivate`. Public indicates that you'd like this content to be discovered by other apps* | $publicly_indexable
-| keywords | Keywords for which this content should be discovered by. Just assign an array of strings with the keywords you'd like to use* | $keywords
 | expirationDate | The date when the content will not longer be available or valid* | $exp_date
 
 **Currently, this parameter is only used for [iOS Spotlight Indexing]({{base.url}}/features/spotlight-indexing) but will be used by Branch in the future*
@@ -263,9 +274,7 @@ Some of these parameters automatically [populate the link parameters]({{base.url
 | contentDescription | A description for the content | $og_description
 | contentImageUrl | The image URL for the content | $og_image_url
 | contentMetadata | Any extra parameters you'd like to associate with the Branch Universal Object. These will be made available to you after the user clicks the link and opens up the app, and are used for [Deep Link Routing Routing]({{base.url}}/getting-started/deep-link-routing).
-| type | This is a label for the type of content present. Apple recommends that you use uniform type identifier as [described here](https://developer.apple.com/library/prerelease/ios/documentation/MobileCoreServices/Reference/UTTypeRef/index.html)* | $content_type
 | contentIndexingMode | Can be set to either `public` or `private`. Public indicates that you'd like this content to be discovered by other apps* | $publicly_indexable
-| keywords | Keywords for which this content should be discovered by. Just assign an array of strings with the keywords you'd like to use* | $keywords
 | expirationDate | The date when the content will not longer be available or valid* | $exp_date
 
 **Currently, this parameter is only used for [iOS Spotlight Indexing]({{base.url}}/features/spotlight-indexing) but will be used by Branch in the future*
@@ -297,22 +306,49 @@ After you've assembled parameters to create your `BranchUniversalObject`, there 
 
 ### registerView
 
-Call this method in `viewDidLoad` or `viewDidAppear` to track how many times a piece of content is viewed.
+Please do not call `registerView` anymore. Instead, call this method in `viewDidLoad` or `viewDidAppear` to track how many times a piece of content is viewed.
 
 {% tabs %}
 {% tab objective-c %}
 {% highlight objc %}
-[branchUniversalObject registerView];
+[branchUniversalObject userCompletedAction:BNCRegisterViewEvent];
 {% endhighlight %}
 {% endtab %}
 
 {% tab swift %}
 {% highlight swift %}
-branchUniversalObject.registerView()
+branchUniversalObject.userCompletedAction(BNCRegisterViewEvent)
 {% endhighlight %}
 {% endtab %}
 {% endtabs %}
 
+### userCompletedAction
+
+We've added a series of custom events that you'll want to start tracking for rich analytics and targeting. Here's a list below with a sample snippet that calls the register view event.
+
+| Key | Value
+| --- | ---
+| BNCRegisterViewEvent | User viewed the object
+| BNCAddToWishlistEvent | User added the object to their wishlist
+| BNCAddToCartEvent | User added object to cart
+| BNCPurchaseInitiatedEvent | User started to check out
+| BNCPurchasedEvent | User purchased the item
+| BNCShareInitiatedEvent | User started to share the object
+| BNCShareCompletedEvent | User completed a share
+
+{% tabs %}
+{% tab objective-c %}
+{% highlight objc %}
+[branchUniversalObject userCompletedAction:BNCRegisterViewEvent];
+{% endhighlight %}
+{% endtab %}
+
+{% tab swift %}
+{% highlight swift %}
+branchUniversalObject.userCompletedAction(BNCRegisterViewEvent)
+{% endhighlight %}
+{% endtab %}
+{% endtabs %}
 
 ### getShortUrlWithLinkProperties
 
@@ -377,20 +413,14 @@ List your piece of content on Spotlight. Visit the [iOS Spotlight Indexing]({{ba
 {% tabs %}
 {% tab objective-c %}
 {% highlight objc %}
-[branchUniversalObject listOnSpotlightWithIdentifierCallback:^(NSString *url, NSString *spotlightIdentifier, NSError *error) {
-    if (!error) {
-        NSLog(@"success getting url! %@", url);
-    }
-}];
+branchUniversalObject.automaticallyListOnSpotlight = YES;
+[branchUniversalObject userCompletedAction:BNCRegisterViewEvent];
 {% endhighlight %}
 {% endtab %}
 {% tab swift %}
 {% highlight swift %}
-branchUniversalObject. listOnSpotlightWithIdentifierCallback((url: String?, spotlightIdentifier: String?, error: NSError?) -> Void in
-    if error == nil {
-        print("got my Branch link to share: %@", url)
-    }
-})
+branchUniversalObject.automaticallyListOnSpotlight = true
+branchUniversalObject.userCompletedAction(BNCRegisterViewEvent)
 {% endhighlight %}
 {% endtab %}
 {% endtabs %}
@@ -401,10 +431,28 @@ branchUniversalObject. listOnSpotlightWithIdentifierCallback((url: String?, spot
 
 ### registerView
 
-Call this method when the page loads to track how many times a piece of content is viewed.
+Please do not call `registerView` anymore. Instead, call this method when the page loads to track how many times a piece of content is viewed.
 
 {% highlight java %}
-branchUniversalObject.registerView();
+branchUniversalObject.userCompletedAction(BranchUniversalObject.BUO_USER_ACTIONS.VIEW);
+{% endhighlight %}
+
+### userCompletedAction
+
+We've added a series of custom events that you'll want to start tracking for rich analytics and targeting. Here's a list below with a sample snippet that calls the register view event.
+
+| Key | Value
+| --- | ---
+| BUO_USER_ACTIONS.VIEW | User viewed the object
+| BUO_USER_ACTIONS.ADD_TO_WISH_LIST | User added the object to their wishlist
+| BUO_USER_ACTIONS.ADD_TO_CART | User added object to cart
+| BUO_USER_ACTIONS.PURCHASE_STARTED | User started to check out
+| BUO_USER_ACTIONS.PURCHASED | User purchased the item
+| BUO_USER_ACTIONS.SHARE_STARTED | User started to share the object
+| BUO_USER_ACTIONS.SHARE_COMPLETED | User completed a share
+
+{% highlight java %}
+branchUniversalObject.userCompletedAction(BranchUniversalObject.BUO_USER_ACTIONS.VIEW);
 {% endhighlight %}
 
 ### generateShortUrl
@@ -462,6 +510,13 @@ ShareSheetStyle shareSheetStyle = new ShareSheetStyle(MainActivity.this, "Check 
                         .setSharingTitle("Share With");
 {% endhighlight %}
 
+### listOnGoogleSearch
+
+List your piece of content on Google/Firebase App Indexing. Visit the [Firebase App Indexing]({{base.url}}/features/google-app-indexing) page to learn more.
+
+{% highlight java %}
+branchUniversalObject.listOnGoogleSearch(context);
+{% endhighlight %}
 {% endif %}
 
 {% if page.cordova %}
