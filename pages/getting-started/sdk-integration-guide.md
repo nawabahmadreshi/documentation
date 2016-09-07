@@ -15,6 +15,7 @@ platforms:
 - react
 - mparticle_ios
 - mparticle_android
+- ios_imessage
 sections:
 - guide
 - advanced
@@ -58,6 +59,22 @@ Alternatively, you could install the SDK via Carthage:
 You can [install the SDK manually]({{base.url}}/getting-started/sdk-integration-guide/advanced/ios#install-the-sdk-manually){:target="_blank"}.
 
 {% endprotip %}
+
+{% endif %}
+
+{% if page.ios_imessage %}
+
+### Install the SDK manually
+
+We're not sure if Cocoapods will support extensions, so in the meantime, just install the SDK manually into your project.
+
+1. [Grab the latest SDK version](https://s3-us-west-1.amazonaws.com/branchhost/Branch-iOS-SDK.zip), or [clone our open-source GitHub repo](https://github.com/BranchMetrics/ios-branch-deep-linking).
+1. Drag the `Branch.framework` file into your Xcode project. Be sure that "Copy items if needed" and "Create groups" are selected.
+1. Import the following frameworks under **Build Phases** for your app target:
+    - `AdSupport.framework`
+    - `CoreTelephony.framework`
+    - `CoreSpotlight.framework`
+    - `MobileCoreServices.framework`
 
 {% endif %}
 <!--- /iOS -->
@@ -301,7 +318,7 @@ In your project's `YourProject-Info.plist` file, you can register your app to re
 
 {% endif %}
 
-{% if page.ios or page.react or page.mparticle_ios %}
+{% if page.ios or page.react or page.mparticle_ios or page.ios_imessage %}
 ## {% if page.react %}iOS: {% endif %}Configure Xcode Project
 
 ### Add your Branch key
@@ -344,7 +361,7 @@ Branch opens your app by using its URI scheme (`yourapp://`), which should be un
 
 {% image src='/img/pages/getting-started/sdk-integration-guide/urlType.png' full center alt='URL Scheme Demo' %}
 
-### Support Strong Matching (only for new **app.link** domain)
+### Support Strong Matching (only for new  **app.link** domain)
 
 1. Retrieve your app default domain name from [Link Settings](https://dashboard.branch.io/#/settings/link){:target="_blank"} page of the Branch dashboard under **Link Domain**
 1. In Xcode, open your project's Info.plist file in the Navigator (on the left side).
@@ -633,6 +650,7 @@ A Branch session needs to be started every single time your app opens. We check 
 {% endif %}
 
 <!---    iOS -->
+{% if page.ios or page.ios_imessage %}
 {% if page.ios %}
 
 {% tabs %}
@@ -658,7 +676,37 @@ func application(application: UIApplication, didFinishLaunchingWithOptions launc
 {% endtab %}
 {% endtabs %}
 
+{% endif %}
+
+{% if page.ios_imessage %}
+
+{% tabs %}
+{% tab objective-c %}
+1. In Xcode, open your **MessagesViewController.m** file.
+1. Add `#import "Branch.h"` at the top to import the Branch framework.
+1. Find the line beginning with:
+
+{% highlight objc %}
+- (void)didBecomeActiveWithConversation:(MSConversation *)conversation
+{% endhighlight %}
+{% endtab %}
+
+{% tab swift %}
+1. Add a bridging header to import the Branch framework into your project. For help on adding a bridging header, see [this StackOverflow answer](http://stackoverflow.com/a/28486246/1914567){:target="_blank"}.
+1. In Xcode, open your **MessagesViewController.swift** file.
+1. Find the line beginning with:
+
+{% highlight swift %}
+func didBecomeActiveWithConversation(conversation: MSConversation)
+{% endhighlight %}
+{% endtab %}
+{% endtabs %}
+
+{% endif %}
+
 Underneath this line, add the following snippet:
+
+{% if page.ios %}
 
 {% tabs %}
 {% tab objective-c %}
@@ -690,9 +738,47 @@ branch.initSessionWithLaunchOptions(launchOptions, andRegisterDeepLinkHandler: {
 {% endtab %}
 {% endtabs %}
 
+{% endif %}
+
+{% if page.ios_imessage %}
+
+{% tabs %}
+{% tab objective-c %}
+{% highlight objc %}
+Branch *branch = [Branch getInstance];
+[branch initSessionWithLaunchOptions:@{} andRegisterDeepLinkHandler:^(NSDictionary *params, NSError *error) {
+    if (!error && params) {
+        // params are the deep linked params associated with the link that the user clicked -> was re-directed to this app
+        // params will be empty if no data found
+        // ... insert custom logic here ...
+        NSLog(@"params: %@", params.description);
+    }
+}];
+{% endhighlight %}
+{% endtab %}
+
+{% tab swift %}
+{% highlight swift %}
+let branch: Branch = Branch.getInstance()
+branch.initSessionWithLaunchOptions({}, andRegisterDeepLinkHandler: { optParams, error in
+    if error == nil, let params = optParams {
+        // params are the deep linked params associated with the link that the user clicked -> was re-directed to this app
+        // params will be empty if no data found
+        // ... insert custom logic here ...
+        print("params: %@", params.description)
+    }
+})
+{% endhighlight %}
+{% endtab %}
+{% endtabs %}
+
+{% endif %}
+
 {% protip %}
 If you're using **Xcode 6.3 or newer**, have imported the SDK, and are still seeing a "Branch.h file not found" or some other compiler error, please [read this support article](https://support.branch.io/support/solutions/articles/6000109874-xcode-error-branch-not-found){:target="_blank"}.
 {% endprotip %}
+
+{% if page.ios %}
 
 ## Handle incoming links
 
@@ -745,6 +831,7 @@ func application(application: UIApplication, continueUserActivity userActivity: 
 {% endtab %}
 {% endtabs %}
 
+{% endif %}
 {% endif %}
 <!---    /iOS -->
 
@@ -1342,20 +1429,18 @@ Here are some recommended next steps:
 
 Follow these directions install the Branch SDK framework files without using CocoaPods:
 
-1. [Grab the latest SDK version](https://s3-us-west-1.amazonaws.com/branchhost/Branch-iOS-SDK.zip), or [clone our open-source GitHub repo](https://github.com/BranchMetrics/branch-ios-sdk).
+1. [Grab the latest SDK version](https://s3-us-west-1.amazonaws.com/branchhost/Branch-iOS-SDK.zip), or [clone our open-source GitHub repo](https://github.com/BranchMetrics/ios-branch-deep-linking).
 1. Drag the `Branch.framework` file into your Xcode project. Be sure that "Copy items if needed" and "Create groups" are selected.
 1. Import the following frameworks under **Build Phases** for your app target:
     - `AdSupport.framework`
     - `CoreTelephony.framework`
     - `CoreSpotlight.framework`
     - `MobileCoreServices.framework`
-    - `SafariServices.framework`
 
 {% caution title="Considerations around using Frameworks" %}
 
 `AdSupport.framework` allows us to use the IDFA to match your visitors across our entire network of apps, increasing matching accuracy. When you submit your app to the App Store, you need to let Apple know that you use the IDFA.
 
-`SafariServices.framework` enables cookie-based matching on iOS 9+, which allows us to [guarantee link matching with 100% accuracy]({{base.url}}/getting-started/matching-accuracy). Please test to make sure the invisible `SFSafariViewController` does not alter your view controller stack. Delete the app and reinstall to trigger the invisible SFSafariViewController to be presented on first launch. Please note that you cannot use 100% matching while [setDebug is turned on]({{base.url}}/getting-started/integration-testing/guide/ios/#use-debug-mode-to-simulate-fresh-installs).
 {% endcaution %}
 
 [Back to the Guide]({{base.url}}/getting-started/sdk-integration-guide/guide/ios/#get-the-sdk-files)
