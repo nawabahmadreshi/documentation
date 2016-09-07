@@ -1301,12 +1301,12 @@ public void onStart() {}
 
 In-app engagement and user value metrics are just as important as the click, install, and re-open metrics that Branch [automatically provides]({{base.url}}/getting-started/growth-attribution#automatic-event-tracking){:target="_blank"}. You can define your own post-install events, like purchase, signup, or share, and [view them in the dashboard]({{base.url}}/getting-started/user-value-attribution#measuring-custom-events){:target="_blank"} for each link, campaign, or channel.
 
-{% if page.mparticle_ios or page.mparticle_android or page.ios_imessage %}
+{% if page.mparticle_ios or page.mparticle_android %}
 Every custom event that you track with mParticle will be automatically forwarded to Branch.
 {% else %}
 Track custom events in your app with a simple call to the Branch SDK:
 {% endif %}
-{% if page.ios %}
+{% if page.ios or page.ios_imessage %}
 
 {% tabs %}
 {% tab objective-c %}
