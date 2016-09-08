@@ -465,8 +465,6 @@ Inserts an inline icon to indicate a feature or option is premium-only.
 {% premiumflag %}{% premiumflag %}
 ```
 
-> Try to avoid using this tag in headings, because the raw HTML code of the image tag gets fed through into the auto-generated link anchors.
-
 ## Jekyll front matter
 This YAML block appears at the top of every main content page:
 
