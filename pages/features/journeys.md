@@ -100,6 +100,13 @@ You can also run A/B tests by designing multiple templates and assigning a perce
 2. Click any object in the preview to edit it. To see documentation on all customization options, [click here](../advanced/#template-customization-options).
 3. When finished, click **Save & Close** button to continue.
 
+{% protip title="Deep linking into your app from Journeys" %}
+Journeys supports deep linking directly to content inside your app. There are two approaches available:
+
+1. **Use one destination everywhere.** If you are running a generic download campaign or a site-wide discount offer, your users would go to the same place inside your app regardless of where they originated on your website. You can configure this destination by setting **Deep Link Data** for the **Button** element when you [customize your template options]({{base.url}}/features/journeys/advanced/#template-customization-options).
+1. **Define destination dynamically based on where on your website a Journey is shown.** If the page where your Journey is displayed has a direct equivalent inside your app (for example, individual product pages), you want to send your users directly to that location. This approach requires additional configuration on your website. Instructions are available here: [here]({{base.url}}/features/journeys/advanced/#dynamic-deep-linking-with-journeys).
+{% endprotip %}
+
 ## Validate & Test
 
 This screen allows you to preview your Journey variations, and is where you can perform final validation and testing on your Journey before publishing it.
@@ -227,7 +234,7 @@ You can target users on a more granular level - based on behavior like where the
 
 #### Has completed event
 
-If you have [custom event tracking]({{base-url}}/getting-started/user-value-attribution/) set up, you can target users based on events that you define. For instance, you might want to show a Journey to users who make a purchase, or who add an item to their shopping cart more than three times.
+If you have [custom event tracking]({{base-url}}/getting-started/user-value-attribution/) set up, you can target users based on events that you define. For instance, you might want to show a Journey to users who have completed a purchase within the last week, or who add an item to their shopping cart more than three times.
 
 <!-- #### Referred from site
 
@@ -334,7 +341,7 @@ The available configuration options are identical for banners at both the top an
 | --- | --- |
 | App Icon | Enter the URL for your app icon, or upload an image |
 
-### Full Screen Interstitial
+### Full Screen Interstitial {% premiumflag %}{% endpremiumflag %}
 
 #### Background
 
@@ -404,9 +411,9 @@ The content block contains everything except for the background image. Dimension
 | Dismiss Text | Text to show users wanting to continue to your mobile website instead of downloading the app.
 | Dismiss Period | Control how long before the same visitor should see the Journey again. Options are `1 day`, `1 week`, `1 month`, `Never Again`, and `Custom` |
 
-## CSS Editor
+## CSS Editor {% premiumflag %}{% endpremiumflag %}
 
-In addition to the WYSIWYG View Editor, you may also modify your CSS code directly. To do so, go to the **Configure Views** step, click to edit a template, and then select the **CSS Editor** tab on the **Customize Template** screen.
+If you have an upgraded premium account, you may also modify your CSS code directly in addition to using the WYSIWYG View Editor. To do so, go to the **Configure Views** step, click to edit a template, and then select the **CSS Editor** tab on the **Customize Template** screen.
 
 {% image src='/img/pages/features/journeys/view-css-editor.png' third center alt='view editor and css editor toggle' %}
 
