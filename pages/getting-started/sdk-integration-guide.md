@@ -159,15 +159,20 @@ You can also [build and reference the assemblies directly]({{base.url}}/getting-
 
 ### Get the files
 
-1. [Download the latest SDK version](https://s3-us-west-1.amazonaws.com/branchhost/BranchUnityWrapper.unitypackage){:target="_blank"} or [clone our open-source GitHub repository](https://github.com/BranchMetrics/Unity-Deferred-Deep-Linking-SDK){:target="_blank"}.
+1. [Download the latest SDK version](https://s3-us-west-1.amazonaws.com/branchhost/BranchUnityWrapper.unitypackage){:target="_blank"} or [clone our open-source GitHub repository](https://github.com/BranchMetrics/unity-branch-deep-linking){:target="_blank"}.
 1. Import the `BranchUnityWrapper.unitypackage` into your project by clicking `Assets -> Import Package`.
 
 ### Configure the package and add Branch key
 
 1. To allow Branch to configure itself, drag a **BranchPrefab** asset to your scene.
-1. Specify your `branchUri` and `branchKey` in the properties.
-   - `branchKey`: get your Branch key from [the Branch dashboard](https://dashboard.branch.io/#/settings){:target="_blank"}.
-   - `branchUri`: this must be the same value as you entered in [the Branch link settings](https://dashboard.branch.io/#/settings/link){:target="_blank"}. Do **not** include the `://` characters.
+1. Fill out the following Prefab settings
+
+| Field name | Description
+| --- | ---
+| `Branch Key` | Get your live or test Branch key from [the Branch dashboard](https://dashboard.branch.io/#/settings){:target="_blank"}. You can toggle Live/Test at the top right hand side of the dashboard.
+| `Branch Uri` | The URI scheme for your app, which must be the same value as you entered in [the Branch link settings](https://dashboard.branch.io/#/settings/link){:target="_blank"}. Do **not** include the `://` characters.
+| `
+| `
    - `androidPathPrefix`: This is your Branch android path prefix. This is the four-character value in front of all your links. You can find it underneath the field labeled **SHA256 Cert Fingerprints** on the dashboard. It will look something like this: `/WSuf` (the initial `/` character should be included).
 
 {% image src='/img/pages/getting-started/sdk-integration-guide/unity_branch_key.png' full center alt='Unity plugin installation' %}
