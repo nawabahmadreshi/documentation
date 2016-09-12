@@ -55,11 +55,9 @@ In this step, we'll add a content area that makes it very easy to create deep li
 
 ~~~
 %%[
-VAR @link_to_be_wrapped, @deeplink
-SET @link_to_be_wrapped = "http://example.com/?foo=bar"
-VAR @branch_hash_secret, @branch_base_url, @hash
+VAR @deeplink, @branch_hash_secret, @branch_base_url, @hash
 SET @branch_hash_secret = "fake secret"
-SET @branch_base_url = "http://bnc.lt/abcd/3p?%243p=et&%24original_url="
+SET @branch_base_url = "http://bnc.lt/abcd/3p?%243p=e_et&%24original_url="
 SET @deeplink = CONCAT(@branch_base_url, URLEncode(@link_to_be_wrapped, 1, 1))
 SET @hash = SHA256(CONCAT(@branch_hash_secret, CONCAT(@deeplink , @branch_hash_secret)),"UTF-16")
 SET @deeplink = CONCAT(@deeplink, CONCAT('&%24hash=', @hash))
@@ -94,20 +92,22 @@ This code is referred to as the "Branch script" - this script will convert your 
 Wherever you are using `<a>` tags in your email templates, replace those with a short snippet for web URLs that you would like to deep link.
 
 ~~~
-%%[ VAR @link_to_be_wrapped, @deeplink SET @link_to_be_wrapped = "ADD YOUR LINK HERE" ContentAreaByName("My Contents\deeplink") ]%%
+%%[SET @link_to_be_wrapped = "ADD YOUR LINK HERE" ContentAreaByName("My Contents\deeplink")]%%
 
-<a href="%%=v(@deeplink)=%%">Click Me</a>
+<a href="%%=RedirectTo(@deeplink)=%%">Click Me</a>
 ~~~
 
 {% example title="Adding the Branch script" %}
+
+**Before:**
 
 `<a href="https://branch.io/product/1234">Example link</a>`
 
 **After:**
 
-`%%[ VAR @link_to_be_wrapped, @deeplink SET @link_to_be_wrapped = "https://branch.io/product/1234" ContentAreaByName("My Contents\deeplink") ]%%`
+`%%[ SET @link_to_be_wrapped = "https://branch.io/product/1234" ContentAreaByName("My Contents\deeplink") ]%%`
 
-`<a href="%%=v(@deeplink)=%%">Example link</a>`
+`<a href="%%=RedirectTo(@deeplink)=%%">Example link</a>`
 
 {% endexample %}
 
