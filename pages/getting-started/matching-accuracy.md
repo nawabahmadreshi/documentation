@@ -1,16 +1,18 @@
 ---
 type: recipe
 directory: getting-started
-title: Matching Accuracy
-page_title: How accurate is Branch fingerprint matching?
+title: Matching Platform
+page_title: How to get the most out of Branch deep linking
 description: How does Branch matching work? Learn about mechanisms we use to pass data through to the app and attribute app sessions back to the source.
 keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, matching, fingerprint, accuracy, direct deep linking
 hide_platform_selector: true
 hide_section_selector: true
 sections:
+- overview
 - guide
-contents: list
 ---
+
+{% if page.overview %}
 
 There are several mechanisms Branch uses to pass data through to the app and attribute app sessions back to the source. We always use the method with the highest match confidence rate.
 
@@ -26,7 +28,7 @@ For example, we'd call `myapp://open?link_click_id=123456` to open the app immed
 
 When a user clicks a Branch link for your app, and we've seen them click a link for another app on our partner network, we've already matched them up to a corresponding device identifier. This means that when they install the app, we know with 100% certainty that they just came from that link click.
 
-The fact that we have such a global network of apps with hundreds of millions of users clicking links, means that when you join the platform, you can benefit from the crowd-sourced accuracy gained through all our apps contributing the browser-app profiles.
+The fact that we have such a global network of apps with hundreds of millions of users clicking links, means that when you join the platform, you can benefit from the crowd-sourced accuracy gained through all our apps contributing the browser-app profiles. Read more about how important this is on [our blog](https://blog.branch.io/the-importance-of-matching-accuracy-in-deep-linking).
 
 ### Leveraging other match techniques
 
@@ -36,7 +38,8 @@ We've built out custom deep linking mechanisms that are specific to each platfor
 | :--- | ---
 | **Facebook deferred deep linking API** | We've built a custom integration with Facebook where if a user originates from an app invite or advertisement, we connect with Facebook's API to know with 100% certainty if the install originated from this source. You'll need to authenticate with Facebook on the Branch dash if you want to support this.
 | **Android Google Play referrer** | Google Play supports passing a referrer through the install process that we listen for. It's notoriously unreliable and currently unsupported when redirecting from Chrome. However, we'll use it when available. Enabling this method is covered in the [SDK Integration Guide]({{base.url}}/getting-started/sdk-integration-guide/guide/android/#configure-manifest).
-| **iOS 9 Safari cookie passthrough** | We built a custom technique into our latest iOS SDK that will guarantee 100% accuracy on iOS 9 when you include SafariServices.framework in your app. This method is enabled by default when you complete the [SDK Integration Guide]({{base.url}}/getting-started/sdk-integration-guide).
+| **iOS 9/10 Safari cookie passthrough** | We built a custom technique into our iOS SDK that will guarantee 100% accuracy on iOS 9/10 when a user clicks from the Safari browser. This only applies if you include SafariServices.framework in your app. Note that this method has some risks due to a recent (9/1/16) policy change on iOS. Please see our new recommended [path to use this feature]({{base.url}}/getting-started/matching-accuracy/guide/#configuring-your-ios-app-for-100-match-from-safari).
+| **Android Chrome Tabs cookie passthrough** | We built a custom technique into our Android SDK that will guarantee 100% accurancy when a user originates from the Chrome browser. We're automatically cookie match based on app.link, but you can configure the domain depending on your use case. Please see [the guide here]({{base.url}}/getting-started/matching-accuracy/guide/#configuring-your-android-app-for-100-match-from-chrome).
 
 ## Methods without 100% match accuracy
 
@@ -56,16 +59,32 @@ This means that if two users with the same fingerprint, on the same wifi, were t
 
 {% endprotip %}
 
+{% elsif page.guide %}
+
+## Configuring your iOS app for 100% match from Safari
+
+### Include SafariServices.framework
+
+### Set the domain for cookie matching
+
+### *Recommended:* Display the SFSafariViewController to your user
+
+## Configuring your Android app for 100% match from Chrome
+
+### Set the domain for cookie matching
+
 ## Handling personally identifiable information
 
 {% caution %}
 Deep link usecases that include sensitive or personally identifiable information are discouraged. This is because there is always a slight possibility of mismatches occurring, which could lead to users seeing incorrect content.
 {% endcaution %}
 
-Our advice is to ensure that users are not able to abuse your system if they are deep linked incorrectly to your app. Examples of usecases to avoid are:
+Our advice is to ensure that users are not able to abuse your system if they are deep linked incorrectly to your app. Examples of use cases to avoid are:
 
 1. Automatically logging users into your app by including usernames and passwords in Branch links.
 1. Deep linking users to items they have purchased, or allowing them to change the state of their order without having them log into your app first.
 1. Deep linking to explicit content.
 
-In the event that you choose to move forward with a usecase that does include sensitive information in your Branch links, you should check for the `+match_guaranteed: true` key-value pair in your initial Branch session callback, prior to routing to the deep linked content. Matching methods that provide `+match_guaranteed: true` are discussed in the [Methods with 100% match accuracy](#methods-with-100-match-accuracy) section above. Methods that return `+match_guaranteed: false` is discussed in [Methods without 100% match accuracy](#methods-without-100-match-accuracy).
+In the event that you choose to move forward with a usecase that does include sensitive information in your Branch links, you should check for the `+match_guaranteed: true` key-value pair in your initial Branch session callback, prior to routing to the deep linked content. Matching methods that provide `+match_guaranteed: true` are discussed in the [Methods with 100% match accuracy]({{base.url}}/getting-started/matching-accuracy/overview/#methods-with-100-match-accuracy) section above. Methods that return `+match_guaranteed: false` is discussed in [Methods without 100% match accuracy]({{base.url}}/getting-started/matching-accuracy/overview/#methods-without-100-match-accuracy).
+
+{% endif %}
