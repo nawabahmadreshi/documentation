@@ -16,7 +16,9 @@ sections:
 {% if page.overview %}
 
 {% protip %}
-Journeys is a premium feature with a 14 day free trial period. You can find out more about pricing [here](https://branch.io/pricing).
+All Branch partners can enable a single Journey with functionality for a basic Smart Banner free of charge. Premium-only advanced features (including the option to run multiple Journeys simultaneously) are indicated with a {% premiumflag %}{% endpremiumflag %} icon. A 14 day trial period is available.
+
+To find out more about premium Journeys functionality, [click here](../advanced/#premium-journeys-functionality).
 {% endprotip %}
 
 On a daily basis, Google Search drives **more app installs** than all of Facebook's paid install products combined. Converting your mobile web visitors into native app users is one of the most effective acquisition channels available, and Branch's Journeys Web to App feature makes this easy.
@@ -57,14 +59,32 @@ If you have users in many countries, you can create a separate Journey for each 
 | --- | --- |
 | Platform | Branch currently offers Journeys on one platform: **Mobile web**. This will display for mobile users on your website. _More options coming soon._
 | Devices | Which devices would you like to target? For example, if you only have an iOS app, then you might want to show a Journey only to users viewing your mobile website on iOS.
-| Regions | Select one or more countries in which to display your Journey, or select **Show to All Regions**
-| Additional Filters | Read about advanced filtering criteria [here]({{base.url}}/features/journeys/advanced/#advanced-audience-rules).
+| Regions {% premiumflag %}{% endpremiumflag %} | Select one or more countries in which to display your Journey. Defaults to **Show to All Regions**
+| Additional Filters {% premiumflag %}{% endpremiumflag %} | Read about advanced filtering criteria [here]({{base.url}}/features/journeys/advanced/#advanced-audience-rules).
 
 ## Configure Views
 
-You can design the template your audience will see, and what percentage of your audience will see it. You can also design multiple templates and assign a percentage of your audience to each one.
+You can design the template your audience will see, and what percentage of your audience will see it.
 
-1. If you wish to run an A/B test, click the **Add Variation** button to add another design variation. {% image src='/img/pages/features/journeys/add-variation.png' third center alt='add a variation' %}
+### Select a Template
+
+1. First, click the **Select a Template** button. {% image src='/img/pages/features/journeys/select-template.png' 2-thirds center alt='select templates' %}
+1. Next, click to select the type of template that you want to show. There are three template options:
+    - Smart Banner at bottom of screen.
+    - Smart Banner at top of screen
+    - Full Screen Interstitial (SEO friendly!) {% premiumflag %}{% endpremiumflag %}
+    - _The fourth option shown is an alternate preconfiguration of the full screen interstitial_{% image src='/img/pages/features/journeys/select-template-type.png' 3-quarters center alt='select template type' %}
+1. Click **Customize** to make changes to the template.
+
+{% caution title="Templates can only be set once" %}
+Once you select a template for your variation, you will be able to edit it at any time until your Journey is published. However, you cannot go back and select a different template. Instead, click the **Add Variation** button to add a new variation and then click the `-` button to remove the original one.
+{% endcaution %}
+
+### Set Up Split Testing {% premiumflag %}{% endpremiumflag %}
+
+You can also run A/B tests by designing multiple templates and assigning a percentage of your audience to each one.
+
+1. Click the **Add Variation** button to add another design variation. {% image src='/img/pages/features/journeys/add-variation.png' third center alt='add a variation' %}
 1. To remove an unwanted variation, click the `-` button. {% image src='/img/pages/features/journeys/remove-variation.png' quarter center alt='remove a variation' %}
 1. Use the percentage fields to control the ratio of your audience that will see each variation.{% image src='/img/pages/features/journeys/multiple-templates.png' 3-quarters center alt='multiple templates' %}
 
@@ -74,25 +94,18 @@ You can design the template your audience will see, and what percentage of your 
 - Your total percentage allocation may be _less_ than **100%**. In this situation, the remainder of your audience will be shown your standard website. This allows you to A/B test against your non-Journeys website experience.
 {% endprotip %}
 
-### Select a Template
-
-1. First, click the **Select a Template** button. {% image src='/img/pages/features/journeys/select-template.png' 2-thirds center alt='select templates' %}
-1. Next, click to select the type of template that you want to show. There are three template options:
-    - Smart Banner at bottom of screen.
-    - Smart Banner at top of screen
-    - Full Screen Interstitial (SEO friendly!)
-    - _The fourth option shown is an alternate preconfiguration of the full screen interstitial_{% image src='/img/pages/features/journeys/select-template-type.png' 3-quarters center alt='select template type' %}
-1. Click **Customize** to make changes to the template.
-
-{% caution title="Templates can only be set once" %}
-Once you select a template for your variation, you will be able to edit it at any time until your Journey is published. However, you cannot go back and select a different template. Instead, click the **Add Variation** button to add a new variation and then click the `-` button to remove the original one.
-{% endcaution %}
-
 ## Customize Template
 
-1. In the **Template Name:** field, enter a name to use for internal reference.
+1. In the **Customize Template** heading, you may edit the the name to use for internal reference.
 2. Click any object in the preview to edit it. To see documentation on all customization options, [click here](../advanced/#template-customization-options).
 3. When finished, click **Save & Close** button to continue.
+
+{% protip title="Deep linking into your app from Journeys" %}
+Journeys supports deep linking directly to content inside your app. There are two approaches available:
+
+1. **Use one destination everywhere.** If you are running a generic download campaign or a site-wide discount offer, your users would go to the same place inside your app regardless of where they originated on your website. You can configure this destination by setting **Deep Link Data** for the **Button** element when you [customize your template options]({{base.url}}/features/journeys/advanced/#template-customization-options).
+1. **Define destination dynamically based on where on your website a Journey is shown.** If the page where your Journey is displayed has a direct equivalent inside your app (for example, individual product pages), you want to send your users directly to that location. This approach requires additional configuration on your website. Instructions are available here: [here]({{base.url}}/features/journeys/advanced/#dynamic-deep-linking-with-journeys).
+{% endprotip %}
 
 ## Validate & Test
 
@@ -134,6 +147,11 @@ If you choose to target iOS or Android users but haven’t integrated those SDKs
 You will see a warning if your audience rules do not add up to 100%. If less than 100%, the remainder will see whatever is normal behavior for your website.
 
 **Fix:** Not required. To change audience allocations, simply press the **Back** button.
+
+#### Premium account warnings
+If you have built a Journey that includes premium-only functionality, you will see a warning.
+
+**Fix:** [Upgrade your app to Journeys Premium](http://dashboard.branch.io/journeys?modal=journeys-signup).
 
 ## Managing Your Journeys
 
@@ -216,7 +234,7 @@ You can target users on a more granular level - based on behavior like where the
 
 #### Has completed event
 
-If you have [custom event tracking]({{base-url}}/getting-started/user-value-attribution/) set up, you can target users based on events that you define. For instance, you might want to show a Journey to users who make a purchase, or who add an item to their shopping cart more than three times.
+If you have [custom event tracking]({{base-url}}/getting-started/user-value-attribution/) set up, you can target users based on events that you define. For instance, you might want to show a Journey to users who have completed a purchase within the last week, or who add an item to their shopping cart more than three times.
 
 <!-- #### Referred from site
 
@@ -243,7 +261,7 @@ You might choose to only show a Journey that asks a user to open the app to thos
 The customization options available depend on the template chosen:
 
 - [Smart Banner](#smart-banner)
-- [Full Screen Interstitial](#full-screen-interstitial)
+- [Full Screen Interstitial](#full-screen-interstitial) {% premiumflag %}{% endpremiumflag %}
 
 ### Smart Banner
 
@@ -323,7 +341,7 @@ The available configuration options are identical for banners at both the top an
 | --- | --- |
 | App Icon | Enter the URL for your app icon, or upload an image |
 
-### Full Screen Interstitial
+### Full Screen Interstitial {% premiumflag %}{% endpremiumflag %}
 
 #### Background
 
@@ -393,6 +411,12 @@ The content block contains everything except for the background image. Dimension
 | Dismiss Text | Text to show users wanting to continue to your mobile website instead of downloading the app.
 | Dismiss Period | Control how long before the same visitor should see the Journey again. Options are `1 day`, `1 week`, `1 month`, `Never Again`, and `Custom` |
 
+## CSS Editor {% premiumflag %}{% endpremiumflag %}
+
+If you have an upgraded premium account, you may also modify your CSS code directly in addition to using the WYSIWYG View Editor. To do so, go to the **Configure Views** step, click to edit a template, and then select the **CSS Editor** tab on the **Customize Template** screen.
+
+{% image src='/img/pages/features/journeys/view-css-editor.png' third center alt='view editor and css editor toggle' %}
+
 ## Dynamic Deep Linking with Journeys
 
 You have the option of dynamically configuring the Branch link that powers the Journey presented to the user. This allows you to pass different deep link data from each page of your site, instead of using the same deep link data as defined in the Journey for every page.
@@ -415,6 +439,18 @@ branch.setBranchViewData({
 {% caution title="Migrating from the legacy Smart Banner" %}
 Calling the `branch.banner()` function with deep link data will override the custom deep link parameters of any Journey shown on that page. The banner itself will not be displayed when a Journey is shown, but its deep link data will be used. This is done to make it easy to migrate from the smart banner to Journeys.
 {% endcaution %}
+
+## Premium Journeys Functionality
+
+All Journeys features are available to upgraded apps, and are charged per event with a 14 day free trial. Visit [this page](https://branch.io/pricing) for full pricing information.
+
+#### Limitations for apps with free accounts
+
+- Any number of Journeys may be created in **Draft** mode using all features.
+- An invitation to upgrade will be displayed when premium-only functionality (indicated with a {% premiumflag %}{% endpremiumflag %} icon) is enabled
+- Only a single Journey using the Smart Banner template (either top or bottom position) may be **Active** at any one time.
+- To enable a different Journey, the currently active Journey must first be put into **Stopped** mode.
+- Any Journey using premium-only features cannot be placed into **Active** mode until the app has been upgraded.
 
 ## Web to App Routing without Journeys
 
