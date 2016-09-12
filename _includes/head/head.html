@@ -13,8 +13,8 @@ The following variables can/should be passed in
 
 	<title>{{ include.page_title }}{% if page.title %} - {% endif %}{{ include.site_title | default: 'Branch Documentation' }}</title>
 
-	<meta name="keywords" content="{% if include.ios != "true" and include.android != "true" %}{{ include.keywords | default: 'Mobile, Referral, Deep, Linking, Personalized, Install, Attribution, Growth, Hacking, Sharing' }}{% endif %}{% if include.ios == "true" %}{{ include.ios_keywords }}{% endif %}{% if include.android == "true" %}{{ include.android_keywords }}{% endif %}" />
-	<meta name="description" content="{% if include.ios != "true" and include.android != "true" %}{{ include.description | default: 'Branch helps mobile apps grow with deep links that power referral systems, sharing links, invites and marketing links with full attribution and analytics' }}{% endif %}{% if include.ios == "true" %}{{ include.ios_description }}{% endif %}{% if include.android == "true" %}{{ include.android_description }}{% endif %}" />
+	<meta name="keywords" content="{% if include.ios_keywords != "true" and include.android_keywords != "true" %}{{ include.keywords | default: 'Mobile, Referral, Deep, Linking, Personalized, Install, Attribution, Growth, Hacking, Sharing' }}{% endif %}{% if include.ios_keywords == "true" %}{{ include.ios_keywords }}{% endif %}{% if include.android_keywords == "true" %}{{ include.android_keywords }}{% endif %}" />
+	<meta name="description" content="{% if include.ios_description != "true" and include.android_description != "true" %}{{ include.description | default: 'Branch helps mobile apps grow with deep links that power referral systems, sharing links, invites and marketing links with full attribution and analytics' }}{% endif %}{% if include.ios_description == "true" %}{{ include.ios_description }}{% endif %}{% if include.android_description == "true" %}{{ include.android_description }}{% endif %}" />
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
 	<meta name="apple-mobile-web-app-capable" content="yes" />

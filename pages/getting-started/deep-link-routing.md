@@ -13,6 +13,8 @@ platforms:
 - adobe
 - titanium
 - react
+- mparticle_ios
+- mparticle_android
 sections:
 - overview
 - guide
@@ -43,10 +45,17 @@ This guide describes how to use the automatic routing functionality included in 
 This guide describes how to use the automatic routing functionality included in the Branch SDK. If you need more control, check out [this section of the Advanced page]({{base.url}}/getting-started/deep-link-routing/advanced/android#building-a-custom-deep-link-routing-method)
 {% endprotip %}
 
+{% elsif page.mparticle_android %}
+
+{% ingredient quickstart-prerequisite %}{% endingredient %}
+{% protip title="Automatic vs. custom deep link routing" %}
+This guide describes how to use the automatic routing functionality included in the Branch SDK. If you need more control, check out [this section of the Advanced page]({{base.url}}/getting-started/deep-link-routing/advanced/mparticle_android#building-a-custom-deep-link-routing-method)
+{% endprotip %}
+
 {% else %}
 
 {% protip title="Automatic routing not yet available" %}
-Automatic deep link routing is currently supported in only the native iOS and Android SDKs. Please see the Advanced page to set up a custom routing solution.
+*Automatic* deep link routing is currently supported in only the native iOS and Android SDKs. Please see the [Advanced page]({{base.url}}/getting-started/deep-link-routing/advanced/) to set up a custom routing solution.
 {% endprotip %}
 
 {% endif %}
@@ -205,7 +214,7 @@ branch.initSessionWithLaunchOptions(launchOptions, automaticallyDisplayDeepLinkC
 Now whenever your app launches from a Branch link that has the `product_picture` key set in its data dictionary, the `ExampleDeepLinkingController` view controller will be displayed!
 
 {% endif %}
-{% if page.android %}
+{% if page.android or page.mparticle_android %}
 
 ## Configure Activity to accept deep links
 
@@ -480,7 +489,68 @@ branch.subscribe(({params, error, uri}) => {
 
 {% endif %}
 
-{% if page.android %}
+{% if page.mparticle_ios %}
+Inside the callback for `checkForDeferredDeepLinkWithCompletionHandler` method in your AppDelegate, examine the params dictionary to determine whether the user opened a link to content. Below is an example assuming that the links correspond to pictures.
+
+{% highlight objc %}- (void)checkForDeeplink {
+    MParticle * mParticle = [MParticle sharedInstance];
+    
+    [mParticle checkForDeferredDeepLinkWithCompletionHandler:^(NSDictionary<NSString *,NSString *> * _Nullable params, NSError * _Nullable error) {
+        if (params) {
+                // Start setting up the view controller hierarchy
+                UINavigationController *navC = (UINavigationController *)self.window.rootViewController;
+                UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                UIViewController *nextVC;
+
+                // If the key 'pictureId' is present in the deep link dictionary
+                // then load the picture screen with the appropriate picture
+                NSString *pictureId = [params objectForKey:@"pictureId"];
+
+                if (pictureId) {
+                    nextVC = [storyboard instantiateViewControllerWithIdentifier:@"PicVC"];
+                    [nextVC setNextPictureId:pictureId];
+                } else {
+                    nextVC = [storyboard instantiateViewControllerWithIdentifier:@"MainVC"];
+                }
+                
+                // navigate!
+                [navC setViewControllers:@[nextVC] animated:YES];
+            }
+    }];
+}
+{% endhighlight %}
+{% endif %}
+
+{% if page.mparticle_android %}
+Inside the callback for your call to `checkDeeplink`, examine the `DeepLinkResult` to determine whether the user opened a link to content. Below is an example assuming that the links correspond to pictures.
+{% highlight java %}
+@Override
+public void onStart() {}
+  MParticle.getInstance().checkForDeepLink(new DeepLinkListener() {
+    @Override
+    public void onResult(DeepLinkResult result) {
+        String pictureId = result.getParameters().get("picture_id");
+
+        if ((pictureId != null) && (!pictureId.equals("")) {
+            Intent i = new Intent(this, ViewerActivity.class);
+            i.putExtra("picture_id", pictureId);
+            startActivity(i);
+        } else {
+            startActivity(new Intent(this, HomeActivity.class));
+        }
+    }
+
+    @Override
+    public void onError(DeepLinkError error) {
+        //if an integration has an error, it will be surfaced via a DeepLinkError.
+        Log.d("my log tag", error.toString());
+    }
+  });
+}
+{% endhighlight %}
+{% endif %}
+
+{% if page.android or page.mparticle_android %}
 
 ## Be notified when deep link Activity finishes
 
@@ -540,7 +610,7 @@ In addition to any custom key/value pairs specified in the link data dictionary,
 
 If you spent a bunch of time setting up deep link paths before you heard of Branch and you want to continue using them, you can set the `$deeplink_path`, `$ios_deeplink_path` or `$android_deeplink_path` link control parameters to the URI path you'd like to display.
 
-{% if page.android %}
+{% if page.android or page.mparticle_android %}
 
 In your app's Manifest, add this meta-data key to the definition of the Activity you want to show when a link to content is opened:
 
@@ -549,7 +619,7 @@ In your app's Manifest, add this meta-data key to the definition of the Activity
 {% endhighlight %}
 
 {% endif %}
-{% if page.android %}{% else %}
+{% if page.android or page.mparticle_android %}{% else %}
 
 {% caution title="Incomplete support on iOS" %}
 [Universal Links]({{base.url}}/getting-started/universal-app-links) and [Spotlight]({{base.url}}/features/spotlight-indexing) do not support deep linking via URI paths. If possible, we recommend not using `$deeplink_path` and its platform-specific variants as your only deep link routing method.
@@ -575,7 +645,7 @@ If you're creating a link by appending query parameters, just append the control
 
 When you create links via a mobile SDK, you simply need to set the control parameters.
 
-{% if page.ios %}
+{% if page.ios or page.mparticle_ios %}
 
 {% tabs %}
 {% tab objective-c %}
@@ -601,7 +671,7 @@ linkProperties.addControlParam("$deeplink_path", withValue: "content/1234")
 
 
 <!--- Android -->
-{% if page.android %}
+{% if page.android or page.mparticle_android %}
 
 {% highlight java %}
 LinkProperties linkProperties = new LinkProperties()
@@ -723,7 +793,7 @@ You can retrieve the deep link data at any time from the Branch singleton by cal
 
 This returns the latest set of deep link data from the most recent link that was clicked. If you minimize the app and reopen it, the session will be cleared and so will this data.
 
-{% if page.ios %}
+{% if page.ios or page.mparticle_ios %}
 {% tabs %}
 {% tab objective-c %}
 {% highlight objc %}
@@ -738,9 +808,9 @@ let sessionParams = Branch.getInstance().getLatestReferringParams()
 {% endtabs %}
 {% endif %}
 
-{% if page.android %}
+{% if page.android or page.mparticle_android %}
 {% highlight java %}
-JSONObject sessionParams = Branch.getInstance().getLatestReferringParams();
+JSONObject sessionParams = Branch.get{% if page.mparticle_android %}Auto{% endif %}Instance().getLatestReferringParams();
 {% endhighlight %}
 {% endif %}
 
@@ -785,7 +855,7 @@ let lastParams = await branch.getLatestReferringParams()
 
 This returns the first set of deep link data that ever referred the user. Once it's been set for a given user, it can never be updated. This is useful for referral programs.
 
-{% if page.ios %}
+{% if page.ios or page.mparticle_ios %}
 {% tabs %}
 {% tab objective-c %}
 {% highlight objc %}
@@ -800,9 +870,9 @@ let firstParams = Branch.getInstance().getFirstReferringParams()
 {% endtabs %}
 {% endif %}
 
-{% if page.android %}
+{% if page.android or page.mparticle_android %}
 {% highlight java %}
-JSONObject installParams = Branch.getInstance().getFirstReferringParams();
+JSONObject installParams = Branch.get{% if page.mparticle_android %}Auto{% endif %}Instance().getFirstReferringParams();
 {% endhighlight %}
 {% endif %}
 
@@ -875,7 +945,7 @@ func application(application: UIApplication, didReceiveRemoteNotification userIn
 
 {% endif %}
 
-{% if page.android %}
+{% if page.android or page.mparticle_android %}
 ## Branch links in GCM push notifications
 
 You can use Branch links inside your GCMs sent from your server, especially if you're looking for a good way to deliver someone to a specific page and want to attribute these "deep linked push notifications" back to a Branch Link. We assume that you've already set up Branch deep linking in the Android SDK.

@@ -110,7 +110,7 @@ linkProperties.channel = "facebook"
 {% endtab %}
 {% endtabs %}
 
-Use Branch's preconfigured `UIActivityItemProvider` to share a piece of content without having to create a link. Calling this method will automatically generate a Branch link with the appropriate analytics channel when the user selects a sharing destination.
+Use Branch's preconfigured `UIActivityItemProvider` to share a piece of content without having to create a link. Calling this method will automatically generate a Branch link with the appropriate analytics channel when the user selects a sharing destination. Keep in mind, there are different `showShareSheetWithLinkProperties` functions based on device (iPad or iPhone).
 
 {% tabs %}
 {% tab objective-c %}
@@ -127,11 +127,10 @@ Use Branch's preconfigured `UIActivityItemProvider` to share a piece of content 
 {% tab swift %}
 {% highlight swift %}
 branchUniversalObject.showShareSheetWithLinkProperties(linkProperties,
-                                        andShareText: "Super amazing thing I want to share!",
-                                        fromViewController: self,
-                                        andCallback: { () -> Void in
+  andShareText: "Super amazing thing I want to share!",
+  fromViewController: self) { (activity: String?, success: Bool) in
     print("done showing share sheet!")
-})
+}
 {% endhighlight %}
 {% endtab %}
 {% endtabs %}

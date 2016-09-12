@@ -75,7 +75,7 @@
 			}
 	    .search-results {
 				position: fixed;
-	      top: 120px;
+	      top: 114px;
 	      bottom: 0;
 	      left: 0;
 	      width: 275px;
@@ -134,6 +134,10 @@
 					a.sidebar-link-selected {
 						color:#ffffff;
 						font-weight:bold;
+					}
+					.premium {
+						color: #ffffff;
+						margin-left: 5px;
 					}
 					.sidebar-group-title {
 						font-size:14px;

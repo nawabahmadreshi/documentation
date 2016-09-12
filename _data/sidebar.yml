@@ -10,6 +10,7 @@
         - creating-links-in-apps
         - creating-links-other-ways
         - configuring-links
+        - hosted-deep-link-data
     - deep-link-routing
     - title: 5. Dashboard Guide
       children:
@@ -38,7 +39,6 @@
     - title: Marketing for Mobile
       children:
         - chrome-extension
-        - email-campaigns
         - referral-programs
         - facebook-app-invites
         - facebook-ads
@@ -52,8 +52,15 @@
 - title: Integrations
   directory: third-party-integrations
   children:
+    - title: Deep Linked Emails
+      children:
+        - responsys
+        - exacttarget
+        - sendgrid
+        - sailthru
     - title: Data Integrations
       children:
+        - adjust
         - amplitude
         - appboy
         - google-analytics

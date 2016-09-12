@@ -14,6 +14,8 @@ platforms:
 - adobe
 - titanium
 - react
+- mparticle_ios
+- mparticle_android
 sections:
 - overview
 - guide
@@ -35,7 +37,7 @@ You can read more about using the link data dictionary to define key/value pairs
 {% ingredient quickstart-prerequisite %}{% endingredient %}
 
 <!--- iOS -->
-{% if page.ios %}
+{% if page.ios or page.mparticle_ios %}
 
 ## Import framework
 
@@ -140,12 +142,16 @@ branchUniversalObject.getShortUrlWithLinkProperties(linkProperties,  andCallback
 If you don't want to handle the link yourself, you can also use Branch's [preconfigured share sheet]({{base.url}}/getting-started/branch-universal-object/guide/ios/#showsharesheetwithlinkproperties).
 {% endprotip %}
 
+{% protip title="What happens if the internet goes out?" %}
+When the Branch SDK requests a short link, it will try three times before failing. In the event that the request fails, the SDK reverts to local link generation. Rather than not creating a link at all, the link parameters will be appended as query params, and then the link metadata is appended as base64 encoded data. If your app is generating unusually long links, check the device's internet connection.
+{% endprotip %}
+
 {% endif %}
 <!--- /iOS -->
 
 
 <!--- Android -->
-{% if page.android %}
+{% if page.android or page.mparticle_android %}
 
 ## Create a Branch Universal Object
 
@@ -193,6 +199,10 @@ branchUniversalObject.generateShortUrl(this, linkProperties, new BranchLinkCreat
 
 {% protip title="Use the Branch share sheet" %}
 If you don't want to handle the link yourself, you can also use Branch's [preconfigured share sheet]({{base.url}}/getting-started/branch-universal-object/guide/android/#showsharesheet).
+{% endprotip %}
+
+{% protip title="What happens if the internet goes out?" %}
+When the Branch SDK requests a short link, it will try three times before failing. In the event that the request fails, the SDK reverts to local link generation. Rather than not creating a link at all, the link parameters will be appended as query params, and then the link metadata is appended as base64 encoded data. If your app is generating unusually long links, check the device's internet connection.
 {% endprotip %}
 
 {% endif %}

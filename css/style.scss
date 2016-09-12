@@ -36,6 +36,16 @@ $branch-font-path: "/font";
 	margin-top: 0px;
 }
 
+.premium-label {
+	float: right;
+	max-width: 100px;
+}
+
+.premium-star {
+	max-width: 30px;
+	margin-right: 10px;
+}
+
 pre {
 	word-break: normal;
 	word-wrap: normal;
@@ -46,7 +56,7 @@ pre {
 }
 
 body {
-	font-size: 16px; 
+	font-size: 16px;
 	line-height: 1.5;
 }
 

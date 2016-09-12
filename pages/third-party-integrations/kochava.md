@@ -6,9 +6,11 @@ page_title: Send Deep Link Install Data to Kochava
 description: We’ve partnered with Kochava to provide an easy way to deliver Branch installs and attributions to your Kochava dashboard. Learn how to set it up.
 keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Analytics, Install Data, Kochava
 hide_platform_selector: true
+premium: true
 sections:
 - overview
 - guide
+- advanced
 ---
 
 {% if page.overview %}
@@ -68,5 +70,30 @@ Once you've clicked `Submit` you should see a screen with the campaign ID.
 1. Hit **Save**
 
 {% image src="/img/pages/third-party-integrations/kochava/enable-kochava-integration.png" half center alt='Enable Kochava Integration' %}
+
+{% elsif page.advanced %}
+
+## Advanced network segmentation with Kochava
+
+If you are interested in advanced network attribution segmentation in Kochava, you can use the same attribution parameters from a Kochava Click URL with your Branch link, and switch out campaign_ids. Please note that using this method will override the default attribution of Branch links to their default campaign in Kochava (only the specific Branch links that you do this for will not attribute to the default campaign).
+
+{% caution %}
+If you enabled the Kochava integration before August 12th 2016, you will need to disable and re-enable the Kochava card in your dashboard before carrying out the instructions below.
+{% endcaution %}
+
+1. Start with an existing Branch link, for example, a [ marketing link](/features/google-search-ads/guide/#create-a-marketing-link-on-the-branch-dashboard){:target="_blank"}.
+1. Next, [create a Kochava Click URL](http://support.kochava.com/campaign-management/create-an-install-campaign){:target="_blank"} in the Kochava Dashboard with the parameters you'd like to capture.
+	- Select the "Click" URL (as opposed to the Impression URL)
+	- After creating the URL, copy everything after **click** value and append the parameters to the end of your Branch link.
+
+{% example %}
+Here's an example of a finalized link for Branch and Kochava:
+
+{% highlight sh %}
+https://mylinks.app.link/8AHjQx0fyv?
+	campaign_id=kokochavabranchdemo90128398&
+	network=Bing
+{% endhighlight %}
+{% endexample %}
 
 {% endif %}

@@ -161,15 +161,15 @@ _You can read more about the SendSMS() method in the [Method Reference](https://
 
 Branch uses Twilio to provide your users the ability to text themselves the app for free, but you can roll your own SMS service by using the following basic logic:
 
-1. Does `referring_link` exist? (a.k.a. did the user end up on this Text Me The App page because of a Branch link?) If so, use this link when sending the SMS.
-2. If not (`referring_link` is null), generate a new Branch link by making a call to the Web SDK's `link()` method. Use this link when sending the SMS.
+1. Does `~referring_link` exist? (a.k.a. did the user end up on this Text Me The App page because of a Branch link?) If so, use this link when sending the SMS.
+2. If not (`~referring_link` is null), generate a new Branch link by making a call to the Web SDK's `link()` method. Use this link when sending the SMS.
 
-The `referring_link` parameter is returned in the Web SDK's init() callback. See the code below:
+The `~referring_link` parameter is returned in the Web SDK's init() callback, buried in the referring link data. See the code below:
 
 {% highlight javascript %}
 branch.init('YOUR-BRANCH-KEY', function(err, data) {
-	if (data.referring_link) {
-		console.log("data.referring_link:", data.referring_link);
+	if (data.data['~referring_link']) {
+		console.log("data.data['~referring_link']:", data.data['~referring_link']);
 	}
 });
 {% endhighlight %}
