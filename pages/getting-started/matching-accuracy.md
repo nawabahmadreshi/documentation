@@ -63,15 +63,78 @@ This means that if two users with the same fingerprint, on the same wifi, were t
 
 ## Configuring your iOS app for 100% match from Safari
 
+100% match is a bit of a misnomer, as it is only 100% match from when a user clicks from the Safari browser. According to our analysis, clicking through Safari happens about 50-75% of the time depending on the use case. For example, clicking from Facebook, Gmail or Chrome won't trigger a 100% match here. However, it's still beneficial to the matching accuracy, so we recommend employing it.
+
 ### Include SafariServices.framework
 
-### Set the domain for cookie matching
+First off, you'll need to include the `SafariServices.framework into your app to leverage this. Currently, as soon as you add the Framework, Branch will being triggering the Safari-based 100% match technique.Note that this can be **disabled* using the following method, which should be called _before_ `initSession`.
+
+{% tabs %}
+{% tab objective-c %}
+{% highlight objc %}
+[[Branch getInstance] disableCookieBasedMatching];
+{% endhighlight %}
+{% endtab %}
+{% tab swift %}
+{% highlight swift %}
+Branch.getInstance().disableCookieBasedMatching()
+{% endhighlight %}
+{% endtab %}
+{% endtabs %}
+
+To add the framework, simply go to your Xcode project:
+
+- Select the right build target
+- Select the `General` tab
+- Scroll down to `Linked Frameworks and Libraries`
+- Click the `+` button
+- Add `SafariServices.framework`
+
+### Set the domain for cookie matching for non-app.link domains
+
+Because our SafariServices.framework matching method works based on comparing the cookie Branch set on a click to the cookie set with the SFSafariViewController, it's critical that the domain match the link being clicked. By default, we assume that your domain is on the `app.link` domain. If you want to override it, you must add the domain you want to the `Info.plist` like so.
+
+1. In Xcode, open your project's Info.plist file in the Navigator (on the left side).
+1. Mouse hover "Information Property List" (the root item under the Key column).
+1. After about half a second, you will see a `+` sign appear. Click it.
+1. Add new rows with the following values, with the `String` entry inside the `Dictionary`:
+
+| Key | Type | Value |
+| :--- | --- | --- |
+| branch_app_domain | String | your.customdomain.com (or bnc.lt)
 
 ### *Recommended:* Display the SFSafariViewController to your user
 
+With recent the change in [Apple's App Store policy](https://github.com/saniul/AppStoreGuidelines/commit/fa416010a9fe6ec5eb462e6d6956a69370cb3fa6#diff-9244bf30c63719c70ca91152bc28ff54R277), Apple requires that the Safari View Controller must be used to display information to users and cannot be loaded behind the scenes. Because of this, to use Branch's Safari View Controller code, we **highly** recommend you comply with policy.
+
+In showing a SafariViewController to your users, you likely are going to load a website with information on it. We've built some functionality that allows you load the Branch matching URL in your Safari View Controller and specify the URL for us to redirect to afterwards. Here is the recommended pathway:
+
+{% tabs %}
+{% tab objective-c %}
+{% highlight objc %}
+[[Branch getInstance] disableCookieBasedMatching];
+{% endhighlight %}
+{% endtab %}
+{% tab swift %}
+{% highlight swift %}
+Branch.getInstance().disableCookieBasedMatching()
+{% endhighlight %}
+{% endtab %}
+{% endtabs %}
+
 ## Configuring your Android app for 100% match from Chrome
 
+Similar to iOS, 100% match is a bit of a misnomer since this method will only work if a user clicks via the Chrome browser. Other browsers such as Facebook and Twitter will not benefit from this method. We haven't pull the stats on usage like we do on iOS, but we'd assume it's similar to Safari (50-75% of clicks).
+
 ### Set the domain for cookie matching
+
+Because our Chrome Tabs matching method works based on comparing the cookie Branch set on a click to the cookie set with the Chrome Tab, it's critical that the domain match the link being clicked. By default, we assume that your domain is on the `app.link` domain. If you want to override it, you must set the domain you want via a call to Branch like so:
+
+{% highlight java %}
+// call before calling getAutoInstance in the Application class
+Branch.enableCookieBasedMatching("your.customdomain.com"); // or "bnc.lt" if you use that
+Branch.getAutoInstance(this);
+{% endhighlight %}
 
 ## Handling personally identifiable information
 
