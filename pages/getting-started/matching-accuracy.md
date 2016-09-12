@@ -91,7 +91,7 @@ To add the framework, simply go to your Xcode project:
 
 ### Set the domain for cookie matching for non-bnc.lt domains
 
-Because our SafariServices.framework matching method works based on comparing the cookie Branch set on a click to the cookie set with the SFSafariViewController, it's critical that the domain match the link being clicked. By default, we assume that your domain is on the `app.link` domain. If you want to override it, you must add the domain you want to the `Info.plist` like so.
+Because our SafariServices.framework matching method works based on comparing the cookie Branch set on a click to the cookie set with the SFSafariViewController, it's critical that the domain match the link being clicked. By default, we assume that your domain is on the `bnc.lt` domain. If you want to override it, you must add the domain you want to the `Info.plist` like so.
 
 1. In Xcode, open your project's Info.plist file in the Navigator (on the left side).
 1. Mouse hover "Information Property List" (the root item under the Key column).
