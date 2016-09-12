@@ -36,7 +36,7 @@ To create a Remote Deep Link, you’ll need the following:
 
 Let's start with some example information. 
 
-* Base domain: `https://bnc.lt/27mg/3p?%243p=ex&%24original_url=`
+* Base domain: `https://bnc.lt/27mg/3p?%243p=e_ex&%24original_url=`
 * Secret key: `HoRywe971pl569DMpU1RzbRTap4ewnbNeqEcisz4FjQ=`
 * Web URL: `https://www.example.com/product/summer_shoes/`
 * Deep link parameters: `sku=123456` and `color=blue`
