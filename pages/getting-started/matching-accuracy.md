@@ -108,7 +108,7 @@ With recent the change in [Apple's App Store policy](https://github.com/saniul/A
 
 In showing a SafariViewController to your users, you likely are going to load a website with information on it. We've built some functionality that allows you load the Branch matching URL in your Safari View Controller and specify the URL for us to redirect to afterwards. Here is the recommended pathway:
 
-1. Tell Branch to wait to initialize until you've displayed the Safari View Controller to the user. We recommend only doing this conditionally, since it will block the initialization of Branch in all cases until you call the corresponding `resumeInit`.
+**1)** Tell Branch to wait to initialize until you've displayed the Safari View Controller to the user. We recommend only doing this conditionally, since it will block the initialization of Branch in all cases until you call the corresponding `resumeInit`.
 
 {% tabs %}
 {% tab objective-c %}
@@ -125,7 +125,7 @@ Branch.getInstance().enableDelayedInit()
 {% endtab %}
 {% endtabs %}
 
-2. Retrieve the 100% match URL from Branch by passing in the desired redirect URL. This will create a URL like `https://app.link?branch_key=key_live_1234&hardware_id=IDFAstuff&redirect_url=http://mysite.com/welcometotheapp`. It will quickly redirect from app.link to the destination URL, displaying it in the view controller while simulatenously checking the cookie for Branch to do 100% matching.
+**2)** Retrieve the 100% match URL from Branch by passing in the desired redirect URL. This will create a URL like `https://app.link?branch_key=key_live_1234&hardware_id=IDFAstuff&redirect_url=http://mysite.com/welcometotheapp`. It will quickly redirect from app.link to the destination URL, displaying it in the view controller while simulatenously checking the cookie for Branch to do 100% matching.
 
 {% tabs %}
 {% tab objective-c %}
@@ -140,9 +140,9 @@ let updatedUrlForOnboarding = Branch.getInstance().getUrlForOnboardingWithRedire
 {% endtab %}
 {% endtabs %}
 
-3. Display your SFSafariViewController with the Branch matching URL. You can display the view controller any way that works with your particular application.
+**3)** Display your SFSafariViewController with the Branch matching URL. You can display the view controller any way that works with your particular application.
 
-4. Catch the appropriate delegate method for the redirect or the loading complete and tell Branch it can resume initialization. This will call the Branch servers and return your deep link data with `+match_guaranteed` set to true if the cookies matched.
+**4)** Catch the appropriate delegate method for the redirect or the loading complete and tell Branch it can resume initialization. This will call the Branch servers and return your deep link data with `+match_guaranteed` set to true if the cookies matched.
 
 {% tabs %}
 {% tab objective-c %}
