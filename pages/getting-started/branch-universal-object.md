@@ -311,13 +311,13 @@ Please do not call `registerView` anymore. Instead, call this method in `viewDid
 {% tabs %}
 {% tab objective-c %}
 {% highlight objc %}
-[branchUniversalObject userCompletedAction:BNCRegisterViewEvent];
+[branchUniversalObject userCompletedAction:BNCShareInitiatedEvent];
 {% endhighlight %}
 {% endtab %}
 
 {% tab swift %}
 {% highlight swift %}
-branchUniversalObject.userCompletedAction(BNCRegisterViewEvent)
+branchUniversalObject.userCompletedAction(BNCShareInitiatedEvent)
 {% endhighlight %}
 {% endtab %}
 {% endtabs %}
@@ -443,16 +443,16 @@ We've added a series of custom events that you'll want to start tracking for ric
 
 | Key | Value
 | --- | ---
-| BUO_USER_ACTIONS.VIEW | User viewed the object
-| BUO_USER_ACTIONS.ADD_TO_WISH_LIST | User added the object to their wishlist
-| BUO_USER_ACTIONS.ADD_TO_CART | User added object to cart
-| BUO_USER_ACTIONS.PURCHASE_STARTED | User started to check out
-| BUO_USER_ACTIONS.PURCHASED | User purchased the item
-| BUO_USER_ACTIONS.SHARE_STARTED | User started to share the object
-| BUO_USER_ACTIONS.SHARE_COMPLETED | User completed a share
+| BranchEvent.VIEW | User viewed the object
+| BranchEvent.ADD_TO_WISH_LIST | User added the object to their wishlist
+| BranchEvent.ADD_TO_CART | User added object to cart
+| BranchEvent.PURCHASE_STARTED | User started to check out
+| BranchEvent.PURCHASED | User purchased the item
+| BranchEvent.SHARE_STARTED | User started to share the object
+| BranchEvent.SHARE_COMPLETED | User completed a share
 
 {% highlight java %}
-branchUniversalObject.userCompletedAction(BranchUniversalObject.BUO_USER_ACTIONS.VIEW);
+branchUniversalObject.userCompletedAction(BranchEvent.VIEW);
 {% endhighlight %}
 
 ### generateShortUrl

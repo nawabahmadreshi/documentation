@@ -1299,7 +1299,7 @@ public void onStart() {}
 
 ## Recommended: Track in-app events
 
-In-app engagement and user value metrics are just as important as the click, install, and re-open metrics that Branch [automatically provides]({{base.url}}/getting-started/growth-attribution#automatic-event-tracking){:target="_blank"}. You can define your own post-install events, like purchase, signup, or share, and [view them in the dashboard]({{base.url}}/getting-started/user-value-attribution#measuring-custom-events){:target="_blank"} for each link, campaign, or channel.
+In-app engagement and user value metrics are just as important as the click, install, and re-open metrics that Branch [automatically provides]({{base.url}}/getting-started/growth-attribution#automatic-event-tracking){:target="_blank"}. Branch has a fixed set of post-install events, like purchase, add to cart, and share, but you're free to add your own as well. Best of all, you can attribute these actions back to each link, campaign, or channel. Check out [that discussion here]({{base.url}}/getting-started/user-value-attribution){:target="_blank"}.
 
 {% if page.mparticle_ios or page.mparticle_android %}
 Every custom event that you track with mParticle will be automatically forwarded to Branch.
@@ -1311,42 +1311,43 @@ Track custom events in your app with a simple call to the Branch SDK:
 {% tabs %}
 {% tab objective-c %}
 {% highlight objc %}
-[[Branch getInstance] userCompletedAction:@"customAction"];
+[[Branch getInstance] userCompletedAction:BNCAddToCartEvent];
 {% endhighlight %}
 {% endtab %}
 {% tab swift %}
 {% highlight swift %}
-Branch.getInstance().userCompletedAction("customAction")
+Branch.getInstance().userCompletedAction(BNCAddToCartEvent)
 {% endhighlight %}
 {% endtab %}
 {% endtabs %}
+
 
 {% endif %}
 <!--- /iOS -->
 
 {% if page.android %}
 {% highlight java %}
-Branch.getInstance(getApplicationContext()).userCompletedAction("custom_action_1");
+Branch.getInstance(getApplicationContext()).userCompletedAction(BranchEvent.SHARE_STARTED);
 {% endhighlight %}
 {% endif %}
 <!--- /Android -->
 
 {% if page.cordova %}
 {% highlight js %}
-Branch.userCompletedAction("custom_action_1");
+Branch.userCompletedAction("Share Started");
 {% endhighlight %}
 {% endif %}
 
 {% if page.xamarin %}
 {% highlight c# %}
 Branch branch = Branch.GetInstance ();
-await branch.UserCompletedAction("custom_action_1");
+await branch.UserCompletedAction("Share Started");
 {% endhighlight %}
 {% endif %}
 
 {% if page.unity %}
 {% highlight c# %}
-Branch.userCompletedAction("custom_action_1");
+Branch.userCompletedAction("Share Started");
 {% endhighlight %}
 {% endif %}
 
@@ -1358,19 +1359,19 @@ Currently not supported in the ANE
 
 {% if page.titanium %}
 {% highlight js %}
-branch.userCompletedAction("custom_action_1");
+branch.userCompletedAction("Share Started");
 {% endhighlight %}
 {% endif %}
 
 {% if page.react %}
 {% highlight js %}
-branch.userCompletedAction("custom_action_1");
+branch.userCompletedAction("Share Started");
 {% endhighlight %}
 {% endif %}
 
 {% if page.mparticle_ios %}
 {% highlight objc %}
-[[MParticle sharedInstance] logEvent:@"Food order" eventType:MPEventTypeTransaction];
+[[MParticle sharedInstance] logEvent:@"Share Started" eventType:MPEventTypeTransaction];
 {% endhighlight %}
 {% endif %}
 
