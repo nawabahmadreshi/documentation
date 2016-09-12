@@ -14,6 +14,8 @@ platforms:
 - adobe
 - titanium
 - react
+- mparticle_ios
+- mparticle_android
 sections:
 - overview
 - guide
@@ -36,7 +38,7 @@ Branch makes it simple to enable Universal Links and App Links, and even improve
 
 {% elsif page.guide %}
 
-{% if page.android %}
+{% if page.android or page.mparticle_android %}
 <!-- do nothing -->
 {% else %}
 
@@ -52,7 +54,7 @@ Branch makes it simple to enable Universal Links and App Links, and even improve
 
 ## Add the Associated Domains entitlement to your project
 
-{% if page.ios or page.unity or page.adobe or page.react %}
+{% if page.ios or page.unity or page.adobe or page.react or page.mparticle_ios %}
 ### Enable Associated Domains in Xcode
 
 1. Go to the `Capabilities` tab of your project file.
@@ -71,8 +73,8 @@ Please ensure...
 ### Add your Branch link domains
 
 1. Go to the [Link Settings](https://dashboard.branch.io/#/settings/link) page on the dashboard.
-1. Scroll down to the `Custom Link Domain` area.
-1. Locate the value inside the `Default domain name` box.{% image src='/img/pages/getting-started/universal-app-links/default-link-domain.png' half center alt='retrieving the default link subdomain' %}
+1. Scroll down to the `Link Domain` area.
+1. Copy your domain name.{% image src='/img/pages/getting-started/universal-app-links/subdomain-setting.png' full center alt='retrieving the default link subdomain' %}
 1. In the `Domains` section, click the `+` icon and add the following entries: (making sure that `xxxx` matches the four-character value on the dashboard)
    * `applinks:xxxx.app.link`
    * `applinks:xxxx-alternate.app.link`
@@ -97,8 +99,8 @@ If you use a [custom domain or subdomain for your Branch links]({{base.url}}/get
 {% if page.cordova %}
 
 1. Go to the [Link Settings](https://dashboard.branch.io/#/settings/link) page on the dashboard.
-1. Scroll down to the `Custom Link Domain` area.
-1. Locate the value inside the `Default domain name` box.{% image src='/img/pages/getting-started/universal-app-links/default-link-domain.png' half center alt='retrieving the default link subdomain' %}
+1. Scroll down to the `Link Domain` area.
+1. Copy your domain name.{% image src='/img/pages/getting-started/universal-app-links/subdomain-setting.png' full center alt='retrieving the default link subdomain' %}
 1. Add the following entry to your application's `config.xml` (making sure that `xxxx` matches the four-character value on the dashboard)
 
 {% highlight xml %}
@@ -136,8 +138,8 @@ If the **Default domain name** box shows the legacy `bnc.lt` domain, you should 
 {% if page.xamarin %}
 
 1. Go to the [Link Settings](https://dashboard.branch.io/#/settings/link) page on the dashboard.
-1. Scroll down to the `Custom Link Domain` area.
-1. Locate the value inside the `Default domain name` box.{% image src='/img/pages/getting-started/universal-app-links/default-link-domain.png' half center alt='retrieving the default link subdomain' %}
+1. Scroll down to the `Link Domain` area.
+1. Copy your domain name.{% image src='/img/pages/getting-started/universal-app-links/subdomain-setting.png' full center alt='retrieving the default link subdomain' %}
 1. Create a new file named `Entitlements.plist` in the root directory of your project.
 1. Enable `associated-domains`
 1. In the `Domains` section, click the `+` icon and add the following entries: (making sure that `xxxx` matches the four-character value on the dashboard)
@@ -159,8 +161,8 @@ If you use a [custom domain or subdomain for your Branch links]({{base.url}}/get
 {% if page.titanium %}
 
 1. Go to the [Link Settings](https://dashboard.branch.io/#/settings/link) page on the dashboard.
-1. Scroll down to the `Custom Link Domain` area.
-1. Locate the value inside the `Default domain name` box.{% image src='/img/pages/getting-started/universal-app-links/default-link-domain.png' half center alt='retrieving the default link subdomain' %}
+1. Scroll down to the `Link Domain` area.
+1. Copy your domain name.{% image src='/img/pages/getting-started/universal-app-links/subdomain-setting.png' full center alt='retrieving the default link subdomain' %}
 1. Create a new file named `Entitlements.plist` in the same directory as your Titanium app's `tiapp.xml`
 1. Insert the following snippet (making sure that `xxxx` matches the four-character value on the dashboard)
 
@@ -224,7 +226,7 @@ if (OS_IOS) { // Don't forget this condition.
 
 {% endif %}
 
-{% if page.ios or page.xamarin or page.react %}
+{% if page.ios or page.xamarin or page.react or page.mparticle_ios %}
 ## Make your app aware of incoming Universal Links
 {% endif %}
 
@@ -342,6 +344,49 @@ Open your **AppDelegate.m** file and add the following method (if you completed 
 
 {% endif %}
 
+{% if page.mparticle_ios %}
+Open your **AppDelegate.m** file and add the following methods (if you completed the [SDK Integration Guide]({{base.url}}/getting-started/sdk-integration-guide), these are likely already present).
+
+{% highlight objc %}
+- (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray * _Nullable))restorationHandler {
+    [self checkForDeeplink];
+    return YES;
+}
+
+- (void)checkForDeeplink {
+    MParticle * mParticle = [MParticle sharedInstance];
+    
+    [mParticle checkForDeferredDeepLinkWithCompletionHandler:^(NSDictionary<NSString *,NSString *> * _Nullable params, NSError * _Nullable error) {
+        //
+        // A few typical scenarios where this block would be invoked:
+        //
+        // (1) Base case:
+        //     - User does not tap on a link, and then opens the app (either after a fresh install or not)
+        //     - This block will be invoked with Branch Metrics' response indicating that this user did not tap on a link
+        //
+        // (2) Deferred deep link:
+        //     - User without the app installed taps on a link
+        //     - User is redirected from Branch Metrics to the App Store and installs the app
+        //     - User opens the app
+        //     - This block will be invoked with Branch Metrics' response containing the details of the link
+        //
+        // (3) Deep link with app installed:
+        //     - User with the app already installed taps on a link
+        //     - Application opens via openUrl/continueUserActivity, mParticle forwards launch options etc to Branch
+        //     - This block will be invoked with Branch Metrics' response containing the details of the link
+        //
+        // If the user navigates away from the app without killing it, this block could be invoked several times:
+        // once for the initial launch, and then again each time the user taps on a link to re-open the app.
+        
+        if (params) {
+            //Insert custom logic to inspect the params and route the user/customize the experience.
+            NSLog(@"params: %@", params.description);
+        }
+    }];
+}
+{% endhighlight %}
+{% endif %}
+
 ## Test your Universal Links implementation
 
 After completing this guide and installing a new build of your app on your testing device, you can verify Universal Links are working correctly by following these steps:
@@ -352,13 +397,13 @@ After completing this guide and installing a new build of your app on your testi
 
 {% endif %}
 
-{% if page.ios %}
+{% if page.ios or page.mparticle_ios %}
 <!-- do nothing -->
 {% else %}
 
 ## Generate signing certificate fingerprint
 
-{% if page.android %}
+{% if page.android or page.mparticle_android %}
 
 {% else %}
 {% protip %}
@@ -388,8 +433,8 @@ You can insert both your debug and production fingerprints for testing. Simply s
 ## Configure project
 
 1. Go to the [Link Settings](https://dashboard.branch.io/#/settings/link) page on the dashboard.
-1. Scroll down to the `Custom Link Domain` area.
-1. Locate the value inside the `Default domain name` box.{% image src='/img/pages/getting-started/universal-app-links/default-link-domain.png' half center alt='retrieving the default link subdomain' %}
+1. Scroll down to the `Link Domain` area.
+1. Copy your domain name.{% image src='/img/pages/getting-started/universal-app-links/subdomain-setting.png' full center alt='retrieving the default link subdomain' %}
 1. Add the following entry to your application's `config.xml` (making sure that `xxxx` matches the four-character value on the dashboard)
 
 {% highlight xml %}
@@ -480,8 +525,8 @@ If you use a [custom domain or subdomain for your Branch links]({{base.url}}/get
 ## Add Intent Filter to Manifest
 
 1. Go to the [Link Settings](https://dashboard.branch.io/#/settings/link) page on the dashboard.
-1. Scroll down to the `Custom Link Domain` area.
-1. Locate the value inside the `Default domain name` box.{% image src='/img/pages/getting-started/universal-app-links/default-link-domain.png' half center alt='retrieving the default link subdomain' %}
+1. Scroll down to the `Link Domain` area.
+1. Copy your domain name.{% image src='/img/pages/getting-started/universal-app-links/subdomain-setting.png' full center alt='retrieving the default link subdomain' %}
 1. Choose the `Activity` you want to open up when a link is clicked. This is typically your `SplashActivity` or a `BaseActivity` that all other activities inherit from (and likely the same one you selected in the [SDK Integration Guide]({{base.url}}/getting-started/sdk-integration-guide)).
 1. Inside your `AndroidManifest.xml`, locate where the selected `Activity` is defined.
 1. Within the `Activity` definition, insert the intent filter provided below (making sure that `xxxx` matches the four-character value on the dashboard)
@@ -550,26 +595,9 @@ Here are some recommended next steps:
 
 {% elsif page.advanced %}
 
-{% if page.android %}
+{% if page.android or page.mparticle_android %}
 <!-- No advanced info except note on click-tracking -->
 {% else %}
-
-## Using a custom domain or subdomain
-
-### Custom SUBDOMAIN (go.branch.com)
-1. Create a CNAME for the subdomain and point it to `custom.bnc.lt`
-1. Go to [Link Settings](https://dashboard.branch.io/#/settings/link) on the Branch dashboard, and find the **Custom Link Domain** section.
-1. You should see a message telling you the status of your domain under the `Domain name` field. If you don't, please type your domain in again.
-1. Click the `Save` button.
-
-{% image src='/img/pages/getting-started/universal-app-links/enable-custom-subdomain.png' 2-thirds center alt='successful custom subdomain configuration' %}
-
-### Custom ROOT domain (branch.com)
-
-1. Go to [Link Settings](https://dashboard.branch.io/#/settings/link){:target="_blank"} on the Branch dashboard, and find the **Custom Link Domain** section.
-1. Enter your custom domain into the text box and click the `Save` button. (If the validation status doesn't update with nameservers please **refresh the page.**) {% image src='/img/pages/getting-started/universal-app-links/custom_domain_nameservers_error.png' full center alt='root domain nameservers' %}
-1. Go to your DNS configuration for your custom domain, and update your nameserver records with the Branch-provided nameservers.
-1. Click the `Save` button on the Branch dashboard again.
 
 ## Custom continueUserActivity configuration
 
@@ -657,7 +685,7 @@ Branch *branch = [Branch getInstance];
 
 {% elsif page.support %}
 
-{% if page.android %}
+{% if page.android or page.mparticle_android %}
 No support information available for this platform.
 {% else %}
 

@@ -111,6 +111,27 @@ This parameter is currently supported only on iOS.
 | --- | ---
 | $after_click_url | URL redirect to after the main click redirect has completed
 
+#### Web-only links
+
+This lets you direct the user to the web, *even if they have the app installed*. When creating the link, add `$web_only: true` to the deep link data. 
+
+Then the URL will include `/e/`, which is short for "exclusion". These links are excluded in the apple-app-site-association file we generate for custom domains and app.link domains. Note that bnc.lt links will not have `/e/` in the URL, but rather will revert to their non-Universal form, `/m/`.
+
+Aliased links are supported. `/e/` will be inserted into the URL, e.g. `myapp.app.link/e/myalias`. When you create an aliased link, the alias you reserve is for both forms of the url, e.g. `myapp.app.link/myalias` and `myapp.app.link/e/myalias`. This is effectively the same link, though the web-only form will not open the app even if it is installed.
+
+{% caution %}
+This parameter will not work with [Android App Links]({{base.url}}/getting-started/universal-app-links/).
+{% endcaution %}
+
+| Key | Value | Default
+| --- | --- | ---
+| $web_only | true/false | false (not specified)
+
+{% protip title="Do you use Branch links in email?" %}
+Note: if your Branch links are wrapped by an email service provider's click tracking domain, then this logic does not apply. The email service provider must allow you to designate links as web-only links, because they control how click tracking links are created.
+{% endprotip %}
+
+
 ### Link behavior customization
 
 Use these keys to control how URI scheme deep linking functions when opening your app from a link.
@@ -151,9 +172,9 @@ Most of these parameters can also be specified using the [BranchUniversalObject]
 
 Currently, these parameters are only used for [iOS Spotlight Indexing]({{base.url}}/features/spotlight-indexing) but will be used by Branch in the future.
 
-| Key | Usage
+| Key | Usage | Default
 | --- | --- | ---
-| $publicly_indexable | Can be set to either `public` or `private`. Public indicates that you'd like this content to be discovered by other apps
+| $publicly_indexable | If this content should be public and discovered by other apps. `1` indicates public, and `0` indicates private | `1`
 | $keywords | Keywords for which this content should be discovered by. Just assign an array of strings with the keywords you'd like to use
 | $canonical_identifier | This is the unique identifier for content that will help Branch dedupe across many instances of the same thing. Suitable options: a website with pathing, or a database with identifiers for entities
 | $exp_date | The date when the content will not longer be available or valid
@@ -185,6 +206,7 @@ If you do not specify a primary OG tag when creating a link, Branch will perform
 | $twitter_description | Set the description of the Twitter card
 | $twitter_site | Set the site for Twitter
 | $twitter_app_country | Set the app country for the app card
+| $twitter_player | Set the video player's URL. Defaults to the value of `$og_video`.
 | $twitter_player_width | Set the player's width in pixels
 | $twitter_player_height | Set the player's height in pixels
 

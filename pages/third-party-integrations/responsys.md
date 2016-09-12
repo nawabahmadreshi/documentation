@@ -6,6 +6,7 @@ page_title: Automatically convert your email links into multi-platform deep link
 description: Add powerful, best in class deep linking to your email campaigns.
 keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Deep Linked Email
 hide_platform_selector: true
+premium: true
 sections:
 - overview
 - guide
@@ -92,7 +93,7 @@ With link tracking enabled, you can still use Branch links in emails.
 `<@tracked_deeplink "https://branch.io/product/1234">
 <a href="${clickthrough('TEST_TRACKED_DEEPLINK' , 'deeplink=' + deeplink)}">Example link</a>`
 
-This latter example pulls from a Link Table. Please work with your Branch Account Manager to make sure you have this set up properly.
+This latter example pulls from a Link Table. In the link table, set the `IOS Link URL` and `Android link URL` to the value `${deeplink}`.
 
 {% endexample %}
 
@@ -152,7 +153,7 @@ If you use unique key/value data as deep link values:
 1. **As query parameters:** Simply append query parameters on to your web url and Branch will take those parameters and put them in deep link data.
 
 {% protip title="Host deep link data for more than just emails" %}
-In future releases, the Branch marketing link creator and Chrome extension will also scrape your web URL for deep link data to make link creation even easier.
+In future releases, the Branch marketing link creator will also scrape your web URL for deep link data to make link creation even easier.
 {% endprotip %}
 
 ## App changes for Universal Link support

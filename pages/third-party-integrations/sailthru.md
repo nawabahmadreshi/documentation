@@ -6,6 +6,7 @@ page_title: Automatically convert your email links into multi-platform deep link
 description: Add powerful, best in class deep linking to your email campaigns.
 keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Deep Linked Email, Sailthru
 hide_platform_selector: true
+premium: true
 sections:
 - overview
 - guide
@@ -133,7 +134,7 @@ If you use unique key/value data as deep link values:
 1. **As query parameters:** Simply append query parameters on to your web url and Branch will take those parameters and put them in deep link data.
 
 {% protip title="Host deep link data for more than just emails" %}
-In future releases, the Branch marketing link creator and Chrome extension will also scrape your web URL for deep link data to make link creation even easier.
+In future releases, the Branch marketing link creator will also scrape your web URL for deep link data to make link creation even easier.
 {% endprotip %}
 
 

@@ -7,6 +7,7 @@ description: Learn how to synchronize your Branch data with Mixpanel, for exampl
 ios_keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Mixpanel, user segmentation, life time value, LTV
 android_keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Mixpanel, user segmentation, life time value, LTV
 hide_platform_selector: true
+premium: true
 sections:
 - overview
 - guide
@@ -103,12 +104,12 @@ For more information, see [Why We Recommend Passing Mixpanel Distinct ID](/third
 
 ## What Branch Sends to Mixpanel
 
-| Property Name | Value | Sourced from | Example | Req 
+| Property Name | Value | Sourced from | Example | Req
 | --- | --- | --- | --- | --- | ---
 | event | Branch event | event name | [Branch] install | Y
-| properties.distinct_id | Unique ID for device/user | [see section below](#why-we-recommend-passing-mixpanel-distinct-id) | AEBE52E7-03EE-455A-B3C4-E57283966239 | N 
-| properties.token | Mixpanel Token | Branch Dashboard | eed14a8aaa8c8ef777b8e9cb30826399 | Y 
-| properties.time | Event creation date | event | 1461878903 | N 
+| properties.distinct_id | Unique ID for device/user | [see section below](#why-we-recommend-passing-mixpanel-distinct-id) | AEBE52E7-03EE-455A-B3C4-E57283966239 | N
+| properties.token | Mixpanel Token | Branch Dashboard | eed14a8aaa8c8ef777b8e9cb30826399 | Y
+| properties.time | Event creation date | event | 1461878903 | N
 | properties.ANY-KEY (many) | The value associated with the key | event metadata or referring link data | ~channel: facebook | N
 
 
@@ -151,4 +152,3 @@ If there are ever workarounds for this, we will update this guide and notify our
 
 
 {% endif %}
-
