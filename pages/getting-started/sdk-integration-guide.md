@@ -169,13 +169,17 @@ You can also [build and reference the assemblies directly]({{base.url}}/getting-
 
 | Field name | Description
 | --- | ---
+| `Simulate Fresh Installs` | This is a flag that enables or disables debug mode. In debug mode, your app will simulate fresh install each time and log to the console. This is just for testing so please remove this prior to launch.
+| `Test Mode` | Switch set of parameters, if "Test mode" is enabled then app will use "test" Branch key if specified. Otherwise, the app will use the "live" Branch key.
 | `Branch Key` | Get your live or test Branch key from [the Branch dashboard](https://dashboard.branch.io/#/settings){:target="_blank"}. You can toggle Live/Test at the top right hand side of the dashboard.
 | `Branch Uri` | The URI scheme for your app, which must be the same value as you entered in [the Branch link settings](https://dashboard.branch.io/#/settings/link){:target="_blank"}. Do **not** include the `://` characters.
-| `
-| `
-   - `androidPathPrefix`: This is your Branch android path prefix. This is the four-character value in front of all your links. You can find it underneath the field labeled **SHA256 Cert Fingerprints** on the dashboard. It will look something like this: `/WSuf` (the initial `/` character should be included).
+| `Android Path Prefix` | This only applies to you if you are on the `bnc.lt` domain. If you use `app.link`, please ignore this field. This is your Branch android path prefix. This is the four-character value in front of all your links. You can find it underneath the field labeled **SHA256 Cert Fingerprints** on the dashboard. It will look something like this: `/WSuf` (the initial `/` character should be included).
+| `App Links` | This is where you specify the domains you would like to use for Android App Links (similar to Universal Links on iOS). Universal Links must be manually configured later as we couldn't figure out how to automate this.
 
 {% image src='/img/pages/getting-started/sdk-integration-guide/unity_branch_key.png' full center alt='Unity plugin installation' %}
+
+* `Update iOS Wrapper` : You should tap this button each time when you will change `Branch Key` and `Branch Uri`.
+* `Update Android Manifest` : You should tap this button if you want to update your manifest. If you update your manifest manually just don't push this button.
 
 {% protip title="For iOS projects" %}
 
@@ -187,10 +191,6 @@ When building an iOS project:
 
 Branch requires ARC, and we don’t intend to add `if` checks throughout the SDK to try to support pre-ARC. However, for **Unity 4.6** you can add flags to the project to compile the Branch files with ARC, which should work fine for you. Simply add `-fobjc-arc` to all Branch files.
 {% endprotip %}
-
-{% caution title="For Android projects" %}
-We attempt to automatically add an Android manifest flag to support deep linking, but check it before building your project. You may need to click the "Update Android Manifest" button to add it yourself.
-{% endcaution %}
 
 {% endif %}
 <!--- /Unity -->
