@@ -1,7 +1,7 @@
 ---
 type: recipe
 directory: getting-started
-title: BranchUniversalObject
+title: Branch Universal Object
 page_title: Learn about the Branch Universal Object
 description: Learn what Branch Universal Objects are, and how they can help you track and analyze your app's content
 keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Link Properties, Redirect Customization, Mobile SDK, Web SDK, HTTP API
