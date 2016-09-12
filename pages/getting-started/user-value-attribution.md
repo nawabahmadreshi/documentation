@@ -203,10 +203,10 @@ try {
 	JSONArray productList = new JSONArray();
 	productList.put("12345");
 	productList.put("67891");
-	metaData.put(Branch.CANONICAL_ID_LIST, productList);
-	metaData.put(Branch.PURCHASE_AMOUNT, "45.12");
+	metaData.put(BranchEvent.CANONICAL_ID_LIST, productList);
+	metaData.put(BranchEvent.PURCHASE_AMOUNT, "45.12");
 } catch (JSONException e) { }
-Branch.getInstance().userCompletedAction(Branch.EVENT_PURCHASED , metaData);
+Branch.getInstance().userCompletedAction(BranchEvent.EVENT_PURCHASED , metaData);
 {% endhighlight %}
 {% endif %}
 <!--- /Android -->
