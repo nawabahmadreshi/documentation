@@ -755,8 +755,8 @@ To work around this limitation, your links must have [deepviews]({{base.url}}/fe
 
 | App/Browser | Status
 | --- | ---
-| Gmail | works, if Chrome is not installed. If Chrome is installed, links open in Chrome instead of Safari and Universal Links do not work. However, Branch detects if Chrome is installed and automatically triggers a URL scheme fallback. This means your app will still open, but not via Universal Linking behavior.
-| Google Inbox | works, if Chrome is not installed. If Chrome is installed, links open in Chrome instead of Safari and Universal Links do not work. However, Branch detects if Chrome is installed and automatically triggers a URL scheme fallback. This means your app will still open, but not via Universal Linking behavior.
+| Gmail | works, if Chrome is not installed. If Chrome is installed, links open in Chrome instead of Safari and Universal Links do not work. However, Branch detects if Chrome is installed and triggers a URL scheme fallback if we are certain your app is installed on the device. This means your app will most likely open automatically, but not via Universal Linking behavior.
+| Google Inbox | works, if Chrome is not installed. If Chrome is installed, links open in Chrome instead of Safari and Universal Links do not work. However, Branch detects if Chrome is installed and triggers a URL scheme fallback if we are certain your app is installed on the device. This means your app will most likely open automatically, but not via Universal Linking behavior.
 | Slack | works if configured to open links in Safari. Otherwise, works conditionally as in the above section.
 
 
