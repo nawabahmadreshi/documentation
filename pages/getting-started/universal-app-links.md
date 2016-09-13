@@ -363,7 +363,7 @@ Open your **AppDelegate.m** file and add the following methods (if you completed
 
 - (void)checkForDeeplink {
     MParticle * mParticle = [MParticle sharedInstance];
-    
+
     [mParticle checkForDeferredDeepLinkWithCompletionHandler:^(NSDictionary<NSString *,NSString *> * _Nullable params, NSError * _Nullable error) {
         //
         // A few typical scenarios where this block would be invoked:
@@ -385,7 +385,7 @@ Open your **AppDelegate.m** file and add the following methods (if you completed
         //
         // If the user navigates away from the app without killing it, this block could be invoked several times:
         // once for the initial launch, and then again each time the user taps on a link to re-open the app.
-        
+
         if (params) {
             //Insert custom logic to inspect the params and route the user/customize the experience.
             NSLog(@"params: %@", params.description);
@@ -709,33 +709,64 @@ Branch links with custom domains are always enabled for Universal Links, even if
 
 ## Apps/browsers that support Universal Links
 
-Unfortunately, Universal Links don't work quite everywhere yet. We'll maintain this list and keep it up to date. *Last updated 1/25/15*.
+Unfortunately Universal Links don't work everywhere yet. We have compiled the Universal Links support status of some of the more popular apps.
 
-| **App/Browser** | **Status**
+#### Apps that always work
+
+If you open a Universal Link in one of these apps, it should work correctly all the time.
+
+| App/Browser | Status
 | --- | ---
 | Messages | works
 | Mail | works
-| Whatsapp | works
-| Slack | works, if it's set to open Safari, not in-app browser (uses SFSafariViewController)
-| Safari | works conditionally *
-| Chrome | works conditionally *
-| Google | works conditionally *
-| Gmail | if Chrome installed, opens link in Chrome (not Universal Link). Else, works conditionally *
-| Inbox | if Chrome installed, opens link in Chrome (not Universal Link). Else, works.
-| Twitter | works conditionally *
-| Facebook | works conditionally *
-| FB Messenger | works conditionally *
-| WeChat | works conditionally *
-| Pinterest | not working
-| Telegram | not working (uses SFSafariViewController)
+| WhatsApp | works
 
-*Note: Conditionally working means that it works (i.e., opens the app) some of the time:*
+#### Apps limited by Apple
+
+Apple has limited Universal Links in certain situations, apparently to avoid confusing users:
 
 - Universal Links will not work if you paste the link into the browser URL field.
 - Universal Links work with a user driven `<a href="...">` element click *across domains*. Example: if there is a Universal Link on google.com pointing to bnc.lt, it will open the app.
 - Universal Links will not work with a user driven `<a href="...">` element click on the *same domain*. Example: if there is a Universal Link on google.com pointing to a different Universal Link on google.com, it will not open the app.
 - Universal Links cannot be triggered via Javascript (in `window.onload` or via a `.click()` call on an `<a>` element), unless it is part of a user action.
-- Google, Gmail, Inbox, Twitter, Facebook, FB Messenger, WeChat -- Universal Links only work when you have a webview already open. In other words, they do not work in-app from the feed / main views. Again, they also *must* be cross-domain, aka if your user is on yourapp.com and clicks a Universal Link also for yourapp.com, it will not work. However, clicking from yourapp.com to bnc.lt will trigger the link to function as a Universal Link and open your app directly.
+
+| App/Browser | Status
+| --- | ---
+| Safari | works conditionally
+| Chrome | works conditionally
+
+#### Apps that work sometimes
+
+Apps with built-in webviews (Google, Gmail, Inbox, Twitter, Facebook, Facebook Messenger, WeChat, etc.) work with Universal Links only when a webview is already open. In other words, Universal Links do not work in-app from the feed or main app views.
+
+To work around this limitation, your links must have [deepviews]({{base.url}}/features/deepviews) or something similar enabled, with a call-to-action link/button that has a Universal Link behind it. This way, clicking a link from the app feed will open a webview containing your deepview page, and the user can then click the link/button to launch your app. All of Apple's limitations (in the section above) still apply for the deepview page.
+
+| App/Browser | Status
+| --- | ---
+| Google | works conditionally
+| Facebook | works conditionally
+| Facebook Messenger | works conditionally
+| WeChat | works conditionally
+| Twitter | works conditionally
+| LinkedIn | works conditionally
+| Any app using `SFSafariViewController` | works conditionally
+
+#### Apps with special cases
+
+| App/Browser | Status
+| --- | ---
+| Gmail | works, if Chrome is not installed. If Chrome is installed, links open in Chrome instead of Safari and Universal Links do not work. However, Branch detects if Chrome is installed and automatically triggers a URL scheme fallback. This means your app will still open, but not via Universal Linking behavior.
+| Google Inbox | works, if Chrome is not installed. If Chrome is installed, links open in Chrome instead of Safari and Universal Links do not work. However, Branch detects if Chrome is installed and automatically triggers a URL scheme fallback. This means your app will still open, but not via Universal Linking behavior.
+| Slack | works if configured to open links in Safari. Otherwise, works conditionally as in the above section.
+
+
+#### Apps that do not work
+
+| App/Browser | Status
+| --- | ---
+| Pinterest | broken
+| Telegram | broken
+
 
 ## Links with custom labels/aliases
 
