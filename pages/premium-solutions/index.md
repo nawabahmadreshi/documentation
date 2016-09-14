@@ -19,7 +19,7 @@ Use **[Journeys Web to App](/features/journeys)** to convert mobile web visitors
 - Run A/B tests with different design variations.
 - Easy initial setup, and no further website changes required!
 
-<a href="/features/journeys" class="get-started btn btn-primary btn-lg" style="margin-bottom:0;">Get Started with Journeys</a>
+<a href="/features/journeys" class="get-started btn btn-primary btn-lg" style="margin-bottom:0;">Get Started: &nbsp; <br class="visible-xs"><strong>Journeys</strong><i class="material-icons">chevron_right</i></a>
 <div class="clearfix"></div>
 
 {% endprotip %}

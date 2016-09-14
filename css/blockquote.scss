@@ -11,6 +11,10 @@
     margin-top: 0;
   }
 
+  p:last-of-type {
+    margin-bottom: 0;
+  }
+
   &.protip {
     border-left-color: #8b41af;
   }

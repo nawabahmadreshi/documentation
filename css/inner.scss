@@ -37,6 +37,11 @@
 	line-height: 2;
 	color: #444444;
 	max-width: 870px;
+
+  > p:last-child {
+    margin-bottom: 45px;
+  }
+
 	&.no-selector {
 		margin-top: 37px;
 	}
@@ -188,34 +193,6 @@
   .highlight {
     margin: 30px 0;
   }
-
-    .get-started {
-      margin: 0 0 0 -45px;
-      text-align: right;
-      font-size: 14px;
-      border-radius: 0 2px 2px 0;
-      border: none;
-      text-transform: uppercase;
-      background-color: #EFF4F5;
-      transition: all .2s ease-in;
-      -webkit-transition: all .2s ease-in;
-      white-space: normal;
-      padding: 12px 15px;
-      display: inline-block;
-      width: calc(100% + 45px);
-      box-shadow: none;
-      color: #444444;
-      i {
-        position: relative;
-        top: 5px;
-        line-height: 0.1;
-        font-size: 20px;
-        margin-bottom: -5px;
-      }
-      &:hover {
-        color: #1cadce;
-      }
-    }
 
   table {
     font-size: 13px;
