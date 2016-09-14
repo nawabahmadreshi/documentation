@@ -7,8 +7,7 @@
     - universal-app-links
     - title: 3. Create Links
       children:
-        - creating-links-in-apps
-        - creating-links-other-ways
+        - creating-links
         - configuring-links
         - hosted-deep-link-data
     - deep-link-routing
@@ -38,7 +37,6 @@
         - text-me-the-app
     - title: Marketing for Mobile
       children:
-        - chrome-extension
         - referral-programs
         - facebook-app-invites
         - facebook-ads

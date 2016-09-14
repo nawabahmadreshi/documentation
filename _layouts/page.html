@@ -49,29 +49,32 @@
 			</div>
 
 			{% if page.hide_platform_selector != true and page.overview != true %}
-				{% platform_selector %}
+				{% unless page.hide_platform_selector contains page.section %}
+					{% platform_selector %}
+				{% endunless %}
 			{% endif %}
 
-			<div id="main-content" class={% if page.contents == 'number'%}
+			<div id="main-content" class={% if page.contents == 'number' or page.contents.number contains page.section %}
 					"inner__content content-guide"
-				{% elsif page.contents == 'list' %}
+				{% elsif page.contents == 'list' or page.contents.list contains page.section %}
 					"inner__content"
 				{% elsif page.guide %}
 					"inner__content content-guide"
 				{% else %}"inner__content"{% endif %}>
-
-				{% if page.contents == 'list' %}
+				{% if page.contents == 'list' or page.contents.list contains page.section %}
 					{{ content | toc_generate:'list' }}
-				{% elsif page.contents == 'number' %}
+				{% elsif page.contents == 'number' or page.contents.number contains page.section %}
 					{{ content | toc_generate:'number' }}
-				{% elsif page.contents == 'hide' %}
+				{% elsif page.contents == 'hide' or page.contents.hide contains page.section %}
 					{{ content }}
+				{% elsif page.overview %}
+				  {{ content }}
 				{% elsif page.guide %}
 				  {{ content | toc_generate:'number' }}
 				{% elsif page.advanced or page.support %}
 				  {{ content | toc_generate:"list" }}
 				{% else %}
-				  {{ content }}
+				  {{ content | toc_generate:"list" }}
 				{% endif %}
 			</div>
 		</div>
