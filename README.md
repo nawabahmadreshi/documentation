@@ -451,6 +451,16 @@ Used at the bottom of the Overview page section. Creates a button to the Guide s
 {% getstarted title="Get started with content sharing!" %}{% endgetstarted %}
 ```
 
+### premiumflag
+
+![](img/readme/premiumflag.png)
+
+Inserts an inline icon to indicate a feature or option is premium-only.
+
+```
+{% premiumflag %}{% premiumflag %}
+```
+
 ## Jekyll front matter
 This YAML block appears at the top of every main content page:
 

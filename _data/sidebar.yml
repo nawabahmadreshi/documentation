@@ -43,6 +43,7 @@
         - facebook-app-invites
         - facebook-ads
         - google-search-ads
+        - instagram-ads
         - twitter-ads
     - title: Content Indexing
       children:
@@ -54,8 +55,9 @@
     - title: Deep Linked Emails
       children:
         - responsys
-        - sailthru
+        - exacttarget
         - sendgrid
+        - sailthru
     - title: Data Integrations
       children:
         - adjust

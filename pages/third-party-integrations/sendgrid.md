@@ -39,9 +39,13 @@ When a link is clicked by a user without the app, it will route that user to the
 
 ## Contact Branch
 
-Contact your Branch Account Manager or [accounts@branch.io](mailto:accounts@branch.io) to enable the SendGrid integration.
+Contact your Branch Account Manager or [accounts@branch.io](mailto:accounts@branch.io) to enable the SendGrid integration and let your Branch Account Manager know you use SendGrid. You'll need to give your account manager two pieces of information.
 
-Give your Branch Account Manager your email click tracking domain (e.g. email.mydomain.com), and let them know you use SendGrid.
+1. Go to your SendGrid account, and go to Settings > Whitelabels > Email Links. 
+1. Find your email link whitelabeled domain, click on the gear icon and click "View" (or create a new whitelabel). {% image src='/img/pages/third-party-integrations/sendgrid/sendgrid-view-domain.png' 3-quarters center alt='xcode add domain' %}
+1. Note the "Host" email click tracking domain (e.g. email.mydomain.com) and the SendGrid domain under "Data". {% image src='/img/pages/third-party-integrations/sendgrid/sendgrid-whitelabel.png' 3-quarters center alt='xcode add domain' %}
+
+Provide both the click tracking domain and the SendGrid domain to your Branch Account Manager.
 
 ## Add your click tracking domain to your entitlements file
 
@@ -61,15 +65,31 @@ Only do this step after you've given your Branch account manager your SendGrid c
 
 ## On-going use
 
-Once you’ve completed the one time setup steps, it’s time to send your first email.
+Once you’ve completed the one time setup steps, it’s time to send your first email! This step will identify which web links you'd like to open the app and deep link, as well as convert them to Branch links.
 
-This step will identify which web links you'd like to open the app and deep link, as well as convert them to Branch links.
+{% caution title="Flag your Universal Links" %}
+In order for SendGrid to know that the Universal Link should open the app, add `universal="true"` to the HTML, for example:
 
-### Rewrite normal links as Branch links
+{% highlight html %}
+<a href="links.example.com" universal="true">Link to your app!</a>
+{% endhighlight %}
 
-You can use regular Branch links, or, if you'd like to automatically convert your web URLs to Branch links, use the simple link creation mechanism given here:
+{% endcaution %}
 
-We have provided [a way](/third-party-integrations/remote-deep-links/guide/) of easily converting web inks to Branch links, as well as [an example](https://gist.github.com/derrickstaten/f9b1e72e506f79628ab9127dd114dd83#file-sendgrid-demo-js). The example takes an html email (as a string) and applies the script to it.
+### Making regular Branch links compatible with email
+
+Be sure to add `"$3p":"e_sg"` to the deep link data of any links you use in email to ensure Universal Link and click tracking works as expected.
+
+### Create email links via API without changing your email templates
+
+To create email links via API, please use the instructions on how to [create links via API](/getting-started/creating-links-other-ways/guide/#http-api), but include the following key value pairs in your call:
+
+1. `"$3p":"e_sg"` This is required for Universal Link and click tracking functionality.
+1. `"$original_url":"{{your web url URI encoded}}"` For each piece of content, include a URI encoded version of your content's web URL. You can also add deep link data as query parameters on that web URL. This ensures accurate Content Analytics reporting. **Example: `"$original_url":"https%3A%2F%2Fshop.com%2Fshoes%2Fbrown-shoes%3Fmy_key%3Dmy_value%26campaign%3Dshoe_discounts"`**
+
+### Convert all web links in your email to deep links
+
+We have provided [a way](/third-party-integrations/remote-deep-links/guide/) of easily converting web links to Branch links, as well as [an example](https://gist.github.com/derrickstaten/f9b1e72e506f79628ab9127dd114dd83#file-sendgrid-demo-js). The example takes an html email (as a string) and applies the script to it.
 
 To use this script, make sure you've set up deep links according to one of the [linking schemas outlined here](/third-party-integrations/sendgrid/advanced/#setting-up-your-link-schema-for-email).
 
@@ -79,7 +99,7 @@ var crypto = require('crypto');
 module.exports = function(original_url, branch_base_url, branch_hmac_secret, three_p_url) {
 	if (!original_url) { return new Error('Missing original_url'); }
 	if (typeof original_url != 'string') { return new Error('Invalid original_url'); }
-	if (!branch_base_url) { return new Error('Missing branch_base_url, should be similar to https://bnc.lt/abcd/3p?%243p=xx'); }
+	if (!branch_base_url) { return new Error('Missing branch_base_url, should be similar to https://bnc.lt/abcd/3p?%243p=e_sg'); }
 	if (typeof branch_base_url != 'string') { return new Error('Invalid branch_base_url'); }
 	if (!branch_hmac_secret) { return new Error('Missing branch_hmac_secret'); }
 	if (typeof branch_hmac_secret != 'string') { return new Error('Invalid branch_hmac_secret'); }
@@ -87,14 +107,14 @@ module.exports = function(original_url, branch_base_url, branch_hmac_secret, thr
 
 	var pre_hmac_url = branch_base_url + (three_p_url ? '&%243p_url=' + encodeURIComponent(three_p_url) : '') + '&%24original_url=' + encodeURIComponent(original_url),
 		hmac = crypto.createHmac('sha256', branch_hmac_secret).update(pre_hmac_url).digest('hex');
-	return pre_hmac_url + '&%24hmac=' + hmac;
+	return pre_hmac_url + '&%24hash=' + hmac;
 };
 {% endhighlight %}
 
 Here is how links look before and after (the latter being a Branch deep link).
 
 1. *Before:* http://example.com/?foo=bar
-2. *After:* https://vza3.app.link/3p?%243p=st&%24original_url=http%3A%2F%2Fexample.com%2F%3Ffoo%3Dbar&%24hmac=221dd9fb333d809b22fbdfd9b87808de73e3cd94f99b8eb26e6181e962fcb438
+2. *After:* https://vza3.app.link/3p?%243p=e_sg&%24original_url=http%3A%2F%2Fexample.com%2F%3Ffoo%3Dbar&%24hash=221dd9fb333d809b22fbdfd9b87808de73e3cd94f99b8eb26e6181e962fcb438
 
 (note that these are simplified examples, not actual demo links)
 
