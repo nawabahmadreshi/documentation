@@ -129,7 +129,7 @@ cordova plugin add branch-cordova-sdk --variable BRANCH_KEY=key_live_xxxxxxxxxxx
 {% endhighlight %}
 
 {% protip title="Android build errors" %}
-In rare situations, you may get an error on Android that gradle cannot find the `io.branch.sdk.android:library:1.+` dependency. If this occurs, go to your `build.gradle` file, find **dependencies**, and add the following inside:
+In rare situations, you may get an error on Android that gradle cannot find the `io.branch.sdk.android:library:2.+` dependency. If this occurs, go to your `build.gradle` file, find **dependencies**, and add the following inside:
 
 {% highlight js %}
 compile "io.branch.sdk.android:library:2.+"
