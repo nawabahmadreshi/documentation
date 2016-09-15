@@ -31,7 +31,7 @@ On a daily basis, Google Search drives **more app installs** than all of Faceboo
 - **Optimized user experience.** If installed, your app will open and users can be routed directly to the content they expect. If not, the App/Play store will open and users can still be routed directly to the content they expect after installing.
 - **Comprehensive analytics.** Measure the downstream performance and retention of every Journeys campaign.
 
-{% getstarted title="Get started with Journeys" %}{% endgetstarted %}
+{% getstarted %}{% endgetstarted %}
 
 {% elsif page.guide %}
 

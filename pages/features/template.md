@@ -36,6 +36,8 @@ What this feature does and why you might want it, like the dust jacket blurb on 
 
 {% getstarted title="Get started with content sharing" %}{% endgetstarted %}
 
+{% getstarted %}{% endgetstarted %}
+
 {% elsif page.guide %}
 
 <!--Use this if the only prerequisite is integrating the SDK-->
@@ -176,6 +178,10 @@ Don't miss this. It's important.
 {% example title="Try it this way!" %}
 A cool way to use this feature. Give it a go.
 {% endexample %}
+
+{% getstarted next='features/deepviews' %}{% endgetstarted %}
+
+{% getstarted title='Deepviews' next='features/deepviews2' %}{% endgetstarted %}
 
 {% elsif page.advanced %}
 

@@ -30,8 +30,9 @@ module Jekyll
                     end
 
                     panel_html + '<h' + level.to_s + '><a class="anchor" name="' + id + '"></a><a href="#' + id + '"><i class="material-icons">link</i>' + text + '</a></h' + level.to_s + '>'
+
                 else
-                    '<h' + level.to_s + '><a class="anchor" name="' + id + '"></a><a href="#' + id + '"><i class="material-icons">link</i>' + text + '</a></h' + level.to_s + '>'
+                    '<h' + level.to_s + '><a class="anchor" name="' + id + '"></a><a href="#' + id + '"><i class="material-icons link">link</i>' + text + '</a></h' + level.to_s + '>'
                 end
             }
             nested_toc = _nested_toc(toc)

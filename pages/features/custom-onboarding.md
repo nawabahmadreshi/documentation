@@ -27,7 +27,7 @@ Right now, when users open your app for the first time, chances are you have no 
 
 **By using Branch deep links, you can finally tailor the onboarding flow for new users!**
 
-{% getstarted title="Get started with custom onboarding" %}{% endgetstarted %}
+{% getstarted %}{% endgetstarted %}
 
 {% elsif page.guide %}
 
