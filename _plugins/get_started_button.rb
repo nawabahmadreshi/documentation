@@ -31,8 +31,9 @@ module Jekyll
 
       button = 
         if data['next'] then
-          if data['title'] then '<a href="/' + data['next'] + '/' + '" class="get-started btn btn-primary btn-lg">Next: &nbsp; <br class="visible-xs"><strong>' + data['title'] + '&nbsp;</strong><i class="material-icons">chevron_right</i></a>' else '<a href="/' + data['next'] + '/' + '" class="get-started btn btn-primary btn-lg"><strong>Next&nbsp;</strong><i class="material-icons">chevron_right</i></a>' end
-        elsif data['title'] then '<a href="/' + link_path + '/' + next_section + '" class="get-started btn btn-primary btn-lg"><strong>' + data['title'] + '</strong>&nbsp;<i class="material-icons">chevron_right</i></a>' else '<a href="/' + link_path + '/' + next_section + '" class="get-started btn btn-primary btn-lg">Get Started: &nbsp; <br class="visible-xs"><strong>' + page_title + '&nbsp;-&nbsp;' + next_section_formatted + '&nbsp;</strong><i class="material-icons">chevron_right</i></a>' end
+          if data['next'] == 'true' then '<a href="/' + link_path + '/' + next_section + '" class="get-started btn btn-primary btn-lg">Next: &nbsp; <br class="visible-xs"><strong>' + page_title + '&nbsp;-&nbsp;' + next_section + '&nbsp;</strong><i class="material-icons">chevron_right</i></a>'
+          elsif data['title'] then '<a href="/' + data['next'] + '/' + '" class="get-started btn btn-primary btn-lg"><strong>Next&nbsp;</strong><i class="material-icons">chevron_right</i></a>' end
+        elsif data['title'] then '<a href="/' + link_path + '/' + next_section + '" class="get-started btn btn-primary btn-lg"><strong>' + data['title'] + '</strong>&nbsp;<i class="material-icons">chevron_right</i></a>' else '<a href="/' + link_path + '/' + next_section + '" class="get-started btn btn-primary btn-lg">Get Started: &nbsp; <br class="visible-xs"><strong>' + page_title + '&nbsp;-&nbsp;' + next_section + '&nbsp;</strong><i class="material-icons">chevron_right</i></a>' end
       button
     end
   end

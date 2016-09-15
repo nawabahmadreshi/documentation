@@ -43,7 +43,7 @@ For alternative ways to create Branch links, including via the dashboard, your w
 You can read more about using the link data dictionary to define key/value pairs for deep linking, and the various link analytics and control parameters used throughout this page on the [Link Configuration page]({{base.url}}/getting-started/configuring-links).
 {% endprotip %}
 
-{% getstarted title="Get started creating links" %}{% endgetstarted %}
+{% getstarted %}{% endgetstarted %}
 
 {% elsif page.apps %}
 
@@ -527,6 +527,8 @@ If you don't want to handle the link yourself, you can also use Branch's [precon
 ## Next steps
 
 Now that your users can create links inside your app, you will want to set up [**Deep Link Routing**]({{base.url}}/getting-started/deep-link-routing) to send them directly to specific content in your app based on the Branch link they opened.
+
+{% getstarted next="true" %}{% endgetstarted %}
 
 {% elsif page.dashboard %}
 
