@@ -32,7 +32,7 @@ Here's how App Indexing works:
 
 **Branch's App Indexing integration is designed for businesses that don't have a website, and want Branch to host their site for them.** Note that in order for you to get traffic from this feature, your Branch link will need to appear in search results. So far, from about 8 months of offering this feature, we've yet to see it drive a substantial amount of traffic to a single app.
 
-{% getstarted title="Get started with Firebase App Indexing" %}{% endgetstarted %}
+{% getstarted %}{% endgetstarted %}
 
 {% elsif page.guide %}
 

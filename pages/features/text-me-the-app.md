@@ -27,7 +27,7 @@ _**LEFT:** This default page is provided by Branch. **RIGHT:** This page was cre
 Branch uses Twilio to send SMS messages. Thanks to Twilio, users can text themselves your app around the world!
 {% endprotip %}
 
-{% getstarted title="Get started with Text Me The App" %}{% endgetstarted %}
+{% getstarted %}{% endgetstarted %}
 
 {% elsif page.guide %}
 
