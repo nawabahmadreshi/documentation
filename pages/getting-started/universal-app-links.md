@@ -16,6 +16,7 @@ platforms:
 - react
 - mparticle_ios
 - mparticle_android
+- ios_imessage
 sections:
 - overview
 - guide
@@ -28,7 +29,8 @@ sections:
 iOS Universal Links and Android App Links both route directly to your app when opened, bypassing the web browser and URI scheme combination typically used for the redirection process. App Links were introduced with Android M, and enabling them results in a more seamless experience for your users. Universal Links were introduced with iOS 9, and became the only fully-functional deep linking option on iOS after [Apple stopped supporting URI schemes for deep linking in iOS 9.2](https://blog.branch.io/ios-9.2-redirection-update-uri-scheme-and-universal-links).
 
 {% caution title="Universal Links are critical on iOS!" %}
-You must enable Universal Links before Branch can function correctly on iOS 9.2+{% endcaution %}
+You must enable Universal Links before Branch can function correctly on iOS 9.2+ but note that pure iMessage apps don't support Universal Links.
+{% endcaution %}
 
 Branch makes it simple to enable Universal Links and App Links, and even improves on them since you also get all the other benefits of Branch links when the visitor does not yet have your app installed:
 
@@ -38,7 +40,13 @@ Branch makes it simple to enable Universal Links and App Links, and even improve
 
 {% elsif page.guide %}
 
-{% if page.android or page.mparticle_android %}
+{% if page.ios_imessage %}
+
+**Universal Links are not supported by iOS iMessage apps unfortunately!**
+
+{% endif %}
+
+{% if page.android or page.mparticle_android or page.ios_imessage %}
 <!-- do nothing -->
 {% else %}
 
@@ -397,7 +405,7 @@ After completing this guide and installing a new build of your app on your testi
 
 {% endif %}
 
-{% if page.ios or page.mparticle_ios %}
+{% if page.ios or page.mparticle_ios or page.ios_imessage %}
 <!-- do nothing -->
 {% else %}
 

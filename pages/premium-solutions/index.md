@@ -14,7 +14,8 @@ hide_section_selector: true
 <h3 style="margin-top:0;">Journeys <img class="premium-label" src="/img/premium_label.png" /></h3>
 Use **[Journeys Web to App](/features/journeys)** to convert mobile web visitors into active app users.
 
-- Build custom smart banners and interstitials using our WYSIWYG editor.
+- **Build custom smart banners (free feature!)**
+- Create powerful interstitials using our WYSIWYG editor.
 - Define your audience using powerful real-time targeting rules.
 - Run A/B tests with different design variations.
 - Easy initial setup, and no further website changes required!
@@ -27,7 +28,7 @@ Use **[Journeys Web to App](/features/journeys)** to convert mobile web visitors
 
 <h3 style="margin-top:0;">Deep Linked Emails <img class="premium-label" src="/img/premium_label.png" /></h3>
 
-Offer a better user experience by using our Email Service Provider integrations to send emails with Branch links inside. We work with **[Responsys](/third-party-integrations/responsys)**, **[Sailthru](/third-party-integrations/sailthru)**, and **[SendGrid](/third-party-integrations/sendgrid)**, with more on the way!
+Offer a better user experience by using our Email Service Provider integrations to send emails with Branch links inside. We work with **[ExactTarget](/third-party-integrations/exacttarget)**, **[Responsys](/third-party-integrations/responsys)**, **[Sailthru](/third-party-integrations/sailthru)**, and **[SendGrid](/third-party-integrations/sendgrid)**, with more on the way!
 
 {% endprotip %}
 {% protip %}

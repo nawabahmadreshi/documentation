@@ -1,10 +1,10 @@
 ---
 type: recipe
 directory: features
-title: "Facebook Ads"
-page_title: "Advertising with Deep Links: Facebook Ads"
-description: Learn how to create Facebook ads that are powered by Branch Metrics deep links. It’s simple - configure the dashboard, generate links and set up your app.
-keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Advertising, Ads, Facebook Ads, Facebook Authentication
+title: "Instagram Ads"
+page_title: "Advertising with Deep Links: Instagram Ads"
+description: Learn how to create Instagram ads that are powered by Branch Metrics deep links. It’s simple - configure the dashboard, generate links and set up your app.
+keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Advertising, Ads, Facebook Ads, Facebook Authentication, Instagram, Instagram Ads
 platforms:
 - ios
 - android
@@ -16,28 +16,28 @@ sections:
 
 {% if page.overview %}
 
-Branch links can be used together with Facebook ads, allowing you to track ad-driven installs on the Branch dashboard and deep link those new users directly to content the first time they open your app.
+Branch links can be used together with Instagram ads, allowing you to track ad-driven installs on the Branch dashboard and deep link those new users directly to content the first time they open your app.
 
 {% ingredient deep-linked-ad-ideas %}{% endingredient %}
 
-{% getstarted title="Get started with Facebook ads" %}{% endgetstarted %}
+{% getstarted title="Get started with Instagram ads" %}{% endgetstarted %}
 
 {% elsif page.guide %}
 
 {% prerequisite %}
 
-- To track installs from Facebook Ads you should [integrate the Branch SDK]({{base.url}}/getting-started/sdk-integration-guide) into your app.
+- To track installs from Instagram Ads you should [integrate the Branch SDK]({{base.url}}/getting-started/sdk-integration-guide) into your app.
 - If you want to deep link from your ads directly content, you should [configure deep link routing]({{base.url}}/getting-started/deep-link-routing).
 
 {% endprerequisite %}
 
 ## Connect Branch to Facebook
 
-There are two options for connecting Branch to Facebook, and either can be done depending on your context. The first option doesn't require any native app code changes and should be used if you don't have the Facebook SDK. The second option is for if you want Branch to just connect to the Facebook SDK via a client side integration. 
+There are two options for connecting Branch to Facebook (which will enable you to run ads on Instagram), and either can be done depending on your context. The first option doesn't require any native app code changes and should be used if you don't have the Facebook SDK. The second option is for if you want Branch to just connect to the Facebook SDK via a client side integration. 
 
 ### **Option 1** Connect Without Using Facebook SDK
 
-In order for Branch to properly run a Facebook deep linked ad campaign, you must first allow Branch to access your Facebook app information.
+In order for Branch to properly run a Instagram deep linked ad campaign, you must first allow Branch to access your Facebook app information.
 
 1. Log in to Facebook, navigate to [developers.facebook.com/apps](http://developers.facebook.com/apps) and choose your app. You'll need the **App ID** and **App Secret**.{% image src='/img/pages/features/facebook-ads/fb_auth_fb.png' 3-quarters center alt='Facebook Auth' %}
 1. On the Branch Dashboard, go to [Link Settings](https://dashboard.branch.io/#/settings/link) and scroll down to 'Authenticate for Facebook Install Ads'. Enter your **App ID** and **App Secret** from Facebook.{% image src='/img/pages/features/facebook-ads/fb_auth_branch.png' 3-quarters center alt='Facebook Auth' %}
@@ -78,8 +78,8 @@ Note that you cannot call `fetchDeferredAppLinkData` in addition to us, lest you
 ### Add a marketing link
 
 1. Visit the [Marketing page](https://dashboard.branch.io/#/marketing) on the Branch dashboard and click **+ Add link**.
-1. Pick a **Link Description** for later reference. For example: "Facebook ad for blue sneakers - summer 2015." {% image src='/img/pages/features/facebook-ads/fb_example_create.png' 3-quarters center alt='Create Marketing Link' %}
-1. **Channel** and **Campaign** are optional but recommended. **Tags** is free form. {% image src='/img/pages/features/facebook-ads/fb_example_tags.png' 3-quarters center alt='tags' %}
+1. Pick a **Link Description** for later reference. For example: "Instagram ad for blue sneakers - summer 2016." {% image src='/img/pages/features/instagram-ads/link-description.png' 3-quarters center alt='Create Marketing Link' %}
+1. **Channel** and **Campaign** are optional but recommended. **Tags** is free form. {% image src='/img/pages/features/instagram-ads/link-tags.png' 3-quarters center alt='Create Marketing Link' %}
 
 {% caution %}
 
@@ -93,13 +93,14 @@ You can use this configuration section to specify custom link parameters that wi
 
 {% endprotip %}
 
-## Add Branch link to Facebook App Install campaign
+## Add Branch link to Instagram App Install campaign
 
 1. Navigate to [https://www.facebook.com/ads/create](https://www.facebook.com/ads/create) while logged in to the account that owns your Facebook app.
-1. Choose **Get installs of your app**. After entering a name for your campaign and clicking continue, select the Facebook app that you wish to advertise. {% image src='/img/pages/features/facebook-ads/fb_ad_installs.png' 3-quarters center alt='Facebook Example Ad' %}
-1. After you choose your audience, placement, budget, and schedule, click continue to create your ad. 
-1. Once you have customized the display of the ad, you can now specify the Deep Link in the following section. {% image src='/img/pages/features/facebook-ads/fb_ad_deep_link_area.png' 3-quarters center alt='Facebook Example Ad' %}
-1. Paste the Branch link from the dashboard into the **Deep Link** field. {% image src='/img/pages/features/facebook-ads/fb_ad_deep_link_branch.png' half center alt='Facebook Example Ad' %}
+1. Choose **Get installs of your app**. After entering a name for your campaign and clicking continue, select the Facebook app that you wish to advertise. {% image src='/img/pages/features/facebook-ads/fb_ad_installs.png' 3-quarters center alt='Instagram Example Ad' %}
+1. After you choose your audience, select "Choose your placements" to target Instagram. {% image src='/img/pages/features/instagram-ads/instagram-placement.png' 3-quarters center alt='Instagram Example Ad' %}
+1. Next, set your budget, and schedule, click continue to create your ad. 
+1. Once you have customized the display of the ad, you can now specify the Deep Link in the following section. {% image src='/img/pages/features/instagram-ads/instagram-ad-deep-link.png' 3-quarters center alt='Instagram Example Ad' %}
+1. Paste the Branch link from the dashboard into the **Deep Link** field. {% image src='/img/pages/features/facebook-ads/fb_ad_deep_link_branch.png' half center alt='Instagram Example Ad' %}
 
 {% protip title="Optional: Use Multiple Deep Links with the Carousel Ad Format" %}
 
@@ -107,18 +108,19 @@ If you are using the Carousel Ad Format, you can specify a different Deep Link f
 
 {% endprotip %}
 
-## Add Branch link to Facebook App Engagement campaign
+## Add Branch link to Instagram App Engagement campaign
 
 1. Navigate to [https://www.facebook.com/ads/create](https://www.facebook.com/ads/create) while logged in to the account that owns your Facebook app.
-1. Choose **Increase engagement in your app**. After entering a name for your campaign and clicking continue, select the Facebook app that you wish to advertise. {% image src='/img/pages/features/facebook-ads/fb_ad_installs.png' 3-quarters center alt='Facebook Example Ad' %}
-1. After you choose your audience, placement, budget, and schedule, click continue to create your ad. 
-1. Once you have customized the display of the ad, you can now specify the Deep Link in the following section. {% image src='/img/pages/features/facebook-ads/fb_ad_deep_link_area.png' 3-quarters center alt='Facebook Example Ad' %}
-1. Paste the Branch link from the dashboard into the **Deep Link** field. {% image src='/img/pages/features/facebook-ads/fb_ad_deep_link_branch.png' half center alt='Facebook Example Ad' %}
+1. Choose **Increase engagement in your app**. After entering a name for your campaign and clicking continue, select the Facebook app that you wish to advertise. {% image src='/img/pages/features/facebook-ads/fb_ad_installs.png' 3-quarters center alt='Instagram Example Ad' %}
+1. After you choose your audience, select "Choose your placements" to target Instagram. {% image src='/img/pages/features/instagram-ads/instagram-placement.png' 3-quarters center alt='Instagram Example Ad' %}
+1. Next, set your budget, and schedule, click continue to create your ad. 
+1. Once you have customized the display of the ad, you can now specify the Deep Link in the following section. {% image src='/img/pages/features/instagram-ads/instagram-ad-deep-link.png' 3-quarters center alt='Instagram Example Ad' %}
+1. Paste the Branch link from the dashboard into the **Deep Link** field. {% image src='/img/pages/features/facebook-ads/fb_ad_deep_link_branch.png' half center alt='Instagram Example Ad' %}
 
-## Add Branch link to Facebook Website Clicks campaign
+## Add Branch link to Instagram Website Clicks campaign
 
 1. Navigate to [https://www.facebook.com/ads/create](https://www.facebook.com/ads/create) while logged in to the account that owns your Facebook app.
-1. Choose **Send people to your website**. After entering a name for your campaign and clicking continue, select your audience, placement, budget, and schedule. Then click continue to create your ad. 
+1. Choose **Send people to your website**. After entering a name for your campaign and clicking continue, select your audience, placement (this is where you can choose to target **Instagram**), budget, and schedule. Then click continue to create your ad. 
 1. Paste the Branch link from the dashboard into the **Website URL** field. 
 1. You can then customize the display of the ad and specify the **Call to Action** (we recommend **Download**). 
 
@@ -127,7 +129,7 @@ If you are using the Carousel Ad Format, you can specify a different Deep Link f
 The [Marketing page](https://dashboard.branch.io/#/marketing) on the Branch dashboard shows the performance of each individual link. You can find your link listed in the table with a quick summary of the _total_ clicks and installs. 
 
 {% caution %}
-Facebook prevents Branch from measuring the number of clicks on their ads, so all **Clicks** numbers for Facebook ads are inaccurate.
+Instagram prevents Branch from measuring the number of clicks on their ads, so all **Clicks** numbers for Instagram ads are inaccurate.
 {% endcaution %}
 
 {% image src='/img/pages/features/facebook-ads/marketing_link_row.png' full center alt='Facebook Example Ad' %}
@@ -140,7 +142,7 @@ To view more details stats, click the _small button that looks like a bar chart_
 
 ## Don't use setDebug
 
-Facebook ads are incompatible with [debug mode]({{base.url}}/getting-started/integration-testing/guide/ios/#use-debug-mode-to-simulate-fresh-installs), as this prevents us from sending the correct hardware ID to Facebook.
+Instagram ads are incompatible with [debug mode]({{base.url}}/getting-started/integration-testing/guide/ios/#use-debug-mode-to-simulate-fresh-installs), as this prevents us from sending the correct hardware ID to Facebook.
 
 ## Testing deep linked ads
 
@@ -156,7 +158,7 @@ The only way to test the deep linking functionality is outside of the actual ads
 
 ##### Demo/preview ads do not deep link
 
-Unfortunately, Facebook uses a different mechanism for showing the preview ads that you send to your phone. **This prevents you from testing deep linking from your Facebook ads**. Do not waste time trying to get this to work. We've confirmed with Facebook representatives that this is broken.
+Unfortunately, Instagram uses a different mechanism for showing the preview ads that you send to your phone. **This prevents you from testing deep linking from your Instagram ads**. Do not waste time trying to get this to work. We've confirmed with Facebook representatives that this is broken.
 
 ##### Liked live ads do not deep link
 
@@ -264,9 +266,5 @@ We've seen Facebook classify 're-installs' as fresh installs, where Branch will 
 {% image src='/img/pages/features/facebook-ads/installs_plus_opens.png' 2-thirds center alt='installs and opens' %}
 
 If it's close, you know that this is the root cause.
-
-### Fewer Clicks Recorded in Branch
-
-The number of clicks on a link used inside of a Branch enabled Facebook Ad will be lower in Branch's dashboard than Facebook's. This is because Facebook routes users straight to the App/Play Store without letting Branch know that a link was clicked. If the user decides not to install the app/drops off at the App/Play Store, then Facebook will have recorded one more click than Branch. Branch does not increment the link's click count until the user enters into the app. This is why you'll see more clicks in Facebook's dashboard.
 
 {% endif %}

@@ -6,7 +6,7 @@ module Jekyll
             first = true
             toc = []
             levels = [2]
-            html.gsub!(/<h([0-9]) id="(.*)">(.*)<\/h\d>/) { |m, tag, header|
+            html.gsub!(/<h([0-9]) id="(.*?)(?:-img-srcimgpremiumstarpng-classpremium-flag-)?">(.*)<\/h\d>/) { |m, tag, header| # This is a yucky regex to work around a Kramdown limitation in rendering anchor tags
                 level = Regexp.last_match[1].to_i
                 id = Regexp.last_match[2]
                 text = Regexp.last_match[3]
@@ -14,21 +14,21 @@ module Jekyll
                 if levels.find_index(level) then toc.push({ :level => level, :id => id, :text => text, :children => [] }) end
 
                 if level.to_s == '2'
-                    
+
                     counter ^= true
                     if counter == true
-                        panel_class = 'panel' 
-                    else 
+                        panel_class = 'panel'
+                    else
                         panel_class = 'panel panel-dark'
                     end
-                    
+
                     if first == true
                         panel_html = '<div class="' + panel_class + '">'
                         first = false
                     else
                         panel_html = '</div><div class="' + panel_class + '">'
                     end
-                    
+
                     panel_html + '<h' + level.to_s + '><a class="anchor" name="' + id + '"></a><a href="#' + id + '"><i class="material-icons">link</i>' + text + '</a></h' + level.to_s + '>'
                 else
                     '<h' + level.to_s + '><a class="anchor" name="' + id + '"></a><a href="#' + id + '"><i class="material-icons">link</i>' + text + '</a></h' + level.to_s + '>'
