@@ -129,10 +129,10 @@ cordova plugin add branch-cordova-sdk --variable BRANCH_KEY=key_live_xxxxxxxxxxx
 {% endhighlight %}
 
 {% protip title="Android build errors" %}
-In rare situations, you may get an error on Android that gradle cannot find the `io.branch.sdk.android:library:2.+` dependency. If this occurs, go to your `build.gradle` file, find **dependencies**, and add the following inside:
+If you use Crashlytics, or other Twitter Fabric libraries in your app, it's possible that you get a `com.android.dex.DexException`. If this occurs, just head to `platforms/android/io.branch.sdk/<yourapp>-build-branch-extras.gradle` file, and change to look like the following:
 
 {% highlight js %}
-compile "io.branch.sdk.android:library:2.+"
+compile ('io.branch.sdk.android:library:2.+') { exclude module: 'answers-shim' }
 {% endhighlight %}
 
 {% endprotip %}
