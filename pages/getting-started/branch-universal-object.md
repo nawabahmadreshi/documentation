@@ -304,20 +304,20 @@ After you've assembled parameters to create your `BranchUniversalObject`, there 
 
 {% if page.ios %}
 
-### registerView
+### Register a content view
 
 Please do not call `registerView` anymore. Instead, call this method in `viewDidLoad` or `viewDidAppear` to track how many times a piece of content is viewed.
 
 {% tabs %}
 {% tab objective-c %}
 {% highlight objc %}
-[branchUniversalObject userCompletedAction:BNCShareInitiatedEvent];
+[branchUniversalObject userCompletedAction:BNCRegisterViewEvent];
 {% endhighlight %}
 {% endtab %}
 
 {% tab swift %}
 {% highlight swift %}
-branchUniversalObject.userCompletedAction(BNCShareInitiatedEvent)
+branchUniversalObject.userCompletedAction(BNCRegisterViewEvent)
 {% endhighlight %}
 {% endtab %}
 {% endtabs %}
