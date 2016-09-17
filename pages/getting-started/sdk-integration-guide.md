@@ -463,7 +463,7 @@ Your `Activity` also has an `onCreate()` method. Be sure you do not mix the two 
 
 {% protip title="Alternative Configurations" %}
 - [I don't use a custom application class]({{base.url}}/getting-started/sdk-integration-guide/advanced/android#using-the-default-application-class){:target="_blank"}
-- [I need to support pre-14 Android]({{base.url}}/getting-started/sdk-integration-guide/advanced/android#supporting-pre-14-android){:target="_blank"}
+- [I need to support pre-15 Android]({{base.url}}/getting-started/sdk-integration-guide/advanced/android#supporting-pre-15-android){:target="_blank"}
 {% endprotip %}
 {% endif %}
 
@@ -1466,11 +1466,11 @@ If your app doesn't use a custom Application class, simply add the `android:name
 
 [Back to the Guide]({{base.url}}/getting-started/sdk-integration-guide/guide/android/#enable-auto-session-management)
 
-## Supporting pre-14 Android
+## Supporting pre-15 Android
 
-Auto session tracking is only available for `minSdkVersion` 14 or above. If you need to support pre-14, you should include Branch SDK methods in both `onStart()` and `onStop()` to avoid strange, difficult-to-diagnose behavior. Branch must know when the app opens or closes to properly handle the deep link parameters retrieval.
+After and including SDK version `v2.0`, Branch only supports `minSdkVersion` 15 or above. If you need to support pre-15, you should lock to the Branch SDK version v1.14.5 and add methods in both `onStart()` and `onStop()` to avoid strange, difficult-to-diagnose behavior. Branch must know when the app opens or closes to properly handle the deep link parameters retrieval.
 
-Please add this to every Activity for pre-14 support.
+Please add this to every Activity for pre-15 support.
 
 {% highlight java %}
 @Override
