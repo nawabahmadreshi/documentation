@@ -69,7 +69,13 @@ You can [install the SDK manually]({{base.url}}/getting-started/sdk-integration-
 We're not sure if Cocoapods will support extensions, so in the meantime, just install the SDK manually into your project.
 
 1. [Grab the latest SDK version](https://s3-us-west-1.amazonaws.com/branchhost/Branch-iOS-SDK.zip), or [clone our open-source GitHub repo](https://github.com/BranchMetrics/ios-branch-deep-linking).
-1. Drag the `Branch.framework` file into your Xcode project. Be sure that "Copy items if needed" and "Create groups" are selected.
+1. Drag the `Branch.framework` file from the root of the SDK folder into the Frameworks folder of your Xcode project. Be sure that "Copy items if needed" and "Create groups" are selected.
+1. Update the target's Framework Search Paths
+    1. Select the project in Project Navigator
+    2. In the PROJECT/TARGETS pane select the target you are building
+    3. Click on the **Build Settings** tab
+    4. Find: **User Header Search Paths**
+    5. Add: **$(PROJECT_DIR)/Branch.framework/Headers**
 1. Import the following frameworks under **Build Phases** for your app target:
     - `AdSupport.framework`
     - `CoreTelephony.framework`
