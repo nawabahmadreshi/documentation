@@ -21,9 +21,18 @@
   i {
     position: relative;
     top: 5px;
+    left: 0;
     line-height: 0.1;
     font-size: 20px;
+    margin: 0;
     margin-bottom: -5px;
+    color: #444444;
+    opacity: 1;
+    width: 16px;
+    display: inline-block;
+    &:hover {
+      color: #1cadce;
+    }
   }
 
   &:hover {

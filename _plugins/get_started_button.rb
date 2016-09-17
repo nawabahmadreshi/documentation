@@ -19,10 +19,11 @@ module Jekyll
       page_title = context.environments.first['page']['title']
       section_index = context.environments.first['page']['sections'].index(section)
       next_section = context.environments.first['page']['sections'][section_index + 1]
-      for base_platform in context.registers[:site].data['sections']
-        if base_platform['key'] == next_section then
-          next_section_formatted = base_platform['name']
-        end
+      if next_section then
+        next_section_formatted = next_section.capitalize.strip.gsub('-', ' ')
+      else
+        next_section = ''
+        next_section_formatted = ''
       end
 
       @params.scan(/(\w+)=["']([^'\\]+(\\.[^'\\]+)*)["']/).each { |m|
@@ -31,9 +32,16 @@ module Jekyll
 
       button = 
         if data['next'] then
-          if data['next'] == 'true' then '<a href="/' + link_path + '/' + next_section + '" class="get-started btn btn-primary btn-lg">Next: &nbsp; <br class="visible-xs"><strong>' + page_title + '&nbsp;-&nbsp;' + next_section + '&nbsp;</strong><i class="material-icons">chevron_right</i></a>'
-          elsif data['title'] then '<a href="/' + data['next'] + '/' + '" class="get-started btn btn-primary btn-lg"><strong>Next&nbsp;</strong><i class="material-icons">chevron_right</i></a>' end
-        elsif data['title'] then '<a href="/' + link_path + '/' + next_section + '" class="get-started btn btn-primary btn-lg"><strong>' + data['title'] + '</strong>&nbsp;<i class="material-icons">chevron_right</i></a>' else '<a href="/' + link_path + '/' + next_section + '" class="get-started btn btn-primary btn-lg">Get Started: &nbsp; <br class="visible-xs"><strong>' + page_title + '&nbsp;-&nbsp;' + next_section + '&nbsp;</strong><i class="material-icons">chevron_right</i></a>' end
+          if data['next'] == 'true' then 
+            '<a href="/' + link_path + '/' + next_section + '" class="get-started btn btn-primary btn-lg">Next: &nbsp; <br class="visible-xs"><strong>' + page_title + '&nbsp;-&nbsp;' + next_section_formatted + '&nbsp;</strong><i class="material-icons">chevron_right</i></a>'
+          elsif data['title'] then 
+            '<a href="/' + data['next'] + '/' + '" class="get-started btn btn-primary btn-lg">Next: &nbsp; <br class="visible-xs"><strong>' + data['title'] + '</strong><i class="material-icons">chevron_right</i></a>' 
+          end
+        elsif data['title'] then 
+          '<a href="/' + link_path + '/' + next_section + '" class="get-started btn btn-primary btn-lg"><strong>' + data['title'] + '</strong>&nbsp;<i class="material-icons">chevron_right</i></a>' 
+        else 
+          '<a href="/' + link_path + '/' + next_section + '" class="get-started btn btn-primary btn-lg">Get Started: &nbsp; <br class="visible-xs"><strong>' + page_title + '&nbsp;-&nbsp;' + next_section_formatted + '&nbsp;</strong><i class="material-icons">chevron_right</i></a>' 
+        end
       button
     end
   end

@@ -35,17 +35,23 @@ contents:
 ---
 
 {% if page.overview %}
-Links are the foundation of everything Branch offers. By using our mobile SDKs to create Branch links in your app, you can easily allow your users to accomplish tasks such as sharing content or inviting friends.
+Links are the foundation of everything Branch offers:
+
+- By using our mobile SDKs to [**create Branch links in your app**]({{base.url}}/getting-started/creating-links/apps), you can enable your users to share content or invite friends.
+- By [**creating links in the dashboard**]({{base.url}}/getting-started/creating-links/dashboard) or [**with the chrome extension**]({{base.url}}/getting-started/creating-links/chrome-extension), you can turn your social posts, ads, or whatever other use case you can think of into a deep link into your app.
+- By using our web SDK with [**Journeys**]({{base.url}}/features/journeys) to [**create Branch links from your website**]({{base.url}}/getting-started/creating-links/other-ways#web-sdk), you can convert your mobile web traffic to app users.
 
 {% protip %}
-For alternative ways to create Branch links, including via the dashboard, your website, the API, or appending URL query parameters, see the [Creating Links in Other Ways page]({{base.url}}/getting-started/creating-links-other-ways).
+For alternative ways to create Branch links, including via the web SDK, API, or appending URL query parameters see the [Creating Links in Other Ways]({{base.url}}/getting-started/creating-links/other-ways) page.
 
-You can read more about using the link data dictionary to define key/value pairs for deep linking, and the various link analytics and control parameters used throughout this page on the [Link Configuration page]({{base.url}}/getting-started/configuring-links).
+You can read more about using the link data dictionary to define key/value pairs for deep linking, and the various link analytics and control parameters used throughout this guide on the [Link Configuration page]({{base.url}}/getting-started/configuring-links).
 {% endprotip %}
 
 {% getstarted %}{% endgetstarted %}
 
 {% elsif page.apps %}
+
+### Creating links in apps
 
 {% ingredient quickstart-prerequisite %}{% endingredient %}
 
@@ -524,10 +530,6 @@ If you don't want to handle the link yourself, you can also use Branch's [precon
 
 {% endif %}
 
-## Next steps
-
-Now that your users can create links inside your app, you will want to set up [**Deep Link Routing**]({{base.url}}/getting-started/deep-link-routing) to send them directly to specific content in your app based on the Branch link they opened.
-
 {% getstarted next="true" %}{% endgetstarted %}
 
 {% elsif page.dashboard %}
@@ -626,6 +628,12 @@ You can find the full list of possible parameters on the [Configuring Links]({{b
 | $og_image_url | Specified in the UI in Configure Options > Social Media
 | $og_title | Specified in the UI in Configure Options > Social Media
 
+{% protip title="Links that never open the app" %}
+
+You can add `$web_only: true` to your deep link data to direct to the web URL you define in the redirects section, even when the app is installed. You might want to do this is you are linking to content you only have on your website. More information about this parameter in the [configuring links]({{base.url}}/getting-started/configuring-links/#web-only-links) guide.
+
+{% endprotip %}
+
 ### Define redirects when the app isn't installed
 
 You can choose where the user is directed when they do not have the app in the **Redirects** section. By default, redirects will be set to `Default Redirect` and match your app-wide [link settings](https://dashboard.branch.io/settings/link){:target="_blank"}. You can also choose from the **web URL** you entered in step 1, type in a new web URL, or select a deepview.
@@ -691,6 +699,8 @@ At a granular level, you can see analytics for each individual link you create o
 
 You'll also find aggregate data for your links on the [Summary](https://dashboard.branch.io/){:target="_blank"}, [Source Analytics](https://dashboard.branch.io/analytics/source){:target="_blank"}, and [Content Analytics](https://dashboard.branch.io/analytics/content){:target="_blank"} pages, and you can slice and dice using the filters at the top.
 
+{% getstarted next="true" %}{% endgetstarted %}
+
 {% elsif page.chrome-extension %}
 
 ### Creating links with the chrome extension
@@ -739,6 +749,8 @@ The links will automatically configured with the following properties:
 Since these links are automatically added to the marketing tab of your dashboard, you can easily view the performance by heading to [there](https://dashboard.branch.io/marketing). If you have the SDK integrated, you'll be able to track installs and re-opens. Clicks will be visible always.
 
 {% image src='/img/pages/features/chrome-extension/link-performance.png' half center alt='link performance' %}
+
+{% getstarted next="true" %}{% endgetstarted %}
 
 {% elsif page.other-ways %}
 
@@ -861,5 +873,11 @@ This will return Branch shortlink:
 {% highlight sh %}
 {"url":"https://[branchsubdomain]/m/BqmToC9Ion"}
 {% endhighlight %}
+
+## Next steps
+
+Now that you can create links into your app, you will want to set up [**Deep Link Routing**]({{base.url}}/getting-started/deep-link-routing) to send users directly to specific content in your app based on the Branch link they clicked.
+
+{% getstarted title='Deep Link Routing' next='getting-started/deep-link-routing' %}{% endgetstarted %}
 
 {% endif %}
