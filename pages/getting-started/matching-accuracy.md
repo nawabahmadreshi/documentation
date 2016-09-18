@@ -177,7 +177,7 @@ Branch.getAutoInstance(this);
 ## Handling personally identifiable information
 
 {% caution %}
-Employing Branch deep linking as an authentication or authorization mechanism, or for conveying sensitive or personally identifiable information, is discouraged. There is always a slight possibility of mismatches occurring, which could lead to users seeing incorrect content.
+Branch's matching algorithm has not been designed to function as a security solution. We recommend against relying exclusively on Branch deep linking for authentication or authorization, and we advise against embedding sensitive or personally-identifiable information in Branch links.
 {% endcaution %}
 
 Our advice is to ensure that users are not able to abuse your system if they are deep linked incorrectly to your app. Examples of use cases to avoid are:
