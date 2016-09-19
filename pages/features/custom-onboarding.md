@@ -120,7 +120,7 @@ Lastly, create the link to be shared by referencing the `BranchUniversalObject`:
 {% endtab %}
 {% tab swift %}
 {% highlight swift %}
-branchUniversalObject.getShortUrl(with: branchLinkProperties,  andCallback: { (url: String, error: Error?) in
+branchUniversalObject.getShortUrl(with: linkProperties,  andCallback: { (url: String, error: Error?) in
     if error == nil, let url = optUrl {
         print("got my Branch invite link to share: %@", url)
     }

@@ -129,7 +129,7 @@ Finally, generate the link by referencing the `BranchUniversalObject` you create
 {% endtab %}
 {% tab swift %}
 {% highlight swift %}
-branchUniversalObject.getShortUrl(with: branchLinkProperties,  andCallback: { (url: String, error: Error?) in
+branchUniversalObject.getShortUrl(with: linkProperties,  andCallback: { (url: String, error: Error?) in
     if error == nil, let url = optUrl {
         print("got my Branch link to share: %@", url)
     }
