@@ -549,7 +549,7 @@ If you've built your own share sheet and you want to just create a Branch link f
 {% endtab %}
 {% tab swift %}
 {% highlight swift %}
-branchUniversalObject.getShortUrlWithLinkProperties(linkProperties,  andCallback: { (url: String?, error: NSError?) -> Void in
+branchUniversalObject.getShortUrl(with: branchLinkProperties,  andCallback: { (url: String, error: Error?) in
     if error == nil {
         print("got my Branch invite link to share: %@", url)
     }

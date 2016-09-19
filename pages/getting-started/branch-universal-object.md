@@ -366,7 +366,8 @@ Create a link to a piece of content. Visit the [Creating Links in Apps]({{base.u
 {% endtab %}
 {% tab swift %}
 {% highlight swift %}
-branchUniversalObject.getShortUrlWithLinkProperties(linkProperties, andCallback: { (optUrl: String?, error: NSError?) -> Void in    if error == nil, let url = optUrl {
+branchUniversalObject.getShortUrl(with: branchLinkProperties,  andCallback: { (url: String, error: Error?) in
+    if error == nil, let url = optUrl {
         print("got my Branch link to share: %@", url)
     }
 })
