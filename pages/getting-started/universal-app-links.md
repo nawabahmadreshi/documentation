@@ -269,22 +269,9 @@ func application(application: UIApplication, continueUserActivity userActivity: 
 
 {% caution title="Issues with Facebook SDK" %}
 
-In certain situations, the Facebook SDK can cause `didFinishLaunchingWithOptions` to return `NO`. When this happens, handling for all Universal Links is blocked. We have incorporated a workaround into our SDK, which you can enable by inserting the following line immediately before your `initSessionWithLaunchOptions` call:
+In certain situations, the Facebook SDK can cause `application:didFinishLaunchingWithOptions:` to return `NO`. When this happens, handling for all Universal Links is blocked. Please ensure that `application:didFinishLaunchingWithOptions:` always returns `YES`/`true`.
 
-{% tabs %}
-{% tab objective-c %}
-
-{% highlight objc %}
-[branch accountForFacebookSDKPreventingAppLaunch];
-{% endhighlight %}
-{% endtab %}
-{% tab swift %}
-
-{% highlight swift %}
-branch.accountForFacebookSDKPreventingAppLaunch()
-{% endhighlight %}
-{% endtab %}
-{% endtabs %}
+Previously we included a method in our SDK, `accountForFacebookSDKPreventingAppLaunch`, that handled this edge case. However, due to Swift+Objective-C interoperability issues, this has been removed.
 
 {% endcaution %}
 
@@ -793,7 +780,7 @@ Sep 21 14:27:01 Derricks-iPhone swcd[2044] <Notice>: 2015-09-21 02:27:01.878907 
 These logs can be found for physical devices connected to Xcode by navigating to Window > Devices > choosing your device and then clicking the "up" arrow in the bottom left corner of the main view.
 
 ##### Using Facebook's SDK?
-We've recently discovered a bug with Facebook's SDK returning `NO` for `application:didFinishLaunchingWithOptions` preventing Universal Links from working on cold start. Call `accountForFacebookSDKPreventingAppLaunch` on your Branch instance before initializing the session.
+In certain situations, the Facebook SDK can cause `application:didFinishLaunchingWithOptions:` to return `NO`. When this happens, handling for all Universal Links is blocked. Please ensure that `application:didFinishLaunchingWithOptions:` always returns `YES`/`true`.
 
 ##### `bnc.lt` links with your Test Key?
 Due to a change in iOS 9.3.1, Universal Links will not work on *Test* apps using the `bnc.lt` domain. We're working on resolving this. Please test Universal Links with your Live app, where they will work as expected. [Read more](http://status.branch.io/incidents/b0c19p6hpq58){:target="_blank"}.
