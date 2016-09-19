@@ -530,7 +530,15 @@ If you use a [custom domain or subdomain for your Branch links]({{base.url}}/get
 
 {% else %}
 
+{% if page.unity %}
+
+## Add Intent Filter to Manifest (if not using Prefab)
+
+{% else %}
+
 ## Add Intent Filter to Manifest
+
+{% endif %}
 
 1. Go to the [Link Settings](https://dashboard.branch.io/#/settings/link) page on the dashboard.
 1. Scroll down to the `Link Domain` area.
