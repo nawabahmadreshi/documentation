@@ -134,6 +134,8 @@ Note: if your Branch links are wrapped by an email service provider's click trac
 
 ### Link behavior customization
 
+#### Control parameters
+
 Use these keys to control how URI scheme deep linking functions when opening your app from a link.
 
 {% caution title="Incomplete support on iOS" %}
@@ -151,6 +153,14 @@ Use these keys to control how URI scheme deep linking functions when opening you
 | $android_redirect_timeout | Control the timeout that the clientside JS waits after trying to open up the app before redirecting to the Play Store. Specified in milliseconds | `750`
 | $one_time_use | Set to 'true' to limit deep linking behavior of the generated link to a single use. Can also be set using `type` | `false`
 | $custom_sms_text | Text for SMS link sent for desktop clicks to this link. Must contain `{% raw %}{{ link }}{% endraw %}` | Value of **Text me the app page** in [Settings](https://dashboard.branch.io/settings)
+
+#### Triggering links from within an iFrame
+
+Note that on iOS 9 and 10, Apple has tough restrictions around redirecting from within an iFrame. If you need to trigger a Branch link from an iFrame, we recommend that you use the following:
+
+{% highlight js %}
+window.open(<Branch link here>);
+{% endhighlight %}
 
 ### Deepviews
 
