@@ -278,6 +278,18 @@ For an initial `install` event, identity and session properties will be the same
 | event.metadata.key | Data defined as `key` when creating a custom event 
 | event.date | Timestamp of when the event occurred
 
+#### Device data
+
+Device data provides access to the device fingerprint. Branch collects this fingerprint both when a user is in the browser – via a click on a Branch link – and then after they open the app. This information includes IP Address, OS, OS version, device model and other parameters. 
+
+| Key | Description
+| --- | ---
+| device.metadata.os | The OS of the device
+| device.metadata.os_version | The OS version
+| device.metadata.ip | The IP address of the device
+| device.metadata.model | The model of the device
+
+
 #### Identity data
 
 Identity data is unique for each user Branch tracks. These values are permanently tied to that user, meaning if a link with a campaign of 'google' drives an install, then that user will have a permanent `identity.link_data.~campaign` value equal to 'google'.
