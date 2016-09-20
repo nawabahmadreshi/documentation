@@ -754,6 +754,9 @@ Custom domains and subdomains are unique to your app and not shared. All links o
 ##### Are you testing by manually entering into Safari?
 Universal Links don't work properly when entered into Safari. Use Notes or iMessage for testing.
 
+##### Are you wrapping Branch links in your own crappy link and redirecting?
+Universal Links don't work when they are wrapped in some sort of click tracking or other domain. They must be freestanding. Please don't wrap our links.
+
 ##### Is the entitlements file included for your build target?
 It seems that Xcode, by default, will not include the `.entitlements` file in your build. You have to check the box in the right sidebar against the correct target to ensure it's included in your app.
 
