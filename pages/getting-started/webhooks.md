@@ -52,11 +52,11 @@ You may select between the following default events:
 
 | **Event** | **Description**
 | ---: | ---
-| `install` | Triggered the first time a user launches your app
-| `open` | Trigged when the user opens the app after the very first launch OR if a user reinstalls the app after uninstalling it
-| `referred session` | Triggered *in addition* to install, open or web session start if a user comes from a Branch link
+| `install` | Triggered the first time a user launches your app.
+| `open` | Trigged any time that the app enters the foreground.
+| `referred session` | Triggered *in addition* to install, open or web session start if a user comes from a Branch link.
 | `web session start` | Triggered when the user views a webpage using the Branch Web SDK.
-| `click` | Triggered whenever a Branch link is clicked on any platform
+| `click` | Triggered whenever a Branch link is clicked on any platform.
 | `-- other --` | Enter an event you [created through the Branch SDK]({{base.url}}/getting-started/user-value-attribution#custom-event-tracking), or a wildcard (`*`) to return every single event tracked through Branch.
 
 {% protip %}
