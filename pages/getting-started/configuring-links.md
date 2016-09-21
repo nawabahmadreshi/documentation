@@ -214,6 +214,7 @@ If you do not specify a primary OG tag when creating a link, Branch will perform
 | $twitter_card | Set the Twitter card type of the link
 | $twitter_title | Set the title of the Twitter card
 | $twitter_description | Set the description of the Twitter card
+| $twitter_image_url | Set the image URL for the Twitter card
 | $twitter_site | Set the site for Twitter
 | $twitter_app_country | Set the app country for the app card
 | $twitter_player | Set the video player's URL. Defaults to the value of `$og_video`.

@@ -134,14 +134,6 @@ You can install the Branch SDK by using one of several different command line to
 cordova plugin add branch-cordova-sdk --variable BRANCH_KEY=key_live_xxxxxxxxxxxxxxx --variable URI_SCHEME=yourapp
 {% endhighlight %}
 
-{% protip title="Android build errors" %}
-If you use Crashlytics, or other Twitter Fabric libraries in your app, it's possible that you get a `com.android.dex.DexException`. If this occurs, just head to `platforms/android/io.branch.sdk/<yourapp>-build-branch-extras.gradle` file, and change to look like the following:
-
-{% highlight js %}
-compile ('io.branch.sdk.android:library:2.+') { exclude module: 'answers-shim' }
-{% endhighlight %}
-
-{% endprotip %}
 {% endif %}
 <!--- /Cordova -->
 
@@ -329,6 +321,12 @@ In your project's `YourProject-Info.plist` file, you can register your app to re
 
 {% endif %}
 
+{% if page.android or page.cordova or page.titanium or page.unity or page.xamarin or page.react %}
+{% protip title="Android build errors" %}
+Occasionally, Android will barf after you add our library due to generic issues unrelated to Branch. Please see [this advanced section]({{base.url}}/getting-started/sdk-integration-guide/advanced/android#troubleshooting-android-build-errors)
+{% endprotip %}
+{% endif %}
+
 {% if page.ios or page.react or page.mparticle_ios or page.ios_imessage %}
 ## {% if page.react %}iOS: {% endif %}Configure Xcode Project
 
@@ -453,15 +451,44 @@ Branch opens your app by using its URI scheme (`yourapp://`), which should be un
 
 If your app uses a custom Application class, add `Branch.getAutoInstance(this);` so that it matches the following:
 
+{% if page.android %}
 {% highlight java %}
 public final class CustomApplicationClass {
   @Override
   public void onCreate() {
       super.onCreate();
+      // initialize the Branch object
       Branch.getAutoInstance(this);
   }
 }
 {% endhighlight %}
+{% endif %}
+
+{% if page.react %}
+{% highlight java %}
+// import Branch and RNBranch at the top
+import io.branch.rnbranch.*;
+import io.branch.referral.Branch;
+
+public final class CustomApplicationClass {
+
+  @Override
+  protected List<ReactPackage> getPackages() {
+    return Arrays.<ReactPackage>asList(
+      new MainReactPackage(),
+      new RNBranchPackage(), // <-- add this
+// ...
+
+
+  @Override
+  public void onCreate() {
+      super.onCreate();
+      // initialize the Branch object
+      Branch.getAutoInstance(this);
+  }
+}
+{% endhighlight %}
+{% endif %}
 
 {% caution title="Make sure this is the correct onCreate()!" %}
 Your `Activity` also has an `onCreate()` method. Be sure you do not mix the two up!
@@ -1153,21 +1180,7 @@ Finally, add these two new methods. The first responds to URI scheme links. The 
 
 ### Android initialization
 
-1. Add RNBranchPackage to packages list in MainApplication.java (`android/app/src/[...]/MainApplication.java`)
-
-{% highlight java %}
-//...
-import io.branch.rnbranch.*; // <-- add this
-//...
-@Override
-  protected List<ReactPackage> getPackages() {
-    return Arrays.<ReactPackage>asList(
-            new MainReactPackage(),
-            new RNBranchPackage(), // <-- add this
-// ...
-{% endhighlight %}
-
-2. In **android/app/src/main/java/com/xxx/MainActivity.java**, add the following:
+In **android/app/src/main/java/com/xxx/MainActivity.java**, add the following:
 
 {% highlight java %}
 import android.content.Intent; // <-- import
@@ -1436,6 +1449,40 @@ Here are some recommended next steps:
 -  **Set up [Custom Event Tracking]({{base.url}}/getting-started/user-value-attribution#custom-event-tracking)** if you skipped the step above — make in-app activity beyond clicks, installs, and opens — like purchases and signups — available for analysis in the dashboard.
 
 {% elsif page.advanced %}
+
+{% if page.android or page.cordova or page.titanium or page.xamarin or page.unity or page.react %}
+
+## Troubleshooting Android build errors
+
+### ClassNotFoundException : Branch.Java
+
+In case of having other SDKs along with Branch and exceeding the Dex limit, please make sure you have enabled multi-dex support for your application. Check the following to ensure multi-dex is configured properly
+
+1. Make sure you have enabled multi-dex support in your build.gradle file
+
+{% highlight java %}
+ defaultConfig {
+    multiDexEnabled true
+}
+{% endhighlight %}
+
+2. Make sure your `Application` class is extending `MultiDexApplication`
+
+3. Make sure dex files are properly loaded from .apk file. In your application class make sure you have the following
+
+{% highlight java %}
+@Override
+protected void attachBaseContext(Context base) {
+    super.attachBaseContext(base);
+    MultiDex.install(this);
+}
+{% endhighlight %}
+
+### InvalidClassException, ClassLoadingError or VerificationError
+
+This is often caused by a Proguard bug with optimization. Please try to use the latest Proguard version or disable Proguard optimisation by setting `-dontoptimize` option.
+
+{% endif %}
 
 {% if page.ios %}
 
