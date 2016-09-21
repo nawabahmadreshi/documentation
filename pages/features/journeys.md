@@ -421,11 +421,23 @@ If you have an upgraded premium account, you may also modify your CSS code direc
 
 You have the option of dynamically configuring the Branch link that powers the Journey presented to the user. This allows you to pass different deep link data from each page of your site, instead of using the same deep link data as defined in the Journey for every page.
 
-You can do this by calling `setBranchViewData` from the Branch Web SDK:
+You can do this by using [hosted deep link data]({{base.url}}/getting-started/hosted-deep-link-data/guide) and adding specially formatted meta tags to your site:
+
+{% highlight html %}
+<meta name="branch:deeplink:mydata" content="something"/>
+<meta name="branch:deeplink:product_id" content="12345"/>
+
+<script type="text/javascript">
+{% ingredient web-sdk-initialization %}{% endingredient %}
+</script>
+{% endhighlight %}
+
+You can also call `setBranchViewData` from the Branch Web SDK:
 
 {% highlight javascript %}
 <script type="text/javascript">
 {% ingredient web-sdk-initialization %}{% endingredient %}
+
 // You'll need to set the deep link data here, in the block where you call init().
 branch.setBranchViewData({
   data: {
