@@ -459,14 +459,8 @@ If the **Default domain name** box shows the legacy `bnc.lt` domain, you should 
 - If you use a custom domain or subdomain for your Branch links, you should also add a key for:
 
 {% highlight xml %}
-<android-prefix value="READ_FROM_DASHBOARD" />
 <host name="mycustomdomainorsubdomain" scheme="https" />
 {% endhighlight %}
-
-`READ_FROM_DASHBOARD` is the four-character value in front of all your links. You can find it underneath the field labeled **SHA256 Cert Fingerprints** on the dashboard. It will look something like this: `/WSuf` (the initial `/` character should be included).
-
-{% image src='/img/pages/getting-started/universal-app-links/app_links_prefix.png' full center alt='app links prefix' %}
-
 {% endprotip %}
 
 {% elsif page.xamarin %}
