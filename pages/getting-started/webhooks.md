@@ -48,7 +48,7 @@ You can choose to receive a webhook for every single event occurrence, or only f
 
 #### Event trigger
 
-You may select between the following default events: 
+You may select between the following default events:
 
 | **Event** | **Description**
 | ---: | ---
@@ -166,7 +166,7 @@ Content-Type: application/json
 
 ## Filters
 
-Filters allow you to specify when a webhook gets sent to your URL based off criteria matches. You can configure your filters to use any [webhook keyword value](#webhook-keyword-values) by using liquid tags following this convention: {% raw %}`{{ param.name }}`{% endraw %}. 
+Filters allow you to specify when a webhook gets sent to your URL based off criteria matches. You can configure your filters to use any [webhook keyword value](#webhook-keyword-values) by using liquid tags following this convention: {% raw %}`{{ param.name }}`{% endraw %}.
 
 {% example title="Filtering signups by location" %}
 Let's say you're interested in receiving a webhook every time your `sign_up` event is triggered, but only in a specific market, like Chicago. Your event metadata will look something like the following:
@@ -195,7 +195,7 @@ If you want to filter on just a key being present, you can put a `*` in the valu
 ## Templating
 
 If your backend relies on a dynamic URL structure to receive events, then we can support you with our webhooks. This is typically used for marketing campaigns, where a unique parameter needs to be appended to each link-click, and consequently posted back to a URL. You can also expose data we collect on the URL itself.
- 
+
 To access template values when setting up a webhook, you use liquid tags following this convention: {% raw %}`{{ param.name }}`{% endraw %}. We'll pass through that value we have saved in our database. Here are the two options for templates and webhooks:
 
 ### Query parameters on Branch links
@@ -275,12 +275,12 @@ For an initial `install` event, identity and session properties will be the same
 | event.name | The name of the event (e.g., `install` or `my_custom_event`)
 | event.metadata.referred | Equals `true` if user installed app after opening a Branch link
 | event.metadata.ip | The IP address of the user
-| event.metadata.key | Data defined as `key` when creating a custom event 
+| event.metadata.key | Data defined as `key` when creating a custom event
 | event.date | Timestamp of when the event occurred
 
 #### Device data
 
-Device data provides access to the device fingerprint. Branch collects this fingerprint both when a user is in the browser – via a click on a Branch link – and then after they open the app. This information includes IP Address, OS, OS version, device model and other parameters. 
+Device data provides access to the device fingerprint. Branch collects this fingerprint both when a user is in the browser – via a click on a Branch link – and then after they open the app. This information includes IP Address, OS, OS version, device model and other parameters.
 
 | Key | Description
 | --- | ---
@@ -304,20 +304,6 @@ Except for `identity.id`, these will not be populated if the user installed your
 | identity.referring_identity.id | User ID you set for the user who created the link that drove this user's install
 | identity.referring_device.hardware_id | Device ID of the user who created the link that drove this user's install
 
-The `identity.link_click.` values refer to the `click` event that led to your app being installed by that user.
-
-| Key | Description
-| --- | ---
-| identity.link_click.query.key | Any key that was appended to the link when opened. To retrieve `value1` from **https://[branchsubdomain]/test?param1=value1**, you would use `identity.link_click.query.param1`.
-| identity.link_click.referring_identity.id | ID you set for the user who created this link
-| identity.link_click.browser.branch_id | The Branch ID we have for a user's unique browser
-| identity.link_click.browser.metadata.userAgent | The user agent of the browser
-| identity.link_click.device.hardware_id | For iOS, this is the Advertising ID. For Android, this is the Android ID
-| identity.link_click.device.metadata.google_advertising_id | Android only. The Google Advertising ID, if known
-| identity.link_click.device.metadata.os | The OS of the device
-| identity.link_click.device.metadata.os_version | The OS version
-| identity.link_click.date | Time of link click.
-
 The `identity.link_data.` values refer to the link that was opened prior to your app being installed by that user.
 
 | Key | Description
@@ -338,7 +324,7 @@ The `identity.link_data.` values refer to the link that was opened prior to your
 
 #### Session data
 
-Session data refers to the **most recent** record Branch has for each user, regardless of whether it reflects an `install` or an `open` event. 
+Session data refers to the **most recent** record Branch has for each user, regardless of whether it reflects an `install` or an `open` event.
 
 {% protip %}
 These will not be populated if the session was not initiated by opening a Branch link.
@@ -354,14 +340,6 @@ The `session.link_click` keys refer to the `click` event that initiated the sess
 | Key | Description
 | --- | ---
 | session.link_click.query.key | Any key that was appended to the link when opened. To retrieve `value1` from **https://[branchsubdomain]/test?param1=value1**, you would use `session.click.query.param1`.
-| session.link_click.referring_identity.id | ID you set for the user who created this link
-| session.link_click.browser.branch_id | The Branch ID we have for a user's unique browser
-| session.link_click.browser.metadata.userAgent | The user agent of the browser
-| session.link_click.device.hardware_id | For iOS, this is the Advertising ID. For Android, this is the Android ID
-| session.link_click.device.metadata.google_advertising_id | Android only. The Google Advertising ID, if known
-| session.link_click.device.metadata.os | The OS of the device
-| session.link_click.device.metadata.os_version | The OS version
-| session.link_click.date | Time of link click.
 
 The `session.link_data` keys refer to the link that initiated the session.
 
@@ -393,7 +371,7 @@ Reserved for future use:
 - `52.9.188.221/32`
 - `52.9.188.236/32`
 
-You can also [create events through the Branch SDK]({{base.url}}/getting-started/user-value-attribution#custom-event-tracking), and specify a secret key inside the event metadata to pass through inside the URL of the webhook itself. 
+You can also [create events through the Branch SDK]({{base.url}}/getting-started/user-value-attribution#custom-event-tracking), and specify a secret key inside the event metadata to pass through inside the URL of the webhook itself.
 
 {% elsif page.support %}
 
