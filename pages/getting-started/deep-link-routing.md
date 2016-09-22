@@ -129,7 +129,7 @@ func configureControlWithData(data: [NSObject : AnyObject]!) {
 
 {% protip title="What is a link data key?" %}
 The example key `product_picture` is a parameter from the [data dictionary]({{base.url}}/getting-started/configuring-links) of the link that was clicked, and would have been defined when the link [was created]({{base.url}}/getting-started/creating-links-in-apps).
-{% endprotip %} 
+{% endprotip %}
 
 Since the view controller is displayed modally, you should add a close button:
 
@@ -242,7 +242,7 @@ protected void onResume() {
 
 {% protip title="What is a link data key?" %}
 The example key `product_picture` is a parameter from the [data dictionary]({{base.url}}/getting-started/configuring-links) of the link that was clicked, and would have been defined when the link [was created]({{base.url}}/getting-started/creating-links-in-apps).
-{% endprotip %} 
+{% endprotip %}
 
 ## Register Activity for deep link routing
 
@@ -494,7 +494,7 @@ Inside the callback for `checkForDeferredDeepLinkWithCompletionHandler` method i
 
 {% highlight objc %}- (void)checkForDeeplink {
     MParticle * mParticle = [MParticle sharedInstance];
-    
+
     [mParticle checkForDeferredDeepLinkWithCompletionHandler:^(NSDictionary<NSString *,NSString *> * _Nullable params, NSError * _Nullable error) {
         if (params) {
                 // Start setting up the view controller hierarchy
@@ -512,7 +512,7 @@ Inside the callback for `checkForDeferredDeepLinkWithCompletionHandler` method i
                 } else {
                     nextVC = [storyboard instantiateViewControllerWithIdentifier:@"MainVC"];
                 }
-                
+
                 // navigate!
                 [navC setViewControllers:@[nextVC] animated:YES];
             }
@@ -608,7 +608,7 @@ In addition to any custom key/value pairs specified in the link data dictionary,
 
 ## Support existing deep link routes
 
-If you spent a bunch of time setting up deep link paths before you heard of Branch and you want to continue using them, you can set the `$deeplink_path`, `$ios_deeplink_path` or `$android_deeplink_path` link control parameters to the URI path you'd like to display.
+If you spent a bunch of time setting up deep link paths with your custom URI scheme before you heard of Branch and you want to continue using them, you can set the `$deeplink_path`, `$ios_deeplink_path` or `$android_deeplink_path` link control parameters to the URI path you'd like to display. When the Branch SDK receives a link with these parameters set, it will automatically load the custom URI path contained within.
 
 {% if page.android or page.mparticle_android %}
 
@@ -622,7 +622,7 @@ In your app's Manifest, add this meta-data key to the definition of the Activity
 {% if page.android or page.mparticle_android %}{% else %}
 
 {% caution title="Incomplete support on iOS" %}
-[Universal Links]({{base.url}}/getting-started/universal-app-links) and [Spotlight]({{base.url}}/features/spotlight-indexing) do not support deep linking via URI paths. If possible, we recommend not using `$deeplink_path` and its platform-specific variants as your only deep link routing method.
+[Universal Links]({{base.url}}/getting-started/universal-app-links) and [Spotlight]({{base.url}}/features/spotlight-indexing) do not support deep linking via URI paths. If you use `$deeplink_path` or `$ios_deeplink_path`, you will need to implement some custom logic. [Click here for more information]({{base.url}}/getting-started/universal-app-links/advanced/ios/#how-to-handle-uri-paths-with-universal-links).
 {% endcaution %}
 
 {% endif %}
@@ -927,7 +927,7 @@ You must also configure your app to allow Branch to handle push notifications:
 {% highlight objc %}
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     [[Branch getInstance] handlePushNotification:userInfo];
-    
+
     // ... handle push notifications that do not include Branch links
 }
 {% endhighlight %}
@@ -936,7 +936,7 @@ You must also configure your app to allow Branch to handle push notifications:
 {% highlight swift %}
 func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
     Branch.getInstance().handlePushNotification(userInfo)
-    
+
     // ... handle push notifications that do not include Branch links
 }
 {% endhighlight %}
