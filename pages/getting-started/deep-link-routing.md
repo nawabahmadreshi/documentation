@@ -608,7 +608,7 @@ In addition to any custom key/value pairs specified in the link data dictionary,
 
 ## Support existing deep link routes
 
-If you spent a bunch of time setting up deep link paths with your custom URI scheme before you heard of Branch and you want to continue using them, you can set the `$deeplink_path`, `$ios_deeplink_path` or `$android_deeplink_path` link control parameters to the URI path you'd like to display. When the Branch SDK receives a link with these parameters set, it will automatically load the custom URI path contained within.
+If your app already supports deep linking using URI paths, you can populate the `$deeplink_path`, `$ios_deeplink_path` or `$android_deeplink_path` link parameters with the URI path of the content to be displayed within the app. When the Branch SDK receives a link containing one of these parameters it will automatically load the specified URI path.
 
 {% if page.android or page.mparticle_android %}
 
