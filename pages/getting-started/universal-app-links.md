@@ -614,7 +614,7 @@ If you have an unusual situation with multiple custom link domains, you may also
 
 Prior to iOS 9, URI schemes with URI paths (e.g., `myapp://path/to/content`) were the standard approach to deep linking. Branch supports URI paths using the **$deeplink_path**, **$ios_deeplink_path**, and **$android_deeplink_path** [link properties]({{base.url}}/getting-started/configuring-links/guide/#link-behavior-customization). When the Branch SDK receives a link with one of these parameters set (and assuming the platform is correct), it will automatically load that URI path.
 
-Note, however, that Universal Links and Spotlight do not use URI schemes for deep link routing. If you populate **$deeplink_path** or **$ios_deeplink_path** with a URI path on iOS 9+, you will additionally need to introduce custom logic to ensure that your links work as expected in all situations.
+Note, however, that Universal Links and Spotlight do not use URI schemes for deep link routing. If you populate **$deeplink_path** or **$ios_deeplink_path** with a URI path on iOS 9+, you will also need to introduce custom logic to ensure that your links work as expected in all situations.
 
 To do this, add a `self.ignoreDeeplinkPath` conditional flag in `application:didFinishLaunchingWithOptions:launchOptions:` and handle these link separately.
 
