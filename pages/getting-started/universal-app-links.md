@@ -612,22 +612,22 @@ If you have an unusual situation with multiple custom link domains, you may also
 
 ## How to handle URI paths with Universal Links
 
-Prior to iOS 9, custom URI scheme paths (e.g., `myapp://path/to/content`) were the standard approach to deep linking. Branch can integrate with this routing method via the **$deeplink_path**, **$ios_deeplink_path**, and **$android_deeplink_path** [control parameters]({{base.url}}/getting-started/configuring-links/guide/#link-behavior-customization): when the Branch SDK receives a link with these parameters set, it will automatically load the custom URI contained within.
+Prior to iOS 9, URI schemes with URI paths (e.g., `myapp://path/to/content`) were the standard approach to deep linking. Branch supports URI paths using the **$deeplink_path**, **$ios_deeplink_path**, and **$android_deeplink_path** [link properties]({{base.url}}/getting-started/configuring-links/guide/#link-behavior-customization). When the Branch SDK receives a link with one of these parameters set (and assuming the platform is correct), it will automatically load that URI path.
 
-However, Universal Links and Spotlight do not use URI schemes for deep link routing. This means if you use **$deeplink_path** or **$ios_deeplink_path** as your Branch routing method on iOS 9+, you will need to add some custom logic to ensure your links work as expected in all situations.
+Note, however, that Universal Links and Spotlight do not use URI schemes for deep link routing. If you populate **$deeplink_path** or **$ios_deeplink_path** with a URI path on iOS 9+, you will additionally need to introduce custom logic to ensure that your links work as expected in all situations.
 
-To do this, you will add a `self.ignoreDeeplinkPath` conditional flag in `application:didFinishLaunchingWithOptions:launchOptions:` and handle each link type separately.
+To do this, add a `self.ignoreDeeplinkPath` conditional flag in `application:didFinishLaunchingWithOptions:launchOptions:` and handle these link separately.
 
-### Custom URI scheme links (non-Universal Links)
+### How to handle non-Universal Links (links relying on custom URI schemes)
 
-The entry point for this link type is `application:openURL:sourceApplication:annotation:`. Branch uses this link type for all users on iOS 8 and earlier, and for iOS 9 users in certain situations.
+When Branch links are used on iOS prior to version 9, and in some situations on later versions of iOS, the links do not act as Universal Links but instead rely on the app's custom URI scheme. While Universal links are handled by the AppDelegate's `application:continueUserActivity:restorationHandler:` function, the  `application:openURL:sourceApplication:annotation:` function is used to process non-Universal Links.
 
-1. In `application:didFinishLaunchingWithOptions:launchOptions:`, set the `self.ignoreDeeplinkPath` conditional flag to `YES`. This will ensure that users do not get deep linked twice (once automatically by the Branch SDK, and a second time via the logic you are about to add).
-1. Look for the **$deeplink_path** or **$ios_deeplink_path** parameter in your link data, and then use the path within to route users to the correct place in your app.
+1. In `application:didFinishLaunchingWithOptions:launchOptions:`, set the `self.ignoreDeeplinkPath` conditional flag to `YES`. This will ensure that users do not get deep linked twice (once automatically by the Branch SDK and a second time via the logic you are about to add).
+1. Look for the **$deeplink_path** or **$ios_deeplink_path** parameter in your link data use the value to route users to the correct place in your app
 
-### Universal Links
+### How to handle Universal Links
 
-The entry point for this link type is `application:continueUserActivity:restorationHandler:`. Branch uses this approach for users on iOS 9+ in most situations.
+Since the release of iOS 9, Branch links have functioned as Universal Links on iOS. Universal links are handled by the AppDelegate's `application:continueUserActivity:restorationHandler:` function.
 
 1. The `self.ignoreDeeplinkPath` conditional flag in `application:didFinishLaunchingWithOptions:launchOptions:` defaults to `NO`.
 1. Look for the **$deeplink_path** or **$ios_deeplink_path** parameter in your link data, and then use the path within to route users to the correct place in your app.
