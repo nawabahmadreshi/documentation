@@ -754,6 +754,7 @@ To work around this limitation, your links must have [deepviews]({{base.url}}/fe
 | App/Browser | Status
 | --- | ---
 | Pinterest | broken
+| Instagram | broken
 | Telegram | broken
 
 

@@ -444,6 +444,9 @@ branchUniversalObject.generateShortUrl({
   "stage" : "sample-stage"
 }, {
   "$desktop_url" : "http://desktop-url.com",
+}, function (res) {
+    Ti.API.info('Completed link generation');
+    Ti.API.info(res);
 });
 {% endhighlight %}
 
