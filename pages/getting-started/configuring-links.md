@@ -180,7 +180,7 @@ Most of these parameters can also be specified using the [BranchUniversalObject]
 
 ### Content indexing controls
 
-Currently, these parameters are only used for [iOS Spotlight Indexing]({{base.url}}/features/spotlight-indexing) but will be used by Branch in the future.
+Currently, parameters determine how your content is listed on all public search portals via Branch's app content sitemap. We compile all public links into a sitemap once you've enabled `Google App Indexing` on the Branch dashboard.
 
 | Key | Usage | Default
 | --- | --- | ---

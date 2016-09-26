@@ -17,9 +17,11 @@ platforms:
 - react
 sections:
 - guide
+- advanced
 contents: list
 ---
 
+{% if page.guide %}
 
 A `BranchUniversalObject` is a container that Branch uses to organize and track pieces of content within your app. As a single, self-contained object associated with each thing that you want to share, it provides convenient methods for sharing, deep linking, and tracking how often that thing is viewed.
 
@@ -768,6 +770,9 @@ branchUniversalObject.generateShortUrl({
   "stage" : "sample-stage"
 }, {
   "$desktop_url" : "http://desktop-url.com",
+}, function (res) {
+    Ti.API.info('Completed link generation');
+    Ti.API.info(res);
 });
 {% endhighlight %}
 
@@ -896,6 +901,148 @@ For iOS apps only, you can list content on Spotlight search with the following m
 
 {% highlight js %}
 let spotlightResult = await branchUniversalObject.listOnSpotlight()
+{% endhighlight %}
+
+{% endif %}
+
+{% endif %}
+
+{% endif %}
+
+{% if page.advanced %}
+
+## Specifying an shared email subject
+
+The majority of share options only include one string of text, except email, which has a subject and a body. The share text will fill in the body and you can specify the email subject in the link properties as shown below.
+
+<!--- iOS -->
+{% if page.ios %}
+
+{% tabs %}
+{% tab objective-c %}
+{% highlight objc %}
+BranchLinkProperties *linkProperties = [[BranchLinkProperties alloc] init];
+linkProperties.feature = @"share";
+linkProperties.channel = @"facebook";
+[linkProperties addControlParam:@"$email_subject" withValue:@"Therapists hate him"];
+{% endhighlight %}
+{% endtab %}
+{% tab swift %}
+{% highlight swift %}
+let linkProperties: BranchLinkProperties = BranchLinkProperties()
+linkProperties.feature = "share"
+linkProperties.channel = "facebook"
+linkProperties.addControlParam("$email_subject", withValue: "Therapists hate him")
+{% endhighlight %}
+{% endtab %}
+{% endtabs %}
+
+{% endif %}
+<!--- /iOS -->
+
+<!--- Android -->
+{% if page.android %}
+
+{% highlight java %}
+ShareSheetStyle shareSheetStyle = new ShareSheetStyle(MainActivity.this, "Therapists hate him", "You will never believe what happened next!")
+                        .setCopyUrlStyle(getResources().getDrawable(android.R.drawable.ic_menu_send), "Copy", "Added to clipboard")
+                        .setMoreOptionStyle(getResources().getDrawable(android.R.drawable.ic_menu_search), "Show more")
+                        .addPreferredSharingOption(SharingHelper.SHARE_WITH.FACEBOOK)
+                        .addPreferredSharingOption(SharingHelper.SHARE_WITH.EMAIL)
+                        .setAsFullWidthStyle(true)
+                        .setSharingTitle("Share With");
+{% endhighlight %}
+
+{% endif %}
+<!--- /Android -->
+
+{% if page.cordova %}
+
+{% highlight js %}
+branchUniversalObj.showShareSheet({
+  // put your link properties here
+  "feature" : "share",
+  "channel" : "facebook"
+}, {
+  "$email_subject" : "Therapists hate him", // title of email on iOS
+}, {
+  "shareText": "You will never believe what happened next!", // body of email
+  "shareTitle": "Therapists hate him", // title of email on Android
+  "copyToClipboard": "Copy",
+  "clipboardSuccess": "Added to clipboard",
+  "more": "Show More",
+  "shareWith": "Share With"
+});
+{% endhighlight %}
+
+{% endif %}
+
+{% if page.xamarin %}
+
+{% highlight c# %}
+
+Only supported on iOS currently.
+
+BranchLinkProperties linkProperties = new BranchLinkProperties();
+linkProperties.feature = "sharing";
+linkProperties.channel = "facebook";
+linkProperties.controlParams.Add("$email_subject", "Therapists hate him");
+
+{% endhighlight %}
+
+{% endif %}
+
+<!--- Unity -->
+
+{% if page.unity %}
+
+Only supported on iOS currently.
+
+{% highlight c# %}
+BranchLinkProperties linkProperties = new BranchLinkProperties();
+linkProperties.feature = "share";
+linkProperties.channel = "facebook";
+linkProperties.controlParams.Add("$email_subject", "Therapists hate him");
+{% endhighlight %}
+
+{% endif %}
+
+<!--- Adobe -->
+
+{% if page.adobe %}
+
+Since Adobe doesn't support the share sheet, this section is irrelevant.
+
+{% endif %}
+
+<!--- Titanium -->
+
+{% if page.titanium %}
+
+Only supported on iOS currently.
+
+{% highlight js %}
+branchUniversalObject.showShareSheet({
+  "feature" : "share",
+  "channel" : "facebook"
+}, {
+  "$email_subject" : "Therapists hate him",
+}, 'You will never believe what happened next!');
+{% endhighlight %}
+
+{% endif %}
+
+<!--- React -->
+
+{% if page.react %}
+
+{% highlight js %}
+let shareOptions = {
+  messageHeader: 'Therapists hate him',
+  messageBody: 'You will never believe what happened next!'
+}
+
+let {channel, completed, error} = await branchUniversalObject.showShareSheet(shareOptions, linkProperties, controlParams)
 {% endhighlight %}
 
 {% endif %}
