@@ -113,7 +113,7 @@ If you are using the Carousel Ad Format, you can specify a different Deep Link f
 1. Choose **Increase engagement in your app**. After entering a name for your campaign and clicking continue, select the Facebook app that you wish to advertise. {% image src='/img/pages/features/facebook-ads/fb_ad_installs.png' 3-quarters center alt='Facebook Example Ad' %}
 1. After you choose your audience, placement, budget, and schedule, click continue to create your ad. 
 1. Once you have customized the display of the ad, you can now specify the Deep Link in the following section. {% image src='/img/pages/features/facebook-ads/fb_ad_deep_link_area.png' 3-quarters center alt='Facebook Example Ad' %}
-1. Paste the Branch link from the dashboard into the **Deep Link** field. {% image src='/img/pages/features/facebook-ads/fb_ad_deep_link_branch.png' half center alt='Facebook Example Ad' %}
+1. Paste the Branch link from the dashboard into the **Deep Link** field. Note that this field does not support query parameter-based links. You must create a short link add deep link data keys and values on the marketing page. {% image src='/img/pages/features/facebook-ads/fb_ad_deep_link_branch.png' half center alt='Facebook Example Ad' %}
 
 ## Add Branch link to Facebook Website Clicks campaign
 

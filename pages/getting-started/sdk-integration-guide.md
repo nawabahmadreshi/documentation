@@ -26,7 +26,6 @@ sections:
 {% prerequisite %}
 Before using the Branch SDK, you must first [sign up for an account](https://dashboard.branch.io){:target="_blank"} and complete the [onboarding process](https://start.branch.io/){:target="_blank"}.
 {% endprerequisite %}
-
 {% if page.mparticle_ios or page.mparticle_android %}
 {% prerequisite %}
 Before enabling the Branch SDK on mParticle, you must first [sign up for an mParticle account](https://app.mparticle.com/){:target="_blank"} and complete the [setup and integration process](http://docs.mparticle.com/){:target="_blank"}.
@@ -69,7 +68,13 @@ You can [install the SDK manually]({{base.url}}/getting-started/sdk-integration-
 We're not sure if Cocoapods will support extensions, so in the meantime, just install the SDK manually into your project.
 
 1. [Grab the latest SDK version](https://s3-us-west-1.amazonaws.com/branchhost/Branch-iOS-SDK.zip), or [clone our open-source GitHub repo](https://github.com/BranchMetrics/ios-branch-deep-linking).
-1. Drag the `Branch.framework` file into your Xcode project. Be sure that "Copy items if needed" and "Create groups" are selected.
+1. Drag the `Branch.framework` file from the root of the SDK folder into the Frameworks folder of your Xcode project. Be sure that "Copy items if needed" and "Create groups" are selected.
+1. Update the target's **Framework Search Paths**  
+    a. Select the project in Project Navigator  
+    b. In the PROJECT/TARGETS pane select the target you are building  
+    c. Click on the **Build Settings** tab  
+    d. Find: **User Header Search Paths**  
+    e. Add: **$(PROJECT_DIR)/Branch.framework/Headers**  
 1. Import the following frameworks under **Build Phases** for your app target:
     - `AdSupport.framework`
     - `CoreTelephony.framework`
@@ -128,14 +133,6 @@ You can install the Branch SDK by using one of several different command line to
 cordova plugin add branch-cordova-sdk --variable BRANCH_KEY=key_live_xxxxxxxxxxxxxxx --variable URI_SCHEME=yourapp
 {% endhighlight %}
 
-{% protip title="Android build errors" %}
-In rare situations, you may get an error on Android that gradle cannot find the `io.branch.sdk.android:library:1.+` dependency. If this occurs, go to your `build.gradle` file, find **dependencies**, and add the following inside:
-
-{% highlight js %}
-compile "io.branch.sdk.android:library:2.+"
-{% endhighlight %}
-
-{% endprotip %}
 {% endif %}
 <!--- /Cordova -->
 
@@ -297,7 +294,7 @@ With extensive use, the Android SDK footprint is **187 kb**.
 
 ### Install with Gradle
 
-Add `compile ‘com.mparticle:android-branch-kit:4.+’` to the dependencies section of your `build.gradle` file.
+Add `compile 'com.mparticle:android-branch-kit:4.+'` to the dependencies section of your `build.gradle` file.
 
 {% endif %}
 <!-- /mParticle Android -->
@@ -321,6 +318,12 @@ In your project's `YourProject-Info.plist` file, you can register your app to re
 
 {% image src='/img/pages/getting-started/sdk-integration-guide/xamarin_branch_ios_uri.png' full center alt='iOS URI' %}
 
+{% endif %}
+
+{% if page.android or page.cordova or page.titanium or page.unity or page.xamarin or page.react %}
+{% protip title="Android build errors" %}
+Occasionally, Android will barf after you add our library due to generic issues unrelated to Branch. Please see [this advanced section]({{base.url}}/getting-started/sdk-integration-guide/advanced/android#troubleshooting-android-build-errors)
+{% endprotip %}
 {% endif %}
 
 {% if page.ios or page.react or page.mparticle_ios or page.ios_imessage %}
@@ -447,15 +450,44 @@ Branch opens your app by using its URI scheme (`yourapp://`), which should be un
 
 If your app uses a custom Application class, add `Branch.getAutoInstance(this);` so that it matches the following:
 
+{% if page.android %}
 {% highlight java %}
 public final class CustomApplicationClass {
   @Override
   public void onCreate() {
       super.onCreate();
+      // initialize the Branch object
       Branch.getAutoInstance(this);
   }
 }
 {% endhighlight %}
+{% endif %}
+
+{% if page.react %}
+{% highlight java %}
+// import Branch and RNBranch at the top
+import io.branch.rnbranch.*;
+import io.branch.referral.Branch;
+
+public final class CustomApplicationClass {
+
+  @Override
+  protected List<ReactPackage> getPackages() {
+    return Arrays.<ReactPackage>asList(
+      new MainReactPackage(),
+      new RNBranchPackage(), // <-- add this
+// ...
+
+
+  @Override
+  public void onCreate() {
+      super.onCreate();
+      // initialize the Branch object
+      Branch.getAutoInstance(this);
+  }
+}
+{% endhighlight %}
+{% endif %}
 
 {% caution title="Make sure this is the correct onCreate()!" %}
 Your `Activity` also has an `onCreate()` method. Be sure you do not mix the two up!
@@ -463,7 +495,7 @@ Your `Activity` also has an `onCreate()` method. Be sure you do not mix the two 
 
 {% protip title="Alternative Configurations" %}
 - [I don't use a custom application class]({{base.url}}/getting-started/sdk-integration-guide/advanced/android#using-the-default-application-class){:target="_blank"}
-- [I need to support pre-14 Android]({{base.url}}/getting-started/sdk-integration-guide/advanced/android#supporting-pre-14-android){:target="_blank"}
+- [I need to support pre-15 Android]({{base.url}}/getting-started/sdk-integration-guide/advanced/android#supporting-pre-15-android){:target="_blank"}
 {% endprotip %}
 {% endif %}
 
@@ -1147,21 +1179,7 @@ Finally, add these two new methods. The first responds to URI scheme links. The 
 
 ### Android initialization
 
-1. Add RNBranchPackage to packages list in MainApplication.java (`android/app/src/[...]/MainApplication.java`)
-
-{% highlight java %}
-//...
-import io.branch.rnbranch.*; // <-- add this
-//...
-@Override
-  protected List<ReactPackage> getPackages() {
-    return Arrays.<ReactPackage>asList(
-            new MainReactPackage(),
-            new RNBranchPackage(), // <-- add this
-// ...
-{% endhighlight %}
-
-2. In **android/app/src/main/java/com/xxx/MainActivity.java**, add the following:
+In **android/app/src/main/java/com/xxx/MainActivity.java**, add the following:
 
 {% highlight java %}
 import android.content.Intent; // <-- import
@@ -1277,23 +1295,23 @@ Open the `Activity` for which you registered the `Intent` in the previous sectio
 
 {% highlight java %}
 @Override
-public void onStart() {}
+public void onStart() {
   MParticle.getInstance().checkForDeepLink(new DeepLinkListener() {
     @Override
     public void onResult(DeepLinkResult result) {
-        //a deep link could contain the link itself that can be parsed and reacted to.
-        if (result.getLink().contains("/example/path")) {
-            //send user to intended path
-        }
-        //a deep link may also contain a set of keys/values, depending on the integration
-        if (result.getParameters().get("my_custom_key").equals("custom value")) {
-            //send user to intended path
+        // Check for the existence of a given key in the link data and route accordingly.
+        try {
+            if ((result.getParameters().has("my_custom_key")) && (result.getParameters().get("my_custom_key").equals("custom value"))) {
+                // Send user to intended path
+            }
+        } catch (JSONException e) {
+
         }
     }
 
     @Override
     public void onError(DeepLinkError error) {
-        //if an integration has an error, it will be surfaced via a DeepLinkError.
+        // If an error occurred, it will be surfaced via a DeepLinkError.
         Log.d("my log tag", error.toString());
     }
   });
@@ -1431,6 +1449,40 @@ Here are some recommended next steps:
 
 {% elsif page.advanced %}
 
+{% if page.android or page.cordova or page.titanium or page.xamarin or page.unity or page.react %}
+
+## Troubleshooting Android build errors
+
+### ClassNotFoundException : Branch.Java
+
+In case of having other SDKs along with Branch and exceeding the Dex limit, please make sure you have enabled multi-dex support for your application. Check the following to ensure multi-dex is configured properly
+
+1. Make sure you have enabled multi-dex support in your build.gradle file
+
+{% highlight java %}
+ defaultConfig {
+    multiDexEnabled true
+}
+{% endhighlight %}
+
+2. Make sure your `Application` class is extending `MultiDexApplication`
+
+3. Make sure dex files are properly loaded from .apk file. In your application class make sure you have the following
+
+{% highlight java %}
+@Override
+protected void attachBaseContext(Context base) {
+    super.attachBaseContext(base);
+    MultiDex.install(this);
+}
+{% endhighlight %}
+
+### InvalidClassException, ClassLoadingError or VerificationError
+
+This is often caused by a Proguard bug with optimization. Please try to use the latest Proguard version or disable Proguard optimisation by setting `-dontoptimize` option.
+
+{% endif %}
+
 {% if page.ios %}
 
 ## Install the SDK manually
@@ -1466,11 +1518,11 @@ If your app doesn't use a custom Application class, simply add the `android:name
 
 [Back to the Guide]({{base.url}}/getting-started/sdk-integration-guide/guide/android/#enable-auto-session-management)
 
-## Supporting pre-14 Android
+## Supporting pre-15 Android
 
-Auto session tracking is only available for `minSdkVersion` 14 or above. If you need to support pre-14, you should include Branch SDK methods in both `onStart()` and `onStop()` to avoid strange, difficult-to-diagnose behavior. Branch must know when the app opens or closes to properly handle the deep link parameters retrieval.
+After and including SDK version `v2.0`, Branch only supports `minSdkVersion` 15 or above. If you need to support pre-15, you should lock to the Branch SDK version v1.14.5 and add methods in both `onStart()` and `onStop()` to avoid strange, difficult-to-diagnose behavior. Branch must know when the app opens or closes to properly handle the deep link parameters retrieval.
 
-Please add this to every Activity for pre-14 support.
+Please add this to every Activity for pre-15 support.
 
 {% highlight java %}
 @Override
