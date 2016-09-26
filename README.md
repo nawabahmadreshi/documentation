@@ -51,17 +51,13 @@ Conversion error: Jekyll::BrowserifyConverter encountered an error while convert
                     Connection refused - connect(2) for "localhost" port 20219
 ```
 
-If you get connection errors like the above from Jekyll, try increasing your open file limit:
+If you get connection errors like the above from Jekyll, try increasing your open file limit. Then rerun Jekyll (it may take a couple of attempts):
 
 ```
-ulimit -n 10000
+ulimit -n 10000; bundle exec jekyll serve;
 ```
 
-Then rerun Jekyll (it may take a couple of attempts):
-
-```
-bundle exec jekyll serve
-```
+Wait for the build process to finish, and then open [http://localhost:4000](http://localhost:4000) in your web browser.
 
 You'll need to do this every time you open a new shell window.
 
@@ -453,6 +449,16 @@ Used at the bottom of the Overview page section. Creates a button to the Guide s
 
 ```
 {% getstarted title="Get started with content sharing!" %}{% endgetstarted %}
+```
+
+### premiumflag
+
+![](img/readme/premiumflag.png)
+
+Inserts an inline icon to indicate a feature or option is premium-only.
+
+```
+{% premiumflag %}{% premiumflag %}
 ```
 
 ## Jekyll front matter

@@ -17,6 +17,11 @@ sections:
 
 {% if page.overview %}
 
+{% protip title="The Smart Banner is deprecated. Try Journeys instead!" %}
+
+The free tier features of our new [Journeys Web to App]({{base.url}}/features/journeys/) product replicate the legacy Smart Banner, and also provide easier setup and powerful new analytics. Give it a try!
+{% endprotip %}
+
 The Branch Smart Banner displays a fully-customizable banner at the top of your website, encouraging your mobile visitors to download the app (or open it, if already installed). Desktop visitors may enter their phone number to send themselves a link via SMS.
 
 {% image src='/img/pages/features/smart-banner/banner2.png' 2-thirds center alt='Smart Banner examples' %}

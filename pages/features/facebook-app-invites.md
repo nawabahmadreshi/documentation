@@ -123,13 +123,12 @@ Then use the Facebook SDK's `appInviteDialog` method ([documentation here](https
 // add these methods in if you extend your sharing view controller with <FBSDKAppInviteDialogDelegate>
 - (void)appInviteDialog:(FBSDKAppInviteDialog *)appInviteDialog
  didCompleteWithResults:(NSDictionary *)results {
-    [[Branch getInstance] userCompletedAction:@"completed_share"];
+    [[Branch getInstance] userCompletedAction:BNCShareCompletedEvent];
     NSLog(@"app invite dialog did complete");
 }
 
 - (void)appInviteDialog:(FBSDKAppInviteDialog *)appInviteDialog
        didFailWithError:(NSError *)error {
-    [[Branch getInstance] userCompletedAction:@"cancelled_share"];
     NSLog(@"app invite dialog did fail");
 }
 {% endhighlight %}

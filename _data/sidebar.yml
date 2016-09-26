@@ -7,6 +7,7 @@
     - universal-app-links
     - title: 3. Create Links
       children:
+        - link-behavior
         - creating-links-in-apps
         - creating-links-other-ways
         - configuring-links
@@ -43,6 +44,7 @@
         - facebook-app-invites
         - facebook-ads
         - google-search-ads
+        - instagram-ads
         - twitter-ads
     - title: Content Indexing
       children:

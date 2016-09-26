@@ -55,7 +55,7 @@ This guide describes how to use the automatic routing functionality included in 
 {% else %}
 
 {% protip title="Automatic routing not yet available" %}
-Automatic deep link routing is currently supported in only the native iOS and Android SDKs. Please see the Advanced page to set up a custom routing solution.
+*Automatic* deep link routing is currently supported in only the native iOS and Android SDKs. Please see the [Advanced page]({{base.url}}/getting-started/deep-link-routing/advanced/) to set up a custom routing solution.
 {% endprotip %}
 
 {% endif %}

@@ -21,3 +21,5 @@
   name: mParticle iOS
 - key: mparticle_android
   name: mParticle Android
+- key: ios_imessage
+  name: iOS iMessage

@@ -24,6 +24,7 @@ sections:
 Google is investing significant resources into a project called App Indexing, where they will try to expose ‘app results’ in Google searches performed on mobile devices. Most recently, at the Google IO in 2016, they renamed this to Firebase App Indexing, although the functionality remained the same.
 
 Here's how App Indexing works:
+
 - *important detail:* Results, ranking and relevancy are based upon the web scrape. App Indexing does not improve relevancy.
 - App Indexing makes that web result _also_ open up your app. There are a few ways to achieve this:
   - Make your existing website support Apple's Universal Links and Android's App Links. After this, all of your links will correctly open the app and you're done.
@@ -318,5 +319,107 @@ branchUniversalObject.contentIndexMode = ContentIndexModePrivate
 
 {% endif %}
 
+## How to - prevent - links from being listed on Google
+
+By default, all Branch Universal Objects are marked as eligible for indexing publicly on Google or other search engines. If you feel that you have personal content that you don't want exposed, you can mark the content as private using the flag shown below. Please do this before creating links or registering views.
+
+{% if page.ios %}
+
+{% tabs %}
+{% tab objective-c %}
+{% highlight objc %}
+BranchUniversalObject *branchUniversalObject = [[BranchUniversalObject alloc] initWithCanonicalIdentifier:@"item/12345"];
+branchUniversalObject.canonicalUrl = "http://mypage.com/content/12345";
+branchUniversalObject.contentIndexMode = ContentIndexModePrivate;
+...
+{% endhighlight %}
+{% endtab %}
+
+{% tab swift %}
+{% highlight swift %}
+let branchUniversalObject: BranchUniversalObject = BranchUniversalObject(canonicalIdentifier: "item/12345")
+branchUniversalObject.canonicalUrl = "http://mypage.com/content/12345"
+branchUniversalObject.contentIndexMode = ContentIndexModePrivate
+...
+{% endhighlight %}
+{% endtab %}
+{% endtabs %}
+
+{% endif %}
+
+{% if page.android %}
+
+{% highlight java %}
+ BranchUniversalObject branchUniversalObject = new BranchUniversalObject()
+                .setCanonicalIdentifier("item/12345")
+                .setContentIndexingMode(BranchUniversalObject.CONTENT_INDEX_MODE.PRIVATE)
+                ...;
+{% endhighlight %}
+
+{% endif %}
+
+{% if page.cordova %}
+
+{% highlight js %}
+var branchUniversalObj = null;
+
+Branch.createBranchUniversalObject({
+  canonicalIdentifier: 'content/12345',
+  contentIndexMode: 'private'
+  ...
+});
+{% endhighlight %}
+
+{% endif %}
+
+{% if page.xamarin %}
+
+{% highlight c# %}
+BranchUniversalObject universalObject = new BranchUniversalObject();
+universalObject.canonicalIdentifier = "content/12345";
+universalObject.contentIndexMode = ContentIndexModePrivate;
+...
+{% endhighlight %}
+
+{% endif %}
+
+{% if page.unity %}
+
+{% highlight c# %}
+BranchUniversalObject universalObject = new BranchUniversalObject();
+universalObject.canonicalIdentifier = "content/12345";
+universalObject.contentIndexMode = ContentIndexModePrivate;
+...
+{% endhighlight %}
+
+{% endif %}
+
+{% if page.titanium %}
+
+{% highlight js %}
+var branchUniversalObject = branch.createBranchUniversalObject({
+  "canonicalIdentifier" : "content/12345",
+  "contentIndexMode": "private"
+  ...
+});
+{% endhighlight %}
+
+{% endif %}
+
+{% if page.react %}
+
+{% highlight js %}
+let branchUniversalObject = branch.createBranchUniversalObject(
+  'content/12345', // canonical identifier
+  {
+    ...
+    metadata: {
+      '$publicly_indexable': 0
+    }
+  }
+)
+{% endhighlight %}
+
+{% endif %}
 
 {% endif %}

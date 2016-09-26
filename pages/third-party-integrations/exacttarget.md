@@ -54,16 +54,7 @@ In this step, we'll add a content area that makes it very easy to create deep li
 1. Paste the following code snippet into the **HTML editor** of the Free Form Content Area, replacing `@branch_hash_secret` and `@branch_base_url` with values provided by your Branch Account Manager.
 
 ~~~
-%%[
-VAR @link_to_be_wrapped, @deeplink
-SET @link_to_be_wrapped = "http://example.com/?foo=bar"
-VAR @branch_hash_secret, @branch_base_url, @hash
-SET @branch_hash_secret = "fake secret"
-SET @branch_base_url = "http://bnc.lt/abcd/3p?%243p=et&%24original_url="
-SET @deeplink = CONCAT(@branch_base_url, URLEncode(@link_to_be_wrapped, 1, 1))
-SET @hash = SHA256(CONCAT(@branch_hash_secret, CONCAT(@deeplink , @branch_hash_secret)),"UTF-16")
-SET @deeplink = CONCAT(@deeplink, CONCAT('&%24hash=', @hash))
-]%%
+ %%[ VAR @deeplink, @branch_hash_secret, @branch_base_url, @hash SET @branch_hash_secret = "fake secret" SET @branch_base_url = "http://bnc.lt/abcd/3p?%243p=e_et" SET @deeplink = CONCAT(@branch_base_url, CONCAT("&%24original_url=", URLEncode(@link_to_be_wrapped, 1, 1))) SET @hash = SHA256(CONCAT(@branch_hash_secret, CONCAT(@deeplink , @branch_hash_secret)),"UTF-16") SET @deeplink = CONCAT(@deeplink, CONCAT("&%24hash=", @hash)) ]%%
 ~~~
 
 {% caution title="Add your details to the code snippet" %}
@@ -84,8 +75,8 @@ This step will identify which web links you'd like to open the app and deep link
 
 To create email links via API, please use the instructions on how to [create links via API](/getting-started/creating-links-other-ways/guide/#http-api), but include the following key value pairs in your call:
 
-1. `"$3p":"et"` This is required for Universal Link and click tracking functionality.
-1. `"$original_url":"{{your web url URI encoded}}"` For each piece of content, include a URI encoded version of your content's web URL. You can also add deep link data as query parameters on that web URL. This ensures accurate Content Analytics reporting. **Example: `"$original_url":"https%3A%2F%2Fshop.com%2Fshoes%2Fbrown-shoes%3Fmy_key%3Dmy_value%26campaign%3Dshoe_discounts"`**
+1. `"$3p":"e_et"` This is required for Universal Link and click tracking functionality.
+1. `"$original_url":"{your web url URI encoded}"` For each piece of content, include a URI encoded version of your content's web URL. You can also add deep link data as query parameters on that web URL. This ensures accurate Content Analytics reporting. **Example: `"$original_url":"https%3A%2F%2Fshop.com%2Fshoes%2Fbrown-shoes%3Fmy_key%3Dmy_value%26campaign%3Dshoe_discounts"`**
 
 ### Add deep linking to your ExactTarget email templates without using an API
 
@@ -94,20 +85,22 @@ This code is referred to as the "Branch script" - this script will convert your 
 Wherever you are using `<a>` tags in your email templates, replace those with a short snippet for web URLs that you would like to deep link.
 
 ~~~
-%%[ VAR @link_to_be_wrapped, @deeplink SET @link_to_be_wrapped = "ADD YOUR LINK HERE" ContentAreaByName("My Contents\deeplink") ]%%
+%%[SET @link_to_be_wrapped = "ADD YOUR LINK HERE" ContentAreaByName("My Contents\deeplink")]%%
 
-<a href="%%=v(@deeplink)=%%">Click Me</a>
+<a href="%%=RedirectTo(@deeplink)=%%">Click Me</a>
 ~~~
 
 {% example title="Adding the Branch script" %}
+
+**Before:**
 
 `<a href="https://branch.io/product/1234">Example link</a>`
 
 **After:**
 
-`%%[ VAR @link_to_be_wrapped, @deeplink SET @link_to_be_wrapped = "https://branch.io/product/1234" ContentAreaByName("My Contents\deeplink") ]%%`
+`%%[ SET @link_to_be_wrapped = "https://branch.io/product/1234" ContentAreaByName("My Contents\deeplink") ]%%`
 
-`<a href="%%=v(@deeplink)=%%">Example link</a>`
+`<a href="%%=RedirectTo(@deeplink)=%%">Example link</a>`
 
 {% endexample %}
 

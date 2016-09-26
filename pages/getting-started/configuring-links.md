@@ -134,6 +134,8 @@ Note: if your Branch links are wrapped by an email service provider's click trac
 
 ### Link behavior customization
 
+#### Control parameters
+
 Use these keys to control how URI scheme deep linking functions when opening your app from a link.
 
 {% caution title="Incomplete support on iOS" %}
@@ -151,6 +153,14 @@ Use these keys to control how URI scheme deep linking functions when opening you
 | $android_redirect_timeout | Control the timeout that the clientside JS waits after trying to open up the app before redirecting to the Play Store. Specified in milliseconds | `750`
 | $one_time_use | Set to 'true' to limit deep linking behavior of the generated link to a single use. Can also be set using `type` | `false`
 | $custom_sms_text | Text for SMS link sent for desktop clicks to this link. Must contain `{% raw %}{{ link }}{% endraw %}` | Value of **Text me the app page** in [Settings](https://dashboard.branch.io/settings)
+
+#### Triggering links from within an iFrame
+
+Note that on iOS 9 and 10, Apple has tough restrictions around redirecting from within an iFrame. If you need to trigger a Branch link from an iFrame, we recommend that you use the following:
+
+{% highlight js %}
+window.open(<Branch link here>);
+{% endhighlight %}
 
 ### Deepviews
 
@@ -170,7 +180,7 @@ Most of these parameters can also be specified using the [BranchUniversalObject]
 
 ### Content indexing controls
 
-Currently, these parameters are only used for [iOS Spotlight Indexing]({{base.url}}/features/spotlight-indexing) but will be used by Branch in the future.
+Currently, parameters determine how your content is listed on all public search portals via Branch's app content sitemap. We compile all public links into a sitemap once you've enabled `Google App Indexing` on the Branch dashboard.
 
 | Key | Usage | Default
 | --- | --- | ---
@@ -204,6 +214,7 @@ If you do not specify a primary OG tag when creating a link, Branch will perform
 | $twitter_card | Set the Twitter card type of the link
 | $twitter_title | Set the title of the Twitter card
 | $twitter_description | Set the description of the Twitter card
+| $twitter_image_url | Set the image URL for the Twitter card
 | $twitter_site | Set the site for Twitter
 | $twitter_app_country | Set the app country for the app card
 | $twitter_player | Set the video player's URL. Defaults to the value of `$og_video`.

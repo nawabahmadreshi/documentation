@@ -129,7 +129,7 @@ Finally, generate the link by referencing the `BranchUniversalObject` you create
 {% endtab %}
 {% tab swift %}
 {% highlight swift %}
-branchUniversalObject.getShortUrlWithLinkProperties(linkProperties,  andCallback: { (optUrl: String?, error: NSError?) -> Void in
+branchUniversalObject.getShortUrl(with: linkProperties,  andCallback: { (url: String, error: Error?) in
     if error == nil, let url = optUrl {
         print("got my Branch link to share: %@", url)
     }
@@ -140,6 +140,10 @@ branchUniversalObject.getShortUrlWithLinkProperties(linkProperties,  andCallback
 
 {% protip title="Use the Branch share sheet" %}
 If you don't want to handle the link yourself, you can also use Branch's [preconfigured share sheet]({{base.url}}/getting-started/branch-universal-object/guide/ios/#showsharesheetwithlinkproperties).
+{% endprotip %}
+
+{% protip title="What happens if the internet goes out?" %}
+When the Branch SDK requests a short link, it will try three times before failing. In the event that the request fails, the SDK reverts to local link generation. Rather than not creating a link at all, the link parameters will be appended as query params, and then the link metadata is appended as base64 encoded data. If your app is generating unusually long links, check the device's internet connection.
 {% endprotip %}
 
 {% endif %}
@@ -195,6 +199,10 @@ branchUniversalObject.generateShortUrl(this, linkProperties, new BranchLinkCreat
 
 {% protip title="Use the Branch share sheet" %}
 If you don't want to handle the link yourself, you can also use Branch's [preconfigured share sheet]({{base.url}}/getting-started/branch-universal-object/guide/android/#showsharesheet).
+{% endprotip %}
+
+{% protip title="What happens if the internet goes out?" %}
+When the Branch SDK requests a short link, it will try three times before failing. In the event that the request fails, the SDK reverts to local link generation. Rather than not creating a link at all, the link parameters will be appended as query params, and then the link metadata is appended as base64 encoded data. If your app is generating unusually long links, check the device's internet connection.
 {% endprotip %}
 
 {% endif %}
@@ -436,6 +444,9 @@ branchUniversalObject.generateShortUrl({
   "stage" : "sample-stage"
 }, {
   "$desktop_url" : "http://desktop-url.com",
+}, function (res) {
+    Ti.API.info('Completed link generation');
+    Ti.API.info(res);
 });
 {% endhighlight %}
 
