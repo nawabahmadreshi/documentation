@@ -116,40 +116,16 @@ module Jekyll
           site.pages << PlatformPage.new(site, site.source, page.data['type'], page.data['directory'], page, default_platform, default_section, true, true)
 
           if page.data['sections'] then
-            # allow platform-specific pages for guide section
-            if page.data['sections'].include?('guide')
+            # allow platform-specific pages for any section
+            for each_section in page.data['sections']
               if page.data['platforms'] then
                 page.data['platforms'].each do |platform|
-                  site.pages << PlatformPage.new(site, site.source, page.data['type'], page.data['directory'], page, platform, 'guide', false, false)
+                  site.pages << PlatformPage.new(site, site.source, page.data['type'], page.data['directory'], page, platform, each_section, false, false)
                 end
               end
 
               default_platform = if page.data['platforms'] then page.data['platforms'][0] else '' end
-              site.pages << PlatformPage.new(site, site.source, page.data['type'], page.data['directory'], page, default_platform, 'guide', true, false)
-            end
-
-            # allow platform-specific pages for advanced section
-            if page.data['sections'].include?('advanced')
-              if page.data['platforms'] then
-                page.data['platforms'].each do |platform|
-                  site.pages << PlatformPage.new(site, site.source, page.data['type'], page.data['directory'], page, platform, 'advanced', false, false)
-                end
-              end
-
-              default_platform = if page.data['platforms'] then page.data['platforms'][0] else '' end
-              site.pages << PlatformPage.new(site, site.source, page.data['type'], page.data['directory'], page, default_platform, 'advanced', true, false)
-            end
-
-            # allow platform-specific pages for support section
-            if page.data['sections'].include?('support')
-              if page.data['platforms'] then
-                page.data['platforms'].each do |platform|
-                  site.pages << PlatformPage.new(site, site.source, page.data['type'], page.data['directory'], page, platform, 'support', false, false)
-                end
-              end
-
-              default_platform = if page.data['platforms'] then page.data['platforms'][0] else '' end
-              site.pages << PlatformPage.new(site, site.source, page.data['type'], page.data['directory'], page, default_platform, 'support', true, false)
+              site.pages << PlatformPage.new(site, site.source, page.data['type'], page.data['directory'], page, default_platform, each_section, true, false)
             end
           end
 

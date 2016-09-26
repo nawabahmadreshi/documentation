@@ -12,11 +12,10 @@ module Jekyll
       if context.environments.first['page']['sections'] != nil then
         sections = Array.new
         for section in context.environments.first['page']['sections']
-          for base_section in context.registers[:site].data['sections']
-            if base_section['key'] == section then
-              sections.push(base_section)
-            end
-          end
+          new_section = Hash.new
+          new_section['key'] = section
+          new_section['name'] = section.capitalize.strip.gsub('-', ' ')
+          sections.push(new_section)
         end
       else
         sections = context.registers[:site].data['sections']
