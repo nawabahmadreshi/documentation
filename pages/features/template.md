@@ -18,6 +18,15 @@ sections:
 - guide
 - advanced
 - support
+- custom-1
+- custom-2
+hide_platform_selector:
+- advanced
+- custom-1
+contents:
+- support: number
+- advanced: list
+- custom-1: hide
 exclude_from_google_search: true
 ---
 
@@ -34,7 +43,7 @@ above before publishing!
 
 What this feature does and why you might want it, like the dust jacket blurb on a book.
 
-{% getstarted title="Get started with content sharing" %}{% endgetstarted %}
+{% getstarted title="Get started with my title" %}{% endgetstarted %}
 
 {% getstarted %}{% endgetstarted %}
 
@@ -179,9 +188,9 @@ Don't miss this. It's important.
 A cool way to use this feature. Give it a go.
 {% endexample %}
 
-{% getstarted next='features/deepviews' %}{% endgetstarted %}
+{% getstarted next='true' %}{% endgetstarted %}
 
-{% getstarted title='Deepviews' next='features/deepviews2' %}{% endgetstarted %}
+{% getstarted title='My title' next='features/deepviews' %}{% endgetstarted %}
 
 {% elsif page.advanced %}
 
