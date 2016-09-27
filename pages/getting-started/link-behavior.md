@@ -12,18 +12,20 @@ sections:
 contents: list
 ---
 
-Branch links currently handle hundreds of thousands of edge cases across different browser, operating system and link configuration combinations. We could never summarize them all, but we wanted to cover some of the common use cases with default settings, so that you know what comes out of the box.
+Branch links work across hundreds of thousands of edge cases created by different browser, operating system and link configuration combinations. Below are some of the most common use cases for Branch links, with notes on the out-of-the-box behavior you should expect.
 
 ## iOS mobile link behavior
 
-The following assumes that you've correctly configured your [Branch link settings](https://dashboard.branch.io/settings/link){:target="_blank"} with the following:
+The following notes assume that your app's [Branch link settings](https://dashboard.branch.io/settings/link){:target="_blank"} have been properly configured for both:
 
-- Your app's [URI schemes]({{base.url}}/getting-started/sdk-integration-guide/advanced/ios#register-a-uri-scheme){:target="_blank"}
+- [URI Schemes]({{base.url}}/getting-started/sdk-integration-guide/advanced/ios#register-a-uri-scheme){:target="_blank"}
 - [Universal Links]({{base.url}}/getting-started/universal-app-links/guide/ios/){:target="_blank"}
 
-### App installed
+### Behavior when the app is installed
 
-Note that the behavior I describe below is when the links are configured to fallback to the App Store. It's possible the override this with a fallback website, and the behavior will be very similar just replacing the App Store with a website. Also note that behavior on iOS 8 and below is different due to the fact that URI schemes still work there.
+Note that the scenarios described below assume that the app, or the link being tapped, has been configured to support Branch's default "Open in the App Store" behavior. If the app or link has instead been configured to redirect to a custom URL, the scenarios described will be identical with the difference that the user will be redirected to the custom URL instead of to the App Store.
+
+Also note that Universal Links were only introduced with iOS 9. Consequently, devices running iOS versions prior to version 9 fully support URI Schemes but do not suppor Universal Links and may not behave as described here.
 
 | App/Browser | Link Behavior
 | --- | ---
@@ -38,12 +40,12 @@ Note that the behavior I describe below is when the links are configured to fall
 | Twitter | Opens app via a URI scheme
 | Pinterest | Opens app via a URI scheme
 
-(*) Two notes about Safari paste-in functionality: 
+(*) Note that when links are entered into the Safari address bar: 
 
-1. Apple blocks all deep linking attempts and prohibits Universal Link functionality on paste in, so you have to redirect to App Store.
-2. Typing in a Branch link and manually adding query paramters in Safari will result in weird behavior due to [Safari pre-fetching](http://stackoverflow.com/a/37358674/5394680).
+1. Apple blocks all deep linking attempts and prohibits Universal Links from functioning properly, meaning users will always be redirected to the App Store
+2. Entering a Branch link into the address bar and appending query paramters may result in strange behavior due to [Safari pre-fetching](http://stackoverflow.com/a/37358674/5394680)
 
-(**) We recommend that if you're planning to have Facebook be your primary channel for Branch links, and most of the clicking users already have the app, that you configure [iOS Deepviews]({{base.url}}/features/deepviews/guide/ios/) or use a [Journeys app banner]({{base.url}}/features/journeys/overview/) on your own site. The 'Open App' call to action button will trigger the app to open via a Universal Link. We don't show a Deepview by default because if you configure them to always open the app, Facebook will pop open a modal 100% of the time asking if the user wants to Leave Facebook. If the app is not installed, the modal doesn't do anything and it's a poor user experience. Thanks Facebook.
+(**) If you are planning to use Facebook as your primary channel for distributing Branch links and most of your link clicks will be coming from users who already have the app installed, we recommend that configuring [iOS Deepviews]({{base.url}}/features/deepviews/guide/ios/) or using a [Journeys app banner]({{base.url}}/features/journeys/overview/) on your own site. The 'Open App' call-to-action buttons that are found on Deepviews and on Journeys app banners function as Universal Links. Branch does not display Deepviews by default because when they are configured, Facebook will always display a modal dialog asking the user to confirm that they want to Leave Facebook. If the app is not installed, the modal doesn't do anything and this results in a poor user experience.
 
 ### App - not - installed
 
@@ -54,7 +56,7 @@ This covers the case where you're using the default settings and redirecting to 
 | Pinterest | Shows a Branch deepview *
 | All other apps/browsers | Redirects to App Store
 
-(*) We show a deepview on Twitter and Pinterest because it's possible to open the app when installed using this mechanism, and the only other alternative would be to redirect to the App Store 100% of the time from these browsers. We don't do this on Facebook.
+(*) We show a deepview on Pinterest because it's possible to open the app when installed using this mechanism, and the only other alternative would be to redirect to the App Store 100% of the time from these browsers. We don't do this on Facebook.
 
 ## Android mobile link behavior
 
