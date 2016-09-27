@@ -20,7 +20,7 @@ Send data to Adjust to maximize your understanding of your mobile acquisition ef
 
 {% ingredient paid-integration %}{% endingredient %}
 
-{% getstarted title="Get started with the Adjust integration" %}{% endgetstarted %}
+{% getstarted %}{% endgetstarted %}
 
 ## What events does Branch send to Adjust?
 

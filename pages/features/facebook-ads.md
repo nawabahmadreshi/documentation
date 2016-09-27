@@ -20,7 +20,7 @@ Branch links can be used together with Facebook ads, allowing you to track ad-dr
 
 {% ingredient deep-linked-ad-ideas %}{% endingredient %}
 
-{% getstarted title="Get started with Facebook ads" %}{% endgetstarted %}
+{% getstarted %}{% endgetstarted %}
 
 {% elsif page.guide %}
 

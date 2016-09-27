@@ -21,7 +21,7 @@ With a push of a button you can send your Branch data to your Tune dashboard, he
 
 {% ingredient paid-integration %}{% endingredient %}
 
-{% getstarted title="Get started with the Tune integration" %}{% endgetstarted %}
+{% getstarted %}{% endgetstarted %}
 
 ## What events does Branch send to Tune?
 

@@ -21,7 +21,7 @@ Kochava offers unique, holistic and unbiased app measurement. From attribution a
 
 {% ingredient paid-integration %}{% endingredient %}
 
-{% getstarted title="Get started with the Kochava integration" %}{% endgetstarted %}
+{% getstarted %}{% endgetstarted %}
 
 {% elsif page.guide %}
 
