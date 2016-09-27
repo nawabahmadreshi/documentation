@@ -22,11 +22,13 @@ sections:
 - custom-2
 hide_platform_selector:
 - advanced
-- custom-1
+- custom-2
 contents:
-- support: number
-- advanced: list
-- custom-1: hide
+  list:
+  number:
+    - advanced
+  hide:
+    - custom-2
 exclude_from_google_search: true
 ---
 
@@ -188,6 +190,8 @@ Don't miss this. It's important.
 A cool way to use this feature. Give it a go.
 {% endexample %}
 
+## The third thing to do
+
 {% getstarted next='true' %}{% endgetstarted %}
 
 {% getstarted title='My title' next='features/deepviews' %}{% endgetstarted %}
@@ -209,5 +213,17 @@ A helpful answer
 
 ##### Question 2
 Another helpful answer
+
+{% elsif page.custom-1 %}
+
+## Custom 1 topic 1
+
+## Custom 1 topic 2
+
+{% elsif page.custom-2 %}
+
+## Custom 2 topic 1
+
+## Custom 2 topic 2
 
 {% endif %}
