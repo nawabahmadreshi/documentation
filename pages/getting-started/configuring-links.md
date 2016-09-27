@@ -113,14 +113,14 @@ This parameter is currently supported only on iOS.
 
 #### Web-only links
 
-This lets you direct the user to the web, *even if they have the app installed*. When creating the link, add `$web_only: true` to the deep link data. 
+Web-only links are Branch links that redirect the user to the web *even if the app is installed*. When creating the link, add `$web_only: true` to the deep link data.
 
-Then the URL will include `/e/`, which is short for "exclusion". These links are excluded in the apple-app-site-association file we generate for custom domains and app.link domains. Note that bnc.lt links will not have `/e/` in the URL, but rather will revert to their non-Universal form, `/m/`.
+Web-only links are distinguished by the presence of an `/e/` (short for "exclusion") between the Branch link domain portion of the link and the link's alpha-encoded unique identifier or alias. Such links are not added to the apple-app-site-association file generated for custom and app.link domains. Note that bnc.lt links will not have `/e/` in the URL, but will instead revert to their non-Universal form, `/m/`.
 
-Aliased links are supported. `/e/` will be inserted into the URL, e.g. `myapp.app.link/e/myalias`. When you create an aliased link, the alias you reserve is for both forms of the url, e.g. `myapp.app.link/myalias` and `myapp.app.link/e/myalias`. This is effectively the same link, though the web-only form will not open the app even if it is installed.
+When you create an aliased web-only link, the alias will apply to both forms of the link. The links `myapp.app.link/myalias` and `myapp.app.link/e/myalias`, then, are the same link, though the web-only form will not open the app on a mobile device even if the app is installed.
 
 {% caution %}
-This parameter will not work with [Android App Links]({{base.url}}/getting-started/universal-app-links/).
+This parameter does not work with [Android App Links]({{base.url}}/getting-started/universal-app-links/).
 {% endcaution %}
 
 | Key | Value | Default
@@ -128,7 +128,7 @@ This parameter will not work with [Android App Links]({{base.url}}/getting-start
 | $web_only | true/false | false (not specified)
 
 {% protip title="Do you use Branch links in email?" %}
-Note: if your Branch links are wrapped by an email service provider's click tracking domain, then this logic does not apply. The email service provider must allow you to designate links as web-only links, because they control how click tracking links are created.
+Note: when Branch links are wrapped in email service provider click-tracking URLs the web-only parameter may not function as intended, as the email service provider controls how click-tracking links are created.
 {% endprotip %}
 
 
@@ -139,14 +139,14 @@ Note: if your Branch links are wrapped by an email service provider's click trac
 Use these keys to control how URI scheme deep linking functions when opening your app from a link.
 
 {% caution title="Incomplete support on iOS" %}
-[Universal Links]({{base.url}}/getting-started/universal-app-links) and [Spotlight]({{base.url}}/features/spotlight-indexing) do not support deep linking via URI paths. If possible, we recommend not using `$deeplink_path` and its platform-specific variants as your only deep link routing method.
+[Universal Links]({{base.url}}/getting-started/universal-app-links) and [Spotlight]({{base.url}}/features/spotlight-indexing) do not support deep linking via URI paths. If you use `$deeplink_path` or `$ios_deeplink_path`, you will need to implement some custom logic. [Click here for more information]({{base.url}}/getting-started/universal-app-links/advanced/ios/#how-to-handle-uri-paths-with-universal-links).
 {% endcaution %}
 
 | Key | Usage | Default
 | --- | --- | ---
-| $deeplink_path | Set the deeplink path for _all_ platforms - so you don't have to enable it by platform | `open?link_click_id=1234`
-| $android_deeplink_path | Set the deeplink path for Android apps | *null*
-| $ios_deeplink_path | Set the deeplink path for iOS apps | *null*
+| $deeplink_path | Set the deep link path for _all_ platforms - so you don't have to enable it by platform. When the Branch SDK receives a link with this parameter set, it will automatically load the custom URI path contained within | `open?link_click_id=1234`
+| $android_deeplink_path | Set the deep link path for Android apps. When the Branch SDK receives a link with this parameter set, it will automatically load the custom URI path contained within | *null*
+| $ios_deeplink_path | Set the deep link path for iOS apps. When the Branch SDK receives a link with this parameter set, it will automatically load the custom URI path contained within | *null*
 | **$match_duration** | Lets you control the fingerprinting match timeout (the time that a click will wait for an app open to match) also known as attribution window. Specified in seconds | `7200` (2 hours)
 | $always_deeplink | If set to 'false' Branch will only try to open your app if we are certain the user has it | Value of **Always try to open app** in [Link Settings](https://dashboard.branch.io/#/settings/link)
 | $ios_redirect_timeout | Control the timeout that the client-side JS waits after trying to open up the app before redirecting to the App Store. Specified in milliseconds | `750`
