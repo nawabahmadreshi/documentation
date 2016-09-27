@@ -51,11 +51,10 @@ This covers the case where you're using the default settings and redirecting to 
 
 | App/Browser | Link Behavior
 | --- | ---
-| Twitter | Shows a Branch deepview *
 | Pinterest | Shows a Branch deepview *
 | All other apps/browsers | Redirects to App Store
 
-(*) We show a deepview on Twitter and Pinterest because it's possible to open the app when installed using this mechanism, and the only other alternative would be to redirect to the App Store 100% of the time from these browsers. We don't do this on Facebook 
+(*) We show a deepview on Twitter and Pinterest because it's possible to open the app when installed using this mechanism, and the only other alternative would be to redirect to the App Store 100% of the time from these browsers. We don't do this on Facebook.
 
 ## Android mobile link behavior
 
