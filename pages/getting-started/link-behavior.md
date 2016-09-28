@@ -23,7 +23,7 @@ The following notes assume that your app's [Branch link settings](https://dashbo
 
 ### Behavior when the app is installed
 
-Note that the scenarios described below assume that the app, or the link being tapped, has been configured to support Branch's default "Open in the App Store" behavior. If the app or link has instead been configured to redirect to a custom URL, the scenarios described will be identical with the difference that the user will be redirected to the custom URL instead of to the App Store.
+Note that what we describe here assumes that the app, or the link being tapped, has been configured to support Branch's default "Open in the App Store" behavior. If the app or link has instead been configured to redirect to a custom URL, the scenarios described will be identical with the difference that the user will be redirected to the custom URL instead of to the App Store.
 
 Also note that Universal Links were only introduced with iOS 9. Consequently, devices running iOS versions prior to version 9 fully support URI Schemes but do not suppor Universal Links and may not behave as described here.
 
@@ -47,16 +47,16 @@ Also note that Universal Links were only introduced with iOS 9. Consequently, de
 
 (**) If you are planning to use Facebook as your primary channel for distributing Branch links and most of your link clicks will be coming from users who already have the app installed, we recommend that configuring [iOS Deepviews]({{base.url}}/features/deepviews/guide/ios/) or using a [Journeys app banner]({{base.url}}/features/journeys/overview/) on your own site. The 'Open App' call-to-action buttons that are found on Deepviews and on Journeys app banners function as Universal Links. Branch does not display Deepviews by default because when they are configured, Facebook will always display a modal dialog asking the user to confirm that they want to Leave Facebook. If the app is not installed, the modal doesn't do anything and this results in a poor user experience.
 
-### App - not - installed
+### Behavior when the app is not installed
 
-This covers the case where you're using the default settings and redirecting to the App Store when the app is not installed. The case where you use a website fallback is very similar, just replacing the App Store with your website.
+Branch links are generally intended to direct users to the App or Play Store when the associated app is not installed on a device. Links can also be configured to redirect to other URLs if desired. Branch fallback functionality will work the same in these situations, with the only difference being that the user will be redirected to the specified alternate URL instead of the App or Play Store.
 
 | App/Browser | Link Behavior
 | --- | ---
 | Pinterest | Shows a Branch deepview *
 | All other apps/browsers | Redirects to App Store
 
-(*) We show a deepview on Pinterest because it's possible to open the app when installed using this mechanism, and the only other alternative would be to redirect to the App Store 100% of the time from these browsers. We don't do this on Facebook.
+(*) We show a Branch Deepview when users tap on links in Pinterest because tapping on the Deepview's CTA button will successfully open the app. The alternative behavior would be to always redirect to the App Store from these browsers. We don't do this on Facebook.
 
 ## Android mobile link behavior
 
