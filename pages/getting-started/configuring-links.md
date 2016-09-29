@@ -50,13 +50,13 @@ Conceptually, the data inside a Branch link follows this model:
 - All other parameters (essentially everything prefixed with `$`) go inside the `data` dictionary.
 - Any custom data you specify also goes inside the `data` dictionary.
 
-The mobile SDKs take care of this structure automatically, but it is important to keep in mind if you are creating links via the [Web SDK]({{base.url}}/getting-started/creating-links-other-ways/guide/#web-sdk) or [HTTP API]({{base.url}}/getting-started/creating-links-other-ways/guide/#http-api).
+While the mobile SDKs manage this structure automatically, the [Web SDK]({{base.url}}/getting-started/creating-links-other-ways/guide/#web-sdk) and [HTTP API]({{base.url}}/getting-started/creating-links-other-ways/guide/#http-api) do not. It is important to keep this in mind when working with these.
 
 {% endprotip %}
 
 ## Link data dictionary
 
-Every Branch link includes a dictionary for `key : value` pairs specified by you at the time the link is created. This data is then returned and available for use the next time your app is launched through that link. Read more about this on the [Creating Links in Apps]({{base.url}}/getting-started/creating-links-in-apps) and [Creating Links in Other Ways]({{base.url}}/getting-started/creating-links-other-ways) pages.
+Every Branch link includes a dictionary of `key : value` pairs that is specified by you at the time the link is created. Branch's SDKs make this data available within your app whenever the app is opened via a Branch link click. Read more about how to populate Branch links with data on the [Creating Links in Apps]({{base.url}}/getting-started/creating-links-in-apps) and [Creating Links in Other Ways]({{base.url}}/getting-started/creating-links-other-ways) pages.
 
 ## Link creation customizations
 
