@@ -45,6 +45,18 @@ Branch makes it simple to enable Universal Links and App Links, and even improve
 1. Navigate to [Link Settings](https://dashboard.branch.io/#/settings/link) in the Branch Dashboard.
 1. Check the box to `Enable Universal Links` from iOS redirects.
 1. Type in your App’s Bundle Identifier.
+{% if page.unity %}
+{% protip title="Looking for the Bundle Identifier in Unity?" %}
+- Click on Edit
+- Scroll down to Project Settings
+- Click on Player
+- Find the Bundle Identifier on the Inspector Panel
+{% image src='/img/pages/getting-started/universal-app-links/branch-universal-links-unity.png' 3-quarters center alt='unity bundle identifier location' %}
+{% endprotip %}
+{% protip title="Looking for the Package name your Android app in Unity" %}
+The package name for your Android app in Unity is the same as the Bundle Identifier
+{% endprotip %}
+{% endif %}
 1. Type in your Apple App Prefix (found by clicking your app on [this page](https://developer.apple.com/account/ios/identifiers/bundle/bundleList.action) in Apple's Developer Portal).
 1. Scroll down and click on the `Save` button.
 
