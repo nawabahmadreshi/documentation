@@ -55,6 +55,18 @@ Branch makes it simple to enable Universal Links and App Links, and even improve
 1. Navigate to [Link Settings](https://dashboard.branch.io/#/settings/link) in the Branch Dashboard.
 1. Check the box to `Enable Universal Links` from iOS redirects.
 1. Type in your App’s Bundle Identifier.
+{% if page.unity %}
+{% protip title="Looking for the Bundle Identifier in Unity?" %}
+- Click on Edit
+- Scroll down to Project Settings
+- Click on Player
+- Find the Bundle Identifier on the Inspector Panel
+{% image src='/img/pages/getting-started/universal-app-links/branch-universal-links-unity.png' 3-quarters center alt='unity bundle identifier location' %}
+{% endprotip %}
+{% protip title="Looking for the Package name your Android app in Unity" %}
+The package name for your Android app in Unity is the same as the Bundle Identifier
+{% endprotip %}
+{% endif %}
 1. Type in your Apple App Prefix (found by clicking your app on [this page](https://developer.apple.com/account/ios/identifiers/bundle/bundleList.action) in Apple's Developer Portal).
 1. Scroll down and click on the `Save` button.
 
@@ -611,29 +623,35 @@ For most implementations this will never be an issue, since your deep links will
 If you have an unusual situation with multiple custom link domains, you may also configure `branch_universal_link_domains` as an array of strings. {% image src='/img/pages/getting-started/universal-app-links/branch-universal-link-domains.png' 3-quarters center alt='cloudflare TLS' %}
 {% endprotip %}
 
-## How to handle old URI paths with Universal Links
+## How to handle URI paths with Universal Links
 
-When you make the move to Universal Links, you might be wondering how to best harness your old URI paths for iOS 9.X users while keeping the experience the same for iOS 8.X and lower. The easiest way is to handle each link type separately via a conditional flag (such as **self.ignoreDeeplinkPath**) in `application:didFinishLaunchingWithOptions:launchOptions:`.
+Prior to iOS 9, URI schemes with URI paths (e.g., `myapp://path/to/content`) were the standard approach to deep linking. Branch supports URI paths using the **$deeplink_path**, **$ios_deeplink_path**, and **$android_deeplink_path** [link properties]({{base.url}}/getting-started/configuring-links/guide/#link-behavior-customization). When the Branch SDK receives a link with one of these parameters set (and assuming the platform is correct), it will automatically load that URI path.
 
-### Non-Universal Links
+Note, however, that Universal Links and Spotlight do not use URI schemes for deep link routing. If you populate **$deeplink_path** or **$ios_deeplink_path** with a URI path on iOS 9+, you will also need to introduce custom logic to ensure that your links work as expected in all situations.
 
-The entry point for this link type is `application:openURL:sourceApplication:annotation:`
+To do this, add a `self.ignoreDeeplinkPath` conditional flag in `application:didFinishLaunchingWithOptions:launchOptions:` and handle these link separately.
 
-1. In `application:didFinishLaunchingWithOptions:launchOptions:`, set the **self.ignoreDeeplinkPath** to `YES` (to ensure that users do not get deep linked twice).
-1. Route users to the correct place in your app by harnessing the URL passed in as a parameter.
+### How to handle non-Universal Links (links relying on custom URI schemes)
 
-### Universal Links
+When Branch links are used on iOS prior to version 9, and in some situations on later versions of iOS, the links do not act as Universal Links but instead rely on the app's custom URI scheme. While Universal links are handled by the AppDelegate's `application:continueUserActivity:restorationHandler:` function, the  `application:openURL:sourceApplication:annotation:` function is used to process non-Universal Links.
 
-The entry point for this link type is `application:continueUserActivity:restorationHandler:`
+1. In `application:didFinishLaunchingWithOptions:launchOptions:`, set the `self.ignoreDeeplinkPath` conditional flag to `YES`. This will ensure that users do not get deep linked twice (once automatically by the Branch SDK and a second time via the logic you are about to add).
+1. Look for the **$deeplink_path** or **$ios_deeplink_path** parameter in your link data use the value to route users to the correct place in your app
 
-1. The default value of **self.ignoreDeeplinkPath** in `application:didFinishLaunchingWithOptions:launchOptions:` defaults to `NO`.
-1. Harness the **$deeplink_path** key (set at the time of Branch link creation) to route users to the correct place in your App after Branch has finished initialization.
+### How to handle Universal Links
+
+Since the release of iOS 9, Branch links have functioned as Universal Links on iOS. Universal links are handled by the AppDelegate's `application:continueUserActivity:restorationHandler:` function.
+
+1. The `self.ignoreDeeplinkPath` conditional flag in `application:didFinishLaunchingWithOptions:launchOptions:` defaults to `NO`.
+1. Look for the **$deeplink_path** or **$ios_deeplink_path** parameter in your link data, and then use the path within to route users to the correct place in your app.
 
 {% example title="Sample AppDelegate" %}
 
-Here is a generic **AppDeledate.m** snippet with these methods implemented:
-
+{% tabs %}
+{% tab objective-c %}
 {% highlight objc %}
+
+Here is a generic **AppDeledate.m** snippet with these methods implemented:
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
@@ -652,7 +670,7 @@ Branch *branch = [Branch getInstance];
    return YES;
 }
 
-//Entry point for iOS 8.X users and lower
+// Entry point for users on iOS 8 and lower
 
 -(BOOL) application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
    [[Branch getInstance] handleDeepLink:url];
@@ -664,16 +682,70 @@ Branch *branch = [Branch getInstance];
    return YES;
 }
 
-//Entry point for iOS 9.X users
+// Entry point for users on iOS 9+
 
 - (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray *restorableObjects))restorationHandler {
    [[Branch getInstance] continueUserActivity:userActivity];
+
    // ... your other logic here, such as ...
    [self continueUserActivity:userActivity];
 
 	return YES;
 }
 {% endhighlight %}
+
+{% endtab %}
+{% tab swift %}
+
+{% highlight swift %}
+
+Here is a generic **AppDeledate.swift** snippet with these methods implemented:
+
+
+func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+
+   let branch = Branch.getInstance()
+
+   branch.initSessionWithLaunchOptions(launchOptions, andRegisterDeepLinkHandler: {(params: [NSObject : AnyObject], error: NSError) -> Void in
+      if !error && params {
+         if params["$deeplink_path"] && !self.ignoreDeeplinkPath {
+            var url = NSURL(string: "your-uri-scheme://\(params["$deeplink_path"])")!
+            // handle the URL!
+            self.routeUrl(url)
+         }
+      }
+      self.ignoreDeeplinkPath = false
+   })
+   return true
+}
+
+// Entry point for users on iOS 8 and lower
+
+func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
+   Branch.getInstance().handleDeepLink(url)
+   self.ignoreDeeplinkPath = true
+
+   // ... your other logic here, such as ...
+   self.routeUrl(url)
+
+   return true
+}
+
+// Entry point for users on iOS 9+
+
+func application(application: UIApplication, continueUserActivity userActivity: NSUserActivity, restorationHandler: ([AnyObject]?) -> Void) -> Bool {
+   Branch.getInstance().continueUserActivity(userActivity)
+
+   // ... your other logic here, such as ...
+   self.continueUserActivity(userActivity)
+
+   return true
+}
+
+{% endhighlight %}
+
+{% endtab %}
+{% endtabs %}
 
 {% endexample %}
 

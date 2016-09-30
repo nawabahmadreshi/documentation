@@ -30,7 +30,7 @@ Deepviews are discoverable in all search portals (Google, Apple Spotlight, Bing,
 
 {% protip title="If you already have a mobile website..." %}The [Website to App Routing]({{base.url}}/features/website-to-app-routing) feature can be used to recreate the functionality of Deepviews using your own website. If you already host your own content previews, this is a good alternative!{% endprotip %}
 
-{% getstarted title="Get started with Deepviews" %}{% endgetstarted %}
+{% getstarted %}{% endgetstarted %}
 
 {% elsif page.guide %}
 

@@ -30,7 +30,7 @@ For alternative ways to create Branch links, including via the dashboard, your w
 You can read more about using the link data dictionary to define key/value pairs for deep linking, and the various link analytics and control parameters used throughout this page on the [Link Configuration page]({{base.url}}/getting-started/configuring-links).
 {% endprotip %}
 
-{% getstarted title="Get started creating links" %}{% endgetstarted %}
+{% getstarted %}{% endgetstarted %}
 
 {% elsif page.guide %}
 

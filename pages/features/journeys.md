@@ -31,7 +31,7 @@ On a daily basis, Google Search drives **more app installs** than all of Faceboo
 - **Optimized user experience.** If installed, your app will open and users can be routed directly to the content they expect. If not, the App/Play store will open and users can still be routed directly to the content they expect after installing.
 - **Comprehensive analytics.** Measure the downstream performance and retention of every Journeys campaign.
 
-{% getstarted title="Get started with Journeys" %}{% endgetstarted %}
+{% getstarted %}{% endgetstarted %}
 
 {% elsif page.guide %}
 
@@ -91,7 +91,7 @@ You can also run A/B tests by designing multiple templates and assigning a perce
 {% protip title="Variation Display Limitations" %}
 - You may have up to three variations in each Journey.
 - Your total percentage allocation must not equal more than **100%**.
-- Your total percentage allocation may be _less_ than **100%**. In this situation, the remainder of your audience will be shown your standard website. This allows you to A/B test against your non-Journeys website experience.
+- Your total percentage allocation may be _less_ than **100%**. In this situation, the remainder of your audience will be shown your standard website without a Journey. This allows you to A/B test against your non-Journeys website experience.
 {% endprotip %}
 
 ## Customize Template

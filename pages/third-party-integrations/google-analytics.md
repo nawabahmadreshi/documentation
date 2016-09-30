@@ -21,7 +21,7 @@ With a push of a button you can send your Branch data to your Google Analytics d
 
 {% ingredient paid-integration %}{% endingredient %}
 
-{% getstarted title="Get started with the Google Analytics integration" %}{% endgetstarted %}
+{% getstarted %}{% endgetstarted %}
 
 ## How does it work?
 
@@ -37,7 +37,7 @@ Branch events will appear alongside your other tracked events in Google Analytic
 
 {% image src="/img/pages/third-party-integrations/google-analytics/google-analytics-sources.png" 3-quarters center %}
 
-{% getstarted title="Get started with the Google Analytics integration" %}{% endgetstarted %}
+{% getstarted %}{% endgetstarted %}
 
 {% elsif page.guide %}
 

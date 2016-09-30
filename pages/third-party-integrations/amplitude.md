@@ -20,7 +20,7 @@ With a push of a button you can send your Branch data to your Amplitude dashboar
 
 {% ingredient paid-integration %}{% endingredient %}
 
-{% getstarted title="Get started with the Amplitude integration" %}{% endgetstarted %}
+{% getstarted %}{% endgetstarted %}
 
 ## How does it work?
 
@@ -42,7 +42,7 @@ Additionally, individual events, such as those seen in Live View or visible when
 
 Branch events are similar to Amplitude events in that they can be used in your existing funnels and tracked on the various pages and dashboards. However, unlike normal events, Branch events contain invaluable information about how users ended up in your app in the first place.
 
-{% getstarted title="Get started with the Amplitude integration" %}{% endgetstarted %}
+{% getstarted %}{% endgetstarted %}
 
 {% elsif page.guide %}
 

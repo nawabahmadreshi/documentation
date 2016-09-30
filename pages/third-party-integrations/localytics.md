@@ -19,7 +19,7 @@ We've partnered with Localytics to provide an easy way to deliver Branch install
 
 {% ingredient paid-integration %}{% endingredient %}
 
-{% getstarted title="Get started with Localytics integration" %}{% endgetstarted %}
+{% getstarted %}{% endgetstarted %}
 
 ## How it works
 

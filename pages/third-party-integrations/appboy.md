@@ -20,7 +20,7 @@ The Branch partnership with [Appboy](https://www.appboy.com) provides a push-but
 
 {% ingredient paid-integration %}{% endingredient %}
 
-{% getstarted title="Get started with Appboy" %}{% endgetstarted %}
+{% getstarted %}{% endgetstarted %}
 
 ## How it works
 
@@ -28,7 +28,7 @@ We have built a custom integration to automatically send all Branch install data
 
 {% protip title="How do we differentiate Appboy and Branch installs?" %}We rely on a Branch link being clicked, which leads to an install. This sets an internal boolean that an install came from Branch.{% endprotip %}
 
-{% getstarted title="Get started with Appboy" %}{% endgetstarted %}
+{% getstarted %}{% endgetstarted %}
 
 {% elsif page.guide %}
 
