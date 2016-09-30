@@ -13,6 +13,9 @@ platforms:
 - adobe
 - titanium
 - react
+- mparticle_ios
+- mparticle_android
+- ios_imessage
 sections:
 - guide
 - advanced
@@ -23,6 +26,11 @@ sections:
 {% prerequisite %}
 Before using the Branch SDK, you must first [sign up for an account](https://dashboard.branch.io){:target="_blank"} and complete the [onboarding process](https://start.branch.io/){:target="_blank"}.
 {% endprerequisite %}
+{% if page.mparticle_ios or page.mparticle_android %}
+{% prerequisite %}
+Before enabling the Branch SDK on mParticle, you must first [sign up for an mParticle account](https://app.mparticle.com/){:target="_blank"} and complete the [setup and integration process](http://docs.mparticle.com/){:target="_blank"}.
+{% endprerequisite %}
+{% endif %}
 
 ## Get the SDK files
 
@@ -52,6 +60,28 @@ You can [install the SDK manually]({{base.url}}/getting-started/sdk-integration-
 {% endprotip %}
 
 {% endif %}
+
+{% if page.ios_imessage %}
+
+### Install the SDK manually
+
+We're not sure if Cocoapods will support extensions, so in the meantime, just install the SDK manually into your project.
+
+1. [Grab the latest SDK version](https://s3-us-west-1.amazonaws.com/branchhost/Branch-iOS-SDK.zip), or [clone our open-source GitHub repo](https://github.com/BranchMetrics/ios-branch-deep-linking).
+1. Drag the `Branch.framework` file from the root of the SDK folder into the Frameworks folder of your Xcode project. Be sure that "Copy items if needed" and "Create groups" are selected.
+1. Update the target's **Framework Search Paths**  
+    a. Select the project in Project Navigator  
+    b. In the PROJECT/TARGETS pane select the target you are building  
+    c. Click on the **Build Settings** tab  
+    d. Find: **User Header Search Paths**  
+    e. Add: **$(PROJECT_DIR)/Branch.framework/Headers**  
+1. Import the following frameworks under **Build Phases** for your app target:
+    - `AdSupport.framework`
+    - `CoreTelephony.framework`
+    - `CoreSpotlight.framework`
+    - `MobileCoreServices.framework`
+
+{% endif %}
 <!--- /iOS -->
 
 <!--- Android-->
@@ -61,13 +91,19 @@ With extensive use, the Android SDK footprint is **187 kb**.
 
 ### Install with Gradle
 
-Add `compile 'io.branch.sdk.android:library:2.+'` to the dependencies section of your `build.gradle` file.
+Add `compile 'io.branch.sdk.android:library:2.+'` to the dependencies section of your `build.gradle` file. 
 
 {% protip %}
-
-You can also install the SDK manually by [downloading the latest version](https://s3-us-west-1.amazonaws.com/branchhost/Branch-Android-SDK.zip){:target="_blank"} or [cloning our open-source GitHub repo](https://github.com/BranchMetrics/branch-android-sdk){:target="_blank"}.
+You can also find the [source and JAR file here](https://github.com/BranchMetrics/android-branch-deep-linking){:target="_blank"}.
 {% endprotip %}
 
+Note that if you don't plan to use the Fabric Answers integration, you can use the following line:
+
+{% highlight sh %}
+compile ('io.branch.sdk.android:library:2.+') {
+  exclude module: 'answers-shim'
+}
+{% endhighlight %}
 {% endif %}
 <!--- /Android -->
 
@@ -97,14 +133,6 @@ You can install the Branch SDK by using one of several different command line to
 cordova plugin add branch-cordova-sdk --variable BRANCH_KEY=key_live_xxxxxxxxxxxxxxx --variable URI_SCHEME=yourapp
 {% endhighlight %}
 
-{% protip title="Android build errors" %}
-In rare situations, you may get an error on Android that gradle cannot find the `io.branch.sdk.android:library:1.+` dependency. If this occurs, go to your `build.gradle` file, find **dependencies**, and add the following inside:
-
-{% highlight js %}
-compile "io.branch.sdk.android:library:2.+"
-{% endhighlight %}
-
-{% endprotip %}
 {% endif %}
 <!--- /Cordova -->
 
@@ -128,18 +156,27 @@ You can also [build and reference the assemblies directly]({{base.url}}/getting-
 
 ### Get the files
 
-1. [Download the latest SDK version](https://s3-us-west-1.amazonaws.com/branchhost/BranchUnityWrapper.unitypackage){:target="_blank"} or [clone our open-source GitHub repository](https://github.com/BranchMetrics/Unity-Deferred-Deep-Linking-SDK){:target="_blank"}.
+1. [Download the latest SDK version](https://s3-us-west-1.amazonaws.com/branchhost/BranchUnityWrapper.unitypackage){:target="_blank"} or [clone our open-source GitHub repository](https://github.com/BranchMetrics/unity-branch-deep-linking){:target="_blank"}.
 1. Import the `BranchUnityWrapper.unitypackage` into your project by clicking `Assets -> Import Package`.
 
 ### Configure the package and add Branch key
 
 1. To allow Branch to configure itself, drag a **BranchPrefab** asset to your scene.
-1. Specify your `branchUri` and `branchKey` in the properties.
-   - `branchKey`: get your Branch key from [the Branch dashboard](https://dashboard.branch.io/#/settings){:target="_blank"}.
-   - `branchUri`: this must be the same value as you entered in [the Branch link settings](https://dashboard.branch.io/#/settings/link){:target="_blank"}. Do **not** include the `://` characters.
-   - `androidPathPrefix`: This is your Branch android path prefix. This is the four-character value in front of all your links. You can find it underneath the field labeled **SHA256 Cert Fingerprints** on the dashboard. It will look something like this: `/WSuf` (the initial `/` character should be included).
+1. Fill out the following Prefab settings
+
+| Field name | Description
+| --- | ---
+| `Simulate Fresh Installs` | This is a flag that enables or disables debug mode. In debug mode, your app will simulate fresh install each time and log to the console. This is just for testing so please remove this prior to launch.
+| `Test Mode` | Switch set of parameters, if "Test mode" is enabled then app will use "test" Branch key if specified. Otherwise, the app will use the "live" Branch key.
+| `Branch Key` | Get your live or test Branch key from [the Branch dashboard](https://dashboard.branch.io/#/settings){:target="_blank"}. You can toggle Live/Test at the top right hand side of the dashboard.
+| `Branch Uri` | The URI scheme for your app, which must be the same value as you entered in [the Branch link settings](https://dashboard.branch.io/#/settings/link){:target="_blank"}. Do **not** include the `://` characters.
+| `Android Path Prefix` | This only applies to you if you are on the `bnc.lt` domain. If you use `app.link`, please ignore this field. This is your Branch android path prefix. This is the four-character value in front of all your links. You can find it underneath the field labeled **SHA256 Cert Fingerprints** on the dashboard. It will look something like this: `/WSuf` (the initial `/` character should be included).
+| `App Links` | This is where you specify the domains you would like to use for Android App Links (similar to Universal Links on iOS). Universal Links must be manually configured later as we couldn't figure out how to automate this.
 
 {% image src='/img/pages/getting-started/sdk-integration-guide/unity_branch_key.png' full center alt='Unity plugin installation' %}
+
+* `Update iOS Wrapper` : You should tap this button each time when you will change `Branch Key` and `Branch Uri`.
+* `Update Android Manifest` : You should tap this button if you want to update your manifest. If you update your manifest manually just don't push this button.
 
 {% protip title="For iOS projects" %}
 
@@ -151,10 +188,6 @@ When building an iOS project:
 
 Branch requires ARC, and we don’t intend to add `if` checks throughout the SDK to try to support pre-ARC. However, for **Unity 4.6** you can add flags to the project to compile the Branch files with ARC, which should work fine for you. Simply add `-fobjc-arc` to all Branch files.
 {% endprotip %}
-
-{% caution title="For Android projects" %}
-We attempt to automatically add an Android manifest flag to support deep linking, but check it before building your project. You may need to click the "Update Android Manifest" button to add it yourself.
-{% endcaution %}
 
 {% endif %}
 <!--- /Unity -->
@@ -233,6 +266,50 @@ dependencies {
 {% endif %}
 <!--- /React -->
 
+<!-- mParticle iOS -->
+{% if page.mparticle_ios %}
+
+### Install with CocoaPods
+
+The recommended way to install the SDK is via CocoaPods:
+
+1. Add `pod 'mParticle-BranchMetrics', '~> 6.5.0'` to your podfile.
+1. Run `pod install` from the command line.
+
+### Install with Carthage
+
+Alternatively, you could install the SDK via Carthage:
+
+1. Add `github "mparticle-integrations/mparticle-apple-integration-branchmetrics" ~> 6.5.0` to your Cartfile.
+1. Run `carthage update` from the command line.
+
+{% endif %}
+<!-- /mParticle iOS -->
+
+<!-- mParticle Android -->
+
+{% if page.mparticle_android %}
+
+With extensive use, the Android SDK footprint is **187 kb**.
+
+### Install with Gradle
+
+Add `compile 'com.mparticle:android-branch-kit:4.+'` to the dependencies section of your `build.gradle` file.
+
+{% endif %}
+<!-- /mParticle Android -->
+
+{% if page.mparticle_ios or page.mparticle_android %}
+##  Enable Branch on mParticle
+
+1. Retrieve your Branch Key on the [Settings](https://dashboard.branch.io/#/settings){:target="_blank"} page of the Branch dashboard.
+1. From your [mParticle dashboard](https://app.mparticle.com/){:target="_blank"} navigate to the Services page. (The paper airplane icon on the left side)
+1. Scroll down to the Branch tile, or enter Branch in the search bar.
+1. Click on the Branch tile and then select "Activate a Platform".
+1. Click on the {% if page.mparticle_ios %}Apple{% else %}Android{% endif %} icon, then toggle the status ON.
+1. Enter your Branch key in the marked field and click "Save".
+
+{% endif %}
 
 {% if page.xamarin %}
 ## iOS: Configure Xcode Project
@@ -243,7 +320,13 @@ In your project's `YourProject-Info.plist` file, you can register your app to re
 
 {% endif %}
 
-{% if page.ios or page.react %}
+{% if page.android or page.cordova or page.titanium or page.unity or page.xamarin or page.react %}
+{% protip title="Android build errors" %}
+Occasionally, Android will barf after you add our library due to generic issues unrelated to Branch. Please see [this advanced section]({{base.url}}/getting-started/sdk-integration-guide/advanced/android#troubleshooting-android-build-errors)
+{% endprotip %}
+{% endif %}
+
+{% if page.ios or page.react or page.mparticle_ios or page.ios_imessage %}
 ## {% if page.react %}iOS: {% endif %}Configure Xcode Project
 
 ### Add your Branch key
@@ -252,6 +335,15 @@ In your project's `YourProject-Info.plist` file, you can register your app to re
 1. In Xcode, open your project's Info.plist file in the Navigator (on the left side).
 1. Mouse hover "Information Property List" (the root item under the Key column).
 1. After about half a second, you will see a `+` sign appear. Click it.
+{% if page.mparticle_ios %}
+1. Add a new row with the following value.
+
+| Key | Type | Value |
+| :--- | --- | --- |
+| Branch Key | String | [key_live_xxxxxxxxxxxxxxx] |
+
+{% else %}
+
 1. Add new rows with the following values, with the `String` entry inside the `Dictionary`:
 
 | Key | Type | Value |
@@ -260,6 +352,9 @@ In your project's `YourProject-Info.plist` file, you can register your app to re
 | live | String | [key_live_xxxxxxxxxxxxxxx] |
 
 {% image src="/img/pages/getting-started/sdk-integration-guide/branch-multi-key-plist.png" actual center alt="environment toggle" %}
+
+{% endif %}
+{% if page.ios or page.react or page.mparticle_ios %}
 
 ### Register a URI scheme
 
@@ -275,7 +370,7 @@ Branch opens your app by using its URI scheme (`yourapp://`), which should be un
 
 {% image src='/img/pages/getting-started/sdk-integration-guide/urlType.png' full center alt='URL Scheme Demo' %}
 
-### Support Strong Matching (only for new **app.link** domain)
+### Support Strong Matching (only for new  **app.link** domain)
 
 1. Retrieve your app default domain name from [Link Settings](https://dashboard.branch.io/#/settings/link){:target="_blank"} page of the Branch dashboard under **Link Domain**
 1. In Xcode, open your project's Info.plist file in the Navigator (on the left side).
@@ -292,10 +387,12 @@ This only applies to apps which have the `app.link` domain such as `h4vy.app.lin
 {% endcaution %}
 
 {% endif %}
+{% endif %}
 
-{% if page.android or page.react %}
+{% if page.android or page.react or page.mparticle_android %}
 ## {% if page.react %}Android: {% endif %}Configure Manifest
 
+{% if page.android or page.react %}
 ### Add your Branch key
 
 1. Retrieve your Branch Key on the [Settings](https://dashboard.branch.io/#/settings){:target="_blank"} page of the Branch dashboard.
@@ -329,7 +426,7 @@ Add this snippet to your `AndroidManifest.xml`:
 {% protip title="Alternative Configuration" %}
 - [I already use the Install Referrer in my app]({{base.url}}/getting-started/sdk-integration-guide/advanced/android#custom-install-referrer-class){:target="_blank"}
 {% endprotip %}
-
+{% endif %}
 ### Register a URI scheme
 
 Branch opens your app by using its URI scheme (`yourapp://`), which should be unique to your app.
@@ -348,19 +445,49 @@ Branch opens your app by using its URI scheme (`yourapp://`), which should be un
 </intent-filter>
 {% endhighlight %}
 
+{% if page.android or page.react %}
 ### Enable Auto Session Management
 
 If your app uses a custom Application class, add `Branch.getAutoInstance(this);` so that it matches the following:
 
+{% if page.android %}
 {% highlight java %}
 public final class CustomApplicationClass {
   @Override
   public void onCreate() {
       super.onCreate();
+      // initialize the Branch object
       Branch.getAutoInstance(this);
   }
 }
 {% endhighlight %}
+{% endif %}
+
+{% if page.react %}
+{% highlight java %}
+// import Branch and RNBranch at the top
+import io.branch.rnbranch.*;
+import io.branch.referral.Branch;
+
+public final class CustomApplicationClass {
+
+  @Override
+  protected List<ReactPackage> getPackages() {
+    return Arrays.<ReactPackage>asList(
+      new MainReactPackage(),
+      new RNBranchPackage(), // <-- add this
+// ...
+
+
+  @Override
+  public void onCreate() {
+      super.onCreate();
+      // initialize the Branch object
+      Branch.getAutoInstance(this);
+  }
+}
+{% endhighlight %}
+{% endif %}
 
 {% caution title="Make sure this is the correct onCreate()!" %}
 Your `Activity` also has an `onCreate()` method. Be sure you do not mix the two up!
@@ -368,8 +495,9 @@ Your `Activity` also has an `onCreate()` method. Be sure you do not mix the two 
 
 {% protip title="Alternative Configurations" %}
 - [I don't use a custom application class]({{base.url}}/getting-started/sdk-integration-guide/advanced/android#using-the-default-application-class){:target="_blank"}
-- [I need to support pre-14 Android]({{base.url}}/getting-started/sdk-integration-guide/advanced/android#supporting-pre-14-android){:target="_blank"}
+- [I need to support pre-15 Android]({{base.url}}/getting-started/sdk-integration-guide/advanced/android#supporting-pre-15-android){:target="_blank"}
 {% endprotip %}
+{% endif %}
 
 {% endif %}
 <!---       /Android-specific Branch Key -->
@@ -554,9 +682,14 @@ To ensure proper deep linking from other apps such as Facebook, this Activity mu
 
 ## Start a Branch session
 
+{% if page.mparticle_ios or page.mparticle_android %}
+As with any kit, mParticle will automatically handle initializing Branch sessions. At this point you should start seeing your Branch session data - including installs, re-opens, and any custom events - in your Branch dashboard.
+{% else %}
 A Branch session needs to be started every single time your app opens. We check to see if the user came from a link and if so, the callback method returns any deep link parameters for that link. Please note that the callback function is always called, even when the network is out.
+{% endif %}
 
 <!---    iOS -->
+{% if page.ios or page.ios_imessage %}
 {% if page.ios %}
 
 {% tabs %}
@@ -582,7 +715,37 @@ func application(application: UIApplication, didFinishLaunchingWithOptions launc
 {% endtab %}
 {% endtabs %}
 
+{% endif %}
+
+{% if page.ios_imessage %}
+
+{% tabs %}
+{% tab objective-c %}
+1. In Xcode, open your **MessagesViewController.m** file.
+1. Add `#import "Branch.h"` at the top to import the Branch framework.
+1. Find the line beginning with:
+
+{% highlight objc %}
+- (void)didBecomeActiveWithConversation:(MSConversation *)conversation
+{% endhighlight %}
+{% endtab %}
+
+{% tab swift %}
+1. Add a bridging header to import the Branch framework into your project. For help on adding a bridging header, see [this StackOverflow answer](http://stackoverflow.com/a/28486246/1914567){:target="_blank"}.
+1. In Xcode, open your **MessagesViewController.swift** file.
+1. Find the line beginning with:
+
+{% highlight swift %}
+func didBecomeActiveWithConversation(conversation: MSConversation)
+{% endhighlight %}
+{% endtab %}
+{% endtabs %}
+
+{% endif %}
+
 Underneath this line, add the following snippet:
+
+{% if page.ios %}
 
 {% tabs %}
 {% tab objective-c %}
@@ -614,9 +777,47 @@ branch.initSessionWithLaunchOptions(launchOptions, andRegisterDeepLinkHandler: {
 {% endtab %}
 {% endtabs %}
 
+{% endif %}
+
+{% if page.ios_imessage %}
+
+{% tabs %}
+{% tab objective-c %}
+{% highlight objc %}
+Branch *branch = [Branch getInstance];
+[branch initSessionWithLaunchOptions:@{} andRegisterDeepLinkHandler:^(NSDictionary *params, NSError *error) {
+    if (!error && params) {
+        // params are the deep linked params associated with the link that the user clicked -> was re-directed to this app
+        // params will be empty if no data found
+        // ... insert custom logic here ...
+        NSLog(@"params: %@", params.description);
+    }
+}];
+{% endhighlight %}
+{% endtab %}
+
+{% tab swift %}
+{% highlight swift %}
+let branch: Branch = Branch.getInstance()
+branch.initSessionWithLaunchOptions({}, andRegisterDeepLinkHandler: { optParams, error in
+    if error == nil, let params = optParams {
+        // params are the deep linked params associated with the link that the user clicked -> was re-directed to this app
+        // params will be empty if no data found
+        // ... insert custom logic here ...
+        print("params: %@", params.description)
+    }
+})
+{% endhighlight %}
+{% endtab %}
+{% endtabs %}
+
+{% endif %}
+
 {% protip %}
 If you're using **Xcode 6.3 or newer**, have imported the SDK, and are still seeing a "Branch.h file not found" or some other compiler error, please [read this support article](https://support.branch.io/support/solutions/articles/6000109874-xcode-error-branch-not-found){:target="_blank"}.
 {% endprotip %}
+
+{% if page.ios %}
 
 ## Handle incoming links
 
@@ -670,11 +871,13 @@ func application(application: UIApplication, continueUserActivity userActivity: 
 {% endtabs %}
 
 {% endif %}
+{% endif %}
 <!---    /iOS -->
 
+<!-- Android -->
 {% if page.android %}
 
-Open the `Activity` for which you registered the `intent` in the previous section, and hook into the `onStart` and `onNewIntent` lifecycle methods by adding these overrides:
+Open the `Activity` for which you registered the `Intent` in the previous section, and hook into the `onStart` and `onNewIntent` lifecycle methods by adding these overrides:
 
 {% highlight java %}
 @Override
@@ -706,7 +909,9 @@ public void onNewIntent(Intent intent) {
 `this.getIntent().getData()` refers to the data associated with an incoming intent. Please use `getActivity()` instead of passing in `this`.
 {% endprotip %}
 {% endif %}
+<!-- /Android -->
 
+<!-- Cordova -->
 {% if page.cordova %}
 
 Use the the following methods to initialize a Branch session when the `deviceready` event fires and every time the `resume` event fires.
@@ -737,7 +942,9 @@ If `data` is null and `err` contains a string denoting a request timeout, make s
 {% endcaution %}
 
 {% endif %}
+<!-- /Cordova -->
 
+<!-- Xamarin -->
 {% if page.xamarin %}
 
 {% protip title="Apps built without Xamarin Forms" %}
@@ -825,7 +1032,9 @@ public class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDe
 {% endhighlight %}
 
 {% endif %}
+<!-- /Xamarin -->
 
+<!-- Unity -->
 {% if page.unity %}
 Insert the following methods into the main class of the scene to which you added BranchPrefab. The callback method should be visible from every scene in which you will use deep linked data.
 
@@ -854,7 +1063,9 @@ public class MyCoolBehaviorScript : MonoBehaviour {
 {% endhighlight %}
 
 {% endif %}
+<!-- /Unity -->
 
+<!-- Adobe Air -->
 {% if page.adobe %}
 Inside your `Main.as` file, insert the following:
 
@@ -926,7 +1137,9 @@ $.onInitSessionFinished = function(data) {
 }
 {% endhighlight %}
 {% endif %}
+<!-- /Adobe Air -->
 
+<!-- React Native -->
 {% if page.react %}
 
 ### iOS initialization
@@ -966,21 +1179,7 @@ Finally, add these two new methods. The first responds to URI scheme links. The 
 
 ### Android initialization
 
-1. Add RNBranchPackage to packages list in MainApplication.java (`android/app/src/[...]/MainApplication.java`)
-
-{% highlight java %}
-//...
-import io.branch.rnbranch.*; // <-- add this
-//...
-@Override
-  protected List<ReactPackage> getPackages() {
-    return Arrays.<ReactPackage>asList(
-            new MainReactPackage(),
-            new RNBranchPackage(), // <-- add this
-// ...
-{% endhighlight %}
-
-2. In **android/app/src/main/java/com/xxx/MainActivity.java**, add the following:
+In **android/app/src/main/java/com/xxx/MainActivity.java**, add the following:
 
 {% highlight java %}
 import android.content.Intent; // <-- import
@@ -1015,53 +1214,163 @@ public class MainActivity extends ReactActivity {
 {% endhighlight %}
 
 {% endif %}
+<!-- /React Native -->
+
+<!-- mParticle - iOS -->
+{% if page.mparticle_ios %}
+
+## Handle Incoming Links
+
+1. In Xcode, open your **AppDelegate.m** file.
+1. In the `didFinishLaunchingWithOptions` method, before you initialize your mParticle session, add the following:
+
+{% highlight objc %}
+NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+[notificationCenter addObserver:self
+                       selector:@selector(handleKitDidBecomeActive:)
+                           name:mParticleKitDidBecomeActiveNotification
+                         object:nil];
+{% endhighlight %}
+
+Add the following methods to your **AppDelegate.m** file:
+
+{% highlight objc %}
+- (void)handleKitDidBecomeActive:(NSNotification *)notification {
+    NSDictionary *userInfo = [notification userInfo];
+    NSNumber *kitNumber = userInfo[mParticleKitInstanceKey];
+    MPKitInstance kitInstance = (MPKitInstance)[kitNumber integerValue];
+    
+    if (kitInstance == MPKitInstanceBranchMetrics) {
+        [self checkForDeeplink];
+    }
+}
+
+- (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray * _Nullable))restorationHandler {
+    [self checkForDeeplink];
+    return YES;
+}
+
+- (void)checkForDeeplink {
+    MParticle * mParticle = [MParticle sharedInstance];
+    
+    [mParticle checkForDeferredDeepLinkWithCompletionHandler:^(NSDictionary<NSString *,NSString *> * _Nullable params, NSError * _Nullable error) {
+        //
+        // A few typical scenarios where this block would be invoked:
+        //
+        // (1) Base case:
+        //     - User does not tap on a link, and then opens the app (either after a fresh install or not)
+        //     - This block will be invoked with Branch Metrics' response indicating that this user did not tap on a link
+        //
+        // (2) Deferred deep link:
+        //     - User without the app installed taps on a link
+        //     - User is redirected from Branch Metrics to the App Store and installs the app
+        //     - User opens the app
+        //     - This block will be invoked with Branch Metrics' response containing the details of the link
+        //
+        // (3) Deep link with app installed:
+        //     - User with the app already installed taps on a link
+        //     - Application opens via openUrl/continueUserActivity, mParticle forwards launch options etc to Branch
+        //     - This block will be invoked with Branch Metrics' response containing the details of the link
+        //
+        // If the user navigates away from the app without killing it, this block could be invoked several times:
+        // once for the initial launch, and then again each time the user taps on a link to re-open the app.
+        
+        if (params) {
+            //Insert custom logic to inspect the params and route the user/customize the experience.
+            NSLog(@"params: %@", params.description);
+        }
+    }];
+}
+{% endhighlight %}
+
+{% endif %}
+<!-- mParticle - iOS -->
+
+<!-- mParticle - Android -->
+{% if page.mparticle_android %}
+
+## Handle Incoming Links
+
+Open the `Activity` for which you registered the `Intent` in the previous section, and hook into the `onStart` lifecycle method by adding this override:
+
+{% highlight java %}
+@Override
+public void onStart() {
+  MParticle.getInstance().checkForDeepLink(new DeepLinkListener() {
+    @Override
+    public void onResult(DeepLinkResult result) {
+        // Check for the existence of a given key in the link data and route accordingly.
+        try {
+            if ((result.getParameters().has("my_custom_key")) && (result.getParameters().get("my_custom_key").equals("custom value"))) {
+                // Send user to intended path
+            }
+        } catch (JSONException e) {
+
+        }
+    }
+
+    @Override
+    public void onError(DeepLinkError error) {
+        // If an error occurred, it will be surfaced via a DeepLinkError.
+        Log.d("my log tag", error.toString());
+    }
+  });
+}
+{% endhighlight %}
+{% endif %}
+<!-- /mParticle Android -->
+
 ## Recommended: Track in-app events
 
-In-app engagement and user value metrics are just as important as the click, install, and re-open metrics that Branch [automatically provides]({{base.url}}/getting-started/growth-attribution#automatic-event-tracking){:target="_blank"}. You can define your own post-install events, like purchase, signup, or share, and [view them in the dashboard]({{base.url}}/getting-started/user-value-attribution#measuring-custom-events){:target="_blank"} for each link, campaign, or channel.
+In-app engagement and user value metrics are just as important as the click, install, and re-open metrics that Branch [automatically provides]({{base.url}}/getting-started/growth-attribution#automatic-event-tracking){:target="_blank"}. Branch has a fixed set of post-install events, like purchase, add to cart, and share, but you're free to add your own as well. Best of all, you can attribute these actions back to each link, campaign, or channel. Check out [that discussion here]({{base.url}}/getting-started/user-value-attribution){:target="_blank"}.
 
+{% if page.mparticle_ios or page.mparticle_android %}
+Every custom event that you track with mParticle will be automatically forwarded to Branch.
+{% else %}
 Track custom events in your app with a simple call to the Branch SDK:
-
-{% if page.ios %}
+{% endif %}
+{% if page.ios or page.ios_imessage %}
 
 {% tabs %}
 {% tab objective-c %}
 {% highlight objc %}
-[[Branch getInstance] userCompletedAction:@"customAction"];
+[[Branch getInstance] userCompletedAction:BNCAddToCartEvent];
 {% endhighlight %}
 {% endtab %}
 {% tab swift %}
 {% highlight swift %}
-Branch.getInstance().userCompletedAction("customAction")
+Branch.getInstance().userCompletedAction(BNCAddToCartEvent)
 {% endhighlight %}
 {% endtab %}
 {% endtabs %}
+
 
 {% endif %}
 <!--- /iOS -->
 
 {% if page.android %}
 {% highlight java %}
-Branch.getInstance(getApplicationContext()).userCompletedAction("custom_action_1");
+Branch.getInstance(getApplicationContext()).userCompletedAction(BranchEvent.SHARE_STARTED);
 {% endhighlight %}
 {% endif %}
 <!--- /Android -->
 
 {% if page.cordova %}
 {% highlight js %}
-Branch.userCompletedAction("custom_action_1");
+Branch.userCompletedAction("Share Started");
 {% endhighlight %}
 {% endif %}
 
 {% if page.xamarin %}
 {% highlight c# %}
 Branch branch = Branch.GetInstance ();
-await branch.UserCompletedAction("custom_action_1");
+await branch.UserCompletedAction("Share Started");
 {% endhighlight %}
 {% endif %}
 
 {% if page.unity %}
 {% highlight c# %}
-Branch.userCompletedAction("custom_action_1");
+Branch.userCompletedAction("Share Started");
 {% endhighlight %}
 {% endif %}
 
@@ -1073,21 +1382,27 @@ Currently not supported in the ANE
 
 {% if page.titanium %}
 {% highlight js %}
-branch.userCompletedAction("custom_action_1");
+branch.userCompletedAction("Share Started");
 {% endhighlight %}
 {% endif %}
 
 {% if page.react %}
 {% highlight js %}
-branch.userCompletedAction("custom_action_1");
+branch.userCompletedAction("Share Started");
+{% endhighlight %}
+{% endif %}
+
+{% if page.mparticle_ios %}
+{% highlight objc %}
+[[MParticle sharedInstance] logEvent:@"Share Started" eventType:MPEventTypeTransaction];
 {% endhighlight %}
 {% endif %}
 
 For more information on tracking and configuring custom events, see the [user value attribution]({{base.url}}/getting-started/user-value-attribution){:target="_blank"} guide.
 
-{% if page.android %}{% else %}
+{% if page.android or page.mparticle_android %}{% else %}
 
-## {% if page.ios %}{% else %}iOS: {% endif %}Submitting to the App Store
+## {% if page.ios or page.mparticle_ios %}{% else %}iOS: {% endif %}Submitting to the App Store
 
 After integrating the Branch SDK, you need to let Apple know that you use the IDFA. To follow proper protocol when submitting your next release to the App Store, you should:
 
@@ -1106,7 +1421,7 @@ The only situation in which you do not need to perform these steps is if you ins
 
 {% endif %}
 
-{% if page.android %}
+{% if page.android or page.mparticle_android %}
 
 ## Submitting to the Play Store
 
@@ -1134,26 +1449,58 @@ Here are some recommended next steps:
 
 {% elsif page.advanced %}
 
+{% if page.android or page.cordova or page.titanium or page.xamarin or page.unity or page.react %}
+
+## Troubleshooting Android build errors
+
+### ClassNotFoundException : Branch.Java
+
+In case of having other SDKs along with Branch and exceeding the Dex limit, please make sure you have enabled multi-dex support for your application. Check the following to ensure multi-dex is configured properly
+
+1. Make sure you have enabled multi-dex support in your build.gradle file
+
+{% highlight java %}
+ defaultConfig {
+    multiDexEnabled true
+}
+{% endhighlight %}
+
+2. Make sure your `Application` class is extending `MultiDexApplication`
+
+3. Make sure dex files are properly loaded from .apk file. In your application class make sure you have the following
+
+{% highlight java %}
+@Override
+protected void attachBaseContext(Context base) {
+    super.attachBaseContext(base);
+    MultiDex.install(this);
+}
+{% endhighlight %}
+
+### InvalidClassException, ClassLoadingError or VerificationError
+
+This is often caused by a Proguard bug with optimization. Please try to use the latest Proguard version or disable Proguard optimisation by setting `-dontoptimize` option.
+
+{% endif %}
+
 {% if page.ios %}
 
 ## Install the SDK manually
 
 Follow these directions install the Branch SDK framework files without using CocoaPods:
 
-1. [Grab the latest SDK version](https://s3-us-west-1.amazonaws.com/branchhost/Branch-iOS-SDK.zip), or [clone our open-source GitHub repo](https://github.com/BranchMetrics/branch-ios-sdk).
+1. [Grab the latest SDK version](https://s3-us-west-1.amazonaws.com/branchhost/Branch-iOS-SDK.zip), or [clone our open-source GitHub repo](https://github.com/BranchMetrics/ios-branch-deep-linking).
 1. Drag the `Branch.framework` file into your Xcode project. Be sure that "Copy items if needed" and "Create groups" are selected.
 1. Import the following frameworks under **Build Phases** for your app target:
     - `AdSupport.framework`
     - `CoreTelephony.framework`
     - `CoreSpotlight.framework`
     - `MobileCoreServices.framework`
-    - `SafariServices.framework`
 
 {% caution title="Considerations around using Frameworks" %}
 
 `AdSupport.framework` allows us to use the IDFA to match your visitors across our entire network of apps, increasing matching accuracy. When you submit your app to the App Store, you need to let Apple know that you use the IDFA.
 
-`SafariServices.framework` enables cookie-based matching on iOS 9+, which allows us to [guarantee link matching with 100% accuracy]({{base.url}}/getting-started/matching-accuracy). Please test to make sure the invisible `SFSafariViewController` does not alter your view controller stack. Delete the app and reinstall to trigger the invisible SFSafariViewController to be presented on first launch. Please note that you cannot use 100% matching while [setDebug is turned on]({{base.url}}/getting-started/integration-testing/guide/ios/#use-debug-mode-to-simulate-fresh-installs).
 {% endcaution %}
 
 [Back to the Guide]({{base.url}}/getting-started/sdk-integration-guide/guide/ios/#get-the-sdk-files)
@@ -1171,11 +1518,11 @@ If your app doesn't use a custom Application class, simply add the `android:name
 
 [Back to the Guide]({{base.url}}/getting-started/sdk-integration-guide/guide/android/#enable-auto-session-management)
 
-## Supporting pre-14 Android
+## Supporting pre-15 Android
 
-Auto session tracking is only available for `minSdkVersion` 14 or above. If you need to support pre-14, you should include Branch SDK methods in both `onStart()` and `onStop()` to avoid strange, difficult-to-diagnose behavior. Branch must know when the app opens or closes to properly handle the deep link parameters retrieval.
+After and including SDK version `v2.0`, Branch only supports `minSdkVersion` 15 or above. If you need to support pre-15, you should lock to the Branch SDK version v1.14.5 and add methods in both `onStart()` and `onStop()` to avoid strange, difficult-to-diagnose behavior. Branch must know when the app opens or closes to properly handle the deep link parameters retrieval.
 
-Please add this to every Activity for pre-14 support.
+Please add this to every Activity for pre-15 support.
 
 {% highlight java %}
 @Override

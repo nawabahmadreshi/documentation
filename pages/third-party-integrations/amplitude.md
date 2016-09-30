@@ -7,6 +7,7 @@ description: Learn how to synchronize your Branch data with Amplitude to segment
 ios_keywords: Contextual Deep Linking, Deep links, Amplitude, HasOffers, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Amplitude, user segmentation, life time value, LTV
 android_keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Amplitude, user segmentation, life time value, LTV
 hide_platform_selector: true
+premium: true
 sections:
 - overview
 - guide
@@ -19,7 +20,7 @@ With a push of a button you can send your Branch data to your Amplitude dashboar
 
 {% ingredient paid-integration %}{% endingredient %}
 
-{% getstarted title="Get started with the Amplitude integration" %}{% endgetstarted %}
+{% getstarted %}{% endgetstarted %}
 
 ## How does it work?
 
@@ -41,7 +42,7 @@ Additionally, individual events, such as those seen in Live View or visible when
 
 Branch events are similar to Amplitude events in that they can be used in your existing funnels and tracked on the various pages and dashboards. However, unlike normal events, Branch events contain invaluable information about how users ended up in your app in the first place.
 
-{% getstarted title="Get started with the Amplitude integration" %}{% endgetstarted %}
+{% getstarted %}{% endgetstarted %}
 
 {% elsif page.guide %}
 
@@ -93,18 +94,18 @@ Please ensure you're using the Branch iOS SDK 0.12.2 or greater, and Android SDK
 
 ## What Branch Sends to Amplitude
 
-| Property Name | Value | Sourced from | Example | Req 
+| Property Name | Value | Sourced from | Example | Req
 | --- | --- | --- | --- | --- | ---
-| api_key | API Key | Branch Dashboard | 70d1db75922b0b4be56b819c42bxxxxx | Y 
-| event_type | Branch event | event name | [Branch] install | Y 
-| platform | `ios` or `android` | collected by Branch SDK | ios | Y 
-| idfa | IDFA | collected by Branch SDK | AEBE52E7-03EE-455A-B3C4-E57283966239 | * 
-| idfv | IDFV | collected by Branch SDK | AEBE52E7-03EE-455A-B3C4-E57283966239 | * 
-| android_id | Android ID | collected by Branch SDK | f07a13984f6d116a | N 
-| adid | GAID | collected by Branch SDK | AEBE52E7-03EE-455A-B3C4-E57283966239 | * 
-| device_id | Unique ID for device | $amplitude_device_id | AEBE52E7-03EE-455A-B3C4-E57283966239 | N 
-| user_id | Unique ID for user | $amplitude_user_id | User A | N 
-| ip | User’s IP Address | collected by Branch SDK | 111.111.111.111 | N 
+| api_key | API Key | Branch Dashboard | 70d1db75922b0b4be56b819c42bxxxxx | Y
+| event_type | Branch event | event name | [Branch] install | Y
+| platform | `ios` or `android` | collected by Branch SDK | ios | Y
+| idfa | IDFA | collected by Branch SDK | AEBE52E7-03EE-455A-B3C4-E57283966239 | *
+| idfv | IDFV | collected by Branch SDK | AEBE52E7-03EE-455A-B3C4-E57283966239 | *
+| android_id | Android ID | collected by Branch SDK | f07a13984f6d116a | N
+| adid | GAID | collected by Branch SDK | AEBE52E7-03EE-455A-B3C4-E57283966239 | *
+| device_id | Unique ID for device | $amplitude_device_id | AEBE52E7-03EE-455A-B3C4-E57283966239 | N
+| user_id | Unique ID for user | $amplitude_user_id | User A | N
+| ip | User’s IP Address | collected by Branch SDK | 111.111.111.111 | N
 | event_properties.ANY-KEY (many) | The value associated with the key | event metadata or referring link data | ~channel: facebook | N
 
 * On iOS, `idfa` or `idfv` is required. On Android, `adid` is required.

@@ -27,7 +27,7 @@ Right now, when users open your app for the first time, chances are you have no 
 
 **By using Branch deep links, you can finally tailor the onboarding flow for new users!**
 
-{% getstarted title="Get started with custom onboarding" %}{% endgetstarted %}
+{% getstarted %}{% endgetstarted %}
 
 {% elsif page.guide %}
 
@@ -120,7 +120,7 @@ Lastly, create the link to be shared by referencing the `BranchUniversalObject`:
 {% endtab %}
 {% tab swift %}
 {% highlight swift %}
-branchUniversalObject.getShortUrlWithLinkProperties(linkProperties,  andCallback: { (optUrl: String?, error: NSError?) -> Void in
+branchUniversalObject.getShortUrl(with: linkProperties,  andCallback: { (url: String, error: Error?) in
     if error == nil, let url = optUrl {
         print("got my Branch invite link to share: %@", url)
     }

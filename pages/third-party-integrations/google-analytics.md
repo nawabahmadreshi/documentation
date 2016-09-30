@@ -7,10 +7,12 @@ description: This guide teaches you how to find and send deep link data to Googl
 ios_keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Google Analytics, iOS, Webhook
 android_keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Google Analytics, Android, Webhook
 hide_platform_selector: true
+premium: true
 sections:
 - overview
 - guide
 - advanced
+- support
 ---
 
 {% if page.overview %}
@@ -19,7 +21,7 @@ With a push of a button you can send your Branch data to your Google Analytics d
 
 {% ingredient paid-integration %}{% endingredient %}
 
-{% getstarted title="Get started with the Google Analytics integration" %}{% endgetstarted %}
+{% getstarted %}{% endgetstarted %}
 
 ## How does it work?
 
@@ -35,7 +37,7 @@ Branch events will appear alongside your other tracked events in Google Analytic
 
 {% image src="/img/pages/third-party-integrations/google-analytics/google-analytics-sources.png" 3-quarters center %}
 
-{% getstarted title="Get started with the Google Analytics integration" %}{% endgetstarted %}
+{% getstarted %}{% endgetstarted %}
 
 {% elsif page.guide %}
 
@@ -94,7 +96,7 @@ else if (NSClassFromString(@"UIDevice")) {
 }
 {% endhighlight %}
 
-In order for IDFA to be available, please be sure you have included `AdSupport.framework`. 
+In order for IDFA to be available, please be sure you have included `AdSupport.framework`.
 
 {% protip title="iOS 10 and Ad Tracking Limited" %}
 If ad tracking is limited, the IDFA will be set to "00000000-0000-0000-0000-000000000000" [documentation](https://developer.apple.com/reference/adsupport/asidentifiermanager). The alternative approach below allows you to specify a `cid` manually, which avoids this issue.
@@ -111,7 +113,7 @@ mTracker.enableAdvertisingIdCollection(true);
 
 ### Alternative approach to Client ID - pass to Branch directly
 
-If you specify `$google_analytics_client_id`, we can pass that to Google (as *cid*). 
+If you specify `$google_analytics_client_id`, we can pass that to Google (as *cid*).
 
 **iOS:**
 
@@ -131,16 +133,6 @@ Branch.getInstance().setRequestMetadata("$google_analytics_client_id", "CLIENT-I
 
 
 {% elsif page.advanced %}
-
-## Session management
-
-Google Analytics will automatically start a session when Branch sends over installs and opens. Because of this, you should remove any code that creates a new session when your application starts up. For example, on iOS, you may fire an event with the following:
-
-{% highlight objc %}
-[builder set:@"start" forKey:kGAISessionControl];
-{% endhighlight %}
-
-You should remove this so that your app does not start a new session. Otherwise you may see zero second sessions and your average session length drop.
 
 ## Optional Parameter - User ID
 
@@ -164,7 +156,7 @@ Branch.getInstance().setRequestMetadata("$google_analytics_user_id", "USER-ID-HE
 
 ## What Branch Sends to Google Analytics
 
-| Property Name | Value | Sourced from | Example | Req 
+| Property Name | Value | Sourced from | Example | Req
 | --- | --- | --- | --- | --- | ---
 | v | API version | [fixed] | 1 | Y
 | tid | Tracking ID | Branch Dashboard | UA-XXXXXX-Y | Y
@@ -186,5 +178,25 @@ Branch.getInstance().setRequestMetadata("$google_analytics_user_id", "USER-ID-HE
 {% protip title=""anonymous" Client ID" %}
 If for some reason Branch does not receive an advertising identifier or hardware identifier, and you do not explicitly specify a `$google_analytics_client_id`, then Branch will send `anonymous` as the Client ID (`cid`). This is a required field by Google Analytics.
 {% endprotip %}
+
+{% elsif page.support %}
+
+## Troubleshooting
+
+### Very short or nonexistent session lengths
+
+Google Analytics will automatically start a session when Branch sends over installs and opens. Because of this, you should remove any code that creates a new session when your application starts up. For example, on iOS, you may be firing an event with the following:
+
+{% highlight objc %}
+[builder set:@"start" forKey:kGAISessionControl];
+{% endhighlight %}
+
+You should remove this so that your app does not start a new session. Otherwise you may see zero second sessions and your average session length drop.
+
+### Data not appearing in Google Analytics
+
+1. Check your property ID in the Branch dashboard matches the property ID in Google Analytics
+1. Ensure you are looking at the right part of the Google Analytics dashboard. The data should appear in `Acquisition > Sources > All`
+1. Check that your Google Analytics Views don't have any filters on them. For example, if your View filters out users in the United Kingdom, and your Branch opens are from users in the United Kingdom, you won't see this Branch data in your View.
 
 {% endif %}

@@ -17,13 +17,18 @@ sections:
 
 {% if page.overview %}
 
+{% protip title="The Smart Banner is deprecated. Try Journeys instead!" %}
+
+The free tier features of our new [Journeys Web to App]({{base.url}}/features/journeys/) product replicate the legacy Smart Banner, and also provide easier setup and powerful new analytics. Give it a try!
+{% endprotip %}
+
 The Branch Smart Banner displays a fully-customizable banner at the top of your website, encouraging your mobile visitors to download the app (or open it, if already installed). Desktop visitors may enter their phone number to send themselves a link via SMS.
 
 {% image src='/img/pages/features/smart-banner/banner2.png' 2-thirds center alt='Smart Banner examples' %}
 
 The Download/Open button and SMS link both contain all the features of any other Branch link, including deep linking directly to content, passing data across install, measuring clicks, and more.
 
-{% getstarted title="Get started with the Smart Banner" %}{% endgetstarted %}
+{% getstarted %}{% endgetstarted %}
 
 {% elsif page.guide %}
 
@@ -101,7 +106,7 @@ branch.banner(
     downloadAppButtonText: 'Download',      // Text to show on button if the user does not have the app installed
     sendLinkText: 'Send Link',              // Text to show on desktop button to allow users to text themselves the app
     phonePreviewText: '+44 9999-9999',      // The default phone placeholder is a US format number, localize the placeholder number with a custom placeholder with this option
-    showiOS: true,                          // Should the banner be shown on iOS devices?
+    showiOS: true,                          // Should the banner be shown on iPhones?
     showAndroid: true,                      // Should the banner be shown on Android devices?
     showDesktop: true,                      // Should the banner be shown on desktop devices?
     iframe: true,                           // Show banner in an iframe, recomended to isolate Branch banner CSS

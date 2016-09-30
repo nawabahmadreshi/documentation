@@ -14,6 +14,9 @@ platforms:
 - adobe
 - titanium
 - react
+- mparticle_ios
+- mparticle_android
+- ios_imessage
 sections:
 - overview
 - guide
@@ -26,7 +29,8 @@ sections:
 iOS Universal Links and Android App Links both route directly to your app when opened, bypassing the web browser and URI scheme combination typically used for the redirection process. App Links were introduced with Android M, and enabling them results in a more seamless experience for your users. Universal Links were introduced with iOS 9, and became the only fully-functional deep linking option on iOS after [Apple stopped supporting URI schemes for deep linking in iOS 9.2](https://blog.branch.io/ios-9.2-redirection-update-uri-scheme-and-universal-links).
 
 {% caution title="Universal Links are critical on iOS!" %}
-You must enable Universal Links before Branch can function correctly on iOS 9.2+{% endcaution %}
+You must enable Universal Links before Branch can function correctly on iOS 9.2+ but note that pure iMessage apps don't support Universal Links.
+{% endcaution %}
 
 Branch makes it simple to enable Universal Links and App Links, and even improves on them since you also get all the other benefits of Branch links when the visitor does not yet have your app installed:
 
@@ -36,7 +40,13 @@ Branch makes it simple to enable Universal Links and App Links, and even improve
 
 {% elsif page.guide %}
 
-{% if page.android %}
+{% if page.ios_imessage %}
+
+**Universal Links are not supported by iOS iMessage apps unfortunately!**
+
+{% endif %}
+
+{% if page.android or page.mparticle_android or page.ios_imessage %}
 <!-- do nothing -->
 {% else %}
 
@@ -64,7 +74,7 @@ The package name for your Android app in Unity is the same as the Bundle Identif
 
 ## Add the Associated Domains entitlement to your project
 
-{% if page.ios or page.unity or page.adobe or page.react %}
+{% if page.ios or page.unity or page.adobe or page.react or page.mparticle_ios %}
 ### Enable Associated Domains in Xcode
 
 1. Go to the `Capabilities` tab of your project file.
@@ -236,7 +246,7 @@ if (OS_IOS) { // Don't forget this condition.
 
 {% endif %}
 
-{% if page.ios or page.xamarin or page.react %}
+{% if page.ios or page.xamarin or page.react or page.mparticle_ios %}
 ## Make your app aware of incoming Universal Links
 {% endif %}
 
@@ -271,22 +281,9 @@ func application(application: UIApplication, continueUserActivity userActivity: 
 
 {% caution title="Issues with Facebook SDK" %}
 
-In certain situations, the Facebook SDK can cause `didFinishLaunchingWithOptions` to return `NO`. When this happens, handling for all Universal Links is blocked. We have incorporated a workaround into our SDK, which you can enable by inserting the following line immediately before your `initSessionWithLaunchOptions` call:
+In certain situations, the Facebook SDK can cause `application:didFinishLaunchingWithOptions:` to return `NO`. When this happens, handling for all Universal Links is blocked. Please ensure that `application:didFinishLaunchingWithOptions:` always returns `YES`/`true`.
 
-{% tabs %}
-{% tab objective-c %}
-
-{% highlight objc %}
-[branch accountForFacebookSDKPreventingAppLaunch];
-{% endhighlight %}
-{% endtab %}
-{% tab swift %}
-
-{% highlight swift %}
-branch.accountForFacebookSDKPreventingAppLaunch()
-{% endhighlight %}
-{% endtab %}
-{% endtabs %}
+Previously we included a method in our SDK, `accountForFacebookSDKPreventingAppLaunch`, that handled this edge case. However, due to Swift+Objective-C interoperability issues, this has been removed.
 
 {% endcaution %}
 
@@ -354,6 +351,49 @@ Open your **AppDelegate.m** file and add the following method (if you completed 
 
 {% endif %}
 
+{% if page.mparticle_ios %}
+Open your **AppDelegate.m** file and add the following methods (if you completed the [SDK Integration Guide]({{base.url}}/getting-started/sdk-integration-guide), these are likely already present).
+
+{% highlight objc %}
+- (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray * _Nullable))restorationHandler {
+    [self checkForDeeplink];
+    return YES;
+}
+
+- (void)checkForDeeplink {
+    MParticle * mParticle = [MParticle sharedInstance];
+
+    [mParticle checkForDeferredDeepLinkWithCompletionHandler:^(NSDictionary<NSString *,NSString *> * _Nullable params, NSError * _Nullable error) {
+        //
+        // A few typical scenarios where this block would be invoked:
+        //
+        // (1) Base case:
+        //     - User does not tap on a link, and then opens the app (either after a fresh install or not)
+        //     - This block will be invoked with Branch Metrics' response indicating that this user did not tap on a link
+        //
+        // (2) Deferred deep link:
+        //     - User without the app installed taps on a link
+        //     - User is redirected from Branch Metrics to the App Store and installs the app
+        //     - User opens the app
+        //     - This block will be invoked with Branch Metrics' response containing the details of the link
+        //
+        // (3) Deep link with app installed:
+        //     - User with the app already installed taps on a link
+        //     - Application opens via openUrl/continueUserActivity, mParticle forwards launch options etc to Branch
+        //     - This block will be invoked with Branch Metrics' response containing the details of the link
+        //
+        // If the user navigates away from the app without killing it, this block could be invoked several times:
+        // once for the initial launch, and then again each time the user taps on a link to re-open the app.
+
+        if (params) {
+            //Insert custom logic to inspect the params and route the user/customize the experience.
+            NSLog(@"params: %@", params.description);
+        }
+    }];
+}
+{% endhighlight %}
+{% endif %}
+
 ## Test your Universal Links implementation
 
 After completing this guide and installing a new build of your app on your testing device, you can verify Universal Links are working correctly by following these steps:
@@ -364,13 +404,13 @@ After completing this guide and installing a new build of your app on your testi
 
 {% endif %}
 
-{% if page.ios %}
+{% if page.ios or page.mparticle_ios or page.ios_imessage %}
 <!-- do nothing -->
 {% else %}
 
 ## Generate signing certificate fingerprint
 
-{% if page.android %}
+{% if page.android or page.mparticle_android %}
 
 {% else %}
 {% protip %}
@@ -431,14 +471,8 @@ If the **Default domain name** box shows the legacy `bnc.lt` domain, you should 
 - If you use a custom domain or subdomain for your Branch links, you should also add a key for:
 
 {% highlight xml %}
-<android-prefix value="READ_FROM_DASHBOARD" />
 <host name="mycustomdomainorsubdomain" scheme="https" />
 {% endhighlight %}
-
-`READ_FROM_DASHBOARD` is the four-character value in front of all your links. You can find it underneath the field labeled **SHA256 Cert Fingerprints** on the dashboard. It will look something like this: `/WSuf` (the initial `/` character should be included).
-
-{% image src='/img/pages/getting-started/universal-app-links/app_links_prefix.png' full center alt='app links prefix' %}
-
 {% endprotip %}
 
 {% elsif page.xamarin %}
@@ -489,7 +523,15 @@ If you use a [custom domain or subdomain for your Branch links]({{base.url}}/get
 
 {% else %}
 
+{% if page.unity %}
+
+## Add Intent Filter to Manifest (if not using Prefab)
+
+{% else %}
+
 ## Add Intent Filter to Manifest
+
+{% endif %}
 
 1. Go to the [Link Settings](https://dashboard.branch.io/#/settings/link) page on the dashboard.
 1. Scroll down to the `Link Domain` area.
@@ -562,7 +604,7 @@ Here are some recommended next steps:
 
 {% elsif page.advanced %}
 
-{% if page.android %}
+{% if page.android or page.mparticle_android %}
 <!-- No advanced info except note on click-tracking -->
 {% else %}
 
@@ -580,29 +622,35 @@ For most implementations this will never be an issue, since your deep links will
 If you have an unusual situation with multiple custom link domains, you may also configure `branch_universal_link_domains` as an array of strings. {% image src='/img/pages/getting-started/universal-app-links/branch-universal-link-domains.png' 3-quarters center alt='cloudflare TLS' %}
 {% endprotip %}
 
-## How to handle old URI paths with Universal Links
+## How to handle URI paths with Universal Links
 
-When you make the move to Universal Links, you might be wondering how to best harness your old URI paths for iOS 9.X users while keeping the experience the same for iOS 8.X and lower. The easiest way is to handle each link type separately via a conditional flag (such as **self.ignoreDeeplinkPath**) in `application:didFinishLaunchingWithOptions:launchOptions:`.
+Prior to iOS 9, URI schemes with URI paths (e.g., `myapp://path/to/content`) were the standard approach to deep linking. Branch supports URI paths using the **$deeplink_path**, **$ios_deeplink_path**, and **$android_deeplink_path** [link properties]({{base.url}}/getting-started/configuring-links/guide/#link-behavior-customization). When the Branch SDK receives a link with one of these parameters set (and assuming the platform is correct), it will automatically load that URI path.
 
-### Non-Universal Links
+Note, however, that Universal Links and Spotlight do not use URI schemes for deep link routing. If you populate **$deeplink_path** or **$ios_deeplink_path** with a URI path on iOS 9+, you will also need to introduce custom logic to ensure that your links work as expected in all situations.
 
-The entry point for this link type is `application:openURL:sourceApplication:annotation:`
+To do this, add a `self.ignoreDeeplinkPath` conditional flag in `application:didFinishLaunchingWithOptions:launchOptions:` and handle these link separately.
 
-1. In `application:didFinishLaunchingWithOptions:launchOptions:`, set the **self.ignoreDeeplinkPath** to `YES` (to ensure that users do not get deep linked twice).
-1. Route users to the correct place in your app by harnessing the URL passed in as a parameter.
+### How to handle non-Universal Links (links relying on custom URI schemes)
 
-### Universal Links
+When Branch links are used on iOS prior to version 9, and in some situations on later versions of iOS, the links do not act as Universal Links but instead rely on the app's custom URI scheme. While Universal links are handled by the AppDelegate's `application:continueUserActivity:restorationHandler:` function, the  `application:openURL:sourceApplication:annotation:` function is used to process non-Universal Links.
 
-The entry point for this link type is `application:continueUserActivity:restorationHandler:`
+1. In `application:didFinishLaunchingWithOptions:launchOptions:`, set the `self.ignoreDeeplinkPath` conditional flag to `YES`. This will ensure that users do not get deep linked twice (once automatically by the Branch SDK and a second time via the logic you are about to add).
+1. Look for the **$deeplink_path** or **$ios_deeplink_path** parameter in your link data use the value to route users to the correct place in your app
 
-1. The default value of **self.ignoreDeeplinkPath** in `application:didFinishLaunchingWithOptions:launchOptions:` defaults to `NO`.
-1. Harness the **$deeplink_path** key (set at the time of Branch link creation) to route users to the correct place in your App after Branch has finished initialization.
+### How to handle Universal Links
+
+Since the release of iOS 9, Branch links have functioned as Universal Links on iOS. Universal links are handled by the AppDelegate's `application:continueUserActivity:restorationHandler:` function.
+
+1. The `self.ignoreDeeplinkPath` conditional flag in `application:didFinishLaunchingWithOptions:launchOptions:` defaults to `NO`.
+1. Look for the **$deeplink_path** or **$ios_deeplink_path** parameter in your link data, and then use the path within to route users to the correct place in your app.
 
 {% example title="Sample AppDelegate" %}
 
-Here is a generic **AppDeledate.m** snippet with these methods implemented:
-
+{% tabs %}
+{% tab objective-c %}
 {% highlight objc %}
+
+Here is a generic **AppDeledate.m** snippet with these methods implemented:
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
@@ -621,7 +669,7 @@ Branch *branch = [Branch getInstance];
    return YES;
 }
 
-//Entry point for iOS 8.X users and lower
+// Entry point for users on iOS 8 and lower
 
 -(BOOL) application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
    [[Branch getInstance] handleDeepLink:url];
@@ -633,16 +681,70 @@ Branch *branch = [Branch getInstance];
    return YES;
 }
 
-//Entry point for iOS 9.X users
+// Entry point for users on iOS 9+
 
 - (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray *restorableObjects))restorationHandler {
    [[Branch getInstance] continueUserActivity:userActivity];
+
    // ... your other logic here, such as ...
    [self continueUserActivity:userActivity];
 
 	return YES;
 }
 {% endhighlight %}
+
+{% endtab %}
+{% tab swift %}
+
+{% highlight swift %}
+
+Here is a generic **AppDeledate.swift** snippet with these methods implemented:
+
+
+func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+
+   let branch = Branch.getInstance()
+
+   branch.initSessionWithLaunchOptions(launchOptions, andRegisterDeepLinkHandler: {(params: [NSObject : AnyObject], error: NSError) -> Void in
+      if !error && params {
+         if params["$deeplink_path"] && !self.ignoreDeeplinkPath {
+            var url = NSURL(string: "your-uri-scheme://\(params["$deeplink_path"])")!
+            // handle the URL!
+            self.routeUrl(url)
+         }
+      }
+      self.ignoreDeeplinkPath = false
+   })
+   return true
+}
+
+// Entry point for users on iOS 8 and lower
+
+func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
+   Branch.getInstance().handleDeepLink(url)
+   self.ignoreDeeplinkPath = true
+
+   // ... your other logic here, such as ...
+   self.routeUrl(url)
+
+   return true
+}
+
+// Entry point for users on iOS 9+
+
+func application(application: UIApplication, continueUserActivity userActivity: NSUserActivity, restorationHandler: ([AnyObject]?) -> Void) -> Bool {
+   Branch.getInstance().continueUserActivity(userActivity)
+
+   // ... your other logic here, such as ...
+   self.continueUserActivity(userActivity)
+
+   return true
+}
+
+{% endhighlight %}
+
+{% endtab %}
+{% endtabs %}
 
 {% endexample %}
 
@@ -652,7 +754,7 @@ Branch *branch = [Branch getInstance];
 
 {% elsif page.support %}
 
-{% if page.android %}
+{% if page.android or page.mparticle_android %}
 No support information available for this platform.
 {% else %}
 
@@ -668,33 +770,65 @@ Branch links with custom domains are always enabled for Universal Links, even if
 
 ## Apps/browsers that support Universal Links
 
-Unfortunately, Universal Links don't work quite everywhere yet. We'll maintain this list and keep it up to date. *Last updated 1/25/15*.
+Unfortunately Universal Links don't work everywhere yet. We have compiled the Universal Links support status of some of the more popular apps.
 
-| **App/Browser** | **Status**
+#### Apps that always work
+
+If you open a Universal Link in one of these apps, it should work correctly all the time.
+
+| App/Browser | Status
 | --- | ---
 | Messages | works
 | Mail | works
-| Whatsapp | works
-| Slack | works, if it's set to open Safari, not in-app browser (uses SFSafariViewController)
-| Safari | works conditionally *
-| Chrome | works conditionally *
-| Google | works conditionally *
-| Gmail | if Chrome installed, opens link in Chrome (not Universal Link). Else, works conditionally *
-| Inbox | if Chrome installed, opens link in Chrome (not Universal Link). Else, works.
-| Twitter | works conditionally *
-| Facebook | works conditionally *
-| FB Messenger | works conditionally *
-| WeChat | works conditionally *
-| Pinterest | not working
-| Telegram | not working (uses SFSafariViewController)
+| WhatsApp | works
 
-*Note: Conditionally working means that it works (i.e., opens the app) some of the time:*
+#### Apps limited by Apple
+
+Apple has limited Universal Links in certain situations, apparently to avoid confusing users:
 
 - Universal Links will not work if you paste the link into the browser URL field.
 - Universal Links work with a user driven `<a href="...">` element click *across domains*. Example: if there is a Universal Link on google.com pointing to bnc.lt, it will open the app.
 - Universal Links will not work with a user driven `<a href="...">` element click on the *same domain*. Example: if there is a Universal Link on google.com pointing to a different Universal Link on google.com, it will not open the app.
 - Universal Links cannot be triggered via Javascript (in `window.onload` or via a `.click()` call on an `<a>` element), unless it is part of a user action.
-- Google, Gmail, Inbox, Twitter, Facebook, FB Messenger, WeChat -- Universal Links only work when you have a webview already open. In other words, they do not work in-app from the feed / main views. Again, they also *must* be cross-domain, aka if your user is on yourapp.com and clicks a Universal Link also for yourapp.com, it will not work. However, clicking from yourapp.com to bnc.lt will trigger the link to function as a Universal Link and open your app directly.
+
+| App/Browser | Status
+| --- | ---
+| Safari | works conditionally
+| Chrome | works conditionally
+
+#### Apps that work sometimes
+
+Apps with built-in webviews (Google, Gmail, Inbox, Twitter, Facebook, Facebook Messenger, WeChat, etc.) work with Universal Links only when a webview is already open. In other words, Universal Links do not work in-app from the feed or main app views.
+
+To work around this limitation, your links must have [deepviews]({{base.url}}/features/deepviews) or something similar enabled, with a call-to-action link/button that has a Universal Link behind it. This way, clicking a link from the app feed will open a webview containing your deepview page, and the user can then click the link/button to launch your app. All of Apple's limitations (in the section above) still apply for the deepview page.
+
+| App/Browser | Status
+| --- | ---
+| Google | works conditionally
+| Facebook | works conditionally
+| Facebook Messenger | works conditionally
+| WeChat | works conditionally
+| Twitter | works conditionally
+| LinkedIn | works conditionally
+| Any app using `SFSafariViewController` | works conditionally
+
+#### Apps with special cases
+
+| App/Browser | Status
+| --- | ---
+| Gmail | works, if Chrome is not installed. If Chrome is installed, links open in Chrome instead of Safari and Universal Links do not work. However, Branch detects if Chrome is installed and triggers a URL scheme fallback if we are certain your app is installed on the device. This means your app will most likely open automatically, but not via Universal Linking behavior.
+| Google Inbox | works, if Chrome is not installed. If Chrome is installed, links open in Chrome instead of Safari and Universal Links do not work. However, Branch detects if Chrome is installed and triggers a URL scheme fallback if we are certain your app is installed on the device. This means your app will most likely open automatically, but not via Universal Linking behavior.
+| Slack | works if configured to open links in Safari. Otherwise, works conditionally as in the above section.
+
+
+#### Apps that do not work
+
+| App/Browser | Status
+| --- | ---
+| Pinterest | broken
+| Instagram | broken
+| Telegram | broken
+
 
 ## Links with custom labels/aliases
 
@@ -718,6 +852,9 @@ Custom domains and subdomains are unique to your app and not shared. All links o
 ##### Are you testing by manually entering into Safari?
 Universal Links don't work properly when entered into Safari. Use Notes or iMessage for testing.
 
+##### Are you wrapping Branch links in your own crappy link and redirecting?
+Universal Links don't work when they are wrapped in some sort of click tracking or other domain. They must be freestanding. Please don't wrap our links.
+
 ##### Is the entitlements file included for your build target?
 It seems that Xcode, by default, will not include the `.entitlements` file in your build. You have to check the box in the right sidebar against the correct target to ensure it's included in your app.
 
@@ -728,7 +865,7 @@ You can find them in the Dashboard under Settings > Link Settings, in the iOS se
 iOS does not re-scrape the apple-app-site-association file unless you delete and reinstall the app. (The only exception to this is App Store updates. iOS does rescrape on every update. This means that when users update to a version of your app with the applinks entitlement, Universal Links will start working for them.)
 
 ##### Universal Links can be disabled, unfortunately.
-If you are successfully taken into your app via a Universal Link, you'll see "bnc.lt" (or your domain) and a forward button in the top right corner of the status bar. If you click that button, Apple will no longer activate Universal Links in the future. To re-enable Universal Links, long press on the link in Messages or Notes and choose 'Open in <<App>>'.
+If you are successfully taken into your app via a Universal Link, you'll see "bnc.lt" (or your domain) and a forward button in the top right corner of the status bar. If you click that button, Apple will no longer activate Universal Links in the future. To re-enable Universal Links, long press on the link in Messages (iOS 9 only due to iMessage revamp in 10) or Notes (iOS 10/9) and choose 'Open in <<App>>'.
 
 ##### Using a custom domain?
 Make sure it's configured correctly. You can find configuration issues by using our [Universal Link Validator](http://branch.io/resources/universal-links/).
@@ -744,7 +881,7 @@ Sep 21 14:27:01 Derricks-iPhone swcd[2044] <Notice>: 2015-09-21 02:27:01.878907 
 These logs can be found for physical devices connected to Xcode by navigating to Window > Devices > choosing your device and then clicking the "up" arrow in the bottom left corner of the main view.
 
 ##### Using Facebook's SDK?
-We've recently discovered a bug with Facebook's SDK returning `NO` for `application:didFinishLaunchingWithOptions` preventing Universal Links from working on cold start. Call `accountForFacebookSDKPreventingAppLaunch` on your Branch instance before initializing the session.
+In certain situations, the Facebook SDK can cause `application:didFinishLaunchingWithOptions:` to return `NO`. When this happens, handling for all Universal Links is blocked. Please ensure that `application:didFinishLaunchingWithOptions:` always returns `YES`/`true`.
 
 ##### `bnc.lt` links with your Test Key?
 Due to a change in iOS 9.3.1, Universal Links will not work on *Test* apps using the `bnc.lt` domain. We're working on resolving this. Please test Universal Links with your Live app, where they will work as expected. [Read more](http://status.branch.io/incidents/b0c19p6hpq58){:target="_blank"}.

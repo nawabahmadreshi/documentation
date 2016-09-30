@@ -50,13 +50,13 @@ Conceptually, the data inside a Branch link follows this model:
 - All other parameters (essentially everything prefixed with `$`) go inside the `data` dictionary.
 - Any custom data you specify also goes inside the `data` dictionary.
 
-The mobile SDKs take care of this structure automatically, but it is important to keep in mind if you are creating links via the [Web SDK]({{base.url}}/getting-started/creating-links-other-ways/guide/#web-sdk) or [HTTP API]({{base.url}}/getting-started/creating-links-other-ways/guide/#http-api).
+While the mobile SDKs manage this structure automatically, the [Web SDK]({{base.url}}/getting-started/creating-links-other-ways/guide/#web-sdk) and [HTTP API]({{base.url}}/getting-started/creating-links-other-ways/guide/#http-api) do not. It is important to keep this in mind when working with these.
 
 {% endprotip %}
 
 ## Link data dictionary
 
-Every Branch link includes a dictionary for `key : value` pairs specified by you at the time the link is created. This data is then returned and available for use the next time your app is launched through that link. Read more about this on the [Creating Links in Apps]({{base.url}}/getting-started/creating-links-in-apps) and [Creating Links in Other Ways]({{base.url}}/getting-started/creating-links-other-ways) pages.
+Every Branch link includes a dictionary of `key : value` pairs that is specified by you at the time the link is created. Branch's SDKs make this data available within your app whenever the app is opened via a Branch link click. Read more about how to populate Branch links with data on the [Creating Links in Apps]({{base.url}}/getting-started/creating-links-in-apps) and [Creating Links in Other Ways]({{base.url}}/getting-started/creating-links-other-ways) pages.
 
 ## Link creation customizations
 
@@ -113,14 +113,14 @@ This parameter is currently supported only on iOS.
 
 #### Web-only links
 
-This lets you direct the user to the web, *even if they have the app installed*. When creating the link, add `$web_only: true` to the deep link data. 
+Web-only links are Branch links that redirect the user to the web *even if the app is installed*. When creating the link, add `$web_only: true` to the deep link data.
 
-Then the URL will include `/e/`, which is short for "exclusion". These links are excluded in the apple-app-site-association file we generate for custom domains and app.link domains. Note that bnc.lt links will not have `/e/` in the URL, but rather will revert to their non-Universal form, `/m/`.
+Web-only links are distinguished by the presence of an `/e/` (short for "exclusion") between the Branch link domain portion of the link and the link's alpha-encoded unique identifier or alias. Such links are not added to the apple-app-site-association file generated for custom and app.link domains. Note that bnc.lt links will not have `/e/` in the URL, but will instead revert to their non-Universal form, `/m/`.
 
-Aliased links are supported. `/e/` will be inserted into the URL, e.g. `myapp.app.link/e/myalias`. When you create an aliased link, the alias you reserve is for both forms of the url, e.g. `myapp.app.link/myalias` and `myapp.app.link/e/myalias`. This is effectively the same link, though the web-only form will not open the app even if it is installed.
+When you create an aliased web-only link, the alias will apply to both forms of the link. The links `myapp.app.link/myalias` and `myapp.app.link/e/myalias`, then, are the same link, though the web-only form will not open the app on a mobile device even if the app is installed.
 
 {% caution %}
-This parameter will not work with [Android App Links]({{base.url}}/getting-started/universal-app-links/).
+This parameter does not work with [Android App Links]({{base.url}}/getting-started/universal-app-links/).
 {% endcaution %}
 
 | Key | Value | Default
@@ -128,29 +128,39 @@ This parameter will not work with [Android App Links]({{base.url}}/getting-start
 | $web_only | true/false | false (not specified)
 
 {% protip title="Do you use Branch links in email?" %}
-Note: if your Branch links are wrapped by an email service provider's click tracking domain, then this logic does not apply. The email service provider must allow you to designate links as web-only links, because they control how click tracking links are created.
+Note: when Branch links are wrapped in email service provider click-tracking URLs the web-only parameter may not function as intended, as the email service provider controls how click-tracking links are created.
 {% endprotip %}
 
 
 ### Link behavior customization
 
+#### Control parameters
+
 Use these keys to control how URI scheme deep linking functions when opening your app from a link.
 
 {% caution title="Incomplete support on iOS" %}
-[Universal Links]({{base.url}}/getting-started/universal-app-links) and [Spotlight]({{base.url}}/features/spotlight-indexing) do not support deep linking via URI paths. If possible, we recommend not using `$deeplink_path` and its platform-specific variants as your only deep link routing method.
+[Universal Links]({{base.url}}/getting-started/universal-app-links) and [Spotlight]({{base.url}}/features/spotlight-indexing) do not support deep linking via URI paths. If you use `$deeplink_path` or `$ios_deeplink_path`, you will need to implement some custom logic. [Click here for more information]({{base.url}}/getting-started/universal-app-links/advanced/ios/#how-to-handle-uri-paths-with-universal-links).
 {% endcaution %}
 
 | Key | Usage | Default
 | --- | --- | ---
-| $deeplink_path | Set the deeplink path for _all_ platforms - so you don't have to enable it by platform | `open?link_click_id=1234`
-| $android_deeplink_path | Set the deeplink path for Android apps | *null*
-| $ios_deeplink_path | Set the deeplink path for iOS apps | *null*
+| $deeplink_path | Set the deep link path for _all_ platforms - so you don't have to enable it by platform. When the Branch SDK receives a link with this parameter set, it will automatically load the custom URI path contained within | `open?link_click_id=1234`
+| $android_deeplink_path | Set the deep link path for Android apps. When the Branch SDK receives a link with this parameter set, it will automatically load the custom URI path contained within | *null*
+| $ios_deeplink_path | Set the deep link path for iOS apps. When the Branch SDK receives a link with this parameter set, it will automatically load the custom URI path contained within | *null*
 | **$match_duration** | Lets you control the fingerprinting match timeout (the time that a click will wait for an app open to match) also known as attribution window. Specified in seconds | `7200` (2 hours)
 | $always_deeplink | If set to 'false' Branch will only try to open your app if we are certain the user has it | Value of **Always try to open app** in [Link Settings](https://dashboard.branch.io/#/settings/link)
 | $ios_redirect_timeout | Control the timeout that the client-side JS waits after trying to open up the app before redirecting to the App Store. Specified in milliseconds | `750`
 | $android_redirect_timeout | Control the timeout that the clientside JS waits after trying to open up the app before redirecting to the Play Store. Specified in milliseconds | `750`
 | $one_time_use | Set to 'true' to limit deep linking behavior of the generated link to a single use. Can also be set using `type` | `false`
 | $custom_sms_text | Text for SMS link sent for desktop clicks to this link. Must contain `{% raw %}{{ link }}{% endraw %}` | Value of **Text me the app page** in [Settings](https://dashboard.branch.io/settings)
+
+#### Triggering links from within an iFrame
+
+Note that on iOS 9 and 10, Apple has tough restrictions around redirecting from within an iFrame. If you need to trigger a Branch link from an iFrame, we recommend that you use the following:
+
+{% highlight js %}
+window.open(<Branch link here>);
+{% endhighlight %}
 
 ### Deepviews
 
@@ -170,11 +180,11 @@ Most of these parameters can also be specified using the [BranchUniversalObject]
 
 ### Content indexing controls
 
-Currently, these parameters are only used for [iOS Spotlight Indexing]({{base.url}}/features/spotlight-indexing) but will be used by Branch in the future.
+Currently, parameters determine how your content is listed on all public search portals via Branch's app content sitemap. We compile all public links into a sitemap once you've enabled `Google App Indexing` on the Branch dashboard.
 
-| Key | Usage
+| Key | Usage | Default
 | --- | --- | ---
-| $publicly_indexable | Can be set to either `public` or `private`. Public indicates that you'd like this content to be discovered by other apps
+| $publicly_indexable | If this content should be public and discovered by other apps. `1` indicates public, and `0` indicates private | `1`
 | $keywords | Keywords for which this content should be discovered by. Just assign an array of strings with the keywords you'd like to use
 | $canonical_identifier | This is the unique identifier for content that will help Branch dedupe across many instances of the same thing. Suitable options: a website with pathing, or a database with identifiers for entities
 | $exp_date | The date when the content will not longer be available or valid
@@ -204,8 +214,10 @@ If you do not specify a primary OG tag when creating a link, Branch will perform
 | $twitter_card | Set the Twitter card type of the link
 | $twitter_title | Set the title of the Twitter card
 | $twitter_description | Set the description of the Twitter card
+| $twitter_image_url | Set the image URL for the Twitter card
 | $twitter_site | Set the site for Twitter
 | $twitter_app_country | Set the app country for the app card
+| $twitter_player | Set the video player's URL. Defaults to the value of `$og_video`.
 | $twitter_player_width | Set the player's width in pixels
 | $twitter_player_height | Set the player's height in pixels
 

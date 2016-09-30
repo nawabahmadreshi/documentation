@@ -36,7 +36,7 @@ To create a Remote Deep Link, you’ll need the following:
 
 Let's start with some example information. 
 
-* Base domain: `https://bnc.lt/27mg/3p?%243p=ex&%24original_url=`
+* Base domain: `https://bnc.lt/27mg/3p?%243p=e_ex&%24original_url=`
 * Secret key: `HoRywe971pl569DMpU1RzbRTap4ewnbNeqEcisz4FjQ=`
 * Web URL: `https://www.example.com/product/summer_shoes/`
 * Deep link parameters: `sku=123456` and `color=blue`
@@ -54,13 +54,13 @@ Here's an example.
 1. Append the web link as the original URL parameter on the base link: 
 ```https://bnc.lt/27mg/3p?%243p=ex&%24original_url=https%3A%2F%2Fwww.example.com%2Fproduct%2Fsummer_shoes%2F%3Fsku%3D123456%26color%3Dblue```
 
-1. [Optional] Pass the URL and your secret key into a HMAC hashing function using SHA-256, then append that value as the parameter “%24hmac”. 
-```https://bnc.lt/27mg/3p?%243p=ex&%24original_url=https%3A%2F%2Fwww.example.com%2Fproduct%2Fsummer_shoes%2F%3Fsku%3D123456%26color%3Dblue&%24hmac=bf08f6bcffcac4249be4c80727aaf9e38dd44538355de71f76eddaf8e781d501```
+1. [Optional] Pass the URL and your secret key into a HMAC hashing function using SHA-256, then append that value as the parameter “%24hash”. 
+```https://bnc.lt/27mg/3p?%243p=ex&%24original_url=https%3A%2F%2Fwww.example.com%2Fproduct%2Fsummer_shoes%2F%3Fsku%3D123456%26color%3Dblue&%24hash=bf08f6bcffcac4249be4c80727aaf9e38dd44538355de71f76eddaf8e781d501```
 
 The deep linking and fallback behavior of the link is determined in the Branch dashboard. Your Branch account manager will set this up for you before starting.
 
 {% protip %}
-There are reference scripts in Python and Javascript [here](https://gist.github.com/derrickstaten/aa7696a7a7a0aed5956fef6c030bd2c6).
+There are reference scripts in Python and Javascript [here](https://gist.github.com/derrickstaten/f9b1e72e506f79628ab9127dd114dd83#file-branch-sdk-js) as well as an example [of a full email conversion script](https://gist.github.com/derrickstaten/f9b1e72e506f79628ab9127dd114dd83#file-sendgrid-demo-js).
 {% endprotip %}
 
 {% endif %}

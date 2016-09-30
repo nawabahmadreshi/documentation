@@ -6,6 +6,7 @@ page_title: Send Deep Link Install Data to Appboy
 description: We’ve partnered with Appboy to provide an easy way to deliver Branch installs and attributions to your Appboy dashboard. Learn how to set it up.
 keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Analytics, Install Data, Appboy
 hide_platform_selector: true
+premium: true
 sections:
 - overview
 - guide
@@ -19,7 +20,7 @@ The Branch partnership with [Appboy](https://www.appboy.com) provides a push-but
 
 {% ingredient paid-integration %}{% endingredient %}
 
-{% getstarted title="Get started with Appboy" %}{% endgetstarted %}
+{% getstarted %}{% endgetstarted %}
 
 ## How it works
 
@@ -27,7 +28,7 @@ We have built a custom integration to automatically send all Branch install data
 
 {% protip title="How do we differentiate Appboy and Branch installs?" %}We rely on a Branch link being clicked, which leads to an install. This sets an internal boolean that an install came from Branch.{% endprotip %}
 
-{% getstarted title="Get started with Appboy" %}{% endgetstarted %}
+{% getstarted %}{% endgetstarted %}
 
 {% elsif page.guide %}
 

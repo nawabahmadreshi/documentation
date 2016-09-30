@@ -22,7 +22,7 @@ To help you grow your app, Facebook offers a feature called App Invites as an al
 
 {% image src='/img/pages/features/facebook-app-invites/appinvite.png' 2-thirds center alt='app invite' %}
 
-{% getstarted title="Get started with Facebook App Invites" %}{% endgetstarted %}
+{% getstarted %}{% endgetstarted %}
 
 {% elsif page.guide %}
 
@@ -123,13 +123,12 @@ Then use the Facebook SDK's `appInviteDialog` method ([documentation here](https
 // add these methods in if you extend your sharing view controller with <FBSDKAppInviteDialogDelegate>
 - (void)appInviteDialog:(FBSDKAppInviteDialog *)appInviteDialog
  didCompleteWithResults:(NSDictionary *)results {
-    [[Branch getInstance] userCompletedAction:@"completed_share"];
+    [[Branch getInstance] userCompletedAction:BNCShareCompletedEvent];
     NSLog(@"app invite dialog did complete");
 }
 
 - (void)appInviteDialog:(FBSDKAppInviteDialog *)appInviteDialog
        didFailWithError:(NSError *)error {
-    [[Branch getInstance] userCompletedAction:@"cancelled_share"];
     NSLog(@"app invite dialog did fail");
 }
 {% endhighlight %}

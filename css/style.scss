@@ -17,6 +17,7 @@ $branch-font-path: "/font";
 @import "./inner";
 @import "./breadcrumbs";
 @import "./searchbar";
+@import "./get_started";
 
 .btn-inactive {
 	border-color: white;
@@ -36,6 +37,21 @@ $branch-font-path: "/font";
 	margin-top: 0px;
 }
 
+.premium-label {
+	float: right;
+	max-width: 100px;
+}
+
+.premium-star {
+	max-width: 30px;
+	margin-right: 10px;
+}
+
+.premium-flag {
+	height: 1.3em;
+	padding: 0 0.3em;
+}
+
 pre {
 	word-break: normal;
 	word-wrap: normal;
@@ -46,7 +62,7 @@ pre {
 }
 
 body {
-	font-size: 16px; 
+	font-size: 16px;
 	line-height: 1.5;
 }
 

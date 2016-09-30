@@ -24,7 +24,7 @@ sections:
 
 Branch allows you reward users with credits, track those credits, and redeem them when appropriate. It is a unit-less currency available to your users without you having to build a system from scratch.
 
-{% getstarted title="Set up referrals" %}{% endgetstarted %}
+{% getstarted %}{% endgetstarted %}
 
 {% elsif page.guide %}
 
@@ -49,17 +49,6 @@ Branch tracks the hardware ID and IDFA of every device we detect, and ties these
 {% endprotip %}
 
 To add a rule, go to the Dashboard Referrals page and click the [Rules tab](https://dashboard.branch.io/#/referrals/rules). Click the green "+ Add a new rule" button. Once there, you can select between two options:
-
-### Promo code
-
-You can give awards based on promo codes manually entered by the user.
-
-Properties you can define:
-
-1. The code a user may enter
-1. How many credits the reward is
-1. Which `bucket` the credits go to
-1. Whether the reward occurs the first time or every time
 
 ### Give reward
 
@@ -97,6 +86,10 @@ Let's say you want to give 10 credits to each new user who signs up through a fr
 {% image src='/img/pages/features/referral-programs/referring_rule.png' center 3-quarters alt='referring user' %}
 
 {% endexample %}
+
+### Promo code
+
+Our promo code functionality was removed in iOS SDK version 0.12.4 and Android SDK version 2.0.0. The system still works but we will no longer be providing support or updates to this service. This tab will remain present to support legacy integrations dependent on promo code functionality.
 
 ## Viewing Credits
 

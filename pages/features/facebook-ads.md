@@ -20,7 +20,7 @@ Branch links can be used together with Facebook ads, allowing you to track ad-dr
 
 {% ingredient deep-linked-ad-ideas %}{% endingredient %}
 
-{% getstarted title="Get started with Facebook ads" %}{% endgetstarted %}
+{% getstarted %}{% endgetstarted %}
 
 {% elsif page.guide %}
 
@@ -81,18 +81,46 @@ Note that you cannot call `fetchDeferredAppLinkData` in addition to us, lest you
 1. Pick a **Link Description** for later reference. For example: "Facebook ad for blue sneakers - summer 2015." {% image src='/img/pages/features/facebook-ads/fb_example_create.png' 3-quarters center alt='Create Marketing Link' %}
 1. **Channel** and **Campaign** are optional but recommended. **Tags** is free form. {% image src='/img/pages/features/facebook-ads/fb_example_tags.png' 3-quarters center alt='tags' %}
 
+{% caution %}
+
+In order for your campaign to run effectively, be sure to disable Deepviews. You can either [disable Deepviews](https://dev.branch.io/features/deepviews/guide/ios/) for your entire account or [disable Deepviews for one link]({{base.url}}/features/deepviews/advanced/ios/#disabling-deepviews-for-one-link).
+
+{% endcaution %}
+
 {% protip title="Optional: Deep Link Data (Advanced)" %}
 
 You can use this configuration section to specify custom link parameters that will be deep linked into the app after install. These could include a coupon code or a page identifier to route the user. Visit the [Deep Link Routing]({{base.url}}/getting-started/deep-link-routing) page to learn more.
 
 {% endprotip %}
 
-## Add Branch link to Facebook ad
+## Add Branch link to Facebook App Install campaign
 
 1. Navigate to [https://www.facebook.com/ads/create](https://www.facebook.com/ads/create) while logged in to the account that owns your Facebook app.
-1. Choose **Get installs of your app**. Then scroll down and select the Facebook app that you wish to advertise. {% image src='/img/pages/features/facebook-ads/fb_ad_installs.png' 3-quarters center alt='Facebook Example Ad' %}
-1. After you choose your audience and customize the display of the link, you can now specify the Deep Link in the following section. {% image src='/img/pages/features/facebook-ads/fb_ad_deep_link_area.png' 3-quarters center alt='Facebook Example Ad' %}
+1. Choose **Get installs of your app**. After entering a name for your campaign and clicking continue, select the Facebook app that you wish to advertise. {% image src='/img/pages/features/facebook-ads/fb_ad_installs.png' 3-quarters center alt='Facebook Example Ad' %}
+1. After you choose your audience, placement, budget, and schedule, click continue to create your ad. 
+1. Once you have customized the display of the ad, you can now specify the Deep Link in the following section. {% image src='/img/pages/features/facebook-ads/fb_ad_deep_link_area.png' 3-quarters center alt='Facebook Example Ad' %}
 1. Paste the Branch link from the dashboard into the **Deep Link** field. {% image src='/img/pages/features/facebook-ads/fb_ad_deep_link_branch.png' half center alt='Facebook Example Ad' %}
+
+{% protip title="Optional: Use Multiple Deep Links with the Carousel Ad Format" %}
+
+If you are using the Carousel Ad Format, you can specify a different Deep Link for each image you use. This is format is useful if you want to drive customers to different content or products.
+
+{% endprotip %}
+
+## Add Branch link to Facebook App Engagement campaign
+
+1. Navigate to [https://www.facebook.com/ads/create](https://www.facebook.com/ads/create) while logged in to the account that owns your Facebook app.
+1. Choose **Increase engagement in your app**. After entering a name for your campaign and clicking continue, select the Facebook app that you wish to advertise. {% image src='/img/pages/features/facebook-ads/fb_ad_installs.png' 3-quarters center alt='Facebook Example Ad' %}
+1. After you choose your audience, placement, budget, and schedule, click continue to create your ad. 
+1. Once you have customized the display of the ad, you can now specify the Deep Link in the following section. {% image src='/img/pages/features/facebook-ads/fb_ad_deep_link_area.png' 3-quarters center alt='Facebook Example Ad' %}
+1. Paste the Branch link from the dashboard into the **Deep Link** field. Note that this field does not support query parameter-based links. You must create a short link add deep link data keys and values on the marketing page. {% image src='/img/pages/features/facebook-ads/fb_ad_deep_link_branch.png' half center alt='Facebook Example Ad' %}
+
+## Add Branch link to Facebook Website Clicks campaign
+
+1. Navigate to [https://www.facebook.com/ads/create](https://www.facebook.com/ads/create) while logged in to the account that owns your Facebook app.
+1. Choose **Send people to your website**. After entering a name for your campaign and clicking continue, select your audience, placement, budget, and schedule. Then click continue to create your ad. 
+1. Paste the Branch link from the dashboard into the **Website URL** field. 
+1. You can then customize the display of the ad and specify the **Call to Action** (we recommend **Download**). 
 
 ## View your data using the Branch dashboard
 
@@ -236,5 +264,9 @@ We've seen Facebook classify 're-installs' as fresh installs, where Branch will 
 {% image src='/img/pages/features/facebook-ads/installs_plus_opens.png' 2-thirds center alt='installs and opens' %}
 
 If it's close, you know that this is the root cause.
+
+### Fewer Clicks Recorded in Branch
+
+The number of clicks on a link used inside of a Branch enabled Facebook Ad will be lower in Branch's dashboard than Facebook's. This is because Facebook routes users straight to the App/Play Store without letting Branch know that a link was clicked. If the user decides not to install the app/drops off at the App/Play Store, then Facebook will have recorded one more click than Branch. Branch does not increment the link's click count until the user enters into the app. This is why you'll see more clicks in Facebook's dashboard.
 
 {% endif %}

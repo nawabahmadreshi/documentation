@@ -17,4 +17,9 @@
   name: React Native
 - key: web
   name: Web
-
+- key: mparticle_ios
+  name: mParticle iOS
+- key: mparticle_android
+  name: mParticle Android
+- key: ios_imessage
+  name: iOS iMessage

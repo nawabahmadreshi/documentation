@@ -6,6 +6,7 @@ page_title: Automatically convert your email links into multi-platform deep link
 description: Add powerful, best in class deep linking to your email campaigns.
 keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Deep Linked Email
 hide_platform_selector: true
+premium: true
 sections:
 - overview
 - guide
@@ -92,7 +93,7 @@ With link tracking enabled, you can still use Branch links in emails.
 `<@tracked_deeplink "https://branch.io/product/1234">
 <a href="${clickthrough('TEST_TRACKED_DEEPLINK' , 'deeplink=' + deeplink)}">Example link</a>`
 
-This latter example pulls from a Link Table. Please work with your Branch Account Manager to make sure you have this set up properly.
+This latter example pulls from a Link Table. In the link table, set the `IOS Link URL` and `Android link URL` to the value `${deeplink}`.
 
 {% endexample %}
 
@@ -124,8 +125,8 @@ The code above does not include your base url or hash secret. You should obtain 
 Create a file for the Branch SDK and paste in the following:
 
 {% highlight html %}
-<#macro deeplink link_to_be_wrapped><#assign branch_base_url='https://bnc.lt/abcd/3p?%243p=rs'><#assign branch_hash_secret='F+sNEMK3Jg/3yskR3pB9fEgLuNFcrbROYTJwQ8ABno0='><#assign final_link=branch_base_url + '&%24original_url=' + link_to_be_wrapped?url('ISO-8859-1')><#assign hash=messagedigest(branch_hash_secret+final_link+branch_hash_secret,"SHA","hex")><#assign final_link=final_link+'&%24hash='+hash><a href="${final_link}"><#nested></a></#macro>
-<#macro tracked_deeplink link_to_be_wrapped><#assign branch_base_url='https://bnc.lt/abcd/3p?%243p=rs'><#assign branch_hash_secret='F+sNEMK3Jg/3yskR3pB9fEgLuNFcrbROYTJwQ8ABno0='><#assign deeplink=branch_base_url + '&%24original_url=' + link_to_be_wrapped?url('ISO-8859-1')><#assign hash=messagedigest(branch_hash_secret+deeplink+branch_hash_secret,"SHA","hex")><#assign deeplink=deeplink+'&%24hash='+hash></#macro>
+<#macro deeplink link_to_be_wrapped><#assign branch_base_url='https://bnc.lt/abcd/3p?%243p=e_rs'><#assign branch_hash_secret='F+sNEMK3Jg/3yskR3pB9fEgLuNFcrbROYTJwQ8ABno0='><#assign final_link=branch_base_url + '&%24original_url=' + link_to_be_wrapped?url('ISO-8859-1')><#assign hash=messagedigest(branch_hash_secret+final_link+branch_hash_secret,"SHA","hex")><#assign final_link=final_link+'&%24hash='+hash><a href="${final_link}"><#nested></a></#macro>
+<#macro tracked_deeplink link_to_be_wrapped><#assign branch_base_url='https://bnc.lt/abcd/3p?%243p=e_rs'><#assign branch_hash_secret='F+sNEMK3Jg/3yskR3pB9fEgLuNFcrbROYTJwQ8ABno0='><#assign deeplink=branch_base_url + '&%24original_url=' + link_to_be_wrapped?url('ISO-8859-1')><#assign hash=messagedigest(branch_hash_secret+deeplink+branch_hash_secret,"SHA","hex")><#assign deeplink=deeplink+'&%24hash='+hash></#macro>
 {% endhighlight %}
 
 Screenshot:

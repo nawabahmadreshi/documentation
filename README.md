@@ -13,37 +13,23 @@ If you're interested in building the documentation portal on your local machine,
 Open a shell and run these commands:
 
 ```
-$ gem install bundler
-$ xcode-select --install
-$ gem install nokogiri -v '1.6.6.2'
+gem install bundler;
+xcode-select --install;
+gem install nokogiri -v '1.6.6.2';
 ```
 
 ### 2. Clone repo
-In your shell, navigate to the location you want to store the documentation site. Next run: 
+In your shell, navigate to the location you want to store the documentation site. Next run:
 
 ```
-$ git clone https://github.com/BranchMetrics/documentation.git
+git clone https://github.com/BranchMetrics/documentation.git
 ```
 
-### 3. Initialize submodules
-Open the new directory:
-
-```
-$ cd documentation
-```
-
-Initialize and update the git submodules:
-
-```
-$ git submodule init
-$ git submodule update
-```
-
-### 4. Install Jekyll and Dependencies
+### 3. Install Jekyll and Dependencies
 Install all the required Node.js and Ruby packages:
 
 ```
-$ npm install && bundle install
+npm install && bundle install
 ```
 
 # Running the project
@@ -51,10 +37,10 @@ $ npm install && bundle install
 To generate the static site files and serve them, open a new shell window, navigate the the `documentation` folder in the cloned repo, and run:
 
 ```
-$ bundle exec jekyll serve --watch
+bundle exec jekyll serve
 ```
 
-Wait for the build process to finish, and then open [http://localhost:4000](http://localhost:4000) in your web browser. The `--watch` flag automatically regenerates the site whenever you make changes to component files.
+Wait for the build process to finish, and then open [http://localhost:4000](http://localhost:4000) in your web browser.
 
 ## Troubleshooting
 
@@ -64,18 +50,14 @@ Wait for the build process to finish, and then open [http://localhost:4000](http
 Conversion error: Jekyll::BrowserifyConverter encountered an error while converting 'js/all.js':
                     Connection refused - connect(2) for "localhost" port 20219
 ```
-                    
-If you get connection errors like the above from Jekyll, try increasing your open file limit:
+
+If you get connection errors like the above from Jekyll, try increasing your open file limit. Then rerun Jekyll (it may take a couple of attempts):
 
 ```
-$ ulimit -n 10000
+ulimit -n 10000; bundle exec jekyll serve;
 ```
 
-Then rerun Jekyll (it may take a couple of attempts):
-
-```
-$ bundle exec jekyll serve --watch
-```
+Wait for the build process to finish, and then open [http://localhost:4000](http://localhost:4000) in your web browser.
 
 You'll need to do this every time you open a new shell window.
 
@@ -95,7 +77,7 @@ If you run into trouble with either `bundle` or `npm` commands, you may need to 
 The output of Jekyll's `--trace` option can often be useful for debugging build problems:
 
 ```
-$ bundle exec jekyll serve --watch --trace
+bundle exec jekyll serve --trace
 ```
 
 ## Useful tools
@@ -105,7 +87,7 @@ $ bundle exec jekyll serve --watch --trace
 To check for broken links in the generated site, run:
 
 ```
-$ htmlproof --href-ignore /^$/ ./_site/
+htmlproof --href-ignore /^$/ ./_site/
 ```
 
 ### Building local search index
@@ -113,13 +95,13 @@ $ htmlproof --href-ignore /^$/ ./_site/
 Search will not work locally until you create an index for it. First, generate the static site with:
 
 ```
-$ bundle exec jekyll serve --watch
+bundle exec jekyll serve
 ```
 
 When the build process has completed, and while the site is being served, run:
 
 ```
-$ npm run build_search
+npm run build_search
 ```
 
 # Guidelines for writing
@@ -132,7 +114,7 @@ For a sample file with the most common elements preloaded, see `features/templat
 
 It is recommended to make changes on a new branch, and then submit a pull request to `master`. Ask for someone to thumb it up before merging.
 
-***Important:*** `master` *is the production branch! If you push changes there, they will be deployed to [https://dev.branch.io](https://dev.branch.io)!* 
+***Important:*** `master` *is the production branch! If you push changes there, they will be deployed to [https://dev.branch.io](https://dev.branch.io)!*
 
 We also have a staging server. Any changes pushed to the `staging` branch will deploy to [http://dev.staging.branch.io.s3-website-us-west-1.amazonaws.com](http://dev.staging.branch.io.s3-website-us-west-1.amazonaws.com)
 
@@ -458,15 +440,36 @@ Define a set of switchable tabs, most commonly used to show both Objective-C and
 ### getstarted
 
 ![](img/readme/getstarted.png)
+![](img/readme/getstarted-title.png)
+![](img/readme/getstarted-next.png)
+![](img/readme/getstarted-next-title.png)
 
-Used at the bottom of the Overview page section. Creates a button to the Guide section.
+Used at the bottom of the Overview page section. Creates a button to the next section. Also customizable to create next buttons to next sections, or to custom sections with custom titles.
 
 | Attribute | Usage
 | ---: | ---
-| **title** | Specify the text of the button. Will default to **"Get started!"** if left blank.
+| **title** | Specify the text of the button. Will default to "Get Started:** Page Title - Section**" if left blank.
+| **next** | Set to true to change "Get Started" to "Next". Button text is "Next:** Page Title - Section**".
+| **next**, **title** | Specify the text of the next button as well as a page to link to. 
 
 ```
-{% getstarted title="Get started with content sharing!" %}{% endgetstarted %}
+{% getstarted %}{% endgetstarted %}
+
+{% getstarted title="Get started with Deepviews" %}{% endgetstarted %}
+
+{% getstarted next='true' %}{% endgetstarted %}
+
+{% getstarted title='Deepviews' next='features/deepviews' %}{% endgetstarted %}
+```
+
+### premiumflag
+
+![](img/readme/premiumflag.png)
+
+Inserts an inline icon to indicate a feature or option is premium-only.
+
+```
+{% premiumflag %}{% premiumflag %}
 ```
 
 ## Jekyll front matter
@@ -494,6 +497,17 @@ sections:
 - guide
 - advanced
 - support
+- custom-1
+- custom-2
+hide_platform_selector:
+- advanced
+- custom-2
+contents:
+  list:
+  number:
+    - advanced
+  hide:
+    - custom-2
 ---
 ```
 
@@ -506,10 +520,10 @@ sections:
 | **description** | Short description of page content, used in search results and section landing pages. Can also be specified by platform using **ios_description** and **android_description** instead.
 | **keywords** | Comma-separated keywords used for search. Can also be specified by platform using **ios_keywords** and **android_keywords** instead.
 | **platforms** | *(Optional)* Items to show in the platform selector, which appears at the top of every page section except Overview. Available options are `ios`, `android`, `cordova`, `xamarin`, `unity`, `adobe`, `titanium`, `react`, and `web`
-| **sections** | Sections used on page. Available options are `overview`, `guide`, `advanced`, and `support`
-| **contents** | *(Optional)* Controls the style of Table of Contents and alternating content rows on the Guide page section. Available options are `list`, `numbered`, and `hide`. Defaults to `numbered`
+| **sections** | Sections used on page. Available options are `overview`, `guide`, `advanced`, `support`, or custom section titles.
+| **contents** | *(Optional)* Controls the style of Table of Contents and alternating content rows on the Guide page section. Available options are `list`, `number`, and `hide`. Defaults to `hide` for overview sections, `number` for guide sections, and `list` for everything else. Set specific styles for specific pages like in the example above.
 | **hide_section_selector** | *(Optional)* Set `true` to hide the section selector.
-| **hide_platform_selector** | *(Optional)* Set `true` to hide the platform selector.
+| **hide_platform_selector** | *(Optional)* Set `true` to hide the platform selector, or set for specific pages like in the example above.
 | **exclude_from_google_search** | *(Optional)* Set `true` to keep Google (and others) from indexing this page.
 
 ## Managing search results

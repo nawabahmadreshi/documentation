@@ -6,6 +6,7 @@ page_title: Automatically convert your email links into multi-platform deep link
 description: Add powerful, best in class deep linking to your email campaigns.
 keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Deep Linked Email
 hide_platform_selector: true
+premium: true
 sections:
 - overview
 - guide
@@ -17,9 +18,11 @@ sections:
 
 Deep Linked Email allows you to automatically convert your email links into multi-platform deep links that take users directly to content in the app on mobile devices, while still maintaining the same web experience for desktop and mobile users without the app.
 
+{% ingredient email-paid-integration %}{% endingredient %}
+
 {% image src="/img/pages/third-party-integrations/responsys/deep-linked-email.png" center full alt='With and Without Branch Deep Linked Email' %}
 
-With a script provided by Branch, you can dynamically create Branch links in email. In any place the script is called, the web URL is converted into its corresponding Branch link. The email is then sent.
+With a script provided by Branch, you can dynamically create Branch links in email. This script will help you automatically re-write normal web links to be Branch deep links.
 
 When a link is clicked by a user without the app, it will route that user to the original web URL (including on desktop). When a link is clicked by a user with your app, it will direct that user into the relevant in-app content regardless of platform or email client.
 
@@ -34,23 +37,61 @@ When a link is clicked by a user without the app, it will route that user to the
 - Your Branch account manager will walk you through the one time setup steps. Please see the Advanced tab for more detailed information.
 {% endprerequisite %}
 
-## One time setup
+## Contact Branch
 
-Contact your Branch Account Manager or [accounts@branch.io](mailto:accounts@branch.io) to enable remote deep linking functionality for emails, set up your app and host the necessary files for Universal Links. You can find more details about the one time setup steps in the "Advanced" tab.
+Contact your Branch Account Manager or [accounts@branch.io](mailto:accounts@branch.io) to enable the SendGrid integration and let your Branch Account Manager know you use SendGrid. You'll need to give your account manager two pieces of information.
 
-{% caution title="Ensure compatibility on iOS 9+ with SendGrid" %}
-Deep linking on iOS 9+ devices requires Apple’s Universal Link technology. Branch will provide you with almost everything you need. You will need to switch to using a custom, Branch-provided domain for click tracking within SendGrid. Your Branch account manager will help with this step as well.
-{% endcaution %}
+1. Go to your SendGrid account, and go to Settings > Whitelabels > Email Links. 
+1. Find your email link whitelabeled domain, click on the gear icon and click "View" (or create a new whitelabel). {% image src='/img/pages/third-party-integrations/sendgrid/sendgrid-view-domain.png' 3-quarters center alt='xcode add domain' %}
+1. Note the "Host" email click tracking domain (e.g. email.mydomain.com) and the SendGrid domain under "Data". {% image src='/img/pages/third-party-integrations/sendgrid/sendgrid-whitelabel.png' 3-quarters center alt='xcode add domain' %}
+
+Provide both the click tracking domain and the SendGrid domain to your Branch Account Manager.
+
+## Add your click tracking domain to your entitlements file
+
+On iOS 9+ with Universal Links, Branch will be able to open the app directly from emails without going to the browser. To make this work, you'll need to update your app.
+
+1. In the `Domains` section of your Entitlements, click the `+` icon and add your click tracking domain:
+   * `applinks:email.mydomain.com`
+
+{% image src='/img/pages/getting-started/universal-app-links/add_domain.png' 3-quarters center alt='xcode add domain' %}
+
+## Set up your click tracking domain
+
+Only do this step after you've given your Branch account manager your SendGrid click tracking domain.
+
+1. Create a CNAME for your subdomain and point it to `thirdparty.bnc.lt`
+1. Confirm with your Branch AM that the domain is working correctly.
 
 ## On-going use
 
-Once you’ve completed the one time setup steps, it’s time to send your first email.
+Once you’ve completed the one time setup steps, it’s time to send your first email! This step will identify which web links you'd like to open the app and deep link, as well as convert them to Branch links.
 
-This step will identify which web links you'd like to open the app and deep link, as well as convert them to Branch links.
+{% caution title="Flag your Universal Links" %}
+In order for SendGrid to know that the Universal Link should open the app, add `universal="true"` to the HTML, for example:
 
-### Rewrite normal links as Branch links
+{% highlight html %}
+<a href="links.example.com" universal="true">Link to your app!</a>
+{% endhighlight %}
 
-You will need to convert your links from normal web links to Branch deep links. We have provided [a script](https://gist.github.com/derrickstaten/f9b1e72e506f79628ab9127dd114dd83#file-branch-sdk-js) for doing so, as well as [an example](https://gist.github.com/derrickstaten/f9b1e72e506f79628ab9127dd114dd83#file-sendgrid-demo-js). The example takes an html email (as a string) and applies the script to it.
+{% endcaution %}
+
+### Making regular Branch links compatible with email
+
+Be sure to add `"$3p":"e_sg"` to the deep link data of any links you use in email to ensure Universal Link and click tracking works as expected.
+
+### Create email links via API without changing your email templates
+
+To create email links via API, please use the instructions on how to [create links via API](/getting-started/creating-links-other-ways/guide/#http-api), but include the following key value pairs in your call:
+
+1. `"$3p":"e_sg"` This is required for Universal Link and click tracking functionality.
+1. `"$original_url":"{{your web url URI encoded}}"` For each piece of content, include a URI encoded version of your content's web URL. You can also add deep link data as query parameters on that web URL. This ensures accurate Content Analytics reporting. **Example: `"$original_url":"https%3A%2F%2Fshop.com%2Fshoes%2Fbrown-shoes%3Fmy_key%3Dmy_value%26campaign%3Dshoe_discounts"`**
+
+### Convert all web links in your email to deep links
+
+We have provided [a way](/third-party-integrations/remote-deep-links/guide/) of easily converting web links to Branch links, as well as [an example](https://gist.github.com/derrickstaten/f9b1e72e506f79628ab9127dd114dd83#file-sendgrid-demo-js). The example takes an html email (as a string) and applies the script to it.
+
+To use this script, make sure you've set up deep links according to one of the [linking schemas outlined here](/third-party-integrations/sendgrid/advanced/#setting-up-your-link-schema-for-email).
 
 Here is the script:
 {% highlight js %}
@@ -58,7 +99,7 @@ var crypto = require('crypto');
 module.exports = function(original_url, branch_base_url, branch_hmac_secret, three_p_url) {
 	if (!original_url) { return new Error('Missing original_url'); }
 	if (typeof original_url != 'string') { return new Error('Invalid original_url'); }
-	if (!branch_base_url) { return new Error('Missing branch_base_url, should be similar to https://bnc.lt/abcd/3p?%243p=xx'); }
+	if (!branch_base_url) { return new Error('Missing branch_base_url, should be similar to https://bnc.lt/abcd/3p?%243p=e_sg'); }
 	if (typeof branch_base_url != 'string') { return new Error('Invalid branch_base_url'); }
 	if (!branch_hmac_secret) { return new Error('Missing branch_hmac_secret'); }
 	if (typeof branch_hmac_secret != 'string') { return new Error('Invalid branch_hmac_secret'); }
@@ -66,14 +107,14 @@ module.exports = function(original_url, branch_base_url, branch_hmac_secret, thr
 
 	var pre_hmac_url = branch_base_url + (three_p_url ? '&%243p_url=' + encodeURIComponent(three_p_url) : '') + '&%24original_url=' + encodeURIComponent(original_url),
 		hmac = crypto.createHmac('sha256', branch_hmac_secret).update(pre_hmac_url).digest('hex');
-	return pre_hmac_url + '&%24hmac=' + hmac;
+	return pre_hmac_url + '&%24hash=' + hmac;
 };
 {% endhighlight %}
 
 Here is how links look before and after (the latter being a Branch deep link).
 
 1. *Before:* http://example.com/?foo=bar
-2. *After:* https://vza3.app.link/3p?%243p=st&%24original_url=http%3A%2F%2Fexample.com%2F%3Ffoo%3Dbar&%24hmac=221dd9fb333d809b22fbdfd9b87808de73e3cd94f99b8eb26e6181e962fcb438
+2. *After:* https://vza3.app.link/3p?%243p=e_sg&%24original_url=http%3A%2F%2Fexample.com%2F%3Ffoo%3Dbar&%24hash=221dd9fb333d809b22fbdfd9b87808de73e3cd94f99b8eb26e6181e962fcb438
 
 (note that these are simplified examples, not actual demo links)
 
@@ -100,56 +141,10 @@ If you use unique key/value data as deep link values:
 In future releases, the Branch marketing link creator will also scrape your web URL for deep link data to make link creation even easier.
 {% endprotip %}
 
-## App changes for Universal Link support
-
-### Add your click tracking domain to your Associated Domains
-To enable Universal Links on your click tracking domain, you'll need to add the click tracking domain to your Associated Domains entitlement. Follow [these instructions](/getting-started/universal-app-links/guide/ios/#add-the-associated-domains-entitlement-to-your-project) to add your click tracking domain to Associated Domains. Your domain will likely be entered as `applinks:email.example.com`.
-
-### Handle links for web-only content
-
-If you have links to content that exists only on web, and not in the app (for example, an Unsubscribe button, or a temporary marketing webpage that isn't in the app) then this code snippet will ensure all links that have not had the deep linking script applied will open in a browser.
-
-You should add this code snippet inside the `deepLinkHandler` code block in `application:didFinishLaunchingWithOptions:`. Note that this uses query `open_web_browser=true`, but you can choose whatever you like. This should match the web URL you enter in the email.
-
-{% tabs %}
-{% tab objective-c %}
-{% highlight objc %}
-if (params[@"+non_branch_link"] && [params[@"+from_email_ctd"] boolValue]) {
-    NSURL *url = [NSURL URLWithString:params[@"+non_branch_link"]];
-    if (url) {
-        [application openURL:url];
-        // check to make sure your existing deep linking logic, if any, is not executed, perhaps by returning early
-    }
-}
-{% endhighlight %}
-{% endtab %}
-
-{% tab swift %}
-{% highlight swift %}
-if let nonBranchLink = params["+non_branch_link"] as? String, let fromEmailCtd = params["+from_email_ctd"] as? Bool {
-    if fromEmailCtd, let url : URL = URL(string: nonBranchLink) {
-        application.openURL(url)
-        // check to make sure your existing deep linking logic, if any, is not executed, perhaps by returning early
-    }
-}
-{% endhighlight %}
-{% endtab %}
-{% endtabs %}
-
 {% protip title="Do not open the app" %}
-In a future release (scheduled for September) customers will have the ability to choose not to open the app at all rather than open the app and launch a browser.
+In a future release (scheduled for September) customers will have the ability to choose not to open the app at all rather than open the app and launch a browser. We'll provide more details soon.
 {% endprotip %}
 
-
-## AASA file for Universal Link support
-
-We will host an Apple App Site Association (AASA) file for you, so that your click tracking domain appears to Apple as a Universal Link, and the app will open and deep link.
-
-You will need to set up a click tracking domain with Branch and SendGrid. Contact your Branch Account Manager and we will provision a domain for you, which you can then provide to SendGrid.
-
-{% protip title="How does it work?"%}
-Apple recognizes the click tracking domain as a Universal Link, and opens the app immediately without the browser opening. Once the app has opened, Branch will collect the referring URL that opened the app (at this time, it will be the click tracking url). Inside the app, Branch will robotically “click” the link, registering the click with the ESP, and returning the Branch link information to the Branch SDK inside the app. This information is then used to deep link the user to the correct in-app content. See the "Support" tab for more information.
-{% endprotip %}
 
 {% elsif page.support %}
 
@@ -183,8 +178,5 @@ When you click a Branch link directly from an email inside the Mail app on iOS 9
 To solve this, Branch will host the AASA file on your click tracking domain. We’ll help you get set up with this.
 
 {% image src="/img/pages/third-party-integrations/responsys/deep-linked-email-universal-links.png" center full alt='Deep Linked Email Universal Links' %}
-
-## Coming soon: Don’t open the app
-In some cases you may have content on web that isn’t in the app - for example, a temporary Mother’s Day promotion or an unsubscribe button. In this case, ideally you would be able to specify in the email that that link should not open the app. At the moment, the app will open, and the customers will then be taken to a browser. Oracle Responsys and Branch are working together to provide a solution where the customers will never enter the app if the content doesn't live in the app. That feature is scheduled for release in September 2016.
 
 {% endif %}
