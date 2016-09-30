@@ -3,7 +3,7 @@ type: recipe
 directory: getting-started
 title: 2. Universal and App Links
 page_title: "Set up Universal & App Links with Branch"
-description: "Learn how to enable iOS 9 Universal Links and Android App Links with Branch deep links for tracking and deep linking."
+description: "Learn how to enable iOS Universal Links and Android App Links with Branch deep links for tracking and deep linking."
 keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Android App Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Dashboard, iOS9
 platforms:
 - ios
@@ -95,7 +95,7 @@ Please ensure...
 1. Go to the [Link Settings](https://dashboard.branch.io/#/settings/link) page on the dashboard.
 1. Scroll down to the `Link Domain` area.
 1. Copy your domain name.{% image src='/img/pages/getting-started/universal-app-links/subdomain-setting.png' full center alt='retrieving the default link subdomain' %}
-1. In the `Domains` section, click the `+` icon and add the following entries: (making sure that `xxxx` matches the four-character value on the dashboard)
+1. In the `Domains` section, click the `+` icon and add the following entries: (making sure that `xxxx` matches the subdomain prefix you've been assigned or selected for yourself)
    * `applinks:xxxx.app.link`
    * `applinks:xxxx-alternate.app.link`
 
@@ -121,7 +121,7 @@ If you use a [custom domain or subdomain for your Branch links]({{base.url}}/get
 1. Go to the [Link Settings](https://dashboard.branch.io/#/settings/link) page on the dashboard.
 1. Scroll down to the `Link Domain` area.
 1. Copy your domain name.{% image src='/img/pages/getting-started/universal-app-links/subdomain-setting.png' full center alt='retrieving the default link subdomain' %}
-1. Add the following entry to your application's `config.xml` (making sure that `xxxx` matches the four-character value on the dashboard)
+1. Add the following entry to your application's `config.xml` (making sure that `xxxx` matches the subdomain prefix you've been assigned or selected for yourself)
 
 {% highlight xml %}
 <branch-config>
@@ -162,7 +162,7 @@ If the **Default domain name** box shows the legacy `bnc.lt` domain, you should 
 1. Copy your domain name.{% image src='/img/pages/getting-started/universal-app-links/subdomain-setting.png' full center alt='retrieving the default link subdomain' %}
 1. Create a new file named `Entitlements.plist` in the root directory of your project.
 1. Enable `associated-domains`
-1. In the `Domains` section, click the `+` icon and add the following entries: (making sure that `xxxx` matches the four-character value on the dashboard)
+1. In the `Domains` section, click the `+` icon and add the following entries: (making sure that `xxxx` matches the subdomain prefix you've been assigned or selected for yourself)
     * `applinks:xxxx.app.link`
     * `applinks:xxxx-alternate.app.link`
 
@@ -184,7 +184,7 @@ If you use a [custom domain or subdomain for your Branch links]({{base.url}}/get
 1. Scroll down to the `Link Domain` area.
 1. Copy your domain name.{% image src='/img/pages/getting-started/universal-app-links/subdomain-setting.png' full center alt='retrieving the default link subdomain' %}
 1. Create a new file named `Entitlements.plist` in the same directory as your Titanium app's `tiapp.xml`
-1. Insert the following snippet (making sure that `xxxx` matches the four-character value on the dashboard)
+1. Insert the following snippet (making sure that `xxxx` matches the subdomain prefix you've been assigned or selected for yourself)
 
 {% highlight xml %}
 <?xml version="1.0" encoding="UTF-8"?>
@@ -442,7 +442,7 @@ You can insert both your debug and production fingerprints for testing. Simply s
 1. Go to the [Link Settings](https://dashboard.branch.io/#/settings/link) page on the dashboard.
 1. Scroll down to the `Link Domain` area.
 1. Copy your domain name.{% image src='/img/pages/getting-started/universal-app-links/subdomain-setting.png' full center alt='retrieving the default link subdomain' %}
-1. Add the following entry to your application's `config.xml` (making sure that `xxxx` matches the four-character value on the dashboard)
+1. Add the following entry to your application's `config.xml` (making sure that `xxxx` matches the subdomain prefix you've been assigned or selected for yourself)
 
 {% highlight xml %}
 <branch-config>
@@ -471,6 +471,7 @@ If the **Default domain name** box shows the legacy `bnc.lt` domain, you should 
 - If you use a custom domain or subdomain for your Branch links, you should also add a key for:
 
 {% highlight xml %}
+<android-prefix value="READ_FROM_DASHBOARD" />
 <host name="mycustomdomainorsubdomain" scheme="https" />
 {% endhighlight %}
 {% endprotip %}
@@ -485,7 +486,7 @@ If the **Default domain name** box shows the legacy `bnc.lt` domain, you should 
 {% highlight c# %}
 [IntentFilter(new [] { Android.Content.Intent.ActionView },
     DataScheme="https",
-    DataHost="xxxx.app.link",
+    DataHost="<your subdomain>.app.link",
     Categories=new [] { Android.Content.Intent.CategoryDefault, Android.Content.Intent.CategoryBrowsable })]
 {% endhighlight %}
 
@@ -538,7 +539,7 @@ If you use a [custom domain or subdomain for your Branch links]({{base.url}}/get
 1. Copy your domain name.{% image src='/img/pages/getting-started/universal-app-links/subdomain-setting.png' full center alt='retrieving the default link subdomain' %}
 1. Choose the `Activity` you want to open up when a link is clicked. This is typically your `SplashActivity` or a `BaseActivity` that all other activities inherit from (and likely the same one you selected in the [SDK Integration Guide]({{base.url}}/getting-started/sdk-integration-guide)).
 1. Inside your `AndroidManifest.xml`, locate where the selected `Activity` is defined.
-1. Within the `Activity` definition, insert the intent filter provided below (making sure that `xxxx` matches the four-character value on the dashboard)
+1. Within the `Activity` definition, insert the intent filter provided below (making sure that `xxxx` matches the subdomain prefix you've been assigned or selected for yourself)
 
 {% highlight xml %}
 <!-- AppLink example -->
