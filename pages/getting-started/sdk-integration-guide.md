@@ -942,6 +942,8 @@ function DeepLinkHandler(data) {
 If `data` is null and `err` contains a string denoting a request timeout, make sure to whitelist `api.branch.io` and `[branchsubdomain]` ([click here]({{base.url}}/getting-started/link-domain-subdomain/guide/#the-default-applink-subdomain){:target="_blank"} to read about `[branchsubdomain]`) in your app's [content security policies](https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy){:target="_blank"}.
 {% endcaution %}
 
+Note, if you are unsure how to set a global function or you are getting a `Reference not defined` error with `DeepLinkHandler`, please review this [Github issue](https://github.com/BranchMetrics/cordova-ionic-phonegap-branch-deep-linking/issues/128).
+
 {% endif %}
 <!-- /Cordova -->
 
@@ -1428,7 +1430,7 @@ The only situation in which you do not need to perform these steps is if you ins
 
 If you'd like Branch to collect the [Google Advertising ID](https://support.google.com/googleplay/android-developer/answer/6048248) for advertising or tracking purposes instead of the Android ID, you must add Google Play Services to your app prior to release. After you complete these steps, Branch will handle the rest!
 
-1. Add `compile 'com.google.android.gms:play-services:7.5.0'` or greater version to the dependencies section of your `build.gradle` file. You might already have it.
+1. Add `compile 'com.google.android.gms:play-services-ads:9+'` or greater version to the dependencies section of your `build.gradle` file. You might already have it.
 1. Add the following line in your Proguard settings:
 
 {% highlight xml %}
