@@ -44,7 +44,7 @@ See your Branch organic acquition campaigns alongside your Tune data. You can al
 
 ## Get credentials from your Tune dashboard
 
-To set up the integration, you will need your Tune Advertiser ID (an account-level identifer) and your platform-specific Tune Site IDs (also known as App IDs).
+To set up the integration, you will need your **Tune Advertiser ID** (an account-level identifer), your platform-specific Tune **Site IDs** (also known as App IDs) and a Tune **Publisher ID** for Branch. 
 
 You can find your **Advertiser ID** by navigating to "Accounts > Advertiser Account" in the left hand sidebar and finding the Advertiser ID in the Account Details.
 
@@ -54,12 +54,22 @@ You can find your **Site ID** by navigating to "Mobile Apps" in the left hand si
 
 {% image src="/img/pages/third-party-integrations/tune/tune-app-ids.png" 3-quarters center %}
 
+To find Branch's **Publisher ID**, set up Branch as an [Integrated Partner](https://help.tune.com/marketing-console/setting-up-an-integrated-advertising-partner/#1-enable-the-advertising-partner-integration) and find the Publisher ID:
+
+1. Log in to Attribution Analytics.
+1. In the navigation (on the left side), under the Partners section, click Integrations.
+1. On the Integrated Partners page (on the right side), search for Branch.
+1. After finding Branch, click Enable (in the far-right column).
+1. Click on the Branch logo, then click on the "Attribution Settings" tab and copy the Partner ID (also known as the Branch Publisher ID). 
+
+{% image src="/img/pages/third-party-integrations/tune/tune-branch-partner-id.png" half center alt='Branch Partner ID' %}
+
 ## Enable the Tune card in your Branch dashboard
 
 1. On the Branch Dashboard (dashboard.branch.io), navigate to the [Integrations page](https://dashboard.branch.io/integrations).
 1. Locate Tune and choose **Enable**.
   * If you have not yet entered billing information, please do so now.
-1. Enter your Tune Advertiser ID and platform-specific Tune Site ID
+1. Enter your Branch Partner ID, Tune Advertiser ID and your platform-specific Tune Site IDs.
 1. Hit **Save**.
 
 {% image src="/img/pages/third-party-integrations/tune/enable-tune-integration.png" half center alt='Enable Integration' %}
