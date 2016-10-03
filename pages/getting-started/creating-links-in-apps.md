@@ -41,20 +41,23 @@ You can read more about using the link data dictionary to define key/value pairs
 
 ## Import framework
 
-Import the Branch framework into the view controller where you will be creating links:
-
 {% tabs %}
 {% tab objective-c %}
+Import the Branch framework into the view controller where you will be creating links:
+
 {% highlight objective-c %}
 #import "BranchUniversalObject.h"
 #import "BranchLinkProperties.h"
 {% endhighlight %}
 {% endtab %}
 {% tab swift %}
+In the <your project>-Bridging-Header.h, add the following:
+
 {% highlight swift %}
-#import <Branch/Branch.h>
-#import <Branch/BranchUniversalObject.h>
-#import <Branch/BranchLinkProperties.h>
+#import "Branch.h"
+#import "BranchUniversalObject.h"
+#import "BranchLinkProperties.h"
+#import "BranchConstants.h"
 {% endhighlight %}
 {% endtab %}
 {% endtabs %}
@@ -129,11 +132,11 @@ Finally, generate the link by referencing the `BranchUniversalObject` you create
 {% endtab %}
 {% tab swift %}
 {% highlight swift %}
-branchUniversalObject.getShortUrl(with: linkProperties,  andCallback: { (url: String, error: Error?) in
-    if error == nil, let url = optUrl {
+branchUniversalObject.getShortUrl(with: linkProperties) { (url, error) in
+    if error == nil {
         print("got my Branch link to share: %@", url)
     }
-})
+}
 {% endhighlight %}
 {% endtab %}
 {% endtabs %}
