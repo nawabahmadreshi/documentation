@@ -46,18 +46,19 @@ The first thing we need to do is allow your users to create links to share. Thes
 
 Start by importing the relevant Branch frameworks into the view controller you will be using:
 
-{% tabs %}
-{% tab objective-c %}
 {% highlight objective-c %}
 #import "BranchUniversalObject.h"
 #import "BranchLinkProperties.h"
 {% endhighlight %}
 {% endtab %}
 {% tab swift %}
+In the <your project>-Bridging-Header.h, add the following:
+
 {% highlight swift %}
-#import <Branch/Branch.h>
-#import <Branch/BranchUniversalObject.h>
-#import <Branch/BranchLinkProperties.h>
+#import "Branch.h"
+#import "BranchUniversalObject.h"
+#import "BranchLinkProperties.h"
+#import "BranchConstants.h"
 {% endhighlight %}
 {% endtab %}
 {% endtabs %}
@@ -120,11 +121,13 @@ Lastly, create the link to be shared by referencing the `BranchUniversalObject`:
 {% endtab %}
 {% tab swift %}
 {% highlight swift %}
-branchUniversalObject.getShortUrl(with: linkProperties,  andCallback: { (url: String, error: Error?) in
-    if error == nil, let url = optUrl {
-        print("got my Branch invite link to share: %@", url)
+branchUniversalObject.getShortUrl(with: linkProperties) { (url, error) in
+    if (error == nil) {
+        print("Got my Branch link to share: \(url)")
+    } else {
+        print(String(format: "Branch error : %@", error! as CVarArg))
     }
-})
+}
 {% endhighlight %}
 {% endtab %}
 {% endtabs %}

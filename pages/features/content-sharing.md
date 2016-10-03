@@ -46,16 +46,21 @@ Start by importing the relevant Branch frameworks into the view controller you w
 
 {% tabs %}
 {% tab objective-c %}
+In the view class where you'll be initializing sharing, add these imports at the top:
+
 {% highlight objective-c %}
 #import "BranchUniversalObject.h"
 #import "BranchLinkProperties.h"
 {% endhighlight %}
 {% endtab %}
 {% tab swift %}
+In the <your project>-Bridging-Header.h, add the following:
+
 {% highlight swift %}
-#import <Branch/Branch.h>
-#import <Branch/BranchUniversalObject.h>
-#import <Branch/BranchLinkProperties.h>
+#import "Branch.h"
+#import "BranchUniversalObject.h"
+#import "BranchLinkProperties.h"
+#import "BranchConstants.h"
 {% endhighlight %}
 {% endtab %}
 {% endtabs %}
@@ -126,10 +131,14 @@ Use Branch's preconfigured `UIActivityItemProvider` to share a piece of content 
 
 {% tab swift %}
 {% highlight swift %}
-branchUniversalObject.showShareSheetWithLinkProperties(linkProperties,
-  andShareText: "Super amazing thing I want to share!",
-  fromViewController: self) { (activity: String?, success: Bool) in
-    print("done showing share sheet!")
+branchUniversalObject.showShareSheet(with: linkProperties,
+                                     andShareText: "Super amazing thing I want to share!",
+                                     from: self) { (activityType, completed) in
+    if (completed) {
+        print(String(format: "Completed sharing to %@", activityType!))
+    } else {
+        print("Link sharing cancelled")
+    }
 }
 {% endhighlight %}
 {% endtab %}
@@ -154,7 +163,7 @@ Create a `BranchUniversalObject` containing details about the content that is be
                 .setContentDescription("Your friend Josh has invited you to meet his awesome monster, Mr. Squiggles!")
                 .setContentImageUrl("https://example.com/monster-pic-12345.png")
                 .addContentMetadata("userId", "12345")
-                .addContentMetadata("userName", "Josh");
+                .addContentMetadata("userName", "Josh")
                 .addContentMetadata("monsterName", "Mr. Squiggles");
 {% endhighlight %}
 
@@ -549,11 +558,13 @@ If you've built your own share sheet and you want to just create a Branch link f
 {% endtab %}
 {% tab swift %}
 {% highlight swift %}
-branchUniversalObject.getShortUrl(with: linkProperties,  andCallback: { (url: String, error: Error?) in
-    if error == nil {
-        print("got my Branch invite link to share: %@", url)
-    }
-})
+branchUniversalObject.getShortUrl(with: linkProperties) { (url, error) in
+    if (error == nil) {
+        print("Got my Branch link to share: \(url)")
+    } else {
+        print(String(format: "Branch error : %@", error! as CVarArg))
+    }   
+}
 {% endhighlight %}
 {% endtab %}
 {% endtabs %}

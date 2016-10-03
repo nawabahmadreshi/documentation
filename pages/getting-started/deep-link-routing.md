@@ -118,10 +118,11 @@ Receive the delegate method that will be called when the view controller is load
 {% endtab %}
 {% tab swift %}
 {% highlight swift %}
-func configureControlWithData(data: [NSObject : AnyObject]!) {
-	var pictureUrl = data["product_picture"]
-
-	// show the picture
+func configureControl(withData params: [AnyHashable: Any]!) {
+    let dict = params as Dictionary
+    if dict["product_picture"] != nil {
+	   // show the picture
+    }
 }
 {% endhighlight %}
 {% endtab %}
@@ -177,8 +178,8 @@ In your **AppDelegate.m** file, find this method inside `didFinishLaunchingWithO
 In your **AppDelegate.swift** file, find this method inside `didFinishLaunchingWithOptions` (you would have added it in the [SDK Configuration Guide]({{base.url}}/getting-started/sdk-integration-guide)):
 
 {% highlight swift %}
-branch.initSessionWithLaunchOptions(launchOptions, andRegisterDeepLinkHandler: { optParams, error in
-    if error == nil, let params = optParams {
+branch.initSession(launchOptions: launchOptions, deepLinkHandler: { params, error in
+    if error == nil {
         // params are the deep linked params associated with the link that the user clicked -> was re-directed to this app
         // params will be empty if no data found
         // ... insert custom logic here ...
@@ -206,7 +207,7 @@ ExampleDeepLinkingController *controller = [[UIStoryboard storyboardWithName:@"M
 var controller = UIStoryboard.init("Main", NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("DeepLinkingController")
 
 branch.registerDeepLinkController(controller, forKey: "product_picture")
-branch.initSessionWithLaunchOptions(launchOptions, automaticallyDisplayDeepLinkController: true)
+branch.initSession(launchOptions: launchOptions, automaticallyDisplayDeepLinkController: true)
 {% endhighlight %}
 {% endtab %}
 {% endtabs %}
@@ -304,11 +305,11 @@ Inside the `andRegisterDeepLinkHandler` callback in your AppDelegate, you will w
 {% endtab %}
 {% tab swift %}
 {% highlight swift %}
-func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     let branch: Branch = Branch.getInstance()
-    branch.initSessionWithLaunchOptions(launchOptions, true, andRegisterDeepLinkHandler: { optParams, error in
+    branch.initSession(launchOptions: launchOptions, deepLinkHandler: { params, error in
         // If the key 'pictureId' is present in the deep link dictionary
-        if let params = optParams where params["+clicked_branch_link"] && params["pictureId"] {
+        if error == nil && params["+clicked_branch_link"] != nil && params["pictureId"] != nil {
             print("clicked picture link!")
             // load the view to show the picture
         } else {
@@ -934,7 +935,7 @@ You must also configure your app to allow Branch to handle push notifications:
 {% endtab %}
 {% tab swift %}
 {% highlight swift %}
-func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+func application(_ application: UIApplication, didReceiveRemoteNotification launchOptions: [AnyHashable: Any]) -> Void {
     Branch.getInstance().handlePushNotification(userInfo)
 
     // ... handle push notifications that do not include Branch links

@@ -710,7 +710,7 @@ A Branch session needs to be started every single time your app opens. We check 
 1. Find the line beginning with:
 
 {% highlight swift %}
-func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions:
+func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 {% endhighlight %}
 {% endtab %}
 {% endtabs %}
@@ -765,8 +765,8 @@ Branch *branch = [Branch getInstance];
 {% tab swift %}
 {% highlight swift %}
 let branch: Branch = Branch.getInstance()
-branch.initSessionWithLaunchOptions(launchOptions, andRegisterDeepLinkHandler: { optParams, error in
-    if error == nil, let params = optParams {
+branch.initSession(launchOptions: launchOptions, deepLinkHandler: { params, error in
+    if error == nil {
         // params are the deep linked params associated with the link that the user clicked -> was re-directed to this app
         // params will be empty if no data found
         // ... insert custom logic here ...
@@ -799,8 +799,8 @@ Branch *branch = [Branch getInstance];
 {% tab swift %}
 {% highlight swift %}
 let branch: Branch = Branch.getInstance()
-branch.initSessionWithLaunchOptions({}, andRegisterDeepLinkHandler: { optParams, error in
-    if error == nil, let params = optParams {
+branch.initSession(launchOptions: { }, deepLinkHandler: { params, error in
+    if error == nil {
         // params are the deep linked params associated with the link that the user clicked -> was re-directed to this app
         // params will be empty if no data found
         // ... insert custom logic here ...
@@ -851,7 +851,7 @@ Finally, add these two new methods to your **AppDelegate.swift** file. The first
 
 {% highlight swift %}
 // Respond to URI scheme links
-func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
+func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
     // pass the url to the handle deep link call
     Branch.getInstance().handleDeepLink(url);
 
@@ -860,10 +860,11 @@ func application(application: UIApplication, openURL url: NSURL, sourceApplicati
 }
 
 // Respond to Universal Links
-func application(application: UIApplication, continueUserActivity userActivity: NSUserActivity, restorationHandler: ([AnyObject]?) -> Void) -> Bool {
+func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
     // pass the url to the handle deep link call
+    Branch.getInstance().continueUserActivity(userActivity)
 
-    return Branch.getInstance().continueUserActivity(userActivity)
+    return true
 }
 {% endhighlight %}
 
