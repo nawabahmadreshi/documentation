@@ -54,7 +54,7 @@ In the view class where you'll be initializing sharing, add these imports at the
 {% endhighlight %}
 {% endtab %}
 {% tab swift %}
-In the <your project>-Bridging-Header.h, add the following:
+In the "your project"-Bridging-Header.h, add the following:
 
 {% highlight swift %}
 #import "Branch.h"
@@ -560,7 +560,7 @@ If you've built your own share sheet and you want to just create a Branch link f
 {% highlight swift %}
 branchUniversalObject.getShortUrl(with: linkProperties) { (url, error) in
     if (error == nil) {
-        print("Got my Branch link to share: \(url)")
+        print("Got my Branch link to share: (url)")
     } else {
         print(String(format: "Branch error : %@", error! as CVarArg))
     }   
