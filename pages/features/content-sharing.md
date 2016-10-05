@@ -29,6 +29,7 @@ If your users are creating content in your app, they will probably want to share
 
 {% elsif page.guide %}
 
+
 {% prerequisite %}
 - To implement a content sharing flow, you will need to [integrate the Branch SDK]({{base.url}}/getting-started/sdk-integration-guide) into your app and [configure deep link routing]({{base.url}}/getting-started/deep-link-routing).
 {% endprerequisite %}
@@ -46,18 +47,18 @@ Start by importing the relevant Branch frameworks into the view controller you w
 
 {% tabs %}
 {% tab objective-c %}
-In the view class where you'll be initializing sharing, add these imports at the top:
+In the view class where you will initialize sharing, add these imports at the top:
 
 {% highlight objective-c %}
 #import "BranchUniversalObject.h"
 #import "BranchLinkProperties.h"
 {% endhighlight %}
 {% endtab %}
-{% tab swift %}
-In the "your project"-Bridging-Header.h, add the following:
 
-{% highlight swift %}
-#import "Branch.h"
+{% tab swift %}
+In the Bridging Header, add the following:
+
+{% highlight objective-c %}
 #import "BranchUniversalObject.h"
 #import "BranchLinkProperties.h"
 #import "BranchConstants.h"
@@ -123,7 +124,7 @@ Use Branch's preconfigured `UIActivityItemProvider` to share a piece of content 
 [branchUniversalObject showShareSheetWithLinkProperties:linkProperties
                                            andShareText:@"Super amazing thing I want to share!"
                                      fromViewController:self
-                                            andCallback:^{
+                                            completion:^(NSString *activityType, BOOL completed) {
     NSLog(@"finished presenting");
 }];
 {% endhighlight %}
@@ -390,12 +391,12 @@ private function getShortUrlFailed(bEvt:BranchEvent):void {
 }
 
 var dataToInclude:Object = {
-	"userId": "12345",
-	"userName": "Josh",
-	"monsterName": "Mr. Squiggles",
-	"$og_title": "Meet Mr. Squiggles",
-	"$og_description": "Your friend Josh has invited you to meet his awesome monster, Mr. Squiggles!"
-	"$og_image_url": "https://example.com/monster-pic-12345.png"
+    "userId": "12345",
+    "userName": "Josh",
+    "monsterName": "Mr. Squiggles",
+    "$og_title": "Meet Mr. Squiggles",
+    "$og_description": "Your friend Josh has invited you to meet his awesome monster, Mr. Squiggles!"
+    "$og_image_url": "https://example.com/monster-pic-12345.png"
 };
 
 branch.getShortUrl(tags, "facebook", BranchConst.FEATURE_TAG_SHARE, JSON.stringify(dataToInclude));
@@ -563,7 +564,7 @@ branchUniversalObject.getShortUrl(with: linkProperties) { (url, error) in
         print("Got my Branch link to share: (url)")
     } else {
         print(String(format: "Branch error : %@", error! as CVarArg))
-    }   
+    }
 }
 {% endhighlight %}
 {% endtab %}

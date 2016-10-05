@@ -57,7 +57,7 @@ Every Branch link automatically handles both _fresh installs_ for new users and 
 
 {% tabs %}
 {% tab objective-c %}
-In the view class where you'll be initializing sharing, add these imports at the top:
+In the view class where you will be initializing sharing, add these imports at the top:
 
 {% highlight objective-c %}
 #import "BranchUniversalObject.h"
@@ -66,9 +66,9 @@ In the view class where you'll be initializing sharing, add these imports at the
 {% endhighlight %}
 {% endtab %}
 {% tab swift %}
-In the <your project>-Bridging-Header.h, add the following:
+In the Bridging Header, add the following:  
 
-{% highlight swift %}
+{% highlight objective-c %}
 #import "Branch.h"
 #import "BranchUniversalObject.h"
 #import "BranchLinkProperties.h"

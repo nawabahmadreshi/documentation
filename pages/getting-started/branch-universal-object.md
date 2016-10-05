@@ -393,7 +393,7 @@ To implement it, use the following `showShareSheetWithLinkProperties` method on 
 [branchUniversalObject showShareSheetWithLinkProperties:linkProperties
                                            andShareText:@"Super amazing thing I want to share!"
                                      fromViewController:self 
-                                            andCallback:^{
+                                             completion:^(NSString *activityType, BOOL completed) {
     NSLog(@"finished presenting");
 }];
 {% endhighlight %}
