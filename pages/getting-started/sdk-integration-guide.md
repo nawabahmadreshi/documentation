@@ -765,7 +765,7 @@ Branch *branch = [Branch getInstance];
 {% tab swift %}
 {% highlight swift %}
 let branch: Branch = Branch.getInstance()
-branch.initSession(launchOptions: launchOptions, deepLinkHandler: { params, error in
+branch?.initSession(launchOptions: launchOptions, automaticallyDisplayDeepLinkController: true, deepLinkHandler: { params, error in
     if error == nil {
         // params are the deep linked params associated with the link that the user clicked -> was re-directed to this app
         // params will be empty if no data found
@@ -799,7 +799,7 @@ Branch *branch = [Branch getInstance];
 {% tab swift %}
 {% highlight swift %}
 let branch: Branch = Branch.getInstance()
-branch.initSession(launchOptions: { }, deepLinkHandler: { params, error in
+branch?.initSession(launchOptions: launchOptions, automaticallyDisplayDeepLinkController: true, deepLinkHandler: { params, error in
     if error == nil {
         // params are the deep linked params associated with the link that the user clicked -> was re-directed to this app
         // params will be empty if no data found
@@ -862,7 +862,7 @@ func application(_ application: UIApplication, open url: URL, sourceApplication:
 // Respond to Universal Links
 func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
     // pass the url to the handle deep link call
-    Branch.getInstance().continueUserActivity(userActivity)
+    Branch.getInstance().continue(userActivity)
 
     return true
 }
