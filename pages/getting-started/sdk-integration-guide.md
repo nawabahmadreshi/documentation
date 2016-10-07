@@ -176,9 +176,9 @@ You can also [build and reference the assemblies directly]({{base.url}}/getting-
 {% image src='/img/pages/getting-started/sdk-integration-guide/unity_branch_key.png' full center alt='Unity plugin installation' %}
 
 * `Update iOS Wrapper` : You should tap this button each time when you will change `Branch Key` and `Branch Uri`.
-* `Update Android Manifest` : You should tap this button if you want to update your manifest. If you update your manifest manually just don't push this button.
+* `Update Android Manifest` : You should tap this button if you want to update your manifest to include the correct intent filters for deep linking. If you update your manifest manually just don't push this button.
 
-{% protip title="For iOS projects" %}
+{% protip title="Note for iOS projects" %}
 
 When building an iOS project:
 
@@ -188,6 +188,30 @@ When building an iOS project:
 
 Branch requires ARC, and we don’t intend to add `if` checks throughout the SDK to try to support pre-ARC. However, for **Unity 4.6** you can add flags to the project to compile the Branch files with ARC, which should work fine for you. Simply add `-fobjc-arc` to all Branch files.
 {% endprotip %}
+
+### Configure auto session management for Android
+
+Click button "Update Android Manifest" to automatically configure your manifest with the right intent filters. Additionally, from Branch Unity version 0.3.x, Branch SDK must to do early initialization to ensure deep link data is passed through. To do that you need to manually update your project to handle initialization and you have two choices:
+
+#### Option 1: Edit manifest to subclass BranchApp
+
+need to add into android mafest into tag "application" name of BranchApp class:
+
+{% highlight xml %}
+<application
+    android:name="io.branch.referral.BranchApp"
+>
+{% endhighlight %}
+
+The Branch Android library contains BranchApp class with the correct implementation to initialize the Branch session. For your info, OnCreate() will call method Branch.getAutoInstance() internally to init Branch SDK.
+
+#### Option 2: Use your own custom Android application class
+
+If you will use your own Android plugin with your own custom Android application class, you need to call the following in method OnCreate():
+
+{% highlight c# %}
+UnityPlayer.UnitySendMessage("Branch", "getAutoInstance", "");
+{% endhighlight %}
 
 {% endif %}
 <!--- /Unity -->
