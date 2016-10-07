@@ -26,7 +26,7 @@ If you're running Google AdWords campaigns, whether they're of the Search or Dis
 {% endprerequisite %}
 
 {% caution title="Android Unsupported" %}
-Search Install Ad campaigns on Android do not accept any tracking links. As a result, Branch cannot support Search Install Ad campaigns on Android. **iOS is supported.**
+Search Install Ad campaigns on Android do not accept any tracking links. As a result, Branch cannot support Search Install Ad campaigns on Android. **iOS is supported.** You should use the new [**Google Universal App Campaigns**]({{base.url}}/features/google-uac) for full cross platform support.
 {% endcaution %}
 
 
