@@ -241,6 +241,10 @@ So if you have enabled "Native or desktop app", then your advanced options shoul
 
 While we should always expect around a 5% discrepancy due to time zone differents and the like, if you are seeing significant discrepancies, it could be an indication of a broader problem.
 
+### Issue with iOS 10 and Limit Ad Tracking
+
+In iOS 10, Apple broke the ability for app developers to collect the `IDFA` if the user had enabled `Limit Ad Tracking`. In this case, Branch and Facebook cannot compare notes to see who drove the install. This will account for about 15% discrepancy in counts across both platforms, where Branch's tracked installs will be lower.
+
 ### Not Collecting Advertising ID
 
 If you see absolutely 0 data coming through from your integration, it's possible that you're not collecting Google Advertising ID (GAID) on Android or IDFA on iOS.
