@@ -178,6 +178,22 @@ You can also [build and reference the assemblies directly]({{base.url}}/getting-
 * `Update iOS Wrapper` : You should tap this button each time when you will change `Branch Key` and `Branch Uri`.
 * `Update Android Manifest` : You should tap this button if you want to update your manifest to include the correct intent filters for deep linking. If you update your manifest manually just don't push this button. If you need to update your manifest manually, please review the guidelines on [our Github page](https://github.com/BranchMetrics/unity-branch-deep-linking#android-note-for-manual-manifest-changing).
 
+### Overriding OnNewIntent for Android
+
+The Branch SDK contains an custom activity that is extended from UnityPlayerActivity. This is required in order to fix Android's OnNewIntent() to allow the app retrieves right link when app is in background.
+
+In the manifest file, you will need to replace:
+
+{% highlight xml %}
+<activity android:name="com.unity3d.player.UnityPlayerActivity">
+{% endhighlight %}
+with
+{% highlight xml %}
+<activity android:name="io.branch.unity.BranchUnityActivity" android:launchMode="singleTask">
+{% endhighlight %}
+
+If you will have your own custom activity, you just should override method `OnNewIntent` and add flag "singleTask".
+
 {% protip title="Note for iOS projects" %}
 
 When building an iOS project:
