@@ -66,7 +66,7 @@ This means that if two users with the same fingerprint, on the same wifi, were t
 
 ### Include SafariServices.framework
 
-First off, you'll need to include the `SafariServices.framework` into your app to leverage this. Currently, as soon as you add the Framework, Branch will being triggering the Safari-based 100% match technique.Note that this can be **disabled* using the following method, which should be called _before_ `initSession`.
+First off, you'll need to include the `SafariServices.framework` into your app to leverage this. Currently, as soon as you add the Framework, Branch will start triggering the Safari-based 100% match technique. Note that this can be **disabled* using the following method, which should be called _before_ `initSession`.
 
 {% tabs %}
 {% tab objective-c %}
