@@ -55,33 +55,79 @@ Every Branch link automatically handles both _fresh installs_ for new users and 
 <!--- iOS -->
 {% if page.ios %}
 
-First import the relevant Branch and FBSDK frameworks into your view controller:
-
 {% tabs %}
 {% tab objective-c %}
-{% highlight objc %}
-#import "Branch.h"
+In the view class where you will be initializing sharing, add these imports at the top:
+
+{% highlight objective-c %}
+#import "BranchUniversalObject.h"
+#import "BranchLinkProperties.h"
 #import <FBSDKShareKit/FBSDKShareKit.h>
 {% endhighlight %}
 {% endtab %}
-
 {% tab swift %}
-{% highlight swift %}
-import FBSDKCoreKit
-import Branch
+In the Bridging Header, add the following:  
+
+{% highlight objective-c %}
+#import "Branch.h"
+#import "BranchUniversalObject.h"
+#import "BranchLinkProperties.h"
+#import "BranchConstants.h"
+#import <FBSDKShareKit/FBSDKShareKit.h>
 {% endhighlight %}
 {% endtab %}
 {% endtabs %}
 
-Then create the Branch link and pass it to the Facebook SDK:
+Create a `BranchUniversalObject` containing details about the user who is initiating the App Invite.
+
+{% tabs %}
+{% tab objective-c %}
+{% highlight objective-c %}
+BranchUniversalObject *branchUniversalObject = [[BranchUniversalObject alloc] initWithCanonicalIdentifier:@"user/12345"];
+branchUniversalObject.title = @"Check out my app!";
+branchUniversalObject.contentDescription = @"Your friend Zack has invited you to check out my app";
+branchUniversalObject.imageUrl = @"https://example.com/monster-pic-12345.png";
+[branchUniversalObject addMetadataKey:@"userId" value:@"12345"];
+[branchUniversalObject addMetadataKey:@"userName" value:@"Zack Zuckerberg"];
+{% endhighlight %}
+{% endtab %}
+{% tab swift %}
+{% highlight swift %}
+let branchUniversalObject: BranchUniversalObject = BranchUniversalObject(canonicalIdentifier: "user/12345")
+branchUniversalObject.title = "Check out my app!"
+branchUniversalObject.contentDescription = "Your friend Zack has invited you to check out my app"
+branchUniversalObject.imageUrl = "https://example.com/josh-profile-pic-12345.png"
+branchUniversalObject.addMetadataKey("userId", value: "12345")
+branchUniversalObject.addMetadataKey("userName", value: "Zack Zuckerberg")
+{% endhighlight %}
+{% endtab %}
+{% endtabs %}
+
+Then define the properties of the link. In the example, our properties reflect that this is an App Invite shared via Facebook:
 
 {% tabs %}
 {% tab objective-c %}
 {% highlight objc %}
-[[Branch getInstance] getShortURLWithParams:branchDict
-                                 andChannel:@"facebook"
-                                 andFeature:@"app_invite"
-                                andCallback:^(NSString *url, NSError* error) {
+BranchLinkProperties *linkProperties = [[BranchLinkProperties alloc] init];
+linkProperties.feature = @"App Invite";
+linkProperties.channel = @"Facebook";
+{% endhighlight %}
+{% endtab %}
+{% tab swift %}
+{% highlight swift %}
+let linkProperties: BranchLinkProperties = BranchLinkProperties()
+linkProperties.feature = "App Invite"
+linkProperties.channel = "Facebook"
+{% endhighlight %}
+{% endtab %}
+{% endtabs %}
+
+Lastly, trigger the invite!
+
+{% tabs %}
+{% tab objective-c %}
+{% highlight objc %}
+[branchUniversalObject getShortUrlWithLinkProperties:linkProperties andCallback:^(NSString *url, NSError *error) {
     if (!error && url) {
         FBSDKAppInviteDialog *inviteDialog = [FBSDKAppInviteDialog new];
         if ([inviteDialog canShow]) {
@@ -95,13 +141,10 @@ Then create the Branch link and pass it to the Facebook SDK:
 }];
 {% endhighlight %}
 {% endtab %}
-
 {% tab swift %}
 {% highlight swift %}
-params["referring_user_id"] = "1234"
-params["referring_user_name"] = "Zack Zuckerberg"
-Branch.getInstance().getShortURLWithParams(params, "facebook", "app_invite" andCallback: { (optUrl: String?, error: NSError?) -> Void in
-    if error == nil, let url = optUrl {
+branchUniversalObject.getShortUrl(with: linkProperties) { (url, error) in
+    if (error == nil) {
         var inviteContent: FBSDKAppInviteContent = FBSDKAppInviteContent()
                     
         inviteContent.appLinkURL = NSURL(String: url)!
@@ -110,7 +153,7 @@ Branch.getInstance().getShortURLWithParams(params, "facebook", "app_invite" andC
         inviteDialog.delegate = self
         inviteDialog.show()
     }
-})
+}
 {% endhighlight %}
 {% endtab %}
 {% endtabs %}
@@ -155,28 +198,43 @@ func appInviteDialog(appInviteDialog: FBSDKAppInviteDialog!, didFailWithError er
 <!--- Android -->
 {% if page.android %}
 
-This snippet first creates the Branch link and passes it to the Facebook SDK's `AppInviteDialog` method ([documentation here](https://developers.facebook.com/docs/reference/android/current/class/AppInviteDialog/)) to show the App Invite dialog:
+Create a `BranchUniversalObject` containing details about the user who is initiating the App Invite.
 
 {% highlight java %}
-JSONObject params = new JSONObject();
-try {
-    params.put("referring_user_id", "1234");
-    params.put("referring_user_name", "Zack Zuckerberg");
-} catch (JSONException ex) { }
-Branch branch = Branch.getInstance(getApplicationContext());
-branch.getShortUrl("facebook", "app_invite", null, params, new BranchLinkCreateListener() {
+ BranchUniversalObject branchUniversalObject = new BranchUniversalObject()
+                .setCanonicalIdentifier("user/12345")
+                .setTitle("Check out my app!")
+                .setContentDescription("Your friend Zack has invited you to check out my app!")
+                .setContentImageUrl("https://example.com/monster-pic-12345.png")
+                .addContentMetadata("userId", "12345")
+                .addContentMetadata("userName", "Zack Zuckerberg");
+{% endhighlight %}
+
+Then define the properties of the link. In the example, our properties reflect that this is an App Invite shared via Facebook:
+
+{% highlight java %}
+LinkProperties linkProperties = new LinkProperties()
+               .setChannel("Facebook")
+               .setFeature("App Invite")
+{% endhighlight %}
+
+Then, create the Branch link and passes it to the Facebook SDK's `AppInviteDialog` method ([documentation here](https://developers.facebook.com/docs/reference/android/current/class/AppInviteDialog/)) to show the App Invite dialog:
+
+{% highlight java %}
+branchUniversalObject.generateShortUrl(this, linkProperties, new BranchLinkCreateListener() {
     @Override
-    public void onLinkCreate(String url, Branch.BranchError error) {
-		if (AppInviteDialog.canShow()) {
-			AppInviteContent content = new AppInviteContent.Builder()
-		                .setApplinkUrl(url)
-		                .setPreviewImageUrl("https://s3-us-west-1.amazonaws.com/host/zackspic.png")
-		                .build();
-			AppInviteDialog.show(this, content);
-		}
+    public void onLinkCreate(String url, BranchError error) {
+        if (error == null && AppInviteDialog.canShow()) {
+            AppInviteContent content = new AppInviteContent.Builder()
+                        .setApplinkUrl(url)
+                        .setPreviewImageUrl("https://s3-us-west-1.amazonaws.com/host/zackspic.png")
+                        .build();
+            AppInviteDialog.show(this, content);
+        }
     }
 });
 {% endhighlight %}
+
 {% endif %}
 <!--- /Android -->
 
@@ -209,24 +267,6 @@ Since you used a Branch link for the URL in the App Invite, you can use Branch t
 <!--- iOS -->
 {% if page.ios %}
 
-As before, begin by importing the relevant Branch and FBSDK frameworks into your view controller:
-
-{% tabs %}
-{% tab objective-c %}
-{% highlight objc %}
-#import "Branch.h"
-#import <FBSDKCoreKit/FBSDKCoreKit.h>
-{% endhighlight %}
-{% endtab %}
-
-{% tab swift %}
-{% highlight swift %}
-import FBSDKCoreKit
-import Branch
-{% endhighlight %}
-{% endtab %}
-{% endtabs %}
-
 {% tabs %}
 {% tab objective-c %}
 
@@ -244,8 +284,10 @@ Then modify your **AppDelegate.m** file to handle the incoming links:
         }
     }];
     
-    return [[FBSDKApplicationDelegate sharedInstance] application:application
+    [[FBSDKApplicationDelegate sharedInstance] application:application
                                     didFinishLaunchingWithOptions:launchOptions];
+
+    return YES;
 }
 {% endhighlight %}
 {% endtab %}
@@ -255,8 +297,8 @@ Then modify your **AppDelegate.m** file to handle the incoming links:
 Then modify your **AppDelegate.swift** file to handle the incoming links:
 
 {% highlight swift %}
-func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-    branch.initSessionWithLaunchOptions(launchOptions, andRegisterDeepLinkHandler: { optParams, error in
+func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    branch.initSession(launchOptions: launchOptions, automaticallyDisplayDeepLinkController: true, deepLinkHandler: { params, error in
         if error == nil, let params = optParams {
             if (params["+clicked_branch_link"]) {
                 print("new session was referred by %@", params["referring_user_name"])
@@ -274,42 +316,7 @@ func application(application: UIApplication, didFinishLaunchingWithOptions launc
 {% endtab %}
 {% endtabs %}
 
-This method is for handling the case where the app is already installed when the URI scheme gets called:
-
-{% tabs %}
-{% tab objective-c %}
-{% highlight objc %}
-- (BOOL)application:(UIApplication *)app
-            openURL:(NSURL *)url
-            options:(NSDictionary<NSString *,id> *)options {
-    // NOTE: Branch must come first
-    BOOL wasHandled = [[Branch getInstance] handleDeepLink:url];
-    if (!wasHandled)
-        [[FBSDKApplicationDelegate sharedInstance] application:application
-                                                       openURL:url
-                                                       options:sourceApplication];
-    return wasHandled;
-}
-
-{% endhighlight %}
-
-{% endtab %}
-{% tab swift %}
-
-{% highlight swift %}
-func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
-    // pass the url to the handle deep link call
-    Branch.getInstance().handleDeepLink(url)
-
-    // We're not sure how to init the Facebook SDK in Swift
-    // if you know, please get in touch with us!
-
-    return true
-}
-{% endhighlight %}
-
-{% endtab %}
-{% endtabs %}
+To handle other cases than deferred deep links, make sure you follow the instructions on the full SDK integration guide.
 
 {% endif %}
 <!--- /iOS -->
@@ -318,14 +325,7 @@ func application(application: UIApplication, openURL url: NSURL, sourceApplicati
 <!--- Android -->
 {% if page.android %}
 
-Begin by importing the relevant Branch and FBSDK frameworks:
-
-{% highlight java %}
-import io.branch.referral.Branch;
-import com.facebook.FacebookSdk;
-{% endhighlight %}
-
-Then modify your Manifest file to handle the incoming links:
+Configure the deep link router that's passed to initSession to handle the case where Branch indicates the session was initialized from a link click.
 
 {% highlight java %}
 @Override
@@ -353,20 +353,6 @@ protected void onStart() {
 @Override
 public void onNewIntent(Intent intent) {
     this.setIntent(intent);
-}
-{% endhighlight %}
-
-{% protip %}
-This is a requirement because of a recent Facebook AppLinks change. Facebook doesn't open up the browser anymore and just calls the URI to open the app directly, preventing Branch clicks from being registered. Instead, we pass that link click ID through the URI scheme to Branch, and send that back to the app, creating a 'click' without actually seeing a click. Android does a very poor job of clearing out intents that were previously called, so this helps ensure that once a URI scheme is called and consumed, it won't trigger deep linking anymore.
-{% endprotip %}
-
-On Android, you also need to be sure to properly close the session inside `onStop` with a `branch.closeSession()`. This helps us manage a session across activities.
-
-{% highlight java %}
-@Override
-protected void onStop() {
-    super.onStop();
-    branch.closeSession();
 }
 {% endhighlight %}
 

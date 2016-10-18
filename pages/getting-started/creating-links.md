@@ -37,14 +37,14 @@ contents:
 {% if page.overview %}
 Links are the foundation of everything Branch offers:
 
-- By using our mobile SDKs to [**create Branch links in your app**]({{base.url}}/getting-started/creating-links/apps), you can enable your users to share content or invite friends.
-- By [**creating links in the dashboard**]({{base.url}}/getting-started/creating-links/dashboard) or [**with the chrome extension**]({{base.url}}/getting-started/creating-links/chrome-extension), you can turn your social posts, ads, or whatever other use case you can think of into a deep link into your app.
-- By using our web SDK with [**Journeys**]({{base.url}}/features/journeys) to [**create Branch links from your website**]({{base.url}}/getting-started/creating-links/other-ways#web-sdk), you can convert your mobile web traffic to app users.
+- By using our mobile SDKs to [create Branch links in your app]({{base.url}}/getting-started/creating-links/apps), you can enable your users to share content or invite friends.
+- By [creating links in the dashboard]({{base.url}}/getting-started/creating-links/dashboard) or [with the chrome extension]({{base.url}}/getting-started/creating-links/chrome-extension), you can turn your social posts, ads, or whatever other use case you can think of into a deep link into your app.
+- By using our web SDK with [Journeys]({{base.url}}/features/journeys) to [create Branch links from your website]({{base.url}}/getting-started/creating-links/other-ways#web-sdk), you can convert your mobile web traffic to app users.
 
 {% protip %}
-For alternative ways to create Branch links, including via the web SDK, API, or appending URL query parameters see the [Creating Links in Other Ways]({{base.url}}/getting-started/creating-links/other-ways) page.
+You can read more about using the link data dictionary to define key/value pairs for deep linking, and the various link analytics and control parameters used throughout this guide on the [Link Configuration page]({{base.url}}/getting-started/configuring-links). 
 
-You can read more about using the link data dictionary to define key/value pairs for deep linking, and the various link analytics and control parameters used throughout this guide on the [Link Configuration page]({{base.url}}/getting-started/configuring-links).
+Learn how to set up your app to interpret key/value pairs in the [Deep Link Routing guide]({{base.url}}/getting-started/deep-link-routing).
 {% endprotip %}
 
 {% getstarted %}{% endgetstarted %}
@@ -60,20 +60,23 @@ You can read more about using the link data dictionary to define key/value pairs
 
 ## Import framework
 
-Import the Branch framework into the view controller where you will be creating links:
-
 {% tabs %}
 {% tab objective-c %}
+Import the Branch framework into the view controller where you will be creating links:
+
 {% highlight objective-c %}
 #import "BranchUniversalObject.h"
 #import "BranchLinkProperties.h"
 {% endhighlight %}
 {% endtab %}
 {% tab swift %}
+In the <your project>-Bridging-Header.h, add the following:
+
 {% highlight swift %}
-#import <Branch/Branch.h>
-#import <Branch/BranchUniversalObject.h>
-#import <Branch/BranchLinkProperties.h>
+#import "Branch.h"
+#import "BranchUniversalObject.h"
+#import "BranchLinkProperties.h"
+#import "BranchConstants.h"
 {% endhighlight %}
 {% endtab %}
 {% endtabs %}
@@ -148,11 +151,11 @@ Finally, generate the link by referencing the `BranchUniversalObject` you create
 {% endtab %}
 {% tab swift %}
 {% highlight swift %}
-branchUniversalObject.getShortUrlWithLinkProperties(linkProperties,  andCallback: { (optUrl: String?, error: NSError?) -> Void in
-    if error == nil, let url = optUrl {
+branchUniversalObject.getShortUrl(with: linkProperties) { (url, error) in
+    if error == nil {
         print("got my Branch link to share: %@", url)
     }
-})
+}
 {% endhighlight %}
 {% endtab %}
 {% endtabs %}
@@ -463,6 +466,9 @@ branchUniversalObject.generateShortUrl({
   "stage" : "sample-stage"
 }, {
   "$desktop_url" : "http://desktop-url.com",
+}, function (res) {
+    Ti.API.info('Completed link generation');
+    Ti.API.info(res);
 });
 {% endhighlight %}
 

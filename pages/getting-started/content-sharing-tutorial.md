@@ -144,7 +144,7 @@ Copy and paste the following code into **AppDelegate.swift** right before the ve
 
 {% highlight swift %}
 // Respond to URI scheme links
-func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
+func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
     // pass the url to the handle deep link call
     Branch.getInstance().handleDeepLink(url);
 
@@ -153,10 +153,11 @@ func application(application: UIApplication, openURL url: NSURL, sourceApplicati
 }
 
 // Respond to Universal Links
-func application(application: UIApplication, continueUserActivity userActivity: NSUserActivity, restorationHandler: ([AnyObject]?) -> Void) -> Bool {
+func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
     // pass the url to the handle deep link call
+    Branch.getInstance().continueUserActivity(userActivity)
 
-    return Branch.getInstance().continueUserActivity(userActivity)
+    return true
 }
 {% endhighlight %}
 
@@ -251,12 +252,15 @@ Also in the function body of the share button, add the following code which crea
 {% highlight swift %}
 let linkProperties: BranchLinkProperties = BranchLinkProperties()
 linkProperties.feature = "sharing"
-branchUniversalObject.showShareSheetWithLinkProperties(linkProperties,
-                                        andShareText: "Super amazing thing I want to share!",
-                                        fromViewController: self,
-                                        completion: { (String, Bool) -> Void in
-    print("done showing share sheet!")
-})
+branchUniversalObject.showShareSheet(with: linkProperties,
+                                     andShareText: "Super amazing thing I want to share!",
+                                     from: self) { (activityType, completed) in
+    if (completed) {
+        print(String(format: "Completed sharing to %@", activityType!))
+    } else {
+        print("Link sharing cancelled")
+    }
+}
 {% endhighlight %}
 
 {% image src="/img/pages/getting-started/content-sharing-tutorial/tutorial-videos/add-share-sheet.gif" center 3-quarters %}
@@ -273,10 +277,13 @@ Now that the links have been created, you must configure your app to let the SDK
    `class ExampleDeepLinkingController: UIViewController, BranchDeepLinkingController {`
 3. The following method will be called when the view controller is loaded from a link click. Copy and paste the following code into the view controller that you want your link to route to. The data keys “factWords” and “imageLink”  are the same keys that were created in the universal object:
 {% highlight swift %}
-func configureControlWithData(data: [NSObject : AnyObject]!){
-	factWords = data["factWords"] as! String
-        imageLink = data["imageLink"] as! String
-    }
+func configureControl(withData params: [AnyHashable: Any]!) {
+  let dict = params as Dictionary
+  if dict["imageLink"] != nil {
+    factWords = dict["factWords"] as! String
+    imageLink = dict["imageLink"] as! String
+  }
+}
 {% endhighlight %}
 
 {% image src="/img/pages/getting-started/content-sharing-tutorial/tutorial-videos/add-configure-control-with-data.gif" center 3-quarters %}
@@ -303,10 +310,9 @@ Underneath it, immediately after the `{`, add the following code:
 {% highlight swift %}
 let branch: Branch = Branch.getInstance()
 var controller = UIStoryboard.init(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("FactViewController")
-
-        branch.registerDeepLinkController(controller, forKey: "imageLink")
-        branch.registerDeepLinkController(controller, forKey: "factWords")
-        branch.initSessionWithLaunchOptions(launchOptions, automaticallyDisplayDeepLinkController: true)
+branch.registerDeepLinkController(controller, forKey: "imageLink")
+branch.registerDeepLinkController(controller, forKey: "factWords")
+branch.initSession(launchOptions: launchOptions, automaticallyDisplayDeepLinkController: true)
 {% endhighlight %}
 
 {% image src="/img/pages/getting-started/content-sharing-tutorial/tutorial-videos/update-app-delegate.gif" center 3-quarters %}

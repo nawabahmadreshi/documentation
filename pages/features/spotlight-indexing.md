@@ -1,8 +1,8 @@
 ---
 type: recipe
 directory: features
-title: "iOS9 Spotlight Indexing"
-page_title: "Index and track your content in iOS 9 Spotlight"
+title: "iOS9/10 Spotlight Indexing"
+page_title: "Index and track your content in iOS 9/10 Spotlight"
 description: Learn how to list your content in Apple's new Spotlight search.
 keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, iOS9, iOS 9, Apple Spotlight Search
 hide_platform_selector: true
@@ -93,9 +93,9 @@ Open your **AppDelegate.m** file and add the following method (if you completed 
 
 {% highlight objc %}
 - (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray *restorableObjects))restorationHandler {
-    BOOL handledByBranch = [[Branch getInstance] continueUserActivity:userActivity];
+    [[Branch getInstance] continueUserActivity:userActivity];
     
-    return handledByBranch;
+    return YES;
 }
 {% endhighlight %}
 {% endtab %}
@@ -104,10 +104,11 @@ Open your **AppDelegate.m** file and add the following method (if you completed 
 Open your **AppDelegate.swift** file and add the following method (if you completed the [SDK Integration Guide]({{base.url}}/getting-started/sdk-integration-guide), this is likely already present).
 
 {% highlight swift %}
-func application(application: UIApplication, continueUserActivity userActivity: NSUserActivity, restorationHandler: ([AnyObject]?) -> Void) -> Bool {
+func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
     // pass the url to the handle deep link call
-
     return Branch.getInstance().continueUserActivity(userActivity)
+
+    return true
 }
 {% endhighlight %}
 {% endtab %}

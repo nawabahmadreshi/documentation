@@ -62,28 +62,31 @@
 		&:hover {
 			text-decoration: none;
 			color: #076074;
-			.material-icons {
-				opacity: 1;
-			}
 		}
 
-		.material-icons {
-			color: #1cadce;
-	    opacity: 0;
-	    width: 16px;
-	    display: inline-block;
-	    position: relative;
-	    left: -20px;
-	    margin-right: -16px;
-	    font-size: 16px;
-	    line-height: 16px;
-			transition: all .2s ease-in;
-			-webkit-transition: all .2s ease-in;
-			&:hover {
-				color: #076074;
-				cursor: pointer;
-			}
-		}
+		&.link {
+      .material-icons {
+  			color: #1cadce;
+  	    opacity: 0;
+  	    width: 16px;
+  	    display: inline-block;
+  	    position: relative;
+  	    left: -20px;
+  	    margin-right: -16px;
+  	    font-size: 16px;
+  	    line-height: 16px;
+  			transition: all .2s ease-in;
+  			-webkit-transition: all .2s ease-in;
+  			&:hover {
+  				color: #076074;
+          opacity: 1;
+  				cursor: pointer;
+  			}
+  		}
+      &:hover .material-icons {
+        opacity: 1;
+      }
+    }
 	}
 
 	h2, h3, h4 , h5 {
@@ -92,7 +95,7 @@
     line-height: 1.4;
 		a:nth-child(2) {
 			color: #444444;
-			cursor: default;
+			//cursor: default;
 			display: flex;
 			align-items: center;
 			&:hover {

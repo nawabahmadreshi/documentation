@@ -19,11 +19,13 @@ Branch's webhook system allows you to receive install and down funnel event data
 
 The webhook system is very powerful and customizable. You can register to only receive notifications for specific events, or you can register a wildcard and receive all events. You can specify to only receive an event for the first time a user completes it, or every time. You can also specify receive events only in the case of referrals.
 
+{% getstarted %}{% endgetstarted %}
+
 {% elsif page.guide %}
 
 ## Register webhook on the Branch dashboard
 
-1. Open the [Webhooks](https://dashboard.branch.io/#/webhook) page.
+1. Open the [Webhooks](https://dashboard.branch.io/webhook) page.
 1. Click **Add a new webhook**
 
 {% image src='/img/pages/getting-started/webhooks/add.png' 2-thirds center alt='add a new webhook button' %}
@@ -65,7 +67,7 @@ The `referred session` and `web session start` options will only appear after at
 
 #### Filter (Advanced)
 
-See the [Advanced page]({{base.url}}/getting-started/webhooks/advanced#filters) to read about customizing when events are sent.
+See the [Advanced page]({{base.url}}/getting-started/webhooks/advanced#filtering-which-webhooks-are-sent) to read about customizing when events are sent.
 
 ## Testing
 
@@ -78,98 +80,149 @@ To test whether your webhook is configured correctly, you can use [requestb.in](
 
 {% elsif page.advanced %}
 
-## Postback syntax
+## Sample webhook POST body syntax
 
-All postbacks are formatted the same way, except for those triggered by `click` events.
+There are two types of events that you can listen for, and each has a different format of webhook POST. The two are:
 
-{% protip %}
-To read about the parameters in the link data dictionary, see the [Configuring Links]({{base.url}}/getting-started/configuring-links) page.
-{% endprotip %}
+- **Click** webhooks
 
-### Sample return for Click events
+Clicks are the way users interact with your Branch links. Please note that a click does not always have to take place in a browser. For example, clicking a Universal Link will open up the app directly, and therefore no browser metadata information will be present.
+
+- **Event** webhooks
+
+Events are user events that either Branch generates or you generate via a call to our event tracking API. Examples are shown on the previous page of this guide.
+
+### Sample POST body for -Click- webhooks
 
 {% highlight js %}
 POST
 User-agent: Branch Metrics API
 Content-Type: application/json
 {
-    metadata: 'event metadata' - specified in userCompletedAction withState
-    event_timestamp: 'time stamp for the event'
-    os: 'iOS' | 'Android'
-    os_version: 'the OS version'
-    query: 'any query string you have on the link'
-    link_data: { link data dictionary - see below }
-    event: 'click'
-    event_timestamp: 'link click timestamp'
+    click_id: <a unique identififer>,
+    event: 'click',
+    event_timestamp: '<link click timestamp>',
+    os: 'iOS' | 'Android',
+    os_version: 'the OS version',
+    metadata: {
+        ip: '<click IP>',
+        userAgent: '<click UA>',
+        browser: '<browser>',
+        browser_version: '<browser version>',
+        brand: '<phone brand>',
+        model: '<phone model>',
+        os: '<browser OS>',
+        os_version: '<OS version>'
+    },
+    query: { <any query parameters appeneded to the link> },
+    link_data: { <link data dictionary - see below> }
 }
 
 // link data dictionary example
 {
-    data: { deep link dictionary }
-    date_ms: 'link click date with millisecond'
-    date_sec: 'link click date with second'
-    date: 'click date'
-    campaign: 'campaign label'
-    feature: 'feature label'
-    branch_id: 'branch ID for unique browser of that user'
-    domain: 'domain label'
-    channel: 'channel label'
-    state: 'state label'
-    href: 'href label'
-    tags: [tags array]
-    stage: 'stage label'
+    branch_id: '<unique identifier for unique link>',
+    date_ms: '<link creation date with millisecond>',
+    date_sec: '<link creation date with second>',
+    date: '<link creation date>',
+    domain: '<domain label>',
+    data: {
+        +url: <the Branch link>,
+        ... <other deep link data>
+    },
+    campaign: '<campaign label>',
+    feature: '<feature label>',
+    channel: '<channel label>'
+    tags: [<tags array>],
+    stage: '<stage label>',
 }
 {% endhighlight %}
 
-### Sample return for all other events
+### Sample POST body for all -Event- (install, open, custom..) webhooks
 
 {% highlight js %}
 POST
 User-agent: Branch Metrics API
 Content-Type: application/json
 {
-    event: 'event name'
-    metadata: 'event metadata' - specified in userCompletedAction withState
-    event_timestamp: 'time stamp for the event'
-    hardware_id: 'IDFA' (iOS) | 'Android ID' (Android)
-    google_advertising_id: 'GAID' (Android if present)
-    os: 'iOS' | 'Android'
-    os_version: 'the OS version'
+    event: '<event name>'
+    event_timestamp: '<time stamp for the event>'
+    os: 'iOS' | 'Android',
+    os_version: '<the OS version>',
+    metadata: {
+        '< ... event metadata  - specified in userCompletedAction withState >'
+        ip: '<IP of the user>',
+        referred: 'true' | 'false', // if event is install / open / web session start
+        reinstall: 'true' | 'false', if event is install / open
+    },
+    hardware_id: 'IDFA' (iOS) | 'Android ID' (Android),
+    google_advertising_id: 'GAID' (Android if present),
+    
 
     // optionally included:
-    identity: 'user ID' - specified in setIdentity
+    identity: '<user ID>', // specified in setIdentity
 
     // the referrer who created the new user
-    first_referring_click_timestamp: the first click timestamp
-    first_referring_identity: 'user ID' - specified in setIdentity
-    first_referring_hardware_id: 'IDFA'
-    first_referring_link_data: { link data dictionary - see below }
+    first_referring_click_timestamp: '<the first click timestamp>',
+    first_referring_click_query: { <any query parameters appeneded to the link> },
+    first_referring_identity: '<user ID who created the referring link>' - specified in setIdentity
+    first_referring_hardware_id: '<hardware identifier who created the referring link'
+    first_referring_link_data: { <link data dictionary - see below> }
 
     // the referrer who referred this session
-    session_referring_click_timestamp: the session click timestamp
-    session_referring_identity: 'user ID'
-    session_referring_hardware_id: 'IDFA'
-    session_referring_link_data: { link data dictionary - see below }
+    session_referring_click_timestamp: '<the session click timestamp>',
+    session_referring_click_query: { <any query parameters appeneded to the link> },
+    session_referring_identity: '<user ID who created the referring link>'
+    session_referring_hardware_id: '<hardware identifier who created the referring link'
+    session_referring_link_data: { <link data dictionary - see below> }
 }
 
 // link data dictionary example
 {
-    data: { deep link dictionary }
-    type: 0 - original, 1 - one time use, 2 - marketing
-    campaign: 'campaign label'
-    feature: 'feature label'
+    branch_id: 'unique identifier for unique link',
+    date_ms: 'link creation date with millisecond',
+    date_sec: 'link creation date with second',
+    date: 'link creation date',
+    domain: 'domain label',
+    data: {
+        +url: <the Branch link>,
+        ... <other deep link data>
+    },
+    campaign: 'campaign label',
+    feature: 'feature label',
     channel: 'channel label'
-    tags: [tags array]
-    stage: 'stage label'
+    tags: [tags array],
+    stage: 'stage label',
 }
 {% endhighlight %}
 
-## Filters
+## Filtering which webhooks are sent
 
 Filters allow you to specify when a webhook gets sent to your URL based off criteria matches. You can configure your filters to use any [webhook keyword value](#webhook-keyword-values) by using liquid tags following this convention: {% raw %}`{{ param.name }}`{% endraw %}.
 
-{% example title="Filtering signups by location" %}
-Let's say you're interested in receiving a webhook every time your `sign_up` event is triggered, but only in a specific market, like Chicago. Your event metadata will look something like the following:
+{% protip title="Wildcard filtering" %}
+If you want to filter on just a key being present, you can put a `*` in the value box.
+{% endprotip %}
+
+{% example title="Filtering installs by referring link campaign" %}
+Let's say you're interested in receiving a webhook for every `install` event that is referred from a Branch link where you set the `Campaign` field to `App Install Campaign`. You would configure a filter to fire a webhook only when `~campaign` is equal to `App Install Campaign` like so: The key would equal: `session.link_data.~campaign` and the value would equal `App Install Campaign`
+
+{% image src="/img/pages/getting-started/webhooks/session-filter.png" 2-thirds center alt="webhook filter configuration" %}
+
+You can see more examples of session parameters to filter from [in the table below](#session-data).
+
+{% endexample %}
+
+{% example title="Filtering clicks by link channel" %}
+Let's say you're interested in receiving a webhook sent every `click` event that is referred from a Branch link where you set the `Channel` field to `AppLovin`. You would configure a filter to fire a webhook only when `~channel` is equal to `AppLovin` like so: The key would equal: `click.link_data.~channel` and the value would equal `AppLovin`.
+
+{% image src="/img/pages/getting-started/webhooks/click-filter.png" 2-thirds center alt="webhook filter configuration" %}
+
+You can see more examples of click parameters to filter from [in the table below](#click-events).
+
+{% endexample %}
+
+{% example title="Filtering custom signup event by location" %}
+Let's say you're interested in receiving a webhook every time your `sign_up` event is triggered via the `userCompletedAction` method in the SDKs, but only in a specific market, like Chicago. Your event metadata will look something like the following:
 
 {% highlight js %}
 event: {
@@ -181,45 +234,50 @@ event: {
 }
 {% endhighlight %}
 
-You would configure a filter to fire a webhook only when `city` is equal to Chicago: `event.metadata.city : Chicago`
-
-The end product would look like this:
+You would configure a filter to fire a webhook only when `city` is equal to Chicago: `event.metadata.city : Chicago` like so:
 
 {% image src="/img/pages/getting-started/webhooks/filters.png" 2-thirds center alt="webhook filter configuration" %}
 {% endexample %}
 
-{% protip title="Wildcard filtering" %}
-If you want to filter on just a key being present, you can put a `*` in the value box.
-{% endprotip %}
+## Templating your Postback URL
 
-## Templating
+If you plan on sending click or install data to a third party, you'll likely need to create one of our templated Postback URLs along side the [aforementioned filters](#filtering-which-webhooks-are-sent). These work very similarly to filters and use the same liquid tags structure: {% raw %}`{{ param.name }}`{% endraw %}. Once the webhook is eligible, the correct value will be filled in to the slot.
 
-If your backend relies on a dynamic URL structure to receive events, then we can support you with our webhooks. This is typically used for marketing campaigns, where a unique parameter needs to be appended to each link-click, and consequently posted back to a URL. You can also expose data we collect on the URL itself.
+{% example title="Creating a dynamic conversion postback for an ad agency" %}
 
-To access template values when setting up a webhook, you use liquid tags following this convention: {% raw %}`{{ param.name }}`{% endraw %}. We'll pass through that value we have saved in our database. Here are the two options for templates and webhooks:
+Let's say you have created a Branch link in the Marketing tab specifically for SEM campaigns and you're going to give the link to an advertising agency. This ad agency wants to receive install conversion events from Branch they'll append specific query parameters to your Branch link for tracking so that your Branch link might potentially look something like this: **http://branch.app.link/my-sf-campaign?clickId=12345**.
 
-### Query parameters on Branch links
+Now, you want to report conversions back to the agency or your backend, and you know the structure of the desired Postback URL. For example, lets say you want to send a Postback to **http://myagency.com/tracking?event=install&clickId=12345&idfa=<full-IDFA-here>**.
 
-Let's say you have created a Branch link in the Marketing tab specifically for SEM campaigns and want to track query parameters. Potentially something like this: **http://[branchsubdomain]/my-sf-campaign?clickId=12345**
+With that information, it's very easy to setup the correct, dynamic Postback URL using our templates! In this case, you need 3 fields to be dynamically populated:
 
-You want to return that value **clickId** value (`12345`) back to your backend. Any query parameter you add to Branch Links will be captured in our database and available for you to use in this format: `session.link_click.query.[key]`. So, if you had `?clickId=5&deviceId=7` appended to the link URL, you could retrieve those values as `session.link_click.query.clickId` and `session.link_click.query.deviceId`. In case there isn't anything, it'll simply be empty.
+- event name
+- clickId
+- IDFA value
 
-**NOTE:** this works for all types of Branch links, and not just Marketing links.
+Branch can easily populate those fields dynamically (and potentially add a lot more as described in the next section) using the following template keys:
 
-{% image src="/img/pages/getting-started/webhooks/templates.png" full center alt="webhook template configuration" %}
+- {% raw %}`{{ event.name }}`{% endraw %}
+- {% raw %}`{{ session.link_click.query.clickId }}`{% endraw %}
+- {% raw %}`{{ device.hardware_id }}`{% endraw %}
 
+ You can create your dynamic Postback URL by using those above tags in place of where the value should go. So, in keeping with the example, the dynamic Postback URL to give to Branch would be and should be pasted into the webhook creation URL field:
 
-### General templates without query parameters
+ {% raw %}`http://myagency.com/tracking?event={{ event.name }}&clickId={{ session.link_click.query.clickId }}&idfa={{ device.hardware_id }}`{% endraw %}
 
-If you want to add other parameters, you can configure your templates to use any [webhook keyword value](#webhook-keyword-values). For example, let's say you have an endpoint that accepts a GET with the required parameters `device.id`, and `event.name`. In this case, that would look like the following:
+{% image src="/img/pages/getting-started/webhooks/templates.png" 2-thirds center alt="webhook template configuration" %}
 
-{% image src="/img/pages/getting-started/webhooks/templates2.png" full center alt="webhook template configuration" %}
+Additionally, since you don't want to send them _every_ install event, let's add a [filter](#filtering-which-webhooks-are-sent) to only send the installs that are referred by links which have a `clickId` in the query parameter. In this case, we use a wildcard parameter (`*`) for the key `session.link_click.query.clickId`, which tells Branch to only trigger this webhook when an `install` event was referred by a link with a `clickId`.
 
-## Webhook keyword values
+{% image src="/img/pages/getting-started/webhooks/template-filters.png" 2-thirds center alt="webhook template filter" %}
 
-Branch has a wide variety of data keys you can access when building your filters and templates. All events offer the same keys, with the exception of `click`.
+And with that, we're finished creating our postback!
 
-### Click events
+{% image src="/img/pages/getting-started/webhooks/template-finished.png" full center alt="webhook template filter" %}
+
+{% endexample %}
+
+## Keys available for templating/filtering Click webhooks
 
 When a Branch link is opened, triggering a `click` event, you may access:
 
@@ -254,7 +312,7 @@ When a Branch link is opened, triggering a `click` event, you may access:
 | click.link_data.key | Any key value you specified in the link's data dictionary
 | click.referring_identity.id | ID you set for the user who created this link
 
-### All other events
+## Keys available for templating/filtering Event webhooks
 
 When a user triggers an event inside your app, either one [created by you]({{base.url}}/getting-started/user-value-attribution#custom-event-tracking) or one tracked by Branch automatically (`install`, `open`, `referred session`, and `web session start`), you may access:
 
@@ -268,7 +326,7 @@ When a user triggers an event inside your app, either one [created by you]({{bas
 For an initial `install` event, identity and session properties will be the same. For `open` events, session properties will be different if the user has subsequently opened another Branch link.
 {% endprotip %}
 
-#### Event data
+### Event data (Event webhooks)
 
 | Key | Description
 | --- | ---
@@ -278,7 +336,7 @@ For an initial `install` event, identity and session properties will be the same
 | event.metadata.key | Data defined as `key` when creating a custom event
 | event.date | Timestamp of when the event occurred
 
-#### Device data
+### Device data (Event webhooks)
 
 Device data provides access to the device fingerprint. Branch collects this fingerprint both when a user is in the browser – via a click on a Branch link – and then after they open the app. This information includes IP Address, OS, OS version, device model and other parameters.
 
@@ -290,21 +348,13 @@ Device data provides access to the device fingerprint. Branch collects this fing
 | device.metadata.model | The model of the device
 
 
-#### Identity data
+### Identity data (Event webhooks)
 
 Identity data is unique for each user Branch tracks. These values are permanently tied to that user, meaning if a link with a campaign of 'google' drives an install, then that user will have a permanent `identity.link_data.~campaign` value equal to 'google'.
 
 {% protip %}
 Except for `identity.id`, these will not be populated if the user installed your app without opening a Branch link first.
 {% endprotip %}
-
-| Key | Description
-| --- | ---
-| identity.id | ID you set [using setIdentity]({{base.url}}/getting-started/growth-attribution#setting-identities) for the user who triggered the event
-| identity.referring_identity.id | User ID you set for the user who created the link that drove this user's install
-| identity.referring_device.hardware_id | Device ID of the user who created the link that drove this user's install
-
-The `identity.link_data.` values refer to the link that was opened prior to your app being installed by that user.
 
 | Key | Description
 | --- | ---
@@ -322,18 +372,13 @@ The `identity.link_data.` values refer to the link that was opened prior to your
 | identity.link_data.+url | The full URL of the link, e.g. [branchsubdomain]/m/abcde12345
 | identity.link_data.key | Any key value you specified in the link's data dictionary
 
-#### Session data
+### Session data (Event webhooks)
 
 Session data refers to the **most recent** record Branch has for each user, regardless of whether it reflects an `install` or an `open` event.
 
 {% protip %}
 These will not be populated if the session was not initiated by opening a Branch link.
 {% endprotip %}
-
-| Key | Description
-| --- | ---
-| session.referring_identity.id | User ID you set for the user who created the link that drove this user's session
-| session.referring_device.hardware_id | Device ID of the user who created the link that drove this user's session
 
 The `session.link_click` keys refer to the `click` event that initiated the session.
 

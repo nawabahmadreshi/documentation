@@ -118,10 +118,11 @@ Receive the delegate method that will be called when the view controller is load
 {% endtab %}
 {% tab swift %}
 {% highlight swift %}
-func configureControlWithData(data: [NSObject : AnyObject]!) {
-	var pictureUrl = data["product_picture"]
-
-	// show the picture
+func configureControl(withData params: [AnyHashable: Any]!) {
+    let dict = params as Dictionary
+    if dict["product_picture"] != nil {
+	   // show the picture
+    }
 }
 {% endhighlight %}
 {% endtab %}
@@ -129,7 +130,7 @@ func configureControlWithData(data: [NSObject : AnyObject]!) {
 
 {% protip title="What is a link data key?" %}
 The example key `product_picture` is a parameter from the [data dictionary]({{base.url}}/getting-started/configuring-links) of the link that was clicked, and would have been defined when the link [was created]({{base.url}}/getting-started/creating-links-in-apps).
-{% endprotip %} 
+{% endprotip %}
 
 Since the view controller is displayed modally, you should add a close button:
 
@@ -177,8 +178,8 @@ In your **AppDelegate.m** file, find this method inside `didFinishLaunchingWithO
 In your **AppDelegate.swift** file, find this method inside `didFinishLaunchingWithOptions` (you would have added it in the [SDK Configuration Guide]({{base.url}}/getting-started/sdk-integration-guide)):
 
 {% highlight swift %}
-branch.initSessionWithLaunchOptions(launchOptions, andRegisterDeepLinkHandler: { optParams, error in
-    if error == nil, let params = optParams {
+branch.initSession(launchOptions: launchOptions, deepLinkHandler: { params, error in
+    if error == nil {
         // params are the deep linked params associated with the link that the user clicked -> was re-directed to this app
         // params will be empty if no data found
         // ... insert custom logic here ...
@@ -206,7 +207,7 @@ ExampleDeepLinkingController *controller = [[UIStoryboard storyboardWithName:@"M
 var controller = UIStoryboard.init("Main", NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("DeepLinkingController")
 
 branch.registerDeepLinkController(controller, forKey: "product_picture")
-branch.initSessionWithLaunchOptions(launchOptions, automaticallyDisplayDeepLinkController: true)
+branch.initSession(launchOptions: launchOptions, automaticallyDisplayDeepLinkController: true)
 {% endhighlight %}
 {% endtab %}
 {% endtabs %}
@@ -242,7 +243,7 @@ protected void onResume() {
 
 {% protip title="What is a link data key?" %}
 The example key `product_picture` is a parameter from the [data dictionary]({{base.url}}/getting-started/configuring-links) of the link that was clicked, and would have been defined when the link [was created]({{base.url}}/getting-started/creating-links-in-apps).
-{% endprotip %} 
+{% endprotip %}
 
 ## Register Activity for deep link routing
 
@@ -304,11 +305,11 @@ Inside the `andRegisterDeepLinkHandler` callback in your AppDelegate, you will w
 {% endtab %}
 {% tab swift %}
 {% highlight swift %}
-func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     let branch: Branch = Branch.getInstance()
-    branch.initSessionWithLaunchOptions(launchOptions, true, andRegisterDeepLinkHandler: { optParams, error in
+    branch.initSession(launchOptions: launchOptions, deepLinkHandler: { params, error in
         // If the key 'pictureId' is present in the deep link dictionary
-        if let params = optParams where params["+clicked_branch_link"] && params["pictureId"] {
+        if error == nil && params["+clicked_branch_link"] != nil && params["pictureId"] != nil {
             print("clicked picture link!")
             // load the view to show the picture
         } else {
@@ -494,7 +495,7 @@ Inside the callback for `checkForDeferredDeepLinkWithCompletionHandler` method i
 
 {% highlight objc %}- (void)checkForDeeplink {
     MParticle * mParticle = [MParticle sharedInstance];
-    
+
     [mParticle checkForDeferredDeepLinkWithCompletionHandler:^(NSDictionary<NSString *,NSString *> * _Nullable params, NSError * _Nullable error) {
         if (params) {
                 // Start setting up the view controller hierarchy
@@ -512,7 +513,7 @@ Inside the callback for `checkForDeferredDeepLinkWithCompletionHandler` method i
                 } else {
                     nextVC = [storyboard instantiateViewControllerWithIdentifier:@"MainVC"];
                 }
-                
+
                 // navigate!
                 [navC setViewControllers:@[nextVC] animated:YES];
             }
@@ -608,7 +609,7 @@ In addition to any custom key/value pairs specified in the link data dictionary,
 
 ## Support existing deep link routes
 
-If you spent a bunch of time setting up deep link paths before you heard of Branch and you want to continue using them, you can set the `$deeplink_path`, `$ios_deeplink_path` or `$android_deeplink_path` link control parameters to the URI path you'd like to display.
+If your app already supports deep linking using URI paths, you can populate the `$deeplink_path`, `$ios_deeplink_path` or `$android_deeplink_path` link parameters with the URI path of the content to be displayed within the app. When the Branch SDK receives a link containing one of these parameters it will automatically load the specified URI path.
 
 {% if page.android or page.mparticle_android %}
 
@@ -622,7 +623,7 @@ In your app's Manifest, add this meta-data key to the definition of the Activity
 {% if page.android or page.mparticle_android %}{% else %}
 
 {% caution title="Incomplete support on iOS" %}
-[Universal Links]({{base.url}}/getting-started/universal-app-links) and [Spotlight]({{base.url}}/features/spotlight-indexing) do not support deep linking via URI paths. If possible, we recommend not using `$deeplink_path` and its platform-specific variants as your only deep link routing method.
+[Universal Links]({{base.url}}/getting-started/universal-app-links) and [Spotlight]({{base.url}}/features/spotlight-indexing) do not support deep linking via URI paths. If you use `$deeplink_path` or `$ios_deeplink_path`, you will need to implement some custom logic. [Click here for more information]({{base.url}}/getting-started/universal-app-links/advanced/ios/#how-to-handle-uri-paths-with-universal-links).
 {% endcaution %}
 
 {% endif %}
@@ -927,16 +928,16 @@ You must also configure your app to allow Branch to handle push notifications:
 {% highlight objc %}
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     [[Branch getInstance] handlePushNotification:userInfo];
-    
+
     // ... handle push notifications that do not include Branch links
 }
 {% endhighlight %}
 {% endtab %}
 {% tab swift %}
 {% highlight swift %}
-func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+func application(_ application: UIApplication, didReceiveRemoteNotification launchOptions: [AnyHashable: Any]) -> Void {
     Branch.getInstance().handlePushNotification(userInfo)
-    
+
     // ... handle push notifications that do not include Branch links
 }
 {% endhighlight %}

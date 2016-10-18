@@ -170,15 +170,31 @@ You can also [build and reference the assemblies directly]({{base.url}}/getting-
 | `Test Mode` | Switch set of parameters, if "Test mode" is enabled then app will use "test" Branch key if specified. Otherwise, the app will use the "live" Branch key.
 | `Branch Key` | Get your live or test Branch key from [the Branch dashboard](https://dashboard.branch.io/#/settings){:target="_blank"}. You can toggle Live/Test at the top right hand side of the dashboard.
 | `Branch Uri` | The URI scheme for your app, which must be the same value as you entered in [the Branch link settings](https://dashboard.branch.io/#/settings/link){:target="_blank"}. Do **not** include the `://` characters.
-| `Android Path Prefix` | This only applies to you if you are on the `bnc.lt` domain. If you use `app.link`, please ignore this field. This is your Branch android path prefix. This is the four-character value in front of all your links. You can find it underneath the field labeled **SHA256 Cert Fingerprints** on the dashboard. It will look something like this: `/WSuf` (the initial `/` character should be included).
+| `Android Path Prefix` | This only applies to you if you are on the `bnc.lt` domain or a custom, white labeled domain (`links.yoursite.com`). If you use `app.link` or even a custom subdomain, please ignore this field. This is the four-character value in front of all your links. You can find it underneath the field labeled **SHA256 Cert Fingerprints** on the dashboard once you've enabled App Links. It will look something like this: `/WSuf` (the initial `/` character should be included).
 | `App Links` | This is where you specify the domains you would like to use for Android App Links (similar to Universal Links on iOS). Universal Links must be manually configured later as we couldn't figure out how to automate this.
 
 {% image src='/img/pages/getting-started/sdk-integration-guide/unity_branch_key.png' full center alt='Unity plugin installation' %}
 
 * `Update iOS Wrapper` : You should tap this button each time when you will change `Branch Key` and `Branch Uri`.
-* `Update Android Manifest` : You should tap this button if you want to update your manifest. If you update your manifest manually just don't push this button.
+* `Update Android Manifest` : You should tap this button if you want to update your manifest to include the correct intent filters for deep linking. If you update your manifest manually just don't push this button. If you need to update your manifest manually, please review the guidelines on [our Github page](https://github.com/BranchMetrics/unity-branch-deep-linking#android-note-for-manual-manifest-changing).
 
-{% protip title="For iOS projects" %}
+### Overriding OnNewIntent for Android
+
+The Branch SDK contains an custom activity that is extended from UnityPlayerActivity. This is required in order to fix Android's OnNewIntent() to allow the app retrieves right link when app is in background.
+
+In the manifest file, you will need to replace:
+
+{% highlight xml %}
+<activity android:name="com.unity3d.player.UnityPlayerActivity">
+{% endhighlight %}
+with
+{% highlight xml %}
+<activity android:name="io.branch.unity.BranchUnityActivity" android:launchMode="singleTask">
+{% endhighlight %}
+
+If you will have your own custom activity, you just should override method `OnNewIntent` and add flag "singleTask".
+
+{% protip title="Note for iOS projects" %}
 
 When building an iOS project:
 
@@ -710,7 +726,7 @@ A Branch session needs to be started every single time your app opens. We check 
 1. Find the line beginning with:
 
 {% highlight swift %}
-func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions:
+func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 {% endhighlight %}
 {% endtab %}
 {% endtabs %}
@@ -765,8 +781,8 @@ Branch *branch = [Branch getInstance];
 {% tab swift %}
 {% highlight swift %}
 let branch: Branch = Branch.getInstance()
-branch.initSessionWithLaunchOptions(launchOptions, andRegisterDeepLinkHandler: { optParams, error in
-    if error == nil, let params = optParams {
+branch?.initSession(launchOptions: launchOptions, automaticallyDisplayDeepLinkController: true, deepLinkHandler: { params, error in
+    if error == nil {
         // params are the deep linked params associated with the link that the user clicked -> was re-directed to this app
         // params will be empty if no data found
         // ... insert custom logic here ...
@@ -799,8 +815,8 @@ Branch *branch = [Branch getInstance];
 {% tab swift %}
 {% highlight swift %}
 let branch: Branch = Branch.getInstance()
-branch.initSessionWithLaunchOptions({}, andRegisterDeepLinkHandler: { optParams, error in
-    if error == nil, let params = optParams {
+branch?.initSession(launchOptions: launchOptions, automaticallyDisplayDeepLinkController: true, deepLinkHandler: { params, error in
+    if error == nil {
         // params are the deep linked params associated with the link that the user clicked -> was re-directed to this app
         // params will be empty if no data found
         // ... insert custom logic here ...
@@ -851,7 +867,7 @@ Finally, add these two new methods to your **AppDelegate.swift** file. The first
 
 {% highlight swift %}
 // Respond to URI scheme links
-func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
+func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
     // pass the url to the handle deep link call
     Branch.getInstance().handleDeepLink(url);
 
@@ -860,10 +876,11 @@ func application(application: UIApplication, openURL url: NSURL, sourceApplicati
 }
 
 // Respond to Universal Links
-func application(application: UIApplication, continueUserActivity userActivity: NSUserActivity, restorationHandler: ([AnyObject]?) -> Void) -> Bool {
+func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
     // pass the url to the handle deep link call
+    Branch.getInstance().continue(userActivity)
 
-    return Branch.getInstance().continueUserActivity(userActivity)
+    return true
 }
 {% endhighlight %}
 
@@ -940,6 +957,8 @@ function DeepLinkHandler(data) {
 {% caution title="Watch out for content security policies" %}
 If `data` is null and `err` contains a string denoting a request timeout, make sure to whitelist `api.branch.io` and `[branchsubdomain]` ([click here]({{base.url}}/getting-started/link-domain-subdomain/guide/#the-default-applink-subdomain){:target="_blank"} to read about `[branchsubdomain]`) in your app's [content security policies](https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy){:target="_blank"}.
 {% endcaution %}
+
+Note, if you are unsure how to set a global function or you are getting a `Reference not defined` error with `DeepLinkHandler`, please review this [Github issue](https://github.com/BranchMetrics/cordova-ionic-phonegap-branch-deep-linking/issues/128).
 
 {% endif %}
 <!-- /Cordova -->
@@ -1038,8 +1057,8 @@ public class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDe
 {% if page.unity %}
 Insert the following methods into the main class of the scene to which you added BranchPrefab. The callback method should be visible from every scene in which you will use deep linked data.
 
-{% caution title="Call initSession in first scene" %}
-Please call initSession(..) in Start of your very first scene. Branch needs time to register for all of the iOS lifecycle calls before iOS calls them, in order to intercept the deep link data. If you call it after, you'll potentially miss data.
+{% caution title="Call initSession in first scene during initialization" %}
+Please call initSession(..) in Start of your very first scene or onCreate of your main Activity. Branch needs time to register for all of the lifecycle calls before the application makes them, in order to intercept the deep link data. If you call it after, you'll potentially miss data.
 {% endcaution %}
 
 {% highlight c# %}
@@ -1051,11 +1070,11 @@ public class MyCoolBehaviorScript : MonoBehaviour {
         Branch.initSession(CallbackWithBranchUniversalObject);
     }
 
-    void CallbackWithBranchUniversalObject(universalObject, linkProperties, error) {
+    void CallbackWithBranchUniversalObject(BranchUniversalObject universalObject, BranchLinkProperties linkProperties, string error) {
         if (error != null) {
             System.Console.WriteLine("Oh no, something went wrong: " + error);
         }
-        else if (parameters.Count > 0) {
+        else if (linkProperties.controlParams.Count > 0) {
             System.Console.WriteLine("Branch initialization completed with the following params: " + universalObject.ToJsonString() + linkProperties.ToJsonString());
         }
     }
@@ -1427,7 +1446,7 @@ The only situation in which you do not need to perform these steps is if you ins
 
 If you'd like Branch to collect the [Google Advertising ID](https://support.google.com/googleplay/android-developer/answer/6048248) for advertising or tracking purposes instead of the Android ID, you must add Google Play Services to your app prior to release. After you complete these steps, Branch will handle the rest!
 
-1. Add `compile 'com.google.android.gms:play-services:7.5.0'` or greater version to the dependencies section of your `build.gradle` file. You might already have it.
+1. Add `compile 'com.google.android.gms:play-services-ads:9+'` or greater version to the dependencies section of your `build.gradle` file. You might already have it.
 1. Add the following line in your Proguard settings:
 
 {% highlight xml %}
@@ -1490,7 +1509,13 @@ This is often caused by a Proguard bug with optimization. Please try to use the 
 Follow these directions install the Branch SDK framework files without using CocoaPods:
 
 1. [Grab the latest SDK version](https://s3-us-west-1.amazonaws.com/branchhost/Branch-iOS-SDK.zip), or [clone our open-source GitHub repo](https://github.com/BranchMetrics/ios-branch-deep-linking).
-1. Drag the `Branch.framework` file into your Xcode project. Be sure that "Copy items if needed" and "Create groups" are selected.
+1. Drag the `Branch.framework` file from the root of the SDK folder into the Frameworks folder of your Xcode project. Be sure that "Copy items if needed" and "Create groups" are selected.
+1. Update the target's **Framework Search Paths**  
+    a. Select the project in Project Navigator  
+    b. In the PROJECT/TARGETS pane select the target you are building  
+    c. Click on the **Build Settings** tab  
+    d. Find: **User Header Search Paths**  
+    e. Add: **$(PROJECT_DIR)/Branch.framework/Headers**  
 1. Import the following frameworks under **Build Phases** for your app target:
     - `AdSupport.framework`
     - `CoreTelephony.framework`
