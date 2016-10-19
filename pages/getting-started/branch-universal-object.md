@@ -27,7 +27,7 @@ A `BranchUniversalObject` is a container that Branch uses to organize and track 
 
 {% if page.adobe %}
 
-Unfortunately `BranchUniversalObject` is not yet supported on this platform. Please see the [Creating Links in Apps]({{base.url}}/getting-started/creating-links-in-apps) page for alternatives!
+Unfortunately `BranchUniversalObject` is not yet supported on this platform. Please see the [Creating Links in Apps]({{base.url}}/getting-started/creating-links/apps) page for alternatives!
 
 {% else %}
 
@@ -51,7 +51,7 @@ Practices to _avoid_:
 
 ## Defining a Branch Universal Object
 
-You build a `BranchUniversalObject` by assembling parameters. After the parameters are assembled, you can [create a link]({{base.url}}/getting-started/creating-links-in-apps) by referencing the `BranchUniversalObject`.
+You build a `BranchUniversalObject` by assembling parameters. After the parameters are assembled, you can [create a link]({{base.url}}/getting-started/creating-links/apps) by referencing the `BranchUniversalObject`.
 
 {% if page.ios %}
 
@@ -354,7 +354,7 @@ branchUniversalObject.userCompletedAction(BNCRegisterViewEvent)
 
 ### getShortUrlWithLinkProperties
 
-Create a link to a piece of content. Visit the [Creating Links in Apps]({{base.url}}/getting-started/creating-links-in-apps) page to learn more.
+Create a link to a piece of content. Visit the [Creating Links in Apps]({{base.url}}/getting-started/creating-links/apps) page to learn more.
 
 {% tabs %}
 {% tab objective-c %}
@@ -465,7 +465,7 @@ branchUniversalObject.userCompletedAction(BranchEvent.VIEW);
 
 ### generateShortUrl
 
-Create a link to a piece of content. Visit the [Creating Links in Apps]({{base.url}}/getting-started/creating-links-in-apps) page to learn more.
+Create a link to a piece of content. Visit the [Creating Links in Apps]({{base.url}}/getting-started/creating-links/apps) page to learn more.
 
 {% highlight java %}
 branchUniversalObject.generateShortUrl(this, linkProperties, new BranchLinkCreateListener() {
@@ -538,7 +538,7 @@ branchUniversalObj.registerView();
 
 ### generateShortUrl
 
-Create a link to a piece of content. Visit the [Creating Links in Apps]({{base.url}}/getting-started/creating-links-in-apps) page to learn more.
+Create a link to a piece of content. Visit the [Creating Links in Apps]({{base.url}}/getting-started/creating-links/apps) page to learn more.
 
 {% highlight js %}
 branchUniversalObj.generateShortUrl({
@@ -635,7 +635,7 @@ Branch.GetInstance().RegisterView (BranchUniversalObject universalObject)
 
 ### getShortURL
 
-Create a link to a piece of content. Visit the [Creating Links in Apps]({{base.url}}/getting-started/creating-links-in-apps) page to learn more. First define the properties of the link. In the example, our properties reflect that this is shared content and the user selected Facebook as the destination:
+Create a link to a piece of content. Visit the [Creating Links in Apps]({{base.url}}/getting-started/creating-links/apps) page to learn more. First define the properties of the link. In the example, our properties reflect that this is shared content and the user selected Facebook as the destination:
 
 {% highlight c# %}
 BranchLinkProperties linkProperties = new BranchLinkProperties();
@@ -712,7 +712,7 @@ Branch.registerView(universalObject);
 
 ### getShortURL
 
-Create a link to a piece of content. Visit the [Creating Links in Apps]({{base.url}}/getting-started/creating-links-in-apps) page to learn more.
+Create a link to a piece of content. Visit the [Creating Links in Apps]({{base.url}}/getting-started/creating-links/apps) page to learn more.
 
 First define the properties of the link. In the example, our properties reflect that this is shared content and the user selected Facebook as the destination:
 
@@ -765,7 +765,7 @@ branchUniversalObject.registerView();
 
 ### generateShortUrl
 
-Create a link to a piece of content. Visit the [Creating Links in Apps]({{base.url}}/getting-started/creating-links-in-apps) page to learn more.
+Create a link to a piece of content. Visit the [Creating Links in Apps]({{base.url}}/getting-started/creating-links/apps) page to learn more.
 
 {% highlight js %}
 branchUniversalObject.generateShortUrl({
@@ -868,7 +868,7 @@ let viewResult = await branchUniversalObject.registerView()
 
 ### getShortUrl
 
-Create a link to a piece of content. Visit the [Creating Links in Apps]({{base.url}}/getting-started/creating-links-in-apps) page to learn more.
+Create a link to a piece of content. Visit the [Creating Links in Apps]({{base.url}}/getting-started/creating-links/apps) page to learn more.
 
 {% highlight js %}
 let linkProperties = {

@@ -51,7 +51,7 @@ It's that simple! The [Branch dashboard](https://dashboard.branch.io/#) will tra
 
 {% protip title="Creating links dynamically" %}
 
-If you need more flexibility, you might also be interested in building links by [appending query parameters]({{base.url}}/getting-started/creating-links-other-ways/#appending-query-parameters).
+If you need more flexibility, you might also be interested in building links by [appending query parameters]({{base.url}}/getting-started/creating-links/other-ways/#appending-query-parameters).
 {% endprotip %}
 
 {% elsif page.advanced %}

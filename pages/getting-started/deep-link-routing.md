@@ -129,7 +129,7 @@ func configureControl(withData params: [AnyHashable: Any]!) {
 {% endtabs %}
 
 {% protip title="What is a link data key?" %}
-The example key `product_picture` is a parameter from the [data dictionary]({{base.url}}/getting-started/configuring-links) of the link that was clicked, and would have been defined when the link [was created]({{base.url}}/getting-started/creating-links-in-apps).
+The example key `product_picture` is a parameter from the [data dictionary]({{base.url}}/getting-started/configuring-links) of the link that was clicked, and would have been defined when the link [was created]({{base.url}}/getting-started/creating-links/apps).
 {% endprotip %}
 
 Since the view controller is displayed modally, you should add a close button:
@@ -242,7 +242,7 @@ protected void onResume() {
 {% endhighlight %}
 
 {% protip title="What is a link data key?" %}
-The example key `product_picture` is a parameter from the [data dictionary]({{base.url}}/getting-started/configuring-links) of the link that was clicked, and would have been defined when the link [was created]({{base.url}}/getting-started/creating-links-in-apps).
+The example key `product_picture` is a parameter from the [data dictionary]({{base.url}}/getting-started/configuring-links) of the link that was clicked, and would have been defined when the link [was created]({{base.url}}/getting-started/creating-links/apps).
 {% endprotip %}
 
 ## Register Activity for deep link routing
@@ -261,7 +261,7 @@ Now whenever your app launches from a Branch link that has the `product_picture`
 
 ## Next steps
 
-Now that your Branch links are set up to send users exactly where they expect to go inside your app, you will want make it easy to [**Create Links**]({{base.url}}/getting-started/creating-links-in-apps) that do this!
+Now that your Branch links are set up to send users exactly where they expect to go inside your app, you will want make it easy to [**Create Links**]({{base.url}}/getting-started/creating-links) that do this!
 
 {% elsif page.advanced %}
 

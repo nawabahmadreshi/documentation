@@ -32,7 +32,7 @@ Branch allows you reward users with credits, track those credits, and redeem the
 
 - You need to [integrate the Branch SDK]({{base.url}}/getting-started/sdk-integration-guide) into your app.
 - You should [identify your users]({{base.url}}/getting-started/setting-identities) on both log in and log out.
-- Your users should be able to [create links]({{base.url}}/getting-started/creating-links-in-apps) so we can track referred-referring relationships.
+- Your users should be able to [create links in your app]({{base.url}}/getting-started/creating-links/apps) so we can track referred-referring relationships.
 
 {% endprerequisite %}
 

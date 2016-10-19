@@ -600,7 +600,7 @@ Your Branch links are now configured to open your app in the most user-friendly 
 
 Here are some recommended next steps:
 
-- **Learn about [Creating Links in Apps]({{base.url}}/getting-started/creating-links-in-apps)** — let your users share content and invite friends from inside your app.
+- **Learn about [Creating Links in Apps]({{base.url}}/getting-started/creating-links/apps)** — let your users share content and invite friends from inside your app.
 - **Set up [Deep Link Routing]({{base.url}}/getting-started/deep-link-routing)** — send incoming visitors directly to specific content in your app based on the Branch link they opened.
 
 {% elsif page.advanced %}

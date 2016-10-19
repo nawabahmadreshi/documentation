@@ -7,6 +7,7 @@ description: By hosting deep link data on your website, Branch can automatically
 ios_keywords: Contextual Deep Linking, Deep links, Tune, HasOffers, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Mixpanel, user segmentation, life time value, LTV
 android_keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Mixpanel, user segmentation, life time value, LTV
 hide_platform_selector: true
+hide_section_selector: true
 sections:
 - guide
 ---
@@ -16,7 +17,7 @@ Make it easy for your marketers to create links! If you host deep link data in y
 Furthermore, Branch can reliably parse your Content Analytics data and provide you with more valuable information about which content is driving clicks, installs, opens, and in-app engagement.
 
 {% protip %}
-Today, you can use this functionality for [Journeys](https://branch.io/journeys), [Deep Linked Email](https://branch.io/email/), and in future releases the Branch [marketing link creator]({{base.url}}/getting-started/creating-links-other-ways/guide/#dashboard) and [Chrome extension]({{base.url}}/features/chrome-extension/) will also scrape your web URL for deep link data to make link creation even easier.
+Today, you can use this functionality for [Journeys](https://branch.io/journeys), [Deep Linked Email](https://branch.io/email/), the Branch [marketing link creator]({{base.url}}/getting-started/creating-links/dashboard) and [Chrome extension]({{base.url}}/getting-started/creating-links/chrome-extension/) - they will all scrape your web URL for deep link data to make link creation even easier.
 {% endprotip %}
 
 {% protip title="Using App Links already?" %}
