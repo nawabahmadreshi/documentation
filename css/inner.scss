@@ -203,8 +203,9 @@
     > tbody {
       > tr > td {
         border-top: 1px solid #c7d4e4;
-        padding: 15px;
+        padding: 10px 15px;
         border-left: 1px solid #f5f5f5;
+        //word-break: break-all;
         &:first-child {
           border-left: none;
           text-align: right;

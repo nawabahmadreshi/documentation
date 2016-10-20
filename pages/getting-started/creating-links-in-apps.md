@@ -19,13 +19,14 @@ platforms:
 sections:
 - overview
 - guide
+exclude_from_google_search: true
 ---
 
 {% if page.overview %}
 Links are the foundation of everything Branch offers. By using our mobile SDKs to create Branch links in your app, you can easily allow your users to accomplish tasks such as sharing content or inviting friends.
 
 {% protip %}
-For alternative ways to create Branch links, including via the dashboard, your website, the API, or appending URL query parameters, see the [Creating Links in Other Ways page]({{base.url}}/getting-started/creating-links-other-ways).
+For alternative ways to create Branch links, including via the dashboard, your website, the API, or appending URL query parameters, see the [Creating Links in Other Ways page]({{base.url}}/getting-started/creating-links/other-ways).
 
 You can read more about using the link data dictionary to define key/value pairs for deep linking, and the various link analytics and control parameters used throughout this page on the [Link Configuration page]({{base.url}}/getting-started/configuring-links).
 {% endprotip %}

@@ -1462,7 +1462,7 @@ The Branch SDK is now integrated into your app, and you can use the [Branch dash
 Here are some recommended next steps:
 
 - **Enable [Universal & App Links]({{base.url}}/getting-started/universal-app-links)** — traditional URI scheme links are no longer supported in many situations on iOS 9.2+, and are a less than ideal solution on new versions of Android. To get full functionality from your Branch links on iOS devices, **you should enable Universal Links as soon as possible.**
-- **Learn about [Creating Links in Apps]({{base.url}}/getting-started/creating-links-in-apps)** — let your users share content and invite friends from inside your app.
+- **Learn about [Creating Links in Apps]({{base.url}}/getting-started/creating-links/apps)** — let your users share content and invite friends from inside your app.
 -  **Set up [Deep Link Routing]({{base.url}}/getting-started/deep-link-routing)** — send incoming visitors directly to specific content in your app based on the Branch link they opened.
 -  **Set up [Custom Event Tracking]({{base.url}}/getting-started/user-value-attribution#custom-event-tracking)** if you skipped the step above — make in-app activity beyond clicks, installs, and opens — like purchases and signups — available for analysis in the dashboard.
 

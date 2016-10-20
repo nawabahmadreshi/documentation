@@ -421,7 +421,7 @@ let {url} = await branchUniversalObject.generateShortUrl(linkProperties, control
 
 {% protip title="To learn more about the concepts we used, visit these pages:" %}
 
-- [Creating Links in Apps]({{base.url}}/getting-started/creating-links-in-apps)
+- [Creating Links in Apps]({{base.url}}/getting-started/creating-links/apps)
 - [Configuring Links]({{base.url}}/getting-started/configuring-links)
 - [BranchUniversalObject]({{base.url}}/getting-started/branch-universal-object)
 - [Deep Link Routing]({{base.url}}/getting-started/deep-link-routing)

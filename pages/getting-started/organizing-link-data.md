@@ -19,7 +19,7 @@ Now that your app is configured, it's time to dive into your data with the [Bran
 
 ## Using link labels to segment data
 
-As you most likely saw on the [Creating Links in Apps]({{base.url}}/getting-started/creating-links-in-apps) and [Creating Links in Other Ways]({{base.url}}/getting-started/creating-links-other-ways) pages, there are many options for creating links. If your organization is creating links in many different ways, it’s important to label them appropriately.
+As you most likely saw in the [Creating Links]({{base.url}}/getting-started/creating-links) guide, there are many options for creating links. If your organization is creating links in many different ways, it’s important to label them appropriately.
 
 When you [set analytics labels for your links]({{base.url}}/getting-started/configuring-links/#analytics-labels), you can filter analytics data in the dashboard based on any of these options:
 
@@ -45,7 +45,7 @@ By default, Branch will attempt to launch your app every single time a link is o
 
 To make it easier for you to get rich attribution data in your dashboard, Branch will map UTM parameters to the Branch Analytics Tags.
 
-Currently, this is available only for parameters appended to **[dynamic Branch links]({{base.url}}/getting-started/creating-links-other-ways#appending-query-parameters)**. At this time, it is not enabled for parameters on $fallback_url or for other links, like Marketing links - coming soon!
+Currently, this is available only for parameters appended to **[dynamic Branch links]({{base.url}}/getting-started/creating-links/other-ways#appending-query-parameters)**. At this time, it is not enabled for parameters on $fallback_url or for other links, like Marketing links - coming soon!
 
 The mapping is as follows:
 

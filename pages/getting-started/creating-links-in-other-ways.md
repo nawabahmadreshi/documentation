@@ -10,21 +10,21 @@ hide_section_selector: true
 platforms:
 sections:
 - guide
+exclude_from_google_search: true
 ---
 
 Links are the foundation of everything Branch offers. There are many ways to create links, depending on your needs.
 
 {% protip %}
-If you want to create links inside your app (to share content or invite users, for example), see the [Creating Links in Apps page]({{base.url}}/getting-started/creating-links-in-apps).
+If you want to create links inside your app (to share content or invite users, for example), see the [Creating Links in Apps page]({{base.url}}/getting-started/creating-links/apps).
 
 You can read more about using the link data dictionary to define key/value pairs for deep linking, and the various link analytics and control parameters used throughout this page on the [Configuring Links page]({{base.url}}/getting-started/configuring-links).
 {% endprotip %}
 
 ## Dashboard
 
-You can create links on the [Marketing page](https://dashboard.branch.io/#/marketing) of the Branch dashboard. Many link parameters can be configured using this UI, and most others can be manually specified under the _Deep Link Data (Advanced)_ section.
+You can create links on the [Marketing page](https://dashboard.branch.io/#/marketing) of the Branch dashboard. Many link parameters can be configured using this UI, and most others can be manually specified under the _Deep Linking_ section.
 
-{% image src="/img/pages/getting-started/creating-links-other-ways/add_full.png" 3-quarters center alt="Link Tags" %}
 
 ## Appending query parameters
 
@@ -43,12 +43,12 @@ Here's an example of a finalized dynamic link (line breaks added for legibility)
 
 {% highlight sh %}
 https://[branchsubdomain]?
-	%24deeplink_path=article%2Fjan%2F123&
-	%24fallback_url=https%3A%2F%2Fgoogle.com&
-	channel=facebook&
-	feature=affiliate&
-	user_id=4562&
-	name=Alex
+  %24deeplink_path=article%2Fjan%2F123&
+  %24fallback_url=https%3A%2F%2Fgoogle.com&
+  channel=facebook&
+  feature=affiliate&
+  user_id=4562&
+  name=Alex
 {% endhighlight %}
 
 The following keys have been embedded:
