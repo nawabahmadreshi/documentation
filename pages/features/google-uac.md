@@ -52,7 +52,7 @@ The following steps will add a Branch postback to your Adwords account, allowing
 - Give it a name like `Branch Android Conversion`
 - Under `Value` assign a value (or select “Don’t assign a value to this install”)
 - Under `Mobile app` input your application details
-- In the `Postback URL` section, input the following link:{% highlight sh %}http://branch.io?adid={adid}&lat={lat}&click_url={click_url}{% endhighlight %}
+- In the `Postback URL` section, input the following link for Android:{% highlight sh %}http://branch.io?adid={adid}&lat={lat}&click_url={click_url}{% endhighlight %}and the following link for iOS:{% highlight sh %}http://branch.io?idfa={md5_advertising_id}&lat={lat}&click_url={click_url}{% endhighlight %}
 
 **9)** Click `Save and continue`.
 
@@ -98,7 +98,7 @@ Now that you've created your Branch link, we need to associate your conversion p
 
 **6)** Find you previous Branch conversion(s) and click `Edit Settings`
 
-**7)** Modify the `Postback URL` to append `&link_identifier=link-<link ID from previous steps>`. For example, if you read `242272926307502477` from step 3, you would change your `Postback URL` from:{% highlight sh %}htthttp://branch.io?adid={adid}&lat={lat}&click_url={click_url}&link_identifier=link-242272926307502477{% endhighlight %}
+**7)** Modify the `Postback URL` to append `&link_identifier=link-<link ID from previous steps>`. For example, if you read `242272926307502477` from step 3, you would change your `Postback URL` to include the following query parameter:{% highlight sh %}http://branch.io?adid={adid}&lat={lat}&click_url={click_url}&link_identifier=link-242272926307502477{% endhighlight %}
 
 **8)** Click `Save`
 
