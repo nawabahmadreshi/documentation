@@ -96,7 +96,26 @@ Branch *branch = [Branch getInstance];
 
 ## What Branch Sends to Adobe Analytics
 
+Branch sends the following values from Branch link data:
 
+- Campaign ("March-2016-Facebook")
+- Channel ("Facebook DPA")
+- Feature ("Marketing")
+- Name of Branch event ("Install")
+- Deep Link Data ("promo_code: "ABCDE")
+
+If you create a marketing link and specify analytics and deep link data, it will send and appear in the Adobe Analytics reporting suite.
+
+
+## Troubleshooting
+
+There are common strategies to take while trouble shooting.
+
+### Data isn't appearing after simulating an event
+
+With Adobe Analytics' dashboard, it may take up to ~2 hours for data to appear. We'd recommend you simulate 10-15 events in one testing session, and validate that they show up two hours later, so that feedback is transparent and obvious.
+
+Another thing to do is make sure a valid adobe_visitor_id is being passed up through the Branch SDK. Call *setDebug* and inspect the requests to `v1/open`. The key you want to find in this request payload is `$adobe_visitor_id`. 
 
 
 {% endif %}
