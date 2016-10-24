@@ -32,7 +32,11 @@ Branch will send *referred* **installs** and **opens**, as well as any **custom 
 
 ## What does it look like?
 
-Branch events will appear through a Data Connector with Adobe Analytics.
+Branch events will appear on the Adobe Analytics dashboard through `Reports > Custom Conversion > Branch eVar`. Note, this will automatically appear once the Branch Data Connector is enabled through the Adobe Analytics dashboard.
+
+You'll have the flexibility to analyze data as needed in the Adobe Analytics platform, as the data Branch sends maps in Adobe Analytics to a top level eVar. This eVar contains campaign, channel, target, event name, and action property, which is your deep link data.
+
+{% image src="/img/pages/third-party-integrations/omniture/omniture.png" 3-quarters center %}
 
 Branch events are similar to Adobe Analytics events in that they can be used to build custom reports and are tracked on the various pages and dashboards. However, unlike normal events, Branch events contain valuable information about how users ended up in your app in the first place.
 
@@ -64,6 +68,7 @@ Analytics Server Domain | Tracking Server
 Omniture iOS/Android Server Key | Report Suite ID for that app
 Timestamp | Offline Tracking
 
+For `Analytics Server Domain`, please do not include `http` or `https`. If your value for this is `http://test.com`, simply put in `test.com`. This means no extra slashes, and no protocol.
 
 ## Configure the Branch Dashboard
 
@@ -75,6 +80,24 @@ To enable the Adobe Analytics beta please contact your Branch account manager or
 1. Locate Adobe Analytics and choose **Enable**.
   * If you have not yet entered billing information, please do so now.
 1. Enter your Adobe Analytics information and hit **Save**.
+
+## Pass Adobe Visitor ID
+
+When you're ready to send data through Branch, you'll need to make sure you pass through the configured Adobe Visitor ID through the Branch SDKs. In order to do so, call the property `trackingIdentifier` on the `ADBMobile` class, and pass this value through `setRequestMetadataKey` on the Branch SDKs.
+
+Here's a sample snippet showing this. **NOTE** you must set the $adobe_visitor_id before calling *initSession*.
+
+{% highlight objc %}
+
+Branch *branch = [Branch getInstance];
+[[Branch getInstance] setRequestMetadataKey:@"$adobe_visitor_id" value:[ADBMobile trackingIdentifier]];
+
+{% endhighlight %}
+
+## What Branch Sends to Adobe Analytics
+
+
+
 
 {% endif %}
 
