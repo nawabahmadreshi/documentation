@@ -11,7 +11,8 @@ premium: true
 sections:
 - overview
 - guide
-
+- advanced
+- support
 ---
 
 {% if page.overview %}
@@ -32,7 +33,11 @@ Branch will send *referred* **installs** and **opens**, as well as any **custom 
 
 ## What does it look like?
 
-Branch events will appear through a Data Connector with Adobe Analytics.
+Branch events will appear on the Adobe Analytics dashboard through `Reports > Custom Conversion > Branch eVar`. Note, this will automatically appear once the Branch Data Connector is enabled through the Adobe Analytics dashboard.
+
+You'll have the flexibility to analyze data as needed in the Adobe Analytics platform, as the data Branch sends maps in Adobe Analytics to a top level eVar. This eVar contains campaign, channel, target, event name, and action property, which is your deep link data.
+
+{% image src="/img/pages/third-party-integrations/omniture/omniture.png" 3-quarters center %}
 
 Branch events are similar to Adobe Analytics events in that they can be used to build custom reports and are tracked on the various pages and dashboards. However, unlike normal events, Branch events contain valuable information about how users ended up in your app in the first place.
 
@@ -64,6 +69,7 @@ Analytics Server Domain | Tracking Server
 Omniture iOS/Android Server Key | Report Suite ID for that app
 Timestamp | Offline Tracking
 
+For `Analytics Server Domain`, please do not include `http` or `https`. If your value for this is `http://test.com`, simply put in `test.com`. This means no extra slashes, and no protocol.
 
 ## Configure the Branch Dashboard
 
@@ -75,6 +81,78 @@ To enable the Adobe Analytics beta please contact your Branch account manager or
 1. Locate Adobe Analytics and choose **Enable**.
   * If you have not yet entered billing information, please do so now.
 1. Enter your Adobe Analytics information and hit **Save**.
+
+## Pass Adobe Visitor ID
+
+When you're ready to send data through Branch, you'll need to make sure you pass through the configured Adobe Visitor ID through the Branch SDKs. In order to do so, call the property `trackingIdentifier` on the `ADBMobile` class, and pass this value through `setRequestMetadataKey` on the Branch SDKs.
+
+Here's a sample snippet showing this. **NOTE** you must set the $adobe_visitor_id before calling *initSession*. You must also initialize the Adobe SDK before setting the request metadata in the Branch SDK.
+
+If you have a custom ID instead of the trackingIdentifier, simply pass through that custom ID from the Config object Adobe's SDK provides.
+
+**iOS**
+
+Inside *didFinishLaunchingWithOptions*
+
+{% highlight objc %}
+
+Branch *branch = [Branch getInstance];
+[[Branch getInstance] setRequestMetadataKey:@"$adobe_visitor_id" value:[ADBMobile trackingIdentifier]];
+
+{% endhighlight %}
+
+**Swift**
+
+Inside *didFinishLaunchingWithOptions*
+
+{% highlight swift %}
+
+if let branch = Branch.getInstance() {
+    branch.setRequestMetadataKey("$adobe_visitor_id", value:ADBMobile.trackingIdentifier() as NSObject!);
+}
+
+{% endhighlight %}
+
+**Android**
+
+Before you initialize in your Application#onCreate or Deep Link Activity's #onCreate.
+
+{% highlight java %}
+
+Branch branch = Branch.getInstance();
+branch.setRequestMetadata("$adobe_visitor_id", Analytics.getTrackingIdentifier());
+
+...
+
+Branch.initSession(...);
+
+{% endhighlight %}
+
+{% elsif page.advanced %}
+
+## What Branch Sends to Adobe Analytics
+
+Branch sends the following values from Branch link data:
+
+- Campaign ("March-2016-Facebook")
+- Channel ("Facebook DPA")
+- Feature ("Marketing")
+- Name of Branch event ("Install")
+- Deep Link Data ("promo_code: "ABCDE")
+
+If you create a marketing link and specify analytics and deep link data, it will send and appear in the Adobe Analytics reporting suite.
+
+{% elsif page.support %}
+
+## Troubleshooting
+
+There are common strategies to take while trouble shooting.
+
+### Data isn't appearing after simulating an event
+
+With Adobe Analytics' dashboard, it may take up to ~2 hours for data to appear. We'd recommend you simulate 10-15 events in one testing session, and validate that they show up two hours later, so that feedback is transparent and obvious.
+
+Another thing to do is make sure a valid adobe_visitor_id is being passed up through the Branch SDK. Call *setDebug* and inspect the requests to `v1/open`. The key you want to find in this request payload is `$adobe_visitor_id`. 
 
 {% endif %}
 

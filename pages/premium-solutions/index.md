@@ -35,7 +35,7 @@ Offer a better user experience by using our Email Service Provider integrations 
 
 <h3 style="margin-top:0;">Data Integrations <img class="premium-label" src="/img/premium_label.png" /></h3>
 
-- Use **[Tune](/third-party-integrations/tune)**, **[Localytics](/third-party-integrations/localytics)**, **[Adjust](/third-party-integrations/adjust)**, or **[Kochava](/third-party-integrations/kochava)** to fully understand your organic and paid acquisition channels.
-- Send Branch data to **[Google Analytics](/third-party-integrations/google-analytics),** **[Amplitude](/third-party-integrations/amplitude)** and **[Mixpanel](/third-party-integrations/mixpanel),** giving additional relevancy to your app analytics.
+- Use **[Tune](/third-party-integrations/tune)**, **[Localytics](/third-party-integrations/localytics)**, **[Adjust](/third-party-integrations/adjust)**, **[Kochava](/third-party-integrations/kochava)**, or **[Appboy](/third-party-integrations/appboy)** to fully understand your organic and paid acquisition channels.
+- Send Branch data to **[Google Analytics](/third-party-integrations/google-analytics),** **[Amplitude](/third-party-integrations/amplitude)**, **[Mixpanel](/third-party-integrations/mixpanel),** or **[Adobe Analytics](/third-party-integrations/adobe-analytics)** giving additional relevancy to your app analytics.
 
 {% endprotip %}
