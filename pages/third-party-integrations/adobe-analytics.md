@@ -86,12 +86,45 @@ To enable the Adobe Analytics beta please contact your Branch account manager or
 
 When you're ready to send data through Branch, you'll need to make sure you pass through the configured Adobe Visitor ID through the Branch SDKs. In order to do so, call the property `trackingIdentifier` on the `ADBMobile` class, and pass this value through `setRequestMetadataKey` on the Branch SDKs.
 
-Here's a sample snippet showing this. **NOTE** you must set the $adobe_visitor_id before calling *initSession*.
+Here's a sample snippet showing this. **NOTE** you must set the $adobe_visitor_id before calling *initSession*. You must also initialize the Adobe SDK before setting the request metadata in the Branch SDK.
+
+If you have a custom ID instead of the trackingIdentifier, simply pass through that custom ID from the Config object Adobe's SDK provides.
+
+**iOS**
+
+Inside *didFinishLaunchingWithOptions*
 
 {% highlight objc %}
 
 Branch *branch = [Branch getInstance];
 [[Branch getInstance] setRequestMetadataKey:@"$adobe_visitor_id" value:[ADBMobile trackingIdentifier]];
+
+{% endhighlight %}
+
+**Swift**
+
+Inside *didFinishLaunchingWithOptions*
+
+{% highlight swift %}
+
+if let branch = Branch.getInstance() {
+    branch.setRequestMetadataKey("$adobe_visitor_id", value:ADBMobile.trackingIdentifier() as NSObject!);
+}
+
+{% endhighlight %}
+
+**Android**
+
+Before you initialize in your Application#onCreate or Deep Link Activity's #onCreate.
+
+{% highlight java %}
+
+Branch branch = Branch.getInstance();
+branch.setRequestMetadata("$adobe_visitor_id", Analytics.getTrackingIdentifier());
+
+...
+
+Branch.initSession(...);
 
 {% endhighlight %}
 

@@ -60,6 +60,7 @@
         - sailthru
     - title: Data Integrations
       children:
+        - adobe-analytics
         - adjust
         - amplitude
         - appboy
