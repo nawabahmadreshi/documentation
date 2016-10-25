@@ -11,7 +11,8 @@ premium: true
 sections:
 - overview
 - guide
-
+- advanced
+- support
 ---
 
 {% if page.overview %}
@@ -94,6 +95,8 @@ Branch *branch = [Branch getInstance];
 
 {% endhighlight %}
 
+{% elsif page.advanced %}
+
 ## What Branch Sends to Adobe Analytics
 
 Branch sends the following values from Branch link data:
@@ -106,6 +109,7 @@ Branch sends the following values from Branch link data:
 
 If you create a marketing link and specify analytics and deep link data, it will send and appear in the Adobe Analytics reporting suite.
 
+{% elsif page.support %}
 
 ## Troubleshooting
 
@@ -116,7 +120,6 @@ There are common strategies to take while trouble shooting.
 With Adobe Analytics' dashboard, it may take up to ~2 hours for data to appear. We'd recommend you simulate 10-15 events in one testing session, and validate that they show up two hours later, so that feedback is transparent and obvious.
 
 Another thing to do is make sure a valid adobe_visitor_id is being passed up through the Branch SDK. Call *setDebug* and inspect the requests to `v1/open`. The key you want to find in this request payload is `$adobe_visitor_id`. 
-
 
 {% endif %}
 
