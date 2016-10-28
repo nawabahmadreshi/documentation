@@ -44,6 +44,7 @@ Here are a set of best practices to ensure that your analytics are correct, and 
 5. Call the additional object events (purchase, share completed, etc) when the corresponding user action is taken
 
 Practices to _avoid_:
+
 1. Don't set the same `title`, `contentDescription` and `imageUrl` across all objects
 2. Don't wait to initialize the object and register views until the user goes to share
 3. Don't wait to initialize the object until you conveniently need a link
