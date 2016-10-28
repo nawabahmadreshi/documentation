@@ -454,14 +454,9 @@ let {url} = await branchUniversalObject.generateShortUrl(linkProperties, control
 
 {% example title="When creating Marketing links on the Branch dashboard" %}
 
-You can enable Deepviews for an individual link on the [Marketing dashboard](https://dashboard.branch.io/#/marketing) by inserting the keys and values into the Deep Link Data section.
+You can enable Deepviews for an individual link on the [Marketing dashboard](https://dashboard.branch.io/marketing/mlc/define){:target="_blank"} by selecting Deepviews as a redirect option in Configure Options > Redirects.
 
-| Key | Value |
-| --- | --- |
-| **$ios_deepview** | `default_template` |
-| **$android_deepview** | `default_template` |
-
-{% image src='/img/pages/features/deepviews/deepview_db_key.png' 2-thirds center alt='Marketing link deepview keys' %}
+{% image src='/img/pages/features/deepviews/deepviews-mlc.png' full center alt='Marketing link Deepviews' %}
 
 {% endexample %}
 
@@ -475,9 +470,17 @@ If you've enabled Deepviews globally, it's likely that you'll want to disable th
 | **$android_deepview** | `false` |
 | **$desktop_deepview** | `false` |
 
+{% example title="When creating Marketing links on the Branch dashboard" %}
+
+You can disable Deepviews for an individual link on the [Marketing dashboard](https://dashboard.branch.io/marketing/mlc/define){:target="_blank"} by selecting Deepviews as a redirect option in Configure Options > Redirects and setting it to false.
+
+{% image src='/img/pages/features/deepviews/deepviews-disable-mlc.png' full center alt='Disable Marketing link Deepviews' %}
+
+{% endexample %}
+
 ## Customizing the Deepview templates
 
-You can create new Deepview templates using the [Deepviews configuration page](https://dashboard.branch.io/#/settings/deepviews) on the Branch dashboard, either by duplicating the default Branch Public Template, or by creating a new one from scratch. New Deepview templates are shared between all platforms (iOS, Android, and desktop), and cannot be deleted after creation.
+You can create new Deepview templates using the [Deepviews configuration page](https://dashboard.branch.io/settings/deepviews){:target="_blank"} on the Branch dashboard, either by duplicating the default Branch Public Template, or by creating a new one from scratch. New Deepview templates are shared between all platforms (iOS, Android, and desktop), and cannot be deleted after creation.
 
 {% image src='/img/pages/features/deepviews/deepview-create-template.png' third center alt='Deepviews tab' %}
 
