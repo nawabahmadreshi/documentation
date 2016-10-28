@@ -40,7 +40,7 @@ Here are a set of best practices to ensure that your analytics are correct, and 
 1. Set the `canonicalIdentifier` to a unique, de-duped value across instances of the app
 2. Ensure that the `title`, `contentDescription` and `imageUrl` properly represent the object
 3. Initialize the Branch Universal Object and call `userCompletedAction` with the corresponding platform view event **on page load**
-4. Call `showShareSheet` and `createShortLink` later in the life cycle, when the user takes an action that needs a link
+4. Call `showShareSheet` and `getShortUrl` later in the life cycle, when the user takes an action that needs a link
 5. Call the additional object events (purchase, share completed, etc) when the corresponding user action is taken
 
 Practices to _avoid_:
