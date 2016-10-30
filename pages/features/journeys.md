@@ -11,6 +11,7 @@ sections:
 - overview
 - guide
 - advanced
+- examples
 ---
 
 {% if page.overview %}
@@ -533,5 +534,99 @@ Please make sure to add `[branchsubdomain]` to the CSP header for your pages. We
 {% highlight html %}
 <meta http-equiv="Content-Security-Policy" content="default-src https://[branchsubdomain]; child-src 'none'; object-src 'none'">
 {% endhighlight %}
+
+{% elsif page.examples %}
+
+## Example Audiences
+
+The Journeys audience tool is extremely powerful, but sometimes a few examples can help kickstart your creative juices. Here are are a couple common audience use cases to help you get started.
+
+1. [New users](#example-new-users)
+2. [Loyal users](#example-loyal-users)
+3. [Retargeting users who have taken some action](#example-retargeting-users)
+4. [Users from Google (for SEO)](#example-seo-friendly)
+5. [iOS users from English-speaking countries](#example-english-speaking-ios-users)
+
+All of these examples require you to configure advanced audience rules, which is a premium feature. You can add any set of complex rules using the following button:
+
+{% image src='/img/pages/features/journeys/examples/advanced_add_filter.png' center full alt='Add rule' %}
+
+### Example: New users
+
+In this example, you'll configure an audience to target people who have visited your site **less than 3 times** historically. Anyone who had visited more than this will be excluded. First, you'll add a new rule for `Has visted web` in the advanced section.
+
+{% image src='/img/pages/features/journeys/examples/new_users_0.png' center full alt='New users 0' %}
+
+Next, you'll choose the `Less than or equal to` in the middle section:
+
+{% image src='/img/pages/features/journeys/examples/new_users_1.png' center full alt='New users 1' %}
+
+Finally, you'll enter 2 in the last part to indicate you want to target people who have visited less than 3 times historically.
+
+{% image src='/img/pages/features/journeys/examples/new_users_2.png' center full alt='New users 2' %}
+
+Save and continue!
+
+### Example: Loyal users
+
+In this example, you'll configure an audience to target people who have visited your site **more than 4 times** historically. Anyone who had visited less than this will be excluded. First, you'll add a new rule for `Has visted web` in the advanced section.
+
+{% image src='/img/pages/features/journeys/examples/new_users_0.png' center full alt='loyal users 0' %}
+
+Next, you'll choose the `More than or equal to` in the middle section:
+
+{% image src='/img/pages/features/journeys/examples/loyal_users_1.png' center full alt='loyal users 1' %}
+
+Finally, you'll enter 5 in the last part to indicate you want to target people who have visited more than 4 times historically.
+
+{% image src='/img/pages/features/journeys/examples/loyal_users_2.png' center full alt='loyal users 2' %}
+
+Save and continue!
+
+### Example: Retargeting users
+
+In this example, you'll configure an audience to target people who have completed some action on your site in a past or current session. For example, if a user had added something to their cart or had previously completed a purchase. You can retarget these users with a custom call to action to download. We'll use a generic event called `MyAction` in the example. First, you'll add a new rule for `Has completed event` in the advanced section.
+
+{% image src='/img/pages/features/journeys/examples/retargeting_users_0.png' center full alt='retargeting users 0' %}
+
+In this next dropdown, you'll choose the custom event to retarget from. Here, we'll use a generic event called `MyAction` but you would select `Purchase` or something more meaningful to your use case.
+
+{% image src='/img/pages/features/journeys/examples/retargeting_users_1.png' center full alt='retargeting users 1' %}
+
+Next, you'll choose the `More than or equal to` in the middle section:
+
+{% image src='/img/pages/features/journeys/examples/retargeting_users_2.png' center full alt='retargeting users 2' %}
+
+Finally, you'll enter 3 in the last part to indicate you want to target people who have completed `MyAction more than 2 times historically.
+
+{% image src='/img/pages/features/journeys/examples/retargeting_users_3.png' center full alt='retargeting users 3' %}
+
+Save and continue!
+
+### Example: SEO friendly
+
+Google has recently announced that it will begin punishing sites that show a full page interstitial when a user comes from search. Because of this, you'll likely need to treat Google search traffic differently than traffic that comes from any other source. In this example, you'll set up an audience specific to users who come from Google. First, you'll add a new rule for `Came directly from a url` in the advanced section.
+
+{% image src='/img/pages/features/journeys/examples/seo_friendly_0.png' center full alt='seo friendly 0' %}
+
+Next, you'll choose the `containing` in the middle section to match a substring:
+
+{% image src='/img/pages/features/journeys/examples/seo_friendly_1.png' center full alt='seo friendly 1' %}
+
+Finally, you'll enter `google.com` to target users who came from Google search (where the referrer contains google.com):
+
+{% image src='/img/pages/features/journeys/examples/seo_friendly_2.png' center full alt='seo friendly 2' %}
+
+### Example: English speaking iOS users
+
+In this example, you'll restrict the audience to users in countries where English is the native language who are on the iOS operating system. Note that this is not in the advanced audience section, but rather in the top section. First, select `iOS` of the mobile OS checkboxes.
+
+{% image src='/img/pages/features/journeys/examples/ios_english_0.png' center full alt='ios english 0' %}
+
+Next, go through and choose the following countries: `United States`, `Canada`, `United Kingdom` and `Australia`.
+
+{% image src='/img/pages/features/journeys/examples/ios_english_1.png' center full alt='ios english 1' %}
+
+Save and continue!
 
 {% endif %}

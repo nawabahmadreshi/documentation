@@ -7,4 +7,5 @@
   name: Support
 - key: advanced
   name: Advanced
-
+- key: examples
+  name: Examples
