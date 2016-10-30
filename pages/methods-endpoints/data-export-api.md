@@ -14,7 +14,15 @@ sections:
 
 ## Data Export API
 
+The data export API can be used to pull the data visible via the Liveview & Exports tab directly via an API. A couple important notes worthy of mention of this API:
+
+- The data will only be retrievable for 7 days (but can be extended for very special use cases)
+- The data will only appear after end of day since it's processed every 24 hours
+- The data will not be visible prior to your whitelisting date
+- The data will only be visible for your live key (not your test key)
+
 #### Configuration
+
 In order to use this API you must have an App ID and a Branch Public Key. You must also be whitelisted to use the API. If you'd like to be whitelisted for the Export API, please contact [integrations@branch.io](mailto:integrations@branch.io).
 
 You can find your keys at: https://dashboard.branch.io/#/settings
