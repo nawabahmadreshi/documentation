@@ -45,6 +45,7 @@
         - google-uac
         - instagram-ads
         - twitter-ads
+        - ios-imessage
     - title: Content Indexing
       children:
         - google-app-indexing
