@@ -148,7 +148,7 @@ Use these keys to control how URI scheme deep linking functions when opening you
 | $android_deeplink_path | Set the deep link path for Android apps. When the Branch SDK receives a link with this parameter set, it will automatically load the custom URI path contained within | *null*
 | $ios_deeplink_path | Set the deep link path for iOS apps. When the Branch SDK receives a link with this parameter set, it will automatically load the custom URI path contained within | *null*
 | **$match_duration** | Lets you control the fingerprinting match timeout (the time that a click will wait for an app open to match) also known as attribution window. Specified in seconds | `7200` (2 hours)
-| $always_deeplink | If set to 'false' Branch will only try to open your app if we are certain the user has it | Value of **Always try to open app** in [Link Settings](https://dashboard.branch.io/#/settings/link)
+| $always_deeplink | Set to `false` to make links always fall back to your mobile site. Does not apply to Universal Links or Android App Links. | `true`
 | $ios_redirect_timeout | Control the timeout that the client-side JS waits after trying to open up the app before redirecting to the App Store. Specified in milliseconds | `750`
 | $android_redirect_timeout | Control the timeout that the clientside JS waits after trying to open up the app before redirecting to the Play Store. Specified in milliseconds | `750`
 | $one_time_use | Set to 'true' to limit deep linking behavior of the generated link to a single use. Can also be set using `type` | `false`
