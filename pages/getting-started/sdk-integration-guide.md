@@ -23,6 +23,12 @@ sections:
 
 {% if page.guide %}
 
+{% if page.xamarin %}
+
+For Xamarin, we're trying something new where our docs will live in the [README of Github](https://github.com/BranchMetrics/xamarin-branch-deep-linking). Please visit this URL to integrate the service.
+
+{% else %}
+
 {% prerequisite %}
 Before using the Branch SDK, you must first [sign up for an account](https://dashboard.branch.io){:target="_blank"} and complete the [onboarding process](https://start.branch.io/){:target="_blank"}.
 {% endprerequisite %}
@@ -135,21 +141,6 @@ cordova plugin add branch-cordova-sdk --variable BRANCH_KEY=key_live_xxxxxxxxxxx
 
 {% endif %}
 <!--- /Cordova -->
-
-<!--- Xamarin -->
-{% if page.xamarin %}
-
-### Install as a NuGet Package
-
-The Branch Xamarin SDK is now available as a [NuGet package](https://www.nuget.org/packages/Branch-Xamarin-Linking-SDK){:target="_blank"}.  You will need to add the package to your Android, iOS and Forms (if applicable) projects.
-
-1. Right click on each project and select `Add` -> `Add NuGet Package` or double click on the Packages folder to bring up the NuGet package dialog in Xamarin Studio.
-2. Find the _Branch Xamarin Linking SDK_ and select it.  This will add the required assemblies to your projects.  You need to do this for each project that will use Branch calls.  This includes the Android and iOS projects even if this is a Forms based app _since an initialization call needs to be added to each of the platform specific projects._
-
-You can also [build and reference the assemblies directly]({{base.url}}/getting-started/sdk-integration-guide/advanced/xamarin#install-the-sdk-manually){:target="_blank"}.
-
-{% endif %}
-<!--- /Xamarin -->
 
 <!--- Unity -->
 {% if page.unity %}
@@ -328,11 +319,8 @@ Add `compile 'com.mparticle:android-branch-kit:4.+'` to the dependencies section
 {% endif %}
 
 {% if page.xamarin %}
-## iOS: Configure Xcode Project
 
-In your project's `YourProject-Info.plist` file, you can register your app to respond to direct deep links (`yourapp://` in a mobile browser) by adding a `CFBundleURLTypes` block. Also, make sure to change `yourapp` to a unique string that represents your app name.
-
-{% image src='/img/pages/getting-started/sdk-integration-guide/xamarin_branch_ios_uri.png' full center alt='iOS URI' %}
+<!--Moved to Github README-->
 
 {% endif %}
 
@@ -519,32 +507,8 @@ Your `Activity` also has an `onCreate()` method. Be sure you do not mix the two 
 <!---       /Android-specific Branch Key -->
 
 {% if page.xamarin %}
-## Android: Configure Manifest
 
-In your project's `manifest` file, you can register your app to respond to direct deep links (`yourapp://` in a mobile browser) by adding the second intent filter block. Also, make sure to change `yourapp` to a unique string that represents your app name.
-
-Make sure that this activity is launched as a `singleTask`. This is important to handle proper deep linking from other apps like Facebook.
-
-{% highlight c# %}
-[Activity (Label = "Your app label", MainLauncher = true, Icon = "@mipmap/icon",
-        LaunchMode = LaunchMode.SingleTask)]
-
-[IntentFilter (new[]{"android.intent.action.VIEW"},
-        Categories=new[]{"android.intent.category.DEFAULT",
-        "android.intent.category.BROWSABLE"},
-        DataScheme="yourapp",
-        DataHost="open")]
-{% endhighlight %}
-
-Make sure that your project has permissions:
-
-- AccessNetworkState
-- Internet
-
-To understand how to work with android manifest, read Xamarin documentation:
-
-- [Working with android manifest](https://developer.xamarin.com/guides/android/advanced_topics/working_with_androidmanifest.xml/){:target="_blank"}
-- [Add permissions to android manifest](https://developer.xamarin.com/recipes/android/general/projects/add_permissions_to_android_manifest/){:target="_blank"}
+<!--Moved to Github README-->
 
 {% endif %}
 
@@ -966,89 +930,7 @@ Note, if you are unsure how to set a global function or you are getting a `Refer
 <!-- Xamarin -->
 {% if page.xamarin %}
 
-{% protip title="Apps built without Xamarin Forms" %}
-If your app doesn't use Xamarin Forms, please follow [these alternative instructions]({{base.url}}/getting-started/sdk-integration-guide/advanced/xamarin#initialization-for-non-forms-apps){:target="_blank"}.
-{% endprotip %}
-
-### Android initialization
-
-Add calls to the `OnCreate` and `OnNewIntent` methods of either your Application class or the first Activity you start. Be sure to replace `key_live_xxxxxxxxxxxxxxx` with your Branch key from the [Settings](https://dashboard.branch.io/#/settings){:target="_blank"} page of the Branch dashboard.
-
-{% highlight c# %}
-public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsApplicationActivity
-{
-    protected override void OnCreate (Bundle savedInstanceState)
-    {
-        base.OnCreate (savedInstanceState);
-
-        global::Xamarin.Forms.Forms.Init (this, savedInstanceState);
-
-        App app = new App ();
-
-        BranchAndroid.Init (this, "key_live_xxxxxxxxxxxxxxx", this);
-
-        LoadApplication (app);
-    }
-
-    // Ensure we get the updated link identifier when the app is opened from the
-    // background with a new link.
-    protected override void OnNewIntent(Intent intent) {
-        this.Intent = intent;
-    }
-}
-
-{% endhighlight %}
-
-### iOS initialization
-
-Add these methods to your `AppDelegate.cs` file. Be sure to replace `key_live_xxxxxxxxxxxxxxx` with your Branch key from the [Settings](https://dashboard.branch.io/#/settings){:target="_blank"} page of the Branch dashboard.
-
-{% highlight c# %}
-[Register ("AppDelegate")]
-public class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDelegate
-{
-    private App app = null;
-
-    public override bool FinishedLaunching (UIApplication uiApplication, NSDictionary launchOptions)
-    {
-        global::Xamarin.Forms.Forms.Init ();
-
-        App app = new App ();
-
-        // Enable debug mode.
-        BranchIOS.Debug = true;
-        BranchIOS.Init ("key_live_xxxxxxxxxxxxxxx", launchOptions, app);
-
-        LoadApplication (app);
-
-        return base.FinishedLaunching (uiApplication, launchOptions);
-    }
-
-    // For direct deep linking
-    public override bool OpenUrl(UIApplication application,
-        NSUrl url,
-        string sourceApplication,
-        NSObject annotation)
-    {
-        return BranchIOS.getInstance ().OpenUrl (url);
-    }
-
-    // For Universal Links
-    public override bool ContinueUserActivity (UIApplication application,
-        NSUserActivity userActivity,
-        UIApplicationRestorationHandler completionHandler)
-    {
-        return BranchIOS.getInstance ().ContinueUserActivity (userActivity);
-    }
-
-    // For Push Notifications
-    public override void ReceivedRemoteNotification (UIApplication application,
-        NSDictionary userInfo)
-    {
-        BranchIOS.getInstance ().HandlePushNotification (userInfo);
-    }
-}
-{% endhighlight %}
+<!--Moved to Github README-->
 
 {% endif %}
 <!-- /Xamarin -->
@@ -1381,10 +1263,9 @@ Branch.userCompletedAction("Share Started");
 {% endif %}
 
 {% if page.xamarin %}
-{% highlight c# %}
-Branch branch = Branch.GetInstance ();
-await branch.UserCompletedAction("Share Started");
-{% endhighlight %}
+
+<!--Moved to Github README-->
+
 {% endif %}
 
 {% if page.unity %}
@@ -1466,9 +1347,11 @@ Here are some recommended next steps:
 -  **Set up [Deep Link Routing]({{base.url}}/getting-started/deep-link-routing)** — send incoming visitors directly to specific content in your app based on the Branch link they opened.
 -  **Set up [Custom Event Tracking]({{base.url}}/getting-started/user-value-attribution#custom-event-tracking)** if you skipped the step above — make in-app activity beyond clicks, installs, and opens — like purchases and signups — available for analysis in the dashboard.
 
+{% endif %}
+
 {% elsif page.advanced %}
 
-{% if page.android or page.cordova or page.titanium or page.xamarin or page.unity or page.react %}
+{% if page.android or page.cordova or page.titanium or page.unity or page.react %}
 
 ## Troubleshooting Android build errors
 
@@ -1588,113 +1471,7 @@ listener.onReceive(context, intent);
 
 {% elsif page.xamarin %}
 
-## Install the SDK manually
-
-Follow these directions install the Branch SDK framework files without using the NuGet package:
-
-1. [Clone our open-source GitHub repo](https://github.com/BranchMetrics/Xamarin-Deferred-Deep-Linking-SDK).
-1. Add the SDK assemblies to your solution and reference them from your projects:
-   - **Forms:** add the `BranchXamarinSDK` assembly and reference it from your project.
-   - **iOS (including iOS with Forms):** add the `BranchXamarinSDK` *and* `BranchXamarinSDK.iOS` assemblies and reference them from your iOS project.
-   - **Android (including Android with Forms):** add the `BranchXamarinSDK` *and* `BranchXamarinSDK.Droid` assemblies and reference them from your Android project.
-
-[Back to the Guide]({{base.url}}/getting-started/sdk-integration-guide/guide/xamarin#get-the-sdk-files)
-
-## Initialization for non-Forms apps
-
-### Android initialization
-
-Add calls to the `OnCreate` and `OnNewIntent` methods of either your Application class or the first Activity you start. Be sure to replace `key_live_xxxxxxxxxxxxxxx` with your Branch key from the [Settings](https://dashboard.branch.io/#/settings) page of the Branch dashboard.
-
-{% highlight c# %}
-public class MainActivity: Activity, IBranchSessionInterface
-{
-    protected override void OnCreate (Bundle savedInstanceState)
-    {
-        base.OnCreate (savedInstanceState);
-
-        BranchAndroid.Init (this, "key_live_xxxxxxxxxxxxxxx", this);
-    }
-
-    // Ensure we get the updated link identifier when the app is opened from the
-    // background with a new link.
-    protected override void OnNewIntent(Intent intent) {
-        this.Intent = intent;
-    }
-
-    #region IBranchSessionInterface implementation
-
-    public void InitSessionComplete (Dictionary<string, object> data)
-    {
-        // Do something with the referring link data...
-    }
-
-    public void SessionRequestError (BranchError error)
-    {
-        // Handle the error case here
-    }
-
-    #endregion
-}
-{% endhighlight %}
-
-### iOS initialization
-
-Add these methods to your `AppDelegate.cs` file. Be sure to replace `key_live_xxxxxxxxxxxxxxx` with your Branch key from the [Settings](https://dashboard.branch.io/#/settings) page of the Branch dashboard.
-
-{% highlight c# %}
-[Register ("AppDelegate")]
-public class AppDelegate : UIApplicationDelegate, IBranchSessionInterface
-{
-    public override bool FinishedLaunching (UIApplication uiApplication, NSDictionary launchOptions)
-    {
-
-        BranchIOS.Init ("key_live_xxxxxxxxxxxxxxx", launchOptions, this);
-
-        // Do your remaining launch stuff here...
-    }
-
-    // For direct deep linking
-    public override bool OpenUrl(UIApplication application,
-        NSUrl url,
-        string sourceApplication,
-        NSObject annotation)
-    {
-        return BranchIOS.getInstance ().OpenUrl (url);
-    }
-
-    // For Universal Links
-    public override bool ContinueUserActivity (UIApplication application,
-        NSUserActivity userActivity,
-        UIApplicationRestorationHandler completionHandler)
-    {
-        return BranchIOS.getInstance ().ContinueUserActivity (userActivity);
-    }
-
-    // For Push Notifications
-    public override void ReceivedRemoteNotification (UIApplication application,
-        NSDictionary userInfo)
-    {
-        BranchIOS.getInstance ().HandlePushNotification (userInfo);
-    }
-
-    #region IBranchSessionInterface implementation
-
-    public void InitSessionComplete (Dictionary<string, object> data)
-    {
-        // Do something with the referring link data...
-    }
-
-    public void SessionRequestError (BranchError error)
-    {
-        // Handle the error case here
-    }
-
-    #endregion
-}
-{% endhighlight %}
-
-[Back to the Guide]({{base.url}}/getting-started/sdk-integration-guide/guide/xamarin#start-a-branch-session)
+<!--Moved to Github README-->
 
 {% else %}
 

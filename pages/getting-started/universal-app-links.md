@@ -40,6 +40,12 @@ Branch makes it simple to enable Universal Links and App Links, and even improve
 
 {% elsif page.guide %}
 
+{% if page.xamarin %}
+
+For Xamarin, we're trying something new where our docs will live in the [README of Github](https://github.com/BranchMetrics/xamarin-branch-deep-linking). Please visit this URL to integrate the service.
+
+{% else %}
+
 {% if page.ios_imessage %}
 
 **Universal Links are not supported by iOS iMessage apps unfortunately!**
@@ -155,28 +161,6 @@ If the **Default domain name** box shows the legacy `bnc.lt` domain, you should 
 
 {% endif %}
 
-{% if page.xamarin %}
-
-1. Go to the [Link Settings](https://dashboard.branch.io/#/settings/link) page on the dashboard.
-1. Scroll down to the `Link Domain` area.
-1. Copy your domain name.{% image src='/img/pages/getting-started/universal-app-links/subdomain-setting.png' full center alt='retrieving the default link subdomain' %}
-1. Create a new file named `Entitlements.plist` in the root directory of your project.
-1. Enable `associated-domains`
-1. In the `Domains` section, click the `+` icon and add the following entries: (making sure that `xxxx` matches the subdomain prefix you've been assigned or selected for yourself)
-    * `applinks:xxxx.app.link`
-    * `applinks:xxxx-alternate.app.link`
-
-{% image src='/img/pages/getting-started/universal-app-links/xamarin_branch_ios_domains.png' full center alt='Associated Domains' %}
-
-{% caution title="Support for legacy links" %}
-If the **Default domain name** box shows the legacy `bnc.lt` domain, you should use the following entry instead: `applinks:bnc.lt`
-{% endcaution %}
-
-{% protip title="Using a custom domain or subdomain?" %}
-If you use a [custom domain or subdomain for your Branch links]({{base.url}}/getting-started/link-domain-subdomain/guide/#setting-a-custom-link-domain), you should also add an entry for `applinks:[mycustomdomainorsubdomain]`.
-{% endprotip %}
-
-{% endif %}
 
 {% if page.titanium %}
 
@@ -246,7 +230,7 @@ if (OS_IOS) { // Don't forget this condition.
 
 {% endif %}
 
-{% if page.ios or page.xamarin or page.react or page.mparticle_ios %}
+{% if page.ios or page.react or page.mparticle_ios %}
 ## Make your app aware of incoming Universal Links
 {% endif %}
 
@@ -291,36 +275,7 @@ Previously we included a method in our SDK, `accountForFacebookSDKPreventingAppL
 
 {% if page.xamarin %}
 
-Open your **AppDelegate.cs** file and add the following method (if you completed the [SDK Integration Guide]({{base.url}}/getting-started/sdk-integration-guide), this is likely already present). Note that there are different versions depending on whether you are using Xamarin Forms or not.
-
-{% tabs %}
-{% tab forms %}
-
-{% highlight c# %}
-// Support Universal Links
-public override bool ContinueUserActivity (UIApplication application,
-    NSUserActivity userActivity,
-    UIApplicationRestorationHandler completionHandler)
-{
-    bool handledByBranch = BranchIOS.getInstance ().ContinueUserActivity (userActivity);
-    return handledByBranch;
-}
-{% endhighlight %}
-{% endtab %}
-{% tab non-forms %}
-
-{% highlight c# %}
-// Support Universal Links
-public override bool ContinueUserActivity (UIApplication application,
-    NSUserActivity userActivity,
-    UIApplicationRestorationHandler completionHandler)
-{
-    bool handledByBranch = BranchIOS.getInstance ().ContinueUserActivity (userActivity, this);
-    return handledByBranch;
-}
-{% endhighlight %}
-{% endtab %}
-{% endtabs %}
+<!--Moved to Github README-->
 
 {% endif %}
 {% if page.unity %}
@@ -478,49 +433,7 @@ If the **Default domain name** box shows the legacy `bnc.lt` domain, you should 
 
 {% elsif page.xamarin %}
 
-## Add Intent Filter to Activity
-
-1. Choose the `Activity` you want to open up when a link is clicked. This is typically your `SplashActivity` or a `BaseActivity` that all over activities inherit from (and likely the same one you selected in the [SDK Integration Guide]({{base.url}}/getting-started/sdk-integration-guide)).
-1. At the top of the class declaration for the `Activity`, insert the intent filter provided below.
-
-{% highlight c# %}
-[IntentFilter(new [] { Android.Content.Intent.ActionView },
-    DataScheme="https",
-    DataHost="<your subdomain>.app.link",
-    Categories=new [] { Android.Content.Intent.CategoryDefault, Android.Content.Intent.CategoryBrowsable })]
-{% endhighlight %}
-
-{% caution title="Support for legacy links" %}
-{% highlight c# %}
-[IntentFilter(new [] { Android.Content.Intent.ActionView },
-    DataScheme="https",
-    DataHost="bnc.lt",
-    DataPathPrefix="READ_FROM_DASHBOARD",
-    Categories=new [] { Android.Content.Intent.CategoryDefault, Android.Content.Intent.CategoryBrowsable })]
-{% endhighlight %}
-
-`READ_FROM_DASHBOARD` is the four-character value in front of all your links. You can find it underneath the field labeled **SHA256 Cert Fingerprints** on the dashboard. It will look something like this: `/WSuf` (the initial `/` character should be included).
-
-{% image src='/img/pages/getting-started/universal-app-links/app_links_prefix.png' full center alt='app links prefix' %}
-
-{% endcaution %}
-
-{% protip title="Using a custom domain or subdomain?" %}
-If you use a [custom domain or subdomain for your Branch links]({{base.url}}/getting-started/dashboard-guide/guide/#setting-a-custom-link-domain), you should also add an entry for:
-
-{% highlight c# %}
-[IntentFilter(new [] { Android.Content.Intent.ActionView },
-    DataScheme="https",
-    DataHost="mycustomdomainorsubdomain",
-    DataPathPrefix="READ_FROM_DASHBOARD",
-    Categories=new [] { Android.Content.Intent.CategoryDefault, Android.Content.Intent.CategoryBrowsable })]
-{% endhighlight %}
-
-`READ_FROM_DASHBOARD` is the four-character value in front of all your links. You can find it underneath the field labeled **SHA256 Cert Fingerprints** on the dashboard. It will look something like this: `/WSuf` (the initial `/` character should be included).
-
-{% image src='/img/pages/getting-started/universal-app-links/app_links_prefix.png' full center alt='app links prefix' %}
-
-{% endprotip %}
+<!-- Moved to Github README -->
 
 {% else %}
 
@@ -602,6 +515,8 @@ Here are some recommended next steps:
 
 - **Learn about [Creating Links in Apps]({{base.url}}/getting-started/creating-links/apps)** — let your users share content and invite friends from inside your app.
 - **Set up [Deep Link Routing]({{base.url}}/getting-started/deep-link-routing)** — send incoming visitors directly to specific content in your app based on the Branch link they opened.
+
+{% endif %}
 
 {% elsif page.advanced %}
 
