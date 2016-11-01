@@ -382,7 +382,7 @@ branchUniversalObject.getShortUrl(with: linkProperties) { (url, error) in
 
 ### showShareSheetWithLinkProperties
 
-Use Branch's preconfigured `UIActivityItemProvider` to share a piece of content without having to create a link. Calling this method will automatically generate a Branch link with the appropriate analytics channel when the user selects a sharing destination.
+Use Branch's preconfigured `UIActivityItemProvider` to share a piece of content without having to create a link. Calling this method will automatically generate a Branch link with the appropriate analytics channel when the user selects a sharing destination. Note that certain channels restrict access to certain fields. For example, Facebook prohibits you from pre-populating a message.
 
 {% image src='/img/pages/getting-started/branch-universal-object/ios_share_sheet.png' actual center alt='ios share sheet' %}
 
