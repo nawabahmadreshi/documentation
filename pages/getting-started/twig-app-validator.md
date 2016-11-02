@@ -15,7 +15,7 @@ sections:
 
 ## About Twig
 
-Twig is a two part service, which collects some information about your Xcode project in order to validate your Universal Linking setup. By running the local script, the service can check:
+Setting up Universal Links can be hard, with lots of places for the configuration to go wrong. With few other options, you may end up spending hours looking for an issue that may be as simple as a typo. Now, Twig can do all the work, letting you find the exact problem with your Universal Linking settings in seconds. By running the local script, the service can check that:
 
   - The settings on your Branch Dashboard match those of your Xcode project
   - The entries in your .entitlements file are correct
@@ -47,6 +47,7 @@ The Twig script is the most important part of this Universal Linking validator; 
 * The Branch Key(s) entered in your info.plist file
 
 The Twig script does not collect or store:
+
 * Any of your app's code
 * Any of your project assets
 * Your developer email, or personal information
