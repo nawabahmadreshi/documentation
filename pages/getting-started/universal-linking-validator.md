@@ -1,7 +1,7 @@
 ---
 type: recipe
 directory: getting-started
-title: Twig Universal Linking Configuration Validator
+title: Twig Universal Linking Validator
 page_title: Using the Twig Universal Linking Validator
 description: "Learn how to make use of the Twig Validator to validate your Universal Linking setup"
 keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Dashboard, custom link domain, conversion funnel, funnels, influencers
