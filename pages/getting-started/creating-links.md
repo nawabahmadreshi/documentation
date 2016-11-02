@@ -622,7 +622,6 @@ You can find the full list of possible parameters on the [Configuring Links]({{b
 | ~channel | Specified in the UI in Define or Configure Options > Analytics Tags
 | ~feature | Set to `marketing` for links created in the dashboard
 | ~tags | Specified in the UI in Configure Options > Analytics Tags
-| ~alias | Specified in the UI in Configure Options
 | $android_deepview | Specified in the UI in Configure Options > Redirects
 | $android_url | Specified in the UI in Configure Options > Redirects
 | $desktop_deepview | Specified in the UI in Configure Options > Redirects
