@@ -97,7 +97,7 @@ The redirect destinations are completely customizable for every link that you cr
 | $blackberry_url | Change the redirect endpoint for Blackberry OS | BlackBerry default URL (set in [Link Settings](https://dashboard.branch.io/#/settings/link))
 | $fire_url | Change the redirect endpoint for Amazon Fire OS | Fire default URL (set in [Link Settings](https://dashboard.branch.io/#/settings/link))
 | $ios_wechat_url | Change the redirect endpoint for WeChat on iOS devices | `$ios_url` value
-| $ios_weibo_url | Change the redirect endpoint for Weibo on iOS devices | `$ios_url` value
+| $android_wechat_url | Change the redirect endpoint for WeChat on Android devices | `$android_url` value
 
 #### After click redirect
 
