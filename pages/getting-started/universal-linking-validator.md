@@ -15,13 +15,12 @@ sections:
 
 ## About Twig
 
-With Apple's introduction of Universal Links in iOS 9.x, Branch links can take users into your app almost instantly. The introduction of Universal Links brings, however, an all new set of configuration complications. The Twig Universal Linking Validator scans the local configuration files, as well as the Branch Dashboard settings, allowing it to pinpoint errors in the Universal Linking configuration. By running the local script, this service can check that:
+With Apple's introduction of Universal Links in iOS 9, Branch links can take users into your app almost instantly. The introduction of Universal Links brings, however, an all new set of configuration complications. The Twig Universal Linking Validator compares an app's local project settings to its dashboard settings and helps pinpoint errors that may prevent Universal Links from functioning properly. Twig verifies that:
 
-  - The settings on your Branch Dashboard match those of your Xcode project
-  - The entries in your .entitlements file are correct
-  - The entries in your info.plist file are correct
-  - The .entitlements file has the correct build target selected
-  - The Apple App Prefix on your Dashboard matches you Apple Developer ID
+  - the entries in the project's .entitlements file are correct
+  - the entries in the project's info.plist file are correct
+  - the .entitlements file has the correct build target selected
+  - the Apple App Prefix on the Dashboard matches the Apple Developer ID specified for the project
 
 
 {% getstarted %}{% endgetstarted %}
@@ -30,20 +29,20 @@ With Apple's introduction of Universal Links in iOS 9.x, Branch links can take u
 
 ## The Twig Script
 
-The script is the most important part of this Universal Linking validator, allowing it to directly check the app's configuration. When directed at your Xcode project, the script gathers the following information for validation:
+The Twig is run locally and gathers the following information for validation:
 
-* The URI scheme(s) entered in your info.plist file
-* The Bundle ID of your app
-* The Apple Developer ID (Apple App Prefix)
-* The Associated Domain(s) entered in the .entitlements file
-* The build target selected for your .entitlements file
-* The Branch Key(s) entered in your info.plist file
+* The URI scheme(s) entered in the app's info.plist file
+* The project's Bundle ID
+* The project's Apple Developer ID (Apple App Prefix)
+* The list of Associated Domains entered in the .entitlements file
+* The build target selected for the .entitlements file
+* The Branch Key(s) entered in the info.plist file
 
 The script does not collect or store:
 
-* Any of your app's code
-* Any of your project assets
-* Your developer email, or personal information
+* Any of the app's code
+* Any of the project's assets
+* Email addresses or other developer information
 * Any other information about your app, such as SDK's, app settings, or project structure
 
 Once the configuration information is collected, the script generates and returns a Branch Link that can be used to view the test results.
@@ -52,12 +51,12 @@ Once the configuration information is collected, the script generates and return
 
 Download and extract the [latest version of the script](https://branch.io/resources/twig/static/twigScript/twig_script.sh).
 
-Once the file has finished downloading open a terminal window, navigate to the location of the script, and enter:
+Once the file has finished downloading, open a terminal window and navigate to the location of the script. Enter:
 {% highlight sh %}
 $ bash twig_script.sh
 {% endhighlight %}
 
-Then, before executing the script, drag and drop the projects .xcodeproj file into the terminal window (Note that you must use the .xcodeproj file, and not the .xcworkspace file). The command should look like the following:
+Before executing the script, drag and drop the project's .xcodeproj file into the terminal window (Note: you must use the .xcodeproj file, not the .xcworkspace file). The result should look something like this:
 
 {% highlight sh %}
 $ bash twig_script.sh /Users/jbauer/Desktop/BranchStuff/Branch-TestBed-Swift/TestBed-Swift.xcodeproj
@@ -72,15 +71,15 @@ Upon execution, the script will echo back a message similar to the following:
 {"url":"https://twig.app.link/RPyaHjpYJd"}
 {% endhighlight %}
 
-Clicking the generated link, or copy & pasting it into a browser, will open the Twig validator and display the test results.
+Clicking the generated link, or copying & pasting it into a browser, will open the Twig validator and display the test results.
 
 ## The Twig Validator
 
-The validator takes the information pulled from the local project files and performs a series of checks and comparisons. If a setting fails the validation tests, the setting will be displayed, alongside the correct value.
+The validator takes the information pulled from the local project files and performs a series of checks and comparisons. If a setting fails the validation tests, the setting will be displayed along with the recommended value.
 
-In order to keep the Branch app and Xcode project information secure, the validator will require the [Branch Secret](https://dashboard.branch.io/settings) for the app. Once provided, the validator will display the results of the tests.
+In order to keep the Branch app and Xcode project information secure, the validator requires that the app's [Branch Secret](https://dashboard.branch.io/settings) be entered in the form. Once provided, the validator will display the results of the tests.
 
-After running the test for the first time, there will be an option to refresh the results. This button will re-check the dashboard settings. However, if any changes are made to the Xcode project, the local script must be run again.
+The validator will check the current status of the app's dashboard and can be run multiple times as changes are made. Changes to the local project will not be available to the validator, however, without again running the local script.
 
 If you find any issues with the Twig Universal Linking Validator, please reach out to [support@branch.io](mailto:support@branch.io)
 {% endif %}
