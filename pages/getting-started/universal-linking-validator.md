@@ -15,7 +15,7 @@ sections:
 
 ## About Twig
 
-Setting up Universal Links can be hard, with lots of places for the configuration to go wrong. With few other options, you may end up spending hours looking for an issue that may be as simple as a typo. The Twig Universal Linking Validator can do all the work, letting you find the exact problem with your Universal Linking settings in seconds. By running the local script, the service can check that:
+With Apple's introduction of Universal Links in iOS 9.x, Branch links can take users into your app almost instantly. The introduction of Universal Links brings, however, an all new set of configuration complications. The Twig Universal Linking Validator scans both the local configuration files, and the Branch Dashboard settings to pinpoint errors in the app's configuration. By running the local script, this service can check that:
 
   - The settings on your Branch Dashboard match those of your Xcode project
   - The entries in your .entitlements file are correct
@@ -23,13 +23,6 @@ Setting up Universal Links can be hard, with lots of places for the configuratio
   - The .entitlements file has the correct build target selected
   - The Apple Developer ID matches the Apple App Prefix on your Dashboard
 
-> The overriding goal
-> is to make it as easy
-> as possible to get Universal Linking working for your app.
-> Getting users inside of your app is one of the most important parts
-> of a deep link. If your Branch links don't open the app, it can severely hurt
-> the user's experience. The less time you spend setting up Universal Links,
-> the more time you can work on an amazing app for your users.
 
 {% getstarted %}{% endgetstarted %}
 
@@ -37,7 +30,7 @@ Setting up Universal Links can be hard, with lots of places for the configuratio
 
 ## The Twig Script
 
-The script is the most important part of this Universal Linking validator; it allows the service to tell you exactly what the problem is. When directed at your Xcode project, the script gathers the following information:
+The script is the most important part of this Universal Linking validator; when directed at your Xcode project, the script gathers the following information for validation:
 
 * The URI scheme(s) entered in your info.plist file
 * The Bundle ID of your app
@@ -53,24 +46,24 @@ The script does not collect or store:
 * Your developer email, or personal information
 * Any other information about your app, such as SDK's, app settings, or project structure
 
-Once the configuration information is collected, the script sends it to Branch and returns a short-link so you can see the validator's results.
+Once the configuration information is collected, the script generates and returns a short-link that can be used to view the test results.
 
 ## Running The Twig Script
 
-Download and extract the [latest version of the script](http://twig.stage.branch.io/static/twigScript/twig_script.sh).
+Download and extract the [latest version of the script](http://http://aa7f38f55917911e6a8dc02e1049d57b-1722032917.us-west-1.elb.amazonaws.com/resources/twig/static/twigScript/twig_script.sh).
 
-Once the file has finished downloading, open a terminal window and navigate to the location of the script. Once there, type the following command into terminal:
+Once the file has finished downloading, open a terminal window and navigate to the location of the script and enter:
 {% highlight sh %}
 $ bash twig_script.sh
 {% endhighlight %}
-Then, before you run the script, drag and drop your .xcodeproj file into the terminal window. This ensures the script will be running on the correct project (Note that you must use the .xcodeproj file, and not the .xcworkspace file). Your command should look something like the following:
+
+Then, before executing the script, drag and drop your .xcodeproj file into the terminal window (Note that you must use the .xcodeproj file, and not the .xcworkspace file). Your command should look like the following:
 
 {% highlight sh %}
 $ bash twig_script.sh /Users/jbauer/Desktop/BranchStuff/Branch-TestBed-Swift/TestBed-Swift.xcodeproj
 {% endhighlight %}
 
-Upon hitting enter the script will run, and echo back a message similar to the following:
-
+Upon execution the script will echo back a message similar to the following:
 
 {% highlight sh %}
 #####################################################
@@ -79,15 +72,15 @@ Upon hitting enter the script will run, and echo back a message similar to the f
 {"url":"https://twig.app.link/RPyaHjpYJd"}
 {% endhighlight %}
 
-Clicking the generated link, or copy & pasting it into you browser, will take you to the Twig validator, where you can see the results of the test.
+Clicking the generated link, or copy & pasting it into a browser, will open the Twig validator and display the test results.
 
 ## The Twig Validator
 
-The validator takes the information pulled from your project and runs it through a series of checklists and comparisons. This allows it to determine if anything is configured incorrectly. If something needs to be changed to get your Universal Links working properly, the validator will tell you what needs to be changed, and even what value it should be set to.
+The validator takes the information pulled from the local project files and performs series of checks and comparisons. If a setting fails to validate, the validator will output the culprit setting(s), and the correct value for the setting.
 
-In order to keep all of your Branch app and Xcode project settings secure, you must enter the [Branch Secret](https://dashboard.branch.io/settings) for your app. Once you do, the validator will display the results of the validation tests.
+In order to keep the Branch app and Xcode project settings secure, the validator will require the [Branch Secret](https://dashboard.branch.io/settings) for the app. Once provided, the validator will display the results of the tests.
 
-After running the test for the first time, you will have an option to refresh the results. This button will recheck the settings on your dashboard, and update the results. However, if you make any changes to your Xcode project, you will need to re-run the script on your local machine.
+After running the test for the first time, there will be an option to refresh the results. This button will re-check the dashboard settings. However, if any changes are made to the Xcode project, the local script must be run again.
 
 If you find any issues with the Twig Universal Linking Validator, please reach out to [support@branch.io](mailto:support@branch.io)
 {% endif %}
