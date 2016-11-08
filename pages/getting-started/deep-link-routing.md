@@ -73,7 +73,7 @@ Inside the `andRegisterDeepLinkHandler` callback in your AppDelegate, you will w
 {% highlight swift %}
 func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     let branch: Branch = Branch.getInstance()
-    branch.initSession(launchOptions: launchOptions, deepLinkHandler: { params, error in
+		branch.initSession(launchOptions: launchOptions, andRegisterDeepLinkHandler: {params, error in
         // If the key 'pictureId' is present in the deep link dictionary
         if error == nil && params["+clicked_branch_link"] != nil && params["pictureId"] != nil {
             print("clicked picture link!")
