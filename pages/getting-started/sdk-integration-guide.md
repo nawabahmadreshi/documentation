@@ -97,7 +97,7 @@ With extensive use, the Android SDK footprint is **187 kb**.
 
 ### Install with Gradle
 
-Add `compile 'io.branch.sdk.android:library:2.+'` to the dependencies section of your `build.gradle` file. 
+Add `compile 'io.branch.sdk.android:library:2.+'` to the dependencies section of your `build.gradle` file.
 
 {% protip %}
 You can also find the [source and JAR file here](https://github.com/BranchMetrics/android-branch-deep-linking){:target="_blank"}.
@@ -355,7 +355,7 @@ Occasionally, Android will barf after you add our library due to generic issues 
 | branch_key | Dictionary | |
 | live | String | [key_live_xxxxxxxxxxxxxxx] |
 
-{% image src="/img/pages/getting-started/sdk-integration-guide/branch-multi-key-plist.png" actual center alt="environment toggle" %}
+{% image src="/img/pages/getting-started/sdk-integration-guide/ios_add_branchKey.gif" actual center alt="environment toggle" %}
 
 {% endif %}
 {% if page.ios or page.react or page.mparticle_ios %}
@@ -372,9 +372,9 @@ Branch opens your app by using its URI scheme (`yourapp://`), which should be un
 1. Expand the "URL Types" section at the bottom.
 1. Click the `+` button to add the URL Scheme you've selected, as below:
 
-{% image src='/img/pages/getting-started/sdk-integration-guide/urlType.png' full center alt='URL Scheme Demo' %}
+{% image src='/img/pages/getting-started/sdk-integration-guide/ios_get_uriScheme.gif' full center alt='URL Scheme Demo' %}
 
-### Support Strong Matching (only for new  **app.link** domain)
+### Support Strong Matching (only needed for &nbsp; **app.link** &nbsp; domains)
 
 1. Retrieve your app default domain name from [Link Settings](https://dashboard.branch.io/#/settings/link){:target="_blank"} page of the Branch dashboard under **Link Domain**
 1. In Xcode, open your project's Info.plist file in the Navigator (on the left side).
@@ -677,21 +677,19 @@ A Branch session needs to be started every single time your app opens. We check 
 
 1. In Xcode, open your **App.Delegate.m** file.
 1. Add `#import "Branch.h"` at the top to import the Branch framework.
-1. Find the line beginning with:
+1. Define and initialize Branch
 
-{% highlight objc %}
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:
-{% endhighlight %}
+{% image src='/img/pages/getting-started/sdk-integration-guide/objc_initSession.gif' center alt='deeplink path'%}
+
 {% endtab %}
 
 {% tab swift %}
 1. Add a bridging header to import the Branch framework into your project. For help on adding a bridging header, see [this StackOverflow answer](http://stackoverflow.com/a/28486246/1914567){:target="_blank"}.
 1. In Xcode, open your **AppDelegate.swift** file.
-1. Find the line beginning with:
+1. Define and initialize Branch
 
-{% highlight swift %}
-func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-{% endhighlight %}
+{% image src='/img/pages/getting-started/sdk-integration-guide/swift_initSession.gif' center alt='deeplink path'%}
+
 {% endtab %}
 {% endtabs %}
 
@@ -723,7 +721,7 @@ func didBecomeActiveWithConversation(conversation: MSConversation)
 
 {% endif %}
 
-Underneath this line, add the following snippet:
+In this method, add the following snippet:
 
 {% if page.ios %}
 
@@ -1140,7 +1138,7 @@ Add the following methods to your **AppDelegate.m** file:
     NSDictionary *userInfo = [notification userInfo];
     NSNumber *kitNumber = userInfo[mParticleKitInstanceKey];
     MPKitInstance kitInstance = (MPKitInstance)[kitNumber integerValue];
-    
+
     if (kitInstance == MPKitInstanceBranchMetrics) {
         [self checkForDeeplink];
     }
@@ -1153,7 +1151,7 @@ Add the following methods to your **AppDelegate.m** file:
 
 - (void)checkForDeeplink {
     MParticle * mParticle = [MParticle sharedInstance];
-    
+
     [mParticle checkForDeferredDeepLinkWithCompletionHandler:^(NSDictionary<NSString *,NSString *> * _Nullable params, NSError * _Nullable error) {
         //
         // A few typical scenarios where this block would be invoked:
@@ -1175,7 +1173,7 @@ Add the following methods to your **AppDelegate.m** file:
         //
         // If the user navigates away from the app without killing it, this block could be invoked several times:
         // once for the initial launch, and then again each time the user taps on a link to re-open the app.
-        
+
         if (params) {
             //Insert custom logic to inspect the params and route the user/customize the experience.
             NSLog(@"params: %@", params.description);
