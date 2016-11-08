@@ -355,7 +355,9 @@ Occasionally, Android will barf after you add our library due to generic issues 
 | branch_key | Dictionary | |
 | live | String | [key_live_xxxxxxxxxxxxxxx] |
 
-{% image src="/img/pages/getting-started/sdk-integration-guide/ios_add_branchKey.gif" actual center alt="environment toggle" %}
+<details><summary>Click to see </summary>
+    {% image src="/img/pages/getting-started/sdk-integration-guide/ios_add_branchKey.gif" actual center alt="Add the Branch Key" %}
+</details>
 
 {% endif %}
 {% if page.ios or page.react or page.mparticle_ios %}
@@ -370,9 +372,11 @@ Branch opens your app by using its URI scheme (`yourapp://`), which should be un
 1. In Xcode, click your project in the Navigator (on the left side).
 1. Select the "Info" tab.
 1. Expand the "URL Types" section at the bottom.
-1. Click the `+` button to add the URL Scheme you've selected, as below:
+1. Click the `+` button to add the URL Scheme you've selected:
 
-{% image src='/img/pages/getting-started/sdk-integration-guide/ios_get_uriScheme.gif' full center alt='URL Scheme Demo' %}
+<details><summary>Click to see </summary>
+    {% image src='/img/pages/getting-started/sdk-integration-guide/ios_get_uriScheme.gif' full center alt='URL Scheme Demo' %}
+</details>
 
 ### Support Strong Matching (only needed for &nbsp; **app.link** &nbsp; domains)
 
@@ -679,16 +683,16 @@ A Branch session needs to be started every single time your app opens. We check 
 1. Add `#import "Branch.h"` at the top to import the Branch framework.
 1. Define and initialize Branch
 
-{% image src='/img/pages/getting-started/sdk-integration-guide/objc_initSession.gif' center alt='deeplink path'%}
+{% image src='/img/pages/getting-started/sdk-integration-guide/objc_initSession.gif' center alt='Initialize the SDK'%}
 
 {% endtab %}
 
 {% tab swift %}
 1. Add a bridging header to import the Branch framework into your project. For help on adding a bridging header, see [this StackOverflow answer](http://stackoverflow.com/a/28486246/1914567){:target="_blank"}.
 1. In Xcode, open your **AppDelegate.swift** file.
-1. Define and initialize Branch
+1. Define and initialize Branch:
 
-{% image src='/img/pages/getting-started/sdk-integration-guide/swift_initSession.gif' center alt='deeplink path'%}
+{% image src='/img/pages/getting-started/sdk-integration-guide/swift_initSession.gif' center alt='Initialize Branch'%}
 
 {% endtab %}
 {% endtabs %}
