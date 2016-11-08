@@ -97,7 +97,7 @@ With extensive use, the Android SDK footprint is **187 kb**.
 
 ### Install with Gradle
 
-Add `compile 'io.branch.sdk.android:library:2.+'` to the dependencies section of your `build.gradle` file. 
+Add `compile 'io.branch.sdk.android:library:2.+'` to the dependencies section of your `build.gradle` file.
 
 {% protip %}
 You can also find the [source and JAR file here](https://github.com/BranchMetrics/android-branch-deep-linking){:target="_blank"}.
@@ -745,7 +745,7 @@ Branch *branch = [Branch getInstance];
 {% tab swift %}
 {% highlight swift %}
 let branch: Branch = Branch.getInstance()
-branch?.initSession(launchOptions: launchOptions, automaticallyDisplayDeepLinkController: true, deepLinkHandler: { params, error in
+branch?.initSession(launchOptions: launchOptions, andRegisterDeepLinkHandler: {params, error in
     if error == nil {
         // params are the deep linked params associated with the link that the user clicked -> was re-directed to this app
         // params will be empty if no data found
@@ -779,7 +779,7 @@ Branch *branch = [Branch getInstance];
 {% tab swift %}
 {% highlight swift %}
 let branch: Branch = Branch.getInstance()
-branch?.initSession(launchOptions: launchOptions, automaticallyDisplayDeepLinkController: true, deepLinkHandler: { params, error in
+branch?.initSession(launchOptions: launchOptions, andRegisterDeepLinkHandler: {params, error in
     if error == nil {
         // params are the deep linked params associated with the link that the user clicked -> was re-directed to this app
         // params will be empty if no data found
@@ -1140,7 +1140,7 @@ Add the following methods to your **AppDelegate.m** file:
     NSDictionary *userInfo = [notification userInfo];
     NSNumber *kitNumber = userInfo[mParticleKitInstanceKey];
     MPKitInstance kitInstance = (MPKitInstance)[kitNumber integerValue];
-    
+
     if (kitInstance == MPKitInstanceBranchMetrics) {
         [self checkForDeeplink];
     }
@@ -1153,7 +1153,7 @@ Add the following methods to your **AppDelegate.m** file:
 
 - (void)checkForDeeplink {
     MParticle * mParticle = [MParticle sharedInstance];
-    
+
     [mParticle checkForDeferredDeepLinkWithCompletionHandler:^(NSDictionary<NSString *,NSString *> * _Nullable params, NSError * _Nullable error) {
         //
         // A few typical scenarios where this block would be invoked:
@@ -1175,7 +1175,7 @@ Add the following methods to your **AppDelegate.m** file:
         //
         // If the user navigates away from the app without killing it, this block could be invoked several times:
         // once for the initial launch, and then again each time the user taps on a link to re-open the app.
-        
+
         if (params) {
             //Insert custom logic to inspect the params and route the user/customize the experience.
             NSLog(@"params: %@", params.description);
