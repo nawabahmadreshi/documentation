@@ -50,4 +50,33 @@ branch.initSession.....
 
 If you're concerned about the additional 1 second latency, the call to `delayInitToCheckForSearchAds` can be called conditionally at run time. So, if you want to only check on first install, or the like, then just don't call this method.
 
+## Apple Search Ads Debug
+
+We've also added a debug mode which will demonstrate the functionality. You can enable it like so, but just remember to remove this before release!
+
+{% tabs %}
+{% tab objective-c %}
+{% highlight objc %}
+Branch *branch = [Branch getInstance];
+[branch setAppleSearchAdsDebugMode];
+[branch delayInitToCheckForSearchAds];
+[branch initSession.....
+{% endhighlight %}
+{% endtab %}
+{% tab swift %}
+{% highlight swift %}
+let branch: Branch = Branch.getInstance()
+branch.setAppleSearchAdsDebugMode()
+branch.delayInitToCheckForSearchAds()
+branch.initSession.....
+{% endhighlight %}
+{% endtab %}
+{% endtabs %}
+
+## View Attribution on Dashboard
+
+All the attribution can be visible on the [Branch dashboard summary page](https://dashboard.branch.io/). All installs and opens registered from this channel will automatically be tagged with the `channel`: `Apple App Store` and the `feature`: `Search Ads`. The `campaign` will be set to the Campaign Name you've configured in the Apple Search Ads dashboard. 
+
+Note that these stats are **limited to the date range** at the top of the page. You can expand the range if you'd like.
+
 {% endif %}
