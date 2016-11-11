@@ -110,27 +110,24 @@ This latter example pulls from a Link Table. In the link table, set the `IOS Lin
 Your Branch account manager will do this with you. The full instructions are only here for reference. There is also a [tutorial video](https://www.youtube.com/watch?v=u8h8KlqFvo4) that walks through these steps.
 {% endcaution %}
 
-Navigate to your Content Manager, and under `All Content`, create a new folder called `Branch_SDK`. In that folder, create a new document called `branch-sdk`.
+Navigate to your Content Manager, and under `All Content`, create a new folder called `Branch_SDK`. Then choose file upload.
 
-Paste the following code snippet into the file, and put your secret key in it:
+On your local computer, create a new file named branch-sdk.htm. Paste the following code snippet into the file:
 
 {% highlight html %}
-<#macro deeplink link_to_be_wrapped><#assign branch_base_url='BASE URL FROM BRANCH'><#assign branch_hash_secret='HASH SECRET FROM BRANCH'><#assign final_link=branch_base_url + '&%24original_url=' + link_to_be_wrapped?url('ISO-8859-1')><#assign hash=messagedigest(branch_hash_secret+final_link+branch_hash_secret,"SHA","hex")><#assign final_link=final_link+'&%24hash='+hash><a href="${final_link}"><#nested></a></#macro>
-<#macro tracked_deeplink link_to_be_wrapped><#assign branch_base_url='BASE URL FROM BRANCH'><#assign branch_hash_secret='HASH SECRET FROM BRANCH'><#assign deeplink=branch_base_url + '&%24original_url=' + link_to_be_wrapped?url('ISO-8859-1')><#assign hash=messagedigest(branch_hash_secret+deeplink+branch_hash_secret,"SHA","hex")><#assign deeplink=deeplink+'&%24hash='+hash></#macro>
+<#macro deeplink link_to_be_wrapped><#assign branch_base_url="BASE URL FROM BRANCH"><#assign final_link=branch_base_url + "&%24original_url=" + link_to_be_wrapped?url("ISO-8859-1")><a href="${final_link}"><#nested></a></#macro> 
+<#macro tracked_deeplink link_to_be_wrapped><#assign branch_base_url="BASE URL FROM BRANCH"><#assign deeplink=branch_base_url + "&%24original_url=" + link_to_be_wrapped?url("ISO-8859-1")></#macro>
 {% endhighlight %}
 
-The code above does not include your base url or hash secret. You should obtain this from Branch.
+The code above does not include your base url. You should obtain this from Branch.
 
 {% example %}
 Create a file for the Branch SDK and paste in the following:
 
 {% highlight html %}
-<#macro deeplink link_to_be_wrapped><#assign branch_base_url='https://bnc.lt/abcd/3p?%243p=e_rs'><#assign branch_hash_secret='F+sNEMK3Jg/3yskR3pB9fEgLuNFcrbROYTJwQ8ABno0='><#assign final_link=branch_base_url + '&%24original_url=' + link_to_be_wrapped?url('ISO-8859-1')><#assign hash=messagedigest(branch_hash_secret+final_link+branch_hash_secret,"SHA","hex")><#assign final_link=final_link+'&%24hash='+hash><a href="${final_link}"><#nested></a></#macro>
-<#macro tracked_deeplink link_to_be_wrapped><#assign branch_base_url='https://bnc.lt/abcd/3p?%243p=e_rs'><#assign branch_hash_secret='F+sNEMK3Jg/3yskR3pB9fEgLuNFcrbROYTJwQ8ABno0='><#assign deeplink=branch_base_url + '&%24original_url=' + link_to_be_wrapped?url('ISO-8859-1')><#assign hash=messagedigest(branch_hash_secret+deeplink+branch_hash_secret,"SHA","hex")><#assign deeplink=deeplink+'&%24hash='+hash></#macro>
+<#macro deeplink link_to_be_wrapped><#assign branch_base_url="https://bnc.lt/abcd/3p?%243p=e_rs"><#assign final_link=branch_base_url + "&%24original_url=" + link_to_be_wrapped?url("ISO-8859-1")><a href="${final_link}"><#nested></a></#macro> 
+<#macro tracked_deeplink link_to_be_wrapped><#assign branch_base_url="https://bnc.lt/abcd/3p?%243p=e_rs"><#assign deeplink=branch_base_url + "&%24original_url=" + link_to_be_wrapped?url("ISO-8859-1")></#macro>
 {% endhighlight %}
-
-Screenshot:
-{% image src="/img/pages/third-party-integrations/responsys/deep-linked-email-create-doc.png" 3-quarters center alt='Example Create Folder' %}
 
 Your file structure should look as follows:
 {% image src="/img/pages/third-party-integrations/responsys/deep-linked-email-manage-content.png" 3-quarters center alt='Example Manage Content' %}
