@@ -71,16 +71,16 @@ Go directly to [Deep Linked Feeds](http://dashboard.branch.io/ads) in the Branch
 1. In "Deep Linked Feed Information" you'll name your Deep Linked Feed for reference, and specify which Feed Source you'd like to turn into a Deep Linked Feed. You'll also input the Ad Platform on which you'd like to run your campaigns. This information will be used to modify the feed and insert well-structured Branch attribution data into the links.
 {% image src='/img/pages/features/deep-linked-feeds/dlf-step-1.png' half center alt='Deep Linked Feed Creation Step 1' %}
 1. In "Create Deep Links" you'll be presented with two optional elements. The first is a list of column names from your feed source. To add deep link data to each link, select the column that contains the relevant data. 
-  {% example %}
-  Maybe you have a column in your product feed titled `id`. Let's say that column contains the product id for each piece of content, and that your app needs that id to deep link correctly. To create deep links with that id for each product, select the column by checking the box on the left hand side. If you'd like to change the name of the key (for example, from `id` to `product_id`) you can write the new name for the key in the text box on the right hand side. This will add the correct `product_id` to each link for every single product in your feed (e.g. the first item will have `"product_id":1392`, the second item will have `"product_id":5284`)!
-  {% endexample %}
-  {% image src='/img/pages/features/deep-linked-feeds/customize-columns.png' 3-quarters center alt='Customize Feed Columns' %}
-1. "Validate and Test" will not be available in the Alpha version, but will include helpful steps for checking your feed and previewing its contents. Click "Save and Continue" to proceed.
-1. In "Get Deep Linked Feed" you can download your feed! Once you get to the final step, you will see "Generating CSV..." Wait for this to finish, then click "Download CSV" when the button text changes.
+{% example %}Let's say you have a column in your product feed titled `id`. That column contains the product id for each piece of content in your Feed Source file, and your app needs that id to deep link correctly. To create deep links with that id for each product, select the column by checking the box on the left hand side. If you'd like to change the name of the key (for example, from `id` to `product_id`) you can write the new name for the key in the text box on the right hand side. This will add the correct `product_id` to each link for every single product in your feed (e.g. the first item will have `"product_id":1392`, the second item will have `"product_id":5284`)!{% endexample %}
+{% image src='/img/pages/features/deep-linked-feeds/customize-columns.png' 3-quarters center alt='Customize Feed Columns' %}
 
-{% image src='/img/pages/features/deep-linked-feeds/generating-csv.png' half center alt='Add New Deep Linked Feed' %}
+- "Validate and Test" will not be available in the Alpha version, but will include helpful steps for checking your feed and previewing its contents. Click "Save and Continue" to proceed. 
 
-{% image src='/img/pages/features/deep-linked-feeds/download-csv.png' 3-quarters center alt='Add New Deep Linked Feed' %}
+- Finally, in "Get Deep Linked Feed" you can download your feed! Once you get to the final step, you will see "Generating CSV..." Wait for this to finish, then click "Download CSV" when the button text changes.
+
+{% image src='/img/pages/features/deep-linked-feeds/generating-csv.png' half center alt='Generating CSV' %}
+
+{% image src='/img/pages/features/deep-linked-feeds/download-csv.png' 3-quarters center alt='Download CSV' %}
 
 You can see all of the **Deep Linked Feeds** you've uploaded by going to the [Deep Linked Feeds](http://dashboard.branch.io/ads/deeplinkedfeeds) tab.
 
