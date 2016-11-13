@@ -22,7 +22,7 @@ Journeys introduces many more advanced features on top of the basic smart app ba
 
 On a daily basis, Google Search drives **more app installs** than all of Facebook's paid install products combined. Converting your mobile web visitors into native app users is one of the most effective acquisition channels available, and Branch's Journeys App Banners platform makes this easy.
 
-{% image src='/img/pages/features/journeys/journeys-intro.png' 2-thirds center alt='Journeys intro' %}
+{% image src='/img/pages/features/journeys/journeys-examples.png' full center alt='Journeys intro' %}
 
 - **Customizable presentation.** WYSIWYG designer for smart banner or full-page interstitial, with more coming soon.
 - **Powerful targeting rules.** Want to show your Journey only visitors without your app installed already? All iOS users from Japan? Just users viewing your checkout page? Android users who have visited your website twice AND purchased something using your app? The possibilities are infinite.
