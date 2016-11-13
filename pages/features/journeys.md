@@ -38,7 +38,7 @@ On a daily basis, Google Search drives **more app installs** than all of Faceboo
 
 Add the following code somewhere inside the `<head></head>` tags on your website. More information about this SDK can be found in the [Github README](https://github.com/BranchMetrics/web-branch-deep-linking).
 
-{% highlight javascript %}
+{% highlight html %}
 <script type="text/javascript">
 {% ingredient web-sdk-initialization %}{% endingredient %}
 </script>
