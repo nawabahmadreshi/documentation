@@ -3,7 +3,7 @@ type: recipe
 directory: third-party-integrations
 title: "Apptimize"
 page_title: Deep link users through install, and test the best user flow automatically.
-description: Branch has partnered with Apptimize to seamlessly A/B test user flows after a deeplink click from Branch. 
+description: Branch has partnered with Apptimize to seamlessly A/B test user flows after a deeplink click from Branch.
 keywords: abtesting, apptimize
 platforms:
 - ios
@@ -16,7 +16,7 @@ sections:
 
 {% if page.overview %}
 
-Branch has partnered with Apptimize to seamlessly provide different onboarding flows for users arriving through Branch links. You can design and test different user flows based off the data a Branch deeplink returns to you. Have a theory that users clicking Branch links right into a product page convert better than users clicking Branch links but must authenticate first? With this integration, you can define, measure, and prove your hypothesis!
+Branch has partnered with Apptimize to seamlessly provide different onboarding flows for users arriving through Branch links. You can design and test different user flows based off the data the Branch deep link returns to you. Have a theory that users clicking Branch links right into a product page convert better than users clicking Branch links, but must authenticate first? With this integration, you can define, measure, and prove your hypothesis!
 
 {% image src='/img/pages/third-party-integrations/apptimize/campaign-flow.png' full center alt='Apptimize flow example' %}
 
@@ -50,7 +50,7 @@ Next, segment users into your campaign using the Apptimize dashboard. We have se
 
 ## Set targeting in your app
 
-You need to decide *where* to define a user attribute from the previous step. Setting this in the callback found inside your {% if page.ios %}`AppDelegate.m`{% endif %}{% if page.android %} `BaseActivity` or `SplashActivity`{% endif %} is the simplest approach, but you can do it anywhere. 
+You need to decide *where* to define a user attribute from the previous step. Setting this in the callback found inside your {% if page.ios %}`AppDelegate.m`{% endif %}{% if page.android %} `BaseActivity` or `SplashActivity`{% endif %} is the simplest approach, but you can do it anywhere.
 
 {% if page.ios %}
 

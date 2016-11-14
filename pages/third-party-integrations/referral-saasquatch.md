@@ -13,7 +13,7 @@ sections:
 
 {% if page.overview %}
 
-[Referral SaaSquatch](http://www.referralsaasquatch.com/) is a cross-platform customer referral program platform. In addition to mobile, SaaSquatch also works with desktop, web, telecom, ecommerce, and enterprise companies to power their referral programs across channels. The Branch + Referral SaaSquatch integration lets you run a referral program with any combination of web and mobile, using the power of Branch deeplinking and Referral SaaSquatch's widgets, referral graph, reward bank, and administration features. 
+[Referral SaaSquatch](http://www.referralsaasquatch.com/) is a cross-platform customer referral program platform. In addition to mobile, SaaSquatch also works with desktop, web, telecom, ecommerce, and enterprise companies to power their referral programs across channels. The Branch + Referral SaaSquatch integration lets you run a referral program with any combination of web and mobile, using the power of Branch deep linking and Referral SaaSquatch's widgets, referral graph, reward bank, and administration features.
 
 The Branch + SaaSquatch referral program integration provides:
 
@@ -25,8 +25,8 @@ The Branch + SaaSquatch referral program integration provides:
 
 {% example title="Other implementation ideas" %}
 
-Referral SaaSquatch supports referral tracking across platforms and mediums. 
-For example you could invite a friend to try a product using your iPhone, but then their friends might sign up for an account using Chrome on their laptop, and then install your Android app to make their first purchase. 
+Referral SaaSquatch supports referral tracking across platforms and mediums.
+For example you could invite a friend to try a product using your iPhone, but then their friends might sign up for an account using Chrome on their laptop, and then install your Android app to make their first purchase.
 
 Some other possibilities:
 
@@ -96,13 +96,13 @@ builder.scheme("https")
     .appendQueryParameter("firstName", user.getFirstName())
     .appendQueryParameter("accountId", user.getCompanyId())
     .appendQueryParameter("email", user.getEmail())
-    
-    // If available connect referralCode from Branch deeplink to trigger attribution
+
+    // If available connect referralCode from Branch deep link to trigger attribution
     //.appendQueryParameter("referralCode", TODO)
-    
+
     // If status is available, include it here to trigger conversions
     //.appendQueryParameter("accountStatus", "PAID")
-    
+
     .appendQueryParameter("paymentProviderId", "NULL");
 
 String widgetUrl = builder.build().toString();
@@ -193,7 +193,7 @@ public void onStart() {
                         String rewardText = "You can get " + referringParams.getString("sq_quantity") + "% off your bill!";
                         TextView reward = (TextView) findViewById(R.id.reward);
                         reward.setText(rewardText);
-                        
+
                         // TODO: Connect this with the Widget code shown above to complete attribution once a user authenticates
                         String referralCode = referringParams.getString("sq_referralCode");
 
@@ -211,6 +211,6 @@ public void onStart() {
 
 ## Conclusion
 
-You now have the foundation for an incentivized referral program. Like many popular promo-code systems, you can reward both the user who shares a link and the user who clicks the link and purchases in the app. 
+You now have the foundation for an incentivized referral program. Like many popular promo-code systems, you can reward both the user who shares a link and the user who clicks the link and purchases in the app.
 
 {% endif %}
