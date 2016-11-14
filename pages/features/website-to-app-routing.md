@@ -38,7 +38,7 @@ Add the following code somewhere inside the `<head></head>` tags on your website
 What this script does is move a lot of the Branch redirection logic to the Javascript on your own page, effectively 'clicking a Branch link' on page load.
 {% endprotip %}
 
-{% highlight javascript %}
+{% highlight html %}
 <script type="text/javascript">
 // load the Branch SDK file
 {% ingredient web-sdk-initialization %}{% endingredient %}

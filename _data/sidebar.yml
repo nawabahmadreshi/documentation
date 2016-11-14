@@ -45,6 +45,7 @@
         - google-uac
         - instagram-ads
         - twitter-ads
+        - apple-search-ads
         - ios-imessage
     - title: Content Indexing
       children:
@@ -56,7 +57,7 @@
     - title: Deep Linked Emails
       children:
         - responsys
-        - exacttarget
+        - salesforce
         - sendgrid
         - sailthru
     - title: Data Integrations

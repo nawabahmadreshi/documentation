@@ -4,7 +4,8 @@ var excludedPages = [
     'adjust-webhook',
     'template',
     'creating-links-in-apps',
-    'creating-links-in-other-ways'
+    'creating-links-in-other-ways',
+    'exacttarget'
 ];
 
 module.exports = excludedPages;

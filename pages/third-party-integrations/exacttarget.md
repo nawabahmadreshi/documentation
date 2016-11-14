@@ -1,11 +1,12 @@
 ---
 type: recipe
 directory: third-party-integrations
-title: ExactTarget
+title: Salesforce Marketing Cloud
 page_title: Automatically convert your email links into multi-platform deep links.
 description: Add powerful, best in class deep linking to your email campaigns.
 keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Deep Linked Email
 hide_platform_selector: true
+exclude_from_google_search: true
 premium: true
 sections:
 - overview
@@ -30,7 +31,7 @@ When a link is clicked by a user without the app, it will route that user to the
 
 {% prerequisite %}
 
-- You must have the ExactTarget Sender Authentication Package (SAP) in order to benefit from Universal Links + click tracking functionality.
+- You must have the Salesforce Marketing Cloud Sender Authentication Package (SAP) in order to benefit from Universal Links + click tracking functionality.
 - This guide requires you to have already [integrated the Branch SDK]({{base.url}}/getting-started/sdk-integration-guide) into your app.
 
 - Your Branch account manager will walk you through the one time setup steps. Please see the Advanced tab for more detailed information.
@@ -40,8 +41,8 @@ When a link is clicked by a user without the app, it will route that user to the
 
 Contact your Branch Account Manager or [accounts@branch.io](mailto:accounts@branch.io) to enable remote deep linking functionality for emails, set up your app and host the necessary files for Universal Links. You can find more details about the one time setup steps in the "Advanced" tab.
 
-{% caution title="Ensure compatibility on iOS 9+ with ExactTarget" %}
-Deep linking on iOS 9+ devices requires Apple’s Universal Link technology. Branch will provide you with almost everything you need, but ExactTarget will host an apple-app-site-association file over a secure connection for the click tracking domain. Your Branch account manager will help with this step as well.
+{% caution title="Ensure compatibility on iOS 9+ with Salesforce Marketing Cloud" %}
+Deep linking on iOS 9+ devices requires Apple’s Universal Link technology. Branch will provide you with almost everything you need, but Salesforce Marketing Cloud will host an apple-app-site-association file over a secure connection for the click tracking domain. Your Branch account manager will help with this step as well.
 {% endcaution %}
 
 ### Add a new Content Area for easy deep linking
@@ -49,8 +50,8 @@ Deep linking on iOS 9+ devices requires Apple’s Universal Link technology. Bra
 In this step, we'll add a content area that makes it very easy to create deep links in your email. 
 
 1. Navigate to Email Studio > Content > Content Areas.
-1. Create a new Content Area called `deeplink`. {% image src="/img/pages/third-party-integrations/exacttarget/et-content-areas.png" center full alt='With and Without Branch Deep Linked Email' %}
-1. Choose "Free Form" **and navigate to the "HTML" tab of the Free Form editor.** {% image src="/img/pages/third-party-integrations/exacttarget/et-choose-free-form.png" center full alt='With and Without Branch Deep Linked Email' %}
+1. Create a new Content Area called `deeplink`. {% image src="/img/pages/third-party-integrations/salesforce/et-content-areas.png" center full alt='With and Without Branch Deep Linked Email' %}
+1. Choose "Free Form" **and navigate to the "HTML" tab of the Free Form editor.** {% image src="/img/pages/third-party-integrations/salesforce/et-choose-free-form.png" center full alt='With and Without Branch Deep Linked Email' %}
 1. Paste the following code snippet into the **HTML editor** of the Free Form Content Area, replacing `@branch_hash_secret` and `@branch_base_url` with values provided by your Branch Account Manager.
 
 ~~~
@@ -61,7 +62,7 @@ In this step, we'll add a content area that makes it very easy to create deep li
 The snippet above has placeholders for `@branch_hash_secret` and `@branch_base_url`. Work with your Branch Account Manager to get the right information in your snippet. 
 {% endcaution %}
 
-{% image src="/img/pages/third-party-integrations/exacttarget/et-paste-code-snippet.png" center full alt='With and Without Branch Deep Linked Email' %}
+{% image src="/img/pages/third-party-integrations/salesforce/et-paste-code-snippet.png" center full alt='With and Without Branch Deep Linked Email' %}
 
 Save your new Content Area.
 
@@ -78,7 +79,7 @@ To create email links via API, please use the instructions on how to [create lin
 1. `"$3p":"e_et"` This is required for Universal Link and click tracking functionality.
 1. `"$original_url":"{your web url URI encoded}"` For each piece of content, include a URI encoded version of your content's web URL. You can also add deep link data as query parameters on that web URL. This ensures accurate Content Analytics reporting. **Example: `"$original_url":"https%3A%2F%2Fshop.com%2Fshoes%2Fbrown-shoes%3Fmy_key%3Dmy_value%26campaign%3Dshoe_discounts"`**
 
-### Add deep linking to your ExactTarget email templates without using an API
+### Add deep linking to your Salesforce Marketing Cloud email templates without using an API
 
 This code is referred to as the "Branch script" - this script will convert your web URLs to deep links. The script uses the Content Area to turn your web URL into a deep link.
 
@@ -169,14 +170,14 @@ if let nonBranchLink = params["+non_branch_link"] as? String, let fromEmailCtd =
 {% endtabs %}
 
 {% protip title="Do not open the app" %}
-In a future release (scheduled for mid-Q4 2016) customers will have the ability to choose not to open the app at all rather than open the app and launch a browser. ExactTarget uses this feature for your Unsubscribe button by default.
+In a future release (scheduled for mid-Q4 2016) customers will have the ability to choose not to open the app at all rather than open the app and launch a browser. Salesforce Marketing Cloud uses this feature for your Unsubscribe button by default.
 {% endprotip %}
 
 ## AASA file for Universal Link support
 
-ExactTarget will host an Apple App Site Association (AASA) file for you, so that your click tracking domain appears to Apple as a Universal Link, and the app will open and deep link.
+Salesforce Marketing Cloud will host an Apple App Site Association (AASA) file for you, so that your click tracking domain appears to Apple as a Universal Link, and the app will open and deep link.
 
-To set up your AASA file, obtain your Apple App Prefix and Bundle Identifier from your Branch Account Manager, and send it to your ExactTarget Account Manager.
+To set up your AASA file, obtain your Apple App Prefix and Bundle Identifier from your Branch Account Manager, and send it to your Salesforce Marketing Cloud Account Manager.
 
 {% protip title="How does it work?"%}
 Apple recognizes the click tracking domain as a Universal Link, and opens the app immediately without the browser opening. Once the app has opened, Branch will collect the referring URL that opened the app (at this time, it will be the click tracking url). Inside the app, Branch will robotically “click” the link, registering the click with the ESP, and returning the Branch link information to the Branch SDK inside the app. This information is then used to deep link the user to the correct in-app content. See the "Support" tab for more information.
@@ -192,7 +193,7 @@ Apple recognizes the click tracking domain as a Universal Link, and opens the ap
 | --- | --- | --- | ---
 | Original link | https://www.shop.com/product | This is the original link that you would put in an email. If emails are dynamically personalized, this will be the link that is filled in by the personalization engine.
 | Branch link | https://branch.shop.com/?original_url=https%3A%2F%2Fwww.shop.com%2Fproduct | A Branch deep link, that handles all redirection for users on any platform, with or without the app.
-| Click Tracking URL | https://email.shop.com/click/abcde12345 | An ExactTarget-generated click tracking URL. The URL doesn’t signify anything, but when clicked, records the click and redirects to a given destination.
+| Click Tracking URL | https://email.shop.com/click/abcde12345 | An Salesforce Marketing Cloud-generated click tracking URL. The URL doesn’t signify anything, but when clicked, records the click and redirects to a given destination.
 
 {% image src="/img/pages/third-party-integrations/responsys/deep-linked-email-creation-flow.png" center full alt='Deep Linked Email Creation Flow' %}
 
@@ -211,7 +212,7 @@ When you click a Branch link directly from an email inside the Mail app on iOS 9
 
 **Solution**
 
-To solve this, ExactTarget will host the AASA file on your click tracking domain. We’ll help you get set up with this, but it’s ExactTarget who will actually host the file.
+To solve this, Salesforce Marketing Cloud will host the AASA file on your click tracking domain. We’ll help you get set up with this, but it’s Salesforce Marketing Cloud who will actually host the file.
 
 Apple requires that the file is hosted on a “secure” domain. To qualify as secure, the domain must have a website security certificate. This is why you need the Sender Authentication Package.
 
