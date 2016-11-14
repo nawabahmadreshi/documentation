@@ -851,6 +851,10 @@ func application(_ application: UIApplication, continue userActivity: NSUserActi
 {% endtab %}
 {% endtabs %}
 
+{% protip %}
+With your app now able to respond to Branch links, you will want to set up [deep link routing](https://dev.branch.io/getting-started/deep-link-routing/guide/ios/#building-a-custom-deep-link-routing-method){:target="_blank"} to start sending users to the correct places inside of your app.
+{% endprotip %}
+
 {% endif %}
 {% endif %}
 <!---    /iOS -->
