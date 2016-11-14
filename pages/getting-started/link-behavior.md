@@ -12,7 +12,7 @@ sections:
 contents: list
 ---
 
-Branch links work across hundreds of thousands of edge cases created by different browser, operating system and link configuration combinations. Below are some of the most common use cases for Branch links, with notes on the out-of-the-box behavior you should expect.
+Branch links work across hundreds of thousands of edge cases created by different browsers, operating systems and link configuration combinations. Below are some of the most common use cases for Branch links, with notes on the out-of-the-box behavior you should expect.
 
 ## iOS mobile link behavior
 
@@ -25,7 +25,7 @@ The following notes assume that your app's [Branch link settings](https://dashbo
 
 Note that what we describe here assumes that the app, or the link being tapped, has been configured to support Branch's default "Open in the App Store" behavior. If the app or link has instead been configured to redirect to a custom URL, the scenarios described will be identical with the difference that the user will be redirected to the custom URL instead of to the App Store.
 
-Also note that Universal Links were only introduced with iOS 9. Consequently, devices running iOS versions prior to version 9 fully support URI Schemes but do not suppor Universal Links and may not behave as described here.
+Also, note that Universal Links were only introduced with iOS 9. Consequently, devices running iOS versions prior to version 9 fully support URI Schemes but do not support Universal Links and may not behave as described here.
 
 | App/Browser | Link Behavior
 | --- | ---
@@ -43,17 +43,17 @@ Also note that Universal Links were only introduced with iOS 9. Consequently, de
 (*) Note that when links are entered into the Safari address bar: 
 
 1. Apple blocks all deep linking attempts and prohibits Universal Links from functioning properly, meaning users will always be redirected to the App Store
-2. Entering a Branch link into the address bar and appending query paramters may result in strange behavior due to [Safari pre-fetching](http://stackoverflow.com/a/37358674/5394680)
+2. Entering a Branch link into the address bar and appending query parameters may result in strange behavior due to [Safari pre-fetching](http://stackoverflow.com/a/37358674/5394680)
 
 (**) If you are planning to use Facebook as your primary channel for distributing Branch links and most of your link clicks will be coming from users who already have the app installed, we recommend that configuring [iOS Deepviews]({{base.url}}/features/deepviews/guide/ios/) or using a [Journeys app banner]({{base.url}}/features/journeys/overview/) on your own site. The 'Open App' call-to-action buttons that are found on Deepviews and on Journeys app banners function as Universal Links. Branch does not display Deepviews by default because when they are configured, Facebook will always display a modal dialog asking the user to confirm that they want to Leave Facebook. If the app is not installed, the modal doesn't do anything and this results in a poor user experience.
 
 ### Behavior when the app is not installed
 
-Branch links are generally intended to direct users to the App or Play Store when the associated app is not installed on a device. Links can also be configured to redirect to other URLs if desired. Branch fallback functionality will work the same in these situations, with the only difference being that the user will be redirected to the specified alternate URL instead of the App or Play Store.
+Branch links are generally intended to direct users to the App or Play Store when the associated app is not installed on a device. Links can also be configured to redirect to other URLs if desired. Branch's fallback functionality will work the same in these situations, with the only difference being that the user will be redirected to the specified alternate URL instead of the App or Play Store.
 
 | App/Browser | Link Behavior
 | --- | ---
-| Pinterest | Shows a Branch deepview *
+| Pinterest | Shows a Branch Deepview *
 | All other apps/browsers | Redirects to App Store
 
 (*) We show a Branch Deepview when users tap on links in Pinterest because tapping on the Deepview's CTA button will successfully open the app. The alternative behavior would be to always redirect to the App Store from these browsers. We don't do this on Facebook.
@@ -97,3 +97,4 @@ You have a few options for customization here:
 
 - Customize the hosted page using [desktop deepviews]({{base.url}}/features/deepviews/guide/)
 - Replace it with your own website by overriding the desktop redirect (global in link settings or per link using `$desktop_url`)
+
