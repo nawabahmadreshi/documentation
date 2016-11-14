@@ -260,16 +260,31 @@ Branch.createBranchUniversalObject({
 Then, create the link to be shared by referencing the `BranchUniversalObject` and defining the properties of the link. In the example, our properties reflect that this is shared content and the user selected Facebook as the destination. We also added a default redirect to a website on the desktop.
 
 {% highlight js %}
-branchUniversalObj.generateShortUrl({
-  // put your link properties here
-  "feature" : "sharing",
-  "channel" : "facebook"
-}, {
-  // put your control parameters here
-  "$desktop_url" : "http://desktop-url.com/monster/12345",
-}).then(function (res) {
-    // Success Callback
-    console.log(res.generatedUrl);
+// optional fields
+var analytics = {
+    channel: "channel",
+    feature: "feature",
+    campaign: "campaign",
+    stage: "stage",
+    tags: ["one","two","three"]
+};
+
+// optional fields
+var properties = {
+    $fallback_url: "www.example.com",
+    $desktop_url: "www.desktop.com",
+    $android_url: "www.android.com",
+    $ios_url: "www.ios.com",
+    $ipad_url: "www.ipad.com",
+    more_custom: "data",
+    even_more_custom: true,
+    this_is_custom: 41231
+};
+
+branchUniversalObj.generateShortUrl(analytics, properties).then(function(res) {
+    alert(JSON.stringify(res.url));
+}).catch(function(err) {
+    alert(JSON.stringify(err));
 });
 {% endhighlight %}
 
