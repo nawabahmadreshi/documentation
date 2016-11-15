@@ -452,7 +452,7 @@ If the **Default domain name** box shows the legacy `bnc.lt` domain, you should 
 1. Copy your domain name.{% image src='/img/pages/getting-started/universal-app-links/subdomain-setting.png' full center alt='retrieving the default link subdomain' %}
 1. Choose the `Activity` you want to open up when a link is clicked. This is typically your `SplashActivity` or a `BaseActivity` that all other activities inherit from (and likely the same one you selected in the [SDK Integration Guide]({{base.url}}/getting-started/sdk-integration-guide)).
 1. Inside your `AndroidManifest.xml`, locate where the selected `Activity` is defined.
-1. Within the `Activity` definition, insert the intent filter provided below (making sure that `xxxx` matches the subdomain prefix you've been assigned or selected for yourself)
+1. Within the `Activity` definition, insert the intent filter provided below (making sure that `xxxx` matches the subdomain prefix you've been assigned or selected for yourself). Be sure to add this as its own separate intent filter.
 
 {% highlight xml %}
 <!-- AppLink example -->
