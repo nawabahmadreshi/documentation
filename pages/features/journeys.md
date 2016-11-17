@@ -201,7 +201,7 @@ You can access your Journey’s performance by selecting **View Performance** fr
 
 ### Using Source Analytics
 
-You can also access Journeys analytics by selecting the above filters from the [Source Analytics](http://dashboard.qa.branch.io/analytics/source) page of the Branch dashboard.
+You can also access Journeys analytics by selecting the above filters from the [Source Analytics](http://dashboard.branch.io/analytics/source) page of the Branch dashboard.
 
 {% image src='/img/pages/features/journeys/view-source-analytics.png' 2-thirds center alt='view performance using source analytics' %}
 
