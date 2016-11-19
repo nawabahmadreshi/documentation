@@ -26,14 +26,6 @@ To help you grow your app, Facebook offers a feature called App Invites as an al
 
 {% elsif page.guide %}
 
-{% if page.ios %}
-{% caution title="Incomplete support on iOS" %}
-Facebook has noted that App Invites for iOS do not support Deep Linking and attribution. **This means that iOS App Invites and Branch Links will not work correctly together.**
-
-You can still complete this guide and App Links will function, but attribution data will not be collected for your links and deep linking will not work at this time.
-{% endcaution %}
-{% endif %}
-
 {% prerequisite %}
 
 - To use Facebook App Invites, you need to first [integrate the Branch SDK]({{base.url}}/getting-started/sdk-integration-guide) and {% if page.ios %}[the Facebook SDK](https://developers.facebook.com/docs/ios/getting-started){% elsif page.android %}[the Facebook SDK](https://developers.facebook.com/docs/android/getting-started){% endif %} into your app. 
