@@ -34,8 +34,8 @@ For access to the Deep Linked Feeds alpha please contact your Branch account man
 
 {% prerequisite %}
 - To use Deep Linked Feeds you must [have the Branch SDK in your app](../getting-started/sdk-integration-guide/guide/).
-{% endprerequisite %}
 - To use your Deep Linked Feed on Facebook, please ensure you have completed the [Facebook Advertising setup steps](/features/facebook-ads/guide/ios/#connect-branch-to-facebook){:target="_blank"}.
+{% endprerequisite %}
 
 ## Preparing your Feed Source
 
