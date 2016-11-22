@@ -159,13 +159,13 @@ In this step, we'll add a content area that makes it very easy to create deep li
 1. Navigate to Email Studio > Content > Content Areas.
 1. Create a new Content Area called `deeplink`. {% image src="/img/pages/third-party-integrations/salesforce/et-content-areas.png" center full alt='With and Without Branch Deep Linked Email' %}
 1. Choose "Free Form" **and navigate to the "HTML" tab of the Free Form editor.** {% image src="/img/pages/third-party-integrations/salesforce/et-choose-free-form.png" center full alt='With and Without Branch Deep Linked Email' %}
-1. Paste the following code snippet into the **HTML editor** of the Free Form Content Area, replacing `@branch_base_url` with values provided by your Branch Account Manager.
+1. Paste the  copied code snippet into the **HTML editor** of the Free Form Content Area. The snippet will follow this format:
 
 ~~~
 %%[ VAR @deeplink, @branch_base_url SET @branch_base_url = "BASE URL FROM BRANCH" SET @deeplink = CONCAT(@branch_base_url, CONCAT("&%24original_url=", URLEncode(@link_to_be_wrapped, 1, 1))) ]%%
 ~~~
 
-{% caution title="Add your details to the code snippet" %}
+{% caution title="Obtain your code snippet" %}
 The snippet above has a placeholder for `@branch_base_url`. Retrieve your snippet from the [Deep Linked Email setup flow](https://dashboard.branch.io/email){:target="_blank"}.
 {% endcaution %}
 

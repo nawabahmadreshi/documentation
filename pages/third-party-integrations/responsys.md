@@ -147,13 +147,13 @@ Your AASA file must be uploaded to your click tracking domain by Responsys. Your
 
 ### Configure your app for your click tracking domain
 
-{% image src="/img/pages/third-party-integrations/salesforce/configure-salesforce-3.png" center 2-thirds alt='Developer email' %}
+{% image src="/img/pages/third-party-integrations/responsys/configure-responsys-3.png" center 2-thirds alt='Developer email' %}
 
 In this prompt, you can enter the email of someone on your team who is qualified to modify your iOS app. They will complete the [technical setup](#technical-setup) steps below.
 
 ### Upload the Branch Responsys SDK
 
-{% image src="/img/pages/third-party-integrations/responsys/configure-responsy-4.png" center 2-thirds alt='Branch Responsys SDK' %}
+{% image src="/img/pages/third-party-integrations/responsys/configure-responsys-4.png" center 2-thirds alt='Branch Responsys SDK' %}
 
 In this step, we'll upload an SDK that makes it very easy to create deep links in your emails. Press the copy button to copy the snippet to clipboard, and then follow these steps in Responsys:
 
@@ -161,16 +161,20 @@ In this step, we'll upload an SDK that makes it very easy to create deep links i
 There is also a [tutorial video](https://www.youtube.com/watch?v=u8h8KlqFvo4){:target="_blank"} that walks through these steps.
 {% endprotip %}
 
-Navigate to your Content Manager, and under `All Content`, create a new folder called `Branch_SDK`. Then choose file upload.
-
-On your local computer, create a new file named branch-sdk.htm. Paste the following code snippet into the file:
+1. Navigate to your Content Manager
+1. Under `All Content`, create a new folder called `Branch_SDK`
+1. Choose file upload.
+1. On your local computer, create a new file named branch-sdk.htm. 
+1. Paste the code snippet you copied earlier into the file. The snippet will follow this format:
 
 {% highlight html %}
 <#macro deeplink link_to_be_wrapped><#assign branch_base_url="BASE URL FROM BRANCH"><#assign final_link=branch_base_url + "&%24original_url=" + link_to_be_wrapped?url("ISO-8859-1")><a href="${final_link}"><#nested></a></#macro> 
 <#macro tracked_deeplink link_to_be_wrapped><#assign branch_base_url="BASE URL FROM BRANCH"><#assign deeplink=branch_base_url + "&%24original_url=" + link_to_be_wrapped?url("ISO-8859-1")></#macro>
 {% endhighlight %}
 
-The code above does not include your base url. You should obtain this from Branch.
+{% caution title="Obtain your code snippet" %}
+The code above does not include your base url. You should obtain this from the [Deep Linked Email setup flow](https://dashboard.branch.io/email){:target="_blank"}.
+{% endcaution %}
 
 {% example %}
 Create a file for the Branch SDK and paste in the following:
@@ -189,7 +193,7 @@ Your file structure should look as follows:
 The following app changes ensure that your email integration supports [Universal Links](/getting-started/universal-app-links/). You will need access to your app code to make these changes.
 
 {% protip title="How does it work?"%}
-Apple recognizes the click tracking domain as a Universal Link, and opens the app immediately without the browser opening. Once the app has opened, Branch will collect the referring URL that opened the app (at this time, it will be the click tracking url). Inside the app, Branch will robotically “click” the link, registering the click with the ESP, and returning the Branch link information to the Branch SDK inside the app. This information is then used to deep link the user to the correct in-app content. See the [Support](/third-party-integrations/salesforce/support) tab for more information.
+Apple recognizes the click tracking domain as a Universal Link, and opens the app immediately without the browser opening. Once the app has opened, Branch will collect the referring URL that opened the app (at this time, it will be the click tracking url). Inside the app, Branch will robotically “click” the link, registering the click with the ESP, and returning the Branch link information to the Branch SDK inside the app. This information is then used to deep link the user to the correct in-app content. See the [Support](/third-party-integrations/responsys/support) tab for more information.
 {% endprotip %}
 
 ### Add your click tracking domain to your Associated Domains
@@ -235,7 +239,7 @@ In a future release (scheduled for September) customers will have the ability to
 
 {% image src="/img/pages/third-party-integrations/responsys/validation.png" center full alt='Click tracking domain' %}
 
-The last step of the [Deep Linked Email setup flow](https://dashboard.branch.io/email){:target="_blank"} validates whether you have completed steps 1 and 2 and whether an engineer on your team has completed the [technical setup](#technical-setup) steps. From here you can also access [guides for ongoing use](/third-party-integrations/salesforce/usage) of Deep Linked Email.
+The last step of the [Deep Linked Email setup flow](https://dashboard.branch.io/email){:target="_blank"} validates whether you have completed steps 1 and 2 and whether an engineer on your team has completed the [technical setup](#technical-setup) steps. From here you can also access [guides for ongoing use](/third-party-integrations/responsys/usage) of Deep Linked Email.
 
 {% getstarted next="true" %}{% endgetstarted %}
 
@@ -247,7 +251,7 @@ Once you’ve completed the [one time setup steps](/third-party-integrations/res
 
 This guide will identify which web links you'd like to open the app and deep link, as well as convert them to Branch links.
 
-### Configure your Responsys email templates
+## Configure your Responsys email templates
 
 This code is referred to as the "Branch script" - this script will convert your web URLs to deep links.
 
@@ -262,7 +266,7 @@ Copy the following snippet, and using the “Source” view, paste the snippet d
 <#include "cms://contentlibrary/Branch_SDK/branch-sdk.htm">
 {% endhighlight %}
 
-### Create deep links
+## Create deep links
 
 Wherever you are using `<a>` tags in your email templates, replace those with `<@deeplink>` tags, or `<@tracked_deeplink>` for web URLs that you would like to deep link.
 
