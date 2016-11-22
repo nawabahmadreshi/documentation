@@ -35,7 +35,7 @@ For access to the Deep Linked Feeds alpha please contact your Branch account man
 {% prerequisite %}
 - To use Deep Linked Feeds you must [have the Branch SDK in your app](../getting-started/sdk-integration-guide/guide/).
 {% endprerequisite %}
-- To use your Deep Linked Feed on Facebook, please ensure you have completed the [Facebook Advertising setup steps](/features/facebook-ads/guide/ios/#connect-branch-to-facebook).
+- To use your Deep Linked Feed on Facebook, please ensure you have completed the [Facebook Advertising setup steps](/features/facebook-ads/guide/ios/#connect-branch-to-facebook){:target="_blank"}.
 
 ## Preparing your Feed Source
 
@@ -46,10 +46,10 @@ When you need to create a **Deep Linked Feed** you'll go through a creation flow
 A couple of things to note:
 
 - Be sure that your Feed Source has a `link` column with each product's web URL. This is the minimum requirement for Deep Linked Feeds.
-- We recommend [hosting deep link data](/getting-started/hosted-deep-link-data/guide/) on your website for each web URL in your feed.
+- We recommend [hosting deep link data](/getting-started/hosted-deep-link-data/guide/){:target="_blank"} on your website for each web URL in your feed.
 - If you can't host your link data, add the necessary link data as a column in the Feed Source.
 - Want to get creative with your Feed Sources? Check out our [Advanced section](/features/deep-linked-feeds/advanced) for some power user tips.
-- Branch accepts feed sources that are compatible with Facebook’s format. If you’re not sure about the compatibility of your feed, please use [Facebook’s Product Feed Debug Tool](https://business.facebook.com/ads/product_feed/debug) to test and debug it.
+- Branch accepts feed sources that are compatible with Facebook’s format. If you’re not sure about the compatibility of your feed, please use [Facebook’s Product Feed Debug Tool](https://business.facebook.com/ads/product_feed/debug){:target="_blank"} to test and debug it.
 
 ## Upload a Feed Source
 
@@ -79,7 +79,7 @@ You can see all of the **Feed Sources** you've uploaded by going to the [Feed So
 
 {% image src='/img/pages/features/deep-linked-feeds/download-csv.png' 3-quarters center alt='Download CSV' %}
 
-You can see all of the **Deep Linked Feeds** you've uploaded by going to the [Deep Linked Feeds](http://dashboard.branch.io/ads/deeplinkedfeeds) tab.
+You can see all of the **Deep Linked Feeds** you've uploaded by going to the [Deep Linked Feeds](http://dashboard.branch.io/ads/deeplinkedfeeds){:target="_blank"} tab.
 
 ## Using your Deep Linked Feed
 
@@ -94,7 +94,7 @@ Branch Deep Linked Feeds are accepted by top remarketing companies like Remerge,
 {% endprotip %}
 
 {% protip title="Drive Installs With Your Content"%}
-Use [Content Analytics](https://dashboard.branch.io/analytics/content) to see which products are driving results, then use Deep Linked Feeds to create the links you need at scale with every type of ad.
+Use [Content Analytics](https://dashboard.branch.io/analytics/content){:target="_blank"} to see which products are driving results, then use Deep Linked Feeds to create the links you need at scale with every type of ad.
 {% endprotip %}
 
 
@@ -109,9 +109,9 @@ Campaign | Campaign
 Ad Platform | Channel
 Ad Type | Tag
 
-- Visit [Content Analytics](https://dashboard.branch.io/analytics/content) to see which products are driving clicks, opens, installs and conversions
-- Check out [Source Analytics](https://dashboard.branch.io/analytics/content) to simply understand which Ad Channels are most impactful for you.
-- Set up a [Data Integration](https://branch.io/data-integrations) to send your Dynamic Ads data to another attribution or analytics dashboard.
+- Visit [Content Analytics](https://dashboard.branch.io/analytics/content){:target="_blank"} to see which products are driving clicks, opens, installs and conversions
+- Check out [Source Analytics](https://dashboard.branch.io/analytics/source){:target="_blank"} to simply understand which Ad Channels are most impactful for you.
+- Set up a [Data Integration](https://branch.io/data-integrations){:target="_blank"} to send your Dynamic Ads data to another attribution or analytics dashboard.
 
 {% elsif page.advanced %}
 
@@ -121,44 +121,38 @@ You can add additional data to each link by adding a column to your Feed Source 
 
 ## Advanced segmentation with Data Integrations 
 
-The attribution Data Integrations (Tune, Kochava, AppsFlyer, Localytics and Adjust) support additional network segmentation by using parameters that can be appended to links. 
+The attribution Data Integrations (Tune, Kochava, AppsFlyer, Localytics and Adjust) support additional network segmentation with additional measurement parameters that can be appended to HTTP deep links. 
 
-To get started, please visit the *Advanced* documentation for your data integration for instructions on how to generate and construct the correct query parameters for your campaign and ad network.
+To get started, please visit the *Advanced* documentation for your Data Integration for instructions on how to generate and construct the correct query parameters for your campaign and ad network.
 
-Once you've created the right parameters, add them in the `Advanced: Add Measurement Parameters` text field in Step 2 and they will be added to every HTTP Branch link in the link column.
+This field accepts parameters in the web query parameter format `key1=value1&key2=value2` so do not include `?` at the beginning of the entry. 
+
+Once you've created the right parameters, add them in the `Advanced: Add Measurement Parameters` text field in Step 2. Your parameters will be added to every HTTP Branch link in the `link` column.
 
 {% image src='/img/pages/features/deep-linked-feeds/add-measurement-parameters.png' full center alt='Add Measurement Parameters' %}
 
-## Known issues
-
-- GA release: 11/30
-
-Issue description | Release slated for
---- | ---
-No billing modal/billing bar doesn't do anything | GA release
-User messaging if something goes wrong | GA release
-Can't delete feed sources or feeds | GA release
-
 {% elsif page.support %}
+
+## Links don't open the app
+
+- First, understand what the [intended behavior](/getting-started/link-behavior/guide/){:target="_blank"} of your link should be.
+- Links created by the Deep Linked Feeds tool currently fall back to the Web URL you originally specified in the `link` column by default. You can override this behavior by including a column called `branch_query_params` and including `$fallback_method=app_wide` as the value for every row. This will make each link fall back to the platform fallback you have specified in your [Link Settings](https://dashboard.branch.io/settings/link){:target="_blank"}, which is usually the App Store.
+- Facebook requires certain ["applink treatment"](https://developers.facebook.com/docs/marketing-api/dynamic-product-ads/mobile-app-events#deeplinksetup){:target="_blank"} values to be present to change fallback behavior. We're working on adding these to our interface, but for the moment, include them in your feed source. 
 
 ## Deep links aren't working
 
-- Ensure you've included your deep link data either on your website or in your Feed Source and then included as part of Deep Linked Feed creation. To see which data is getting through to your app, click the link and then view the link click in [Live View](https://dashboard.branch.io/liveview/link_clicks) to see the data going through to your app.
+- Ensure you've included your deep link data. Branch will scrape any [Hosted Deep Link Data](/getting-started/hosted-deep-link-data/guide/){:target="_blank"} corresponding to the Web URL in your Feed Source's `link` column for every link. Alternatively, you can include deep link data as a column in your Feed Source and then select the relevant data in Step 2 of Deep Linked creation. 
+- To see which data is getting through to your app, click the link and then view the link click in [Live View](https://dashboard.branch.io/liveview/link_clicks){:target="_blank"} to see the data going through to your app.
 -  If you don't know what deep link data you need to include, ask a technical teammate to show you which data is included in a working Branch link.
 
 ## Feed Source won't upload
 
-- Branch accepts feeds that are compatible with Facebook’s format. Please use [Facebook’s Product Feed Debug Tool](https://business.facebook.com/ads/product_feed/debug) to test and debug your Product Feed format.
+- Branch accepts Feed Sources that are compatible with Facebook’s [feed format](https://developers.facebook.com/docs/marketing-api/dynamic-product-ads/product-catalog){:target="_blank"}. Please use [Facebook’s Product Feed Debug Tool](https://business.facebook.com/ads/product_feed/debug){:target="_blank"} to test and debug your Product Feed format.
 - Please ensure you have a column titled `link` in your Feed Source
 - The largest file size accepted by the tool is 50MB. Please contact [integrations@branch.io](mailto:integrations@branch.io) if you need to upload a larger file.
 
-## Links don't route properly
-
-- First, understand what the [intended behavior](/getting-started/link-behavior/guide/) of your link should be.
-- Links created by the Deep Linked Feeds tool currently fall back to the Web URL you originally specified in the `link` column by default. You can override this behavior by including a column called `branch_query_params` and including `$fallback_method=app_wide` as the value for every row.
-
 ## Reporting issues
-- For Facebook data discrepancies, please see our [Facebook Advertising troubleshooting documentation](/features/facebook-ads/support/).
+- For Facebook data discrepancies, please see our [Facebook Advertising troubleshooting documentation](/features/facebook-ads/support/){:target="_blank"}.
 
 If you run into any issues, or have questions, please contact [integrations@branch.io](mailto:integrations@branch.io).
 
