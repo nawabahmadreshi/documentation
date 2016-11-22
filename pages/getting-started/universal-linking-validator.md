@@ -49,17 +49,17 @@ Once the configuration information is collected, the script generates and return
 
 ## Running The Script
 
-Download and extract the [latest version of the script](https://branch.io/resources/twig/static/twigScript/twig_script.sh).
+Download and extract the [latest version of the script](https://branch.io/resources/twig/static/twigScript/ulv_script.sh).
 
 Once the file has finished downloading, open a terminal window and navigate to the location of the script. Enter:
 {% highlight sh %}
-$ bash twig_script.sh
+$ bash ulv_script.sh
 {% endhighlight %}
 
 Before executing the script, drag and drop the project's .xcodeproj file into the terminal window (Note: you must use the .xcodeproj file, not the .xcworkspace file). The result should look something like this:
 
 {% highlight sh %}
-$ bash twig_script.sh /Users/jbauer/Desktop/BranchStuff/Branch-TestBed-Swift/TestBed-Swift.xcodeproj
+$ bash ulv_script.sh /Users/jbauer/Desktop/BranchStuff/Branch-TestBed-Swift/TestBed-Swift.xcodeproj
 {% endhighlight %}
 
 Upon execution, the script will echo back a message similar to the following:
