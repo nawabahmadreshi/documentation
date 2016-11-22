@@ -159,14 +159,14 @@ In this step, we'll add a content area that makes it very easy to create deep li
 1. Navigate to Email Studio > Content > Content Areas.
 1. Create a new Content Area called `deeplink`. {% image src="/img/pages/third-party-integrations/salesforce/et-content-areas.png" center full alt='With and Without Branch Deep Linked Email' %}
 1. Choose "Free Form" **and navigate to the "HTML" tab of the Free Form editor.** {% image src="/img/pages/third-party-integrations/salesforce/et-choose-free-form.png" center full alt='With and Without Branch Deep Linked Email' %}
-1. Paste the following copied snippet into the **HTML editor** of the Free Form Content Area. Your snippet will look something like the below,  with a value for `@branch_base_url` that is unique to you.
+1. Paste the following code snippet into the **HTML editor** of the Free Form Content Area, replacing `@branch_base_url` with values provided by your Branch Account Manager.
 
 ~~~
- %%[ VAR @deeplink, @branch_hash_secret, @branch_base_url, @hash SET @branch_hash_secret = "fake secret" SET @branch_base_url = "http://bnc.lt/abcd/3p?%243p=e_et" SET @deeplink = CONCAT(@branch_base_url, CONCAT("&%24original_url=", URLEncode(@link_to_be_wrapped, 1, 1))) SET @hash = SHA256(CONCAT(@branch_hash_secret, CONCAT(@deeplink , @branch_hash_secret)),"UTF-16") SET @deeplink = CONCAT(@deeplink, CONCAT("&%24hash=", @hash)) ]%%
+%%[ VAR @deeplink, @branch_base_url SET @branch_base_url = "BASE URL FROM BRANCH" SET @deeplink = CONCAT(@branch_base_url, CONCAT("&%24original_url=", URLEncode(@link_to_be_wrapped, 1, 1))) ]%%
 ~~~
 
 {% caution title="Add your details to the code snippet" %}
-The snippet above has placeholders for `@branch_hash_secret` and `@branch_base_url`. Retrieve your snippet from the [Deep Linked Email setup flow](https://dashboard.branch.io/email){:target="_blank"}.
+The snippet above has a placeholder for `@branch_base_url`. Retrieve your snippet from the [Deep Linked Email setup flow](https://dashboard.branch.io/email){:target="_blank"}.
 {% endcaution %}
 
 {% image src="/img/pages/third-party-integrations/salesforce/et-paste-code-snippet.png" center full alt='With and Without Branch Deep Linked Email' %}

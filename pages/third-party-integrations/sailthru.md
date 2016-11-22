@@ -53,19 +53,19 @@ The Sailthru integration requires you to add code in two places:
 
 ### Prepare your template
 
-At the top of each email template, you should simply copy and paste the following snippet. It specifies two variables that are used to automatically contruct deep links, `branch_base_url` and `branch_hash_secret`. This snippet will be provided by your Branch Account Manager.
+At the top of each email template, you should simply copy and paste the following snippet. It specifies a variable that is used to automatically contruct deep links, `branch_base_url`. This snippet will be provided by your Branch Account Manager.
 
 Copy the below snippet and paste it above the `<head>` tag:
 
 {% highlight html %}
-{branch_base_url='BASE URL FROM BRANCH'}{branch_hash_secret='HASH SECRET FROM BRANCH'}
+{branch_base_url='BASE URL FROM BRANCH'}
 {% endhighlight %}
 
-Enter the base url and hash secret provided by your Branch account manager.
+Enter the base url provided by your Branch account manager.
 
 {% example %}
 {% highlight html %}
-{branch_base_url='http://bnc.lt/abcd/3p?%243p=st'}{branch_hash_secret='fake secret'}
+{branch_base_url='http://bnc.lt/abcd/3p?%243p=st'}
 {% endhighlight %}
 {% endexample %}
 
@@ -84,7 +84,7 @@ After:
 {% highlight html %}
 {link='ORIGINAL URL'}
 
-{*Branch deeplink builder*}{deeplink=branch_base_url + '&%24original_url=' + u(link)}{hash=md5(branch_hash_secret+deeplink+branch_hash_secret)}{deeplink=deeplink+'&%24hash='+hash}{*end Branch deeplink builder*}
+{*Branch deeplink builder*}{deeplink=branch_base_url + "&%24original_url=" + u(link)}{*end Branch deeplink builder*}
 
 <a href="{deeplink}">Click me</a>
 {% endhighlight %}
@@ -93,7 +93,7 @@ After:
 {% highlight html %}
 {link='http://example.com/?utm=y'}
 
-{*Branch deeplink builder*}{deeplink=branch_base_url + '&%24original_url=' + u(link)}{hash=md5(branch_hash_secret+deeplink+branch_hash_secret)}{deeplink=deeplink+'&%24hash='+hash}{*end Branch deeplink builder*}
+{*Branch deeplink builder*}{deeplink=branch_base_url + "&%24original_url=" + u(link)}{*end Branch deeplink builder*}
 
 <a href="{deeplink}">Click me</a>
 {% endhighlight %}
@@ -108,7 +108,7 @@ The Branch deep link script also works with Sailthru's Zephyr personalization la
 {% highlight html %}
 {link=content[0].url}
 
-{*Branch deeplink builder*}{deeplink=branch_base_url + '&%24original_url=' + u(link)}{hash=md5(branch_hash_secret+deeplink+branch_hash_secret)}{deeplink=deeplink+'&%24hash='+hash}{*end Branch deeplink builder*}
+{*Branch deeplink builder*}{deeplink=branch_base_url + "&%24original_url=" + u(link)}{*end Branch deeplink builder*}
 
 <a href="{deeplink}">Click me</a>
 {% endhighlight %}
