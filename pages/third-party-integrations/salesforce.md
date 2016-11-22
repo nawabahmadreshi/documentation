@@ -15,8 +15,6 @@ sections:
 contents:
   number:
     - setup
-  list:
-    - usage
 ---
 
 {% if page.overview %}
