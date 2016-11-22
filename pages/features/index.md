@@ -13,10 +13,10 @@ Branch offers many useful features to improve your app's deep linking experience
 
 {% protip %}
 
-<h3 style="margin-top:0;">Journeys <img class="premium-label" src="/img/premium_label.png" /></h3>
-Use **[Journeys Web to App](journeys)** to convert mobile web visitors into active app users.
+<h3 style="margin-top:0;">Journeys App Banners <img class="premium-label" src="/img/premium_label.png"/></h3>
+Use **[Journeys App Banners](journeys)** to convert mobile web visitors into app installs.
 
-- **Build custom smart banners (free feature!)**
+- **Build custom smart app banners (free feature!)**
 - Create powerful interstitials using our WYSIWYG editor.
 - Define your audience using powerful real-time targeting rules.
 - Run A/B tests with different design variations.

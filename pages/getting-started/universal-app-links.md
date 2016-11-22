@@ -452,7 +452,7 @@ If the **Default domain name** box shows the legacy `bnc.lt` domain, you should 
 1. Copy your domain name.{% image src='/img/pages/getting-started/universal-app-links/subdomain-setting.png' full center alt='retrieving the default link subdomain' %}
 1. Choose the `Activity` you want to open up when a link is clicked. This is typically your `SplashActivity` or a `BaseActivity` that all other activities inherit from (and likely the same one you selected in the [SDK Integration Guide]({{base.url}}/getting-started/sdk-integration-guide)).
 1. Inside your `AndroidManifest.xml`, locate where the selected `Activity` is defined.
-1. Within the `Activity` definition, insert the intent filter provided below (making sure that `xxxx` matches the subdomain prefix you've been assigned or selected for yourself)
+1. Within the `Activity` definition, insert the intent filter provided below (making sure that `xxxx` matches the subdomain prefix you've been assigned or selected for yourself). Be sure to add this as its own separate intent filter.
 
 {% highlight xml %}
 <!-- AppLink example -->
@@ -697,6 +697,8 @@ If you open a Universal Link in one of these apps, it should work correctly all 
 | Messages | works
 | Mail | works
 | WhatsApp | works
+| Gmail | works
+| Inbox | works
 
 #### Apps limited by Apple
 
@@ -714,7 +716,7 @@ Apple has limited Universal Links in certain situations, apparently to avoid con
 
 #### Apps that work sometimes
 
-Apps with built-in webviews (Google, Gmail, Inbox, Twitter, Facebook, Facebook Messenger, WeChat, etc.) work with Universal Links only when a webview is already open. In other words, Universal Links do not work in-app from the feed or main app views.
+Apps with built-in webviews (Google, Twitter, Facebook, Facebook Messenger, WeChat, etc.) work with Universal Links only when a webview is already open. In other words, Universal Links do not work in-app from the feed or main app views.
 
 To work around this limitation, your links must have [deepviews]({{base.url}}/features/deepviews) or something similar enabled, with a call-to-action link/button that has a Universal Link behind it. This way, clicking a link from the app feed will open a webview containing your deepview page, and the user can then click the link/button to launch your app. All of Apple's limitations (in the section above) still apply for the deepview page.
 
@@ -732,8 +734,6 @@ To work around this limitation, your links must have [deepviews]({{base.url}}/fe
 
 | App/Browser | Status
 | --- | ---
-| Gmail | works, if Chrome is not installed. If Chrome is installed, links open in Chrome instead of Safari and Universal Links do not work. However, Branch detects if Chrome is installed and triggers a URL scheme fallback if we are certain your app is installed on the device. This means your app will most likely open automatically, but not via Universal Linking behavior.
-| Google Inbox | works, if Chrome is not installed. If Chrome is installed, links open in Chrome instead of Safari and Universal Links do not work. However, Branch detects if Chrome is installed and triggers a URL scheme fallback if we are certain your app is installed on the device. This means your app will most likely open automatically, but not via Universal Linking behavior.
 | Slack | works if configured to open links in Safari. Otherwise, works conditionally as in the above section.
 
 

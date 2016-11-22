@@ -172,7 +172,7 @@ var branchUniversalObject = branch.createBranchUniversalObject({
 let branchUniversalObject = branch.createBranchUniversalObject(
   'content/12345', // canonical identifier
   {
-    contentTitle: 'My Content Title',
+    title: 'My Content Title',
     contentImageUrl: 'https://example.com/mycontent-12345.png',
     contentDescription: 'My Content Description',
     metadata: {
@@ -195,7 +195,7 @@ Some of these parameters automatically [populate the link parameters]({{base.url
 | --- | --- | ---
 | canonicalIdentifier | This is the unique identifier for content that will help Branch dedupe across many instances of the same thing. Suitable options: a website with pathing, or a database with identifiers for entities | $canonical_identifier
 | canonicalUrl | The canonical URL, used for SEO purposes
-| title | The name for the piece of content | $og_title 
+| title | The name for the piece of content | $og_title
 | contentDescription | A description for the content | $og_description
 | imageUrl | The image URL for the content | $og_image_url
 | metadata | Any extra parameters you'd like to associate with the Branch Universal Object. These will be made available to you after the user clicks the link and opens up the app, and are used for [Deep Link Routing]({{base.url}}/getting-started/deep-link-routing).
@@ -214,7 +214,7 @@ Some of these parameters automatically [populate the link parameters]({{base.url
 | --- | --- | ---
 | setCanonicalIdentifier | This is the unique identifier for content that will help Branch dedupe across many instances of the same thing. Suitable options: a website with pathing, or a database with identifiers for entities | $canonical_identifier
 | setCanonicalUrl | The canonical URL, used for SEO purposes
-| setTitle | The name for the piece of content | $og_title 
+| setTitle | The name for the piece of content | $og_title
 | setContentDescription | A description for the content | $og_description
 | imageUrl | The image URL for the content | $og_image_url
 | addContentMetadata | Any extra parameters you'd like to associate with the Branch Universal Object. These will be made available to you after the user clicks the link and opens up the app, and are used for [Deep Link Routing]({{base.url}}/getting-started/deep-link-routing).
@@ -231,7 +231,7 @@ Some of these parameters automatically [populate the link parameters]({{base.url
 | Parameter | Usage | Link Parameter
 | --- | --- | ---
 | canonicalIdentifier | This is the unique identifier for content that will help Branch dedupe across many instances of the same thing. Suitable options: a website with pathing, or a database with identifiers for entities | $canonical_identifier
-| title | The name for the piece of content | $og_title 
+| title | The name for the piece of content | $og_title
 | contentDescription | A description for the content | $og_description
 | contentImageUrl | The image URL for the content | $og_image_url
 | contentMetadata | Any extra parameters you'd like to associate with the Branch Universal Object. These will be made available to you after the user clicks the link and opens up the app, and are used for [Deep Link Routing Routing]({{base.url}}/getting-started/deep-link-routing).
@@ -242,7 +242,7 @@ Some of these parameters automatically [populate the link parameters]({{base.url
 | Parameter | Usage | Link Parameter
 | --- | --- | ---
 | canonicalIdentifier | This is the unique identifier for content that will help Branch dedupe across many instances of the same thing. Suitable options: a website with pathing, or a database with identifiers for entities | $canonical_identifier
-| title | The name for the piece of content | $og_title 
+| title | The name for the piece of content | $og_title
 | contentDescription | A description for the content | $og_description
 | contentImageUrl | The image URL for the content | $og_image_url
 | metadata | Any extra parameters you'd like to associate with the Branch Universal Object. These will be made available to you after the user clicks the link and opens up the app, and are used for [Deep Link Routing Routing]({{base.url}}/getting-started/deep-link-routing).
@@ -256,7 +256,7 @@ Some of these parameters automatically [populate the link parameters]({{base.url
 | --- | --- | ---
 | canonicalIdentifier | This is the unique identifier for content that will help Branch dedupe across many instances of the same thing. Suitable options: a website with pathing, or a database with identifiers for entities | $canonical_identifier
 | canonicalUrl | The canonical URL, used for SEO purposes
-| title | The name for the piece of content | $og_title 
+| title | The name for the piece of content | $og_title
 | contentDescription | A description for the content | $og_description
 | imageUrl | The image URL for the content | $og_image_url
 | metadata | Any extra parameters you'd like to associate with the Branch Universal Object. These will be made available to you after the user clicks the link and opens up the app, and are used for [Deep Link Routing Routing]({{base.url}}/getting-started/deep-link-routing).
@@ -273,7 +273,7 @@ Some of these parameters automatically [populate the link parameters]({{base.url
 | --- | --- | ---
 | canonicalIdentifier | This is the unique identifier for content that will help Branch dedupe across many instances of the same thing. Suitable options: a website with pathing, or a database with identifiers for entities | $canonical_identifier
 | canonicalUrl | The canonical URL, used for SEO purposes
-| title | The name for the piece of content | $og_title 
+| title | The name for the piece of content | $og_title
 | contentDescription | A description for the content | $og_description
 | contentImageUrl | The image URL for the content | $og_image_url
 | contentMetadata | Any extra parameters you'd like to associate with the Branch Universal Object. These will be made available to you after the user clicks the link and opens up the app, and are used for [Deep Link Routing Routing]({{base.url}}/getting-started/deep-link-routing).
@@ -293,7 +293,7 @@ Only a subset of link parameters are currently supported in the React Native SDK
 | Parameter | Usage | Link Parameter
 | --- | --- | ---
 | canonicalIdentifier | This is the unique identifier for content that will help Branch dedupe across many instances of the same thing. Suitable options: a website with pathing, or a database with identifiers for entities | $canonical_identifier
-| contentTitle | The name for the piece of content | $og_title 
+| title | The name for the piece of content | $og_title
 | contentDescription | A description for the content | $og_description
 | contentImageUrl | The image URL for the content | $og_image_url
 | contentIndexingMode | Can be set to either `public` or `private`. Public indicates that you'd like this content to be discovered by other apps* | $publicly_indexable
@@ -393,7 +393,7 @@ To implement it, use the following `showShareSheetWithLinkProperties` method on 
 {% highlight objc %}
 [branchUniversalObject showShareSheetWithLinkProperties:linkProperties
                                            andShareText:@"Super amazing thing I want to share!"
-                                     fromViewController:self 
+                                     fromViewController:self
                                              completion:^(NSString *activityType, BOOL completed) {
     NSLog(@"finished presenting");
 }];
@@ -488,7 +488,7 @@ Use Branch's custom share sheet to share a piece of content without having to cr
 To implement it, use the following `showShareSheet` method on your `branchUniversalObject`
 
 {% highlight java %}
-branchUniversalObject.showShareSheet(this, 
+branchUniversalObject.showShareSheet(this,
                                       linkProperties,
                                       shareSheetStyle,
                                        new Branch.BranchLinkShareListener() {

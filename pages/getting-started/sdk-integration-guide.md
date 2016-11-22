@@ -136,7 +136,7 @@ You can install the Branch SDK by using one of several different command line to
 | `URI_SCHEME` | The URI scheme for your app (**not** including `://`) from the step above.
 
 {% highlight sh %}
-cordova plugin add https://github.com/BranchMetrics/Cordova-Ionic-PhoneGap-Deferred-Deep-Linking-SDK.git --variable BRANCH_KEY=key_live_xxxxxxxxxxxxxxx --variable URI_SCHEME=yourapp
+cordova plugin add branch-cordova-sdk --variable BRANCH_KEY=key_live_xxxxxxxxxxxxxxx --variable URI_SCHEME=yourapp
 {% endhighlight %}
 
 {% endif %}
@@ -421,9 +421,9 @@ Add this snippet to your `AndroidManifest.xml`:
 
 {% highlight xml %}
 <receiver android:name="io.branch.referral.InstallListener" android:exported="true">
-	<intent-filter>
-		<action android:name="com.android.vending.INSTALL_REFERRER" />
-	</intent-filter>
+  <intent-filter>
+    <action android:name="com.android.vending.INSTALL_REFERRER" />
+  </intent-filter>
 </receiver>
 {% endhighlight %}
 
@@ -442,10 +442,10 @@ Branch opens your app by using its URI scheme (`yourapp://`), which should be un
 
 {% highlight xml %}
 <intent-filter>
-	<data android:scheme="yourapp" android:host="open" />
-	<action android:name="android.intent.action.VIEW" />
-	<category android:name="android.intent.category.DEFAULT" />
-	<category android:name="android.intent.category.BROWSABLE" />
+  <data android:scheme="yourapp" android:host="open" />
+  <action android:name="android.intent.action.VIEW" />
+  <category android:name="android.intent.category.DEFAULT" />
+  <category android:name="android.intent.category.BROWSABLE" />
 </intent-filter>
 {% endhighlight %}
 
@@ -640,10 +640,10 @@ Branch opens your app by using its URI scheme (`yourapp://`), which should be un
 
 {% highlight xml %}
 <intent-filter>
-	<data android:scheme="yourapp" android:host="open" />
-	<action android:name="android.intent.action.VIEW" />
-	<category android:name="android.intent.category.DEFAULT" />
-	<category android:name="android.intent.category.BROWSABLE" />
+  <data android:scheme="yourapp" android:host="open" />
+  <action android:name="android.intent.action.VIEW" />
+  <category android:name="android.intent.category.DEFAULT" />
+  <category android:name="android.intent.category.BROWSABLE" />
 </intent-filter>
 {% endhighlight %}
 
@@ -850,6 +850,10 @@ func application(_ application: UIApplication, continue userActivity: NSUserActi
 
 {% endtab %}
 {% endtabs %}
+
+{% protip %}
+With your app now able to respond to Branch links, you will want to set up [deep link routing](https://dev.branch.io/getting-started/deep-link-routing/guide/ios/#building-a-custom-deep-link-routing-method){:target="_blank"} to start sending users to the correct places inside of your app.
+{% endprotip %}
 
 {% endif %}
 {% endif %}
@@ -1454,9 +1458,9 @@ Google only allows one `BroadcastReceiver` class per application. If you already
 
 {% highlight xml %}
 <receiver android:name="com.myapp.CustomInstallListener" android:exported="true">
-	<intent-filter>
-		<action android:name="com.android.vending.INSTALL_REFERRER" />
-	</intent-filter>
+  <intent-filter>
+    <action android:name="com.android.vending.INSTALL_REFERRER" />
+  </intent-filter>
 </receiver>
 {% endhighlight %}
 

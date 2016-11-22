@@ -61,7 +61,7 @@ Take the base URL (everything before the `?`) and set the Custom Redirects of yo
 {% image src='/img/pages/third-party-integrations/ad-network-analytics/custom_redirect_configuration.png' 2-thirds center alt='Custom redirect configuration' %}
 
 {% protip %}
-Note that by default these redirects only come into play if the user does **not** have the app installed. If you want **all** users (including those with the app already installed) to pass through to your analytics tool, set the `$always_deeplink` [control parameter]({{base-url}}/getting-started/configuring-links/guide/#link-behavior-customization) of your link to `false`.
+Note that by default these redirects only come into play if the user does **not** have the app installed. If you want **all** users (including those with the app already installed) to pass through to your analytics tool, set the [`$web_only` control parameter]({{base-url}}/getting-started/configuring-links/guide/#web-only-links) of your link to `false`.
 {% endprotip %}
 
 ## Provide Branch link to advertiser

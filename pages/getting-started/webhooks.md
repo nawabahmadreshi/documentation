@@ -289,11 +289,13 @@ When a Branch link is opened, triggering a `click` event, you may access:
 | click.query.key | Any key that was appended to the link when opened. To retrieve `value1` from **https://[branchsubdomain]/test?param1=value1**, you would use `click.query.param1`.
 | click.browser.branch_id | The Branch ID we have for a user's unique browser
 | click.browser.metadata.userAgent | The user agent of the browser
-| click.device.hardware_id | For iOS, this is the Advertising ID. For Android, this is the Android ID
+| click.device.hardware_id | For iOS, this is the Advertising ID. For Android, this is the Android ID. 
 | click.device.metadata.google_advertising_id | Android only. The Google Advertising ID, if known
 | click.device.metadata.os | The OS of the device
 | click.device.metadata.os_version | The OS version
 | click.date | Time of link click.
+
+Note that `click.device` this will only be available or Universal/App Links where there's no browser redirect and similarly, `click.browser` will only be available for non-Universal/App links. Handle this appropriately in your code.
 
 | Key | Description
 | --- | ---

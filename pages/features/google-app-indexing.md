@@ -46,7 +46,7 @@ If you have a website, Branch can't do much to help with App Indexing at the mom
 {% prerequisite %}
 
 - For this to function as intended, you should [integrate the Branch SDK]({{base.url}}/getting-started/sdk-integration-guide) into your app and [configure deep link routing]({{base.url}}/getting-started/deep-link-routing).
-- We also recommend you enable either [Deepviews]({{base.url}}/features/deepviews) so that users without your app will see a mobile web preview of this content.
+- We also recommend you enable [Deepviews]({{base.url}}/features/deepviews) so that users without your app will see a mobile web preview of this content.
 
 {% endprerequisite %}
 

@@ -11,10 +11,10 @@ hide_section_selector: true
 
 {% protip %}
 
-<h3 style="margin-top:0;">Journeys <img class="premium-label" src="/img/premium_label.png" /></h3>
-Use **[Journeys Web to App](/features/journeys)** to convert mobile web visitors into active app users.
+<h3 style="margin-top:0;">Journeys App Banners<img class="premium-label" src="/img/premium_label.png"/></h3>
+Use **[Journeys App Banners](/features/journeys)** to convert mobile web visitors into app installs.
 
-- **Build custom smart banners (free feature!)**
+- **Build custom smart app banners (free feature!)**
 - Create powerful interstitials using our WYSIWYG editor.
 - Define your audience using powerful real-time targeting rules.
 - Run A/B tests with different design variations.
@@ -35,7 +35,7 @@ Offer a better user experience by using our Email Service Provider integrations 
 
 <h3 style="margin-top:0;">Data Integrations <img class="premium-label" src="/img/premium_label.png" /></h3>
 
-- Use **[Tune](/third-party-integrations/tune)**, **[Localytics](/third-party-integrations/localytics)**, **[Adjust](/third-party-integrations/adjust)**, **[Appsflyer](/third-party-integrations/appsflyer)**, **[Kochava](/third-party-integrations/kochava)**, or **[Appboy](/third-party-integrations/appboy)** to fully understand your organic and paid acquisition channels.
+- Use **[Tune](/third-party-integrations/tune)**, **[Localytics](/third-party-integrations/localytics)**, **[Adjust](/third-party-integrations/adjust)**, **[AppsFlyer](/third-party-integrations/appsflyer)**, **[Kochava](/third-party-integrations/kochava)**, or **[Appboy](/third-party-integrations/appboy)** to fully understand your organic and paid acquisition channels.
 - Send Branch data to **[Google Analytics](/third-party-integrations/google-analytics),** **[Amplitude](/third-party-integrations/amplitude)**, **[Mixpanel](/third-party-integrations/mixpanel),** or **[Adobe Analytics](/third-party-integrations/adobe-analytics)** giving additional relevancy to your app analytics.
 
 {% endprotip %}
