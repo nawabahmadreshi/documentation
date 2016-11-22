@@ -336,11 +336,11 @@ Occasionally, Android will barf after you add our library due to generic issues 
 ### Add your Branch key
 
 1. Retrieve your Branch Key on the [Settings](https://dashboard.branch.io/#/settings){:target="_blank"} page of the Branch dashboard.
+{% if page.mparticle_ios %}
 1. In Xcode, open your project's Info.plist file in the Navigator (on the left side).
 1. Mouse hover "Information Property List" (the root item under the Key column).
 1. After about half a second, you will see a `+` sign appear. Click it.
-{% if page.mparticle_ios %}
-1. Add a new row with the following value.
+1. Add a new row to your info.plist file with the following value.
 
 | Key | Type | Value |
 | :--- | --- | --- |
@@ -348,16 +348,14 @@ Occasionally, Android will barf after you add our library due to generic issues 
 
 {% else %}
 
-1. Add new rows with the following values, with the `String` entry inside the `Dictionary`:
+1. Add new rows to your info.plist file with the following values, with the `String` entry inside the `Dictionary`:
 
 | Key | Type | Value |
 | :--- | --- | --- |
 | branch_key | Dictionary | |
 | live | String | [key_live_xxxxxxxxxxxxxxx] |
 
-<details><summary>Click to see </summary>
-    {% image src="/img/pages/getting-started/sdk-integration-guide/ios_add_branchKey.gif" actual center alt="Add the Branch Key" %}
-</details>
+{% image src="/img/pages/getting-started/sdk-integration-guide/ios_add_branchKey.gif" actual center alt="Add the Branch Key" %}
 
 {% endif %}
 {% if page.ios or page.react or page.mparticle_ios %}
@@ -369,14 +367,9 @@ Occasionally, Android will barf after you add our library due to generic issues 
 Branch opens your app by using its URI scheme (`yourapp://`), which should be unique to your app.
 
 1. On the [Link Settings](https://dashboard.branch.io/#/settings/link){:target="_blank"} page of the Branch dashboard, ensure that **I have an iOS App** is checked and **iOS URI Scheme** is filled.
-1. In Xcode, click your project in the Navigator (on the left side).
-1. Select the "Info" tab.
-1. Expand the "URL Types" section at the bottom.
-1. Click the `+` button to add the URL Scheme you've selected:
+1. In Xcode: Click your project file, navigate to **Targets > Info > URL Types**, and add a new entry with your URI scheme.
 
-<details><summary>Click to see </summary>
-    {% image src='/img/pages/getting-started/sdk-integration-guide/ios_get_uriScheme.gif' full center alt='URL Scheme Demo' %}
-</details>
+{% image src='/img/pages/getting-started/sdk-integration-guide/ios_get_uriScheme.gif' full center alt='URL Scheme Demo' %}
 
 ### Support Strong Matching (only needed for &nbsp; **app.link** &nbsp; domains)
 
@@ -725,9 +718,9 @@ func didBecomeActiveWithConversation(conversation: MSConversation)
 
 {% endif %}
 
-In this method, add the following snippet:
 
 {% if page.ios %}
+In didFinishLaunchingWithOptions, add the following snippet:
 
 {% tabs %}
 {% tab objective-c %}
@@ -762,6 +755,7 @@ branch?.initSession(launchOptions: launchOptions, andRegisterDeepLinkHandler: {p
 {% endif %}
 
 {% if page.ios_imessage %}
+In this method, add the following snippet:
 
 {% tabs %}
 {% tab objective-c %}
@@ -1302,42 +1296,6 @@ branch.userCompletedAction("Share Started");
 
 For more information on tracking and configuring custom events, see the [user value attribution]({{base.url}}/getting-started/user-value-attribution){:target="_blank"} guide.
 
-{% if page.android or page.mparticle_android %}{% else %}
-
-## {% if page.ios or page.mparticle_ios %}{% else %}iOS: {% endif %}Submitting to the App Store
-
-After integrating the Branch SDK, you need to let Apple know that you use the IDFA. To follow proper protocol when submitting your next release to the App Store, you should:
-
-1. Answer `Yes` to the question **Does this app use the Advertising Identifier (IDFA)?**
-1. Check the two boxes for:
-   - **Attribute this app installation to a previously served advertisement**
-   - **Attribute an action taken within this app to a previously served advertisement**
-
-{% image src='/img/pages/getting-started/submitting-apps/idfa.png' center full alt='IDFA configuration on iTunes Connect' %}
-
-{% protip title="Why does Branch use the IDFA?" %}
-Branch uses the IDFA to identify users across our entire partner network, greatly increasing match accuracy rate. You can read more about this on the [Matching accuracy page]({{base.url}}/getting-started/matching-accuracy){:target="_blank"}.
-
-The only situation in which you do not need to perform these steps is if you installed the Branch framework manually (without using CocoaPods) and elected **not** to import `AdSupport.framework`
-{% endprotip %}
-
-{% endif %}
-
-{% if page.android or page.mparticle_android %}
-
-## Submitting to the Play Store
-
-If you'd like Branch to collect the [Google Advertising ID](https://support.google.com/googleplay/android-developer/answer/6048248) for advertising or tracking purposes instead of the Android ID, you must add Google Play Services to your app prior to release. After you complete these steps, Branch will handle the rest!
-
-1. Add `compile 'com.google.android.gms:play-services-ads:9+'` or greater version to the dependencies section of your `build.gradle` file. You might already have it.
-1. Add the following line in your Proguard settings:
-
-{% highlight xml %}
--keep class com.google.android.gms.ads.identifier.** { *; }
-{% endhighlight %}
-
-{% endif %}
-
 ## Next steps
 
 The Branch SDK is now integrated into your app, and you can use the [Branch dashboard](https://dashboard.branch.io/#){:target="_blank"} to track completed installs from [Marketing links](https://dashboard.branch.io/#/marketing){:target="_blank"}. However, this only scratches the surface of what is possible with Branch.
@@ -1348,7 +1306,7 @@ Here are some recommended next steps:
 - **Learn about [Creating Links in Apps]({{base.url}}/getting-started/creating-links/apps)** — let your users share content and invite friends from inside your app.
 -  **Set up [Deep Link Routing]({{base.url}}/getting-started/deep-link-routing)** — send incoming visitors directly to specific content in your app based on the Branch link they opened.
 -  **Set up [Custom Event Tracking]({{base.url}}/getting-started/user-value-attribution#custom-event-tracking)** if you skipped the step above — make in-app activity beyond clicks, installs, and opens — like purchases and signups — available for analysis in the dashboard.
-
+-  **Submit your app to the [App Store]({{base.url}}/getting-started/sdk-integration-guide/advanced/ios/#submitting-to-the-app-store)** and **[Google Play Store]({{base.url}}/getting-started/sdk-integration-guide/advanced/android/#submitting-to-the-play-store)**
 {% endif %}
 
 {% elsif page.advanced %}
@@ -1477,7 +1435,41 @@ listener.onReceive(context, intent);
 
 {% else %}
 
-No advanced information for this platform.
+{% endif %}
+
+{% if page.android or page.mparticle_android %}{% else %}
+
+## {% if page.ios or page.mparticle_ios %}{% else %}iOS: {% endif %}Submitting to the App Store
+
+After integrating the Branch SDK, you need to let Apple know that you use the IDFA. To follow proper protocol when submitting your next release to the App Store, you should:
+
+1. Answer `Yes` to the question **Does this app use the Advertising Identifier (IDFA)?**
+1. Check the two boxes for:
+   - **Attribute this app installation to a previously served advertisement**
+   - **Attribute an action taken within this app to a previously served advertisement**
+
+{% image src='/img/pages/getting-started/submitting-apps/idfa.png' center full alt='IDFA configuration on iTunes Connect' %}
+
+{% protip title="Why does Branch use the IDFA?" %}
+Branch uses the IDFA to identify users across our entire partner network, greatly increasing match accuracy rate. You can read more about this on the [Matching accuracy page]({{base.url}}/getting-started/matching-accuracy){:target="_blank"}.
+
+The only situation in which you do not need to perform these steps is if you installed the Branch framework manually (without using CocoaPods) and elected **not** to import `AdSupport.framework`
+{% endprotip %}
+
+{% endif %}
+
+{% if page.android or page.mparticle_android %}
+
+## Submitting to the Play Store
+
+If you'd like Branch to collect the [Google Advertising ID](https://support.google.com/googleplay/android-developer/answer/6048248) for advertising or tracking purposes instead of the Android ID, you must add Google Play Services to your app prior to release. After you complete these steps, Branch will handle the rest!
+
+1. Add `compile 'com.google.android.gms:play-services-ads:9+'` or greater version to the dependencies section of your `build.gradle` file. You might already have it.
+1. Add the following line in your Proguard settings:
+
+{% highlight xml %}
+-keep class com.google.android.gms.ads.identifier.** { *; }
+{% endhighlight %}
 
 {% endif %}
 
