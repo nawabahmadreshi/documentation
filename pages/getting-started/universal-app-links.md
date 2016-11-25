@@ -115,11 +115,6 @@ If the **Default domain name** box shows the legacy `bnc.lt` domain, you should 
 If you use a [custom domain or subdomain for your Branch links]({{base.url}}/getting-started/link-domain-subdomain/guide/#setting-a-custom-link-domain), you should also add an entry for `applinks:[mycustomdomainorsubdomain]`.
 {% endprotip %}
 
-### Add entitlements file to the build target
-
-1. Select your `[projectname].entitlements` file in the Xcode navigator (left sidebar).
-1. Ensure that the correct build target is checked in the right sidebar. {% image src='/img/pages/getting-started/universal-app-links/entitlements-build-target.png' half center alt='add entitlements to build target' %}
-
 {% endif %}
 
 {% if page.cordova %}
@@ -770,9 +765,6 @@ Universal Links don't work properly when entered into Safari. Use Notes or iMess
 
 ##### Are you wrapping Branch links in your own crappy link and redirecting?
 Universal Links don't work when they are wrapped in some sort of click tracking or other domain. They must be freestanding. Please don't wrap our links.
-
-##### Is the entitlements file included for your build target?
-It seems that Xcode, by default, will not include the `.entitlements` file in your build. You have to check the box in the right sidebar against the correct target to ensure it's included in your app.
 
 ##### Do your Team ID & Bundle ID match those on your dashboard?
 You can find them in the Dashboard under Settings > Link Settings, in the iOS section next to "Enable Universal Links." They should match your Team ID and Bundle ID. Team ID can be found here [https://developer.apple.com/membercenter/index.action#accountSummary](https://developer.apple.com/membercenter/index.action#accountSummary). Your Bundle ID is found in Xcode, in the `General` tab for the correct build target. If your Apple App Prefix is different from your Team ID, you should use your App Prefix. Your app prefix can be found from App IDs on Apple's Developer Portal.
