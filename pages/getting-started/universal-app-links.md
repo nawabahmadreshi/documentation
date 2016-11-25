@@ -73,7 +73,7 @@ For Xamarin, we're trying something new where our docs will live in the [README 
 The package name for your Android app in Unity is the same as the Bundle Identifier
 {% endprotip %}
 {% endif %}
-1. Type in your Apple App Prefix (found by clicking your app on [this page](https://developer.apple.com/account/ios/identifiers/bundle/bundleList.action) in Apple's Developer Portal).
+1. Type in your Apple App Prefix (found by clicking your app on [this page](https://developer.apple.com/account/ios/identifier/bundle) in Apple's Developer Portal).
 1. Scroll down and click on the `Save` button.
 
 {% image src='/img/pages/getting-started/universal-app-links/dashboard_enable_universal_links.png' 3-quarters center alt='enable Universal Links on Branch dashboard' %}
