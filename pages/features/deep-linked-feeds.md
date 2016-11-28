@@ -17,16 +17,14 @@ sections:
 {% if page.overview %}
 
 {% protip title="Deep Linked Feeds for Dynamic Ads is a premium product"%}
-The product is free to use for a 14 day trial period. To learn more, please contact your Branch account manager or [w@branch.io](mailto:w@branch.io)
+The product is free to use for a 14 day trial period. To learn more, please contact your Branch account manager or get started in the [Dashboard](https://dashboard.branch.io/ads).
 {% endprotip %}
 
 Branch is your preferred linking infrastructure for mobile. With Deep Linked Feeds for Dynamic Ads, advertisers can easily create mobile-optimized links at scale for dynamic ad campaigns. By taking users to the most relevant content on the most relevant platform (web or app) advertisers can maximize revenue and engagement opportunities on mobile.
 
-Take advantage of our visual UI for uploading and managing feeds, or set up a more automated integration between you, Branch and your ad network of choice.
+Deep Linked Feeds takes an existing product feed and adds correct deep links for each piece of content.
 
-{% protip title="Deep Linked Feeds is in private alpha" %}
-For access to the Deep Linked Feeds alpha please contact your Branch account manager or [w@branch.io](mailto:w@branch.io).
-{% endprotip %}
+Take advantage of our visual interface for uploading and managing feeds, or set up a more automated integration between you, Branch and your ad network of choice.
 
 {% getstarted %}{% endgetstarted %}
 
@@ -43,10 +41,17 @@ To create a deep linked feed, upload a content or product feed. In Branch termin
 
 When you need to create a **Deep Linked Feed** you'll go through a creation flow that will ask you to select a Feed Source for modification. 
 
+You'll be asked to enter some attribution tags and optionally configure linking. After you've done this, Branch will prepare a Deep Linked Feed, adding any missing columns that are needed, or editing existing columns to use the correct links for deep linking. More specifics on the transformation process can be found in our Advanced section.
+
 A couple of things to note:
 
-- Be sure that your Feed Source has a `link` column with each product's web URL. This is the minimum requirement for Deep Linked Feeds.
-- We recommend [hosting deep link data](/getting-started/hosted-deep-link-data/guide/){:target="_blank"} on your website for each web URL in your feed.
+- Be sure that your Feed Source has a `link` column with each product's web URL. This is the minimum requirement for Branch to create deep links (although it will likely not be sufficient to be accepted by Facebook or partners.)
+- We recommend [hosting deep link data](/getting-started/hosted-deep-link-data/guide/){:target="_blank"} on your website for each web URL in your feed. We won't use it to modify your feed, but when your link is clicked from an ad, we'll get the link data from your website and return it to your app. 
+
+If you choose this option, go to your [Link Settings](https://dashboard.branch.io/settings/link) > Advanced Settings and check **Enable Link Scraping**.
+
+{% image src='/img/pages/features/deep-linked-feeds/enable-link-scraping.png' half center alt='Enable Link Scraping' %}
+
 - If you can't host your link data, add the necessary link data as a column in the Feed Source.
 - Want to get creative with your Feed Sources? Check out our [Advanced section](/features/deep-linked-feeds/advanced) for some power user tips.
 - Branch accepts feed sources that are compatible with Facebook’s format. If you’re not sure about the compatibility of your feed, please use [Facebook’s Product Feed Debug Tool](https://business.facebook.com/ads/product_feed/debug){:target="_blank"} to test and debug it.
@@ -130,6 +135,19 @@ This field accepts parameters in the web query parameter format `key1=value1&key
 Once you've created the right parameters, add them in the `Advanced: Add Measurement Parameters` text field in Step 2. Your parameters will be added to every HTTP Branch link in the `link` column.
 
 {% image src='/img/pages/features/deep-linked-feeds/add-measurement-parameters.png' full center alt='Add Measurement Parameters' %}
+
+## How does Branch create a Deep Linked Feed?
+
+When we create a Deep Linked Feed, we take your Feed Source, your Link Settings, and any input you provide to generate a working feed.
+
+We look for the presence of the following columns, and for each one we either modify the existing column, or add a new one with the relevant information:
+- link (by default, we use a Branch link with a web fallback)
+- ios_url
+- ios_app_name
+- ios_app_store_id
+- android_url
+- android_app_name
+- android_package
 
 {% elsif page.support %}
 
