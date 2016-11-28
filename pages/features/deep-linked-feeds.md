@@ -17,7 +17,7 @@ sections:
 {% if page.overview %}
 
 {% protip title="Deep Linked Feeds for Dynamic Ads is a premium product"%}
-The product is free to use for a 14 day trial period. To learn more, please contact your Branch account manager or begin your free trial.
+The product is free to use for a 14 day trial period. To learn more, please contact your Branch account manager or get started in the [Dashboard](https://dashboard.branch.io/ads).
 {% endprotip %}
 
 Branch is your preferred linking infrastructure for mobile. With Deep Linked Feeds for Dynamic Ads, advertisers can easily create mobile-optimized links at scale for dynamic ad campaigns. By taking users to the most relevant content on the most relevant platform (web or app) advertisers can maximize revenue and engagement opportunities on mobile.
