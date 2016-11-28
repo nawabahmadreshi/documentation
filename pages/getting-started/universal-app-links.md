@@ -784,7 +784,7 @@ iOS does not re-scrape the apple-app-site-association file unless you delete and
 If you are successfully taken into your app via a Universal Link, you'll see "bnc.lt" (or your domain) and a forward button in the top right corner of the status bar. If you click that button, Apple will no longer activate Universal Links in the future. To re-enable Universal Links, long press on the link in Messages (iOS 9 only due to iMessage revamp in 10) or Notes (iOS 10/9) and choose 'Open in <<App>>'.
 
 ##### Using a custom domain?
-Make sure it's configured correctly. You can find configuration issues by using our [Universal Link Validator](http://branch.io/resources/universal-links/).
+Make sure it's configured correctly. You can find configuration issues by using our [Universal Link Validator](http://branch.io/resources/aasa-validator/).
 
 If you're using a custom subdomain, your CNAME should point to `custom.bnc.lt` under [Link Settings](https://dashboard.branch.io/#/settings/link) in the Branch dashboard.
 
