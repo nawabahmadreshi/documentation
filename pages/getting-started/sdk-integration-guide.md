@@ -224,6 +224,10 @@ Branch requires ARC, and we don’t intend to add `if` checks throughout the SDK
 1. Extract the contents.
 3. Copy the `android` folder to your Titanium `modules` folder.
 
+#### Android note
+
+We've recently found that there is an issue involving the `WRITE_EXTERNAL_STORAGE` permission, Titanium and the Branch module on Android. If you have the `WRITE_EXTERNAL_STORAGE` permission enabled for your Titanium app, you will see failures to initialize Branch. *Please remove this permission.*
+
 {% endif %}
 <!--- /Titanium -->
 
