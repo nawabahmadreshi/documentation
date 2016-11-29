@@ -60,7 +60,7 @@ In this first step, you will want to enter a web URL that corresponds to a speci
 - An article
 - A content page, like a video or image
 
-Once you choose one and click **Submit**, [meta tags that can be used for deep linking](/getting-started/hosted-deep-link-data/guide/) will be retrieved from your webpage. You will see a result indicating the mapping between your web content to your app content:
+Once you choose one and click **Submit**, [meta tags that can be used for deep linking](/getting-started/hosted-deep-link-data/guide/) will be retrieved from your webpage. You will see a result indicating the mapping between your web content and your app content:
 
 #### We think you use your web URL for deep linking
 
@@ -68,13 +68,13 @@ Once you choose one and click **Submit**, [meta tags that can be used for deep l
 
 If your webpage, for instance at the URL `https://shop.com/shoes/brown-loafers`, has a tag like this:
 
-`<meta name="al:ios:url" content="https://shop.com/shoes/brown-loafers" />`
+`<meta name="al:ios:url" content="shop://https://shop.com/shoes/brown-loafers" />`
 
 or this:
 
-`<meta name="al:android:url" content="shoes/brown-loafers" />`
+`<meta name="al:android:url" content="shop://shoes/brown-loafers" />`
 
-Your deep linking setup for email will use all or part of your **web URL** as a deep link value.
+Your deep linking setup for email will use all or part of your **web URL** as a deep link value. It can use either the full URL including the protocol (`https://shop.com/shoes/brown-loafers`), the full URL without the protocol (`shop.com/shoes/brown-loafers`), or the path of the URL (`shoes/brown-loafers`).
 
 #### We think you host your deep link data on your website
 
@@ -83,6 +83,10 @@ Your deep linking setup for email will use all or part of your **web URL** as a 
 If instead, your webpage has a tag like this:
 
 `<meta name="branch:deeplink:product_id" content="123456" />`
+
+or this:
+
+`<meta name="al:ios:url" content="shop://id/123456" />`
 
 Your deep linking setup for email will use the **hosted deep link data** method. This means that no mapping can be made to the URL, and [meta tags that can be used for deep linking](/getting-started/hosted-deep-link-data/guide/) will be retrieved from your webpage on an ongoing basis.
 
@@ -110,7 +114,7 @@ If an app deep linking scheme that maps to your web content cannot be successful
 
 {% image src="/img/pages/third-party-integrations/responsys/failure-result.png" center 2-thirds alt='Could not set up deep linking' %}
 
-We will help you set up one of the following four methods:
+We will help you set up one of the following methods:
 
 If you use unique key/value data as deep link values:
 
@@ -126,7 +130,7 @@ If you use your web URL as a deep link value:
 The Branch [marketing link creator](/getting-started/creating-links/dashboard/) also scrapes your web URL for deep link data to make link creation even easier. [Hosting Deep Link Data](/getting-started/hosted-deep-link-data/guide/) on your website will make using Branch products easier in future.
 {% endprotip %}
 
-In the meantime, you can proceed to the next step: Configure ESP.
+In the meantime, you can proceed to the next step: **Configure ESP**.
 
 ## Configure your ESP
 
@@ -134,19 +138,27 @@ To open the app directly on iOS 9.2+, you must configure your Sailthru integrati
 
 ### Tell us your click tracking domain
 
-{% image src="/img/pages/third-party-integrations/sailthru/configure-sailthru-1.png" center full alt='Click tracking domain' %}
+You can retrieve your click tracking domain from your Sailthru settings:
 
-You can retrieve your click tracking domain from your Sailthru settings. Enter it in item 1 of this step. On **Submit** click, an AASA file - required for Universal Links - specific to that domain will be generated.
+1. Log in to your Sailthru account
+1. Go to Settings > Setup > Domains: {% image src='/img/pages/third-party-integrations/sailthru/sailthru-view-domain.png' full center alt='xcode add domain' %}
+1. Note or copy the value in the Link Domain field
+1. Enter the domain in item 1 of this step: {% image src="/img/pages/third-party-integrations/sailthru/configure-sailthru-1.png" center full alt='Click tracking domain' %}
+1. Click **Done**
+
+On **Done** click, an AASA file - required for Universal Links - specific to that domain will be generated.
 
 ### Configure your app for your click tracking domain
 
 {% image src="/img/pages/third-party-integrations/sailthru/configure-sailthru-2.png" center 2-thirds alt='Developer email' %}
 
-In this prompt, you can enter the email of someone on your team who is qualified to modify your iOS app and upload an AASA file to Sailthru. They will complete the [technical setup](#technical-setup) steps below.
+In this prompt, enter the email of someone on your team who is qualified to modify your iOS app and upload an AASA file to Sailthru, and then click **Send**. They will complete the [technical setup](#technical-setup) steps below.
 
 ## Technical setup
 
 The following app changes ensure that your email integration supports [Universal Links](/getting-started/universal-app-links/). You will need access to your app code to make these changes.
+
+You should have [received an email from Branch](#configure-your-app-for-your-click-tracking-domain) with your Sailthru click tracking domain and AASA file. If not, likely you or someone on your team still needs to complete the [Deep Linked Email setup flow](https://dashboard.branch.io/email){:target="_blank"}.
 
 {% protip title="How does it work?"%}
 Apple recognizes the click tracking domain as a Universal Link, and opens the app immediately without the browser opening. Once the app has opened, Branch will collect the referring URL that opened the app (at this time, it will be the click tracking url). Inside the app, Branch will robotically “click” the link, registering the click with the ESP, and returning the Branch link information to the Branch SDK inside the app. This information is then used to deep link the user to the correct in-app content. See the [Support](/third-party-integrations/sailthru/support) tab for more information.
@@ -156,11 +168,23 @@ Apple recognizes the click tracking domain as a Universal Link, and opens the ap
 
 Sailthru will host an Apple App Site Association (AASA) file for you, so that your click tracking domain appears to Apple as a Universal Link, and the app will open and deep link.
 
-To set up your AASA file, obtain the AASA file from your Branch account manager, and follow the [instructions provided by Sailthru](https://getstarted.sailthru.com/mobile/apple-ios-app-universal-links/){:target="_blank"} for setting up the HTTPS certificates.
+To set up your AASA file, download the AASA file from the [email you received from Branch](#configure-your-app-for-your-click-tracking-domain), and follow the [instructions provided by Sailthru](https://getstarted.sailthru.com/mobile/apple-ios-app-universal-links/){:target="_blank"} for setting up the HTTPS certificates.
 
 ### Add your click tracking domain to your Associated Domains
 
-To enable Universal Links on your click tracking domain, you'll need to add the click tracking domain to your Associated Domains entitlement. Follow [these instructions](/getting-started/universal-app-links/guide/ios/#add-the-associated-domains-entitlement-to-your-project) to add your click tracking domain to Associated Domains. Your domain will likely be entered as `applinks:email.example.com`.
+To enable Universal Links on your click tracking domain, you'll need to add the click tracking domain to your Associated Domains entitlement. 
+
+1. In Xcode, go to the `Capabilities` tab of your project file.
+1. Scroll down and enable `Associated Domains` if it is not already enabled. {% image src='/img/pages/getting-started/universal-app-links/enable_ass_domains.png' 3-quarters center alt='enable xcode associated domains' %}
+1. Copy your click tracking domain from the [email you received from Branch](#configure-your-app-for-your-click-tracking-domain), or retrieve it from your Sailthru settings.
+1. In the `Domains` section, click the `+` icon and add your click tracking domain. For example, if your click tracking domain is `email.example.com`, add an entry for `applinks:email.example.com`.
+{% image src='/img/pages/getting-started/universal-app-links/add_domain.png' 3-quarters center alt='xcode add domain' %}
+1. Select your `[projectname].entitlements` file in the Xcode navigator (left sidebar).
+1. Ensure that the correct build target is checked in the right sidebar. {% image src='/img/pages/getting-started/universal-app-links/entitlements-build-target.png' half center alt='add entitlements to build target' %}
+
+{% protip title="Having trouble or new to Universal Links?" %}
+Follow [these instructions](/getting-started/universal-app-links/guide/ios/) for more details on enabling Universal Links in the Branch dashboard and in Xcode.
+{% endprotip %}
 
 ### Handle links for web-only content
 

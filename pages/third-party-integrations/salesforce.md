@@ -60,7 +60,7 @@ In this first step, you will want to enter a web URL that corresponds to a speci
 - An article
 - A content page, like a video or image
 
-Once you choose one and click **Submit**, [meta tags that can be used for deep linking](/getting-started/hosted-deep-link-data/guide/) will be retrieved from your webpage. You will see a result indicating the mapping between your web content to your app content:
+Once you choose one and click **Submit**, [meta tags that can be used for deep linking](/getting-started/hosted-deep-link-data/guide/) will be retrieved from your webpage. You will see a result indicating the mapping between your web content and your app content:
 
 #### We think you use your web URL for deep linking
 
@@ -68,13 +68,13 @@ Once you choose one and click **Submit**, [meta tags that can be used for deep l
 
 If your webpage, for instance at the URL `https://shop.com/shoes/brown-loafers`, has a tag like this:
 
-`<meta name="al:ios:url" content="https://shop.com/shoes/brown-loafers" />`
+`<meta name="al:ios:url" content="shop://https://shop.com/shoes/brown-loafers" />`
 
 or this:
 
-`<meta name="al:android:url" content="shoes/brown-loafers" />`
+`<meta name="al:android:url" content="shop://shoes/brown-loafers" />`
 
-Your deep linking setup for email will use all or part of your **web URL** as a deep link value.
+Your deep linking setup for email will use all or part of your **web URL** as a deep link value. It can use either the full URL including the protocol (`https://shop.com/shoes/brown-loafers`), the full URL without the protocol (`shop.com/shoes/brown-loafers`), or the path of the URL (`shoes/brown-loafers`).
 
 #### We think you host your deep link data on your website
 
@@ -83,6 +83,10 @@ Your deep linking setup for email will use all or part of your **web URL** as a 
 If instead, your webpage has a tag like this:
 
 `<meta name="branch:deeplink:product_id" content="123456" />`
+
+or this:
+
+`<meta name="al:ios:url" content="shop://id/123456" />`
 
 Your deep linking setup for email will use the **hosted deep link data** method. This means that no mapping can be made to the URL, and [meta tags that can be used for deep linking](/getting-started/hosted-deep-link-data/guide/) will be retrieved from your webpage on an ongoing basis.
 
@@ -110,7 +114,7 @@ If an app deep linking scheme that maps to your web content cannot be successful
 
 {% image src="/img/pages/third-party-integrations/responsys/failure-result.png" center 2-thirds alt='Could not set up deep linking' %}
 
-We will help you set up one of the following four methods:
+We will help you set up one of the following methods:
 
 If you use unique key/value data as deep link values:
 
@@ -126,56 +130,59 @@ If you use your web URL as a deep link value:
 The Branch [marketing link creator](/getting-started/creating-links/dashboard/) also scrapes your web URL for deep link data to make link creation even easier. [Hosting Deep Link Data](/getting-started/hosted-deep-link-data/guide/) on your website will make using Branch products easier in future.
 {% endprotip %}
 
-In the meantime, you can proceed to the next step: Configure ESP.
+In the meantime, you can proceed to the next step: **Configure ESP**.
 
 ## Configure your ESP
 
-To open the app directly on iOS 9.2+, you must configure your Salesforce Marketing Cloud integration to support [Universal Links](/getting-started/universal-app-links/), and configure your app to support Salesforce Marketing Cloud + Universal Links. In this step, you will also upload a snippet to Salesforce Marketing Cloud so that your links can be converted to Branch links that deep link into your app.
+To open the app directly on iOS 9.2+, you must configure your Salesforce Marketing Cloud integration to support [Universal Links](/getting-started/universal-app-links/), and configure your app to support Salesforce Marketing Cloud + Universal Links. In this step, you will also upload a snippet to Salesforce Marketing Cloud so that your email links can be converted to Branch links that deep link into your app.
 
 ### Tell us your click tracking domain
 
 {% image src="/img/pages/third-party-integrations/salesforce/configure-salesforce-1.png" center full alt='Click tracking domain' %}
 
-You can retrieve your click tracking domain from your Salesforce Marketing Cloud settings. Enter it in item 1 of this step. On **Submit** click, an AASA file - required for Universal Links - specific to that domain will be generated.
+You can retrieve your click tracking domain from your Salesforce Marketing Cloud settings. Enter it in item 1 of this step. On **Done** click, an AASA file - required for Universal Links - specific to that domain will be generated.
 
 ### Send your AASA file to Salesforce
 
 {% image src="/img/pages/third-party-integrations/salesforce/configure-salesforce-2.png" center full alt='Salesforce account manager' %}
 
-Your AASA file must be uploaded to your click tracking domain by Salesforce. Your Salesforce Account Manager will do this for you - enter their email, and they will receive an email with the file and request to upload.
+Your AASA file must be uploaded to your click tracking domain by Salesforce. Your Salesforce Account Manager will do this for you - enter their email and click **Send**, and they will receive an email with the file and request to upload.
 
 ### Configure your app for your click tracking domain
 
 {% image src="/img/pages/third-party-integrations/salesforce/configure-salesforce-3.png" center 2-thirds alt='Developer email' %}
 
-In this prompt, you can enter the email of someone on your team who is qualified to modify your iOS app. They will complete the [technical setup](#technical-setup) steps below.
+In this prompt, enter the email of someone on your team who is qualified to modify your iOS app, and then click **Send**. They will complete the [technical setup](#technical-setup) steps below.
 
 ### Add a new Content Area for easy deep linking
 
-{% image src="/img/pages/third-party-integrations/salesforce/configure-salesforce-4.png" center 2-thirds alt='Content Area' %}
+In this step, we'll add a new Content Area in Salesforce that makes it very easy to create deep links in your emails.
 
-In this step, we'll add a content area that makes it very easy to create deep links in your emails. Press the copy button to copy the snippet to clipboard, and then follow these steps in Salesforce Marketing Cloud:
+1. Press the **Copy** button to copy your code snippet to clipboard: {% image src="/img/pages/third-party-integrations/salesforce/configure-salesforce-4.png" center 2-thirds alt='Content Area' %}
+1. After logging into Salesforce Marketing Cloud, click on **Email Studio** and then a sub-menu will appear. Click on **Email** in the dropdown menu: {% image src="/img/pages/third-party-integrations/salesforce/salesforce-dropdown.png" center third alt='Salesforce Dropdown' %}
+1. This will take you to the landing page for the Email section. Click on **Content** in the menu bar to navigate to the Content section: {% image src="/img/pages/third-party-integrations/salesforce/salesforce-menu-bar.png" center half alt='Salesforce Menu Bar' %}
+1. In the Content section, you will see a list of folders on the left side. Right click on the **My Contents** folder and choose **New Folder** in the context menu: {% image src="/img/pages/third-party-integrations/salesforce/salesforce-folders.png" center third alt='Salesforce Content Folders' %}
+1. Name the folder `Branch`: {% image src="/img/pages/third-party-integrations/salesforce/salesforce-name-folder.png" center third alt='Salesforce Name Folder' %}
+1. Once the folder is created, click on the **Branch** folder. On the right side, you will see a menu bar for the Branch folder. Click on **Create** and in the sub menu, click **Content** to create new content: {% image src="/img/pages/third-party-integrations/salesforce/salesforce-new-content.png" center third alt='Salesforce New Content' %}
+1. In the Create Content window that appears, enter `deeplink` in the text field named Content Name. Click on **Next** after you enter the text: {% image src="/img/pages/third-party-integrations/salesforce/salesforce-deeplink.png" center full alt='Salesforce name deeplink' %}
+1. The next screen will ask you to select the format of the content. Choose **Free Form** and then click **Next**: {% image src="/img/pages/third-party-integrations/salesforce/salesforce-format.png" center full alt='Salesforce content format' %}
+1. In the next screen, paste in the snippet copied in **1**: {% image src="/img/pages/third-party-integrations/salesforce/salesforce-snippet.png" center 2-thirds alt='Salesforce code snippet' %}
+1. Click **Save**. You will now be back at your list of folders in the Content section with the file **deeplink** listed: {% image src="/img/pages/third-party-integrations/salesforce/salesforce-saved.png" center 2-thirds alt='Salesforce saved' %}
 
-1. Navigate to Email Studio > Content > Content Areas.
-1. Create a new Content Area called `deeplink`. {% image src="/img/pages/third-party-integrations/salesforce/et-content-areas.png" center full alt='With and Without Branch Deep Linked Email' %}
-1. Choose "Free Form" **and navigate to the "HTML" tab of the Free Form editor.** {% image src="/img/pages/third-party-integrations/salesforce/et-choose-free-form.png" center full alt='With and Without Branch Deep Linked Email' %}
-1. Paste the  copied code snippet into the **HTML editor** of the Free Form Content Area. The snippet will follow this format:
+You have now successfully created the deep linking script.  
 
-~~~
+{% example title="Code snippet" %}
+The snippet will follow this format: {% highlight js %}
 %%[ VAR @deeplink, @branch_base_url SET @branch_base_url = "BASE URL FROM BRANCH" SET @deeplink = CONCAT(@branch_base_url, CONCAT("&%24original_url=", URLEncode(@link_to_be_wrapped, 1, 1))) ]%%
-~~~
-
-{% caution title="Obtain your code snippet" %}
-The snippet above has a placeholder for `@branch_base_url`. Retrieve your snippet from the [Deep Linked Email setup flow](https://dashboard.branch.io/email){:target="_blank"}.
-{% endcaution %}
-
-{% image src="/img/pages/third-party-integrations/salesforce/et-paste-code-snippet.png" center full alt='With and Without Branch Deep Linked Email' %}
-
-Save your new Content Area.
+{% endhighlight %}
+The code above has a placeholder for `@branch_base_url`. Retrieve your snippet from the [Deep Linked Email setup flow](https://dashboard.branch.io/email){:target="_blank"}.
+{% endexample %}
 
 ## Technical setup
 
 The following app changes ensure that your email integration supports [Universal Links](/getting-started/universal-app-links/). You will need access to your app code to make these changes.
+
+You should have [received an email from Branch](#configure-your-app-for-your-click-tracking-domain) with your Salesforce Marketing Cloud click tracking domain. If not, likely you or someone on your team still needs to complete the [Deep Linked Email setup flow](https://dashboard.branch.io/email){:target="_blank"}.
 
 {% protip title="How does it work?"%}
 Apple recognizes the click tracking domain as a Universal Link, and opens the app immediately without the browser opening. Once the app has opened, Branch will collect the referring URL that opened the app (at this time, it will be the click tracking url). Inside the app, Branch will robotically “click” the link, registering the click with the ESP, and returning the Branch link information to the Branch SDK inside the app. This information is then used to deep link the user to the correct in-app content. See the [Support](/third-party-integrations/salesforce/support) tab for more information.
@@ -183,7 +190,19 @@ Apple recognizes the click tracking domain as a Universal Link, and opens the ap
 
 ### Add your click tracking domain to your Associated Domains
 
-To enable Universal Links on your click tracking domain, you'll need to add the click tracking domain to your Associated Domains entitlement. Follow [these instructions](/getting-started/universal-app-links/guide/ios/#add-the-associated-domains-entitlement-to-your-project) to add your click tracking domain to Associated Domains. Your domain will likely be entered as `applinks:email.example.com`.
+To enable Universal Links on your click tracking domain, you'll need to add the click tracking domain to your Associated Domains entitlement. 
+
+1. In Xcode, go to the `Capabilities` tab of your project file.
+1. Scroll down and enable `Associated Domains` if it is not already enabled. {% image src='/img/pages/getting-started/universal-app-links/enable_ass_domains.png' 3-quarters center alt='enable xcode associated domains' %}
+1. Copy your click tracking domain from the [email you received from Branch](#configure-your-app-for-your-click-tracking-domain), or retrieve it from your Salesforce Marketing Cloud settings.
+1. In the `Domains` section, click the `+` icon and add your click tracking domain. For example, if your click tracking domain is `email.example.com`, add an entry for `applinks:email.example.com`.
+{% image src='/img/pages/getting-started/universal-app-links/add_domain.png' 3-quarters center alt='xcode add domain' %}
+1. Select your `[projectname].entitlements` file in the Xcode navigator (left sidebar).
+1. Ensure that the correct build target is checked in the right sidebar. {% image src='/img/pages/getting-started/universal-app-links/entitlements-build-target.png' half center alt='add entitlements to build target' %}
+
+{% protip title="Having trouble or new to Universal Links?" %}
+Follow [these instructions](/getting-started/universal-app-links/guide/ios/) for more details on enabling Universal Links in the Branch dashboard and in Xcode.
+{% endprotip %}
 
 ### Handle links for web-only content
 
@@ -245,7 +264,39 @@ To create email links via API, please use the instructions on how to [create lin
 
 ## Add deep linking to your Salesforce Marketing Cloud email templates without using an API
 
-This code is referred to as the "Branch script" - this script will convert your web URLs to deep links. The script uses the [Content Area](/third-party-integrations/salesforce/setup/#add-a-new-content-area-for-easy-deep-linking) to turn your web URL into a deep link.
+This section covers how to convert individual links in your existing email templates to use Branch deep links.  You will need to determine which links in your email template that you want to convert to Branch deep links.  
+
+To convert a link to a Branch deep link, let's use an example: {% highlight html %} <a style="border-radius: 4px;display: inline-block;font-size: 14px;font-weight: bold;line-height: 24px;padding: 12px 24px;text-align: center;text-decoration: none !important;transition: opacity 0.1s ease-in;color: #fff;background-color: #00afd1;font-family: sans-serif;" href="https://www.blueapron.com/recipes/five-spice-chicken-vermicelli-with-mushrooms-collard-greens-baby-fennel">I want it!</a> {% endhighlight %}
+
+This is what the link will look like **after** you have modified it to support Branch deep links: {% highlight html %} %%[ SET @link_to_be_wrapped = "https://www.blueapron.com/recipes/five-spice-chicken-vermicelli-with-mushrooms-collard-greens-baby-fennel" ContentAreaByName("My Contents\deeplink") ]%%
+<a style="border-radius: 4px;display: inline-block;font-size: 14px;font-weight: bold;line-height: 24px;padding: 12px 24px;text-align: center;text-decoration: none !important;transition: opacity 0.1s ease-in;color: #fff;background-color: #00afd1;font-family: sans-serif;"  href="%%=RedirectTo(@deeplink)=%%">I want this!</a> {% endhighlight %}
+
+We recommend you create the deep link in a separate document and then paste it back into the HTML editor in Salesforce marketing cloud. To begin:
+
+1. Log in to Salesforce Marketing Cloud
+2. Click on **Email Studio** and then a sub-menu will appear. Click on **Email** in the dropdown menu: {% image src="/img/pages/third-party-integrations/salesforce/salesforce-dropdown.png" center third alt='Salesforce Dropdown' %}
+1. This will take you to the landing page for the Email section. Click on **Content** in the menu bar to navigate to the Content section: {% image src="/img/pages/third-party-integrations/salesforce/salesforce-menu-bar.png" center half alt='Salesforce Menu Bar' %}
+1. Navigate to your folder containing your emails and open an existing email. Make sure the email is in HTML layout as shown below: {% image src="/img/pages/third-party-integrations/salesforce/salesforce-email-html.png" center quarter alt='Salesforce email HTML' %}
+1. Choose a link that you want to convert to a Branch deep link. Copy the text right after the `href=` in your email template, and paste it into a separate document. In the example, it is:
+  * **`"https://www.blueapron.com/recipes/five-spice-chicken-vermicelli-with-mushrooms-collard-greens-baby-fennel"`**
+1. Add `%%[ SET @link_to_be_wrapped = ` before the link in your separate document. In the example, this is now:
+  * **`%%[ SET @link_to_be_wrapped = `**`"https://www.blueapron.com/recipes/five-spice-chicken-vermicelli-with-mushrooms-collard-greens-baby-fennel"`
+1. Add `ContentAreaByName("My Contents\deeplink")]%%` after the link:
+  * `%%[ SET @link_to_be_wrapped = "https://www.blueapron.com/recipes/five-spice-chicken-vermicelli-with-mushrooms-collard-greens-baby-fennel"`**`ContentAreaByName("My Contents\deeplink")]%%`**
+1. From the original link in your template, copy the text from and including `<a` until the `href=`.  Add it to the text after `%%` in the last step. Please include the `<a` but not the `href=`:
+  * `%%[ SET @link_to_be_wrapped = "https://www.blueapron.com/recipes/five-spice-chicken-vermicelli-with-mushrooms-collard-greens-baby-fennel" ContentAreaByName("My Contents\deeplink") ]%%`**`<a style="border-radius: 4px;display: inline-block;font-size: 14px;font-weight: bold;line-height: 24px;padding: 12px 24px;text-align: center;text-decoration: none !important;transition: opacity 0.1s ease-in;color: #fff;background-color: #00afd1;font-family: sans-serif;"`**
+1. Add `href="%%=RedirectTo(@deeplink)=%%"` to the end:
+  * `%%[ SET @link_to_be_wrapped = "https://www.blueapron.com/recipes/five-spice-chicken-vermicelli-with-mushrooms-collard-greens-baby-fennel" ContentAreaByName("My Contents\deeplink") ]%% <a style="border-radius: 4px;display: inline-block;font-size: 14px;font-weight: bold;line-height: 24px;padding: 12px 24px;text-align: center;text-decoration: none !important;transition: opacity 0.1s ease-in;color: #fff;background-color: #00afd1;font-family: sans-serif;"`**`href="%%=RedirectTo(@deeplink)=%%"`**
+1. From the original link in your template, copy the end of the tag, the link text, and the closing tag (`>I want it!</a>` in the example) and add it to the end:
+  * `%%[ SET @link_to_be_wrapped = "https://www.blueapron.com/recipes/five-spice-chicken-vermicelli-with-mushrooms-collard-greens-baby-fennel" ContentAreaByName("My Contents\deeplink") ]%% <a style="border-radius: 4px;display: inline-block;font-size: 14px;font-weight: bold;line-height: 24px;padding: 12px 24px;text-align: center;text-decoration: none !important;transition: opacity 0.1s ease-in;color: #fff;background-color: #00afd1;font-family: sans-serif;" href="%%=RedirectTo(@deeplink)=%%"`**`>I want it!</a>`**
+1. Copy your final result from the separate document back into your email template, replacing everything inside and including the `<a></a>` tags in the template.
+1. Repeat this for all your links in your email template that you want to convert to Branch deep links.
+
+These links are complete and will deep link to content in your app.  
+
+This converted code is referred to as the "Branch script" - this script will convert your web URLs to deep links. The script uses the [Content Area](/third-party-integrations/salesforce/setup/#add-a-new-content-area-for-easy-deep-linking) to turn your web URL into a deep link.
+
+{% example title="Adding the Branch script" %}
 
 Wherever you are using `<a>` tags in your email templates, replace those with a short snippet for web URLs that you would like to deep link.
 
@@ -255,9 +306,7 @@ Wherever you are using `<a>` tags in your email templates, replace those with a 
 <a href="%%=RedirectTo(@deeplink)=%%">Click Me</a>
 ~~~
 
-{% example title="Adding the Branch script" %}
-
-**Before:**
+For example, **before:**
 
 `<a href="https://branch.io/product/1234">Example link</a>`
 
