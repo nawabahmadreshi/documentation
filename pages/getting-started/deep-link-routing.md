@@ -248,9 +248,10 @@ import branch from 'react-native-branch'
 
 //Receives the initSession's result as soon as it becomes available
 // Subscribe to incoming links (both branch & non-branch)
-branch.subscribe(({params, error, uri}) => {
-  if (params) { /* handle branch link */ }
-  else { /* handle uri */ }
+branch.subscribe((bundle) => {
+  if (bundle && bundle.params && !bundle.error) {
+    // grab deep link data and route appropriately.
+  }
 })
 {% endhighlight %}
 
