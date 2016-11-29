@@ -15,7 +15,7 @@ Branch can integrate with a number of other platforms to enable powerful, custom
 
 <h3 style="margin-top:0;">Deep Linked Emails <img class="premium-label" src="/img/premium_label.png" /></h3>
 
-Offer a better user experience by using our Email Service Provider integrations to send emails with Branch links inside. We work with **[Responsys](responsys)**, **[Sailthru](sailthru)**, and **[SendGrid](sendgrid)**, with more on the way!
+Offer a better user experience by using our Email Service Provider integrations to send emails with Branch links inside. We work with **[Responsys](responsys)**, **[Sailthru](sailthru)**, **[SendGrid](sendgrid)**, and **[Salesforce Marketing Cloud](salesforce)**, with more on the way!
 
 {% endprotip %}
 {% protip %}
