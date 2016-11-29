@@ -68,7 +68,7 @@ Upon execution, the script will echo back a message similar to the following:
 #####################################################
  Click the link generated to test your configuration
 #####################################################
-{"url":"https://twig.app.link/RPyaHjpYJd"}
+{"url":"https://ulv.app.link/RPyaHjpYJd"}
 {% endhighlight %}
 
 Clicking the generated link, or copying & pasting it into a browser, will open the validator and display the test results.
