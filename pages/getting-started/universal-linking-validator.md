@@ -49,7 +49,7 @@ Once the configuration information is collected, the script generates and return
 
 ## Running The Script
 
-Download and extract the [latest version of the script](https://branch.io/resources/twig/static/twigScript/ulv_script.sh).
+Download and extract the [latest version of the script](https://branch.io/resources/universal-links/static/twigScript/ulv_script.sh).
 
 Once the file has finished downloading, open a terminal window and navigate to the location of the script. Enter:
 {% highlight sh %}
