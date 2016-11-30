@@ -396,6 +396,9 @@ We recently discovered a bug within the Facebook system that prevents App Links 
 It has to look like this **exactly**:
 {% image src='/img/pages/features/facebook-ads/app_restrictions.png' 3-quarters center alt='app restrictions troubleshooting' %}
 
+## No IP Whitelists
+
+Because Branch has a large distribution of API servers that will be making requests to Facebook on behalf of your app, you cannot have an IP whitelist in your [Facebook advanced settings](https://developers.facebook.com/apps/390736167768543/settings/advanced/) and still have this integration work. Please remove any IPs from this setting if they are present.
 
 ## Common issues with Facebook Authentication
 
