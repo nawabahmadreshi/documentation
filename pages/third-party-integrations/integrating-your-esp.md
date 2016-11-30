@@ -78,7 +78,7 @@ In order for your ESP to know that the Universal Link should open the app, add `
 
 ### Making regular Branch links compatible with email
 
-Be sure to add `"$3p":"e_ss"` to the deep link data of any links you use in email to ensure Universal Link and click tracking works as expected.
+Be sure to add `"$3p":"e_eml"` to the deep link data of any links you use in email to ensure Universal Link and click tracking works as expected.
 
 ### Create email links via API without changing your email templates
 
