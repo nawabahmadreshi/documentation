@@ -32,7 +32,7 @@ Also, note that Universal Links were only introduced with iOS 9. Consequently, d
 | iMessage | Opens app via Universal Link
 | Notes | Opens app via Universal Link
 | Mail | Opens app via Universal Link
-| Gmail | Opens app via a Universal Link
+| Gmail | Opens app via Universal Link
 | Safari click | Opens app via Universal Link
 | Safari paste-in | Will redirect to the App Store *
 | Chrome click | Opens app via URI scheme
