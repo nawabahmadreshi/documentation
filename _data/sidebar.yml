@@ -38,15 +38,17 @@
         - text-me-the-app
     - title: Marketing for Mobile
       children:
-        - referral-programs
-        - facebook-app-invites
+        - deep-linked-feeds
         - facebook-ads
+        - facebook-dynamic-ads
+        - facebook-app-invites
         - google-search-ads
         - google-uac
         - instagram-ads
         - twitter-ads
         - apple-search-ads
         - ios-imessage
+        - referral-programs
     - title: Content Indexing
       children:
         - google-app-indexing
