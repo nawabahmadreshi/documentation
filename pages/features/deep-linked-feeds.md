@@ -1,7 +1,7 @@
 ---
 type: recipe
 directory: features
-title: Deep Linked Feeds for Dynamic Ads
+title: Deep Linked Feeds
 page_title: "Deep Linked Feeds for Dynamic Ads"
 description: "Use deep links in your dynamic ads for the most ROI efficient in mobile advertising"
 keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Android App Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Dashboard, iOS9
@@ -37,16 +37,16 @@ Take advantage of our visual interface for uploading and managing feeds, or set 
 
 ## Preparing your Feed Source
 
-To create a deep linked feed, upload a content or product feed. In Branch terminology, this is called a **Feed Source**. 
+To create a deep linked feed, upload a content or product feed. In Branch terminology, this is called a **Feed Source**.
 
-When you need to create a **Deep Linked Feed** you'll go through a creation flow that will ask you to select a Feed Source for modification. 
+When you need to create a **Deep Linked Feed** you'll go through a creation flow that will ask you to select a Feed Source for modification.
 
 You'll be asked to enter some attribution tags and optionally configure linking. After you've done this, Branch will prepare a Deep Linked Feed, adding any missing columns that are needed, or editing existing columns to use the correct links for deep linking. More specifics on the transformation process can be found in our Advanced section.
 
 A couple of things to note:
 
 - Be sure that your Feed Source has a `link` column with each product's web URL. This is the minimum requirement for Branch to create deep links (although it will likely not be sufficient to be accepted by Facebook or partners.)
-- We recommend [hosting deep link data](/getting-started/hosted-deep-link-data/guide/){:target="_blank"} on your website for each web URL in your feed. We won't use it to modify your feed, but when your link is clicked from an ad, we'll get the link data from your website and return it to your app. 
+- We recommend [hosting deep link data](/getting-started/hosted-deep-link-data/guide/){:target="_blank"} on your website for each web URL in your feed. We won't use it to modify your feed, but when your link is clicked from an ad, we'll get the link data from your website and return it to your app.
 
 If you choose this option, go to your [Link Settings](https://dashboard.branch.io/settings/link) > Advanced Settings and check **Enable Link Scraping**.
 
@@ -74,7 +74,7 @@ You can see all of the **Feed Sources** you've uploaded by going to the [Feed So
 
 1. In "Deep Linked Feed Information" you'll name your Deep Linked Feed for reference, and specify which Feed Source you'd like to turn into a Deep Linked Feed. You'll also input the Ad Platform on which you'd like to run your campaigns. This information will be used to modify the feed and insert well-structured Branch attribution data into the links.
 {% image src='/img/pages/features/deep-linked-feeds/dlf-step-1.png' half center alt='Deep Linked Feed Creation Step 1' %}
-1. In "Create Deep Links" you'll be presented with two optional elements. The first is a list of column names from your feed source. To add deep link data to each link, select the column that contains the relevant data. 
+1. In "Create Deep Links" you'll be presented with two optional elements. The first is a list of column names from your feed source. To add deep link data to each link, select the column that contains the relevant data.
 {% example %}Let's say you have a column in your product feed titled `id`. That column contains the product id for each piece of content in your Feed Source file, and your app needs that id to deep link correctly. To create deep links with that id for each product, select the column by checking the box on the left hand side. If you'd like to change the name of the key (for example, from `id` to `product_id`) you can write the new name for the key in the text box on the right hand side. This will add the correct `product_id` to each link for every single product in your feed (e.g. the first item will have `"product_id":1392`, the second item will have `"product_id":5284`)!{% endexample %}
 {% image src='/img/pages/features/deep-linked-feeds/customize-columns.png' 3-quarters center alt='Customize Feed Columns' %}
 
@@ -88,7 +88,7 @@ You can see all of the **Deep Linked Feeds** you've uploaded by going to the [De
 
 ## Using your Deep Linked Feed
 
-After you've downloaded your feed, it's time to use it! 
+After you've downloaded your feed, it's time to use it!
 
 {% protip title="Facebook Dynamic Ads"%}
 Launch a Facebook Dynamic Ad Campaign to drive engagement or installs with your Deep Linked Feed!
@@ -124,13 +124,13 @@ Ad Type | Tag
 
 You can add additional data to each link by adding a column to your Feed Source called `branch_query_params`. This column accepts parameters in the web query parameter format `key1=value1&key2=value2`.
 
-## Advanced segmentation with Data Integrations 
+## Advanced segmentation with Data Integrations
 
-The attribution Data Integrations (Tune, Kochava, AppsFlyer, Localytics and Adjust) support additional network segmentation with additional measurement parameters that can be appended to HTTP deep links. 
+The attribution Data Integrations (Tune, Kochava, AppsFlyer, Localytics and Adjust) support additional network segmentation with additional measurement parameters that can be appended to HTTP deep links.
 
 To get started, please visit the *Advanced* documentation for your Data Integration for instructions on how to generate and construct the correct query parameters for your campaign and ad network.
 
-This field accepts parameters in the web query parameter format `key1=value1&key2=value2` so do not include `?` at the beginning of the entry. 
+This field accepts parameters in the web query parameter format `key1=value1&key2=value2` so do not include `?` at the beginning of the entry.
 
 Once you've created the right parameters, add them in the `Advanced: Add Measurement Parameters` text field in Step 2. Your parameters will be added to every HTTP Branch link in the `link` column.
 
@@ -155,11 +155,11 @@ We look for the presence of the following columns, and for each one we either mo
 
 - First, understand what the [intended behavior](/getting-started/link-behavior/guide/){:target="_blank"} of your link should be.
 - Links created by the Deep Linked Feeds tool currently fall back to the Web URL you originally specified in the `link` column by default. You can override this behavior by including a column called `branch_query_params` and including `$fallback_method=app_wide` as the value for every row. This will make each link fall back to the platform fallback you have specified in your [Link Settings](https://dashboard.branch.io/settings/link){:target="_blank"}, which is usually the App Store.
-- Facebook requires certain ["applink treatment"](https://developers.facebook.com/docs/marketing-api/dynamic-product-ads/mobile-app-events#deeplinksetup){:target="_blank"} values to be present to change fallback behavior. We're working on adding these to our interface, but for the moment, include them in your feed source. 
+- Facebook requires certain ["applink treatment"](https://developers.facebook.com/docs/marketing-api/dynamic-product-ads/mobile-app-events#deeplinksetup){:target="_blank"} values to be present to change fallback behavior. We're working on adding these to our interface, but for the moment, include them in your feed source.
 
 ## Deep links aren't working
 
-- Ensure you've included your deep link data. Branch will scrape any [Hosted Deep Link Data](/getting-started/hosted-deep-link-data/guide/){:target="_blank"} corresponding to the Web URL in your Feed Source's `link` column for every link. Alternatively, you can include deep link data as a column in your Feed Source and then select the relevant data in Step 2 of Deep Linked creation. 
+- Ensure you've included your deep link data. Branch will scrape any [Hosted Deep Link Data](/getting-started/hosted-deep-link-data/guide/){:target="_blank"} corresponding to the Web URL in your Feed Source's `link` column for every link. Alternatively, you can include deep link data as a column in your Feed Source and then select the relevant data in Step 2 of Deep Linked creation.
 - To see which data is getting through to your app, click the link and then view the link click in [Live View](https://dashboard.branch.io/liveview/link_clicks){:target="_blank"} to see the data going through to your app.
 -  If you don't know what deep link data you need to include, ask a technical teammate to show you which data is included in a working Branch link.
 
