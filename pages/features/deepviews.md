@@ -540,7 +540,7 @@ App Object, which contains app data not specific to any link.
 | `app.og_image_url` | The **Thumbnail Image** set in the _Social Media Display Customization_ section of your app's [Link Settings](https://dashboard.branch.io/#/settings/link).
 
 {% example %}
-If you want to use show your app's name inside a Deepview, you would expose it like so: `<h1>Get {% raw %}{{app.name}}{% endraw %}</h1>`
+If you want to show your app's name inside a Deepview, you would expose it like so: `<h1>Get {% raw %}{{app.name}}{% endraw %}</h1>`
 {% endexample %}
 
 ### {% raw %}{{link_data}}{% endraw %}
