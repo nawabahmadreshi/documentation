@@ -27,8 +27,10 @@ Here's how App Indexing works:
 
 - *important detail:* Results, ranking and relevancy are based upon the web scrape. App Indexing does not improve relevancy.
 - App Indexing makes that web result _also_ open up your app. There are a few ways to achieve this:
+
   - Make your existing website support Apple's Universal Links and Android's App Links. After this, all of your links will correctly open the app and you're done.
-  - OR Add the undocumented header `<link rel="alternate" ..` tags to your website for when Google crawls the page.
+  - OR Add the undocumented header `<link rel="alternate" ..` tags to your website for when Google crawls the page. Branch can assist with this task through the WebSDK function `autoAppIndex()` described [here]({{base.url}}/features/google-app-indexing/advanced/#alternative-path-have-the-websdk-inject-app-indexing-tags-into-your-webpage). 
+
 - If Google knows your website opens the app, when it shows up in a search result, and the user has the app installed, the app will open instead of the website
 
 **Branch's App Indexing integration is designed for businesses that don't have a website, and want Branch to host their site for them.** Note that in order for you to get traffic from this feature, your Branch link will need to appear in search results. So far, from about 8 months of offering this feature, we've yet to see it drive a substantial amount of traffic to a single app.
@@ -39,7 +41,7 @@ Here's how App Indexing works:
 
 {% protip title="This guide is for developers without a website" %}
 
-If you have a website, Branch can't do much to help with App Indexing at the moment, but you can read about how to setup your own site in [the advanced section.]({{base.url}}/features/google-app-indexing/advanced).
+If you have a website, Branch can dynamically inject App Indexing tags through the WebSDK function `autoAppIndex()` described [here]({{base.url}}/features/google-app-indexing/advanced/#alternative-path-have-the-websdk-inject-app-indexing-tags-into-your-webpage).
 
 {% endprotip %}
 
@@ -258,26 +260,62 @@ We've put together some handy guides on our blogs:
 
 Feel free to drop us a line if you need help with this stuff.
 
-### Alternative path: Add metadata to your website's header
+### Alternative path: Have the WebSDK inject App Indexing tags into your Webpage
 
-Another alternative path if you don't want to use Universal or App Links is to add some simple configuration to your website that tells Google how to use your URI schemes to open up the app. 
+If you don’t want to implement Universal or App Links then you can allow the WebSDK to inject App Indexing meta tags between the head section of your webpage. These tags allow Google's web crawling bots to index your app content by launching your app through URI schemes.
 
 This requires:
-1. You configure a URI scheme for your app (example below shown as `<your_uri_scheme>`). You can see some examples of setting this up on our documentation page [here]({{base.url}}/getting-started/sdk-integration-guide/guide).
-2. You setup deep link paths (example below shown as `path/to/content`) that open up the specific content on the page
+
+1. Branch to be integrated for URI based deep linking. Please ensure that steps 1, 2, 3 and 4 (*iOS* only) of the following guides are completed:
+    - [Android SDK Integration Guide]({{base.url}}/getting-started/sdk-integration-guide/guide/android/)
+    - [iOS SDK Integration Guide]({{base.url}}/getting-started/sdk-integration-guide/guide/ios/)
+
+2. A call to `autoAppIndex()` (a WebSDK function) to be made with the appropriate parameters (see below).
+
+ Ensure that you've placed the snippet from [here](https://github.com/BranchMetrics/web-branch-deep-linking#quick-install) somewhere between the `<head></head>` tags of your webpage. Then position `branch.autoAppIndex({..})` below `branch.init()` and with the optional parameters below:
+
+| Key | Value
+| --- | ---
+| "androidPackageName" | Android App's package name
+| "androidURL" | A custom scheme for your Android App such as: `example/home/cupertino/12345` where `example` is the App's URI scheme and `home/cupertino/12345` routes to unique content in the App
+| "iosAppStoreId" | iTunes App Store ID for your iOS App
+| "iosURL" | A custom scheme for your iOS App such as: `example/home/cupertino/12345`
+| "data" | Any additional deep link data that you would like to pass to your App
+
+**Example:**
+{% highlight html %}
+branch.autoAppIndex({
+    iosAppId:'123456789',
+    iosURL:'example/home/cupertino/12345',
+    androidPackageName:'com.somecompany.app',
+    androidURL:'example/home/cupertino/12345',
+    data:{"walkScore":65, "transitScore":50}
+}, function(err) { console.log(err); });
+{% endhighlight %}
+
+After the WebSDK has initialized, the function will inject Firebase App Indexing tags between the head section of your webpage with the following format:
 
 {% highlight html %}
 <html>
 <head>
   ...
-  <link rel="alternate" href="android-app://<com.yourapp>/<your_uri_scheme>/path/to/content" />
-  <link rel="alternate" href="ios-app://<your_app_id>/<your_uri_scheme>/path/to/content" />
+  <link rel="alternate" href="android-app://{androidPackageName}/{androidURL}?{branch_tracking_params_and_additional_deep_link_data}"/>
+  <link rel="alternate" href="ios-app://{iosAppStoreId}/{iosURL}?{branch_tracking_params_and_additional_deep_link_data}"/>
   ...
 </head>
 <body> … </body>
 {% endhighlight %}
 
-For your Android app, you'd fill in the package name for `<com.yourapp>` and fill in the iOS App Store ID (string of integers) for the `<your_app_id>` section.
+**Note**: If optional parameters from above are not specified, Branch will try to build Firebase App Indexing tags using your page's [App Links](http://applinks.org/documentation/) tags. 
+
+Alternatively, if optional parameters are specified but Firebase App Indexing tags already exist then this function will append Branch tracking params to the end of those tags and ignore what is passed into `.autoAppIndex()`.
+
+For debugging purposes, you can check that the method is correctly inserting these tags by right clicking anywhere on your webpage in Chrome then clicking on inspect. After that, toggle the head section of your page's HTML and you should see the dynamically generated Firebase App Indexing tags.
+
+Analytics related to Google's attempts to index your App's content via these tags can be found from Source Analytics in Dashboard where `channel` is `Firebase App Indexing` and `feature` is `Auto App Indexing`.
+
+{% protip title="Testing with Webmaster Tools" %}
+We have read on Google's official blog that Googlebot renders javascript before it indexes webpages however, there are times where it may choose not to. The reasons why are unclear to us. Therefore, dynamically generated App Indexing meta tags created as part of this function may or may not appear in your tests with Webmaster Tools when you try to fetch and render as Googlebot.{% endprotip %}
 
 ## For Branch hosting: Attribute app traffic to organic search
 
