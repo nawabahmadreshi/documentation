@@ -1,7 +1,7 @@
 ---
 type: recipe
 directory: third-party-integrations
-title: Sendgrid
+title: Appboy with Sendgrid
 page_title: Automatically convert your email links into multi-platform deep links.
 description: Add powerful, best in class deep linking to your email campaigns.
 keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Deep Linked Email
@@ -133,17 +133,13 @@ In the meantime, you can proceed to the next step: **Configure ESP**.
 
 ## Configure your ESP
 
-To open the app directly on iOS 9.2+, you must configure your Sendgrid integration to support [Universal Links](/getting-started/universal-app-links/), and configure your app to support Sendgrid + Universal Links.
+To open the app directly on iOS 9.2+, you must configure your Appboy email integration to support [Universal Links](/getting-started/universal-app-links/), and configure your app to support Appboy with Sendgrid + Universal Links.
 
 ### Tell us your click tracking domain
 
-You can retrieve your click tracking domains from your Sendgrid settings:
+Contact your Appboy Account Manager and request the Email Click Tracking Domain and the SendGrid Data domain associated with your SendGrid account.
 
-1. Log in to your SendGrid account.
-1. Go to Settings > Whitelabels > Email Links. 
-1. Find your email link whitelabeled domain, click on the gear icon and click "View" (or create a new whitelabel). {% image src='/img/pages/third-party-integrations/sendgrid/sendgrid-view-domain.png' full center alt='xcode add domain' %}
-1. Note the "Host" email click tracking domain (e.g. email.mydomain.com) and the SendGrid domain under "Data". {% image src='/img/pages/third-party-integrations/sendgrid/sendgrid-whitelabel.png' full center alt='xcode add domain' %}
-1. Enter both the click tracking domain and the SendGrid domain in item 1 of this step: {% image src="/img/pages/third-party-integrations/sendgrid/configure-sendgrid-1.png" center full alt='Click tracking domain' %}
+Once you’ve retrieved this information, enter both the click tracking domain and the SendGrid domain in item 1 of this step: {% image src="/img/pages/third-party-integrations/sendgrid/configure-sendgrid-1.png" center full alt='Click tracking domain' %}
 
 On **Done** click, an AASA file - required for Universal Links - specific to that domain will be generated.
 
@@ -221,7 +217,7 @@ if let nonBranchLink = params["+non_branch_link"] as? String, let fromEmailCtd =
 
 {% image src="/img/pages/third-party-integrations/responsys/validation.png" center full alt='Click tracking domain' %}
 
-The last step of the [Deep Linked Email setup flow](https://dashboard.branch.io/email){:target="_blank"} validates whether you have completed steps 1 and 2 and whether an engineer on your team has completed the [technical setup](#technical-setup) steps. From here you can also access [guides for ongoing use](/third-party-integrations/sendgrid/usage) of Deep Linked Email.
+The last step of the [Deep Linked Email setup flow](https://dashboard.branch.io/email){:target="_blank"} validates whether you have completed steps 1 and 2 and whether an engineer on your team has completed the [technical setup](#technical-setup) steps. From here you can also access [guides for ongoing use](/third-party-integrations/appboy-with-sendgrid/usage) of Deep Linked Email.
 
 {% getstarted next="true" %}{% endgetstarted %}
 
@@ -233,18 +229,21 @@ Once you’ve completed the [one time setup steps](/third-party-integrations/sen
 
 This guide will identify which web links you'd like to open the app and deep link, as well as convert them to Branch links.
 
-{% caution title="Flag your Universal Links" %}
-In order for SendGrid to know that the Universal Link should open the app, add `universal="true"` to the HTML, for example:
-
-{% highlight html %}
-<a href="links.example.com" universal="true">Link to your app!</a>
-{% endhighlight %}
-
-{% endcaution %}
-
 ## Making regular Branch links compatible with email
 
-Be sure to add `"$3p":"e_sg"` to the deep link data of any links you use in email to ensure Universal Link and click tracking works as expected.
+To use Branch links within your Appboy campaigns, you’ll need to add an HTML tag to the Branch URL’s within your Appboy email templates.
+
+1. Create your email template same as you normally would.
+1. Add Branch links to your email for all links you would like to deep link users to specific app content (this works for existing app users as well as those without your app)
+   * Be sure to add `"$3p":"e_sg"` to the deep link data of any links you use in email to ensure Universal Link and click tracking works as expected.
+1.Once you’re done composing your email template, click on the “Source” button in the email creator toolbar
+   {% image src="/img/pages/third-party-integrations/appboy-with-sendgrid/appboy-source.png" center full alt='Appboy source view' %}
+1. Add universal="true" to the HTML for any link which you want to convert intoa Branch deep link, for example:
+   * `<a href="links.example.com" universal="true">Link to your app!</a>`
+   {: .code}
+   {% image src="/img/pages/third-party-integrations/appboy-with-sendgrid/appboy-universal.png" center full alt='Appboy universal tag' %}
+
+All done! So long as you’ve taken the above steps, the links in your Appboy email campaigns will now dynamically deep link users to app content, even if they have uninstalled your app, giving you the best chance of engaging or re-acquiring them.
 
 ## Create email links via API without changing your email templates
 
@@ -257,7 +256,7 @@ To create email links via API, please use the instructions on how to [create lin
 
 We have provided [a way](/third-party-integrations/remote-deep-links/guide/) of easily converting web links to Branch links, as well as [an example](https://gist.github.com/derrickstaten/f9b1e72e506f79628ab9127dd114dd83#file-sendgrid-demo-js). The example takes an html email (as a string) and applies the script to it.
 
-To use this script, make sure you've set up deep links according to one of the [linking schemas outlined here](/third-party-integrations/sendgrid/setup/#set-up-deep-linking-for-email).
+To use this script, make sure you've set up deep links according to one of the [linking schemas outlined here](/third-party-integrations/appboy-with-sendgrid/setup/#set-up-deep-linking-for-email).
 
 Here is the script:
 {% highlight js %}
