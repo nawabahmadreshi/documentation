@@ -62,6 +62,7 @@
         - salesforce
         - sendgrid
         - sailthru
+        - appboy-with-sendgrid
     - title: Data Integrations
       children:
         - adobe-analytics
