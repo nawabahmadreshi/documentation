@@ -760,6 +760,13 @@ Custom domains and subdomains are unique to your app and not shared. All links o
 
 ## Troubleshooting Universal Links
 
+{% protip title="Automated Validation for Your Xcode Project" %}
+
+You can check if your Xcode project is correctly configured by using our [Universal Links Validator](/getting-started/universal-linking-validator/).
+
+{% endprotip %}
+
+
 ##### Are you testing by manually entering into Safari?
 Universal Links don't work properly when entered into Safari. Use Notes or iMessage for testing.
 
