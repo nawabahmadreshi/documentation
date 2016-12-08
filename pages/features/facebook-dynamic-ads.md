@@ -23,7 +23,7 @@ Dynamic remarketing campaigns on desktop have been proven to deliver 16x return 
 {% prerequisite %}
 
 - To track installs from Facebook Ads you should [integrate the Branch SDK]({{base.url}}/getting-started/sdk-integration-guide) into your app.
-- If you want to deep link from your ads directly content, you should [configure deep link routing]({{base.url}}/getting-started/deep-link-routing).
+- If you want to deep link from your ads directly to content, you should [configure deep link routing]({{base.url}}/getting-started/deep-link-routing).
 - Use [Branch Deep Linked Feeds](/features/deep-linked-feeds) to create your Facebook Dynamic Ad compatible deep links.
 {% endprerequisite %}
 
