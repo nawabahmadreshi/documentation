@@ -252,7 +252,7 @@ Enter the base url provided by your Branch account manager.
 
 {% example %}
 {% highlight html %}
-{branch_base_url='http://bnc.lt/abcd/3p?%243p=st'}
+{branch_base_url='http://bnc.lt/abcd/3p?%243p=e_st'}
 {% endhighlight %}
 {% endexample %}
 
