@@ -125,7 +125,7 @@ module.exports = function(original_url, branch_base_url, branch_hmac_secret, thr
 Here is how links look before and after (the latter being a Branch deep link).
 
 1. *Before:* http://example.com/?foo=bar
-2. *After:* https://vza3.app.link/3p?%243p=st&%24original_url=http%3A%2F%2Fexample.com%2F%3Ffoo%3Dbar&%24hash=221dd9fb333d809b22fbdfd9b87808de73e3cd94f99b8eb26e6181e962fcb438
+2. *After:* https://vza3.app.link/3p?%243p=e_eml&%24original_url=http%3A%2F%2Fexample.com%2F%3Ffoo%3Dbar&%24hash=221dd9fb333d809b22fbdfd9b87808de73e3cd94f99b8eb26e6181e962fcb438
 
 (note that these are simplified examples, not actual demo links)
 
