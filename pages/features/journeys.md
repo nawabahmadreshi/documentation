@@ -636,6 +636,10 @@ Finally, you'll enter `google.com` to target users who came from Google search (
 
 {% image src='/img/pages/features/journeys/examples/seo_friendly_2.png' center full alt='seo friendly 2' %}
 
+Alternatively, you can target users who did NOT come from Google search (where the referrer doesn't contain google.com):
+
+{% image src='/img/pages/features/journeys/examples/seo_friendly_3.png' center full alt='seo friendly 3' %}
+
 ### Example: English speaking iOS users
 
 In this example, you'll restrict the audience to users in countries where English is the native language who are on the iOS operating system. Note that this is not in the advanced audience section, but rather in the top section. First, select `iOS` of the mobile OS checkboxes.
