@@ -386,9 +386,9 @@ and underneath it add:
 
 ## Debugging an individual link
 
-At any time after you create a link, you can see all the information about the that link by appending `?debug=1`. Make sure you are logged into the dashboard and are on the app and **Live** or **Test** environment associated with the link being inspected.
+At any time after you create a link, you can see all the information about the that link by appending `?debug=1`. Make sure you are logged into the dashboard, are on the correct app, and that the proper **Live** or **Test** environment is selected. The link debugger allows you to select a platform and browser, and see what will happen on link click. The debugger will also show you all of the data associated with that specific link.
 
-{% image src='/img/pages/getting-started/integration-testing/question_mark_debug.png' 3-quarters center alt='dashboard debug' %}
+{% image src='/img/pages/getting-started/integration-testing/question_mark_debug.png' center alt='dashboard debug' %}
 
 ## Use debug mode to simulate fresh installs
 
