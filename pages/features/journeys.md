@@ -54,9 +54,11 @@ Like all Branch deep links, you can pass custom parameters by specifying keys in
 
 {% highlight javascript %}
 branch.setBranchViewData({
-    '$deeplink_path': 'picture/12345',
-    'picture_id': '12345',
-    'user_id': '45123'
+    data: {
+        '$deeplink_path': 'picture/12345',
+        'picture_id': '12345',
+        'user_id': '45123'
+    }
 });
 {% endhighlight %}
 {% endexample %}
@@ -66,8 +68,10 @@ You can dynamically specify the deep link path depending on which website page i
 
 {% highlight javascript %}
 branch.setBranchViewData({
-    '$deeplink_path': window.location.pathname + window.location.search + window.location.hash,
-    'user_id': '45123'
+    data: {
+        '$deeplink_path': window.location.pathname + window.location.search +   window.location.hash,
+        'user_id': '45123'
+    }
 });
 {% endhighlight %}
 {% endprotip %}
