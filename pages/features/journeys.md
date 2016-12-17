@@ -69,7 +69,7 @@ You can dynamically specify the deep link path depending on which website page i
 {% highlight javascript %}
 branch.setBranchViewData({
     data: {
-        '$deeplink_path': window.location.pathname + window.location.search +   window.location.hash,
+        '$deeplink_path': window.location.pathname + window.location.search + window.location.hash,
         'user_id': '45123'
     }
 });
