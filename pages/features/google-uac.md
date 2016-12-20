@@ -20,9 +20,7 @@ If you're running Google's new Universal App Campaign, Branch links can be place
 
 {% elsif page.guide %}
 
-Universal App Campaigns don’t use traditional ads and ad groups. Instead different types of ad are automatically created by Google using information given just at the campaign level. There are no destination URLs, you will just use your App Store or Play Store ID. 
-
-At this time, _one_ Universal App Campaign can only be associated with _one_ Branch link. Having said that, if you have a specific use case in mind, let us know what you’d like to do and we can work on enabling it!
+Universal App Campaigns don’t use traditional ads and ad groups. Instead different types of ad units are automatically created by Google using information given at the campaign level. There are no destination URLs, you will just use your App Store or Play Store ID. 
 
 {% prerequisite %}
 - To track installs from Google Ads you should [integrate the Branch SDK]({{base.url}}/getting-started/sdk-integration-guide) into your app.
@@ -31,7 +29,7 @@ At this time, _one_ Universal App Campaign can only be associated with _one_ Bra
 
 ## One time setup: Google Adwords <> Branch postback
 
-The following steps will add a Branch postback to your Adwords account, allowing Branch to check with Google every time we see an install of your app. You'll only need to do this once!
+The following steps will add a Branch postback to your Adwords account, allowing Branch to check with Google every time we see an install of your app. You'll only need to do this once per mobile platform!
 
 **1)** Go to your [Adwords dashboard](https://adwords.google.com/cm/CampaignMgmt){:target="_blank"}.
 
@@ -43,7 +41,7 @@ The following steps will add a Branch postback to your Adwords account, allowing
 
 **5)** Select `First opens and in-app actions`.
 
-**6)** Select the appropriate platform (iOS and/or Android).
+**6)** Select the appropriate platform (iOS or Android).
 
 **7)** Select `App installs (first-open)`.
 
@@ -68,6 +66,10 @@ The following steps will add a Branch postback to your Adwords account, allowing
 
 **15)** Click `Done` in your Adwords dasbhoard.
 
+If you're running a Universal App Campaign for both iOS and Android, all four fields under your Branch Link Settings should be populated, even if you have the same conversion ID and Label for iOS and Android. If you want to stop running Universal App Campaign reporting for a platform, just remove the two fields for that platform.
+
+{% image src='/img/pages/features/google-uac/conversions-branch.png' full center alt='Branch Settings For Conversions' %}
+
 You're all set with this one time setup. Note that you will be modifying the postback URL occasionally in this conversion, but we'll get to that later.
 
 ## Create a Marketing link on the Branch dashboard
@@ -84,7 +86,7 @@ You can use this configuration section to specify custom link parameters that wi
 
 ## Modify your postback URL with the Branch link reference
 
-Now that you've created your Branch link, we need to associate your conversion postback with the correct link. This is why we're currently limited to one Branch link per campaign. If this is a big limiting factor for you, we'd like to know so that we can invest more in this integration.
+Now that you've created your Branch link, we need to associate your conversion postback with the correct link. As a result, you can have 1 link per platform conversion.
 
 **1)** Grab the Branch link off of the dashboard and append `?debug=true` to the end of it. For example:{% highlight sh %}https://bnc.lt/ALMc/acIgIP2Jcx{% endhighlight %} would become {% highlight sh %}https://bnc.lt/ALMc/acIgIP2Jcx?debug=true{% endhighlight %}
 
