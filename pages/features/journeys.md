@@ -544,8 +544,6 @@ Trigger the `branch.deepviewCta()` function with a button or hyperlink on your p
 {% endhighlight %}
 {% endexample %}
 
-{% elsif page.support %}
-
 ## Troubleshooting
 
 ### Calls to [branchsubdomain] blocked
@@ -558,8 +556,6 @@ Please make sure to add `[branchsubdomain]` to the CSP header for your pages. We
 <meta http-equiv="Content-Security-Policy" content="default-src https://[branchsubdomain]; child-src 'none'; object-src 'none'">
 {% endhighlight %}
 
-{% elsif page.examples %}
-
 ### Non-mobile optimized sites
 
 If you're not using a mobile viewport tag (`<meta name="viewport" content="width=device-width initial-scale=1, maximum-scale=1, user-scalable=no">`) because your site isn't mobile optimized, Journeys will look shrunken and weird. Don't worry, we have you covered:
@@ -571,6 +567,8 @@ If you're not using a mobile viewport tag (`<meta name="viewport" content="width
     - `zoom: 3;`
 
 The image will not look scaled properly in the editor view. This is because the dashboard is mobile optimized. Use the preview test link on the validation page to make sure the banner looks right
+
+{% elsif page.examples %}
 
 ## Example audiences
 
