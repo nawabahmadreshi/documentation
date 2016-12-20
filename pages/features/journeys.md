@@ -560,6 +560,18 @@ Please make sure to add `[branchsubdomain]` to the CSP header for your pages. We
 
 {% elsif page.examples %}
 
+### Non-mobile optimized sites
+
+If you're not using a mobile viewport tag (`<meta name="viewport" content="width=device-width initial-scale=1, maximum-scale=1, user-scalable=no">`) because your site isn't mobile optimized, Journeys will look shrunken and weird. Don't worry, we have you covered:
+
+1. design the banner as you would like it to look on your site
+2. Go to the CSS editor and scroll to the bottom of the CSS code
+3. Add two properties to the #branch-banner selector
+    - `height: 228;`
+    - `zoom: 3;`
+
+The image will not look scaled properly in the editor view. This is because the dashboard is mobile optimized. Use the preview test link on the validation page to make sure the banner looks right
+
 ## Example audiences
 
 The Journeys audience tool is extremely powerful, but sometimes a few examples can help kickstart your creative juices. Here are are a couple common audience use cases to help you get started.
