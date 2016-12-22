@@ -37,6 +37,10 @@ Branch events will appear alongside your other tracked events in Google Analytic
 
 {% image src="/img/pages/third-party-integrations/google-analytics/google-analytics-sources.png" 3-quarters center %}
 
+To view referred **installs** and **opens**, as well as any custom events you track with Branch as they are occur, navigate to Real-Time > Events. The event category for all referred Branch events is **BranchEvent**.
+
+{% image src="/img/pages/third-party-integrations/google-analytics/google-analytics-open.png" 3-quarters center %}
+
 {% getstarted %}{% endgetstarted %}
 
 {% elsif page.guide %}
