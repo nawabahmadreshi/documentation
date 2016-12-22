@@ -100,6 +100,21 @@ Branch.getInstance().setRequestMetadata("$mixpanel_distinct_id", mp.getDistinctI
 
 For more information, see [Why We Recommend Passing Mixpanel Distinct ID](/third-party-integrations/mixpanel/advanced/#why-we-recommend-passing-mixpanel-distinct-id).
 
+{% caution title="Changes in Mixpanel Distinct ID" %}
+If you at any point change the Mixpanel Distinct ID for a user as she’s using your app, you should invoke the same one line of code as above. This way, future calls from Branch to Mixpanel use the updated distinct id.
+
+Example for iOS:
+
+{% highlight objc %}
+[[Branch getInstance] setRequestMetadataKey:@"$mixpanel_distinct_id" value:@"User A"];
+{% endhighlight %}
+
+{% endcaution %}
+
+**Additional Mixpanel Resources:**
+
+For a high level overview of identities in Mixpanel, see [Identity Management in Mixpanel](https://mixpanel.com/help/questions/articles/how-do-i-use-alias-and-identify). If you experience any issues regarding tracking identities or have general questions about the `.alias()` and `.identify()` methods, please take a look at [Mixpanel's documentation](https://mixpanel.com/help/questions/articles/how-should-i-handle-my-user-identity-with-the-mixpanel-javascript-library) first. Additionally, reach out to <support@mixpanel.com> if the problem persists.
+
 {% elsif page.advanced %}
 
 ## What Branch Sends to Mixpanel
