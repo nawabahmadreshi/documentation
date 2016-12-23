@@ -134,27 +134,23 @@ public void onStart() {
 Inside the callback where Branch is initialized, you will want to examine the dictionary passed in the callback to see if the user opened a link to content. Below is an example assuming that the links correspond to pictures.
 
 {% highlight js %}
-Branch.initSession();
+// for development and debugging only
+Branch.setDebug(true);
+
+// sync with Mixpanel if installed
+Branch.setMixpanelToken('your_mixpanel_token');
+
+// Branch initialization
+Branch.initSession(function(data) {
+  // read deep link data on click
+  alert('Deep Link Data: ' + JSON.stringify(data)); 
+}).then(function(res) {
+  alert('Response: ' + JSON.stringify(res));
+}).catch(function(err) {
+  alert('Error: ' + JSON.stringify(err));
+});
 {% endhighlight %}
 
-To implement the callback, you must add a function called `DeepLinkHandler`.
-
-{% highlight js %}
-function DeepLinkHandler(data) {
-    console.log("received data: " + JSON.stringify(data));
-    for (key in data) {
-        if ((key != "type" && key != "source" && key != "bubbles" && key != "cancelBubble") && data[key] != null) {
-            console.log(key + ": " + data["key"]);
-        }
-    }
-
-    if (data["picture_id"]) {
-        // load the view to show the picture
-    } else {
-        // load your normal view
-    }
-}
-{% endhighlight %}
 {% endif %}
 
 {% if page.xamarin %}
@@ -455,16 +451,32 @@ LinkProperties linkProperties = new LinkProperties()
 {% if page.cordova %}
 
 {% highlight js %}
-branchUniversalObj.generateShortUrl({
-  // put your link properties here
-  "feature" : "sharing",
-  "channel" : "facebook"
-}, {
-  // put your control parameters here
-  "$deeplink_path" : "content/1234",
-}).then(function (res) {
-    // Success Callback
-    console.log(res.generatedUrl);
+// optional fields
+var analytics = {
+    channel: 'channel',
+    feature: 'feature',
+    campaign: 'campaign',
+    stage: 'stage',
+    tags: ['one', 'two', 'three']
+};
+
+// optional fields
+var properties = {
+    $fallback_url: 'http://www.example.com/fallback',
+    $desktop_url: 'http://www.example.com/desktop',
+    $android_url: 'http://www.example.com/android',
+    $ios_url: 'http://www.example.com/ios',
+    $ipad_url: 'http://www.example.com/ipad',
+    $deeplink_path: 'content/123',
+    more_custom: 'data',
+    even_more_custom: true,
+    this_is_custom: 321
+};
+
+branchUniversalObj.generateShortUrl(analytics, properties).then(function(res) {
+    alert('Response: ' + JSON.stringify(res.url));
+}).catch(function(err) {
+    alert('Error: ' + JSON.stringify(err));
 });
 {% endhighlight %}
 {% endif %}
@@ -584,7 +596,7 @@ JSONObject sessionParams = Branch.get{% if page.mparticle_android %}Auto{% endif
 
 {% if page.cordova %}
 {% highlight js %}
-var params = branch.data();
+Branch.getLatestReferringParams();
 {% endhighlight %}
 {% endif %}
 
@@ -646,7 +658,7 @@ JSONObject installParams = Branch.get{% if page.mparticle_android %}Auto{% endif
 
 {% if page.cordova %}
 {% highlight js %}
-Unfortunately not supported on this platform.
+Branch.getFirstReferringParams();
 {% endhighlight %}
 {% endif %}
 

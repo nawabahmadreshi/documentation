@@ -122,14 +122,17 @@ If you use a [custom domain or subdomain for your Branch links]({{base.url}}/get
 1. Go to the [Link Settings](https://dashboard.branch.io/#/settings/link) page on the dashboard.
 1. Scroll down to the `Link Domain` area.
 1. Copy your domain name.{% image src='/img/pages/getting-started/universal-app-links/subdomain-setting.png' full center alt='retrieving the default link subdomain' %}
-1. Add the following entry to your application's `config.xml` (making sure that `xxxx` matches the subdomain prefix you've been assigned or selected for yourself)
+1. Add the following entry to your application's `config.xml` (replace the `xxxx` with values from your [Branch Settings Dashboard](https://dashboard.branch.io/settings/link))
 
 {% highlight xml %}
-<branch-config>
-    <ios-team-id value="your_ios_team_id" />
+<!-- sample config.xml -->
+<widget id="xxxx" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+  <branch-config>
+    <ios-team-id value="xxxx"/>
     <host name="xxxx.app.link" scheme="https" />
     <host name="xxxx-alternate.app.link" scheme="https" />
-</branch-config>
+  </branch-config>
+  <preference name="AndroidLaunchMode" value="singleInstance" />
 {% endhighlight %}
 
 {% caution title="Support for legacy links" %}

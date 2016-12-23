@@ -901,32 +901,95 @@ public void onNewIntent(Intent intent) {
 
 Use the the following methods to initialize a Branch session when the `deviceready` event fires and every time the `resume` event fires.
 
+__Cordova and PhoneGap__
 {% highlight js %}
-onDeviceReady: function() {
-    Branch.initSession();
-},
-onResume: function() {
-    Branch.initSession();
-},
-initialize: function() {
-    document.addEventListener('resume', onResume, false);
-    document.addEventListener('deviceready', onDeviceReady, false);
-},
+// sample index.js
+var app = {
+  initialize: function() {
+    this.bindEvents();
+  },
+  bindEvents: function() {
+    document.addEventListener('deviceready', this.onDeviceReady, false);
+    document.addEventListener('resume', this.onDeviceReady, false);
+  },
+  onDeviceReady: function() {
+    app.branchInit();
+  },
+  onDeviceResume: function() {
+    app.branchInit();
+  },
+  branchInit: function() {
+    // Branch initialization
+    Branch.initSession(function(data) {
+      // read deep link data on click
+      alert('Deep Link Data: ' + JSON.stringify(data));
+    });
+  }
+};
+
+app.initialize();
 {% endhighlight %}
 
-Then add a global method `DeepLinkHandler()` which will act as our callback when the session begins. The deep link data will be included here:
-
+__Ionic 1__
 {% highlight js %}
-function DeepLinkHandler(data) {
-    alert('Data from initSession: ' + data.data);
+// sample app.js
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
+
+.run(function($ionicPlatform) {
+  $ionicPlatform.ready(function() {
+    if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
+      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+      cordova.plugins.Keyboard.disableScroll(true);
+    }
+    if (window.StatusBar) {
+      StatusBar.styleDefault();
+    }
+
+    // Branch initialization
+    Branch.initSession(function(data) {
+      // read deep link data on click
+      alert('Deep Link Data: ' + JSON.stringify(data));
+    });
+  });
+})
+// ...
+{% endhighlight %}
+
+__Ionic 2__
+{% highlight js %}
+// sample app.component.js
+import { Component } from '@angular/core';
+import { Platform } from 'ionic-angular';
+import { StatusBar, Splashscreen } from 'ionic-native';
+import { TabsPage } from '../pages/tabs/tabs';
+
+// Branch import
+declare var Branch;
+
+@Component({
+  template: `<ion-nav [root]="rootPage"></ion-nav>`
+})
+export class MyApp {
+  rootPage = TabsPage;
+
+  constructor(platform: Platform) {
+    platform.ready().then(() => {
+      StatusBar.styleDefault();
+      Splashscreen.hide();
+
+      // Branch initialization
+      Branch.initSession(function(data) {
+        // read deep link data on click
+        alert('Deep Link Data: ' + JSON.stringify(data));
+      });
+    });
+  }
 }
 {% endhighlight %}
 
 {% caution title="Watch out for content security policies" %}
 If `data` is null and `err` contains a string denoting a request timeout, make sure to whitelist `api.branch.io` and `[branchsubdomain]` ([click here]({{base.url}}/getting-started/link-domain-subdomain/guide/#the-default-applink-subdomain){:target="_blank"} to read about `[branchsubdomain]`) in your app's [content security policies](https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy){:target="_blank"}.
 {% endcaution %}
-
-Note, if you are unsure how to set a global function or you are getting a `Reference not defined` error with `DeepLinkHandler`, please review this [Github issue](https://github.com/BranchMetrics/cordova-ionic-phonegap-branch-deep-linking/issues/128).
 
 {% endif %}
 <!-- /Cordova -->
@@ -1262,7 +1325,7 @@ Branch.getInstance(getApplicationContext()).userCompletedAction(BranchEvent.SHAR
 
 {% if page.cordova %}
 {% highlight js %}
-Branch.userCompletedAction("Share Started");
+Branch.userCompletedAction("Custom Event");
 {% endhighlight %}
 {% endif %}
 

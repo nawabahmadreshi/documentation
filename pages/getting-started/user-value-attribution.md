@@ -213,13 +213,13 @@ Branch.getInstance().userCompletedAction(BranchEvent.EVENT_PURCHASED , metaData)
 
 {% if page.cordova %}
 {% highlight js %}
-Branch.userCompletedAction(
-    "purchase",
-    {
-      "$canonical_identifier_list": [ "12345", "67891" ],
-      "$amount": "45.12"
-  	}
-);
+var eventName = 'clicked_on_this';
+var metaData = { custom_dictionary: 123 }; // optional
+Branch.userCompletedAction(eventName, metaData).then(function(res) {
+  alert('Response: ' + JSON.stringify(res));
+}).catch(function(err) {
+  alert('Error: ' + JSON.stringify(err));
+});
 {% endhighlight %}
 {% endif %}
 
