@@ -219,21 +219,30 @@ When the Branch SDK requests a short link, it will try three times before failin
 Create a `BranchUniversalObject` for the piece of content that you'd like to link to, defining any custom key/value pairs as `metadata` parameters:
 
 {% highlight js %}
-var branchUniversalObj = null;
+// only canonicalIdentifier is required
+var properties = {
+    canonicalIdentifier: '123',
+    canonicalUrl: 'http://example.com/123',
+    title: 'Content 123',
+    contentDescription: 'Content 123 ' + Date.now(),
+    contentImageUrl: 'http://lorempixel.com/400/400/',
+    price: 12.12,
+    currency: 'GBD',
+    contentIndexingMode: 'private',
+    contentMetadata: {
+        'custom': 'data',
+        'testing': 123,
+        'this_is': true
+    }
+};
 
-Branch.createBranchUniversalObject({
-  canonicalIdentifier: 'monster/12345',
-  title: 'Meet Mr. Squiggles',
-  contentDescription: 'Your friend Josh has invited you to meet his awesome monster, Mr. Squiggles!',
-  contentImageUrl: 'https://example.com/monster-pic-12345.png',
-  contentMetadata: {
-    'userId': '12345',
-    'userName': 'Josh',
-    'monsterName': 'Mr. Squiggles'
-  }
-}).then(function (newBranchUniversalObj) {
-  branchUniversalObj = newBranchUniversalObj;
-  console.log(newBranchUniversalObj);
+// create a branchUniversalObj variable to reference with other Branch methods
+var branchUniversalObj = null;
+Branch.createBranchUniversalObject(properties).then(function(res) {
+    branchUniversalObj = res;
+    alert('Response: ' + JSON.stringify(res));
+}).catch(function(err) {
+    alert('Error: ' + JSON.stringify(err));
 });
 {% endhighlight %}
 
