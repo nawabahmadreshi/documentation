@@ -33,8 +33,7 @@ Here's how App Indexing works:
 
 - If Google knows your website opens the app, when it shows up in a search result, and the user has the app installed, the app will open instead of the website
 
-**Branch's App Indexing integration is designed for businesses that don't have a website, and want Branch to host their site for them.** Note that in order for you to get traffic from this feature, your Branch link will need to appear in search results. So far, from about 8 months of offering this feature, we've yet to see it drive a substantial amount of traffic to a single app.
-
+**Branch's App Indexing integration is designed for businesses that don't have a website, and want Branch to host their site for them. If you have a website, Branch can dynamically inject App Indexing tags through the WebSDK function `autoAppIndex()` described [here]({{base.url}}/features/google-app-indexing/advanced/#alternative-path-have-the-websdk-inject-app-indexing-tags-into-your-webpage).** Note that in order for you to get traffic from this feature, your Branch link will need to appear in search results. We've just now supercharged our app indexing feature with AMP tech to leverage Google's new prioritization of these pages.
 {% getstarted %}{% endgetstarted %}
 
 {% elsif page.guide %}
