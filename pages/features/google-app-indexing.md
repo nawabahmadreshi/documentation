@@ -72,7 +72,7 @@ branchUniversalObject.imageUrl = @"https://example.com/mycontent-12345.png";
 [branchUniversalObject addMetadataKey:@"property2" value:@"red"];
 
 // register a view to add the item to the index
-[branchUniversalObject registerView];
+[branchUniversalObject userCompletedAction:BNCRegisterViewEvent];
 {% endhighlight %}
 {% endtab %}
 
@@ -87,7 +87,7 @@ branchUniversalObject.addMetadataKey("property1", value: "blue")
 branchUniversalObject.addMetadataKey("property2", value: "red")
 
 // register a view to add the item to the index
-branchUniversalObject.registerView()
+branchUniversalObject.userCompletedAction(BNCRegisterViewEvent)
 {% endhighlight %}
 {% endtab %}
 {% endtabs %}
