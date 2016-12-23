@@ -17,9 +17,9 @@ sections:
 
 {% if page.overview %}
 
-When users click your links on desktop, they have the option to text themselves a link to download your app. We provide this by default on every Branch link, but you can also create your own fully-branded Text Me The App page. 
+When users click your links on desktop, they have the option to text themselves a link to download your app. We provide this by default on every Branch link, but you can also create your own fully-branded Text Me The App page.
 
-_**LEFT:** This default page is provided by Branch. **RIGHT:** This page was created by Drafted and can be viewed [here](http://drft.us/l/5Rfz8GU0yO)._
+_**LEFT:** This default page is provided by Branch. **RIGHT:** This page was created by Drafted._
 
 {% image src="/img/pages/features/text-me-the-app/default-and-drafted.png" center alt="Default and custom SMS pages" %}
 
@@ -97,7 +97,7 @@ That’s all you need to add a custom Text Me The App page to your website! Go t
 
 ## Using a custom form with SendSMS()
 
-Add the following code somewhere inside the `<head></head>` tags on your website. 
+Add the following code somewhere inside the `<head></head>` tags on your website.
 
 {% highlight html %}
 <script type="text/javascript">
@@ -183,25 +183,25 @@ If you want to customize this, Branch allows you to set a default for all messag
 ### Custom default for all messages
 You can create your own custom default message that will be sent if the specific link someone clicks doesn't have a customized message itself. To do this, edit the form under the *Text me the app page* tab in the general settings area of the [Branch dashboard](https://dashboard.branch.io/#/settings).
 
-{% image src="/img/pages/features/text-me-the-app/default-message.png" center 3-quarters alt="deep link data attributes" %} 
+{% image src="/img/pages/features/text-me-the-app/default-message.png" center 3-quarters alt="deep link data attributes" %}
 
 ### Link-specific messages
-You can define a special SMS message for each individual link. Whether you want to switch the language of a message for a different region or include device specific date, you can specify the message in the *Deep Link Data* section at the bottom of the link editing screen.  
+You can define a special SMS message for each individual link. Whether you want to switch the language of a message for a different region or include device specific date, you can specify the message in the *Deep Link Data* section at the bottom of the link editing screen.
 
-{% image src="/img/pages/features/text-me-the-app/deeplink-data.png" center 2-thirds alt="deep link data attributes" %} 
+{% image src="/img/pages/features/text-me-the-app/deeplink-data.png" center 2-thirds alt="deep link data attributes" %}
 
-Use the {% raw %}**$custom_sms_text**{% endraw %} parameter and then enter your custom message in the value section. (Make sure to include the {% raw %}**{{ link }}**{% endraw %} tag in your custom message!) 
+Use the {% raw %}**$custom_sms_text**{% endraw %} parameter and then enter your custom message in the value section. (Make sure to include the {% raw %}**{{ link }}**{% endraw %} tag in your custom message!)
 
-{% example%} 
-The developer of FlowerPower wants to customize the SMS messages based on the country of the recipient. For each Branch link, they would specify in the *deep link data* a different custom message.  
+{% example%}
+The developer of FlowerPower wants to customize the SMS messages based on the country of the recipient. For each Branch link, they would specify in the *deep link data* a different custom message.
 
-For ads in France:  
+For ads in France:
 **Cliquez pour télécharger FlowerPower ici {% raw %}{{ link }}{% endraw %}**
 
-For ads in Spain:  
+For ads in Spain:
 **Haz click aquí para descargar FlowerPower {% raw %}{{ link }}{% endraw %}**
 
-For ads in Germany:  
+For ads in Germany:
 **Klicken Sie auf das FlowerPower hier herunterladen {% raw %}{{ link }}{% endraw %}**
 {% endexample%}
 
@@ -214,14 +214,14 @@ You can access almost any value of your link's parameters by using liquid tags. 
 - **{% raw %}{{ link.data.key }}{% endraw %}** will output a parameter of your link's data dictionary, where `key` is the name of the parameter
 
 {% example%}
-Dmitri is creating Branch links to deep link to each of the different flowers in his app FlowerPower. He creates each link with a key/value pair of the key `flower` and the flower name. 
+Dmitri is creating Branch links to deep link to each of the different flowers in his app FlowerPower. He creates each link with a key/value pair of the key `flower` and the flower name.
 
 E.g. `Flower : Rose`, `Flower : Tulip`
 
-He wants to customize his SMS messages based on name of the flower, so he sets his custom link messages as:  
+He wants to customize his SMS messages based on name of the flower, so he sets his custom link messages as:
 
 **{% raw %}{{ link.data.flower }}{% endraw %}**s on the mind? Click here to buy some for your home on FlowerPower! **{% raw %}{{ link }}{% endraw %}**
-{% image src="/img/pages/features/text-me-the-app/key-value.png" center 2-thirds alt="Key/Value pairs" %} 
+{% image src="/img/pages/features/text-me-the-app/key-value.png" center 2-thirds alt="Key/Value pairs" %}
 {% endexample%}
 
 ### Setting default replacement values for liquid tags
