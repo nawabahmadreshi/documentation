@@ -33,7 +33,7 @@ Branch links can be used together with Facebook ads, allowing you to track ad-dr
 
 ## Connect Branch to Facebook
 
-There are two options for connecting Branch to Facebook, and either can be done depending on your context. The first option doesn't require any native app code changes and should be used if you don't have the Facebook SDK. The second option is for if you want Branch to just connect to the Facebook SDK via a client side integration. 
+There are two options for connecting Branch to Facebook, and either can be done depending on your context. The first option doesn't require any native app code changes and should be used if you don't have the Facebook SDK. The second option is for if you want Branch to just connect to the Facebook SDK via a client side integration.
 
 ### **Option 1** Connect Without Using Facebook SDK
 
@@ -97,7 +97,7 @@ You can use this configuration section to specify custom link parameters that wi
 
 1. Navigate to [https://www.facebook.com/ads/create](https://www.facebook.com/ads/create) while logged in to the account that owns your Facebook app.
 1. Choose **Get installs of your app**. After entering a name for your campaign and clicking continue, select the Facebook app that you wish to advertise. {% image src='/img/pages/features/facebook-ads/fb_ad_installs.png' 3-quarters center alt='Facebook Example Ad' %}
-1. After you choose your audience, placement, budget, and schedule, click continue to create your ad. 
+1. After you choose your audience, placement, budget, and schedule, click continue to create your ad.
 1. Once you have customized the display of the ad, you can now specify the Deep Link in the following section. {% image src='/img/pages/features/facebook-ads/fb_ad_deep_link_area.png' 3-quarters center alt='Facebook Example Ad' %}
 1. Paste the Branch link from the dashboard into the **Deep Link** field. {% image src='/img/pages/features/facebook-ads/fb_ad_deep_link_branch.png' half center alt='Facebook Example Ad' %}
 
@@ -111,20 +111,20 @@ If you are using the Carousel Ad Format, you can specify a different Deep Link f
 
 1. Navigate to [https://www.facebook.com/ads/create](https://www.facebook.com/ads/create) while logged in to the account that owns your Facebook app.
 1. Choose **Increase engagement in your app**. After entering a name for your campaign and clicking continue, select the Facebook app that you wish to advertise. {% image src='/img/pages/features/facebook-ads/fb_ad_installs.png' 3-quarters center alt='Facebook Example Ad' %}
-1. After you choose your audience, placement, budget, and schedule, click continue to create your ad. 
+1. After you choose your audience, placement, budget, and schedule, click continue to create your ad.
 1. Once you have customized the display of the ad, you can now specify the Deep Link in the following section. {% image src='/img/pages/features/facebook-ads/fb_ad_deep_link_area.png' 3-quarters center alt='Facebook Example Ad' %}
 1. Paste the Branch link from the dashboard into the **Deep Link** field. Note that this field does not support query parameter-based links. You must create a short link add deep link data keys and values on the marketing page. {% image src='/img/pages/features/facebook-ads/fb_ad_deep_link_branch.png' half center alt='Facebook Example Ad' %}
 
 ## Add Branch link to Facebook Website Clicks campaign
 
 1. Navigate to [https://www.facebook.com/ads/create](https://www.facebook.com/ads/create) while logged in to the account that owns your Facebook app.
-1. Choose **Send people to your website**. After entering a name for your campaign and clicking continue, select your audience, placement, budget, and schedule. Then click continue to create your ad. 
-1. Paste the Branch link from the dashboard into the **Website URL** field. 
-1. You can then customize the display of the ad and specify the **Call to Action** (we recommend **Download**). 
+1. Choose **Send people to your website**. After entering a name for your campaign and clicking continue, select your audience, placement, budget, and schedule. Then click continue to create your ad.
+1. Paste the Branch link from the dashboard into the **Website URL** field.
+1. You can then customize the display of the ad and specify the **Call to Action** (we recommend **Download**).
 
 ## View your data using the Branch dashboard
 
-The [Marketing page](https://dashboard.branch.io/#/marketing) on the Branch dashboard shows the performance of each individual link. You can find your link listed in the table with a quick summary of the _total_ clicks and installs. 
+The [Marketing page](https://dashboard.branch.io/#/marketing) on the Branch dashboard shows the performance of each individual link. You can find your link listed in the table with a quick summary of the _total_ clicks and installs.
 
 {% caution %}
 Facebook prevents Branch from measuring the number of clicks on their ads, so all **Clicks** numbers for Facebook ads are inaccurate.
@@ -177,14 +177,14 @@ If Facebook is having trouble reading the App Links from the Branch link, you mi
 
 You can test the OG tags using the [OG tag tester tool](https://developers.facebook.com/tools/debug/og/object) provided by Facebook:
 
-1. Paste the Branch Link into the Input URL box. 
+1. Paste the Branch Link into the Input URL box.
 1. Click on the Show existing scrape information button.
-1. Examine errors regarding AppLinks from the output window.
-1. Click on the Fetch New Scrape Information button. This last step typically resolves this problem if you are certain that your Branch Link Settings are correct. 
+1. Examine errors regarding App Links from the output window.
+1. Click on the Fetch New Scrape Information button. This last step typically resolves this problem if you are certain that your Branch Link Settings are correct.
 
 {% protip %}
-You can further automate the rescraping process by using this command after you create a new link and before you use it for any ads: 
- 
+You can further automate the rescraping process by using this command after you create a new link and before you use it for any ads:
+
 {% highlight sh %}
 curl --insecure "https://graph.facebook.com/?id=[YOUR-URL-TO-SCRAPE]&scrape=true"
 {% endhighlight %}
@@ -192,7 +192,8 @@ curl --insecure "https://graph.facebook.com/?id=[YOUR-URL-TO-SCRAPE]&scrape=true
 
 ### If the OG tag tester continues to report problems
 
-1. Examine your [Link Settings](https://dashboard.branch.io/#/settings/link) and ensure that for all platforms (for which an app is available), that a URI scheme and a link to the app in the Play/App Store is configured. If you are using a Custom URL for your iOS Redirect then you need to append ?id<App Store Id> to the URL.
+1. Examine your [Link Settings](https://dashboard.branch.io/#/settings/link) and ensure that for all platforms (for which an app is available), that a URI scheme and a link to the app in the Play/App Store is configured. If you are using a Custom URL for your iOS Redirect, then you need to append `?id[10-digit App Store ID]` to the URL. This is necessary in order to fully generate the App Links and OG tags that the Facebook scraper expects to find.
+    - For example, if your App Store URL is `https://itunes.apple.com/us/app/my-app-name/id1234567890`, then your Custom URL value should be `https://example.com?id1234567890`
 1. If errors from the output window pertain to OG tags i.e. missing title, description etc. then examine link OG tags by appending `?debug=true` as described on the [Integration Testing page]({{base.url}}/getting-started/integration-testing/guide/#debugging-an-individual-link).
 1. If you haven't set OG tags on a per link level, then please check your Dashboard's global Social Media Display Customization settings from the [Link Settings](https://dashboard.branch.io/#/settings/link) page.
 
