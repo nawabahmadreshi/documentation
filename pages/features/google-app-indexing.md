@@ -277,7 +277,7 @@ This requires:
 | --- | ---
 | "androidPackageName" | Android App's package name
 | "androidURL" | A custom scheme for your Android App such as: `example/home/cupertino/12345` where `example` is the App's URI scheme and `home/cupertino/12345` routes to unique content in the App
-| "iosAppStoreId" | iTunes App Store ID for your iOS App
+| "iosAppId" | iTunes App Store ID for your iOS App
 | "iosURL" | A custom scheme for your iOS App such as: `example/home/cupertino/12345`
 | "data" | Any additional deep link data that you would like to pass to your App
 
@@ -299,7 +299,7 @@ After the WebSDK has initialized, the function will inject Firebase App Indexing
 <head>
   ...
   <link rel="alternate" href="android-app://{androidPackageName}/{androidURL}?{branch_tracking_params_and_additional_deep_link_data}"/>
-  <link rel="alternate" href="ios-app://{iosAppStoreId}/{iosURL}?{branch_tracking_params_and_additional_deep_link_data}"/>
+  <link rel="alternate" href="ios-app://{iosAppId}/{iosURL}?{branch_tracking_params_and_additional_deep_link_data}"/>
   ...
 </head>
 <body> … </body>
