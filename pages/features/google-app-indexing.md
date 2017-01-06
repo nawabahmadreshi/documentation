@@ -299,7 +299,7 @@ After the WebSDK has initialized, the function will inject Firebase App Indexing
 <head>
   ...
   <link rel="alternate" href="android-app://{androidPackageName}/{androidURL}?{branch_tracking_params_and_additional_deep_link_data}"/>
-  <link rel="alternate" href="ios-app://{iosAppStoreId}/{iosURL}?{branch_tracking_params_and_additional_deep_link_data}"/>
+  <link rel="alternate" href="ios-app://{iosAppId}/{iosURL}?{branch_tracking_params_and_additional_deep_link_data}"/>
   ...
 </head>
 <body> … </body>
