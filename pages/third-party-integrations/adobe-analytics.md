@@ -88,7 +88,7 @@ When you're ready to send data through Branch, you'll need to make sure you pass
 
 Here's a sample snippet showing this. **NOTE** you must set the $adobe_visitor_id before calling *initSession*. You must also initialize the Adobe SDK before setting the request metadata in the Branch SDK.
 
-If you have a custom ID instead of the trackingIdentifier, simply pass through that custom ID from the Config object Adobe's SDK provides.
+If you have a custom ID instead of the trackingIdentifier, simply pass through that custom ID from the Config object Adobe's SDK provides. This could be something like the visitor marketing cloud ID.
 
 **iOS**
 
