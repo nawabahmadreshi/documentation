@@ -75,6 +75,9 @@
         - localytics
         - mixpanel
         - tune
+    - title: Data Ingestion
+      children:
+        - mparticle
     - title: Third Party Tools
       children:
         - apptimize
