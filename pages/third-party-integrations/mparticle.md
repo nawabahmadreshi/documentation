@@ -66,7 +66,7 @@ TODO
 
 TODO
 
-## Ensure the proper user identifiers are available
+## Ensure user identifiers are available
 
 TODO
 
@@ -81,5 +81,6 @@ TODO
 
 * user identifiers
 * must be realtime
+* Live View (when available)
 
 {% endif %}
