@@ -49,6 +49,7 @@
         - apple-search-ads
         - ios-imessage
         - referral-programs
+        - revenue-analytics
     - title: Content Indexing
       children:
         - google-app-indexing
