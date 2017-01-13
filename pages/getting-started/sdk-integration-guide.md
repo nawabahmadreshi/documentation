@@ -233,17 +233,13 @@ We've recently found that there is an issue involving the `WRITE_EXTERNAL_STORAG
 
 {% if page.react %}
 
-1. Run `npm install rnpm -g` (skip this step if `rnpm` is already installed on your system).
-1. Navigate go your root project directory and download the Branch SDK package: `npm install --save react-native-branch`.
-1. Configure the package: `rnpm link react-native-branch`.
+1. Navigate to your root project directory and download the Branch SDK package: `npm install --save react-native-branch`.
+1. Configure the package: `react-native link react-native-branch`.
 
 ### iOS project installation
 
-1. Navigate into the SDK package directory: `cd node_modules/react-native-branch`.
-1. Add pod `Branch` as a dependency in your ios/Podfile. ([example](https://github.com/BranchMetrics/react-native-branch-deep-linking/blob/master/docs/installation.md#cocoa-pods))
+1. Add `pod "Branch"` as a dependency in your ios/Podfile. ([example](https://github.com/BranchMetrics/react-native-branch-deep-linking/blob/master/docs/installation.md#cocoa-pods))
 1. Use CocoaPods to install dependencies: `pod install`.
-1. Drag **/node_modules/react-native-branch/Pods/Pods.xcodeproj** into the **Libraries** folder of your Xcode project. {% image src='/img/pages/getting-started/sdk-integration-guide/pod-import.png' full center alt='Import CocoaPods project' %}
-1. In Xcode, drag the `libBranch.a` Product from **Pods.xcodeproj** into your the **Link Binary with Libraries** section of **Build Phases** for your project's target. {% image src='/img/pages/getting-started/sdk-integration-guide/link-pod-binary.png' full center alt='Link Pod product with project binary' %}
 
 {% protip %}
 See [this page](https://facebook.github.io/react-native/docs/linking-libraries-ios.html#manual-linking){:target="_blank"} for detailed documentation on importing iOS libraries into a React Native project.
@@ -1113,7 +1109,7 @@ $.onInitSessionFinished = function(data) {
 ### iOS initialization
 
 1. In Xcode, open your **App.Delegate.m** file.
-2. Add `#import "RNBranch.h"` at the top to import the Branch framework.
+2. Add `#import <react-native-branch/RNBranch.h>` at the top to import the Branch framework.
 3. Find the line beginning with:
 
 {% highlight objc %}
