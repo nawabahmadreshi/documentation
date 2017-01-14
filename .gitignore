@@ -6,3 +6,4 @@ npm-debug.log
 Gemfile.lock
 node.txt
 .idea
+yarn.lock
