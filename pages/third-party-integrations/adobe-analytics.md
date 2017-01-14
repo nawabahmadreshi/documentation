@@ -100,7 +100,7 @@ Action Property| Branch referring link data | foo=bar&productid=1234
 
 Finally, review the integration, scroll to the bottom of the screen and click *Activate Now* to enable the integration. 
 
-{% image src="/img/pages/third-party-integrations/adobe-analytics/final-activation.png" quarter center %}
+{% image src="/img/pages/third-party-integrations/adobe-analytics/final-activation.png" half center %}
 
 ## Retrieve your Adobe Analytics Information
 
