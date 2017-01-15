@@ -99,6 +99,20 @@ The redirect destinations are completely customizable for every link that you cr
 | $ios_wechat_url | Change the redirect endpoint for WeChat on iOS devices | `$ios_url` value
 | $android_wechat_url | Change the redirect endpoint for WeChat on Android devices | `$android_url` value
 
+#### Country-specifc redirects
+
+You can redirect your users differently depending on their location when clicking the link.
+
+| Key | Usage
+| --- | ---
+| $fallback_url_{xx} | xx is a lower-case Alpha-2 country code conforming to the [ISO 3166](https://www.iso.org/obp/ui/#search) standard format. (e.g. `$fallback_url_de` for Germany)
+
+You may add **more** than one country-specific redirect to your link data. Note, that you need to supply a `$fallback_url` to act as the global redirect in addition to the country-specifc ones.
+
+{% caution %}
+OS-specifc redirects in your link data (e.g. `$ios_url`) will take precedence over country-specific ones.
+{% endcaution %}
+
 #### After click redirect
 
 This lets you customize where Branch will redirect a user's web view after opening up the app or app store. The alternative is that in some configs, we leave a white screen.
