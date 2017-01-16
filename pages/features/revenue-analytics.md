@@ -36,10 +36,10 @@ The first step to powerful, granular revenue tracking is ensuring that SDKs trac
 
 {% if page.ios %}
 
-To track purchases with Branch, add a `sendCommerceEvent:metadata:withCompletion:` call to be executed immediately after a purchase is complete:
-
 {% tabs %}
 {% tab objective-c %}
+To track purchases with Branch, add a `sendCommerceEvent:metadata:withCompletion:` call to be executed immediately after a purchase is complete:
+
 {% highlight objc %}
 BNCCommerceEvent *commerceEvent = [BNCCommerceEvent new];
 commerceEvent.revenue = [NSDecimalNumber decimalNumberWithString:@"20.00"];
@@ -55,7 +55,15 @@ commerceEvent.revenue = [NSDecimalNumber decimalNumberWithString:@"20.00"];
 To track purchases with Branch, add a `sendCommerceEvent()` call to be executed immediately after a purchase is complete:
 
 {% highlight swift %}
-TODO: Swift
+let commerceEvent = BNCCommerceEvent.init()
+commerceEvent.revenue = NSDecimalNumber.init(string:"1101.99")
+Branch.getInstance()?.send(
+    commerceEvent,
+    metadata: ["foo": "bar"],
+    withCompletion: { (response, error) in
+        if let e = error { /* handle error */ }
+    }
+)
 {% endhighlight %}
 {% endtab %}
 {% endtabs %}
@@ -65,7 +73,9 @@ TODO: Swift
 To track purchases with Branch, add a `sendCommerceEvent()` call to be executed immediately after a purchase is complete:
 
 {% highlight java %}
-TODO: Java
+CommerceEvent commerceEvent = new CommerceEvent();
+commerceEvent.setRevenue(1101.99);
+Branch.getInstance().sendCommerceEvent(commerceEvent, null, null);
 {% endhighlight %}
 
 {% endif %}
@@ -77,15 +87,15 @@ For a more complete example that demonstrates what purchase- and product-related
 
 TODO
 
-- ensure purchase events show up in Live View
+- ensure purchase events show up in Live View (need screenshot)
 - generate referred purchases using a Marketing Link
 
 ## 3. Viewing Revenue Analytics in the Dashboard
 
 TODO
 
-- Source Analytics
-- Marketing Links
+- Source Analytics (need screenshot)
+- Marketing Links (need screenshot)
 
 
 
@@ -131,7 +141,32 @@ commerceEvent.products = @[ product ];
 Here is a fuller example of the `sendCommerceEvent()` call.
 
 {% highlight swift %}
-TODO: Swift
+let product = BNCProduct.init()
+product.price = NSDecimalNumber.init(string:"1000.99")
+product.sku = "acme007"
+product.name = "Acme brand 1 ton weight"
+product.quantity = 1.0;
+product.brand = "Acme";
+product.category = BNCProductCategoryMedia;
+product.variant = "Lite Weight";
+
+let commerceEvent = BNCCommerceEvent.init()
+commerceEvent.revenue = NSDecimalNumber.init(string:"1101.99")
+commerceEvent.currency = "Smackeroos"
+commerceEvent.transactionID = "tr00x8"
+commerceEvent.shipping = NSDecimalNumber.init(string:"100.00")
+commerceEvent.tax = NSDecimalNumber.init(string:"1.00");
+commerceEvent.coupon = "Acme weights coupon"
+commerceEvent.affiliation = "ACME by Amazon"
+commerceEvent.products = [ product ];
+
+Branch.getInstance()?.send(
+    commerceEvent,
+    metadata: ["Meta": "Never meta dog I didn't like." ],
+    withCompletion: { (response, error) in
+        if let e = error { /* handle error */ }
+    }
+)
 {% endhighlight %}
 {% endtab %}
 {% endtabs %}
@@ -141,7 +176,29 @@ TODO: Swift
 Here is a fuller example of the `sendCommerceEvent()` call.
 
 {% highlight java %}
-TODO: Java
+Branch branch = Branch.getInstance();
+Product product = new Product();
+product.setPrice(100.99);
+product.setSku("acme007");
+product.setName("Acme brand 1 ton weight");
+product.setQuantity(1);
+product.setBrand("Acme");
+product.setProductCategory(ProductCategory.MEDIA);
+product.setVariant("Lite Weight");
+
+CommerceEvent commerceEvent = new CommerceEvent();
+commerceEvent.setRevenue(1101.99);
+commerceEvent.setCurrencyType(CurrencyType.USD);
+commerceEvent.setTransactionID("tr00x8");
+commerceEvent.setShipping(100.00);
+commerceEvent.setTax(1.00);
+commerceEvent.setCoupon("Acme weights coupon");
+commerceEvent.setAffiliation("ACME by Amazon");
+commerceEvent.addProduct(product);
+
+JSONObject jsonObject = new JSONObject();
+try { jsonObject.put("Meta", "never meta dog I didn't like."); } catch ( JSONException e ) {}
+branch.sendCommerceEvent(commerceEvent, jsonObject, null);
 {% endhighlight %}
 
 {% endif %}
