@@ -544,6 +544,17 @@ Trigger the `branch.deepviewCta()` function with a button or hyperlink on your p
 {% endhighlight %}
 {% endexample %}
 
+## Custom fonts with Journeys
+
+### 1) Go to google fonts and select a font (screenshot attached)
+
+{% image src='/img/pages/features/journeys/examples/font_embedding.png' center full alt='Font embedding' %}
+
+### 2) Add to CSS EDITOR in Journeys. Please note: trailing semicolon on @import line is important. It's always good to have a fallback web font in case the google font fails to load.
+
+{% image src='/img/pages/features/journeys/examples/custom_fonts.png' center full alt='Custom Fonts' %}
+
+
 ## Troubleshooting
 
 ### Calls to [branchsubdomain] blocked
