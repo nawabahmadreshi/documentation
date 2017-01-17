@@ -145,7 +145,7 @@ Once you've done this, an AASA file - required for Universal Links - specific to
 
 ### Configure your app for your click tracking domain
 
-{% image src="/img/pages/third-party-integrations/Epsilon Harmony/configure-Epsilon Harmony-2.png" center 2-thirds alt='Developer email' %}
+{% image src="/img/pages/third-party-integrations/responsys/configure-responsys-2.png" center 2-thirds alt='Developer email' %}
 
 In this prompt, enter the email of someone on your team who is qualified to modify your iOS app, and then click **Send**. They will complete the [technical setup](#technical-setup) steps below.
 
@@ -156,7 +156,7 @@ The following app changes ensure that your email integration supports [Universal
 You should have [received an email from Branch](#configure-your-app-for-your-click-tracking-domain) with your Epsilon Harmony click tracking domain. If not, likely you or someone on your team still needs to complete the [Deep Linked Email setup flow](https://dashboard.branch.io/email){:target="_blank"}.
 
 {% protip title="How does it work?"%}
-Apple recognizes the click tracking domain as a Universal Link, and opens the app immediately without the browser opening. Once the app has opened, Branch will collect the referring URL that opened the app (at this time, it will be the click tracking url). Inside the app, Branch will robotically “click” the link, registering the click with the ESP, and returning the Branch link information to the Branch SDK inside the app. This information is then used to deep link the user to the correct in-app content. See the [Support](/third-party-integrations/Epsilon Harmony/support) tab for more information.
+Apple recognizes the click tracking domain as a Universal Link, and opens the app immediately without the browser opening. Once the app has opened, Branch will collect the referring URL that opened the app (at this time, it will be the click tracking url). Inside the app, Branch will robotically “click” the link, registering the click with the ESP, and returning the Branch link information to the Branch SDK inside the app. This information is then used to deep link the user to the correct in-app content. See the [Support](/third-party-integrations/epsilon-harmony/support) tab for more information.
 {% endprotip %}
 
 ### Set up your click tracking domain
@@ -215,7 +215,7 @@ if let nonBranchLink = params["+non_branch_link"] as? String, let fromEmailCtd =
 
 {% image src="/img/pages/third-party-integrations/responsys/validation.png" center full alt='Click tracking domain' %}
 
-The last step of the [Deep Linked Email setup flow](https://dashboard.branch.io/email){:target="_blank"} validates whether you have completed steps 1 and 2 and whether an engineer on your team has completed the [technical setup](#technical-setup) steps. From here you can also access [guides for ongoing use](/third-party-integrations/Epsilon Harmony/usage) of Deep Linked Email.
+The last step of the [Deep Linked Email setup flow](https://dashboard.branch.io/email){:target="_blank"} validates whether you have completed steps 1 and 2 and whether an engineer on your team has completed the [technical setup](#technical-setup) steps. From here you can also access [guides for ongoing use](/third-party-integrations/epsilon-harmony/usage) of Deep Linked Email.
 
 {% getstarted next="true" %}{% endgetstarted %}
 
@@ -223,7 +223,7 @@ The last step of the [Deep Linked Email setup flow](https://dashboard.branch.io/
 
 ### Ongoing use of Deep Linked Email
 
-Once you’ve completed the [one time setup steps](/third-party-integrations/Epsilon Harmony/setup/), it’s time to send your first email.
+Once you’ve completed the [one time setup steps](/third-party-integrations/epsilon-harmony/setup/), it’s time to send your first email.
 
 This guide will identify which web links you'd like to open the app and deep link, as well as convert them to Branch links.
 
@@ -240,9 +240,9 @@ To create email links via API, please use the instructions on how to [create lin
 
 ## Convert all web links in your email to deep links
 
-We have provided [a way](/third-party-integrations/remote-deep-links/guide/) of easily converting web links to Branch links.
+We have provided a way of easily converting web links to Branch links.
 
-To use this script, make sure you've set up deep links according to one of the [linking schemas outlined here](/third-party-integrations/Epsilon Harmony/setup/#set-up-deep-linking-for-email).
+To use this script, make sure you've set up deep links according to one of the [linking schemas outlined here](/third-party-integrations/epsilon-harmony/setup/#set-up-deep-linking-for-email).
 
 This guide will identify which web links you'd like to open the app and deep link, as well as convert them to Branch links.
 
@@ -267,7 +267,7 @@ Remember to get the value of `branch_base_url` from the Branch dashboard or from
 
 ## Create deep links
 
-Wherever you are using `<a>` tags in your email templates, replace those with this two line replacement.
+Wherever you are using `<a>` tags in your email templates, replace it with these two lines.
 
 {% example%}
 
