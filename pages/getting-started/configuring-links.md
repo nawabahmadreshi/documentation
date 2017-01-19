@@ -99,7 +99,7 @@ The redirect destinations are completely customizable for every link that you cr
 | $ios_wechat_url | Change the redirect endpoint for WeChat on iOS devices | `$ios_url` value
 | $android_wechat_url | Change the redirect endpoint for WeChat on Android devices | `$android_url` value
 
-#### Country-specifc redirects
+#### Country-specific redirects
 
 You can redirect your users differently depending on their location when clicking the link.
 
