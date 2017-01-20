@@ -48,7 +48,7 @@ A couple of things to note:
 - Be sure that your Feed Source has a `link` column with each product's web URL. This is the minimum requirement for Branch to create deep links (although it will likely not be sufficient to be accepted by Facebook or partners.)
 - We recommend [hosting deep link data](/getting-started/hosted-deep-link-data/guide/){:target="_blank"} on your website for each web URL in your feed. We won't use it to modify your feed, but when your link is clicked from an ad, we'll get the link data from your website and return it to your app.
 
-If you choose this option, go to your [Link Settings](https://dashboard.branch.io/settings/link) > Advanced Settings and check **Enable Link Scraping**.
+If you choose this option, go to your [Link Settings](https://dashboard.branch.io/settings/link) > Advanced Settings and check **Enable Link Scraping**. This option is only available once you've enabled the Deep Linked Feeds product for your account (you can enable the product by creating and downloading a Deep Linked Feed). 
 
 {% image src='/img/pages/features/deep-linked-feeds/enable-link-scraping.png' half center alt='Enable Link Scraping' %}
 
@@ -56,13 +56,17 @@ If you choose this option, go to your [Link Settings](https://dashboard.branch.i
 - Want to get creative with your Feed Sources? Check out our [Advanced section](/features/deep-linked-feeds/advanced) for some power user tips.
 - Branch accepts feed sources that are compatible with Facebook’s format. If you’re not sure about the compatibility of your feed, please use [Facebook’s Product Feed Debug Tool](https://business.facebook.com/ads/product_feed/debug){:target="_blank"} to test and debug it.
 
+{% protip title="Example Feed Source"%}
+Facebook has example CSVs that Branch accepts as Feed Sources on the [Facebook Developer Portal](https://developers.facebook.com/docs/marketing-api/dynamic-product-ads/product-catalog){:target="_blank"}. Scroll down to "Supported Formats" to find the feed examples.
+{% endprotip %}
+
 ## Upload a Feed Source
 
 Go directly to [Deep Linked Feeds](http://dashboard.branch.io/ads){:target="_blank"} in the Branch dashboard to get started.
 
 1. Click on the "Feed Sources" tab at the top of the page.
 1. Click the **Add New Feed Source** button. {% image src='/img/pages/features/deep-linked-feeds/add-new-feed-source.png' full center alt='Add New Feed Source' %}
-1. Name your Feed Source and click "Upload" to upload it. {% image src='/img/pages/features/deep-linked-feeds/name-and-upload-feed-source.png' half center alt='Add New Feed Source' %}
+1. Name your Feed Source. You can supply a URL (recommended) or upload a file. {% image src='/img/pages/features/deep-linked-feeds/name-and-upload-feed-source.png' 3-quarters center alt='Add New Feed Source' %}
 
 You can see all of the **Feed Sources** you've uploaded by going to the [Feed Sources](http://dashboard.branch.io/ads/feedsources){:target="_blank"} tab.
 
@@ -78,24 +82,40 @@ You can see all of the **Feed Sources** you've uploaded by going to the [Feed So
 {% example %}Let's say you have a column in your product feed titled `id`. That column contains the product id for each piece of content in your Feed Source file, and your app needs that id to deep link correctly. To create deep links with that id for each product, select the column by checking the box on the left hand side. If you'd like to change the name of the key (for example, from `id` to `product_id`) you can write the new name for the key in the text box on the right hand side. This will add the correct `product_id` to each link for every single product in your feed (e.g. the first item will have `"product_id":1392`, the second item will have `"product_id":5284`)!{% endexample %}
 {% image src='/img/pages/features/deep-linked-feeds/customize-columns.png' 3-quarters center alt='Customize Feed Columns' %}
 
-- Finally, in "Get Deep Linked Feed" you can download your feed! Once you get to the final step, you will see "Generating CSV..." Wait for this to finish, then click "Download CSV" when the button text changes.
+## Getting your Deep Linked Feed
 
-{% image src='/img/pages/features/deep-linked-feeds/generating-csv.png' half center alt='Generating CSV' %}
+Finally, in "Get Deep Linked Feed" you can choose to get a URL that will host your Deep Linked Feed or download a file with your Deep Linked Feed.
 
-{% image src='/img/pages/features/deep-linked-feeds/download-csv.png' 3-quarters center alt='Download CSV' %}
+Once you get to the final step, you will see "Your links are being created..." Feel free to navigate away if you have a large feed source. Once this process has completed, you will receive a dashboard notification and an email with a link to your finished Deep Linked Feed.
 
-You can see all of the **Deep Linked Feeds** you've uploaded by going to the [Deep Linked Feeds](http://dashboard.branch.io/ads/deeplinkedfeeds){:target="_blank"} tab.
+{% image src='/img/pages/features/deep-linked-feeds/generating-dlf.png' 3-quarters center alt='Generating CSV' %}
+
+{% image src='/img/pages/features/deep-linked-feeds/getting-dlf.png' 3-quarters center alt='Getting your CSV' %}
+
+### Schedule refresh
+
+If you used a Feed Source hosted on a URL (recommended), you will see two options for accessing your feed. We recommend selecting "Schedule Refresh." If you select this option, Branch will host a URL for your Deep Linked Feed that will update itself from your Feed Source URL at regular intervals. You can then provide the Deep Linked Feed URL to your partners, and Branch will keep the content up to date.
+
+{% image src='/img/pages/features/deep-linked-feeds/hosted-dlf.png' 3-quarters center alt='Hosted Deep Linked Feeds' %}
+
+You can see all of the **Deep Linked Feeds** you've created by going to the [Deep Linked Feeds](http://dashboard.branch.io/ads/deeplinkedfeeds){:target="_blank"} tab.
+
+### Download CSV
+
+Click "Download CSV" if you just need a one-time file with your Deep Linked Feed.
+
+You can see all of the **Deep Linked Feeds** you've created by going to the [Deep Linked Feeds](http://dashboard.branch.io/ads/deeplinkedfeeds){:target="_blank"} tab.
 
 ## Using your Deep Linked Feed
 
 After you've downloaded your feed, it's time to use it!
 
 {% protip title="Facebook Dynamic Ads"%}
-Launch a Facebook Dynamic Ad Campaign to drive engagement or installs with your Deep Linked Feed!
+Launch a [Facebook Dynamic Ad Campaign](/features/facebook-dynamic-ads/guide/){:target="_blank"} to drive engagement or installs with your Deep Linked Feed!
 {% endprotip %}
 
 {% protip title="Ad Network Integrations"%}
-Branch Deep Linked Feeds are accepted by top remarketing companies like Remerge, Criteo and AppNexus. Ask your Account Manager about launching your campaign with Branch deep links.
+Branch Deep Linked Feeds are accepted by top remarketing companies like [Criteo](/features/criteo-dynamic-ads/guide/){:target="_blank"}, Remerge and AppNexus. Ask your Account Manager about launching your campaign with Branch deep links.
 {% endprotip %}
 
 {% protip title="Drive Installs With Your Content"%}
