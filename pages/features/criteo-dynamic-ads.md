@@ -47,7 +47,11 @@ There are two ways to send your Deep Linked Feed to Criteo.
 
 When setting up your Deep Linked Feed, provide a hosted Feed Source on a URL. This Feed Source should be automatically updated on a regular cadence.
 
-When you have completed creating a Deep Linked Feed from your Feed Source, select "Host Deep Linked Feed on a URL" and set it to refresh however often your Feed Source refreshes. You can also access this screen by finding the feed you want in the Deep Linked Feeds tab, and clicking "View" under the Actions column.
+When you have completed creating a Deep Linked Feed from your Feed Source, select ["Schedule Refresh"](/features/deep-linked-feeds/guide/#schedule-refresh){:target="_blank"} and set your Deep Linked Feed to update as often as your Feed Source refreshes. You can also access this screen by finding the feed you want in the Deep Linked Feeds tab, and clicking "View" under the Actions column.
+
+{% image src='/img/pages/features/deep-linked-feeds/getting-dlf.png' 3-quarters center alt='Getting your CSV' %}
+
+{% image src='/img/pages/features/deep-linked-feeds/hosted-dlf.png' 3-quarters center alt='Hosted Deep Linked Feeds' %}
 
 Send your Deep Linked Feed URL to your Criteo account manager, who will use it for your dynamic ad campaigns.
 
