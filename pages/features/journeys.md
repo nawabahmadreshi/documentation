@@ -280,12 +280,39 @@ Note that if you are planning on just using the free banner, you can skip this s
 - Your total percentage allocation may be _less_ than **100%**. In this situation, the remainder of your audience will be shown your standard website without a Journey. This allows you to A/B test against your non-Journeys website experience.
 {% endprotip %}
 
+## Dynamic Journeys layout customization
+
+We now support the use case where you can customize the appearance of a Journey depending on which link referred the web session. So, you can create a Branch link with a set of defined keys and values that will change properties such as the title or images when the user is referred to your website from this link. 
+
+| **Link Data Key** | **Value** | **Example Value** |
+| ---: | --- | --- |
+| `$journeys_button_get_has_app` | The call to action button when the app is currently installed | "Open App" |
+| `$journeys_button_get_no_app` | The call to action button when the app is **not** currently installed | "Install App" |
+| `$journeys_title` | The title or main text of your Journey | "Download Appsolutely today" |
+| `$journeys_description` | This is the description or subtitle in the frame | "This app is disrupting apps" |
+| `$journeys_icon_image_url` | The app icon displayed in the layout | "https://mysite.com/image.png" |
+| `$journeys_background_image_url` | The background image for the frame when the template supports it. *Coming soon!* | "https://mysite.com/background.png" |
+
+Note that not all template support all override keys. For example, the floating button does not support title, description or icon image url. If a template is to be rendered and the key you've specified does not exist, we'll simply ignore it while rendering the template. 
+
+## Journeys text localization
+
+Journeys now has an entire localization framework. Due to the complexity of this offering, we're not exposing it directly to partners. Please reach out to your account manager or integrations@branch.io to receive access to this functionality.
+
+## CSS Editor {% premiumflag %}{% endpremiumflag %}
+
+If you have an upgraded premium account, you may also modify your CSS code directly in addition to using the WYSIWYG View Editor. To do so, go to the **Configure Views** step, click to edit a template, and then select the **CSS Editor** tab on the **Customize Template** screen.
+
+{% image src='/img/pages/features/journeys/view-css-editor.png' third center alt='view editor and css editor toggle' %}
+
 ## Template customization options
 
 The customization options available depend on the template chosen:
 
 - [Smart Banner](#smart-banner)
 - [Full Screen Interstitial](#full-screen-interstitial) {% premiumflag %}{% endpremiumflag %}
+- [Half Page Interstitial](#full-screen-interstitial) {% premiumflag %}{% endpremiumflag %}
+- Floating Button {% premiumflag %}{% endpremiumflag %}
 
 ### Smart Banner
 
@@ -434,47 +461,6 @@ The content block contains everything except for the background image. Dimension
 | --- | --- |
 | Dismiss Text | Text to show users wanting to continue to your mobile website instead of downloading the app.
 | Dismiss Period | Control how long before the same visitor should see the Journey again. Options are `1 day`, `1 week`, `1 month`, `Never Again`, and `Custom` |
-
-## CSS Editor {% premiumflag %}{% endpremiumflag %}
-
-If you have an upgraded premium account, you may also modify your CSS code directly in addition to using the WYSIWYG View Editor. To do so, go to the **Configure Views** step, click to edit a template, and then select the **CSS Editor** tab on the **Customize Template** screen.
-
-{% image src='/img/pages/features/journeys/view-css-editor.png' third center alt='view editor and css editor toggle' %}
-
-## Dynamic deep linking with Journeys
-
-You have the option of dynamically configuring the Branch link that powers the Journey presented to the user. This allows you to pass different deep link data from each page of your site, instead of using the same deep link data as defined in the Journey for every page.
-
-You can do this by using [hosted deep link data]({{base.url}}/getting-started/hosted-deep-link-data/guide) and adding specially formatted meta tags to your site:
-
-{% highlight html %}
-<meta name="branch:deeplink:mydata" content="something"/>
-<meta name="branch:deeplink:product_id" content="12345"/>
-
-<script type="text/javascript">
-{% ingredient web-sdk-initialization %}{% endingredient %}
-</script>
-{% endhighlight %}
-
-You can also call `setBranchViewData` from the Branch Web SDK:
-
-{% highlight javascript %}
-<script type="text/javascript">
-{% ingredient web-sdk-initialization %}{% endingredient %}
-
-// You'll need to set the deep link data here, in the block where you call init().
-branch.setBranchViewData({
-  data: {
-    mydata: 'something',
-    product_id: '12345',
-  }
-});
-</script>
-{% endhighlight %}
-
-{% caution title="Migrating from the legacy Smart Banner" %}
-Calling the `branch.banner()` function with deep link data will override the custom deep link parameters of any Journey shown on that page. The banner itself will not be displayed when a Journey is shown, but its deep link data will be used. This is done to make it easy to migrate from the smart banner to Journeys.
-{% endcaution %}
 
 ## Premium journeys functionality
 
