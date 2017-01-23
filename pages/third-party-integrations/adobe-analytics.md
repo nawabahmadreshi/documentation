@@ -130,11 +130,15 @@ To enable the Adobe Analytics beta please contact your Branch account manager or
 
 ## Pass Adobe Visitor ID
 
-When you're ready to send data through Branch, you'll need to make sure you pass through the configured Adobe Visitor ID through the Branch SDKs. In order to do so, call the property `trackingIdentifier` on the `ADBMobile` class, and pass this value through `setRequestMetadataKey` on the Branch SDKs.
+When you're ready to send data through Branch, you'll need to make sure you pass through the configured Adobe Visitor ID through the Branch SDKs. In order to do so, figure out which ID you use for user tracking in the Adobe SDK, and pass this value through `setRequestMetadataKey` on the Branch SDKs.
 
-Here's a sample snippet showing this. **NOTE** you must set the $adobe_visitor_id before calling *initSession*. You must also initialize the Adobe SDK before setting the request metadata in the Branch SDK.
+There are three possible identities you can track via this integration. Please verify which ID you use, and send that. For example, if your Adobe integration uses Marketing Cloud Visitor ID, retrieve it from the Adobe SDK, and pass in a key value pair, with the key being *$marketing_cloud_visitor_id*. The value would be the value retrieved through the Adobe SDK.
 
-If you have a custom ID instead of the trackingIdentifier, simply pass through that custom ID from the Config object Adobe's SDK provides. This could be something like the visitor marketing cloud ID.
+1. Marketing Cloud Visitor ID - *$marketing_cloud_visitor_id*
+2. Analytics Visitor ID - *$adobe_visitor_id*
+3. Analytics Custom Visitor ID - *$analytics_visitor_id*
+
+Here's a sample snippet showing this. **NOTE** you must set the correct key before calling *initSession*. You must also initialize the Adobe SDK before setting the request metadata in the Branch SDK.
 
 **iOS**
 
