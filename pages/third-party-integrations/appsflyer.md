@@ -69,13 +69,17 @@ For Android, this will be your package name registered on AppsFlyer. If your pac
 
 ## What Branch Sends to AppsFlyer
 
-Branch sends the following values from Branch link data:
+Branch Analytics Tag | AppsFlyer Data Placeholder Tag
+--- | ---
+Campaign | Maps to _AppsFlyer Campaign_, `c`
+Channel | Maps to _AppsFlyer Channel_, `af_channel`
 
-- Campaign ("March-2016-Facebook")
-- Channel ("Tapjoy Campaign 2017")
-- Feature ("Marketing")
+The default Media Source will appear as "branch_int" (mandated by AppsFlyer and cannot be changed).
 
-If you create a marketing link and specify analytics, the users driven to your app by this link will appear with analytics information in AppsFlyer.
+You can also append additional [AppsFlyer Parameters in this format](https://support.appsflyer.com/hc/en-us/articles/207447163-AppsFlyer-Tracking-Link-Structure-and-Parameters) in link data or as query parameters.
+
+For example, if you wanted to add Ad and Ad Set values to your link, you can do the following:
+`https://mycompany.app.link/123245?af_ad=MyAd&af_adset=MyAdSet`
 
 {% elsif page.support %}
 
