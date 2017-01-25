@@ -295,6 +295,51 @@ We now support the use case where you can customize the appearance of a Journey 
 
 Note that not all template support all override keys. For example, the floating button does not support title, description or icon image url. If a template is to be rendered and the key you've specified does not exist, we'll simply ignore it while rendering the template. 
 
+## Clientside Javascript Journeys controls
+
+There are a number of clientside APIs to help you build quality user experiences. See below:
+
+### Use Javascript to block a Journey from showing
+
+You can prevent Journeys from showing on a certain page by inserting `no_journeys` with the value of `true` into the options during initialization.
+
+{% highlight javascript %}
+<script type="text/javascript">
+// load the Branch SDK file
+branch.init('BRANCH_KEY', 
+    {
+      'no_journeys': true
+    }
+);
+</script>
+{% endhighlight %}
+
+### Listen to Journeys lifecycle events
+
+You can easily listen to Journeys lifecycle events by registering listener functions like so:
+
+{% highlight javascript %}
+
+var listener = function(event) { console.log(event); }
+
+// Specify an event to listen for
+branch.addListener('willShowJourney', listener);
+
+// Listen for all events
+branch.addListener(listener);
+
+{% endhighlight %}
+
+| Listener Name | Description |
+| --- | --- |
+| willShowJourney | Journey is about to be shown. |
+| didShowJourney | Journey's entrance animation has completed and it is being shown to the user. |
+| willNotShowJourney | Journey will not be shown and no other events will be emitted. |
+| didClickJourneyCTA | User clicked on Journey's CTA button. |
+| didClickJourneyClose | User clicked on Journey's close button. |
+| willCloseJourney | Journey close animation has started. |
+| didCloseJourney | Journey's close animation has completed and it is no longer visible to the user. |
+
 ## Journeys text localization
 
 Journeys now has an entire localization framework. Due to the complexity of this offering, we're not exposing it directly to partners. Please reach out to your account manager or integrations@branch.io to receive access to this functionality.
