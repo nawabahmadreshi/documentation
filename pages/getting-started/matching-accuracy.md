@@ -164,6 +164,10 @@ Branch.getInstance().resumeInit()
 
 Similar to iOS, 100% match is a bit of a misnomer since this method will only work if a user clicks via the Chrome browser. Other browsers such as Facebook and Twitter will not benefit from this method. We haven't pull the stats on usage like we do on iOS, but we'd assume it's similar to Safari (50-75% of clicks).
 
+### Enable cookie matching
+
+Add `compile 'com.android.support:customtabs:23.3.0'` to the dependencies section of your `build.gradle` file.
+
 ### Set the domain for cookie matching
 
 Because our Chrome Tabs matching method works based on comparing the cookie Branch set on a click to the cookie set with the Chrome Tab, it's critical that the domain match the link being clicked. By default, we assume that your domain is on the `app.link` domain. If you want to override it, you must set the domain you want via a call to Branch like so:
