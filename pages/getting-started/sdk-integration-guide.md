@@ -906,7 +906,7 @@ var app = {
   },
   bindEvents: function() {
     document.addEventListener('deviceready', this.onDeviceReady, false);
-    document.addEventListener('resume', this.onDeviceReady, false);
+    document.addEventListener('resume', this.onDeviceResume, false);
   },
   onDeviceReady: function() {
     app.branchInit();
