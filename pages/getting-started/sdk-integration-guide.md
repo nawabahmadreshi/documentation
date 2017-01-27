@@ -38,6 +38,18 @@ Before enabling the Branch SDK on mParticle, you must first [sign up for an mPar
 {% endprerequisite %}
 {% endif %}
 
+{% if page.react %}
+
+{% prerequisite %}
+`react-native-branch` 1.0 requires `react-native` 0.40. If you require `react-native` < 0.40, please limit
+`react-native-branch` to `0.9.*`. There are some differences in the installation and integration process
+between 0.9 and 1.0, mentioned here. Please see
+[the GitHub repository](https://github.com/BranchMetrics/react-native-branch-deep-linking#branch-metrics-react-native-sdk-reference)
+for full details and more options.
+{% endprerequisite %}
+
+{% endif %}
+
 ## Get the SDK files
 
 <!--- iOS -->
@@ -239,15 +251,21 @@ We've recently found that there is an issue involving the `WRITE_EXTERNAL_STORAG
 ### iOS project installation
 
 1. Add `pod "Branch"` as a dependency in your ios/Podfile. ([example](https://github.com/BranchMetrics/react-native-branch-deep-linking/blob/master/docs/installation.md#cocoa-pods))
-1. Use CocoaPods to install dependencies: `pod install`.
+1. Use CocoaPods to install dependencies: `pod install --repo-update`.
 
 {% protip %}
-See [this page](https://facebook.github.io/react-native/docs/linking-libraries-ios.html#manual-linking){:target="_blank"} for detailed documentation on importing iOS libraries into a React Native project.
+As of CocoaPods v 1.0, `pod install` no longer automatically updates the local pod repository. Use the `--repo-update`
+argument to `pod install` in order to make sure you install the latest SDK.
+{% endprotip %}
+{% protip %}
+See
+[the GitHub repository](https://github.com/BranchMetrics/react-native-branch-deep-linking#branch-metrics-react-native-sdk-reference)
+for details on integrating dependencies, including other methods of adding the Branch SDK for iOS, such as Carthage.
 {% endprotip %}
 
 ### Android project installation
 
-Sometimes `rnpm` link creates incorrect relative paths, leading to compilation errors. Ensure that the following files look as described and all linked paths are correct:
+Sometimes `react-native link` creates incorrect relative paths, leading to compilation errors. Ensure that the following files look as described and all linked paths are correct:
 
 #### android/settings.gradle
 
@@ -1109,7 +1127,8 @@ $.onInitSessionFinished = function(data) {
 ### iOS initialization
 
 1. In Xcode, open your **App.Delegate.m** file.
-2. Add `#import <react-native-branch/RNBranch.h>` at the top to import the Branch framework.
+2. Add `#import <react-native-branch/RNBranch.h>` at the top to import the Branch framework. (If you are using
+  `react-native-branch` 0.9, use `#import "RNBRanch.h"` instead.)
 3. Find the line beginning with:
 
 {% highlight objc %}
