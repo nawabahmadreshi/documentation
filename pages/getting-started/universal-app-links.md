@@ -112,7 +112,7 @@ If the **Default domain name** box shows the legacy `bnc.lt` domain, you should 
 {% endcaution %}
 
 {% protip title="Using a custom domain or subdomain?" %}
-If you use a [custom domain or subdomain for your Branch links]({{base.url}}/getting-started/link-domain-subdomain/guide/#setting-a-custom-link-domain), you should also add an entry for `applinks:[mycustomdomainorsubdomain]`.
+If you use a [custom domain or subdomain for your Branch links]({{base.url}}/getting-started/link-domain-subdomain/guide/#setting-a-custom-link-domain), you should instead add entries for `applinks:[mycustomdomainorsubdomain]` and `XXXX-alternate.app.link`. If you're unsure of your Branch-assigned app.link subdomain, contact integrations@branch.io, and we can provide it.
 {% endprotip %}
 
 {% endif %}
