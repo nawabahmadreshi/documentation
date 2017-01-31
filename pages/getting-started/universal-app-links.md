@@ -501,7 +501,7 @@ After completing this guide and installing a new build of your app on your testi
 
 1. [Create a new Marketing Link](https://dashboard.branch.io/#/marketing/new) on the Branch dashboard. Leave all configuration items at their default options.
 1. Open this link on your testing device.
-1. If successful, your app should launch immediately without routing through the web browser or showing an **Open With...** dialog.
+1. If successful, your app should launch immediately without routing through the web browser, showing an **Open With...** dialog.
 
 {% endif %}
 
