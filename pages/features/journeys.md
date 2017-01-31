@@ -325,9 +325,9 @@ branch.closeJourney(function(err) { console.log(err); });
 
 {% endhighlight %}
 
-### Trigger a Journey by Firing an Event
+### Trigger a Journey to Show by Firing an Event
 
-If you block or programatically close a Journey via the calls above, then you can trigger a Journey to show by firing the following event:
+If you block or programatically close a Journey via one the calls above, then you can trigger a Journey to show by firing the following event:
 
 {% highlight javascript %}
 branch.track('pageview');
