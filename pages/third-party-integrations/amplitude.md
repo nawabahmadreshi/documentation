@@ -12,6 +12,7 @@ sections:
 - overview
 - guide
 - advanced
+- support
 ---
 
 {% if page.overview %}
@@ -56,11 +57,11 @@ Branch events are similar to Amplitude events in that they can be used in your e
 
 ## Retrieve your Amplitude API Key
 
-For the basic, codeless integration: find your Amplitude API Key and enter it into the Branch Dashboard.
+Find your Amplitude Project Key and enter it into the Branch Dashboard.
 
-1. Navigate to [https://amplitude.com/settings](https://amplitude.com/settings) and log in.
-1. On the Settings page you should see your app(s), with accompanying API Key.
-1. Copy the API Key of whichever app you’re going to use with Branch. Here’s an example: {% image src="/img/pages/third-party-integrations/amplitude/amplitude-api-key.png" half center alt='Example Ad' %}
+1. Log in to your [Amplitude account](https://analytics.amplitude.com/){:target="_blank"}  and navigate to Settings by clicking your username in the top right hand corner.{% image src="/img/pages/third-party-integrations/amplitude/amplitude-settings.png" half center alt='Amplitude Settings' %}
+1. In settings, select "Projects" from the left hand navigation.{% image src="/img/pages/third-party-integrations/amplitude/amplitude-settings-projects.png" 3-quarters center alt='Amplitude Settings - Projects' %}
+1. Copy the Project Key of whichever app you’re going to use with Branch. Here’s an example: {% image src="/img/pages/third-party-integrations/amplitude/amplitude-project-key.png" 3-quarters center alt='Example Project Key' %}
 
 
 ## Configure the Branch Dashboard
@@ -68,12 +69,12 @@ For the basic, codeless integration: find your Amplitude API Key and enter it in
 1. On the Branch Dashboard (dashboard.branch.io), navigate to the [Integrations page](https://dashboard.branch.io/integrations).
 1. Locate Amplitude and choose **Enable**.
   * If you have not yet entered billing information, please do so now.
-1. Enter your Amplitude API Key and hit **Save**
+1. Enter your Amplitude Project Key in the relevant app under "[iOS/Android] API key" and hit **Save**. If you use the same key for iOS and Android, it's fine to enter the same key twice.
 
 {% image src="/img/pages/third-party-integrations/amplitude/amplitude-marketplace.png" half center alt='Example Ad' %}
 
 {% caution title="Please test your integration!" %}
-Branch is not responsible for inaccurate API keys.
+Branch is not responsible for inaccurate API keys. Please test your integration by following the [testing instructions in our Support section](/third-party-integrations/amplitude/support/#testing-your-amplitude-integration).
 {% endcaution %}
 
 
@@ -128,5 +129,16 @@ You can use the following code to let Branch know what device_id and user_id sho
 Branch.getInstance().setRequestMetadata("$amplitude_device_id", "12345");
 Branch.getInstance().setRequestMetadata("$amplitude_user_id", "user-12345");
 {% endhighlight %}
+
+{% elsif page.support %}
+
+## Testing your Amplitude integration
+
+The simplest way to test your integration is working end to end is to open your app **from a Branch link** then verify the data appears in Amplitude. After doing this, you will know how you to test more advanced scenarios. 
+
+1. Create a Branch marketing link at [https://dashboard.branch.io/marketing](https://dashboard.branch.io/marketing){:target="blank"}.
+1. Click that Branch link to open your app. 
+1. In your Branch dashboard, verify you see the open event show as a "referred session" with a "session referring link URL" in your Branch dashboard under "Liveview > Events" {% image src="/img/pages/third-party-integrations/amplitude/branch-amplitude-liveview.png" 3-quarters center alt='Branch Liveview' %}
+1. Go to your Amplitude dashboard and click on "User Activity" and look at the "Real-time activity" section. You should see events with `[Branch]` prepended. There can sometimes be a delay in events appearing, so check back 30 minutes after testing.  {% image src="/img/pages/third-party-integrations/amplitude/amplitude-user-activity.png" 3-quarters center alt='Amplitude User Activity' %}
 
 {% endif %}
