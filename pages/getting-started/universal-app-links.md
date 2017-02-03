@@ -252,10 +252,9 @@ Open your **AppDelegate.m** file and add the following method (if you completed 
 Open your **AppDelegate.swift** file and add the following method (if you completed the [SDK Integration Guide]({{base.url}}/getting-started/sdk-integration-guide), this is likely already present).
 
 {% highlight swift %}
-func application(application: UIApplication, continueUserActivity userActivity: NSUserActivity, restorationHandler: ([AnyObject]?) -> Void) -> Bool {
+func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
     // pass the url to the handle deep link call
-
-    return Branch.getInstance().continueUserActivity(userActivity)
+    return Branch.getInstance().continue(userActivity);
 }
 {% endhighlight %}
 {% endtab %}
