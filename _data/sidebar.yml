@@ -78,7 +78,6 @@
     - title: Third Party Tools
       children:
         - apptimize
-        - referral-saasquatch
         - ad-network-analytics
     - title: Fabric
       children:
