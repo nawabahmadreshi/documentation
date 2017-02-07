@@ -376,7 +376,11 @@ Apple requires that the file is hosted on a “secure” domain. To qualify as s
 
 {% image src="/img/pages/third-party-integrations/responsys/deep-linked-email-universal-links.png" center full alt='Deep Linked Email Universal Links' %}
 
-## Coming soon: Don’t open the app
-In some cases you may have content on web that isn’t in the app - for example, a temporary Mother’s Day promotion or an unsubscribe button. In this case, ideally you would be able to specify in the email that that link should not open the app. At the moment, the app will open, and the customers will then be taken to a browser. Oracle Responsys and Branch are working together to provide a solution where the customers will never enter the app if the content doesn't live in the app. That feature is scheduled for release in September 2016.
+## Don’t open the app
+In some cases you may have content on web that isn’t in the app - for example, a temporary Mother’s Day promotion or an unsubscribe button. You can designate links to only open on web if you use the Responsys Link Table feature. There are three URL fields in the link table when creating a new link: `LINK_URL`, `IOS_LINK_URL`, and `ANDROID_LINK_URL`. If you only enter the link in the `LINK_URL` field, the path of the final click-wrapped url will begin with `/pub/cc`, whereas if you input an `IOS_LINK_URL`, then the path of the final click-wrapped url will begin with `pub/acc`. You should set up your AASA file to whitelist only the path `/pub/acc*` in order to not launch the app from web-only links.
+
+{% image src="/img/pages/third-party-integrations/responsys/branch_responsys_webonly.png" center full alt='Branch Responsys Web-Only' %}
+
+{% image src="/img/pages/third-party-integrations/responsys/branch_responsys_deeplink.png" center full alt='Branch Responsys Deep-Link' %}
 
 {% endif %}
