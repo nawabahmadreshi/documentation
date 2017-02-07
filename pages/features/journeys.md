@@ -82,7 +82,7 @@ Also, if the user has the app installed on their phone, we can try to open the a
 
 {% highlight javascript %}
 branch.setBranchViewData({
-    open_app:true
+    open_app: true
 });
 {% endhighlight %}
 {% endprotip %}
