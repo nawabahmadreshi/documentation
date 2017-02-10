@@ -143,4 +143,23 @@ You can use our identifier when indexing to perform advanced customizations of t
 }];
 {% endhighlight %}
 
+## Indexing content at scale
+
+If the goal is to simply index the content of the app without creating a `BranchUniversalObject` or if you want index content at scale then we recommend using the following method:
+
+{% highlight objc %}
+
+BranchCSSearchableItemAttributeSet *set = [[BranchCSSearchableItemAttributeSet alloc] init];
+set.title = @"My Content Title";
+set.contentDescription = @"My Content Description";
+set.params = @{@"property1" : @"blue", @"property2" : @"red"};
+set.keywords = [NSSet setWithArray:@["array", "of", "keywords"]];
+set.thumbnailURL = @"https://example.com/mycontent-12345.png";
+    
+[set indexWithCallback:^(NSString * _Nullable url, NSString * _Nullable spotlightIdentifier, NSError * _Nullable error) {
+        NSLog(@"url %@, spotlightIdentifier %@, error %@ ", url, spotlightIdentifier, error);
+}];
+
+{% endhighlight %}
+
 {% endif %}

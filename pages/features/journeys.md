@@ -76,6 +76,17 @@ branch.setBranchViewData({
 {% endhighlight %}
 {% endprotip %}
 
+{% protip %}
+
+Also, if the user has the app installed on their phone, we can try to open the app automaticaly and deeplink them.
+
+{% highlight javascript %}
+branch.setBranchViewData({
+    open_app: true
+});
+{% endhighlight %}
+{% endprotip %}
+
 **Note:** You should [integrate the Branch SDK]({{base.url}}/getting-started/sdk-integration-guide) into your app and [configure deep link routing]({{base.url}}/getting-started/deep-link-routing) for deferred deep linking and attribution.
 
 ## Create Journey banner or interstitial
