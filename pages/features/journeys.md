@@ -325,6 +325,27 @@ branch.init('BRANCH_KEY',
 </script>
 {% endhighlight %}
 
+### Closing a Journey Programmatically
+
+Journeys include a close button the user can click, but you may want to close the Journey with a timeout, or via some other user interaction with your web app.
+In this case, closing the Journey is very simple by calling:
+
+{% highlight javascript %}
+
+branch.closeJourney(function(err) { console.log(err); });
+
+{% endhighlight %}
+
+### Trigger a Journey to Show by Firing an Event
+
+If you block or programatically close a Journey via one the calls above, then you can trigger a Journey to show by firing the following event:
+
+{% highlight javascript %}
+branch.track('pageview');
+{% endhighlight %}
+
+**Note:** If a user has closed a Journey in the past, then firing the aforementioned event will not override a user's preference.
+
 ### Listen to Journeys lifecycle events
 
 You can easily listen to Journeys lifecycle events by registering listener functions like so:
