@@ -209,41 +209,6 @@ To enable Universal Links on your click tracking domain, you'll need to add the 
 Follow [these instructions](/getting-started/universal-app-links/guide/ios/) for more details on enabling Universal Links in the Branch dashboard and in Xcode.
 {% endprotip %}
 
-### Handle links for web-only content
-
-If you have links to content that exists only on web, and not in the app (for example, a temporary marketing webpage that isn't in the app) then this code snippet will ensure all links that have not had the deep linking script applied will open in a browser.
-
-You should add this code snippet inside the `deepLinkHandler` code block in `application:didFinishLaunchingWithOptions:`. Note that this uses query `open_web_browser=true`, but you can choose whatever you like. This should match the web URL you enter in the email.
-
-{% tabs %}
-{% tab objective-c %}
-{% highlight objc %}
-if (params[@"+non_branch_link"] && [params[@"+from_email_ctd"] boolValue]) {
-    NSURL *url = [NSURL URLWithString:params[@"+non_branch_link"]];
-    if (url) {
-        [application openURL:url];
-        // check to make sure your existing deep linking logic, if any, is not executed, perhaps by returning early
-    }
-}
-{% endhighlight %}
-{% endtab %}
-
-{% tab swift %}
-{% highlight swift %}
-if let nonBranchLink = params["+non_branch_link"] as? String, let fromEmailCtd = params["+from_email_ctd"] as? Bool {
-    if fromEmailCtd, let url : URL = URL(string: nonBranchLink) {
-        application.openURL(url)
-        // check to make sure your existing deep linking logic, if any, is not executed, perhaps by returning early
-    }
-}
-{% endhighlight %}
-{% endtab %}
-{% endtabs %}
-
-{% protip title="Do not open the app" %}
-In a future release (scheduled for September) customers will have the ability to choose not to open the app at all rather than open the app and launch a browser.
-{% endprotip %}
-
 ## Validate and send emails
 
 {% image src="/img/pages/third-party-integrations/responsys/validation.png" center full alt='Click tracking domain' %}
@@ -307,6 +272,14 @@ This latter example pulls from a Link Table. In the link table, set the `IOS Lin
 {% endexample %}
 
 {% image src="/img/pages/third-party-integrations/responsys/deep-linked-email-template.png" center full alt='Deep Linked Email Responsys Example' %}
+
+### Handle links for web-only content
+
+In some cases you may have content on web that isn’t in the app - for example, a temporary Mother’s Day promotion or an unsubscribe button. You can designate links to only open on web if you use the Responsys Link Table feature. There are three URL fields in the link table when creating a new link: `LINK_URL`, `IOS_LINK_URL`, and `ANDROID_LINK_URL`. If you only enter the link in the `LINK_URL` field, the path of the final click-wrapped url will begin with `/pub/cc`, whereas if you input an `IOS_LINK_URL`, then the path of the final click-wrapped url will begin with `pub/acc`. You should set up your AASA file to whitelist only the path `/pub/acc*` in order to not launch the app from web-only links.
+
+{% image src="/img/pages/third-party-integrations/responsys/branch_responsys_webonly.png" center full alt='Branch Responsys Web-Only' %}
+
+{% image src="/img/pages/third-party-integrations/responsys/branch_responsys_deeplink.png" center full alt='Branch Responsys Deep-Link' %}
 
 {% elsif page.support %}
 
@@ -375,8 +348,5 @@ To solve this, Responsys will host the AASA file on your click tracking domain. 
 Apple requires that the file is hosted on a “secure” domain. To qualify as secure, the domain must have a website security certificate. Branch will provide the file to Responsys, but you must provide the security certificate to the Responsys. You probably did this when you first set up your account with Responsys, but your CSM can confirm.
 
 {% image src="/img/pages/third-party-integrations/responsys/deep-linked-email-universal-links.png" center full alt='Deep Linked Email Universal Links' %}
-
-## Coming soon: Don’t open the app
-In some cases you may have content on web that isn’t in the app - for example, a temporary Mother’s Day promotion or an unsubscribe button. In this case, ideally you would be able to specify in the email that that link should not open the app. At the moment, the app will open, and the customers will then be taken to a browser. Oracle Responsys and Branch are working together to provide a solution where the customers will never enter the app if the content doesn't live in the app. That feature is scheduled for release in September 2016.
 
 {% endif %}
