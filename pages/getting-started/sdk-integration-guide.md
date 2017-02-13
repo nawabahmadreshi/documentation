@@ -1175,17 +1175,11 @@ public class MainActivity extends ReactActivity {
         return "base";
     }
 
-    // Override onStart, onStop, onNewIntent:
+    // Override onStart, onNewIntent:
     @Override
     protected void onStart() {
         super.onStart();
         RNBranchModule.initSession(this.getIntent().getData(), this);
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        RNBranchModule.onStop();
     }
 
     @Override
