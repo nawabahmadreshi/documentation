@@ -1,5 +1,19 @@
 ---
 
+- title: Basic Setup
+  directory: basic-setup
+  children:
+    - before-getting-started
+    - setup-dashboard
+    - setup-mobile-sdk
+    - setup-web-sdk
+    - testing
+- title: Next Steps
+  directory: next-steps
+  children:
+    - journeys
+    - email
+    # - analytics-connections
 - title: Getting Started
   directory: getting-started
   children:
@@ -56,13 +70,13 @@
 - title: Integrations
   directory: third-party-integrations
   children:
-    - title: Deep Linked Emails
-      children:
-        - responsys
-        - salesforce
-        - sendgrid
-        - sailthru
-        - appboy-with-sendgrid
+    # - title: Deep Linked Emails
+    #   children:
+    #     - responsys
+    #     - salesforce
+    #     - sendgrid
+    #     - sailthru
+    #     - appboy-with-sendgrid
     - title: Data Integrations
       children:
         - adobe-analytics
