@@ -72,7 +72,7 @@ Use analytics labels to help _organize your data_. Track updates, run A/B tests 
 | --- | --- | ---
 | alias | Specify a link alias in place of the standard encoded short URL (e.g., `[branchsubdomain]/youralias` or `yourdomain.co/youralias`). Link aliases are unique, immutable objects that cannot be deleted. **Aliases on the legacy `bnc.lt` domain are incompatible with [Universal Links]({{base.url}}/getting-started/universal-app-links) and [Spotlight]({{base.url}}/features/spotlight-indexing)**
 | duration | *(Deprecated. Use `$match_duration`)* Lets you control the fingerprinting match timeout (the time that a click will wait for an app open to match) also known as attribution window. Specified in seconds | `7200`
-| type | *(Advanced)* Set to `1` to limit deep linking behavior of the generated link to a single use. Set type to `2` to make link show up under [Marketing page](https://dashboard.branch.io/#/marketing) in the dashboard | `0`
+| type | *(Advanced)* Set to `1` to limit deep linking behavior of the generated link to a single use. Set type to `2` to make the link show up under [Marketing page](https://dashboard.branch.io/#/marketing) in the dashboard | `0`
 
 {% ingredient branchsubdomain %}{% endingredient %}
 
@@ -167,6 +167,7 @@ Use these keys to control how URI scheme deep linking functions when opening you
 | $android_redirect_timeout | Control the timeout that the clientside JS waits after trying to open up the app before redirecting to the Play Store. Specified in milliseconds | `750`
 | $one_time_use | Set to 'true' to limit deep linking behavior of the generated link to a single use. Can also be set using `type` | `false`
 | $custom_sms_text | Text for SMS link sent for desktop clicks to this link. Must contain `{% raw %}{{ link }}{% endraw %}` | Value of **Text me the app page** in [Settings](https://dashboard.branch.io/settings)
+| $marketing_title | Sets the Marketing Title for the deep link in the [Marketing page](https://dashboard.branch.io/marketing) of the dashboard | *null*
 
 #### Triggering links from within an iFrame
 
