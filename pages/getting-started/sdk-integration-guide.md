@@ -959,11 +959,21 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       StatusBar.styleDefault();
     }
 
-    // Branch initialization
-    Branch.initSession(function(data) {
-      // read deep link data on click
-      alert('Deep Link Data: ' + JSON.stringify(data));
+    // Branch
+    $ionicPlatform.on('deviceready', function(){
+      branchInit();
     });
+    $ionicPlatform.on('resume', function(){
+      branchInit();
+    });
+
+    function branchInit() {
+      // Branch initialization
+      Branch.initSession(function(data) {
+        // read deep link data on click
+        alert('Deep Link Data: ' + JSON.stringify(data));
+      });
+    }
   });
 })
 // ...
@@ -975,6 +985,7 @@ __Ionic 2__
 import { Component } from '@angular/core';
 import { Platform } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
+
 import { TabsPage } from '../pages/tabs/tabs';
 
 // Branch import
@@ -990,13 +1001,22 @@ export class MyApp {
     platform.ready().then(() => {
       StatusBar.styleDefault();
       Splashscreen.hide();
+      branchInit();
+    });
 
-      // Branch initialization
-      Branch.initSession(function(data) {
+    platform.resume.subscribe(() => {
+      branchInit();
+    });
+
+    // Branch initialization
+    const branchInit = () => {
+      // only on devices
+      if (platform.is('core')) { return }
+      Branch.initSession(data => {
         // read deep link data on click
         alert('Deep Link Data: ' + JSON.stringify(data));
       });
-    });
+    }
   }
 }
 {% endhighlight %}
