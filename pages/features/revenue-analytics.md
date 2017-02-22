@@ -14,10 +14,12 @@ platforms:
 
 {% if page.overview %}
 
-Branch allows you to relate revenue back to Branch links. This means that you can see which campaigns, channels, features, and efforts are driving the most revenue. From there, you can decide how to allocate engineering resources and spend to most effectively achieve conversions.
+Branch allows you to easily track purchases and revenue in the Branch dashboard. With Branch links in every channel, it’s easy to compare the quality of traffic coming in from your marketing efforts. 
 
-TODO: Screenshot
+This week you can see commerce data in Source Analytics and Marketing Links pages, allowing you to determine which campaigns, channels, features and links are resulting in the most revenue. From there, you can decide how to allocate resources and spend to most effectively achieve conversions.
 
+{% image src="/img/pages/features/revenue-analytics/revenue-marketing-links.png" full center %}
+**Viewing revenue driven by individual marketing links ([go to Marketing Links Page](https://dashboard.branch.io/marketing)).**
 
 {% getstarted %}{% endgetstarted %}
 
@@ -32,7 +34,7 @@ TODO: Screenshot
 
 ## 1. Tracking purchase events in the SDK
 
-The first step to powerful, granular revenue tracking is ensuring that SDKs track purchase events. We have dedicated SDK methods for tracking purchases with revenue. Be sure to include `revenue` anytime you track a purchase event. All other fields are optional but may be used in the future to provide additional insights.
+The first step to powerful, granular revenue tracking is ensuring that SDKs track purchase events. (We are deprecating old SDK methods for tracking purchases with revenue.) Be sure to include the field `revenue` anytime you track a purchase. All other fields are optional but may be used in the future to provide additional insights.
 
 {% if page.ios %}
 
@@ -85,17 +87,29 @@ For a more complete example that demonstrates what purchase- and product-related
 
 ## 2. Testing
 
-TODO
+The best way to test is to trigger a purchase event (using the code snippet above) and then to visit the [Branch Dashboard's Live View page](https://dashboard.branch.io/liveview/commerce_events). Here is a screenshot of what commerce events look like:
 
-- ensure purchase events show up in Live View (need screenshot)
-- generate referred purchases using a Marketing Link
+{% image src="/img/pages/features/revenue-analytics/revenue-live-view.png" full center %}
+
+To test end to end, first click on a Branch link, such as a marketing link, then trigger a purchase. Then in Live View you can select `Columns`, check `Link Data`, and ensure the data is present for the link you clicked prior to purchase.
+
 
 ## 3. Viewing Revenue Analytics in the Dashboard
 
-TODO
+Right now, revenue data is visible in two places:
 
-- Source Analytics (need screenshot)
-- Marketing Links (need screenshot)
+- [Source Analytics](https://dashboard.branch.io/analytics/source)
+- [Marketing Links](https://dashboard.branch.io/marketing)
+
+On the [previous page](#overview) we showed you a screenshot of revenue on the Marketing Links page. Here's a quick look at how you can see revenue breakdowns on the Source Analytics page:
+
+TODO: Screenshot of Source Analytics
+
+## 4. Coming Soon: Journeys
+
+In the coming weeks you will be able to set up Journeys to target users with a purchase history (e.g. “include users who have past purchases amounting to greater than $50”). It will be as simple as adding a filter:
+
+{% image src="/img/pages/features/revenue-analytics/revenue-journeys.png" full center %}
 
 
 
