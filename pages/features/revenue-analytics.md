@@ -10,6 +10,7 @@ sections:
 platforms:
 - ios
 - android
+- web
 ---
 
 {% if page.overview %}
@@ -80,6 +81,18 @@ commerceEvent.setRevenue(1101.99);
 Branch.getInstance().sendCommerceEvent(commerceEvent, null, null);
 {% endhighlight %}
 
+{% elsif page.web %}
+
+Here is a fuller example of the `trackCommerceEvent()` call.
+
+{% highlight javascript %}
+var metadata =  { "foo": "bar" };
+var commerce_data = { "revenue": 50.0 };
+branch.trackCommerceEvent('purchase', commerce_data, metadata, function(err) {
+    if (err) { /* handle error */ }
+});
+{% endhighlight %}
+
 {% endif %}
 
 For a more complete example that demonstrates what purchase- and product-related information Branch can receive, please see the [Advanced](#advanced) section.
@@ -114,6 +127,10 @@ In the coming weeks you will be able to set up Journeys to target users with a p
 
 
 {% elsif page.advanced %}
+
+## Beta
+
+Revenue Analytics is still in beta. We are currently actively working on supporting non-USD revenue, as well as making commerce events available via webhooks. Internally, we have decided to add support for commerce data in sustainable ways, meaning new infrastructure in certain places. If you are not seeing commerce events somewhere that you believe you should be seeing them, first check Live View to make sure you are sending them, then [contact us](https://support.branch.io/support/tickets/new) and include `Revenue Analytics` in the subject.
 
 ## Full Example Code
 
@@ -215,8 +232,92 @@ try { jsonObject.put("Meta", "never meta dog I didn't like."); } catch ( JSONExc
 branch.sendCommerceEvent(commerceEvent, jsonObject, null);
 {% endhighlight %}
 
+{% elsif page.web %}
+
+Here is a fuller example of the `trackCommerceEvent()` call.
+
+{% highlight javascript %}
+var metadata =  { "foo": "bar" };
+var commerce_data = {
+    "revenue": 50.0,
+    "currency": "USD",
+    "transaction_id": "foo-transaction-id",
+    "shipping": 0.0,
+    "tax": 5.0,
+    "affiliation": "foo",
+    "products": [
+        { "sku": "foo-sku-1", "name": "foo-item-1", "price": 45.00, "quantity": 1, "brand": "foo-brand", "category": "Electronics", "variant": "foo-variant-1" },
+        { "sku": "foo-sku-2", "price": 2.50, "quantity": 2}
+    ],
+};
+
+branch.trackCommerceEvent('purchase', commerce_data, metadata, function(err) {
+    if (err) { /* handle error */ }
+});
+{% endhighlight %}
+
 {% endif %}
 
+[Below](#additional-values) is a description of the additional values present in this extended code snippet.
 
+## Additional Values 
+
+Here are some additional values you can send to Branch
+
+| value | description 
+| --- | ---
+| revenue | revenue from the transaction
+| currency | see [Currency](#currency) below
+| transaction_id | your id for a transaction *
+| shipping | shipping cost *
+| tax | tax collected *
+| coupon | coupon name *
+| affiliation | affiliation name or code *
+| product.sku | product sku or id *
+| product.name | human readable product name *
+| product.price | product price (per unit) *
+| product.quantity | units purchased *
+| product.brand | human readable brand *
+| product.category | see [Product Category](#product-category) below *
+| product.variant | human readable variant *
+
+(*) optional, and not used at this time, but will potentially be used in the future
+
+## Currency
+
+If you do not specify a currency, we assume that `USD` is being used. Otherwise we convert to `USD` using a current exchange rate (no more than 24 hours old). This allows you to send revenue data to Branch in a wide range of currencies and still be able to see analytics for the totals.
+
+Please use the three letter codes specified by ISO 4217. As of this page being published, there were 179 values, which can be found on the [Wikipedia page for ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+
+Note: currency conversion is still being finalized. If you wish to track revenue in a currency other than USD, please [contact us](https://support.branch.io/support/tickets/new) with the title `Currency Conversion Support (Attn: Derrick)`. 
+
+
+## Product Category
+
+Here is a list of acceptable product category values, based off a [taxonomy maintained by Google](https://www.google.com/basepages/producttype/taxonomy-with-ids.en-US.txt):
+
+- Animals & Pet Supplies
+- Apparel & Accessories
+- Arts & Entertainment
+- Baby & Toddler
+- Business & Industrial
+- Cameras & Optics
+- Electronics
+- Food, Beverages & Tobacco
+- Furniture
+- Hardware
+- Health & Beauty
+- Home & Garden
+- Luggage & Bags
+- Mature
+- Media
+- Office Supplies
+- Religious & Ceremonial
+- Software
+- Sporting Goods
+- Toys & Games
+- Vehicles & Parts
+
+If you specify a value that does not exactly match one of the values above, we will ignore it and it will not be stored for future use.
 
 {% endif %}

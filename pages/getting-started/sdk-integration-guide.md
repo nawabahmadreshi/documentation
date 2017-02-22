@@ -1302,12 +1302,12 @@ Track custom events in your app with a simple call to the Branch SDK:
 {% tabs %}
 {% tab objective-c %}
 {% highlight objc %}
-[[Branch getInstance] userCompletedAction:BNCAddToCartEvent];
+[[Branch getInstance] userCompletedAction:"signup"];
 {% endhighlight %}
 {% endtab %}
 {% tab swift %}
 {% highlight swift %}
-Branch.getInstance().userCompletedAction(BNCAddToCartEvent)
+Branch.getInstance().userCompletedAction("signup")
 {% endhighlight %}
 {% endtab %}
 {% endtabs %}
@@ -1318,14 +1318,14 @@ Branch.getInstance().userCompletedAction(BNCAddToCartEvent)
 
 {% if page.android %}
 {% highlight java %}
-Branch.getInstance(getApplicationContext()).userCompletedAction(BranchEvent.SHARE_STARTED);
+Branch.getInstance(getApplicationContext()).userCompletedAction("signup");
 {% endhighlight %}
 {% endif %}
 <!--- /Android -->
 
 {% if page.cordova %}
 {% highlight js %}
-Branch.userCompletedAction("Custom Event");
+Branch.userCompletedAction("sign up");
 {% endhighlight %}
 {% endif %}
 
@@ -1337,7 +1337,7 @@ Branch.userCompletedAction("Custom Event");
 
 {% if page.unity %}
 {% highlight c# %}
-Branch.userCompletedAction("Share Started");
+Branch.userCompletedAction("signup");
 {% endhighlight %}
 {% endif %}
 
@@ -1349,21 +1349,18 @@ Currently not supported in the ANE
 
 {% if page.titanium %}
 {% highlight js %}
-branch.userCompletedAction("Share Started");
+branch.userCompletedAction("signup");
 {% endhighlight %}
 {% endif %}
 
 {% if page.react %}
 {% highlight js %}
-branch.userCompletedAction("Share Started");
+branch.userCompletedAction("signup");
 {% endhighlight %}
 {% endif %}
 
-{% if page.mparticle_ios %}
-{% highlight objc %}
-[[MParticle sharedInstance] logEvent:@"Share Started" eventType:MPEventTypeTransaction];
-{% endhighlight %}
-{% endif %}
+
+{% ingredient revenue-snippets %}{% endingredient %}
 
 For more information on tracking and configuring custom events, see the [user value attribution]({{base.url}}/getting-started/user-value-attribution){:target="_blank"} guide.
 
