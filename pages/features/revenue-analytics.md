@@ -114,9 +114,9 @@ Right now, revenue data is visible in two places:
 - [Source Analytics](https://dashboard.branch.io/analytics/source)
 - [Marketing Links](https://dashboard.branch.io/marketing)
 
-On the [previous page](#overview) we showed you a screenshot of revenue on the Marketing Links page. Here's a quick look at how you can see revenue breakdowns on the Source Analytics page:
+On the [previous page](/features/revenue-analytics/overview/) we showed you a screenshot of revenue on the Marketing Links page. Here's a quick look at how you can see revenue breakdowns on the Source Analytics page:
 
-TODO: Screenshot of Source Analytics
+{% image src="/img/pages/features/revenue-analytics/revenue-source-analytics.png" full center %}
 
 ## 4. Coming Soon: Journeys
 
