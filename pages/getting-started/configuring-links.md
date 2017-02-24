@@ -34,7 +34,6 @@ Conceptually, the data inside a Branch link follows this model:
         foo: 'bar',
         '$desktop_url': 'http://myappwebsite.com',
         '$ios_url': 'http://myappwebsite.com/ios',
-        '$ipad_url': 'http://myappwebsite.com/ipad',
         '$android_url': 'http://myappwebsite.com/android',
         '$og_app_id': '12345',
         '$og_title': 'My App',
@@ -91,7 +90,6 @@ The redirect destinations are completely customizable for every link that you cr
 | $fallback_url | Change the redirect endpoint for _all_ platforms - so you don't have to enable it by platform. Note that Branch will forward all robots to this URL, overriding any OG tags entered in the link. | System-wide Default URL (set in [Link Settings](https://dashboard.branch.io/#/settings/link))
 | **$desktop_url** | Change the redirect endpoint on desktops | Text-Me-The-App page (set in [Link Settings](https://dashboard.branch.io/#/settings/link))
 | $ios_url | Change the redirect endpoint for iOS | App Store page for your app (set in [Link Settings](https://dashboard.branch.io/#/settings/link))
-| $ipad_url | Change the redirect endpoint for iPads | `$ios_url` value
 | $android_url | Change the redirect endpoint for Android | Play Store page for your app (set in [Link Settings](https://dashboard.branch.io/#/settings/link))
 | **$windows_phone_url** | Change the redirect endpoint for Windows OS | Windows Phone default URL (set in [Link Settings](https://dashboard.branch.io/#/settings/link))
 | $blackberry_url | Change the redirect endpoint for Blackberry OS | BlackBerry default URL (set in [Link Settings](https://dashboard.branch.io/#/settings/link))
