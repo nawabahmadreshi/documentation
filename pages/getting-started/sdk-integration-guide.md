@@ -1553,7 +1553,7 @@ After integrating the Branch SDK, you need to let Apple know that you use the ID
 {% protip title="Why does Branch use the IDFA?" %}
 Branch uses the IDFA to identify users across our entire partner network, greatly increasing match accuracy rate. You can read more about this on the [Matching accuracy page]({{base.url}}/getting-started/matching-accuracy){:target="_blank"}.
 
-The only situation in which you do not need to perform these steps is if you installed the Branch framework manually (without using CocoaPods) and elected **not** to import `AdSupport.framework`
+You do not need to perform these steps if you installed the Branch framework manually and elected **not** to import `AdSupport.framework` or via Cocoapods and chose the Branch/without-IDFA subspec.
 {% endprotip %}
 
 {% endif %}
