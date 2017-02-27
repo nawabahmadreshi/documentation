@@ -33,7 +33,7 @@ This week you can see commerce data in Source Analytics and Marketing Links page
 
 {% endprerequisite %}
 
-## 1. Tracking purchase events in the SDK
+## Tracking purchase events in the SDK
 
 The first step to powerful, granular revenue tracking is ensuring that SDKs track purchase events. (We are deprecating old SDK methods for tracking purchases with revenue.) Be sure to include the field `revenue` anytime you track a purchase. All other fields are optional but may be used in the future to provide additional insights.
 
@@ -95,10 +95,10 @@ branch.trackCommerceEvent('purchase', commerce_data, metadata, function(err) {
 
 {% endif %}
 
-For a more complete example that demonstrates what purchase- and product-related information Branch can receive, please see the [Advanced](#advanced) section.
+For a more complete example that demonstrates what purchase- and product-related information Branch can receive, please see the [Advanced]({{base.url}}/features/revenue-analytics/advanced/) section.
 
 
-## 2. Testing
+## Testing
 
 The best way to test is to trigger a purchase event (using the code snippet above) and then to visit the [Branch Dashboard's Live View page](https://dashboard.branch.io/liveview/commerce_events). Here is a screenshot of what commerce events look like:
 
@@ -107,7 +107,7 @@ The best way to test is to trigger a purchase event (using the code snippet abov
 To test end to end, first click on a Branch link, such as a marketing link, then trigger a purchase. Then in Live View you can select `Columns`, check `Link Data`, and ensure the data is present for the link you clicked prior to purchase.
 
 
-## 3. Viewing Revenue Analytics in the Dashboard
+## Viewing Revenue Analytics in the Dashboard
 
 Right now, revenue data is visible in two places:
 
@@ -118,7 +118,7 @@ On the [previous page](/features/revenue-analytics/overview/) we showed you a sc
 
 {% image src="/img/pages/features/revenue-analytics/revenue-source-analytics.png" full center %}
 
-## 4. Coming Soon: Journeys
+## Coming Soon: Journeys
 
 In the coming weeks you will be able to set up Journeys to target users with a purchase history (e.g. “include users who have past purchases amounting to greater than $50”). It will be as simple as adding a filter:
 
@@ -130,7 +130,7 @@ In the coming weeks you will be able to set up Journeys to target users with a p
 
 ## Beta
 
-Revenue Analytics is still in beta. We are currently actively working on supporting non-USD revenue, as well as making commerce events available via webhooks. Internally, we have decided to add support for commerce data in sustainable ways, meaning new infrastructure in certain places. If you are not seeing commerce events somewhere that you believe you should be seeing them, first check Live View to make sure you are sending them, then [contact us](https://support.branch.io/support/tickets/new) and include `Revenue Analytics` in the subject.
+Revenue Analytics is still in beta. We are currently actively working on supporting non-USD revenue, as well as making commerce events available via webhooks. Internally, we have decided to add support for commerce data in sustainable ways, meaning new infrastructure in certain places. If you are not seeing commerce events somewhere that you believe you should be seeing them, first check [Live View](https://dashboard.branch.io/liveview/commerce_events) to make sure you are sending them, then [contact us](https://support.branch.io/support/tickets/new) and include `Revenue Analytics` in the subject.
 
 ## Full Example Code
 
