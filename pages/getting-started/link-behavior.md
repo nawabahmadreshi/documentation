@@ -81,8 +81,6 @@ The following assumes that you've correctly configured your [Branch link setting
 | Hangouts | Opens app via Chrome intent
 | Google+ | Opens app via Chrome intent
 
-(*) Chrome currently has a bug where they don't support Chrome intents when a link is pasted into the omnibar. Please upvote the following [issue](https://bugs.chromium.org/p/chromium/issues/detail?id=638672){:target="_blank"} on their support forums. 
-
 ### App - not - installed
 
 | App/Browser | Link Behavior
