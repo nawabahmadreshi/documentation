@@ -45,18 +45,11 @@ See your Branch organic acquisition campaigns alongside your AppMetrica data.
 
 To set up the integration you will need to create new trackers in the AppMetrica dashboard for Branch (separate tracker for iOS and Android). After creating the trackers you will need the **tracking URL** for the integration.
 
-1. To create a tracker navigate to the **Trackers** tab and press the **Create Tracker** button.
+1. To create a tracker navigate to the **Trackers** tab and press the **Create Tracker** button. {% image src="/img/pages/third-party-integrations/appmetrica/appmetrica-create-tracker.png" 3-quarters center %}
 
-{% image src="/img/pages/third-party-integrations/appmetrica/appmetrica-create-tracker.png" 3-quarters center %}
-
-1. Select "Branch" in Partner dropdown
-1. Select a **Destination URL**. If there are no active destination URL's created for this app press the **New destination URL** button and fill in a link to your website or app
-
-{% image src="/img/pages/third-party-integrations/appmetrica/appmetrica-destination-url.png" 3-quarters center %}
-
-1. Copy the **Tracking URL**
-
-{% image src="/img/pages/third-party-integrations/appmetrica/appmetrica-tracking-url.png" 3-quarters center %}
+1. Select "Branch" in **Partner** dropdown
+1. Select a **Destination URL**. If there are no active destination URL's created for this app press the **New destination URL** button and fill in a link to your website or app {% image src="/img/pages/third-party-integrations/appmetrica/appmetrica-destination-url.png" 3-quarters center %}
+1. Copy the **Tracking URL** {% image src="/img/pages/third-party-integrations/appmetrica/appmetrica-tracking-url.png" 3-quarters center %}
 
 ## Enable the AppMetrica card in your Branch dashboard
 
