@@ -458,6 +458,7 @@ If the **Default domain name** box shows the legacy `bnc.lt` domain, you should 
     <category android:name="android.intent.category.DEFAULT" />
     <category android:name="android.intent.category.BROWSABLE" />
     <data android:scheme="https" android:host="xxxx.app.link" />
+    <data android:scheme="https" android:host="xxxx-alternate.app.link" />
 </intent-filter>
 {% endhighlight %}
 
