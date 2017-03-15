@@ -10,6 +10,7 @@ hide_section_selector: true
 platforms:
 - ios
 - android
+- web
 - cordova
 - xamarin
 - unity
@@ -48,12 +49,18 @@ Branch.getInstance().userCompletedAction("Share Started")
 <!--- /iOS -->
 
 {% if page.android %}
-
 {% highlight java %}
 Branch.getInstance(getApplicationContext()).userCompletedAction("Share Started");
 {% endhighlight %}
 {% endif %}
 <!--- /Android -->
+
+{% if page.web %}
+{% highlight javascript %}
+branch.track("Share Started");
+{% endhighlight %}
+{% endif %}
+<!--- /Web -->
 
 {% if page.cordova %}
 {% highlight js %}
