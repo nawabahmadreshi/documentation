@@ -234,6 +234,20 @@ If you do not specify a primary OG tag when creating a link, Branch will perform
 | $twitter_player_width | Set the player's width in pixels
 | $twitter_player_height | Set the player's height in pixels
 
+### Custom Tags
+
+You may specify custom tags by adding the following parameter to your link data.
+
+| Key | Value
+| --- | ---
+| $custom_meta_tags | Valid stringified JSON dictionary of the tags' keys and values
+
+- Valid dictionary example: `"{\"twitter:player:stream\": \"https://branch.io\"}"`. This will result in the following meta tag
+    `<meta property="twitter:player:stream" content="https://branch.io" />`
+- If you create the link via the Dashboard, don't worry about stringifying the dictionary. It will be done automatically.
+- `apple_touch_icon` is a special key in the dictionary. If you set it, we will add a `<link rel="apple-touch-icon" href="<url>" />` tag to the scraped HTML page.
+This will allow you to show a custom icon for previews in iMessage, Safari Bookmarks, Slack, etc.
+
 ## Appending query parameters to links
 
 ### Branch parameters
