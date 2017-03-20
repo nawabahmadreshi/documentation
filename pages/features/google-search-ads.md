@@ -51,7 +51,7 @@ You can use this configuration section to specify custom link parameters that wi
 1. Expand **Ad URL options**. and place your Branch link from the first step in the **Tracking template** box. No need to add any extra parameters.
 
 {% protip %}
-If you are running **Search Install Ads** on **Android** only, you'll need to modify your Play Store URL. Simply append &referrer=google_search_install_referrer%3D<link-id> to the end of your Play Store URL, but be sure to replace <link-id> with the ID of the link created above. The Play Store URL should not have brackets, and would look like this: https://play.google.com/io.branch.branchster?referrer=google_search_install_referrer%3D123456789
+If you are running **Search Install Ads** on **Android** only, you'll need to modify your Play Store URL and be on v2.6.0 of the Branch Android SDK. Simply append &referrer=google_search_install_referrer%3D<link-id> to the end of your Play Store URL, but be sure to replace <link-id> with the ID of the link created above. The Play Store URL should not have brackets, and would look like this: https://play.google.com/io.branch.branchster?referrer=google_search_install_referrer%3D123456789
 {% endprotip %}
 
 {% image src="/img/pages/features/google-search-ads/link-configuration.png" half center alt='Example Ad' %}
