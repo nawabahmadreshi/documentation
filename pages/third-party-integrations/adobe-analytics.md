@@ -29,13 +29,13 @@ Once the Branch SDK is integrated into an app, Branch can detect which links are
 
 ## What events does Branch send?
 
-Branch will send *referred* **installs** and **opens**, as well as any **custom events** you track with Branch. Non-referred events, clicks, web session starts, and pageviews will be excluded. Branch also sends all the data that is attached to the link that drove the referred event. This will allow you to analyze which campaigns, channels, etc. are helping you acquire and engage users.
+Branch will send *referred* **installs** and **opens**, as well as any **custom events** you track with Branch. Non-referred events, clicks, web session starts, and pageviews will be excluded. Branch also sends all the analytics tags that are attached to the link that drove the referred event. This will allow you to analyze which campaigns, channels, etc. are helping you acquire and engage users.
 
 ## What does it look like?
 
 Branch events will appear on the Adobe Analytics dashboard through `Reports > Custom Conversion > Branch eVar`. Note, this will automatically appear once the Branch Data Connector is enabled through the Adobe Analytics dashboard.
 
-You'll have the flexibility to analyze data as needed in the Adobe Analytics platform, as the data Branch sends maps in Adobe Analytics to a top level eVar. This eVar contains campaign, channel, target, event name, and action property, which is your deep link data.
+You'll have the flexibility to analyze data as needed in the Adobe Analytics platform, as the data Branch sends maps in Adobe Analytics to a top level eVar. This eVar contains campaign, channel, target, event name, and action property, which are your analytics tags.
 
 {% image src="/img/pages/third-party-integrations/adobe-analytics/adobe-analytics-conversion.png" 3-quarters center %}
 
@@ -84,15 +84,15 @@ Map your Branch events to your chosen eVar. In the example below, it will be map
 
 #### Data Settings
 
-Branch has provided a default classification rule set for the Branch data that will be ingested. This maps Branch analytics data to Adobe classifications as follows. You can change this classification rule set if you would like to, but editing is not required. We also include all Branch link data so you can create a new rule that further segments your link data for advanced visibility. 
+Branch has provided a default classification rule set for the Branch data that will be ingested. This maps Branch analytics data to Adobe classifications as follows. You can change this classification rule set if you would like to, but editing is not required. We also include Branch tags so you can create a new rule that further segments your analytics data for advanced visibility. 
 
-Adobe Classification | Branch Data or Analytics Tag | Example
+Adobe Classification | Branch Analytics Tag | Example
 --- | ---
 Source | Channel | Our Website 
 Campaign | Campaign | Journeys Test Campaign
 Medium | Feature | Journeys
 Action | Branch Event Name | Install
-Action Property| Branch referring link data | foo=bar&productid=1234
+Action Property| Branch Tags | tag=bar&tag2=1234
 
 {% image src="/img/pages/third-party-integrations/adobe-analytics/data-settings.png" 3-quarters center %}
 
@@ -184,13 +184,15 @@ Branch.initSession(...);
 
 Branch sends the following values from Branch link data:
 
-- Campaign ("March-2016-Facebook")
-- Channel ("Facebook DPA")
-- Feature ("Marketing")
-- Name of Branch event ("Install")
-- Deep Link Data ("promo_code: "ABCDE")
+Adobe Classification | Branch Analytics Tag | Example
+--- | ---
+Source | Channel | Our Website 
+Campaign | Campaign | Journeys Test Campaign
+Medium | Feature | Journeys
+Action | Branch Event Name | Install
+Action Property| Branch Tags | tag=bar&tag2=1234
 
-If you create a marketing link and specify analytics and deep link data, it will send and appear in the Adobe Analytics reporting suite.
+If you create a marketing link and specify analytics, those analytics will appear in the Adobe Analytics reporting suite.
 
 {% elsif page.support %}
 
