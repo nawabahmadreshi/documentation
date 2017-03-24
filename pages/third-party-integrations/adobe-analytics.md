@@ -184,11 +184,13 @@ Branch.initSession(...);
 
 Branch sends the following values from Branch link data:
 
-- Campaign ("March-2016-Facebook")
-- Channel ("Facebook DPA")
-- Feature ("Marketing")
-- Name of Branch event ("Install")
-- Tags ("tag1": "ABCDE")
+Adobe Classification | Branch Analytics Tag | Example
+--- | ---
+Source | Channel | Our Website 
+Campaign | Campaign | Journeys Test Campaign
+Medium | Feature | Journeys
+Action | Branch Event Name | Install
+Action Property| Branch Tags | tag=bar&tag2=1234
 
 If you create a marketing link and specify analytics, those analytics will appear in the Adobe Analytics reporting suite.
 
