@@ -3,6 +3,7 @@ require 'json'
 module Jekyll
   class PlatformPage < Page
     def initialize(site, base, type, directory, page, platform, section, isDefaultPlatform, isDefaultSection)
+
       @site = site
       @base = base
       # set the type to empty if overview so that overview pages will be at root

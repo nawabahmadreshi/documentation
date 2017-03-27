@@ -1,7 +1,7 @@
 ---
 type: recipe
 directory: basic-setup
-title: 2. Dashboard Setup
+title: 1. Dashboard Setup
 page_title: Set up your Branch Dashboard
 description: Branch's dashboard contains a lot of the logic behind your Branch links.
 hide_platform_selector: true

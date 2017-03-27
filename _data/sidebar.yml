@@ -11,9 +11,15 @@
 - title: Next Steps
   directory: next-steps
   children:
-    - journeys
-    - email
-    # - analytics-connections
+     - journeys
+     - email
+     - analytics-connections
+     - track-user-value
+     - title: Social Sharing
+       children:
+         - sharing-basics
+         - content-sharing
+         - custom-onboarding
 - title: Getting Started
   directory: getting-started
   children:
@@ -41,10 +47,10 @@
 - title: Features
   directory: features
   children:
-    - title: Sharing and Personalization
-      children:
-        - content-sharing
-        - custom-onboarding
+    # - title: Sharing and Personalization
+    #   children:
+    #     - content-sharing
+    #     - custom-onboarding
     - title: Web to App Conversion
       children:
         - deepviews
@@ -78,6 +84,7 @@
     #     - sailthru
     #     - appboy-with-sendgrid
     - title: Data Integrations
+      is_premium: true
       children:
         - adobe-analytics
         - adjust
@@ -101,13 +108,23 @@
   directory: methods-endpoints
   children:
     - title: iOS SDK
+      url: https://github.com/BranchMetrics/iOS-Deferred-Deep-Linking-SDK
     - title: Android SDK
+      url: https://github.com/BranchMetrics/Android-Deferred-Deep-Linking-SDK
     - title: Web SDK
+      url: https://github.com/BranchMetrics/Smart-App-Banner-Deep-Linking-Web-SDK
     - title: Cordova/Ionic SDK
+      url: https://github.com/BranchMetrics/Cordova-Ionic-PhoneGap-Deferred-Deep-Linking-SDK
     - title: Xamarin SDK
+      url: https://github.com/BranchMetrics/Xamarin-Deferred-Deep-Linking-SDK
     - title: Unity SDK
+      url: https://github.com/BranchMetrics/Unity-Deferred-Deep-Linking-SDK
     - title: Adobe AIR SDK
+      url: https://github.com/BranchMetrics/AIR-ANE-Deferred-Deep-Linking-SDK
     - title: Titanium SDK
+      url: https://github.com/BranchMetrics/Titanium-Deferred-Deep-Linking-SDK
     - title: React Native SDK
+      url: https://github.com/BranchMetrics/React-Native-Deep-Linking-SDK
     - title: HTTP API
+      url: https://github.com/BranchMetrics/Deferred-Deep-Linking-Public-API
     - data-export-api

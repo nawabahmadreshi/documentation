@@ -1,7 +1,7 @@
 ---
 type: recipe
 directory: basic-setup
-title: 1. Before Getting Started
+title: Before Getting Started
 page_title: Before getting started with Branch.
 description: Before getting started with Branch you'll need to determine a few things. This page will help guide the discussions necessary to make these decisions.
 hide_platform_selector: true

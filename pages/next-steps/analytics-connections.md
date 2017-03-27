@@ -23,7 +23,7 @@ Branch understand the fatigue that can come from having your data spread out acr
 
 ## Data Integrations Partners {% premiumflag %}{% endpremiumflag %}
 
-Branch has created simple one-click integrations with many of the top analytics providers to get the data you need where it needs to go.
+Branch has created simple one-click integrations with many of the top analytics providers to get the data you need where it needs to go. These integrations are part of our Premium Features. Information about cost and free trial can be found on our [pricing page](https://branch.io/pricing/).
 
 ### Understand Your Organic and Paid Acquisition Channels 
 
@@ -49,8 +49,8 @@ Branch has created simple one-click integrations with many of the top analytics 
 
 [Mixpanel]({{base.url}}/third-party-integrations/mixpanel/overview)
 
-## I Don't See My Analytics Provider
+## Other Mechanisms
 
 If you use a different analytics provider not listed here, or if you have your own in-house analytics, we provide a robust [Webhooks]({{base.url}}/getting-started/webhooks/overview) system which will allow you to forward all your relevant events (clicks, opens, installs, etc.) anywhere you'd like.
 
-Additionally, we provide a [Data Export API]({{base.url}}/methods-endpoints/data-export-api/guide/) which will allow you to do a bulk export of all these events.
+Additionally, we provide an [Export API]({{base.url}}/methods-endpoints/data-export-api/guide) so that you can bulk export your events on a daily/weekly basis.

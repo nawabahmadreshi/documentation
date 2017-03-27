@@ -1,7 +1,7 @@
 ---
 type: recipe
 directory: basic-setup
-title: 5. Testing Your Branch Setup
+title: 4. Testing Your Branch Setup
 page_title: Add the Branch SDK to your mobile web site
 description: This page will tell you how to quickly add the Branch SDK to your mobile web site
 hide_platform_selector: true

@@ -1,7 +1,7 @@
 ---
 type: recipe
 directory: basic-setup
-title: 3. Mobile SDK Integration
+title: 2. Mobile SDK Integration
 page_title: Set up the Mobile SDK
 description: Integrate the Branch SDK into your app to get full install attribution.
 platforms:

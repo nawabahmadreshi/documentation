@@ -1,6 +1,6 @@
 ---
 type: recipe
-directory: features
+directory: next-steps
 title: "Content Sharing"
 page_title: Deep Links for Content Sharing
 description: How to create deep links programmatically to share content and how to route to content within your app. With code snippets.
@@ -25,20 +25,228 @@ sections:
 
 If your users are creating content in your app, they will probably want to share that content with their friends. You can encourage this by making it easy to generate sharing links that open your app *and* route back exactly to the piece of content that was originally shared. This will even work when the user who opens the link doesn't have your app installed yet.
 
+**Estimated Time To Complete:**
+
+30 Minutes - 1 Hour
+
+**Required Personnel:**
+
+Mobile Developer (Making app changes)
+
+Web Developer (Making web changes)
+
+**Requires An App Update:**
+
+Yes
+
+### After This
+
+- Your users will be able to invite their friends to your app using links to take them directly to content.
+- You’ll be able to track the effectiveness of your content at bringing people to the app.
+
 {% getstarted %}{% endgetstarted %}
 
 {% elsif page.guide %}
 
-
 {% prerequisite %}
-- To implement a content sharing flow, you will need to [integrate the Branch SDK]({{base.url}}/getting-started/sdk-integration-guide) into your app and [configure deep link routing]({{base.url}}/getting-started/deep-link-routing).
+- To implement a content sharing flow, you will need to [integrate the Branch SDK]({{base.url}}/basic-setup/setup-mobile-sdk) into your app and [configure deep link routing]({{base.url}}/getting-started/deep-link-routing).
 {% endprerequisite %}
 
 Let's say you have developed an app called **Branch Monster Factory**. You want your users to share the monsters they create with their friends, and see the monster that was shared as soon as your app opens. Let's get started!
 
+## Identifying Your Users
+
+Identifying your users will help you associate all activities and links created to a particular person. Branch maintains our own identity for users, but by setting an email address, uuid, or some other identifying label, you'll be able to tie your Branch data back to your own internal tracking.
+
+{% if page.ios %}
+
+### Log in
+
+Add a `setIdentity` call wherever you create or login a user. This should be done after you have successfully initialized a Branch session. Only call `setIdentity` when the user first logs in. We will cache the identity for future sessions.
+
+{% tabs %}
+{% tab objective-c %}
+{% highlight objc %}
+// your app's userId, 127 chars or less
+[[Branch getInstance] setIdentity:@"your user id"];
+{% endhighlight %}
+{% endtab %}
+{% tab swift %}
+{% highlight swift %}
+// your app's userId, 127 chars or less
+Branch.getInstance().setIdentity("your user id")
+{% endhighlight %}
+{% endtab %}
+{% endtabs %}
+
+### Log out
+
+Add a `logout` call anywhere you allow the user to logout. `Logout` should only be called when the user logs out. Calling it at other times could lead to hard-to-discover errors. Failing to call `logout` can likewise lead to bugs if multiple users log in on the same device.
+
+{% tabs %}
+{% tab objective-c %}
+{% highlight objc %}
+[[Branch getInstance] logout];
+{% endhighlight %}
+{% endtab %}
+{% tab swift %}
+{% highlight swift %}
+Branch.getInstance().logout()
+{% endhighlight %}
+{% endtab %}
+{% endtabs %}
+
+{% endif %}
+<!--- iOS identify and logout -->
+
+{% if page.android %}
+
+### Log in
+
+Add a `setIdentity` call wherever you create or login a user. This should be done after you have successfully initialized a Branch session. Only call `setIdentity` when the user first logs in. We will cache the identity for future sessions.
+
+{% highlight java %}
+// your app's userId, 127 chars or less
+Branch.getInstance().setIdentity("your user id");
+{% endhighlight %}
+
+### Log out
+
+Add a `logout` call anywhere you allow the user to logout. `Logout` should only be called when the user logs out. Calling it at other times could lead to hard-to-discover errors. Failing to call `logout` can likewise lead to bugs if multiple users log in on the same device.
+
+{% highlight java %}
+Branch.getInstance().logout();
+{% endhighlight %}
+{% endif %}
+<!--- Android identify and logout -->
+
+{% if page.cordova %}
+
+### Log in
+
+Add a `setIdentity` call wherever you create or login a user. This should be done after you have successfully initialized a Branch session. Only call `setIdentity` when the user first logs in. We will cache the identity for future sessions.
+
+{% highlight js %}
+Branch.setIdentity("your user id").then(function (res) {
+  console.log(res);
+}).catch(function (err) {
+  console.error(err);
+});
+{% endhighlight %}
+
+### Log out
+
+Add a `logout` call anywhere you allow the user to logout. `Logout` should only be called when the user logs out. Calling it at other times could lead to hard-to-discover errors. Failing to call `logout` can likewise lead to bugs if multiple users log in on the same device.
+
+{% highlight js %}
+Branch.logout();
+{% endhighlight %}
+{% endif %}
+
+{% if page.xamarin %}
+
+### Log in
+
+Add a `SetIdentity` call wherever you create or login a user. This should be done after you have successfully initialized a Branch session. Only call `SetIdentityAsync` when the user first logs in. We will cache the identity for future sessions.
+
+{% highlight c# %}
+Branch branch = Branch.GetInstance ();
+branch.SetIdentity("your user id", this);
+{% endhighlight %}
+
+### Log out
+
+Add a `LogoutAsync` call anywhere you allow the user to logout. `LogoutAsync` should only be called when the user logs out. Calling it at other times could lead to hard-to-discover errors. Failing to call `LogoutAsync` can likewise lead to bugs if multiple users log in on the same device.
+
+{% highlight c# %}
+Branch.GetInstance(getApplicationContext()).LogoutAsync(this);
+{% endhighlight %}
+
+{% endif %}
+
+{% if page.unity %}
+
+### Log in
+
+Add a `setIdentity` call wherever you create or login a user. This should be done after you have successfully initialized a Branch session. Only call `setIdentity` when the user first logs in. We will cache the identity for future sessions.
+
+{% highlight c# %}
+Branch.setIdentity("your user id");
+{% endhighlight %}
+
+### Log out
+
+Add a `logout` call anywhere you allow the user to logout. `Logout` should only be called when the user logs out. Calling it at other times could lead to hard-to-discover errors. Failing to call `logout` can likewise lead to bugs if multiple users log in on the same device.
+
+{% highlight c# %}
+Branch.logout();
+{% endhighlight %}
+{% endif %}
+
+{% if page.adobe %}
+
+### Log in
+
+Add a `setIdentity` call wherever you create or login a user. This should be done after you have successfully initialized a Branch session. Only call `setIdentity` when the user first logs in. We will cache the identity for future sessions.
+
+{% highlight java %}
+branch.setIdentity("your user id");
+{% endhighlight %}
+
+### Log out
+
+Add a `logout` call anywhere you allow the user to logout. `Logout` should only be called when the user logs out. Calling it at other times could lead to hard-to-discover errors. Failing to call `logout` can likewise lead to bugs if multiple users log in on the same device.
+
+{% highlight java %}
+branch.logout();
+{% endhighlight %}
+{% endif %}
+
+{% if page.titanium %}
+
+### Log in
+
+Add a `setIdentity` call wherever you create or login a user. This should be done after you have successfully initialized a Branch session. Only call `setIdentity` when the user first logs in. We will cache the identity for future sessions.
+
+{% highlight js %}
+branch.setIdentity("your user id");
+{% endhighlight %}
+
+### Log out
+
+Add a `logout` call anywhere you allow the user to logout. `Logout` should only be called when the user logs out. Calling it at other times could lead to hard-to-discover errors. Failing to call `logout` can likewise lead to bugs if multiple users log in on the same device.
+
+{% highlight js %}
+branch.logout();
+{% endhighlight %}
+{% endif %}
+
+{% if page.react %}
+
+### Log in
+
+Add a `setIdentity` call wherever you create or login a user. This should be done after you have successfully initialized a Branch session. Only call `setIdentity` when the user first logs in. We will cache the identity for future sessions.
+
+{% highlight js %}
+branch.setIdentity("your user id");
+{% endhighlight %}
+
+### Log out
+
+Add a `logout` call anywhere you allow the user to logout. `Logout` should only be called when the user logs out. Calling it at other times could lead to hard-to-discover errors. Failing to call `logout` can likewise lead to bugs if multiple users log in on the same device.
+
+{% highlight js %}
+branch.logout();
+{% endhighlight %}
+{% endif %}
+
+{% protip title="Retroactive event attribution" %}
+The **first** time an identity is set for each unique user ID, it will retroactively associate any previously recorded events from the current device with that user ID. This only occurs once.
+{% endprotip %}
+
 ## Generate sharing links
 
-The first thing we need to do is allow your users to create links. These links will contain references to the content being shared, which generate analytics data and allow your app to route straight back to that content when a link is opened.
+The next thing we need to do is allow your users to create links. These links will contain references to the content being shared, which generate analytics data and allow your app to route straight back to that content when a link is opened.
 
 <!--- iOS -->
 {% if page.ios %}

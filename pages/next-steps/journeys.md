@@ -4,6 +4,7 @@ directory: next-steps
 title: Web to App Conversion with Journeys
 page_title: Web to App Conversion with Journeys
 description: Convert your mobile web visitors into higher-value app users with customizable user Journeys.
+is_premium: true
 hide_platform_selector: true
 sections:
 - overview

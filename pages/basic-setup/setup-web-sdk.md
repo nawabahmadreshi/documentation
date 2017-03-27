@@ -1,7 +1,7 @@
 ---
 type: recipe
 directory: basic-setup
-title: 4. Web SDK Integration
+title: 3. Web SDK Integration
 page_title: Add the Branch SDK to your mobile web site
 description: This page will tell you how to quickly add the Branch SDK to your mobile web site
 hide_platform_selector: true
@@ -25,7 +25,7 @@ No
 
 First and foremost, the Web SDK gives you the ability to complete your ability to track what your users do after they’ve clicked on your links. You can easily track the actions your users take on your website and combine that with Branch’s in-app event tracking to build a robust cross-platform understanding of your users’ behavior and the success of your marketing efforts, a feature unique to Branch!
 
-Second and perhaps even more important is that the Web SDK helps convert your web traffic into high-value app users by acting as the backbone of our Journeys Web-to-App Conversion product.
+Second and perhaps even more important is that the Web SDK helps convert your web traffic into high-value app users by acting as the backbone of our [Journeys Web-to-App Conversion]({{base.url}}/next-steps/journeys/overview) product.
 
 ### I don’t have a mobile website
 

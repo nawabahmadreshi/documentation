@@ -4,6 +4,7 @@ directory: next-steps
 title: Deep Linked Emails
 page_title: Set up Deep Linked Emails
 description: Branch has partnered with several ESPs to provide a deep link solution which supports Universal Links into the app while preserving click tracking.
+is_premium: true
 hide_platform_selector: true
 hide_section_selector: true
 ---

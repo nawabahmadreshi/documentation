@@ -1,3 +1,5 @@
+
+
 var React = require('react'),
 	R = require('ramda'),
 	cx = require('../support/utils').cx;
@@ -29,38 +31,11 @@ var LinkInternal = React.createClass({
 		var props = this.props,
 			page_key = props.page_key;
 		if (!props.group_data || !props.group_data[page_key]) {
-			if (props.page_key.title == 'iOS SDK') {
-				return (<a target="_blank" href="https://github.com/BranchMetrics/iOS-Deferred-Deep-Linking-SDK">{ page_key }</a>);
-			}
-			else if (props.page_key.title == 'Android SDK') {
-				return (<a target="_blank" href="https://github.com/BranchMetrics/Android-Deferred-Deep-Linking-SDK">{ page_key }</a>);
-			}
-			else if (props.page_key.title == 'Web SDK') {
-				return (<a target="_blank" href="https://github.com/BranchMetrics/Smart-App-Banner-Deep-Linking-Web-SDK">{ page_key }</a>);
-			}
-			else if (props.page_key.title == 'Xamarin SDK') {
-				return (<a target="_blank" href="https://github.com/BranchMetrics/Xamarin-Deferred-Deep-Linking-SDK">{ page_key }</a>);
-			}
-			else if (props.page_key.title == 'Cordova/Ionic SDK') {
-				return (<a target="_blank" href="https://github.com/BranchMetrics/Cordova-Ionic-PhoneGap-Deferred-Deep-Linking-SDK">{ page_key }</a>);
-			}
-			else if (props.page_key.title == 'Unity SDK') {
-				return (<a target="_blank" href="https://github.com/BranchMetrics/Unity-Deferred-Deep-Linking-SDK">{ page_key }</a>);
-			}
-			else if (props.page_key.title == 'Adobe AIR SDK') {
-				return (<a target="_blank" href="https://github.com/BranchMetrics/AIR-ANE-Deferred-Deep-Linking-SDK">{ page_key }</a>);
-			}
-			else if (props.page_key.title == 'Titanium SDK') {
-				return (<a target="_blank" href="https://github.com/BranchMetrics/Titanium-Deferred-Deep-Linking-SDK">{ page_key }</a>);
-			}
-			else if (props.page_key.title == 'React Native SDK') {
-				return (<a target="_blank" href="https://github.com/BranchMetrics/React-Native-Deep-Linking-SDK">{ page_key }</a>);
-			}
-			else if (props.page_key.title == 'HTTP API') {
-				return (<a target="_blank" href="https://github.com/BranchMetrics/Deferred-Deep-Linking-Public-API">{ page_key }</a>);
+			if (page_key.url) {
+				return (<a target="_blank" href={ page_key.url }>{ page_key.title }</a>);
 			}
 			else {
-				return (<a href="#">{ page_key }</a>);
+				return (<a href="#">{ page_key.title }</a>);
 			}
 		}
 		var page = props.group_data[page_key],
@@ -72,7 +47,8 @@ var LinkInternal = React.createClass({
 		if ((page.platforms[props.platform]) && (Object.keys(page.sections)[0] != 'overview')) {
 			path.push(props.platform);
 		}
-		if (page_key == 'journeys' || page_key == 'deep-linked-feeds') { // Yuck...fix this
+
+		if (page_key == 'journeys' || page_key == 'deep-linked-feeds') { // Yuck...fix this with page.is_premium
 			return (<a href={ '/' + path.join('/') } className={ isCurrentPath ? 'sidebar-link-selected' : '' } onClick={ self._handleClick(Object.keys(page.sections)[0]) }>{ page.title } <i className="fa fa-star premium" aria-hidden="true"></i></a>);
 		}
 		else {
@@ -104,7 +80,8 @@ var LinkGroup = React.createClass({
 		var links = R.mapObjIndexed(function(link, index) {
 			if (link.children) {
 				return (<li key={ index }>
-					<LinkGroup group={ link } level={ props.level + 1 }
+					<LinkGroup group={ link }
+							   level={ props.level + 1 }
 					           directory={ props.directory }
 					           current_path={ props.current_path }
 					           group_data={ props.group_data }
@@ -125,10 +102,11 @@ var LinkGroup = React.createClass({
 				</li>);
 			}
 		}.bind(this));
+
 		if (props.group.children) {
 			var selectedClass = '',
 				groupClass = 'sidebar-group'
-				if (props.group.title == 'Data Integrations' || props.group.title == 'Deep Linked Emails') { // Yuck...fix this
+				if (props.group.is_premium) {
 					return (<div className={ selectedClass }>
 						<h4 className="sidebar-group-title" onClick={ this._toggle }>
 							{ props.group.title } <i className="fa fa-star premium" aria-hidden="true"></i>
