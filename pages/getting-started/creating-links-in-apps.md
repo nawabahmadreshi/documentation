@@ -482,7 +482,7 @@ If you don't want to handle the link yourself, you can also use Branch's [precon
 Create a `BranchUniversalObject` for the piece of content that you'd like to link to, defining any custom key/value pairs as `metadata` parameters:
 
 {% highlight js %}
-let branchUniversalObject = branch.createBranchUniversalObject(
+let branchUniversalObject = await branch.createBranchUniversalObject(
   'content/12345', // canonical identifier
   {
     contentTitle: 'My Content Title',
@@ -495,6 +495,9 @@ let branchUniversalObject = branch.createBranchUniversalObject(
   }
 )
 {% endhighlight %}
+
+Note: As of v1.1.0, `createBranchUniversalObject` returns a promise and requires the use of `await`. In older versions,
+this function returned the Branch Universal Object directly. Do not use `await` with version 1.0.x or 0.9.x.
 
 {% ingredient buo-overview %}{% endingredient %}
 
