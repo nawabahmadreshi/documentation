@@ -63,6 +63,7 @@ The recommended way to install the SDK is via CocoaPods:
 
 1. Add `pod "Branch"` to your podfile.
 1. Run `pod install` from the command line.
+1. Run `pod update` from the command line. This updates the pod to the latest version of the SDK.
 
 ### Install with Carthage
 
@@ -87,12 +88,12 @@ We're not sure if Cocoapods will support extensions, so in the meantime, just in
 
 1. [Grab the latest SDK version](https://s3-us-west-1.amazonaws.com/branchhost/Branch-iOS-SDK.zip), or [clone our open-source GitHub repo](https://github.com/BranchMetrics/ios-branch-deep-linking).
 1. Drag the `Branch.framework` file from the root of the SDK folder into the Frameworks folder of your Xcode project. Be sure that "Copy items if needed" and "Create groups" are selected.
-1. Update the target's **Framework Search Paths**  
-    a. Select the project in Project Navigator  
-    b. In the PROJECT/TARGETS pane select the target you are building  
-    c. Click on the **Build Settings** tab  
-    d. Find: **User Header Search Paths**  
-    e. Add: **$(PROJECT_DIR)/Branch.framework/Headers**  
+1. Update the target's **Framework Search Paths**
+    a. Select the project in Project Navigator
+    b. In the PROJECT/TARGETS pane select the target you are building
+    c. Click on the **Build Settings** tab
+    d. Find: **User Header Search Paths**
+    e. Add: **$(PROJECT_DIR)/Branch.framework/Headers**
 1. Import the following frameworks under **Build Phases** for your app target:
     - `AdSupport.framework`
     - `CoreTelephony.framework`
@@ -300,6 +301,8 @@ The recommended way to install the SDK is via CocoaPods:
 
 1. Add `pod 'mParticle-BranchMetrics', '~> 6.5.0'` to your podfile.
 1. Run `pod install` from the command line.
+1. Run `pod update` from the command line. This updates the pod to the latest version of the SDK.
+
 
 ### Install with Carthage
 
@@ -1450,17 +1453,18 @@ Follow these directions install the Branch SDK framework files without using Coc
 
 1. [Grab the latest SDK version](https://s3-us-west-1.amazonaws.com/branchhost/Branch-iOS-SDK.zip), or [clone our open-source GitHub repo](https://github.com/BranchMetrics/ios-branch-deep-linking).
 1. Drag the `Branch.framework` file from the root of the SDK folder into the Frameworks folder of your Xcode project. Be sure that "Copy items if needed" and "Create groups" are selected.
-1. Update the target's **Framework Search Paths**  
-    a. Select the project in Project Navigator  
-    b. In the PROJECT/TARGETS pane select the target you are building  
-    c. Click on the **Build Settings** tab  
-    d. Find: **User Header Search Paths**  
-    e. Add: **$(PROJECT_DIR)/Branch.framework/Headers**  
+1. Update the target's **Framework Search Paths**
+    a. Select the project in Project Navigator
+    b. In the PROJECT/TARGETS pane select the target you are building
+    c. Click on the **Build Settings** tab
+    d. Find: **User Header Search Paths**
+    e. Add: **$(PROJECT_DIR)/Branch.framework/Headers**
 1. Import the following frameworks under **Build Phases** for your app target:
     - `AdSupport.framework`
     - `CoreTelephony.framework`
     - `CoreSpotlight.framework`
     - `MobileCoreServices.framework`
+    - `iAd.framework`
 
 {% caution title="Considerations around using Frameworks" %}
 
