@@ -772,8 +772,8 @@ You can check if your Xcode project is correctly configured by using our [Univer
 ##### Are you testing by manually entering into Safari?
 Universal Links don't work properly when entered into Safari. Use Notes or iMessage for testing.
 
-##### Are you wrapping Branch links in your own crappy link and redirecting?
-Universal Links don't work when they are wrapped in some sort of click tracking or other domain. They must be freestanding. Please don't wrap our links.
+##### Are you wrapping Branch links with another link and redirecting?
+In most cases, Universal Links won't open the app when they are "wrapped" by click tracking links. Universal links, including Branch links, must be freestanding. If you want Universal Links to work in all situations, do not use other links that redirect to your Branch links. 
 
 ##### Do your Team ID & Bundle ID match those on your dashboard?
 You can find them in the Dashboard under Settings > Link Settings, in the iOS section next to "Enable Universal Links." They should match your Team ID and Bundle ID. Team ID can be found here [https://developer.apple.com/membercenter/index.action#accountSummary](https://developer.apple.com/membercenter/index.action#accountSummary). Your Bundle ID is found in Xcode, in the `General` tab for the correct build target. If your Apple App Prefix is different from your Team ID, you should use your App Prefix. Your app prefix can be found from App IDs on Apple's Developer Portal.
