@@ -49,7 +49,6 @@
         - ios-imessage
     - title: Content Indexing
       children:
-        - search
         - google-app-indexing
         - spotlight-indexing
 - title: Integrations

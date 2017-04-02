@@ -11,17 +11,19 @@ sections:
 - overview
 - guide
 - advanced
+exclude_from_google_search: true
 ---
 
 {% if page.overview %}
 
 Branch is now building a powerful Search interface that will allow your users to discover personalized content within your app. With a few lines of code you can allow your users to discover and interact with relevant in-app content via an external search interface. This provides you an opportunity to re-engage with your users via content and preserve a rich experience by deeplinking them directly to content within your app. This is the first step to building a more open mobile ecosystem where in-app content is delivered to the right users at the right time. 
 
-## Branch Search
-This is what the Branch Search experience might look like on an Android Device. This is currently a proof of concept and will be soon available in the App Store. 
+## A new Personalized Search powered by Branch
+This is what the Branch Search experience might look like on an Android Device. 
+* This is currently a proof of concept and will be soon available in the App Store. 
 
-TODO: Insert Video Link
-TODO: Insert screenshots
+- TODO: Insert Video Link
+- TODO: Insert screenshots
 
 Come help us build a more open mobile ecosystem by integrating the SDK today.
 
@@ -34,8 +36,8 @@ Come help us build a more open mobile ecosystem by integrating the SDK today.
 
 ## How In-App Search Works:
 
-Branch registers and manages a Search index that resides on the users device. 
-The BranchSDK exposes a method to allow developers to add content to this on-device index with just a few lines of code. As your users interact with content on the device (for example: share a piece of content, watch a video or even add an item to the cart), we recommend you call this SDK method to add content to the index and register the user interaction. This allows branch to determine the best relevance for the content when users search. 
+Branch registers and manages a Search index that resides on the users device. This index will be installed with the Branch Search app and by other distribution channels.
+The BranchSDK exposes a method to allow developers to add content to this on-device index with just a few lines of code. As your users interact with content within your app (for example: share a piece of content, watch a video or even add an item to the cart), we recommend you call this SDK method to add content to the index and register the user interaction. This allows branch to determine the best relevance for the content when users search. 
 
 
 
@@ -64,9 +66,9 @@ For now, this is an Android only feature.
 
 {% endprerequisite %}
 
-In order for Branch to surface the most relevant in-app content to its users, it needs to understand what content you as a developer would like to surface to your users. You need to create an object that represents your content, signaling to Branch what that content is about. And then all you do is call a method on the SDK to add it to the index. Doing these two steps will allow your users to discover personalized relevant content via an external search interface powered by Branch. 
+In order for Branch to surface the most relevant in-app content to its users, it needs to understand what content you as a developer would like to surface to your users. You need to create an object that represents your content, signaling to Branch what that content is about. Then, all you do, is call a method on the SDK to add it to the index. Doing these two steps will allow your users to discover personalized relevant content via an external search interface powered by Branch. 
 
-Our most basic recommendation is, whenever any user interacts with a piece of content within your app, you should add that piece of content to the Branch hosted on-device index. You can view more guidelines on when to index content in <TODO: Insert ref to section>
+Our most basic recommendation is, whenever any user interacts with a piece of content within your app, you should add that piece of content to the Branch hosted on-device index. You can view more guidelines on when to index content in the sections below.
 
 
 ## Index your content with Branch
@@ -99,14 +101,14 @@ At a minimum you must supply the following parameters:
                 .setContentIndexingMode(BranchUniversalObject.CONTENT_INDEX_MODE.PUBLIC);
 
 // Add the item to the index specifying the user event that triggered this interaction
-// For a complete list of User interaction events see our [BranchUniversalObject documentation]({{base.url}}}/getting-started/branch-universal-object/guide/android/#usercompletedaction)
 branchUniversalObject.listOnBranchSearch(BranchEvent.VIEW);
+
 {% endhighlight %}
 
 {% endif %}
 
 
-To learn more about how to use and customize the Branch Universal Object, see [more details here]({{base.url}}/getting-started/branch-universal-object/guide/).
+To learn more about how to use and customize the Branch Universal Object for content, see [more details here]({{base.url}}}/features/search/advanced/#representing-your-content-using-the-branchuniversalobject).
 
 ## Guidelines for when to index your content with Branch
 
