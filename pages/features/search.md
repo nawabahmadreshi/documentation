@@ -5,8 +5,7 @@ title: "In-App Search"
 page_title: "Content Indexing & In-App Search"
 description: Learn how to enable your app to support a Branch powered In-App Search Experience. With this functionality you can list in-app content on the on-device search index. This also gives you insight via analytics into content that your users are interacting with to let you build out powerful re-engagement experiences.
 keywords: Search, Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking
-platforms:
-- android
+hide_platform_selector: true
 sections:
 - overview
 - guide
@@ -59,18 +58,15 @@ For now, this is an Android only feature.
 
 - For this to function as intended, you should [integrate the Branch SDK]({{base.url}}/getting-started/sdk-integration-guide) into your app and [configure deep link routing]({{base.url}}/getting-started/deep-link-routing).
 
-
 {% endprerequisite %}
 
 In order for Branch to surface the most relevant in-app content to its users, it needs to understand what content you as a developer would like to surface to your users. You need to create an object that represents your content, signaling to Branch what that content is about. Then, all you do, is call a method on the SDK to add it to the index. Doing these two steps will allow your users to discover personalized relevant content via an external search interface powered by Branch. 
 
-Our most basic recommendation is, whenever any user `views` a piece of content within your app, you should add that piece of content to the Branch hosted on-device index. You can view more guidelines on when to index content in the sections below.
+Our most basic recommendation is, whenever any user _views_ a piece of content within your app, you should add that piece of content to the Branch hosted on-device index. You can view more guidelines on when to index content in the sections below.
 
 ## Index your content with Branch
 
-A `BranchUniversalObject` represents a single, self-contained object associated with a piece of content in your app. it provides convenient methods for sharing, deep linking, tracking views as well as indexing.
-
-Think of `BranchUniversalObject` as equivalent piece of content within your app. You build this object by assembling parameters that represent your content.
+A `BranchUniversalObject` represents a single, self-contained object associated with a piece of content in your app. it provides convenient methods for sharing, deep linking, tracking views as well as indexing. Think of `BranchUniversalObject` as equivalent piece of content within your app. You build this object by assembling parameters that represent your content.
 
 At a minimum you must supply the following parameters:
 
@@ -80,11 +76,7 @@ At a minimum you must supply the following parameters:
 - **contentImageUrl** : This represnts the image url for the content. This will be used as a thumbnail in the search results
 - **contentIndexingMode** : CONTENT_INDEX_MODE.PUBLIC, CONTENT_INDEX_MODE.PRIVATE, this is used to indicate if this content is allowed to be publically accessible or is private to this specific user only. In the case of private mode, this information will always be kept on-device only and never shared with third party servers
 
-
- After the parameters are assembled, you call a method on this object to add content to the index.
-
-
-{% if page.android %}
+After the parameters are assembled, you call a method on this object to add content to the index.
 
 {% highlight java %}
  BranchUniversalObject branchUniversalObject = new BranchUniversalObject()
@@ -96,22 +88,19 @@ At a minimum you must supply the following parameters:
                 .setContentIndexingMode(BranchUniversalObject.CONTENT_INDEX_MODE.PUBLIC);
 
 // Add the item to the index specifying the user event that triggered this interaction
-branchUniversalObject.listOnBranchSearch(BranchEvent.VIEW);
+branchUniversalObject.listOnSamsungSearch(BranchEvent.VIEW);
 
 {% endhighlight %}
-
-{% endif %}
-
 
 To learn more about how to use and customize the Branch Universal Object for content, see [more details here]({{base.url}}}/features/search/advanced/#representing-your-content-using-the-branchuniversalobject).
 
 ## Guidelines for when to index your content with Branch
 
-We don't recommend adding every piece of content in your app to the on-device Branch Index in order to honor resource constraints on device as well as preserve the search user experience. What is most valuable from an on-device interaction and search experience is for users to be able to discover relevant content that they have engaged with in the past. We only recommend adding content that you think is valuable for a specific user based on their interaction with content within your app. Here are a few guidelines to help you determine when to add content to the Index
+We don't recommend adding every piece of content in your app to the on-device Branch index in order to honor resource constraints on device as well as preserve the search user experience. What is most valuable from an on-device interaction and search experience is for users to be able to discover relevant content that they have engaged with in the past. We only recommend adding content that you think is valuable for a specific user based on their interaction with content within your app. Here are a few guidelines to help you determine when to add content to the index.
 
-1. **Index content on every user interaction with content**
+### 1. Index content on every user interaction with content
 
-The most basic recommendation we give our users is to index content with Branch on every user interaction with a specific piece of content. Make sure you add the appropriate user interaction signals as part of the index method to allow Branch to incorporate the significance of the event in ranking.  for example, a user that adds an item to their cart, has a stronger affinity to that item vs just viewing it.  
+The most basic recommendation we give our users is to index content with Branch on every user interaction with a specific piece of content. Make sure you add the appropriate user interaction signals as part of the index method to allow Branch to incorporate the significance of the event in ranking. For example, a user that adds an item to their cart has a stronger affinity to that item vs just viewing it.  
 
 Here are some examples of when you might index content:
 
@@ -122,16 +111,15 @@ Here are some examples of when you might index content:
 - A user favorites an item
 - A user reviews an item
 
-For a complete list of User interaction events see our [BranchUniversalObject documentation]({{base.url}}}/getting-started/branch-universal-object/guide/android/#usercompletedaction)
+For a complete list of user interaction events see our [BranchUniversalObject documentation]({{base.url}}}/getting-started/branch-universal-object/guide/android/#usercompletedaction)
 
-2. **Index content when a user is viewing a specific colleciton of items in your app**
+### 2. Index content when a user is viewing a specific colleciton of items in your app
 
-When a user is viewing a colleciton of items, for example a list of search results, or browsing a set of red shoes, they have expressed interest in the collection of items. All of the items in the list are relevant to a user and encouraged to be surfaced via an external search interace. In this situation, we recommend indexing upto 1-2 pages of the collection results or under 20 results whichever is fewer. 
+When a user is viewing a collection of items (i.e. a list of search results or a set of red shoes), they have expressed interest in the collection of items. All of the items in the list are relevant to a user and encouraged to be surfaced via an external search interace. In this situation, we recommend indexing up to _1-2 pages_ of the collection results or a _max of 20 results_ whichever is fewer. 
 
-The reason, we recommend limiting how much content you put into the index is to only index content that is relevant to a user as well as respect resources on a users device by not over-populating the index. We have checks and limits in place to avoid an app from over-populating an index. 
+The reason we recommend limiting how much content you put into the index is that we think this interface should be curated to a user rather than over-populating the index. We have checks and limits in place to avoid an app from over-populating an index. 
 
-Here are some examples when you might choose to index collections of items
-(In all of these cases you would index upto 1-2 pages of the results or 20 results whichever is lower)
+Here are some examples when you might choose to index collections of items (In all of these cases you would index upto 1-2 pages of the results or 20 results whichever is lower):
 
 - A user searches for something in your app and gets a collection of results. 
 - A user browses for a particular collection of results, example - black dress or red shoes
@@ -142,9 +130,9 @@ Here are some examples when you might choose to index collections of items
 Here are some things you can do to ensure that your content gets boosted appropriately:
 
 - Always specify the appropriate user interaction signal. e.g. ADD_TO_CART, PURCHASE, FAVORITE, that will indicate to branch an enhanced interaction with a piece of content
-- Air on the side of always calling the index method on every user interaction with a piece of content. This helps branch gauge the relevance of a specific item for that user
-{% getstarted %}{% endgetstarted %}
+- Err on the side of always calling the index method on every user interaction with a piece of content. This helps branch gauge the relevance of a specific item for that user
 
+{% getstarted %}{% endgetstarted %}
 
 {% elsif page.advanced %}
 
@@ -152,10 +140,7 @@ Here are some things you can do to ensure that your content gets boosted appropr
 
 A `BranchUniversalObject` is a container that Branch uses to represent content within your app. It is a single, self-contained object associated with a piece of content in your app and provides convenient methods for you to invoke sharing, indexing for search and deep linking.
 
-The first and foremost thing you would need to do before indexing content with Branch is to create a `BranchUniversalObject` to represent this content. 
-
-Here are the key properties from a content standpoint and things to consider when building this object. 
-For a full list of methods and properties see our [BranchUniversalObject documentation]({{base.url}}}/getting-started/branch-universal-object/guide/android/)
+Here are the key properties from a content standpoint and things to consider when building this object. For a full list of methods and properties see our [BranchUniversalObject documentation]({{base.url}}}/getting-started/branch-universal-object/guide/android/)
 
 Parameter | Usage
 --- | ---
@@ -167,14 +152,11 @@ setContentIndexingMode | Can be set to either `BranchUniversalObject.CONTENT_IND
 setContentExpiration | The date when the content will not longer be available or valid. Set in milliseconds. After this date, the content will no longer be discoverable via search. Use content expiration when you have time sensitive content.
 setContentType | The type of content that this represents, for example, `BranchUniversalObject.CONTENT_TYPE.ORG_RESTAURANT` , `BranchUniversalObject.CONTENT_TYPE.ARTICLE_NEWS`.
 
+### Specifying the content type
 
+In order for branch to better understand the type of content, it is very important that you to specify the type that your content represents (e.g. a Movie or a Restaurant or a News article). You can specify a list of optional paramters for each content type to be able to better render your content in the Search interface. For example, a movie might have ratings, and a restaurant might have a place associated with it. 
 
-
-### Specifying the Content Type
-In order for branch to better understand the type of content, it is very important that you to specify the type that your content represents (e.g. a Movie or a Restaurant or a News article). You can specify a list of optional paramters for each content type to be able to better render your content in the Search interface. For example, a movie might have ratings, and a restaurant might have a place associated with it. Below is a list of all supported content types, if you have a type of content that does not fall into one of the above categories, please email support@branch.io
-
-Here is a complete list of support Content Types that are available as part of the `BranchUniversalObject.CONTENT_TYPE` enum.
-
+Here is a complete list of support content types that are available as part of the `BranchUniversalObject.CONTENT_TYPE` enum.
 
 Parameter | Usage
 --- | ---
@@ -191,39 +173,32 @@ CONTENT_TYPE.ORG_RESTAURANT | This represents a restaurant
 CONTENT_TYPE.ORG_ACCOMODATION | This represents a organization providing accomodation like a hotel
 CONTENT_TYPE.TRAVEL_FLIGHT | This represents a flight itenary
 
-
-
-### Best Practices for using Branch Universal Object for Content
+### Best practices for using Branch Universal Object for content
 
 Here are a set of best practices to ensure that your in-app content gets effectively indexed and retrieved as part of an external search interface
 
 1. Set the `canonicalIdentifier` to a unique, de-duped value across instances of the app. The `canonicalIdentifier` should represent a unique id for this piece of content. For example a productId, or contentId. If you don't have anything within your app that uniquely represents your content, we recommend using either a hash function on your unique properties.
-2. Ensure that the `title`, `contentDescription` and `imageUrl` are set (required fields) and that they represent the object. These are used to index your content as well as search against when a user tries to discover content. The imageUrl will be the thumbnail that is rendered in the Search interface and setting this will help your content be more visually eye-catching.
+2. Ensure that the `title`, `contentDescription` and `imageUrl` are set (required fields) and that they represent the object. These are used to index your content as well as search against when a user tries to discover content. The imageUrl will be the thumbnail that is rendered in the search interface and setting this will help your content be more visually eye-catching.
 3. Set the `contentType` to indicate the type of content that this represents. This is important to enable Branch to be able to render your content appropriate to the type of content it is. For example a movie might show ratings, while a restaurant might show the location. This also helps rank and surface your content well.
 
 Practices to _avoid_:
 
-1. Don't set the same `title`, `contentDescription` and `imageUrl` across all objects
-2. Don't set the same `canonicalIdentifier` across objects
+1. Don't set the **same** `title`, `contentDescription` and `imageUrl` across semantically different objects
+2. Don't set the **same** `canonicalIdentifier` across semantically different objects
 
 ## Indexing API's and usage recommendations
 
+### (instance of BranchUniversalObject).listOnSamsungSearch(BranchEvent.*)
 
-### listOnSamsungSearch(BranchEvent.*)
-You should call this method on an instance of a `BranchUniversalObject` when a user interacts with a piece of content in your app. 
+You should call this method on an instance of a `BranchUniversalObject` when a user interacts with a piece of content in your app. This method adds this piece of content to the on-device index. Note that it is safe to call this function repeatedly as it will simply register a new user interaction against the content, increasing its relevancy.
 
-This method adds this piece of content to the on-device index. If the content already exists, it registers a new user interaction against the content.  
+A user interaction is any interaction with a piece of content, for example a user viewing a content, watching a video, adding an item to the cart, favoriting an item, etc. For a complete list of User interaction events see our [BranchUniversalObject documentation]({{base.url}}}/getting-started/branch-universal-object/guide/android/#usercompletedaction).
 
-A user interaction is any interaction with a piece of content, for example a user viewing a content, watching a video, adding an item to the cart, favoriting an item, etc. 
+### (instance of BranchUniversalObject).deleteFromSamsungSearch
 
-For a complete list of User interaction events see our [BranchUniversalObject documentation]({{base.url}}}/getting-started/branch-universal-object/guide/android/#usercompletedaction)
-
-### deleteFromSamsungSearch
-
-This method deletes the content from the on-device index. 
+This method deletes the content from the on-device index using the canonical identifier as the reference.
 
 You should call this method on an instance of a `BranchUniversalObject` when you no longer want this piece of content in the index. This should rarely be called by a developer but if you want more control on content in the index, you can use this method to delete content as you see fit. 
-
 
 ### deleteAllSearchableContent()
 
@@ -244,7 +219,6 @@ The limits that we have in place are:
 
 - listOnSamsungSearch can be called a maximum of 20 times a minute
 - No more than 10000 pieces of content / app to preseve resource constraints
-
 
 {% endif %}
 
