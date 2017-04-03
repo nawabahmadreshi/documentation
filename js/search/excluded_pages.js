@@ -5,7 +5,8 @@ var excludedPages = [
     'template',
     'creating-links-in-apps',
     'creating-links-in-other-ways',
-    'exacttarget'
+    'exacttarget',
+    'search'
 ];
 
 module.exports = excludedPages;
