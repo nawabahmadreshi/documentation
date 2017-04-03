@@ -88,7 +88,7 @@ After the parameters are assembled, you call a method on this object to add cont
                 .setContentIndexingMode(BranchUniversalObject.CONTENT_INDEX_MODE.PUBLIC);
 
 // Add the item to the index specifying the user event that triggered this interaction
-branchUniversalObject.listOnSamsungSearch(BranchEvent.VIEW);
+branchUniversalObject.listOnBranchSearch(BranchEvent.VIEW);
 
 {% endhighlight %}
 
@@ -188,19 +188,19 @@ Practices to _avoid_:
 
 ## Indexing API's and usage recommendations
 
-### (instance of BranchUniversalObject).listOnSamsungSearch(BranchEvent.*)
+### (instance of BranchUniversalObject).listOnBranchSearch(BranchEvent.*)
 
 You should call this method on an instance of a `BranchUniversalObject` when a user interacts with a piece of content in your app. This method adds this piece of content to the on-device index. Note that it is safe to call this function repeatedly as it will simply register a new user interaction against the content, increasing its relevancy.
 
 A user interaction is any interaction with a piece of content, for example a user viewing a content, watching a video, adding an item to the cart, favoriting an item, etc. For a complete list of User interaction events see our [BranchUniversalObject documentation]({{base.url}}}/getting-started/branch-universal-object/guide/android/#usercompletedaction).
 
-### (instance of BranchUniversalObject).deleteFromSamsungSearch()
+### (instance of BranchUniversalObject).deleteFromBranchSearch()
 
 This method deletes the content from the on-device index using the canonical identifier as the reference.
 
 You should call this method on an instance of a `BranchUniversalObject` when you no longer want this piece of content in the index. This should rarely be called by a developer but if you want more control on content in the index, you can use this method to delete content as you see fit. 
 
-### BranchUniversalObject.deleteAllFromSamsungSearch()
+### BranchUniversalObject.deleteAllFromBranchSearch()
 
 This static method deletes all associated content from your app in the on-device index. 
 
@@ -217,7 +217,7 @@ This is to prevent against the following conditions:
 
 The limits that we have in place are:
 
-- listOnSamsungSearch can be called a maximum of 20 times a minute
+- listOnBranchSearch can be called a maximum of 20 times a minute
 - No more than 10000 pieces of content / app to preserve resource constraints
 
 {% endif %}
