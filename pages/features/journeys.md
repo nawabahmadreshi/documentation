@@ -54,9 +54,11 @@ Like all Branch deep links, you can pass custom parameters by specifying keys in
 
 {% highlight javascript %}
 branch.setBranchViewData({
-    '$deeplink_path': 'picture/12345',
-    'picture_id': '12345',
-    'user_id': '45123'
+    data: {
+        '$deeplink_path': 'picture/12345',
+        'picture_id': '12345',
+        'user_id': '45123'
+    }
 });
 {% endhighlight %}
 {% endexample %}
@@ -66,8 +68,21 @@ You can dynamically specify the deep link path depending on which website page i
 
 {% highlight javascript %}
 branch.setBranchViewData({
-    '$deeplink_path': window.location.pathname + window.location.search + window.location.hash,
-    'user_id': '45123'
+    data: {
+        '$deeplink_path': window.location.pathname + window.location.search + window.location.hash,
+        'user_id': '45123'
+    }
+});
+{% endhighlight %}
+{% endprotip %}
+
+{% protip %}
+
+Also, if the user has the app installed on their phone, we can try to open the app automaticaly and deeplink them.
+
+{% highlight javascript %}
+branch.setBranchViewData({
+    open_app: true
 });
 {% endhighlight %}
 {% endprotip %}
@@ -246,6 +261,22 @@ Similar to visited web, you can target users by number of app visits. For exampl
 
 You might choose to only show a Journey that asks a user to open the app to those that already have it installed.
 
+#### Has clicked on ad
+
+A user is grouped into "Has clicked on Ad" when they've clicked a link from [Deep Linked Feeds](/features/deep-linked-feeds). 
+
+Use this to target users who have been part of an ad campaign to improve your ROI; maybe with a specific call to action to open the app and buy something if they've also never made a purchase in the app. 
+
+The technical definition is that they've clicked on a link with an Ad Network's custom `$3p` value in link data, but you just need to consider the way the link is created - in this case, through Deep Linked Feeds.
+
+#### Has clicked on email
+
+A user is grouped into "Has clicked on Email" when they've clicked a link from [Deep Linked Email](https://dashboard.branch.io/email). 
+
+Use this to target users who have been part of an email campaign; maybe with a specific call to action to get them download the app if they don't have it and they've landed on mobile web.
+
+The technical definition is that they've clicked on a link with an Email Service Provider's custom `$3p` value in link data, but you just need to consider the way the link is created - in this case, through a Deep Linked Email integration.
+
 ## Set up split testing {% premiumflag %}{% endpremiumflag %}
 
 Note that if you are planning on just using the free banner, you can skip this section. This feature allows you to run A/B tests by designing multiple templates and assigning a percentage of your audience to each one.
@@ -260,12 +291,105 @@ Note that if you are planning on just using the free banner, you can skip this s
 - Your total percentage allocation may be _less_ than **100%**. In this situation, the remainder of your audience will be shown your standard website without a Journey. This allows you to A/B test against your non-Journeys website experience.
 {% endprotip %}
 
+## Dynamic Journeys layout customization
+
+We now support the use case where you can customize the appearance of a Journey depending on which link referred the web session. So, you can create a Branch link with a set of defined keys and values that will change properties such as the title or images when the user is referred to your website from this link. 
+
+| **Link Data Key** | **Value** | **Example Value** |
+| ---: | --- | --- |
+| `$journeys_button_get_has_app` | The call to action button when the app is currently installed | "Open App" |
+| `$journeys_button_get_no_app` | The call to action button when the app is **not** currently installed | "Install App" |
+| `$journeys_title` | The title or main text of your Journey | "Download Appsolutely today" |
+| `$journeys_description` | This is the description or subtitle in the frame | "This app is disrupting apps" |
+| `$journeys_icon_image_url` | The app icon displayed in the layout | "https://mysite.com/image.png" |
+| `$journeys_background_image_url` | The background image for the frame when the template supports it. *Coming soon!* | "https://mysite.com/background.png" |
+
+Note that not all template support all override keys. For example, the floating button does not support title, description or icon image url. If a template is to be rendered and the key you've specified does not exist, we'll simply ignore it while rendering the template. 
+
+## Clientside Javascript Journeys controls
+
+There are a number of clientside APIs to help you build quality user experiences. See below:
+
+### Use Javascript to block a Journey from showing
+
+You can prevent Journeys from showing on a certain page by inserting `no_journeys` with the value of `true` into the options during initialization.
+
+{% highlight javascript %}
+<script type="text/javascript">
+// load the Branch SDK file
+branch.init('BRANCH_KEY', 
+    {
+      'no_journeys': true
+    }
+);
+</script>
+{% endhighlight %}
+
+### Closing a Journey Programmatically
+
+Journeys include a close button the user can click, but you may want to close the Journey with a timeout, or via some other user interaction with your web app.
+In this case, closing the Journey is very simple by calling:
+
+{% highlight javascript %}
+
+branch.closeJourney(function(err) { console.log(err); });
+
+{% endhighlight %}
+
+### Trigger a Journey to Show by Firing an Event
+
+If you block or programatically close a Journey via one the calls above, then you can trigger a Journey to show by firing the following event:
+
+{% highlight javascript %}
+branch.track('pageview');
+{% endhighlight %}
+
+**Note:** If a user has closed a Journey in the past, then firing the aforementioned event will not override a user's preference.
+
+### Listen to Journeys lifecycle events
+
+You can easily listen to Journeys lifecycle events by registering listener functions like so:
+
+{% highlight javascript %}
+
+var listener = function(event) { console.log(event); }
+
+// Specify an event to listen for
+branch.addListener('willShowJourney', listener);
+
+// Listen for all events
+branch.addListener(listener);
+
+{% endhighlight %}
+
+| Listener Name | Description |
+| --- | --- |
+| willShowJourney | Journey is about to be shown. |
+| didShowJourney | Journey's entrance animation has completed and it is being shown to the user. |
+| willNotShowJourney | Journey will not be shown and no other events will be emitted. |
+| didClickJourneyCTA | User clicked on Journey's CTA button. |
+| didClickJourneyClose | User clicked on Journey's close button. |
+| willCloseJourney | Journey close animation has started. |
+| didCloseJourney | Journey's close animation has completed and it is no longer visible to the user. |
+
+## Journeys text localization
+
+Journeys now has an entire localization framework. Due to the complexity of this offering, we're not exposing it directly to partners. Please reach out to your account manager or integrations@branch.io to receive access to this functionality.
+
+## CSS Editor {% premiumflag %}{% endpremiumflag %}
+
+If you have an upgraded premium account, you may also modify your CSS code directly in addition to using the WYSIWYG View Editor. To do so, go to the **Configure Views** step, click to edit a template, and then select the **CSS Editor** tab on the **Customize Template** screen.
+
+{% image src='/img/pages/features/journeys/view-css-editor.png' third center alt='view editor and css editor toggle' %}
+
 ## Template customization options
 
 The customization options available depend on the template chosen:
 
 - [Smart Banner](#smart-banner)
 - [Full Screen Interstitial](#full-screen-interstitial) {% premiumflag %}{% endpremiumflag %}
+- [Half Page Interstitial](#full-screen-interstitial) {% premiumflag %}{% endpremiumflag %}
+- Floating Button {% premiumflag %}{% endpremiumflag %}
 
 ### Smart Banner
 
@@ -415,47 +539,6 @@ The content block contains everything except for the background image. Dimension
 | Dismiss Text | Text to show users wanting to continue to your mobile website instead of downloading the app.
 | Dismiss Period | Control how long before the same visitor should see the Journey again. Options are `1 day`, `1 week`, `1 month`, `Never Again`, and `Custom` |
 
-## CSS Editor {% premiumflag %}{% endpremiumflag %}
-
-If you have an upgraded premium account, you may also modify your CSS code directly in addition to using the WYSIWYG View Editor. To do so, go to the **Configure Views** step, click to edit a template, and then select the **CSS Editor** tab on the **Customize Template** screen.
-
-{% image src='/img/pages/features/journeys/view-css-editor.png' third center alt='view editor and css editor toggle' %}
-
-## Dynamic deep linking with Journeys
-
-You have the option of dynamically configuring the Branch link that powers the Journey presented to the user. This allows you to pass different deep link data from each page of your site, instead of using the same deep link data as defined in the Journey for every page.
-
-You can do this by using [hosted deep link data]({{base.url}}/getting-started/hosted-deep-link-data/guide) and adding specially formatted meta tags to your site:
-
-{% highlight html %}
-<meta name="branch:deeplink:mydata" content="something"/>
-<meta name="branch:deeplink:product_id" content="12345"/>
-
-<script type="text/javascript">
-{% ingredient web-sdk-initialization %}{% endingredient %}
-</script>
-{% endhighlight %}
-
-You can also call `setBranchViewData` from the Branch Web SDK:
-
-{% highlight javascript %}
-<script type="text/javascript">
-{% ingredient web-sdk-initialization %}{% endingredient %}
-
-// You'll need to set the deep link data here, in the block where you call init().
-branch.setBranchViewData({
-  data: {
-    mydata: 'something',
-    product_id: '12345',
-  }
-});
-</script>
-{% endhighlight %}
-
-{% caution title="Migrating from the legacy Smart Banner" %}
-Calling the `branch.banner()` function with deep link data will override the custom deep link parameters of any Journey shown on that page. The banner itself will not be displayed when a Journey is shown, but its deep link data will be used. This is done to make it easy to migrate from the smart banner to Journeys.
-{% endcaution %}
-
 ## Premium journeys functionality
 
 All Journeys features are available to upgraded apps, and are charged per event with a 14 day free trial. Visit [this page](https://branch.io/pricing) for full pricing information.
@@ -524,7 +607,16 @@ Trigger the `branch.deepviewCta()` function with a button or hyperlink on your p
 {% endhighlight %}
 {% endexample %}
 
-{% elsif page.support %}
+## Custom fonts with Journeys
+
+1) Go to [Google Fonts](https://fonts.google.com/) and select a font.
+
+{% image src='/img/pages/features/journeys/font_embedding.png' center half alt='Font embedding' %}
+
+2) Add to CSS EDITOR in Journeys. Please note: trailing semicolon on @import line is important. It's always good to have a fallback web font in case the google font fails to load.
+
+{% image src='/img/pages/features/journeys/custom_font.png' center half alt='Custom Fonts' %}
+
 
 ## Troubleshooting
 
@@ -537,6 +629,18 @@ Please make sure to add `[branchsubdomain]` to the CSP header for your pages. We
 {% highlight html %}
 <meta http-equiv="Content-Security-Policy" content="default-src https://[branchsubdomain]; child-src 'none'; object-src 'none'">
 {% endhighlight %}
+
+### Non-mobile optimized sites
+
+If you're not using a mobile viewport tag (`<meta name="viewport" content="width=device-width initial-scale=1, maximum-scale=1, user-scalable=no">`) because your site isn't mobile optimized, Journeys will look shrunken and weird. Don't worry, we have you covered:
+
+1. design the banner as you would like it to look on your site
+2. Go to the CSS editor and scroll to the bottom of the CSS code
+3. Add two properties to the #branch-banner selector
+    - `height: 228;`
+    - `zoom: 3;`
+
+The image will not look scaled properly in the editor view. This is because the dashboard is mobile optimized. Use the preview test link on the validation page to make sure the banner looks right
 
 {% elsif page.examples %}
 
@@ -619,6 +723,10 @@ Next, you'll choose the `containing` in the middle section to match a substring:
 Finally, you'll enter `google.com` to target users who came from Google search (where the referrer contains google.com):
 
 {% image src='/img/pages/features/journeys/examples/seo_friendly_2.png' center full alt='seo friendly 2' %}
+
+Alternatively, you can target users who did NOT come from Google search (where the referrer doesn't contain google.com):
+
+{% image src='/img/pages/features/journeys/examples/seo_friendly_3.png' center full alt='seo friendly 3' %}
 
 ### Example: English speaking iOS users
 

@@ -39,3 +39,10 @@ Offer a better user experience by using our Email Service Provider integrations 
 - Send Branch data to **[Google Analytics](/third-party-integrations/google-analytics),** **[Amplitude](/third-party-integrations/amplitude)**, **[Mixpanel](/third-party-integrations/mixpanel),** or **[Adobe Analytics](/third-party-integrations/adobe-analytics)** giving additional relevancy to your app analytics.
 
 {% endprotip %}
+{% protip %}
+
+<h3 style="margin-top:0;">Deep Linked Feeds<img class="premium-label" src="/img/premium_label.png" /></h3>
+
+[Deep Linked Feeds](https://dashboard.branch.io/ads) are the easiest way to get working deep links for your dynamic  ad campaigns on any network. Upload your product or content feed and modify it in the dashboard to easily create deep links for your entire product catalog, then start a dynamic ad campaign on platforms such as [Facebook](/features/facebook-dynamic-ads), Criteo, MediaMath and others.
+
+{% endprotip %}

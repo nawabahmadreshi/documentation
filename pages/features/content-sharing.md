@@ -311,7 +311,7 @@ Here's an example of what you'll see by platform:
 
 {% image src='/img/pages/getting-started/branch-universal-object/combined_share_sheet.png' actual center alt='ios and android share sheets' %}
 
-If you want to be notified when the user returns from the share sheet, implement the delegate of `IBranchLinkShareInterface`
+If you want to be notified when the user returns from the share sheet, implement the delegate of `IBranchLinkShareInterface`.
 
 {% highlight c# %}
 #region IBranchLinkShareInterface implementation

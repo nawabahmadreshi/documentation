@@ -29,15 +29,15 @@ Once the Branch SDK is integrated into an app, Branch can detect which links are
 
 ## What events does Branch send?
 
-Branch will send *referred* **installs** and **opens**, as well as any **custom events** you track with Branch. Non-referred events, clicks, web session starts, and pageviews will be excluded. Branch also sends all the data that is attached to the link that drove the referred event. This will allow you to analyze which campaigns, channels, etc. are helping you acquire and engage users.
+Branch will send *referred* **installs** and **opens**, as well as any **custom events** you track with Branch. Non-referred events, clicks, web session starts, and pageviews will be excluded. Branch also sends all the analytics tags that are attached to the link that drove the referred event. This will allow you to analyze which campaigns, channels, etc. are helping you acquire and engage users.
 
 ## What does it look like?
 
 Branch events will appear on the Adobe Analytics dashboard through `Reports > Custom Conversion > Branch eVar`. Note, this will automatically appear once the Branch Data Connector is enabled through the Adobe Analytics dashboard.
 
-You'll have the flexibility to analyze data as needed in the Adobe Analytics platform, as the data Branch sends maps in Adobe Analytics to a top level eVar. This eVar contains campaign, channel, target, event name, and action property, which is your deep link data.
+You'll have the flexibility to analyze data as needed in the Adobe Analytics platform, as the data Branch sends maps in Adobe Analytics to a top level eVar. This eVar contains campaign, channel, target, event name, and action property, which are your analytics tags.
 
-{% image src="/img/pages/third-party-integrations/omniture/omniture.png" 3-quarters center %}
+{% image src="/img/pages/third-party-integrations/adobe-analytics/adobe-analytics-conversion.png" 3-quarters center %}
 
 Branch events are similar to Adobe Analytics events in that they can be used to build custom reports and are tracked on the various pages and dashboards. However, unlike normal events, Branch events contain valuable information about how users ended up in your app in the first place.
 
@@ -55,6 +55,52 @@ For access to the Adobe Analytics beta please contact your Branch account manage
 - You also need to be a Adobe Analytics customer and have the Adobe Analytics SDK.
 
 {% endprerequisite %}
+
+## Activate the Branch Data Connector
+
+{% protip title="Adobe Analytics is in beta" %}
+Please let your Branch account manager know that you would like the Data Connector activated. Your Branch account manager will need to contact Adobe to activate the Data Connector for you.
+{% endprotip %}
+
+In your Adobe Analytics dashboard, under the *Admin* tab, find *Data Connectors*.
+
+{% image src="/img/pages/third-party-integrations/adobe-analytics/select-data-connectors.png" 3-quarters center %}
+
+Click *+Add New*, search for "Branch," and click *Activate*.
+
+{% image src="/img/pages/third-party-integrations/adobe-analytics/activate-connector.png" half center %}
+
+## Configure the Branch Data Connector
+
+#### Integration Settings
+
+These are automatically configured when you activate the Data Connector.
+
+#### Variable Mappings
+
+Map your Branch events to your chosen eVar. In the example below, it will be mapped to `Custom eVar 1`, renamed to the SiteCatalyst metric `Branch`.
+
+{% image src="/img/pages/third-party-integrations/adobe-analytics/variable-mappings.png" 3-quarters center %}
+
+#### Data Settings
+
+Branch has provided a default classification rule set for the Branch data that will be ingested. This maps Branch analytics data to Adobe classifications as follows. You can change this classification rule set if you would like to, but editing is not required. We also include Branch tags so you can create a new rule that further segments your analytics data for advanced visibility. 
+
+Adobe Classification | Branch Analytics Tag | Example
+--- | ---
+Source | Channel | Our Website 
+Campaign | Campaign | Journeys Test Campaign
+Medium | Feature | Journeys
+Action | Branch Event Name | Install
+Action Property| Branch Tags | tag=bar&tag2=1234
+
+{% image src="/img/pages/third-party-integrations/adobe-analytics/data-settings.png" 3-quarters center %}
+
+#### Review Summary
+
+Finally, review the integration, scroll to the bottom of the screen and click *Activate Now* to enable the integration. 
+
+{% image src="/img/pages/third-party-integrations/adobe-analytics/final-activation.png" half center %}
 
 ## Retrieve your Adobe Analytics Information
 
@@ -84,11 +130,15 @@ To enable the Adobe Analytics beta please contact your Branch account manager or
 
 ## Pass Adobe Visitor ID
 
-When you're ready to send data through Branch, you'll need to make sure you pass through the configured Adobe Visitor ID through the Branch SDKs. In order to do so, call the property `trackingIdentifier` on the `ADBMobile` class, and pass this value through `setRequestMetadataKey` on the Branch SDKs.
+When you're ready to send data through Branch, you'll need to make sure you pass through the configured Adobe Visitor ID through the Branch SDKs. In order to do so, figure out which ID you use for user tracking in the Adobe SDK, and pass this value through `setRequestMetadataKey` on the Branch SDKs.
 
-Here's a sample snippet showing this. **NOTE** you must set the $adobe_visitor_id before calling *initSession*. You must also initialize the Adobe SDK before setting the request metadata in the Branch SDK.
+There are three possible identities you can track via this integration. Please verify which ID you use, and send that. For example, if your Adobe integration uses Marketing Cloud Visitor ID, retrieve it from the Adobe SDK, and pass in a key value pair, with the key being *$marketing_cloud_visitor_id*. The value would be the value retrieved through the Adobe SDK.
 
-If you have a custom ID instead of the trackingIdentifier, simply pass through that custom ID from the Config object Adobe's SDK provides.
+1. Marketing Cloud Visitor ID - *$marketing_cloud_visitor_id*
+2. Analytics Visitor ID - *$adobe_visitor_id*
+3. Analytics Custom Visitor ID - *$analytics_visitor_id*
+
+Here's a sample snippet showing this. **NOTE** you must set the correct key before calling *initSession*. You must also initialize the Adobe SDK before setting the request metadata in the Branch SDK.
 
 **iOS**
 
@@ -134,13 +184,15 @@ Branch.initSession(...);
 
 Branch sends the following values from Branch link data:
 
-- Campaign ("March-2016-Facebook")
-- Channel ("Facebook DPA")
-- Feature ("Marketing")
-- Name of Branch event ("Install")
-- Deep Link Data ("promo_code: "ABCDE")
+Adobe Classification | Branch Analytics Tag | Example
+--- | ---
+Source | Channel | Our Website 
+Campaign | Campaign | Journeys Test Campaign
+Medium | Feature | Journeys
+Action | Branch Event Name | Install
+Action Property| Branch Tags | tag=bar&tag2=1234
 
-If you create a marketing link and specify analytics and deep link data, it will send and appear in the Adobe Analytics reporting suite.
+If you create a marketing link and specify analytics, those analytics will appear in the Adobe Analytics reporting suite.
 
 {% elsif page.support %}
 

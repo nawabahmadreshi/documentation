@@ -29,7 +29,7 @@ Branch will send all **Branch link clicks** to Tune. Branch also sends all the d
 
 ## What does it look like?
 
-See your Branch organic acquition campaigns alongside your Tune data. You can also use Branch links with Tune measurement URL parameters to get the advantages of Branch deep linking with Tune's fine-grained attribution data and ROI analysis.
+See your Branch organic acquisition campaigns alongside your Tune data. You can also use Branch links with Tune measurement URL parameters to get the advantages of Branch deep linking with Tune's fine-grained attribution data and ROI analysis.
 
 {% image src="/img/pages/third-party-integrations/tune/tune-dashboard-example.png" 3-quarters center %}
 
@@ -44,7 +44,7 @@ See your Branch organic acquition campaigns alongside your Tune data. You can al
 
 ## Get credentials from your Tune dashboard
 
-To set up the integration you will need your **Tune Advertiser ID** (an account-level identifer), your platform-specific Tune **Site IDs** (also known as App IDs) and a Tune **Publisher ID** for Branch. 
+To set up the integration you will need your **Tune Advertiser ID** (an account-level identifier), your platform-specific Tune **Site IDs** (also known as App IDs) and a Tune **Publisher ID** for Branch. 
 
 You can find your **Advertiser ID** by navigating to "Accounts > Advertiser Account" in the left hand sidebar and finding the Advertiser ID in the Account Details.
 

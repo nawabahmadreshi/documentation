@@ -73,7 +73,7 @@ For Xamarin, we're trying something new where our docs will live in the [README 
 The package name for your Android app in Unity is the same as the Bundle Identifier
 {% endprotip %}
 {% endif %}
-1. Type in your Apple App Prefix (found by clicking your app on [this page](https://developer.apple.com/account/ios/identifiers/bundle/bundleList.action) in Apple's Developer Portal).
+1. Type in your Apple App Prefix (found by clicking your app on [this page](https://developer.apple.com/account/ios/identifier/bundle) in Apple's Developer Portal).
 1. Scroll down and click on the `Save` button.
 
 {% image src='/img/pages/getting-started/universal-app-links/dashboard_enable_universal_links.png' 3-quarters center alt='enable Universal Links on Branch dashboard' %}
@@ -112,13 +112,8 @@ If the **Default domain name** box shows the legacy `bnc.lt` domain, you should 
 {% endcaution %}
 
 {% protip title="Using a custom domain or subdomain?" %}
-If you use a [custom domain or subdomain for your Branch links]({{base.url}}/getting-started/link-domain-subdomain/guide/#setting-a-custom-link-domain), you should also add an entry for `applinks:[mycustomdomainorsubdomain]`.
+If you use a [custom domain or subdomain for your Branch links]({{base.url}}/getting-started/link-domain-subdomain/guide/#setting-a-custom-link-domain), you should instead add entries for `applinks:[mycustomdomainorsubdomain]` and `XXXX-alternate.app.link`. If you're unsure of your Branch-assigned app.link subdomain, contact integrations@branch.io, and we can provide it.
 {% endprotip %}
-
-### Add entitlements file to the build target
-
-1. Select your `[projectname].entitlements` file in the Xcode navigator (left sidebar).
-1. Ensure that the correct build target is checked in the right sidebar. {% image src='/img/pages/getting-started/universal-app-links/entitlements-build-target.png' half center alt='add entitlements to build target' %}
 
 {% endif %}
 
@@ -127,14 +122,17 @@ If you use a [custom domain or subdomain for your Branch links]({{base.url}}/get
 1. Go to the [Link Settings](https://dashboard.branch.io/#/settings/link) page on the dashboard.
 1. Scroll down to the `Link Domain` area.
 1. Copy your domain name.{% image src='/img/pages/getting-started/universal-app-links/subdomain-setting.png' full center alt='retrieving the default link subdomain' %}
-1. Add the following entry to your application's `config.xml` (making sure that `xxxx` matches the subdomain prefix you've been assigned or selected for yourself)
+1. Add the following entry to your application's `config.xml` (replace the `xxxx` with values from your [Branch Settings Dashboard](https://dashboard.branch.io/settings/link))
 
 {% highlight xml %}
-<branch-config>
-    <ios-team-id value="your_ios_team_id" />
+<!-- sample config.xml -->
+<widget id="xxxx" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+  <branch-config>
+    <ios-team-id value="xxxx"/>
     <host name="xxxx.app.link" scheme="https" />
     <host name="xxxx-alternate.app.link" scheme="https" />
-</branch-config>
+  </branch-config>
+  <preference name="AndroidLaunchMode" value="singleInstance" />
 {% endhighlight %}
 
 {% caution title="Support for legacy links" %}
@@ -254,10 +252,9 @@ Open your **AppDelegate.m** file and add the following method (if you completed 
 Open your **AppDelegate.swift** file and add the following method (if you completed the [SDK Integration Guide]({{base.url}}/getting-started/sdk-integration-guide), this is likely already present).
 
 {% highlight swift %}
-func application(application: UIApplication, continueUserActivity userActivity: NSUserActivity, restorationHandler: ([AnyObject]?) -> Void) -> Bool {
+func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
     // pass the url to the handle deep link call
-
-    return Branch.getInstance().continueUserActivity(userActivity)
+    return Branch.getInstance().continue(userActivity);
 }
 {% endhighlight %}
 {% endtab %}
@@ -461,6 +458,7 @@ If the **Default domain name** box shows the legacy `bnc.lt` domain, you should 
     <category android:name="android.intent.category.DEFAULT" />
     <category android:name="android.intent.category.BROWSABLE" />
     <data android:scheme="https" android:host="xxxx.app.link" />
+    <data android:scheme="https" android:host="xxxx-alternate.app.link" />
 </intent-filter>
 {% endhighlight %}
 
@@ -503,7 +501,7 @@ After completing this guide and installing a new build of your app on your testi
 
 1. [Create a new Marketing Link](https://dashboard.branch.io/#/marketing/new) on the Branch dashboard. Leave all configuration items at their default options.
 1. Open this link on your testing device.
-1. If successful, your app should launch immediately without routing through the web browser or showing an **Open With...** dialog.
+1. If successful, your app should launch immediately without routing through the web browser, showing an **Open With...** dialog.
 
 {% endif %}
 
@@ -765,14 +763,18 @@ Custom domains and subdomains are unique to your app and not shared. All links o
 
 ## Troubleshooting Universal Links
 
+{% protip title="Automated Validation for Your Xcode Project" %}
+
+You can check if your Xcode project is correctly configured by using our [Universal Links Validator](/getting-started/universal-linking-validator/).
+
+{% endprotip %}
+
+
 ##### Are you testing by manually entering into Safari?
 Universal Links don't work properly when entered into Safari. Use Notes or iMessage for testing.
 
-##### Are you wrapping Branch links in your own crappy link and redirecting?
-Universal Links don't work when they are wrapped in some sort of click tracking or other domain. They must be freestanding. Please don't wrap our links.
-
-##### Is the entitlements file included for your build target?
-It seems that Xcode, by default, will not include the `.entitlements` file in your build. You have to check the box in the right sidebar against the correct target to ensure it's included in your app.
+##### Are you wrapping Branch links with another link and redirecting?
+In most cases, Universal Links won't open the app when they are "wrapped" by click tracking links. Universal links, including Branch links, must be freestanding. If you want Universal Links to work in all situations, do not use other links that redirect to your Branch links. 
 
 ##### Do your Team ID & Bundle ID match those on your dashboard?
 You can find them in the Dashboard under Settings > Link Settings, in the iOS section next to "Enable Universal Links." They should match your Team ID and Bundle ID. Team ID can be found here [https://developer.apple.com/membercenter/index.action#accountSummary](https://developer.apple.com/membercenter/index.action#accountSummary). Your Bundle ID is found in Xcode, in the `General` tab for the correct build target. If your Apple App Prefix is different from your Team ID, you should use your App Prefix. Your app prefix can be found from App IDs on Apple's Developer Portal.
@@ -784,7 +786,7 @@ iOS does not re-scrape the apple-app-site-association file unless you delete and
 If you are successfully taken into your app via a Universal Link, you'll see "bnc.lt" (or your domain) and a forward button in the top right corner of the status bar. If you click that button, Apple will no longer activate Universal Links in the future. To re-enable Universal Links, long press on the link in Messages (iOS 9 only due to iMessage revamp in 10) or Notes (iOS 10/9) and choose 'Open in <<App>>'.
 
 ##### Using a custom domain?
-Make sure it's configured correctly. You can find configuration issues by using our [Universal Link Validator](http://branch.io/resources/universal-links/).
+Make sure it's configured correctly. You can find configuration issues by using our [Universal Link Validator](http://branch.io/resources/aasa-validator/).
 
 If you're using a custom subdomain, your CNAME should point to `custom.bnc.lt` under [Link Settings](https://dashboard.branch.io/#/settings/link) in the Branch dashboard.
 

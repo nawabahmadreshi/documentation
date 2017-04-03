@@ -107,25 +107,20 @@ For the best customer experience, we recommending giving customers a way to easi
 Here is the script:
 {% highlight js %}
 var crypto = require('crypto');
-module.exports = function(original_url, branch_base_url, branch_hmac_secret, three_p_url) {
-	if (!original_url) { return new Error('Missing original_url'); }
-	if (typeof original_url != 'string') { return new Error('Invalid original_url'); }
-	if (!branch_base_url) { return new Error('Missing branch_base_url, should be similar to https://bnc.lt/abcd/3p?%243p=xx'); }
-	if (typeof branch_base_url != 'string') { return new Error('Invalid branch_base_url'); }
-	if (!branch_hmac_secret) { return new Error('Missing branch_hmac_secret'); }
-	if (typeof branch_hmac_secret != 'string') { return new Error('Invalid branch_hmac_secret'); }
-	if (three_p_url && typeof three_p_url != 'string') { return new Error('Invalid three_p_url'); }
+module.exports = function(original_url, branch_base_url) {
+    if (!original_url) { return new Error('Missing original_url'); }
+    if (typeof original_url != 'string') { return new Error('Invalid original_url'); }
+    if (!branch_base_url) { return new Error('Missing branch_base_url, should be similar to https://bnc.lt/abcd/3p?%243p=xx'); }
+    if (typeof branch_base_url != 'string') { return new Error('Invalid branch_base_url'); }
 
-	var pre_hmac_url = branch_base_url + (three_p_url ? '&%243p_url=' + encodeURIComponent(three_p_url) : '') + '&%24original_url=' + encodeURIComponent(original_url),
-		hmac = crypto.createHmac('sha256', branch_hmac_secret).update(pre_hmac_url).digest('hex');
-	return pre_hmac_url + '&%24hash=' + hmac;
+    return branch_base_url + '&%24original_url=' + encodeURIComponent(original_url);
 };
 {% endhighlight %}
 
 Here is how links look before and after (the latter being a Branch deep link).
 
 1. *Before:* http://example.com/?foo=bar
-2. *After:* https://vza3.app.link/3p?%243p=st&%24original_url=http%3A%2F%2Fexample.com%2F%3Ffoo%3Dbar&%24hash=221dd9fb333d809b22fbdfd9b87808de73e3cd94f99b8eb26e6181e962fcb438
+2. *After:* https://vza3.app.link/3p?%243p=e_eml&%24original_url=http%3A%2F%2Fexample.com%2F%3Ffoo%3Dbar&%24hash=221dd9fb333d809b22fbdfd9b87808de73e3cd94f99b8eb26e6181e962fcb438
 
 (note that these are simplified examples, not actual demo links)
 

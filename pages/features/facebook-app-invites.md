@@ -18,7 +18,7 @@ sections:
 
 {% if page.overview %}
 
-To help you grow your app, Facebook offers a feature called App Invites as an alternative to sharing on the Facebook wall. It is a private, friend-to-friend invite, similar to a direct SMS message. 
+To help you grow your app, Facebook offers a feature called App Invites as an alternative to sharing on the Facebook wall. It is a private, friend-to-friend invite, similar to a direct SMS message.
 
 {% image src='/img/pages/features/facebook-app-invites/appinvite.png' 2-thirds center alt='app invite' %}
 
@@ -28,7 +28,7 @@ To help you grow your app, Facebook offers a feature called App Invites as an al
 
 {% prerequisite %}
 
-- To use Facebook App Invites, you need to first [integrate the Branch SDK]({{base.url}}/getting-started/sdk-integration-guide) and {% if page.ios %}[the Facebook SDK](https://developers.facebook.com/docs/ios/getting-started){% elsif page.android %}[the Facebook SDK](https://developers.facebook.com/docs/android/getting-started){% endif %} into your app. 
+- To use Facebook App Invites, you need to first [integrate the Branch SDK]({{base.url}}/getting-started/sdk-integration-guide) and {% if page.ios %}[the Facebook SDK](https://developers.facebook.com/docs/ios/getting-started){% elsif page.android %}[the Facebook SDK](https://developers.facebook.com/docs/android/getting-started){% endif %} into your app.
 
 {% endprerequisite %}
 
@@ -58,7 +58,7 @@ In the view class where you will be initializing sharing, add these imports at t
 {% endhighlight %}
 {% endtab %}
 {% tab swift %}
-In the Bridging Header, add the following:  
+In the Bridging Header, add the following:
 
 {% highlight objective-c %}
 #import "Branch.h"
@@ -126,7 +126,7 @@ Lastly, trigger the invite!
             inviteDialog.content =[[FBSDKAppInviteContent alloc] init];
             inviteDialog.content.appLinkURL = [NSURL URLWithString:url];
             inviteDialog.content.appInvitePreviewImageURL = [NSURL URLWithString:@"https://s3-us-west-1.amazonaws.com/host/zackspic.png"];
-                                            
+
             [inviteDialog show];
         }
     }
@@ -138,9 +138,9 @@ Lastly, trigger the invite!
 branchUniversalObject.getShortUrl(with: linkProperties) { (url, error) in
     if (error == nil) {
         var inviteContent: FBSDKAppInviteContent = FBSDKAppInviteContent()
-                    
+
         inviteContent.appLinkURL = NSURL(String: url)!
-        
+
         inviteDialog.content = inviteContent
         inviteDialog.delegate = self
         inviteDialog.show()
@@ -232,7 +232,7 @@ branchUniversalObject.generateShortUrl(this, linkProperties, new BranchLinkCreat
 
 ## View your data using the Branch dashboard
 
-The [Marketing page](https://dashboard.branch.io/#/marketing) on the Branch dashboard shows the performance of each individual link. You can find your link listed in the table with a quick summary of the _total_ clicks and installs. 
+The [Marketing page](https://dashboard.branch.io/#/marketing) on the Branch dashboard shows the performance of each individual link. You can find your link listed in the table with a quick summary of the _total_ clicks and installs.
 
 {% caution %}
 Facebook prevents Branch from measuring the number of clicks for App Invites, so all **Clicks** numbers will be inaccurate.
@@ -275,7 +275,7 @@ Then modify your **AppDelegate.m** file to handle the incoming links:
             }
         }
     }];
-    
+
     [[FBSDKApplicationDelegate sharedInstance] application:application
                                     didFinishLaunchingWithOptions:launchOptions];
 
@@ -299,7 +299,7 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
         }
     })
 
-    let permissions = ["public_profile", "user_friends", "publish_actions"]   
+    let permissions = ["public_profile", "user_friends", "publish_actions"]
     FBSession.openActiveSessionWithPublishPermissions(permissions, defaultAudience: FBSessionDefaultAudience.Everyone, allowLoginUI: true)
 
     return true
@@ -363,14 +363,14 @@ If Facebook is having trouble reading the AppLinks from the Branch link, you mig
 
 You can test the OG tags using the [OG tag tester tool](https://developers.facebook.com/tools/debug/og/object) provided by Facebook:
 
-1. Paste the Branch Link into the Input URL box. 
+1. Paste the Branch Link into the Input URL box.
 1. Click on the Show existing scrape information button.
-1. Examine errors regarding AppLinks from the output window.
-1. Click on the Fetch New Scrape Information button. This last step typically resolves this problem if you are certain that your Branch Link Settings are correct. 
+1. Examine errors regarding App Links from the output window.
+1. Click on the Fetch New Scrape Information button. This last step typically resolves this problem if you are certain that your Branch Link Settings are correct.
 
 {% protip %}
-You can further automate the rescraping process by using this command after you create a new link and before you use it for any ads: 
- 
+You can further automate the rescraping process by using this command after you create a new link and before you use it for any ads:
+
 {% highlight sh %}
 curl --insecure "https://graph.facebook.com/?id=[YOUR-URL-TO-SCRAPE]&scrape=true"
 {% endhighlight %}
@@ -378,7 +378,8 @@ curl --insecure "https://graph.facebook.com/?id=[YOUR-URL-TO-SCRAPE]&scrape=true
 
 ### If the OG tag tester continues to report problems
 
-1. Examine your [Link Settings](https://dashboard.branch.io/#/settings/link) and ensure that for all platforms (for which an app is available), that a URI scheme and a link to the app in the Play/App Store is configured. If you are using a Custom URL for your iOS Redirect then you need to append ?id<App Store Id> to the URL.
+1. Examine your [Link Settings](https://dashboard.branch.io/#/settings/link) and ensure that for all platforms (for which an app is available), that a URI scheme and a link to the app in the Play/App Store is configured. If you are using a Custom URL for your iOS Redirect, then you need to append `?id[10-digit App Store ID]` to the URL. This is necessary in order to fully generate the App Links and OG tags that the Facebook scraper expects to find.
+    - For example, if your App Store URL is `https://itunes.apple.com/us/app/my-app-name/id1234567890`, then your Custom URL value should be `https://example.com?id1234567890`
 1. If errors from the output window pertain to OG tags i.e. missing title, description etc. then examine link OG tags by appending `?debug=true` as described on the [Integration Testing page]({{base.url}}/getting-started/integration-testing/guide/#debugging-an-individual-link).
 1. If you haven't set OG tags on a per link level, then please check your Dashboard's global Social Media Display Customization settings from the [Link Settings](https://dashboard.branch.io/#/settings/link) page.
 
@@ -396,6 +397,9 @@ We recently discovered a bug within the Facebook system that prevents App Links 
 It has to look like this **exactly**:
 {% image src='/img/pages/features/facebook-ads/app_restrictions.png' 3-quarters center alt='app restrictions troubleshooting' %}
 
+## No IP Whitelists
+
+Because Branch has a large distribution of API servers that will be making requests to Facebook on behalf of your app, you cannot have an IP whitelist in your [Facebook advanced settings](https://developers.facebook.com/apps/390736167768543/settings/advanced/) and still have this integration work. Please remove any IPs from this setting if they are present.
 
 ## Common issues with Facebook Authentication
 

@@ -38,6 +38,18 @@ Before enabling the Branch SDK on mParticle, you must first [sign up for an mPar
 {% endprerequisite %}
 {% endif %}
 
+{% if page.react %}
+
+{% prerequisite %}
+`react-native-branch` 1.0 requires `react-native` 0.40. If you require `react-native` < 0.40, please limit
+`react-native-branch` to `0.9.*`. There are some differences in the installation and integration process
+between 0.9 and 1.0, mentioned here. Please see
+[the GitHub repository](https://github.com/BranchMetrics/react-native-branch-deep-linking#branch-metrics-react-native-sdk-reference)
+for full details and more options.
+{% endprerequisite %}
+
+{% endif %}
+
 ## Get the SDK files
 
 <!--- iOS -->
@@ -51,6 +63,7 @@ The recommended way to install the SDK is via CocoaPods:
 
 1. Add `pod "Branch"` to your podfile.
 1. Run `pod install` from the command line.
+1. Run `pod update` from the command line. This updates the pod to the latest version of the SDK.
 
 ### Install with Carthage
 
@@ -75,12 +88,12 @@ We're not sure if Cocoapods will support extensions, so in the meantime, just in
 
 1. [Grab the latest SDK version](https://s3-us-west-1.amazonaws.com/branchhost/Branch-iOS-SDK.zip), or [clone our open-source GitHub repo](https://github.com/BranchMetrics/ios-branch-deep-linking).
 1. Drag the `Branch.framework` file from the root of the SDK folder into the Frameworks folder of your Xcode project. Be sure that "Copy items if needed" and "Create groups" are selected.
-1. Update the target's **Framework Search Paths**  
-    a. Select the project in Project Navigator  
-    b. In the PROJECT/TARGETS pane select the target you are building  
-    c. Click on the **Build Settings** tab  
-    d. Find: **User Header Search Paths**  
-    e. Add: **$(PROJECT_DIR)/Branch.framework/Headers**  
+1. Update the target's **Framework Search Paths**
+    a. Select the project in Project Navigator
+    b. In the PROJECT/TARGETS pane select the target you are building
+    c. Click on the **Build Settings** tab
+    d. Find: **User Header Search Paths**
+    e. Add: **$(PROJECT_DIR)/Branch.framework/Headers**
 1. Import the following frameworks under **Build Phases** for your app target:
     - `AdSupport.framework`
     - `CoreTelephony.framework`
@@ -224,30 +237,36 @@ Branch requires ARC, and we don’t intend to add `if` checks throughout the SDK
 1. Extract the contents.
 3. Copy the `android` folder to your Titanium `modules` folder.
 
+#### Android note
+
+We've recently found that there is an issue involving the `WRITE_EXTERNAL_STORAGE` permission, Titanium and the Branch module on Android. If you have the `WRITE_EXTERNAL_STORAGE` permission enabled for your Titanium app, you will see failures to initialize Branch. *Please remove this permission.*
+
 {% endif %}
 <!--- /Titanium -->
 
 {% if page.react %}
 
-1. Run `npm install rnpm -g` (skip this step if `rnpm` is already installed on your system).
-1. Navigate go your root project directory and download the Branch SDK package: `npm install --save react-native-branch`.
-1. Configure the package: `rnpm link react-native-branch`.
+1. Navigate to your root project directory and download the Branch SDK package: `npm install --save react-native-branch`.
+1. Configure the package: `react-native link react-native-branch`.
 
 ### iOS project installation
 
-1. Navigate into the SDK package directory: `cd node_modules/react-native-branch`.
-1. Add pod `Branch` as a dependency in your ios/Podfile. ([example](https://github.com/BranchMetrics/react-native-branch-deep-linking/blob/master/docs/installation.md#cocoa-pods))
-1. Use CocoaPods to install dependencies: `pod install`.
-1. Drag **/node_modules/react-native-branch/Pods/Pods.xcodeproj** into the **Libraries** folder of your Xcode project. {% image src='/img/pages/getting-started/sdk-integration-guide/pod-import.png' full center alt='Import CocoaPods project' %}
-1. In Xcode, drag the `libBranch.a` Product from **Pods.xcodeproj** into your the **Link Binary with Libraries** section of **Build Phases** for your project's target. {% image src='/img/pages/getting-started/sdk-integration-guide/link-pod-binary.png' full center alt='Link Pod product with project binary' %}
+1. Add `pod "Branch"` as a dependency in your ios/Podfile. ([example](https://github.com/BranchMetrics/react-native-branch-deep-linking/blob/master/docs/installation.md#cocoa-pods))
+1. Use CocoaPods to install dependencies: `pod install --repo-update`.
 
 {% protip %}
-See [this page](https://facebook.github.io/react-native/docs/linking-libraries-ios.html#manual-linking){:target="_blank"} for detailed documentation on importing iOS libraries into a React Native project.
+As of CocoaPods v 1.0, `pod install` no longer automatically updates the local pod repository. Use the `--repo-update`
+argument to `pod install` in order to make sure you install the latest SDK.
+{% endprotip %}
+{% protip %}
+See
+[the GitHub repository](https://github.com/BranchMetrics/react-native-branch-deep-linking#branch-metrics-react-native-sdk-reference)
+for details on integrating dependencies, including other methods of adding the Branch SDK for iOS, such as Carthage.
 {% endprotip %}
 
 ### Android project installation
 
-Sometimes `rnpm` link creates incorrect relative paths, leading to compilation errors. Ensure that the following files look as described and all linked paths are correct:
+Sometimes `react-native link` creates incorrect relative paths, leading to compilation errors. Ensure that the following files look as described and all linked paths are correct:
 
 #### android/settings.gradle
 
@@ -282,6 +301,8 @@ The recommended way to install the SDK is via CocoaPods:
 
 1. Add `pod 'mParticle-BranchMetrics', '~> 6.5.0'` to your podfile.
 1. Run `pod install` from the command line.
+1. Run `pod update` from the command line. This updates the pod to the latest version of the SDK.
+
 
 ### Install with Carthage
 
@@ -336,11 +357,11 @@ Occasionally, Android will barf after you add our library due to generic issues 
 ### Add your Branch key
 
 1. Retrieve your Branch Key on the [Settings](https://dashboard.branch.io/#/settings){:target="_blank"} page of the Branch dashboard.
+{% if page.mparticle_ios %}
 1. In Xcode, open your project's Info.plist file in the Navigator (on the left side).
 1. Mouse hover "Information Property List" (the root item under the Key column).
 1. After about half a second, you will see a `+` sign appear. Click it.
-{% if page.mparticle_ios %}
-1. Add a new row with the following value.
+1. Add a new row to your info.plist file with the following value.
 
 | Key | Type | Value |
 | :--- | --- | --- |
@@ -348,14 +369,14 @@ Occasionally, Android will barf after you add our library due to generic issues 
 
 {% else %}
 
-1. Add new rows with the following values, with the `String` entry inside the `Dictionary`:
+1. Add new rows to your info.plist file with the following values, with the `String` entry inside the `Dictionary`:
 
 | Key | Type | Value |
 | :--- | --- | --- |
 | branch_key | Dictionary | |
 | live | String | [key_live_xxxxxxxxxxxxxxx] |
 
-{% image src="/img/pages/getting-started/sdk-integration-guide/branch-multi-key-plist.png" actual center alt="environment toggle" %}
+{% image src="/img/pages/getting-started/sdk-integration-guide/ios_add_branchKey.gif" actual center alt="Add the Branch Key" %}
 
 {% endif %}
 {% if page.ios or page.react or page.mparticle_ios %}
@@ -367,14 +388,11 @@ Occasionally, Android will barf after you add our library due to generic issues 
 Branch opens your app by using its URI scheme (`yourapp://`), which should be unique to your app.
 
 1. On the [Link Settings](https://dashboard.branch.io/#/settings/link){:target="_blank"} page of the Branch dashboard, ensure that **I have an iOS App** is checked and **iOS URI Scheme** is filled.
-1. In Xcode, click your project in the Navigator (on the left side).
-1. Select the "Info" tab.
-1. Expand the "URL Types" section at the bottom.
-1. Click the `+` button to add the URL Scheme you've selected, as below:
+1. In Xcode: Click your project file, navigate to **Targets > Info > URL Types**, and add a new entry with your URI scheme.
 
-{% image src='/img/pages/getting-started/sdk-integration-guide/urlType.png' full center alt='URL Scheme Demo' %}
+{% image src='/img/pages/getting-started/sdk-integration-guide/ios_get_uriScheme.gif' full center alt='URL Scheme Demo' %}
 
-### Support Strong Matching (only for new  **app.link** domain)
+### Support Strong Matching (only needed for &nbsp; **app.link** &nbsp; domains)
 
 1. Retrieve your app default domain name from [Link Settings](https://dashboard.branch.io/#/settings/link){:target="_blank"} page of the Branch dashboard under **Link Domain**
 1. In Xcode, open your project's Info.plist file in the Navigator (on the left side).
@@ -677,21 +695,19 @@ A Branch session needs to be started every single time your app opens. We check 
 
 1. In Xcode, open your **App.Delegate.m** file.
 1. Add `#import "Branch.h"` at the top to import the Branch framework.
-1. Find the line beginning with:
+1. Define and initialize Branch
 
-{% highlight objc %}
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:
-{% endhighlight %}
+{% image src='/img/pages/getting-started/sdk-integration-guide/objc_initSession.gif' center alt='Initialize the SDK'%}
+
 {% endtab %}
 
 {% tab swift %}
 1. Add a bridging header to import the Branch framework into your project. For help on adding a bridging header, see [this StackOverflow answer](http://stackoverflow.com/a/28486246/1914567){:target="_blank"}.
 1. In Xcode, open your **AppDelegate.swift** file.
-1. Find the line beginning with:
+1. Define and initialize Branch:
 
-{% highlight swift %}
-func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-{% endhighlight %}
+{% image src='/img/pages/getting-started/sdk-integration-guide/swift_initSession.gif' center alt='Initialize Branch'%}
+
 {% endtab %}
 {% endtabs %}
 
@@ -723,9 +739,9 @@ func didBecomeActiveWithConversation(conversation: MSConversation)
 
 {% endif %}
 
-Underneath this line, add the following snippet:
 
 {% if page.ios %}
+In didFinishLaunchingWithOptions, add the following snippet:
 
 {% tabs %}
 {% tab objective-c %}
@@ -760,6 +776,7 @@ branch?.initSession(launchOptions: launchOptions, andRegisterDeepLinkHandler: {p
 {% endif %}
 
 {% if page.ios_imessage %}
+In this method, add the following snippet:
 
 {% tabs %}
 {% tab objective-c %}
@@ -901,32 +918,115 @@ public void onNewIntent(Intent intent) {
 
 Use the the following methods to initialize a Branch session when the `deviceready` event fires and every time the `resume` event fires.
 
+__Cordova and PhoneGap__
 {% highlight js %}
-onDeviceReady: function() {
-    Branch.initSession();
-},
-onResume: function() {
-    Branch.initSession();
-},
-initialize: function() {
-    document.addEventListener('resume', onResume, false);
-    document.addEventListener('deviceready', onDeviceReady, false);
-},
+// sample index.js
+var app = {
+  initialize: function() {
+    this.bindEvents();
+  },
+  bindEvents: function() {
+    document.addEventListener('deviceready', this.onDeviceReady, false);
+    document.addEventListener('resume', this.onDeviceResume, false);
+  },
+  onDeviceReady: function() {
+    app.branchInit();
+  },
+  onDeviceResume: function() {
+    app.branchInit();
+  },
+  branchInit: function() {
+    // Branch initialization
+    Branch.initSession(function(data) {
+      // read deep link data on click
+      alert('Deep Link Data: ' + JSON.stringify(data));
+    });
+  }
+};
+
+app.initialize();
 {% endhighlight %}
 
-Then add a global method `DeepLinkHandler()` which will act as our callback when the session begins. The deep link data will be included here:
-
+__Ionic 1__
 {% highlight js %}
-function DeepLinkHandler(data) {
-    alert('Data from initSession: ' + data.data);
+// sample app.js
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
+
+.run(function($ionicPlatform) {
+  $ionicPlatform.ready(function() {
+    if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
+      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+      cordova.plugins.Keyboard.disableScroll(true);
+    }
+    if (window.StatusBar) {
+      StatusBar.styleDefault();
+    }
+
+    // Branch
+    $ionicPlatform.on('deviceready', function(){
+      branchInit();
+    });
+    $ionicPlatform.on('resume', function(){
+      branchInit();
+    });
+
+    function branchInit() {
+      // Branch initialization
+      Branch.initSession(function(data) {
+        // read deep link data on click
+        alert('Deep Link Data: ' + JSON.stringify(data));
+      });
+    }
+  });
+})
+// ...
+{% endhighlight %}
+
+__Ionic 2__
+{% highlight js %}
+// sample app.component.js
+import { Component } from '@angular/core';
+import { Platform } from 'ionic-angular';
+import { StatusBar, Splashscreen } from 'ionic-native';
+
+import { TabsPage } from '../pages/tabs/tabs';
+
+// Branch import
+declare var Branch;
+
+@Component({
+  template: `<ion-nav [root]="rootPage"></ion-nav>`
+})
+export class MyApp {
+  rootPage = TabsPage;
+
+  constructor(platform: Platform) {
+    platform.ready().then(() => {
+      StatusBar.styleDefault();
+      Splashscreen.hide();
+      branchInit();
+    });
+
+    platform.resume.subscribe(() => {
+      branchInit();
+    });
+
+    // Branch initialization
+    const branchInit = () => {
+      // only on devices
+      if (platform.is('core')) { return }
+      Branch.initSession(data => {
+        // read deep link data on click
+        alert('Deep Link Data: ' + JSON.stringify(data));
+      });
+    }
+  }
 }
 {% endhighlight %}
 
 {% caution title="Watch out for content security policies" %}
 If `data` is null and `err` contains a string denoting a request timeout, make sure to whitelist `api.branch.io` and `[branchsubdomain]` ([click here]({{base.url}}/getting-started/link-domain-subdomain/guide/#the-default-applink-subdomain){:target="_blank"} to read about `[branchsubdomain]`) in your app's [content security policies](https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy){:target="_blank"}.
 {% endcaution %}
-
-Note, if you are unsure how to set a global function or you are getting a `Reference not defined` error with `DeepLinkHandler`, please review this [Github issue](https://github.com/BranchMetrics/cordova-ionic-phonegap-branch-deep-linking/issues/128).
 
 {% endif %}
 <!-- /Cordova -->
@@ -1050,7 +1150,8 @@ $.onInitSessionFinished = function(data) {
 ### iOS initialization
 
 1. In Xcode, open your **App.Delegate.m** file.
-2. Add `#import "RNBranch.h"` at the top to import the Branch framework.
+2. Add `#import <react-native-branch/RNBranch.h>` at the top to import the Branch framework. (If you are using
+  `react-native-branch` 0.9, use `#import "RNBRanch.h"` instead.)
 3. Find the line beginning with:
 
 {% highlight objc %}
@@ -1097,17 +1198,11 @@ public class MainActivity extends ReactActivity {
         return "base";
     }
 
-    // Override onStart, onStop, onNewIntent:
+    // Override onStart, onNewIntent:
     @Override
     protected void onStart() {
         super.onStart();
         RNBranchModule.initSession(this.getIntent().getData(), this);
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        RNBranchModule.onStop();
     }
 
     @Override
@@ -1239,12 +1334,12 @@ Track custom events in your app with a simple call to the Branch SDK:
 {% tabs %}
 {% tab objective-c %}
 {% highlight objc %}
-[[Branch getInstance] userCompletedAction:BNCAddToCartEvent];
+[[Branch getInstance] userCompletedAction:"signup"];
 {% endhighlight %}
 {% endtab %}
 {% tab swift %}
 {% highlight swift %}
-Branch.getInstance().userCompletedAction(BNCAddToCartEvent)
+Branch.getInstance().userCompletedAction("signup")
 {% endhighlight %}
 {% endtab %}
 {% endtabs %}
@@ -1255,14 +1350,14 @@ Branch.getInstance().userCompletedAction(BNCAddToCartEvent)
 
 {% if page.android %}
 {% highlight java %}
-Branch.getInstance(getApplicationContext()).userCompletedAction(BranchEvent.SHARE_STARTED);
+Branch.getInstance(getApplicationContext()).userCompletedAction("signup");
 {% endhighlight %}
 {% endif %}
 <!--- /Android -->
 
 {% if page.cordova %}
 {% highlight js %}
-Branch.userCompletedAction("Share Started");
+Branch.userCompletedAction("sign up");
 {% endhighlight %}
 {% endif %}
 
@@ -1274,7 +1369,7 @@ Branch.userCompletedAction("Share Started");
 
 {% if page.unity %}
 {% highlight c# %}
-Branch.userCompletedAction("Share Started");
+Branch.userCompletedAction("signup");
 {% endhighlight %}
 {% endif %}
 
@@ -1286,59 +1381,20 @@ Currently not supported in the ANE
 
 {% if page.titanium %}
 {% highlight js %}
-branch.userCompletedAction("Share Started");
+branch.userCompletedAction("signup");
 {% endhighlight %}
 {% endif %}
 
 {% if page.react %}
 {% highlight js %}
-branch.userCompletedAction("Share Started");
+branch.userCompletedAction("signup");
 {% endhighlight %}
 {% endif %}
 
-{% if page.mparticle_ios %}
-{% highlight objc %}
-[[MParticle sharedInstance] logEvent:@"Share Started" eventType:MPEventTypeTransaction];
-{% endhighlight %}
-{% endif %}
+
+{% ingredient revenue-snippets %}{% endingredient %}
 
 For more information on tracking and configuring custom events, see the [user value attribution]({{base.url}}/getting-started/user-value-attribution){:target="_blank"} guide.
-
-{% if page.android or page.mparticle_android %}{% else %}
-
-## {% if page.ios or page.mparticle_ios %}{% else %}iOS: {% endif %}Submitting to the App Store
-
-After integrating the Branch SDK, you need to let Apple know that you use the IDFA. To follow proper protocol when submitting your next release to the App Store, you should:
-
-1. Answer `Yes` to the question **Does this app use the Advertising Identifier (IDFA)?**
-1. Check the two boxes for:
-   - **Attribute this app installation to a previously served advertisement**
-   - **Attribute an action taken within this app to a previously served advertisement**
-
-{% image src='/img/pages/getting-started/submitting-apps/idfa.png' center full alt='IDFA configuration on iTunes Connect' %}
-
-{% protip title="Why does Branch use the IDFA?" %}
-Branch uses the IDFA to identify users across our entire partner network, greatly increasing match accuracy rate. You can read more about this on the [Matching accuracy page]({{base.url}}/getting-started/matching-accuracy){:target="_blank"}.
-
-The only situation in which you do not need to perform these steps is if you installed the Branch framework manually (without using CocoaPods) and elected **not** to import `AdSupport.framework`
-{% endprotip %}
-
-{% endif %}
-
-{% if page.android or page.mparticle_android %}
-
-## Submitting to the Play Store
-
-If you'd like Branch to collect the [Google Advertising ID](https://support.google.com/googleplay/android-developer/answer/6048248) for advertising or tracking purposes instead of the Android ID, you must add Google Play Services to your app prior to release. After you complete these steps, Branch will handle the rest!
-
-1. Add `compile 'com.google.android.gms:play-services-ads:9+'` or greater version to the dependencies section of your `build.gradle` file. You might already have it.
-1. Add the following line in your Proguard settings:
-
-{% highlight xml %}
--keep class com.google.android.gms.ads.identifier.** { *; }
-{% endhighlight %}
-
-{% endif %}
 
 ## Next steps
 
@@ -1350,7 +1406,7 @@ Here are some recommended next steps:
 - **Learn about [Creating Links in Apps]({{base.url}}/getting-started/creating-links/apps)** — let your users share content and invite friends from inside your app.
 -  **Set up [Deep Link Routing]({{base.url}}/getting-started/deep-link-routing)** — send incoming visitors directly to specific content in your app based on the Branch link they opened.
 -  **Set up [Custom Event Tracking]({{base.url}}/getting-started/user-value-attribution#custom-event-tracking)** if you skipped the step above — make in-app activity beyond clicks, installs, and opens — like purchases and signups — available for analysis in the dashboard.
-
+-  **Submit your app to the [App Store]({{base.url}}/getting-started/sdk-integration-guide/advanced/ios/#submitting-to-the-app-store)** and **[Google Play Store]({{base.url}}/getting-started/sdk-integration-guide/advanced/android/#submitting-to-the-play-store)**
 {% endif %}
 
 {% elsif page.advanced %}
@@ -1397,17 +1453,18 @@ Follow these directions install the Branch SDK framework files without using Coc
 
 1. [Grab the latest SDK version](https://s3-us-west-1.amazonaws.com/branchhost/Branch-iOS-SDK.zip), or [clone our open-source GitHub repo](https://github.com/BranchMetrics/ios-branch-deep-linking).
 1. Drag the `Branch.framework` file from the root of the SDK folder into the Frameworks folder of your Xcode project. Be sure that "Copy items if needed" and "Create groups" are selected.
-1. Update the target's **Framework Search Paths**  
-    a. Select the project in Project Navigator  
-    b. In the PROJECT/TARGETS pane select the target you are building  
-    c. Click on the **Build Settings** tab  
-    d. Find: **User Header Search Paths**  
-    e. Add: **$(PROJECT_DIR)/Branch.framework/Headers**  
+1. Update the target's **Framework Search Paths**
+    a. Select the project in Project Navigator
+    b. In the PROJECT/TARGETS pane select the target you are building
+    c. Click on the **Build Settings** tab
+    d. Find: **User Header Search Paths**
+    e. Add: **$(PROJECT_DIR)/Branch.framework/Headers**
 1. Import the following frameworks under **Build Phases** for your app target:
     - `AdSupport.framework`
     - `CoreTelephony.framework`
     - `CoreSpotlight.framework`
     - `MobileCoreServices.framework`
+    - `iAd.framework`
 
 {% caution title="Considerations around using Frameworks" %}
 
@@ -1479,7 +1536,41 @@ listener.onReceive(context, intent);
 
 {% else %}
 
-No advanced information for this platform.
+{% endif %}
+
+{% if page.android or page.mparticle_android %}{% else %}
+
+## {% if page.ios or page.mparticle_ios %}{% else %}iOS: {% endif %}Submitting to the App Store
+
+After integrating the Branch SDK, you need to let Apple know that you use the IDFA. To follow proper protocol when submitting your next release to the App Store, you should:
+
+1. Answer `Yes` to the question **Does this app use the Advertising Identifier (IDFA)?**
+1. Check the two boxes for:
+   - **Attribute this app installation to a previously served advertisement**
+   - **Attribute an action taken within this app to a previously served advertisement**
+
+{% image src='/img/pages/getting-started/submitting-apps/idfa.png' center full alt='IDFA configuration on iTunes Connect' %}
+
+{% protip title="Why does Branch use the IDFA?" %}
+Branch uses the IDFA to identify users across our entire partner network, greatly increasing match accuracy rate. You can read more about this on the [Matching accuracy page]({{base.url}}/getting-started/matching-accuracy){:target="_blank"}.
+
+You do not need to perform these steps if you installed the Branch framework manually and elected **not** to import `AdSupport.framework` or via Cocoapods and chose the Branch/without-IDFA subspec.
+{% endprotip %}
+
+{% endif %}
+
+{% if page.android or page.mparticle_android %}
+
+## Submitting to the Play Store
+
+If you'd like Branch to collect the [Google Advertising ID](https://support.google.com/googleplay/android-developer/answer/6048248) for advertising or tracking purposes instead of the Android ID, you must add Google Play Services to your app prior to release. After you complete these steps, Branch will handle the rest!
+
+1. Add `compile 'com.google.android.gms:play-services-ads:9+'` or greater version to the dependencies section of your `build.gradle` file. You might already have it.
+1. Add the following line in your Proguard settings:
+
+{% highlight xml %}
+-keep class com.google.android.gms.ads.identifier.** { *; }
+{% endhighlight %}
 
 {% endif %}
 

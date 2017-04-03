@@ -23,7 +23,7 @@ Dynamic remarketing campaigns on desktop have been proven to deliver 16x return 
 {% prerequisite %}
 
 - To track installs from Facebook Ads you should [integrate the Branch SDK]({{base.url}}/getting-started/sdk-integration-guide) into your app.
-- If you want to deep link from your ads directly content, you should [configure deep link routing]({{base.url}}/getting-started/deep-link-routing).
+- If you want to deep link from your ads directly to content, you should [configure deep link routing]({{base.url}}/getting-started/deep-link-routing).
 - Use [Branch Deep Linked Feeds](/features/deep-linked-feeds) to create your Facebook Dynamic Ad compatible deep links.
 {% endprerequisite %}
 
@@ -43,8 +43,8 @@ Learn how to [create a Deep Linked Feed](/features/deep-linked-feeds/guide){:tar
 1. In the top left hand corner, click the overflow menu and select **Product Catalogs**.{% image src='/img/pages/features/facebook-dynamic-ads/fb-product-catalogs.png' half center alt='Facebook Product Catalogs' %}
 1. From the drop down menu click "Create new catalog...", name it (remember this name, you'll need it later) and select "Products sold online". {% image src='/img/pages/features/facebook-dynamic-ads/create-new-catalog.png' half center alt='Facebook Create New Product Catalog' %}
 1. Now that you have a product catalog, you can add a new feed. Click "Add Product Feed." {% image src='/img/pages/features/facebook-dynamic-ads/add-new-feed.png' 3-quarters center alt='Add new feed' %}
-1. If you've created a Deep Linked Feed CSV file to upload, select the option "Single upload: Upload a single file feed now." {% image src='/img/pages/features/facebook-dynamic-ads/new-feed-settings.png' half center alt='Feed file' %}
-1. Select the Deep Linked Feed CSV file you would like to upload to Facebook, and click "Upload". {% image src='/img/pages/features/facebook-dynamic-ads/successful-feed-upload.png' 3-quarters center alt='Feed uploaded' %}
+1. If you have a [Hosted Deep Linked Feed](/features/deep-linked-feeds/guide/#schedule-refresh){:target="_blank"} (recommended), select the option "Scheduled recurring uploads." Paste your Branch-provided URL into the **Feed URL** text field. {% image src='/img/pages/features/facebook-dynamic-ads/new-feed-settings.png' 3-quarters center alt='Feed URL option' %} {% image src='/img/pages/features/facebook-dynamic-ads/upload-feed-url.png' 3-quarters center alt='Feed URL settings' %} 
+1. If you've created a Deep Linked Feed CSV file to upload, select the option "Single upload: Upload a single file feed now." Select the Deep Linked Feed URL or CSV file you would like to upload to Facebook, and click "Upload". {% image src='/img/pages/features/facebook-dynamic-ads/successful-feed-upload.png' 3-quarters center alt='Feed uploaded' %}
 1. Wait for the upload to complete successfully. If you'd like to create a "Product set" (a subset of products in your catalog for use in specific ad sets) you can do that now.
 
 ## Setting up App Events and the Facebook Pixel

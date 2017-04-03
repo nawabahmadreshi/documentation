@@ -34,7 +34,6 @@ Conceptually, the data inside a Branch link follows this model:
         foo: 'bar',
         '$desktop_url': 'http://myappwebsite.com',
         '$ios_url': 'http://myappwebsite.com/ios',
-        '$ipad_url': 'http://myappwebsite.com/ipad',
         '$android_url': 'http://myappwebsite.com/android',
         '$og_app_id': '12345',
         '$og_title': 'My App',
@@ -72,7 +71,7 @@ Use analytics labels to help _organize your data_. Track updates, run A/B tests 
 | --- | --- | ---
 | alias | Specify a link alias in place of the standard encoded short URL (e.g., `[branchsubdomain]/youralias` or `yourdomain.co/youralias`). Link aliases are unique, immutable objects that cannot be deleted. **Aliases on the legacy `bnc.lt` domain are incompatible with [Universal Links]({{base.url}}/getting-started/universal-app-links) and [Spotlight]({{base.url}}/features/spotlight-indexing)**
 | duration | *(Deprecated. Use `$match_duration`)* Lets you control the fingerprinting match timeout (the time that a click will wait for an app open to match) also known as attribution window. Specified in seconds | `7200`
-| type | *(Advanced)* Set to `1` to limit deep linking behavior of the generated link to a single use. Set type to `2` to make link show up under [Marketing page](https://dashboard.branch.io/#/marketing) in the dashboard | `0`
+| type | *(Advanced)* Set to `1` to limit deep linking behavior of the generated link to a single use. Set type to `2` to make the link show up under [Marketing page](https://dashboard.branch.io/#/marketing) in the dashboard | `0`
 
 {% ingredient branchsubdomain %}{% endingredient %}
 
@@ -91,13 +90,26 @@ The redirect destinations are completely customizable for every link that you cr
 | $fallback_url | Change the redirect endpoint for _all_ platforms - so you don't have to enable it by platform. Note that Branch will forward all robots to this URL, overriding any OG tags entered in the link. | System-wide Default URL (set in [Link Settings](https://dashboard.branch.io/#/settings/link))
 | **$desktop_url** | Change the redirect endpoint on desktops | Text-Me-The-App page (set in [Link Settings](https://dashboard.branch.io/#/settings/link))
 | $ios_url | Change the redirect endpoint for iOS | App Store page for your app (set in [Link Settings](https://dashboard.branch.io/#/settings/link))
-| $ipad_url | Change the redirect endpoint for iPads | `$ios_url` value
 | $android_url | Change the redirect endpoint for Android | Play Store page for your app (set in [Link Settings](https://dashboard.branch.io/#/settings/link))
 | **$windows_phone_url** | Change the redirect endpoint for Windows OS | Windows Phone default URL (set in [Link Settings](https://dashboard.branch.io/#/settings/link))
 | $blackberry_url | Change the redirect endpoint for Blackberry OS | BlackBerry default URL (set in [Link Settings](https://dashboard.branch.io/#/settings/link))
 | $fire_url | Change the redirect endpoint for Amazon Fire OS | Fire default URL (set in [Link Settings](https://dashboard.branch.io/#/settings/link))
 | $ios_wechat_url | Change the redirect endpoint for WeChat on iOS devices | `$ios_url` value
 | $android_wechat_url | Change the redirect endpoint for WeChat on Android devices | `$android_url` value
+
+#### Country-specific redirects
+
+You can redirect your users differently depending on their location when clicking the link.
+
+| Key | Usage
+| --- | ---
+| $fallback_url_{xx} | xx is a lower-case Alpha-2 country code conforming to the [ISO 3166](https://www.iso.org/obp/ui/#search) standard format. (e.g. `$fallback_url_de` for Germany)
+
+You may add **more** than one country-specific redirect to your link data. Note, that you need to supply a `$fallback_url` to act as the global redirect in addition to the country-specifc ones.
+
+{% caution %}
+OS-specifc redirects in your link data (e.g. `$ios_url`) will take precedence over country-specific ones.
+{% endcaution %}
 
 #### After click redirect
 
@@ -153,6 +165,7 @@ Use these keys to control how URI scheme deep linking functions when opening you
 | $android_redirect_timeout | Control the timeout that the clientside JS waits after trying to open up the app before redirecting to the Play Store. Specified in milliseconds | `750`
 | $one_time_use | Set to 'true' to limit deep linking behavior of the generated link to a single use. Can also be set using `type` | `false`
 | $custom_sms_text | Text for SMS link sent for desktop clicks to this link. Must contain `{% raw %}{{ link }}{% endraw %}` | Value of **Text me the app page** in [Settings](https://dashboard.branch.io/settings)
+| $marketing_title | Sets the Marketing Title for the deep link in the [Marketing page](https://dashboard.branch.io/marketing) of the dashboard | *null*
 
 #### Triggering links from within an iFrame
 
@@ -220,6 +233,20 @@ If you do not specify a primary OG tag when creating a link, Branch will perform
 | $twitter_player | Set the video player's URL. Defaults to the value of `$og_video`.
 | $twitter_player_width | Set the player's width in pixels
 | $twitter_player_height | Set the player's height in pixels
+
+### Custom Tags
+
+You may specify custom tags by adding the following parameter to your link data.
+
+| Key | Value
+| --- | ---
+| $custom_meta_tags | Valid stringified JSON dictionary of the tags' keys and values
+
+- Valid dictionary example: `"{\"twitter:player:stream\": \"https://branch.io\"}"`. This will result in the following meta tag
+    `<meta property="twitter:player:stream" content="https://branch.io" />`
+- If you create the link via the Dashboard, don't worry about stringifying the dictionary. It will be done automatically.
+- `apple_touch_icon` is a special key in the dictionary. If you set it, we will add a `<link rel="apple-touch-icon" href="<url>" />` tag to the scraped HTML page.
+This will allow you to show a custom icon for previews in iMessage, Safari Bookmarks, Slack, etc.
 
 ## Appending query parameters to links
 

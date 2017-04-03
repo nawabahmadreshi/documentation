@@ -59,7 +59,7 @@ In this first step, you will want to enter a web URL that corresponds to a speci
 - An article
 - A content page, like a video or image
 
-Once you choose one and click **Submit**, [meta tags that can be used for deep linking](/getting-started/hosted-deep-link-data/guide/) will be retrieved from your webpage. You will see a result indicating the mapping between your web content to your app content:
+Once you choose one and click **Submit**, [meta tags that can be used for deep linking](/getting-started/hosted-deep-link-data/guide/) will be retrieved from your webpage. You will see a result indicating the mapping between your web content and your app content:
 
 #### We think you use your web URL for deep linking
 
@@ -67,13 +67,13 @@ Once you choose one and click **Submit**, [meta tags that can be used for deep l
 
 If your webpage, for instance at the URL `https://shop.com/shoes/brown-loafers`, has a tag like this:
 
-`<meta name="al:ios:url" content="https://shop.com/shoes/brown-loafers" />`
+`<meta name="al:ios:url" content="shop://https://shop.com/shoes/brown-loafers" />`
 
 or this:
 
-`<meta name="al:android:url" content="shoes/brown-loafers" />`
+`<meta name="al:android:url" content="shop://shoes/brown-loafers" />`
 
-Your deep linking setup for email will use all or part of your **web URL** as a deep link value.
+Your deep linking setup for email will use all or part of your **web URL** as a deep link value. It can use either the full URL including the protocol (`https://shop.com/shoes/brown-loafers`), the full URL without the protocol (`shop.com/shoes/brown-loafers`), or the path of the URL (`shoes/brown-loafers`).
 
 #### We think you host your deep link data on your website
 
@@ -82,6 +82,10 @@ Your deep linking setup for email will use all or part of your **web URL** as a 
 If instead, your webpage has a tag like this:
 
 `<meta name="branch:deeplink:product_id" content="123456" />`
+
+or this:
+
+`<meta name="al:ios:url" content="shop://id/123456" />`
 
 Your deep linking setup for email will use the **hosted deep link data** method. This means that no mapping can be made to the URL, and [meta tags that can be used for deep linking](/getting-started/hosted-deep-link-data/guide/) will be retrieved from your webpage on an ongoing basis.
 
@@ -109,7 +113,7 @@ If an app deep linking scheme that maps to your web content cannot be successful
 
 {% image src="/img/pages/third-party-integrations/responsys/failure-result.png" center 2-thirds alt='Could not set up deep linking' %}
 
-We will help you set up one of the following four methods:
+We will help you set up one of the following methods:
 
 If you use unique key/value data as deep link values:
 
@@ -125,33 +129,35 @@ If you use your web URL as a deep link value:
 The Branch [marketing link creator](/getting-started/creating-links/dashboard/) also scrapes your web URL for deep link data to make link creation even easier. [Hosting Deep Link Data](/getting-started/hosted-deep-link-data/guide/) on your website will make using Branch products easier in future.
 {% endprotip %}
 
-In the meantime, you can proceed to the next step: Configure ESP.
+In the meantime, you can proceed to the next step: **Configure ESP**.
 
 ## Configure your ESP
 
-To open the app directly on iOS 9.2+, you must configure your Sendgrid integration to support [Universal Links](/getting-started/universal-app-links/), and configure your app to support Sendgrid + Universal Links. In this step, you will also upload a snippet to Sendgrid so that your links can be converted to Branch links that deep link into your app.
+To open the app directly on iOS 9.2+, you must configure your Sendgrid integration to support [Universal Links](/getting-started/universal-app-links/), and configure your app to support Sendgrid + Universal Links.
 
 ### Tell us your click tracking domain
 
-{% image src="/img/pages/third-party-integrations/sendgrid/configure-sendgrid-1.png" center full alt='Click tracking domain' %}
-
 You can retrieve your click tracking domains from your Sendgrid settings:
 
-1. Go to your SendGrid account, and go to Settings > Whitelabels > Email Links. 
-1. Find your email link whitelabeled domain, click on the gear icon and click "View" (or create a new whitelabel). {% image src='/img/pages/third-party-integrations/sendgrid/sendgrid-view-domain.png' 3-quarters center alt='xcode add domain' %}
-1. Note the "Host" email click tracking domain (e.g. email.mydomain.com) and the SendGrid domain under "Data". {% image src='/img/pages/third-party-integrations/sendgrid/sendgrid-whitelabel.png' 3-quarters center alt='xcode add domain' %}
+1. Log in to your SendGrid account.
+1. Go to Settings > Whitelabels > Email Links. 
+1. Find your email link whitelabeled domain, click on the gear icon and click "View" (or create a new whitelabel). {% image src='/img/pages/third-party-integrations/sendgrid/sendgrid-view-domain.png' full center alt='xcode add domain' %}
+1. Note the "Host" email click tracking domain (e.g. email.mydomain.com) and the SendGrid domain under "Data". {% image src='/img/pages/third-party-integrations/sendgrid/sendgrid-whitelabel.png' full center alt='xcode add domain' %}
+1. Enter both the click tracking domain and the SendGrid domain in item 1 of this step: {% image src="/img/pages/third-party-integrations/sendgrid/configure-sendgrid-1.png" center full alt='Click tracking domain' %}
 
-Enter both the click tracking domain and the SendGrid domain in item 1 of this step. On **Submit** click, an AASA file - required for Universal Links - specific to that domain will be generated.
+On **Done** click, an AASA file - required for Universal Links - specific to that domain will be generated.
 
 ### Configure your app for your click tracking domain
 
 {% image src="/img/pages/third-party-integrations/sendgrid/configure-sendgrid-2.png" center 2-thirds alt='Developer email' %}
 
-In this prompt, you can enter the email of someone on your team who is qualified to modify your iOS app. They will complete the [technical setup](#technical-setup) steps below.
+In this prompt, enter the email of someone on your team who is qualified to modify your iOS app, and then click **Send**. They will complete the [technical setup](#technical-setup) steps below.
 
 ## Technical setup
 
 The following app changes ensure that your email integration supports [Universal Links](/getting-started/universal-app-links/). You will need access to your app code to make these changes.
+
+You should have [received an email from Branch](#configure-your-app-for-your-click-tracking-domain) with your Sendgrid click tracking domain. If not, likely you or someone on your team still needs to complete the [Deep Linked Email setup flow](https://dashboard.branch.io/email){:target="_blank"}.
 
 {% protip title="How does it work?"%}
 Apple recognizes the click tracking domain as a Universal Link, and opens the app immediately without the browser opening. Once the app has opened, Branch will collect the referring URL that opened the app (at this time, it will be the click tracking url). Inside the app, Branch will robotically “click” the link, registering the click with the ESP, and returning the Branch link information to the Branch SDK inside the app. This information is then used to deep link the user to the correct in-app content. See the [Support](/third-party-integrations/sendgrid/support) tab for more information.
@@ -162,11 +168,21 @@ Apple recognizes the click tracking domain as a Universal Link, and opens the ap
 Only do this step after you've [provided your click tracking domain](#tell-us-your-click-tracking-domain) to Branch.
 
 1. Create a CNAME for your subdomain and point it to `thirdparty.bnc.lt`
-1. Confirm with your Branch AM that the domain is working correctly.
+1. Confirm with your Branch Account Manager that the domain is working correctly.
 
 ### Add your click tracking domain to your Associated Domains
 
-To enable Universal Links on your click tracking domain, you'll need to add the click tracking domain to your Associated Domains entitlement. Follow [these instructions](/getting-started/universal-app-links/guide/ios/#add-the-associated-domains-entitlement-to-your-project) to add your click tracking domain to Associated Domains. Your domain will likely be entered as `applinks:email.example.com`.
+To enable Universal Links on your click tracking domain, you'll need to add the click tracking domain to your Associated Domains entitlement. 
+
+1. In Xcode, go to the `Capabilities` tab of your project file.
+1. Scroll down and enable `Associated Domains` if it is not already enabled. {% image src='/img/pages/getting-started/universal-app-links/enable_ass_domains.png' 3-quarters center alt='enable xcode associated domains' %}
+1. Copy your click tracking domain from the [email you received from Branch](#configure-your-app-for-your-click-tracking-domain), or retrieve it from your Sendgrid settings.
+1. In the `Domains` section, click the `+` icon and add your click tracking domain. For example, if your click tracking domain is `email.example.com`, add an entry for `applinks:email.example.com`.
+{% image src='/img/pages/getting-started/universal-app-links/add_domain.png' 3-quarters center alt='xcode add domain' %}
+
+{% protip title="Having trouble or new to Universal Links?" %}
+Follow [these instructions](/getting-started/universal-app-links/guide/ios/) for more details on enabling Universal Links in the Branch dashboard and in Xcode.
+{% endprotip %}
 
 ### Handle links for web-only content
 
@@ -239,30 +255,25 @@ To create email links via API, please use the instructions on how to [create lin
 
 We have provided [a way](/third-party-integrations/remote-deep-links/guide/) of easily converting web links to Branch links, as well as [an example](https://gist.github.com/derrickstaten/f9b1e72e506f79628ab9127dd114dd83#file-sendgrid-demo-js). The example takes an html email (as a string) and applies the script to it.
 
-To use this script, make sure you've set up deep links according to one of the [linking schemas outlined here](/third-party-integrations/sendgrid/advanced/#setting-up-your-link-schema-for-email).
+To use this script, make sure you've set up deep links according to one of the [linking schemas outlined here](/third-party-integrations/sendgrid/setup/#set-up-deep-linking-for-email).
 
 Here is the script:
 {% highlight js %}
 var crypto = require('crypto');
-module.exports = function(original_url, branch_base_url, branch_hmac_secret, three_p_url) {
+module.exports = function(original_url, branch_base_url) {
     if (!original_url) { return new Error('Missing original_url'); }
     if (typeof original_url != 'string') { return new Error('Invalid original_url'); }
-    if (!branch_base_url) { return new Error('Missing branch_base_url, should be similar to https://bnc.lt/abcd/3p?%243p=e_sg'); }
+    if (!branch_base_url) { return new Error('Missing branch_base_url, should be similar to https://bnc.lt/abcd/3p?%243p=xx'); }
     if (typeof branch_base_url != 'string') { return new Error('Invalid branch_base_url'); }
-    if (!branch_hmac_secret) { return new Error('Missing branch_hmac_secret'); }
-    if (typeof branch_hmac_secret != 'string') { return new Error('Invalid branch_hmac_secret'); }
-    if (three_p_url && typeof three_p_url != 'string') { return new Error('Invalid three_p_url'); }
 
-    var pre_hmac_url = branch_base_url + (three_p_url ? '&%243p_url=' + encodeURIComponent(three_p_url) : '') + '&%24original_url=' + encodeURIComponent(original_url),
-        hmac = crypto.createHmac('sha256', branch_hmac_secret).update(pre_hmac_url).digest('hex');
-    return pre_hmac_url + '&%24hash=' + hmac;
+    return branch_base_url + '&%24original_url=' + encodeURIComponent(original_url);
 };
 {% endhighlight %}
 
 Here is how links look before and after (the latter being a Branch deep link).
 
 1. *Before:* http://example.com/?foo=bar
-2. *After:* https://vza3.app.link/3p?%243p=e_sg&%24original_url=http%3A%2F%2Fexample.com%2F%3Ffoo%3Dbar&%24hash=221dd9fb333d809b22fbdfd9b87808de73e3cd94f99b8eb26e6181e962fcb438
+2. *After:* https://vza3.app.link/3p?%243p=e_sg&%24original_url=http%3A%2F%2Fexample.com%2F%3Ffoo%3Dbar
 
 (note that these are simplified examples, not actual demo links)
 

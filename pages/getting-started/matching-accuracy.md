@@ -38,7 +38,7 @@ We've built out custom deep linking mechanisms that are specific to each platfor
 | **Facebook deferred deep linking API** | We've built a custom integration with Facebook where if a user originates from an app invite or advertisement, we connect with Facebook's API to know with 100% certainty if the install originated from this source. You'll need to authenticate with Facebook on the Branch dash if you want to support this.
 | **Android Google Play referrer** | Google Play supports passing a referrer through the install process that we listen for. It's notoriously unreliable and currently unsupported when redirecting from Chrome. However, we'll use it when available. Enabling this method is covered in the [SDK Integration Guide]({{base.url}}/getting-started/sdk-integration-guide/guide/android/#configure-manifest).
 | **iOS 9/10 Safari cookie passthrough** | We built a custom technique into our iOS SDK that will guarantee 100% accuracy on iOS 9/10 when a user clicks from the Safari browser. This only applies if you include SafariServices.framework in your app. Note that this method has some risks due to a recent (9/1/16) policy change on iOS. Please see our new recommended [path to use this feature]({{base.url}}/getting-started/matching-accuracy/guide/#configuring-your-ios-app-for-100-match-from-safari).
-| **Android Chrome Tabs cookie passthrough** | We built a custom technique into our Android SDK that will guarantee 100% accurancy when a user originates from the Chrome browser. We're automatically cookie match based on app.link, but you can configure the domain depending on your use case. Please see [the guide here]({{base.url}}/getting-started/matching-accuracy/guide/#configuring-your-android-app-for-100-match-from-chrome).
+| **Android Chrome Tabs cookie passthrough** | We built a custom technique into our Android SDK that will guarantee 100% accuracy when a user originates from the Chrome browser. We're automatically cookie match based on app.link, but you can configure the domain depending on your use case. Please see [the guide here]({{base.url}}/getting-started/matching-accuracy/guide/#configuring-your-android-app-for-100-match-from-chrome).
 
 ## Methods without 100% match accuracy
 
@@ -125,7 +125,7 @@ Branch.getInstance().enableDelayedInit()
 {% endtab %}
 {% endtabs %}
 
-**2)** Retrieve the 100% match URL from Branch by passing in the desired redirect URL. This will create a URL like `https://app.link?branch_key=key_live_1234&hardware_id=IDFAstuff&redirect_url=http://mysite.com/welcometotheapp`. It will quickly redirect from app.link to the destination URL, displaying it in the view controller while simulatenously checking the cookie for Branch to do 100% matching.
+**2)** Retrieve the 100% match URL from Branch by passing in the desired redirect URL. This will create a URL like `https://app.link?branch_key=key_live_1234&hardware_id=IDFAstuff&redirect_url=http://mysite.com/welcometotheapp`. It will quickly redirect from app.link to the destination URL, displaying it in the view controller while simultaneously checking the cookie for Branch to do 100% matching.
 
 {% tabs %}
 {% tab objective-c %}
@@ -163,6 +163,10 @@ Branch.getInstance().resumeInit()
 ## Configuring your Android app for 100% match from Chrome
 
 Similar to iOS, 100% match is a bit of a misnomer since this method will only work if a user clicks via the Chrome browser. Other browsers such as Facebook and Twitter will not benefit from this method. We haven't pull the stats on usage like we do on iOS, but we'd assume it's similar to Safari (50-75% of clicks).
+
+### Enable cookie matching
+
+Add `compile 'com.android.support:customtabs:23.3.0'` to the dependencies section of your `build.gradle` file.
 
 ### Set the domain for cookie matching
 

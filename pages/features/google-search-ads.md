@@ -3,7 +3,7 @@ type: recipe
 directory: features
 title: "Google Search Ads"
 page_title: "Advertising with Deep Links: Google Ads - Search and Display"
-description: 
+description:
 hide_platform_selector: true
 sections:
 - overview
@@ -24,11 +24,6 @@ If you're running Google AdWords campaigns, whether they're of the Search or Dis
 - To track installs from Google Ads you should [integrate the Branch SDK]({{base.url}}/getting-started/sdk-integration-guide) into your app.
 - If you want to deep link from your ads directly to content, you should [configure deep link routing]({{base.url}}/getting-started/deep-link-routing).
 {% endprerequisite %}
-
-{% caution title="Android Unsupported" %}
-Search Install Ad campaigns on Android do not accept any tracking links. As a result, Branch cannot support Search Install Ad campaigns on Android. **iOS is supported.** You should use the new [**Google Universal App Campaigns**]({{base.url}}/features/google-uac) for full cross platform support.
-{% endcaution %}
-
 
 ## Create a Marketing link on the Branch dashboard
 
@@ -55,6 +50,10 @@ You can use this configuration section to specify custom link parameters that wi
 1. In the **Final URL**, you will put your iTunes App Store URL, or Google Play Store URL.
 1. Expand **Ad URL options**. and place your Branch link from the first step in the **Tracking template** box. No need to add any extra parameters.
 
+{% protip %}
+If you are running **Search Install Ads** on **Android** only, you'll need to modify your Play Store URL and be on v2.6.0 of the Branch Android SDK. Simply append &referrer=google_search_install_referrer%3D<link-id> to the end of your Play Store URL, but be sure to replace <link-id> with the ID of the link created above. The Play Store URL should not have brackets, and would look like this: https://play.google.com/io.branch.branchster?referrer=google_search_install_referrer%3D123456789
+{% endprotip %}
+
 {% image src="/img/pages/features/google-search-ads/link-configuration.png" half center alt='Example Ad' %}
 
 {% protip %}
@@ -63,7 +62,7 @@ Because the **Final URL** for your app install campaigns must match your domain,
 
 ## View your data using the Branch dashboard
 
-The [Marketing page](https://dashboard.branch.io/#/marketing) on the Branch dashboard shows the performance of each individual link. You can find your link listed in the table with a quick summary of the _total_ clicks and installs. 
+The [Marketing page](https://dashboard.branch.io/#/marketing) on the Branch dashboard shows the performance of each individual link. You can find your link listed in the table with a quick summary of the _total_ clicks and installs.
 
 {% image src='/img/pages/features/google-search-ads/marketing_link_row.png' full center alt='Facebook Example Ad' %}
 

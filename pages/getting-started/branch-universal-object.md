@@ -100,20 +100,30 @@ branchUniversalObject.addMetadataKey("property2", value: "red")
 {% if page.cordova %}
 
 {% highlight js %}
-var branchUniversalObj = null;
+// only canonicalIdentifier is required
+var properties = {
+    canonicalIdentifier: '123',
+    canonicalUrl: 'http://example.com/123',
+    title: 'Content 123',
+    contentDescription: 'Content 123 ' + Date.now(),
+    contentImageUrl: 'http://lorempixel.com/400/400/',
+    price: 12.12,
+    currency: 'GBD',
+    contentIndexingMode: 'private',
+    contentMetadata: {
+        'custom': 'data',
+        'testing': 123,
+        'this_is': true
+    }
+};
 
-Branch.createBranchUniversalObject({
-  canonicalIdentifier: 'content/12345',
-  title: 'My Content Title',
-  contentDescription: 'My Content Description',
-  contentImageUrl: 'https://example.com/mycontent-12345.png',
-  contentMetadata: {
-    'product_picture': '12345',
-    'user_id': '6789'
-  }
-}).then(function (newBranchUniversalObj) {
-  branchUniversalObj = newBranchUniversalObj;
-  console.log(newBranchUniversalObj);
+// create a branchUniversalObj variable to reference with other Branch methods
+var branchUniversalObj = null;
+Branch.createBranchUniversalObject(properties).then(function(res) {
+    branchUniversalObj = res;
+    alert('Response: ' + JSON.stringify(res));
+}).catch(function(err) {
+    alert('Error: ' + JSON.stringify(err));
 });
 {% endhighlight %}
 
@@ -204,7 +214,7 @@ Some of these parameters automatically [populate the link parameters]({{base.url
 | contentIndexMode | Can be set to either `ContentIndexModePublic` or `ContentIndexModePrivate`. Public indicates that you'd like this content to be discovered by other apps* | $publicly_indexable
 | expirationDate | The date when the content will not longer be available or valid* | $exp_date
 
-**Currently, this parameter is only used for [iOS Spotlight Indexing]({{base.url}}/features/spotlight-indexing) but will be used by Branch in the future*
+**Currently, this parameter is only used for [iOS Spotlight Indexing]({{base.url}}/features/spotlight-indexing) but will be used by Branch in the future**
 
 {% endif %}
 
@@ -223,19 +233,22 @@ Some of these parameters automatically [populate the link parameters]({{base.url
 | setContentIndexingMode | Can be set to either `BranchUniversalObject.CONTENT_INDEX_MODE.PUBLIC` or `BranchUniversalObject.CONTENT_INDEX_MODE.PRIVATE`. Public indicates that you'd like this content to be discovered by other apps* | $publicly_indexable
 | setContentExpiration | The date when the content will not longer be available or valid. Set in milliseconds.* | $exp_date
 
-**Currently, this parameter is only used for [iOS Spotlight Indexing]({{base.url}}/features/spotlight-indexing) but will be used by Branch in the future*
+**Currently, this parameter is only used for [iOS Spotlight Indexing]({{base.url}}/features/spotlight-indexing) but will be used by Branch in the future**
 
 {% endif %}
 
 {% if page.cordova %}
-| Parameter | Usage | Link Parameter
-| --- | --- | ---
-| canonicalIdentifier | This is the unique identifier for content that will help Branch dedupe across many instances of the same thing. Suitable options: a website with pathing, or a database with identifiers for entities | $canonical_identifier
-| title | The name for the piece of content | $og_title
-| contentDescription | A description for the content | $og_description
-| contentImageUrl | The image URL for the content | $og_image_url
-| contentMetadata | Any extra parameters you'd like to associate with the Branch Universal Object. These will be made available to you after the user clicks the link and opens up the app, and are used for [Deep Link Routing Routing]({{base.url}}/getting-started/deep-link-routing).
-| contentIndexingMode | Can be set to either `public` or `private`. Public indicates that you'd like this content to be discovered by other apps* | $publicly_indexable
+| Key | Default | Usage | Link Property
+| --- | :-: | --- | :-:
+| canonicalIdentifier | | **(Required)** This is the unique identifier for content that will help Branch dedupe across many instances of the same thing. Suitable options: a website with pathing, or a database with identifiers for entities | `$canonical_identifier`
+| canonicalUrl | | The canonical URL, used for SEO purposes | `$canonical_url`
+| title | | The name for the piece of content | `$og_title`
+| contentDescription | | A description for the content | `$og_description`
+| contentImageUrl | | The image URL for the content | `$og_image_url `
+| price | | The price of the item | `$amount`
+| currency | | The currency representing the price in ISO 4217 currency code | `$currency`
+| contentIndexMode | `"public"` | Can be set to either `"public"` or `"private"`. Public indicates that you’d like this content to be discovered by other apps. | `$publicly_indexable`
+| contentMetadata | | Any custom key-value data e.g. `{ "custom": "data" }`
 {% endif %}
 
 {% if page.xamarin %}
@@ -263,7 +276,7 @@ Some of these parameters automatically [populate the link parameters]({{base.url
 | contentIndexMode | Can be set to either `ContentIndexModePublic` or `ContentIndexModePrivate`. Public indicates that you'd like this content to be discovered by other apps* | $publicly_indexable
 | expirationDate | The date when the content will not longer be available or valid* | $exp_date
 
-**Currently, this parameter is only used for [iOS Spotlight Indexing]({{base.url}}/features/spotlight-indexing) but will be used by Branch in the future*
+**Currently, this parameter is only used for [iOS Spotlight Indexing]({{base.url}}/features/spotlight-indexing) but will be used by Branch in the future**
 
 {% endif %}
 
@@ -280,7 +293,7 @@ Some of these parameters automatically [populate the link parameters]({{base.url
 | contentIndexingMode | Can be set to either `public` or `private`. Public indicates that you'd like this content to be discovered by other apps* | $publicly_indexable
 | expirationDate | The date when the content will not longer be available or valid* | $exp_date
 
-**Currently, this parameter is only used for [iOS Spotlight Indexing]({{base.url}}/features/spotlight-indexing) but will be used by Branch in the future*
+**Currently, this parameter is only used for [iOS Spotlight Indexing]({{base.url}}/features/spotlight-indexing) but will be used by Branch in the future**
 
 {% endif %}
 
@@ -965,20 +978,47 @@ ShareSheetStyle shareSheetStyle = new ShareSheetStyle(MainActivity.this, "Therap
 {% if page.cordova %}
 
 {% highlight js %}
-branchUniversalObj.showShareSheet({
-  // put your link properties here
-  "feature" : "share",
-  "channel" : "facebook"
-}, {
-  "$email_subject" : "Therapists hate him", // title of email on iOS
-}, {
-  "shareText": "You will never believe what happened next!", // body of email
-  "shareTitle": "Therapists hate him", // title of email on Android
-  "copyToClipboard": "Copy",
-  "clipboardSuccess": "Added to clipboard",
-  "more": "Show More",
-  "shareWith": "Share With"
+// optional fields
+var analytics = {
+    channel: 'channel',
+    feature: 'feature',
+    campaign: 'campaign',
+    stage: 'stage',
+    tags: ['one', 'two', 'three']
+};
+
+// optional fields
+var properties = {
+    $fallback_url: 'http://www.example.com/example',
+    $desktop_url: 'http://www.example.com/desktop',
+    $android_url: 'http://www.example.com/android',
+    $ios_url: 'http://www.example.com/ios',
+    $ipad_url: 'http://www.example.com/ipad',
+    more_custom: 'data',
+    even_more_custom: true,
+    this_is_custom: 321
+};
+
+var message = 'Check out this link';
+
+// optional listeners (must be called before showShareSheet)
+branchUniversalObj.onShareSheetLaunched(function(res) {
+  // android only
+  alert('Response: ' + JSON.stringify(res));
 });
+branchUniversalObj.onShareSheetDismissed(function(res) {
+  alert('Response: ' + JSON.stringify(res));
+});
+branchUniversalObj.onLinkShareResponse(function(res) {
+  alert('Response: ' + JSON.stringify(res));
+});
+branchUniversalObj.onChannelSelected(function(res) {
+  // android only
+  alert('Response: ' + JSON.stringify(res));
+});
+
+// share sheet
+branchUniversalObj.showShareSheet(analytics, properties, message);
 {% endhighlight %}
 
 {% endif %}

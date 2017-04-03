@@ -18,7 +18,7 @@ sections:
 Every app on the Branch platform is assigned a subdomain of the form `xxxx.app.link`. This is unique to your app and must be used in several places when integrating the SDK.
 
 {% protip %}
-Because of the way that Apple implements Universal Links, every app also has a shadow subdomain of the form `xxxx-alternate.app-link`. This is used in select places but will not be shown to your users.
+Because of the way that Apple implements Universal Links, every app also has a shadow subdomain of the form `xxxx-alternate.app.link`. This is used in select places but will not be shown to your users.
 {% endprotip %}
 
 ### Retriving the subdomain assigned to your app
