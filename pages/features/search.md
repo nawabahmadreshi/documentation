@@ -33,7 +33,7 @@ Come help us build a more open mobile ecosystem by integrating the SDK today and
 
 ## How in-app search works:
 
-Branch registers and manages a private search index that resides on the users device. This index is installed with the Branch Rediscover app and by other distribution channels. The Branch SDK exposes a method to allow developers to add content to this on-device index with just a few lines of code. As your users interact with content within your app (for example: share a piece of content, watch a video or even add an item to the cart), we recommend you call this SDK method to add content to the index and register the user interaction. This allows Branch to determine the best relevance for the content when users search. 
+Branch registers and manages a private search index that resides on the users device. This index is installed with the Branch Smart Finder app and by other distribution channels. The Branch SDK exposes a method to allow developers to add content to this on-device index with just a few lines of code. As your users interact with content within your app (for example: share a piece of content, watch a video or even add an item to the cart), we recommend you call this SDK method to add content to the index and register the user interaction. This allows Branch to determine the best relevance for the content when users search. 
 
 ### A note on user privacy:
 
