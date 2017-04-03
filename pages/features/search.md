@@ -154,7 +154,7 @@ setContentType | The type of content that this represents, for example, `BranchU
 
 ### Specifying the content type
 
-In order for branch to better understand the type of content, it is very important that you to specify the type that your content represents (e.g. a Movie or a Restaurant or a News article). You can specify a list of optional paramters for each content type to be able to better render your content in the Search interface. For example, a movie might have ratings, and a restaurant might have a place associated with it. 
+In order for Branch to better understand the type of content, it is very important that you to specify the type that your content represents (e.g. a Movie or a Restaurant or a News article). You can specify a list of optional paramters for each content type to be able to better render your content in the Search interface. For example, a movie might have ratings, and a restaurant might have a place associated with it. 
 
 Here is a complete list of support content types that are available as part of the `BranchUniversalObject.CONTENT_TYPE` enum.
 
@@ -194,19 +194,19 @@ You should call this method on an instance of a `BranchUniversalObject` when a u
 
 A user interaction is any interaction with a piece of content, for example a user viewing a content, watching a video, adding an item to the cart, favoriting an item, etc. For a complete list of User interaction events see our [BranchUniversalObject documentation]({{base.url}}}/getting-started/branch-universal-object/guide/android/#usercompletedaction).
 
-### (instance of BranchUniversalObject).deleteFromSamsungSearch
+### (instance of BranchUniversalObject).deleteFromSamsungSearch()
 
 This method deletes the content from the on-device index using the canonical identifier as the reference.
 
 You should call this method on an instance of a `BranchUniversalObject` when you no longer want this piece of content in the index. This should rarely be called by a developer but if you want more control on content in the index, you can use this method to delete content as you see fit. 
 
-### deleteAllSearchableContent()
+### BranchUniversalObject.deleteAllFromSamsungSearch()
 
-This method deletes all associated content from your app in the on-device index. 
+This static method deletes all associated content from your app in the on-device index. 
 
 You should call this method when a user logs out of your app and your app has personal content in it. For example a note taking application, when a user logs out, you can delete all associated content in the on-device index to prevent leaking personal information
 
-## Usage Limits and Guidelines
+## Usage limits and guidelines
 
 The on-device index will proactively prevent developers from indexing content beyond our rate limits to preserve the user experience on resource constraints on-device.
 
@@ -218,7 +218,7 @@ This is to prevent against the following conditions:
 The limits that we have in place are:
 
 - listOnSamsungSearch can be called a maximum of 20 times a minute
-- No more than 10000 pieces of content / app to preseve resource constraints
+- No more than 10000 pieces of content / app to preserve resource constraints
 
 {% endif %}
 
