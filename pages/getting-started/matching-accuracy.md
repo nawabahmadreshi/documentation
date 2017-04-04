@@ -89,19 +89,6 @@ To add the framework, simply go to your Xcode project:
 - Click the `+` button
 - Add `SafariServices.framework`
 
-### Set the domain for cookie matching for non-bnc.lt domains
-
-Because our SafariServices.framework matching method works based on comparing the cookie Branch set on a click to the cookie set with the SFSafariViewController, it's critical that the domain match the link being clicked. By default, we assume that your domain is on the `bnc.lt` domain. If you want to override it, you must add the domain you want to the `Info.plist` like so.
-
-1. In Xcode, open your project's Info.plist file in the Navigator (on the left side).
-1. Mouse hover "Information Property List" (the root item under the Key column).
-1. After about half a second, you will see a `+` sign appear. Click it.
-1. Add new rows with the following values, with the `String` entry inside the `Dictionary`:
-
-| Key | Type | Value |
-| :--- | --- | --- |
-| branch_app_domain | String | your.customdomain.com (or app.link)
-
 ### *Recommended:* Display the SFSafariViewController to your user
 
 With recent the change in [Apple's App Store policy](https://github.com/saniul/AppStoreGuidelines/commit/fa416010a9fe6ec5eb462e6d6956a69370cb3fa6#diff-9244bf30c63719c70ca91152bc28ff54R277), Apple requires that the Safari View Controller must be used to display information to users and cannot be loaded behind the scenes. Because of this, to use Branch's Safari View Controller code, we **highly** recommend you comply with policy.
