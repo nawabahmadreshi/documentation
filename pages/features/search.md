@@ -21,8 +21,15 @@ Branch is now building a powerful search interface that will allow your users to
 
 This is what the Branch search experience might look like on an Android Device. Note that this is currently a proof of concept and will be soon available in the App Store. 
 
-- TODO: Insert video link
-- TODO: Insert screenshots
+
+{% image src='/img/pages/features/search/search_overview.png' full center alt='Search Overview' %}
+
+### Preview the experience below:
+
+<video width="640" controls>
+<source src="/img/pages/features/search/search_demo.mp4" >
+</video>
+
 
 Come help us build a more open mobile ecosystem by integrating the SDK today and listing your content in search.
 
@@ -74,7 +81,7 @@ At a minimum you must supply the following parameters:
 - **title** : This represents the title of the content
 - **description** : A one to two line description of the piece of content. This will be a searchable field by a user and will also be used to render a snippet of the result in the search interface
 - **contentImageUrl** : This represnts the image url for the content. This will be used as a thumbnail in the search results
-- **contentIndexingMode** : CONTENT_INDEX_MODE.PUBLIC, CONTENT_INDEX_MODE.PRIVATE, this is used to indicate if this content is allowed to be publically accessible or is private to this specific user only. In the case of private mode, this information will always be kept on-device only and never shared with third party servers
+- **contentIndexingMode** : `CONTENT_INDEX_MODE.PUBLIC`, `CONTENT_INDEX_MODE.PRIVATE`, `CONTENT_INDEX_MODE.NO_INDEX`. This is used to indicate if this content is allowed to be publically accessible or is private to this specific user only. In the case of private mode, this information will always be kept on-device only and never shared with third party servers. You can also disable any indexing of this content by specifying NO_INDEX.
 
 After the parameters are assembled, you call a method on this object to add content to the index.
 
@@ -148,30 +155,31 @@ setCanonicalIdentifier | This is the unique identifier for content that will hel
 setTitle | The name for the piece of content. This is added to the search index and enables a user to find the content by its title.
 setContentDescription | A description for the content. This is added to the search index and enables a user to find the content on its description.
 imageUrl | The image URL for the content. This is used as the thumbnail image in the Search interface and adds a great visual element for your content.
-setContentIndexingMode | Can be set to either `BranchUniversalObject.CONTENT_INDEX_MODE.PUBLIC` or `BranchUniversalObject.CONTENT_INDEX_MODE.PRIVATE`. Public indicates that you'd like this content to be discovered in search.
+setKeywords | Used to indicate significant keywords for SEO to be used for this content. For example, a restaurant listing could specify the cuisine as a keyword.
+setContentIndexingMode | Can be set to either `BranchUniversalObject.CONTENT_INDEX_MODE.PUBLIC` or `BranchUniversalObject.CONTENT_INDEX_MODE.PRIVATE` or `BranchUniversalObject.CONTENT_INDEX_MODE.NO_INDEX` . Public indicates that you'd like this content to be discovered in search.
+setLocale | Should be set the the locale that best represents this content
 setContentExpiration | The date when the content will not longer be available or valid. Set in milliseconds. After this date, the content will no longer be discoverable via search. Use content expiration when you have time sensitive content.
-setContentType | The type of content that this represents, for example, `BranchUniversalObject.CONTENT_TYPE.ORG_RESTAURANT` , `BranchUniversalObject.CONTENT_TYPE.ARTICLE_NEWS`.
+setContentType | The type of content that this represents, for example, `BranchUniversalObject.CONTENT_TYPE.BUSINESS_RESTAURANT` , `BranchUniversalObject.CONTENT_TYPE.TEXT_ARTICLE_NEWS`.
 
 ### Specifying the content type
 
 In order for Branch to better understand the type of content, it is very important that you to specify the type that your content represents (e.g. a Movie or a Restaurant or a News article). You can specify a list of optional paramters for each content type to be able to better render your content in the Search interface. For example, a movie might have ratings, and a restaurant might have a place associated with it. 
 
-Here is a complete list of support content types that are available as part of the `BranchUniversalObject.CONTENT_TYPE` enum.
+Here is a complete list of support content types that will be available as part of the `BranchUniversalObject.CONTENT_TYPE` enum. The below enum is coming soon to the SDK.
 
 Parameter | Usage
 --- | ---
-CONTENT_TYPE.THING | This is the most generic type of content. It represents an abstract Thing. It should be used sparingly only if you can't find a more specific type to represent your content.
-CONTENT_TYPE.PRODUCT | This represents an ecommerce Product or Item. For example, this could be a pair of headphones, or a dress or any such thing.
-CONTENT_TYPE.ARTICLE_NEWS | This represents a news article
-CONTENT_TYPE.ARTICLE_BLOG | This represents a more specific article that is a blog post
-CONTENT_TYPE.ARTICLE_RECIPE | This represents a more specific article that is a recipe
-CONTENT_TYPE.MOVIE | This represents a movie
-CONTENT_TYPE.AUDIO_VIDEO | This represents an audio or video type
-CONTENT_TYPE.IMAGE | This represents an image (for example, a photo sharing app)
-CONTENT_TYPE.ORGANIZATION | This represents a generic type of establishment
-CONTENT_TYPE.ORG_RESTAURANT | This represents a restaurant
-CONTENT_TYPE.ORG_ACCOMODATION | This represents a organization providing accomodation like a hotel
-CONTENT_TYPE.TRAVEL_FLIGHT | This represents a flight itenary
+CONTENT_TYPE.COMMERCE_PRODUCT | This represents an ecommerce Product or Item. For example, this could be a pair of headphones, or a dress or any such thing.
+CONTENT_TYPE.TEXT_ARTICLE | This represents a generic article
+CONTENT_TYPE.TEXT_ARTICLE_NEWS | This represents a news article
+CONTENT_TYPE.TEXT_BLOG | This represents a more specific text article that is a blog post
+CONTENT_TYPE.TEXT_RECIPE | This represents a recipe
+CONTENT_TYPE.MEDIA_AUDIO | This represents audio content
+CONTENT_TYPE.MEDIA_VIDEO | This represents video content
+CONTENT_TYPE.MEDIA_IMAGE | This represents an image (for example, a photo sharing app)
+CONTENT_TYPE.BUSINESS | This represents a generic type of business establishment
+CONTENT_TYPE.BUSINESS_RESTAURANT | This represents a restaurant
+CONTENT_TYPE.BUSINESS_ACCOMODATION | This represents an establishment providing accomodation like a hotel
 
 ### Best practices for using Branch Universal Object for content
 
