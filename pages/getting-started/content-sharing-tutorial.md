@@ -92,23 +92,6 @@ A URI (Uniform Resource Identifier) Scheme is similar to the typical URL that yo
 {% image src="/img/pages/getting-started/content-sharing-tutorial/screenshots/dashboard_custom_url.png" center actual %}
 10. Scroll to the bottom of the page and click "Save"
 
-### Support Strong Matching
-
-1. Go to [Settings](https://dashboard.branch.io/settings) in the Branch Dashboard
-2. Using the top navigation bar, go to [Link Settings](https://dashboard.branch.io/settings/link)
-3. Under **Custom Link Domain**, copy your **Default domain name** (if you have a Custom Link Domain then select that instead)
-{% image src="/img/pages/getting-started/content-sharing-tutorial/screenshots/settings_custom_link_domain.png" center 3-quarters %}
-4. In Xcode, open your project’s info.plist file
-5. Mouse hover over “Information Property List” until a `+` appears to the right. Click it.
-6. A new row will have been added under “Information Property List”
-7. Edit the new row to show:
-
-  | Key | Type | Value |
-  | :--- | --- | --- |
-  | branch_app_domain | String | [your default/custom domain name] |
-
-  {% image src="/img/pages/getting-started/content-sharing-tutorial/tutorial-videos/add-branch-app-domain.gif" center 3-quarters %}
-
 ### Add a Bridging Header
 
 (This allows you to use the Branch framework which is written in Objective-C, with your Swift code)
