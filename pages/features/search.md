@@ -21,8 +21,15 @@ Branch is now building a powerful search interface that will allow your users to
 
 This is what the Branch search experience might look like on an Android Device. Note that this is currently a proof of concept and will be soon available in the App Store. 
 
-- TODO: Insert video link
-- TODO: Insert screenshots
+
+{% image src='/img/pages/features/search/search_overview.png' full center alt='Search Overview' %}
+
+### Preview the experience below:
+
+<video width="640" controls>
+<source src="/img/pages/features/search/search_demo.mp4" >
+</video>
+
 
 Come help us build a more open mobile ecosystem by integrating the SDK today and listing your content in search.
 
