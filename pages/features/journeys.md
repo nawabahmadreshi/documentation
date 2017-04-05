@@ -202,7 +202,7 @@ To prevent corruption of historical analytics data, Journeys cannot be edited on
 
 ## Prioritizing Journeys
 
-The Journeys Priority View allows you to set the priority of multiple Journeys when they may be **overlapping**. **Overlapping** is when a single person is eligible to see multiple Journeys. You can prioritize the Journey that should show ahead of any others.
+The Journeys Priority View allows you to set the priority of multiple Journeys when they **overlap**. They **overlap** when a single person is eligible to see multiple Journeys. You can prioritize the Journey that should show ahead of any others.
 
 {% example title="Prioritizing Journeys" %}
 
@@ -231,7 +231,7 @@ When you save Journeys priorities, **ALL** Journeys will be prioritized in the o
 
 {% endcaution %}
 
-For more detailed Journeys prioritization questions, visit our [Advanced section](/advanced/#prioritization).
+For more detailed Journeys prioritization questions, visit our [Advanced section](/features/journeys/advanced/#prioritization).
 
 
 ## Visualizing Journeys performance
