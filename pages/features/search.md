@@ -38,18 +38,9 @@ Come help us build a more open mobile ecosystem by integrating the SDK today and
 2. This integration will also provide you insight into the most interacted content within your app allowing you to build powerful re-engagement experiences. 
 3. In the future Branch will also provide developers with a search API to surface their trending content as well as ranked search results. This will enable you to build out personalized discovery experiences within your app.
 
-## How in-app search works:
+## How in-app search works
 
 Branch registers and manages a private search index that resides on the users device. This index is installed with the Branch Smart Finder app and by other distribution channels. The Branch SDK exposes a method to allow developers to add content to this on-device index with just a few lines of code. As your users interact with content within your app (for example: share a piece of content, watch a video or even add an item to the cart), we recommend you call this SDK method to add content to the index and register the user interaction. This allows Branch to determine the best relevance for the content when users search. 
-
-### A note on user privacy:
-
-Branch places a lot of control in the developers hands and takes user data privacy very seriously. As a developer, you can indicate via the SDK method whether the piece of content is: 
-
-- private - which means it stays on the users device at all times and is never sent to any servers;
-- public - which means that its aggregated use will be available to you via analytics.
-
-Branch also allows users to indicate the level of privacy they are comfortable with enabling users to prevent any tracking and usage statistics from being sent outside their device.
 
 {% getstarted %}{% endgetstarted %}
 
@@ -83,7 +74,7 @@ At a minimum you must supply the following parameters:
 - **contentImageUrl** : This represnts the image url for the content. This will be used as a thumbnail in the search results
 - **contentIndexingMode** : `CONTENT_INDEX_MODE.PUBLIC`, `CONTENT_INDEX_MODE.PRIVATE`, `CONTENT_INDEX_MODE.NO_INDEX`. This is used to indicate if this content is allowed to be publically accessible or is private to this specific user only. In the case of private mode, this information will always be kept on-device only and never shared with third party servers. You can also disable any indexing of this content by specifying NO_INDEX.
 
-After the parameters are assembled, you call a method on this object to add content to the index.
+After the parameters are assembled, you call `listOnBranchSearch` on this object to add content to the index.
 
 {% highlight java %}
  BranchUniversalObject branchUniversalObject = new BranchUniversalObject()
@@ -196,23 +187,38 @@ Practices to _avoid_:
 
 ## Indexing API's and usage recommendations
 
-### (instance of BranchUniversalObject).listOnBranchSearch(BranchEvent.*)
+### (instance of BUO).listOnBranchSearch(BranchEvent.*)
 
 You should call this method on an instance of a `BranchUniversalObject` when a user interacts with a piece of content in your app. This method adds this piece of content to the on-device index. Note that it is safe to call this function repeatedly as it will simply register a new user interaction against the content, increasing its relevancy.
 
 A user interaction is any interaction with a piece of content, for example a user viewing a content, watching a video, adding an item to the cart, favoriting an item, etc. For a complete list of User interaction events see our [BranchUniversalObject documentation]({{base.url}}}/getting-started/branch-universal-object/guide/android/#usercompletedaction).
 
-### (instance of BranchUniversalObject).deleteFromBranchSearch()
+{% highlight java %}
+// Add the item to the index specifying the user event that triggered this interaction
+branchUniversalObject.listOnBranchSearch(BranchEvent.VIEW);
+{% endhighlight %}
+
+### (instance of BUO).deleteFromBranchSearch()
 
 This method deletes the content from the on-device index using the canonical identifier as the reference.
 
 You should call this method on an instance of a `BranchUniversalObject` when you no longer want this piece of content in the index. This should rarely be called by a developer but if you want more control on content in the index, you can use this method to delete content as you see fit. 
+
+{% highlight java %}
+// Add the item to the index specifying the user event that triggered this interaction
+branchUniversalObject.deleteFromBranchSearch();
+{% endhighlight %}
 
 ### BranchUniversalObject.deleteAllFromBranchSearch()
 
 This static method deletes all associated content from your app in the on-device index. 
 
 You should call this method when a user logs out of your app and your app has personal content in it. For example a note taking application, when a user logs out, you can delete all associated content in the on-device index to prevent leaking personal information
+
+{% highlight java %}
+// Add the item to the index specifying the user event that triggered this interaction
+BranchUniversalObject.deleteAllFromBranchSearch();
+{% endhighlight %}
 
 ## Usage limits and guidelines
 
@@ -227,6 +233,16 @@ The limits that we have in place are:
 
 - listOnBranchSearch can be called a maximum of 20 times a minute
 - No more than 10000 pieces of content / app to preserve resource constraints
+
+## A note on user privacy
+
+Branch places a lot of control in the developers hands and takes user data privacy very seriously. As a developer, you can indicate via the SDK method whether the piece of content is: 
+
+- private - which means it stays on the users device at all times and is never sent to any servers;
+- public - which means that its aggregated use will be available to you via analytics.
+
+Branch also allows users to indicate the level of privacy they are comfortable with enabling users to prevent any tracking and usage statistics from being sent outside their device.
+
 
 {% endif %}
 
