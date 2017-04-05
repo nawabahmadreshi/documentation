@@ -327,7 +327,7 @@ Note that if you are planning on just using the free banner, you can skip this s
 
 ## Prioritization
 
-##### When does my Journeys prioritization apply?
+##### When do my Journeys prioritization rules apply?
 Prioritization only takes effect when two Journeys are overlapping. If you have a Journey targeting iOS users and a Journey targeting Android users, the prioritization won't matter. If you update the Journey targeting iOS to now target iOS and Android users, the higher priority Journey will show to Android users.
 
 ##### What happens if a user dismisses a banner or interstitial?
