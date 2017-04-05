@@ -215,7 +215,7 @@ In general, you'd like the interstitial to show ahead of the smart banner on the
 
 {% endexample %}
 
-To prioritize two Journeys, switch to the Priority View by clicking on the toggle.
+To prioritize Journeys, switch to the Priority View by clicking on the toggle.
 
 {% image src='/img/pages/features/journeys/priority-view-toggle.png' 3-quarter center alt='priority view toggle' %}
 
