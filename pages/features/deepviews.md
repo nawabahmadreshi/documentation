@@ -286,11 +286,24 @@ Edit the Title, Description and Image URL in the _Social Media Description_ sect
 
 If you don't want to enable Deepviews globally, you can do it for each platform on a per link basis by inserting custom link control parameters [link control parameters]({{base.url}}/getting-started/configuring-links).
 
-| Key | Value | Default
+#### Active Deepviews
+
+Active deepviews should only show when the app is _not_ installed (or when direct deep linking doesn't work like in the Facebook webview), and pause on the deepview page. These let the user preview the content, ultimately deciding if they want to install the app. The user must click the call-to-action of `Get The App` in order to be sent to the appropriate App or Play Store page.
+
+| Key | Value | Default Template
 | --- | --- | ---
 | $ios_deepview | The name of the template to use for iOS. | `default_template`
 | $android_deepview | The name of the template to use for Android. | `default_template`
 | $desktop_deepview | The name of the template to use for the desktop. | `default_template`
+
+#### Passive Deepviews
+
+Passive deepviews should also only appear when the app is _not_ installed, but instead of pausing on the deepview page, they will attempt to redirect to the App/Play Store immediately without the user taking action. These should be used when you don't want a blank white screen to be left in a browser after the user clicks a link to go install your app. Note that these are automatically enabled in Safari iOS 10.3 and Facebook iOS webviews if you're attempting to redirect to your Store page.
+
+| Key | Value | Default
+| --- | --- | ---
+| $passive_ios_deepview | The name of the template to use for iOS. | `default_template`
+| $passive_android_deepview | The name of the template to use for Android. | `default_template`
 
 {% example title="When creating links dynamically" %}
 If you're creating a link by appending query parameters, you simply need to append the parameters to the URL. Please make sure to URL encode everything, lest the link will break.
