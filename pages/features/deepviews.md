@@ -302,8 +302,8 @@ Passive deepviews should also only appear when the app is _not_ installed, but i
 
 | Key | Value | Default
 | --- | --- | ---
-| $passive_ios_deepview | The name of the template to use for iOS. | `default_template`
-| $passive_android_deepview | The name of the template to use for Android. | `default_template`
+| $ios_passive_deepview | The name of the template to use for iOS. | `default_template`
+| $android_passive_deepview | The name of the template to use for Android. | `default_template`
 
 {% example title="When creating links dynamically" %}
 If you're creating a link by appending query parameters, you simply need to append the parameters to the URL. Please make sure to URL encode everything, lest the link will break.
