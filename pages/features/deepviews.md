@@ -300,6 +300,8 @@ Active deepviews should only show when the app is _not_ installed (or when direc
 
 Passive deepviews should also only appear when the app is _not_ installed, but instead of pausing on the deepview page, they will attempt to redirect to the App/Play Store immediately without the user taking action. These should be used when you don't want a blank white screen to be left in a browser after the user clicks a link to go install your app. Note that these are automatically enabled in Safari iOS 10.3 and Facebook iOS webviews if you're attempting to redirect to your Store page.
 
+To disable passive deepviews, simply set the value to `false` in the link data.
+
 | Key | Value | Default
 | --- | --- | ---
 | $ios_passive_deepview | The name of the template to use for iOS. | `default_template`
