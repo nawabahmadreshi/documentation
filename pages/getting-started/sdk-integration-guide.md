@@ -392,22 +392,6 @@ Branch opens your app by using its URI scheme (`yourapp://`), which should be un
 
 {% image src='/img/pages/getting-started/sdk-integration-guide/ios_get_uriScheme.gif' full center alt='URL Scheme Demo' %}
 
-### Support Strong Matching (only needed for &nbsp; **app.link** &nbsp; domains)
-
-1. Retrieve your app default domain name from [Link Settings](https://dashboard.branch.io/#/settings/link){:target="_blank"} page of the Branch dashboard under **Link Domain**
-1. In Xcode, open your project's Info.plist file in the Navigator (on the left side).
-1. Mouse hover "Information Property List" (the root item under the Key column).
-1. After about half a second, you will see a `+` sign appear. Click it.
-1. Add a new row with the following values:
-
-| Key | Type | Value |
-| :--- | --- | --- |
-| branch_app_domain | String | [your default domain name] |
-
-{% caution %}
-This only applies to apps which have the `app.link` domain such as `h4vy.app.link`. If your app's domain is `bnc.lt` or a custom one, you don't need this step.
-{% endcaution %}
-
 {% endif %}
 {% endif %}
 

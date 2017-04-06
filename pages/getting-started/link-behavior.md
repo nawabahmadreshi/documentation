@@ -55,6 +55,8 @@ Branch links are generally intended to direct users to the App or Play Store whe
 
 | App/Browser | Link Behavior
 | --- | ---
+| Safari 10.3+ | Shows a [passive deepview]({{base.url}}/features/deepviews/advanced/ios/#enabling-deepviews-for-one-link) while redirecting to App Store.
+| Facebook | Shows a [passive deepview]({{base.url}}/features/deepviews/advanced/ios/#enabling-deepviews-for-one-link) while redirecting to App Store.
 | Pinterest | Shows a Branch Deepview *
 | All other apps/browsers | Redirects to App Store
 

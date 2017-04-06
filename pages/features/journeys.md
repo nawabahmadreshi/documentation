@@ -34,6 +34,13 @@ On a daily basis, Google Search drives **more app installs** than all of Faceboo
 
 {% elsif page.guide %}
 
+{% prerequisite title="Make sure you include your alternate domain for Universal Links" %}
+
+- Journeys uses your alternate domain for Universal Links. Make sure you include your `xxxx-alternate.app.link` domain in your [Associaed Domains]({{base.url}}/getting-started/universal-app-links/guide/ios/#add-the-associated-domains-entitlement-to-your-project).
+- If you use a custom domain or subdomain for your Branch links, you should instead add entries for `applinks:[mycustomdomainorsubdomain]` and `XXXX-alternate.app.link`. If you’re unsure of your Branch-assigned app.link subdomain, [contact support](https://support.branch.io), and we can provide it.
+
+{% endprerequisite %}
+
 ## Add the Branch Web SDK to your site
 
 Add the following code somewhere inside the `<head></head>` tags on your website. More information about this SDK can be found in the [Github README](https://github.com/BranchMetrics/web-branch-deep-linking).
@@ -200,11 +207,45 @@ To prevent corruption of historical analytics data, Journeys cannot be edited on
 
 {% endprotip %}
 
+## Prioritizing Journeys
+
+The Journeys Priority View allows you to set the priority of multiple Journeys when they **overlap**. They **overlap** when a single person is eligible to see multiple Journeys. You can prioritize the Journey that should show ahead of any others.
+
+{% example title="Prioritizing Journeys" %}
+
+Let's say you have two Journeys that may reach the same audience.
+
+1. A half page interstitial that promotes an offer on your "Shoes" category page.
+2. A smart banner that should show for all visitors.
+
+In general, you'd like the interstitial to show ahead of the smart banner on the "Shoes" category page (where both audience segments overlap). 
+
+{% endexample %}
+
+To prioritize Journeys, switch to the Priority View by clicking on the toggle.
+
+{% image src='/img/pages/features/journeys/priority-view-toggle.png' 3-quarter center alt='priority view toggle' %}
+
+You're now in Priority View. 
+
+1. Drag and drop Journeys in the order you'd like them to show. The lower numbers mean higher priority (i.e. a Journey with priority 1 is going to show ahead of a Journey with priority 2).{% image src='/img/pages/features/journeys/first-priority-view.png' 3-quarter center alt='first priority view' %}
+1. Click the **Save** button. {% image src='/img/pages/features/journeys/save-priority.png' 3-quarter center alt='changed priority view' %}
+1. Your Journeys have now been prioritized. {% image src='/img/pages/features/journeys/final-priority-view.png' 3-quarter center alt='final priority view' %}
+
+{% caution %}
+
+When you save Journeys priorities, **ALL** Journeys will be prioritized in the order they appear in the table. 
+
+{% endcaution %}
+
+For more detailed Journeys prioritization questions, visit our [Advanced section](/features/journeys/advanced/#prioritization).
+
+
 ## Visualizing Journeys performance
 
 ### Analytics & attribution
 
-Journeys map to [standard Branch analytics labels](https://dev.branch.io/getting-started/configuring-links/#analytics-labels):
+Journeys map to [standard Branch analytics labels](/getting-started/configuring-links/#analytics-labels):
 
 - All Journeys: `feature` = `journeys`
 - Each Journey:	`campaign` = `[Journey Name]`
@@ -290,6 +331,21 @@ Note that if you are planning on just using the free banner, you can skip this s
 - Your total percentage allocation must not equal more than **100%**.
 - Your total percentage allocation may be _less_ than **100%**. In this situation, the remainder of your audience will be shown your standard website without a Journey. This allows you to A/B test against your non-Journeys website experience.
 {% endprotip %}
+
+## Prioritization
+
+##### When do my Journeys prioritization rules apply?
+Prioritization only takes effect when two Journeys are overlapping. If you have a Journey targeting iOS users and a Journey targeting Android users, the prioritization won't matter. If you update the Journey targeting iOS to now target iOS and Android users, the higher priority Journey will show to Android users.
+
+##### What happens if a user dismisses a banner or interstitial?
+Assuming it fits your audience rule, your highest priority Journey is shown. If that Journey is dismissed, no other Journeys will show to respect the user's preference for not seeing a Journey when those rules are applied. To maximize Journey visibility, make your interstitial rules narrow (for example, showing on specific URLs) and your banner rules broad.
+
+##### Why do I have to prioritize Stopped and Draft Journeys?
+We ask you to prioritize all non-Archived Journeys because Journeys can be set live from *Draft* or *Stopped* mode. 
+
+##### What happens if I have some Journeys with priorities set and some without?
+We recommend setting priority for all Journeys. All new Journeys you create will automatically have the lowest priority assigned to them, as well as *Draft* or *Stopped* Journeys *without priority* that are set live (Journeys with priority will not have their priority changed unless you explicitly set them). If you don't set a priority for all your Journeys, then any matching Journey (i.e. Journey passing the audience filter you set) without priority will be picked at random to show.
+
 
 ## Dynamic Journeys layout customization
 
