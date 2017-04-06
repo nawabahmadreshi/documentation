@@ -327,12 +327,17 @@ Note that if you are planning on just using the free banner, you can skip this s
 
 ## Prioritization
 
-##### When does the Journeys prioritization apply?
+##### When do my Journeys prioritization rules apply?
 Prioritization only takes effect when two Journeys are overlapping. If you have a Journey targeting iOS users and a Journey targeting Android users, the prioritization won't matter. If you update the Journey targeting iOS to now target iOS and Android users, the higher priority Journey will show to Android users.
 
-##### What happens if I have some Journeys with priorities set and some without?
-We recommend setting priority for all Journeys. All new Journeys you create will automatically have the lowest priority assigned to them, as will *Draft* or *Stopped* Journeys that are set live. If you don't set a priority for all your Journeys, then any matching Journey (i.e. Journey passing the audience filter you set) without priority will be picked at random to show.
+##### What happens if a user dismisses a banner or interstitial?
+Assuming it fits your audience rule, your highest priority Journey is shown. If that Journey is dismissed, no other Journeys will show to respect the user's preference for not seeing a Journey when those rules are applied. To maximize Journey visibility, make your interstitial rules narrow (for example, showing on specific URLs) and your banner rules broad.
 
+##### Why do I have to prioritize Stopped and Draft Journeys?
+We ask you to prioritize all non-Archived Journeys because Journeys can be set live from *Draft* or *Stopped* mode. 
+
+##### What happens if I have some Journeys with priorities set and some without?
+We recommend setting priority for all Journeys. All new Journeys you create will automatically have the lowest priority assigned to them, as well as *Draft* or *Stopped* Journeys *without priority* that are set live (Journeys with priority will not have their priority changed unless you explicitly set them). If you don't set a priority for all your Journeys, then any matching Journey (i.e. Journey passing the audience filter you set) without priority will be picked at random to show.
 
 
 ## Dynamic Journeys layout customization
