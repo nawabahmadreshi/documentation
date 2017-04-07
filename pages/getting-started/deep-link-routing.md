@@ -747,6 +747,14 @@ PendingIntent resultPendingIntent =  PendingIntent.getActivity(this, 0, resultIn
 
 {% endhighlight %}
 
+If you would like to support push notification based routing while your app already in foreground, please add the following to your notification intent.
+
+{% highlight java %}
+
+intent.putExtra("branch_force_new_session",true);
+
+{% endhighlight %}
+
 And we'll take care of the rest once the user clicks your notification!
 {% endif %}
 
