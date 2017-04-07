@@ -234,7 +234,7 @@ if let nonBranchLink = params["+non_branch_link"] as? String, let fromEmailCtd =
 {% endtabs %}
 
 {% protip title="Do not open the app" %}
-In a future release (scheduled for mid-Q4 2016) customers will have the ability to choose not to open the app at all rather than open the app and launch a browser. Salesforce Marketing Cloud uses this feature for your Unsubscribe button by default.
+Salesforce has communicated to us that in a future release customers will have the ability to choose not to open the app at all rather than open the app and launch a browser. While it is slated for 2017 there is no confirmed timeline. Salesforce Marketing Cloud uses this feature for your Unsubscribe button by default.
 {% endprotip %}
 
 ## Validate and send emails
