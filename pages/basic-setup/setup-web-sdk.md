@@ -1,25 +1,25 @@
 ---
 type: recipe
 directory: basic-setup
-title: 3. Web SDK Integration
+title: 4. Web SDK Integration
 page_title: Add the Branch SDK to your mobile web site
 description: This page will tell you how to quickly add the Branch SDK to your mobile web site
 hide_platform_selector: true
 hide_section_selector: true
 ---
-**Estimated Time to Complete**
+#### Estimated Time to Complete
 
 30 Minutes - 1 Hour
 
-**Required Personnel**
+#### Required Personnel
 
 Web Developer
 
-**Requires An App Update**
+#### Requires An App Update
 
 No
 
-##Introduction
+## Introduction
 
 ### Why do I need the Web SDK?
 

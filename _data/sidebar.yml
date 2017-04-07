@@ -6,7 +6,10 @@
     - before-getting-started
     - setup-dashboard
     - setup-mobile-sdk
+    - universal-app-links
     - setup-web-sdk
+    - track-user-value
+    - hosted-deep-link-data
     - testing
 - title: Next Steps
   directory: next-steps
