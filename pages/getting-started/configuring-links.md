@@ -90,6 +90,7 @@ The redirect destinations are completely customizable for every link that you cr
 | $fallback_url | Change the redirect endpoint for _all_ platforms - so you don't have to enable it by platform. Note that Branch will forward all robots to this URL, overriding any OG tags entered in the link. | System-wide Default URL (set in [Link Settings](https://dashboard.branch.io/#/settings/link))
 | **$desktop_url** | Change the redirect endpoint on desktops | Text-Me-The-App page (set in [Link Settings](https://dashboard.branch.io/#/settings/link))
 | $ios_url | Change the redirect endpoint for iOS | App Store page for your app (set in [Link Settings](https://dashboard.branch.io/#/settings/link))
+| $ios_has_app_url | Change the redirect endpoint for iOS _only for users that Branch knows to have the app installed_ | App Store page for your app (set in [Link Settings](https://dashboard.branch.io/#/settings/link))
 | $android_url | Change the redirect endpoint for Android | Play Store page for your app (set in [Link Settings](https://dashboard.branch.io/#/settings/link))
 | **$windows_phone_url** | Change the redirect endpoint for Windows OS | Windows Phone default URL (set in [Link Settings](https://dashboard.branch.io/#/settings/link))
 | $blackberry_url | Change the redirect endpoint for Blackberry OS | BlackBerry default URL (set in [Link Settings](https://dashboard.branch.io/#/settings/link))
