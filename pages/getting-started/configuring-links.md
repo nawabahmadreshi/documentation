@@ -166,7 +166,7 @@ Use these keys to control how URI scheme deep linking functions when opening you
 | $android_redirect_timeout | Control the timeout that the clientside JS waits after trying to open up the app before redirecting to the Play Store. Specified in milliseconds | `750`
 | $one_time_use | Set to 'true' to limit deep linking behavior of the generated link to a single use. Can also be set using `type` | `false`
 | $custom_sms_text | Text for SMS link sent for desktop clicks to this link. Must contain `{% raw %}{{ link }}{% endraw %}` | Value of **Text me the app page** in [Settings](https://dashboard.branch.io/settings)
-| $marketing_title | Sets the Marketing Title for the deep link in the [Marketing page](https://dashboard.branch.io/marketing) of the dashboard | *null*
+| $marketing_title | Sets the Marketing Title for the deep link in the [Marketing page](https://dashboard.branch.io/quick-links) of the dashboard | *null*
 
 #### Triggering links from within an iFrame
 

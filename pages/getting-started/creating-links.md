@@ -42,7 +42,7 @@ Links are the foundation of everything Branch offers:
 - By using our web SDK with [Journeys]({{base.url}}/features/journeys) to [create Branch links from your website]({{base.url}}/getting-started/creating-links/other-ways#web-sdk), you can convert your mobile web traffic to app users.
 
 {% protip %}
-You can read more about using the link data dictionary to define key/value pairs for deep linking, and the various link analytics and control parameters used throughout this guide on the [Link Configuration page]({{base.url}}/getting-started/configuring-links). 
+You can read more about using the link data dictionary to define key/value pairs for deep linking, and the various link analytics and control parameters used throughout this guide on the [Link Configuration page]({{base.url}}/getting-started/configuring-links).
 
 Learn how to set up your app to interpret key/value pairs in the [Deep Link Routing guide]({{base.url}}/getting-started/deep-link-routing).
 {% endprotip %}
@@ -564,7 +564,7 @@ If you don't want to handle the link yourself, you can also use Branch's [precon
 
 {% elsif page.dashboard %}
 
-### Creating marketing links in the dashboard
+### Creating Quick Links in the dashboard
 
 You can create deep links that work on all platforms and look good on social media directly in the Branch [dashboard](https://dashboard.branch.io){:target="_blank"}.
 
@@ -584,12 +584,12 @@ Step 1 includes all the fields you need to fill in order to create a successful 
 
 ### Name your link
 
-This is the name that will show for your link under **Marketing Title** on the [Marketing Links](https://dashboard.branch.io/settings/link){:target="_blank"} page. Choosing a descriptive name will help you find your link later through search or table sorting.
+This is the name that will show for your link under **Marketing Title** on the [Quick Links](https://dashboard.branch.io/settings/link){:target="_blank"} page. Choosing a descriptive name will help you find your link later through search or table sorting.
 
 {% image src='/img/pages/getting-started/creating-links/name-your-link.png' half center alt='Name your link' %}
 
 ### Web URL
-When you type or paste a URL from your website into this field, all kinds of useful information will be filled automatically. 
+When you type or paste a URL from your website into this field, all kinds of useful information will be filled automatically.
 
 {% image src='/img/pages/getting-started/creating-links/web-url.png' half center alt='Web URL' %}
 
@@ -604,13 +604,13 @@ If you do not enter a link name before pasting in a web URL, it will be automati
 
 ### Channel and campaign
 
-**Channel** and **campaign** are parameters you can set for link analytics. You will be able to use these to analyze performance on the [Marketing Links](https://dashboard.branch.io/marketing){:target="_blank"} or [Source Analytics](https://dashboard.branch.io/analytics/source){:target="_blank"} page later.
+**Channel** and **campaign** are parameters you can set for link analytics. You will be able to use these to analyze performance on the [Quick Links](https://dashboard.branch.io/quick-links){:target="_blank"} or [Source Analytics](https://dashboard.branch.io/analytics/source){:target="_blank"} page later.
 
 {% image src='/img/pages/getting-started/creating-links/channel-campaign.png' 3-quarters center alt='Channel and campaign' %}
 
 ##### Where will you post this link?
 
-Say there are three places you primarily focus on for marketing: Facebook, Twitter, and Email. You'll want to pick one of those "channels" here, so that you can see all your data for one channel or compare the performance of multiple channels later. 
+Say there are three places you primarily focus on for marketing: Facebook, Twitter, and Email. You'll want to pick one of those "channels" here, so that you can see all your data for one channel or compare the performance of multiple channels later.
 
 ##### What campaign is it part of?
 
@@ -677,7 +677,7 @@ You can choose where the user is directed when they do not have the app in the *
 
 ### Set channel, campaign, and tags for analytics
 
-You will be able to use these parameters to analyze performance on the [Marketing Links](https://dashboard.branch.io/marketing){:target="_blank"}, [Source Analytics](https://dashboard.branch.io/analytics/source){:target="_blank"}, [Content Analytics](https://dashboard.branch.io/analytics/content){:target="_blank"}, and [Summary](https://dashboard.branch.io/){:target="_blank"} pages later. If you entered channel and campaign on the Define step, they will carry over here.
+You will be able to use these parameters to analyze performance on the [Quick Links](https://dashboard.branch.io/quick-links){:target="_blank"}, [Source Analytics](https://dashboard.branch.io/analytics/source){:target="_blank"}, [Content Analytics](https://dashboard.branch.io/analytics/content){:target="_blank"}, and [Summary](https://dashboard.branch.io/){:target="_blank"} pages later. If you entered channel and campaign on the Define step, they will carry over here.
 
 {% image src='/img/pages/getting-started/creating-links/analytics-tags.png' full center alt='Analytics tags' %}
 
@@ -701,7 +701,7 @@ Each validation message corresponds to items you can fill out with the Define st
 
 ## Manage and edit your links
 
-You can manage your links on the [Marketing Links](https://dashboard.branch.io/marketing){:target="_blank"} page of the dashboard. 
+You can manage your links on the [Quick Links](https://dashboard.branch.io/quick-links){:target="_blank"} page of the dashboard.
 
 ### Edit, view stats, duplicate, and archive
 
@@ -709,20 +709,20 @@ You can access a menu with the **more** icon for each link in the **Actions** co
 
 {% image src='/img/pages/getting-started/creating-links/marketing-actions.png' half center alt='Marketing link actions' %}
 
-* **Edit** will open the link creation flow in edit mode. 
-* **View stats** will bring up data for just that link. 
+* **Edit** will open the link creation flow in edit mode.
+* **View stats** will bring up data for just that link.
 * **Duplicate** will open the creation flow for a new link with all of the link parameters copied over.
 * **Archive link** will hide that link from main view. You can still see it by enabling the **Archived** checkbox at the top of the page.
 
 ### Copy to clipboard
 
-You can copy your link to clipboard direct from the table on the [Marketing Links](https://dashboard.branch.io/marketing){:target="_blank"} page. 
+You can copy your link to clipboard direct from the table on the [Quick Links](https://dashboard.branch.io/quick-links){:target="_blank"} page.
 
 {% image src='/img/pages/getting-started/creating-links/marketing-copy.png' half center alt='Copy to clipboard' %}
 
 ## See your link analytics
 
-At a granular level, you can see analytics for each individual link you create on the [Marketing Links](https://dashboard.branch.io/marketing){:target="_blank"} page. The link you most recently created will be at the top, but you can also search for it in the search bar.
+At a granular level, you can see analytics for each individual link you create on the [Quick Links](https://dashboard.branch.io/quick-links){:target="_blank"} page. The link you most recently created will be at the top, but you can also search for it in the search bar.
 
 {% image src='/img/pages/getting-started/creating-links/marketing-title.png' full center alt='Marketing title' %}
 
@@ -775,7 +775,7 @@ The links will automatically configured with the following properties:
 
 ### Viewing the click data
 
-Since these links are automatically added to the marketing tab of your dashboard, you can easily view the performance by heading to [there](https://dashboard.branch.io/marketing). If you have the SDK integrated, you'll be able to track installs and re-opens. Clicks will be visible always.
+Since these links are automatically added to the marketing tab of your dashboard, you can easily view the performance by heading to [there](https://dashboard.branch.io/quick-links). If you have the SDK integrated, you'll be able to track installs and re-opens. Clicks will be visible always.
 
 {% image src='/img/pages/features/chrome-extension/link-performance.png' half center alt='link performance' %}
 

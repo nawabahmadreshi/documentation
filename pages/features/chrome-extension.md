@@ -53,7 +53,7 @@ The links will automatically configured with the following properties:
 
 ### Viewing the click data
 
-Since these links are automatically added to the marketing tab of your dashboard, you can easily view the performance by heading to [there](https://dashboard.branch.io/marketing). If you have the SDK integrated, you'll be able to track installs and re-opens. Clicks will be visible always.
+Since these links are automatically added to the marketing tab of your dashboard, you can easily view the performance by heading to [there](https://dashboard.branch.io/quick-links). If you have the SDK integrated, you'll be able to track installs and re-opens. Clicks will be visible always.
 
 {% image src='/img/pages/features/chrome-extension/link-performance.png' half center alt='link performance' %}
 

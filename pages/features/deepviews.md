@@ -273,7 +273,7 @@ let branchUniversalObject = branch.createBranchUniversalObject(
 
 {% endexample %}
 
-{% example title="When creating Marketing links on the Branch dashboard" %}
+{% example title="When creating Quick Links on the Branch dashboard" %}
 Edit the Title, Description and Image URL in the _Social Media Description_ section. 
 
 {% image src='/img/pages/features/deepviews/deepviews_social_media_description.png' 2-thirds center alt='Social Media Description' %}
@@ -467,9 +467,9 @@ let {url} = await branchUniversalObject.generateShortUrl(linkProperties, control
 
 {% endexample %}
 
-{% example title="When creating Marketing links on the Branch dashboard" %}
+{% example title="When creating Quick Links on the Branch dashboard" %}
 
-You can enable Deepviews for an individual link on the [Marketing dashboard](https://dashboard.branch.io/marketing/mlc/define){:target="_blank"} by selecting Deepviews as a redirect option in Configure Options > Redirects.
+You can enable Deepviews for an individual link on the [Marketing dashboard](https://dashboard.branch.io/quick-links/mlc/define){:target="_blank"} by selecting Deepviews as a redirect option in Configure Options > Redirects.
 
 {% image src='/img/pages/features/deepviews/deepviews-mlc.png' full center alt='Marketing link Deepviews' %}
 
@@ -485,9 +485,9 @@ If you've enabled Deepviews globally, it's likely that you'll want to disable th
 | **$android_deepview** | `false` |
 | **$desktop_deepview** | `false` |
 
-{% example title="When creating Marketing links on the Branch dashboard" %}
+{% example title="When creating Quick Links on the Branch dashboard" %}
 
-You can disable Deepviews for an individual link on the [Marketing dashboard](https://dashboard.branch.io/marketing/mlc/define){:target="_blank"} by selecting Deepviews as a redirect option in Configure Options > Redirects and setting it to false.
+You can disable Deepviews for an individual link on the [Marketing dashboard](https://dashboard.branch.io/quick-links/mlc/define){:target="_blank"} by selecting Deepviews as a redirect option in Configure Options > Redirects and setting it to false.
 
 {% image src='/img/pages/features/deepviews/deepviews-disable-mlc.png' full center alt='Disable Marketing link Deepviews' %}
 
