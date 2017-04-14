@@ -25,10 +25,10 @@ If you're running Google AdWords campaigns, whether they're of the Search or Dis
 - If you want to deep link from your ads directly to content, you should [configure deep link routing]({{base.url}}/getting-started/deep-link-routing).
 {% endprerequisite %}
 
-## Create a Marketing link on the Branch dashboard
+## Create a Quick Link on the Branch dashboard
 
 1. Visit the [Marketing page](https://dashboard.branch.io/#/marketing) on the Branch dashboard and click **+ Add link**.
-1. Pick a **Marketing Title** for later reference. For example: "Ad for blue sneakers" {% image src='/img/pages/features/google-search-ads/ad_example_create.png' 3-quarters center alt='Create Marketing Link' %}
+1. Pick a **Marketing Title** for later reference. For example: "Ad for blue sneakers" {% image src='/img/pages/features/google-search-ads/ad_example_create.png' 3-quarters center alt='Create Quick Link' %}
 1. **Channel** and **Campaign** are optional but recommended. **Tags** is free form.
 
 {% example title="Use the pre-configured link" %}

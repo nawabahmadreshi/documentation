@@ -46,7 +46,7 @@ The links will automatically configured with the following properties:
 
 | **Property** | **Value** |
 | ---: | --- |
-| **type** | 2 - marketing link by default
+| **type** | 2 - Quick Link by default
 | **marketing title** | Automatically set to "Link to: <your website URL>"
 | **$fallback_url** | the website URL
 | **auto_fetch** | true: we'll automatically scrape the website to pull in app links tags and deep link routing info

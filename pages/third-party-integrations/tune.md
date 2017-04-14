@@ -109,7 +109,7 @@ If you are interested in advanced network attribution segmentation in Tune, you 
 If you enabled the Tune integration before August 10th 2016, you will need to disable and re-enable the Tune card in your dashboard before carrying out the instructions below. Please note this will change your default mapping of Branch analytics tags from the sub_publisher and sub_placement values into the my_partner values as noted above.
 {% endcaution %}
 
-1. Start with an existing Branch link, for example, a [ marketing link](/features/google-search-ads/guide/#create-a-marketing-link-on-the-branch-dashboard){:target="_blank"}.
+1. Start with an existing Branch link, for example, a [ Quick Link](/features/google-search-ads/guide/#create-a-marketing-link-on-the-branch-dashboard){:target="_blank"}.
 1. Append `?` to the end of your link to start the query params string. For example: **https://mylinks.app.link/8AHjQx0fyv?**
 1. Next, [create a measurement URL](https://help.tune.com/marketing-console/creating-a-measurement-url/){:target="_blank"} in Tune's Attribution Analytics Dashboard with the parameters you'd like to capture.
 	- Select the "Click" URL (as opposed to the Impression URL)

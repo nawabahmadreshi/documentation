@@ -72,10 +72,10 @@ If you're running a Universal App Campaign for both iOS and Android, all four fi
 
 You're all set with this one time setup. Note that you will be modifying the postback URL occasionally in this conversion, but we'll get to that later.
 
-## Create a Marketing link on the Branch dashboard
+## Create a Quick Link on the Branch dashboard
 
 1. Visit the [Marketing page](https://dashboard.branch.io/#/marketing) on the Branch dashboard and click **+ Add link**.
-1. Pick a **Marketing Title** for later reference. For example: "Ad for blue sneakers" {% image src='/img/pages/features/google-search-ads/ad_example_create.png' 3-quarters center alt='Create Marketing Link' %}
+1. Pick a **Marketing Title** for later reference. For example: "Ad for blue sneakers" {% image src='/img/pages/features/google-search-ads/ad_example_create.png' 3-quarters center alt='Create Quick Link' %}
 1. **Channel** and **Campaign** are optional but recommended. **Tags** is free form.
 
 {% protip title="Optional: Deep Link Data (Advanced)" %}

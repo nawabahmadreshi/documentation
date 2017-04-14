@@ -471,7 +471,7 @@ let {url} = await branchUniversalObject.generateShortUrl(linkProperties, control
 
 You can enable Deepviews for an individual link on the [Marketing dashboard](https://dashboard.branch.io/quick-links/mlc/define){:target="_blank"} by selecting Deepviews as a redirect option in Configure Options > Redirects.
 
-{% image src='/img/pages/features/deepviews/deepviews-mlc.png' full center alt='Marketing link Deepviews' %}
+{% image src='/img/pages/features/deepviews/deepviews-mlc.png' full center alt='Quick Link Deepviews' %}
 
 {% endexample %}
 
@@ -489,7 +489,7 @@ If you've enabled Deepviews globally, it's likely that you'll want to disable th
 
 You can disable Deepviews for an individual link on the [Marketing dashboard](https://dashboard.branch.io/quick-links/mlc/define){:target="_blank"} by selecting Deepviews as a redirect option in Configure Options > Redirects and setting it to false.
 
-{% image src='/img/pages/features/deepviews/deepviews-disable-mlc.png' full center alt='Disable Marketing link Deepviews' %}
+{% image src='/img/pages/features/deepviews/deepviews-disable-mlc.png' full center alt='Disable Quick Link Deepviews' %}
 
 {% endexample %}
 

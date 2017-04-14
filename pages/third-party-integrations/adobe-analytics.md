@@ -192,7 +192,7 @@ Medium | Feature | Journeys
 Action | Branch Event Name | Install
 Action Property| Branch Tags | tag=bar&tag2=1234
 
-If you create a marketing link and specify analytics, those analytics will appear in the Adobe Analytics reporting suite.
+If you create a Quick Link and specify analytics, those analytics will appear in the Adobe Analytics reporting suite.
 
 {% elsif page.support %}
 

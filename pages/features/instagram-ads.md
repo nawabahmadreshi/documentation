@@ -73,13 +73,13 @@ Branch.getAutoInstance().enableFacebookAppLinkCheck();
 
 Note that you cannot call `fetchDeferredAppLinkData` in addition to us, lest you risk consuming the attribution event before the Branch SDK can. Other than that, you're all set!
 
-## Create a Marketing link on the Branch dashboard
+## Create a Quick Link on the Branch dashboard
 
-### Add a marketing link
+### Add a Quick Link
 
 1. Visit the [Marketing page](https://dashboard.branch.io/#/marketing) on the Branch dashboard and click **+ Add link**.
-1. Pick a **Link Description** for later reference. For example: "Instagram ad for blue sneakers - summer 2016." {% image src='/img/pages/features/instagram-ads/link-description.png' 3-quarters center alt='Create Marketing Link' %}
-1. **Channel** and **Campaign** are optional but recommended. **Tags** is free form. {% image src='/img/pages/features/instagram-ads/link-tags.png' 3-quarters center alt='Create Marketing Link' %}
+1. Pick a **Link Description** for later reference. For example: "Instagram ad for blue sneakers - summer 2016." {% image src='/img/pages/features/instagram-ads/link-description.png' 3-quarters center alt='Create Quick Link' %}
+1. **Channel** and **Campaign** are optional but recommended. **Tags** is free form. {% image src='/img/pages/features/instagram-ads/link-tags.png' 3-quarters center alt='Create Quick Link' %}
 
 {% caution %}
 

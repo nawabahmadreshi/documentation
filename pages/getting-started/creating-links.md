@@ -707,7 +707,7 @@ You can manage your links on the [Quick Links](https://dashboard.branch.io/quick
 
 You can access a menu with the **more** icon for each link in the **Actions** column.
 
-{% image src='/img/pages/getting-started/creating-links/marketing-actions.png' half center alt='Marketing link actions' %}
+{% image src='/img/pages/getting-started/creating-links/marketing-actions.png' half center alt='Quick Link actions' %}
 
 * **Edit** will open the link creation flow in edit mode.
 * **View stats** will bring up data for just that link.
@@ -768,7 +768,7 @@ The links will automatically configured with the following properties:
 
 | **Property** | **Value** |
 | ---: | --- |
-| **type** | 2 - marketing link by default
+| **type** | 2 - Quick Link by default
 | **marketing title** | Automatically set to "Link to: <your website URL>"
 | **$fallback_url** | the website URL
 | **auto_fetch** | true: we'll automatically scrape the website to pull in app links tags and deep link routing info
@@ -833,7 +833,7 @@ The following keys have been embedded:
 | --- | --- | --- | --- |
 | New link | https://bnc.lt/a/key_live_xxxxxxxxxxxxxxx?param=value | https://wxyz.app.link?param=value | https://customdomain.com/a/key_live_xxxxxxxxxxxxxxx?param=value
 | Existing SDK link | https://bnc.lt/wxyz/KDSYTMnSZs?param=value | https://wxyz.app.link/KDSYTMnSZs?param=value | https://customdomain.com/wxyz/KDSYTMnSZs?param=value
-| Existing marketing link | https://bnc.lt/linkslug?param=value | https://wxyz.app.link/linkslug?param=value | https://customdomain.com/linkslug?param=value
+| Existing Quick Link | https://bnc.lt/linkslug?param=value | https://wxyz.app.link/linkslug?param=value | https://customdomain.com/linkslug?param=value
 
 ## Web SDK
 

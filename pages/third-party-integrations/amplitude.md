@@ -136,7 +136,7 @@ Branch.getInstance().setRequestMetadata("$amplitude_user_id", "user-12345");
 
 The simplest way to test your integration is working end to end is to open your app **from a Branch link** then verify the data appears in Amplitude. After doing this, you will know how you to test more advanced scenarios. 
 
-1. Create a Branch marketing link at [https://dashboard.branch.io/quick-links](https://dashboard.branch.io/quick-links){:target="blank"}.
+1. Create a Branch Quick Link at [https://dashboard.branch.io/quick-links](https://dashboard.branch.io/quick-links){:target="blank"}.
 1. Click that Branch link to open your app. 
 1. In your Branch dashboard, verify you see the open event show as a "referred session" with a "session referring link URL" in your Branch dashboard under "Liveview > Events" {% image src="/img/pages/third-party-integrations/amplitude/branch-amplitude-liveview.png" 3-quarters center alt='Branch Liveview' %}
 1. Go to your Amplitude dashboard and click on "User Activity" and look at the "Real-time activity" section. You should see events with `[Branch]` prepended. There can sometimes be a delay in events appearing, so check back 30 minutes after testing.  {% image src="/img/pages/third-party-integrations/amplitude/amplitude-user-activity.png" 3-quarters center alt='Amplitude User Activity' %}

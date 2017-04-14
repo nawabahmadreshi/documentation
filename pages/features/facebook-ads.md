@@ -39,12 +39,12 @@ In order for Branch to properly run a Facebook deep linked ad campaign, you must
 1. On the Branch Dashboard, go to [Link Settings](https://dashboard.branch.io/#/settings/link) and scroll down to 'Authenticate for Facebook Install Ads'. Enter your **App ID** and **App Secret** from Facebook.{% image src='/img/pages/features/facebook-ads/fb_auth_branch.png' 3-quarters center alt='Facebook Auth' %}
 1. Press 'Authenticate'.
 
-## Create a Marketing link on the Branch dashboard
+## Create a Quick Link on the Branch dashboard
 
-### Add a marketing link
+### Add a Quick Link
 
 1. Visit the [Marketing page](https://dashboard.branch.io/#/marketing) on the Branch dashboard and click **+ Add link**.
-1. Pick a **Link Description** for later reference. For example: "Facebook ad for blue sneakers - summer 2015." {% image src='/img/pages/features/facebook-ads/fb_example_create.png' 3-quarters center alt='Create Marketing Link' %}
+1. Pick a **Link Description** for later reference. For example: "Facebook ad for blue sneakers - summer 2015." {% image src='/img/pages/features/facebook-ads/fb_example_create.png' 3-quarters center alt='Create Quick Link' %}
 1. **Channel** and **Campaign** are optional but recommended. **Tags** is free form. {% image src='/img/pages/features/facebook-ads/fb_example_tags.png' 3-quarters center alt='tags' %}
 
 {% caution %}

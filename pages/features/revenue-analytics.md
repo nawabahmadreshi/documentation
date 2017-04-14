@@ -104,7 +104,7 @@ The best way to test is to trigger a purchase event (using the code snippet abov
 
 {% image src="/img/pages/features/revenue-analytics/revenue-live-view.png" full center %}
 
-To test end to end, first click on a Branch link, such as a marketing link, then trigger a purchase. Then in Live View you can select `Columns`, check `Link Data`, and ensure the data is present for the link you clicked prior to purchase.
+To test end to end, first click on a Branch link, such as a Quick Link, then trigger a purchase. Then in Live View you can select `Columns`, check `Link Data`, and ensure the data is present for the link you clicked prior to purchase.
 
 
 ## Viewing Revenue Analytics in the Dashboard
