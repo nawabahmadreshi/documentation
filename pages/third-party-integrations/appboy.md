@@ -66,10 +66,10 @@ Branch is not responsible for inaccurate API keys.
 
 There are common strategies to take while trouble shooting.
 
-### How to use Branch Links to Deep Link from AppBoy's In-App Message Campaigns on iOS
+### How to use Branch Links to Deep Link from Appboy's In-App Message Campaigns on iOS
 
 1. Ensure that the type of campaign you are running is an **In-App Message** campaign.
-2. From AppBoy's Dashboard, **Edit** your campaign.
+2. From Appboy's Dashboard, **Edit** your campaign.
 3. From the **Compose** tab scroll down to **iOS**.
 4. Within the **On-click Behavior** section, select **Deep Link Into App**.
 5. To understand what to insert into this field, find a Branch Markteting link you would like users to get deep linked to and follow the instructions [here](https://dev.branch.io/features/facebook-ads/support/ios/#use-a-direct-deep-link).
