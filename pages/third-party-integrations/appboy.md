@@ -10,6 +10,7 @@ premium: true
 sections:
 - overview
 - guide
+- support
 ---
 
 {% if page.overview %}
@@ -59,4 +60,52 @@ We have built a custom integration to automatically send all Branch install data
 Branch is not responsible for inaccurate API keys.
 {% endcaution %}
 
+{% elsif page.support %}
+
+## Troubleshooting
+
+There are common strategies to take while trouble shooting.
+
+### How to use Branch Links to Deep Link from AppBoy's In-App Message Campaigns on iOS
+
+1. Ensure that the type of campaign you are running is an **In-App Message** campaign.
+2. From AppBoy's Dashboard, **Edit** your campaign.
+3. From the **Compose** tab scroll down to **iOS**.
+4. Within the **On-click Behavior** section, select **Deep Link Into App**.
+5. To understand what to insert into this field, find a Branch Markteting link you would like users to get deep linked to and follow the instructions [here](https://dev.branch.io/features/facebook-ads/support/ios/#use-a-direct-deep-link).
+6. **Update** your campaign.
+7. The final step requires a code change. You'll have to modify `application:openURL:options:` so that it makes a call to:
+
+{% highlight objc %}
+[[Branch getInstance]
+     application:application
+     openURL:url
+     options:options];
+{% endhighlight %}
+
+This will replace the call to:
+
+{% highlight objc %}
+[[Branch getInstance] handleDeepLink:url];
+{% endhighlight %}
+
+Here is the method correctly implemented:
+
+{% highlight objc %}
+- (BOOL) application:(UIApplication *)application
+             openURL:(NSURL *)url
+             options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
+    
+    [[Branch getInstance]
+     application:application
+     openURL:url
+     options:options];
+    
+    return YES;
+}
+{% endhighlight %}
+
+**Note**: This method is available in iOS SDK version `0.14.9` and higher.
+
+Performing these changes will ensure that a tap on an **In-App Message** results in the delivery of deep link data from the link selected in **step 5**.
 {% endif %}
