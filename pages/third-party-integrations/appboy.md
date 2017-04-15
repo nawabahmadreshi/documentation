@@ -72,7 +72,7 @@ There are common strategies to take while trouble shooting.
 2. From Appboy's Dashboard, **Edit** your campaign.
 3. From the **Compose** tab scroll down to **iOS**.
 4. Within the **On-click Behavior** section, select **Deep Link Into App**.
-5. To understand what to insert into this field, find a Branch Markteting link you would like users to get deep linked to and follow the instructions [here](https://dev.branch.io/features/facebook-ads/support/ios/#use-a-direct-deep-link).
+5. To understand what to insert into this field, find a Branch Marketing link you would like users to get deep linked to and then follow the instructions [here](https://dev.branch.io/features/facebook-ads/support/ios/#use-a-direct-deep-link).
 6. **Update** your campaign.
 7. The final step requires a code change. You'll have to modify `application:openURL:options:` so that it makes a call to:
 
