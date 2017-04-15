@@ -1,101 +1,184 @@
 ---
 
-- title: Getting Started
-  directory: getting-started
+- title: Basic Setup
+- title: Next Steps
+- title: Marketing Channels
+  directory: marketing-channels
   children:
-    - sdk-integration-guide
-    - universal-app-links
-    - title: 3. Create Links
-      children:
-        - link-behavior
-        - creating-links
-        - configuring-links
-        - hosted-deep-link-data
-    - deep-link-routing
-    - title: 5. Dashboard Guide
-      children:
-        - link-domain-subdomain
-        - organizing-link-data
-        - growth-attribution
-        - user-value-attribution
-    - title: Advanced
-      children:
-        - integration-testing
-        - matching-accuracy
-        - branch-universal-object
-        - webhooks
-- title: Features
-  directory: features
-  children:
-    - title: Sharing and Personalization
-      children:
-        - content-sharing
-        - custom-onboarding
     - title: Web to App Conversion
       children:
         - deepviews
-        - journeys
         - text-me-the-app
-    - title: Marketing for Mobile
+        - journeys
+    - title: App Only Ads
+      children:
+        - title: Google
+          children:
+            - google-search-ads
+            - google-uac
+        - title: Facebook
+          children:
+            - facebook-ads
+            - facebook-dynamic-ads
+            - facebook-app-invites
+            - instagram-ads
+        - title: Twitter
+          children:
+            - twitter-ads
+        - title: Apple
+          children:
+            - apple-search-ads
+    - title: Product Ads
       children:
         - deep-linked-feeds
-        - facebook-ads
-        - facebook-dynamic-ads
-        - facebook-app-invites
-        - google-search-ads
-        - google-uac
-        - instagram-ads
-        - twitter-ads
-        - apple-search-ads
-        - revenue-analytics
-        - ios-imessage
-        - referral-programs
-    - title: Content Indexing
-      children:
-        - google-app-indexing
-        - spotlight-indexing
-- title: Integrations
-  directory: third-party-integrations
-  children:
-    - title: Deep Linked Emails
+    - title: Email
       children:
         - responsys
         - salesforce
         - sendgrid
         - sailthru
         - appboy-with-sendgrid
+    - title: Referral
+      children:
+        - referral-programs
+        - content-sharing
+        - custom-onboarding
+    - title: Organic Search
+      children:
+        - google-app-indexing
+        - spotlight-indexing
+    - title: App to App
+      children:
+        - ios-imessage
+- title: Cross Channel Analytics
+  directory: cross-channel-analytics
+  children:
+    - title: Attribution
+      children:
+        - growth-attribution
+        - user-value-attribution
+    - title: Analytics
+      children:
+        - revenue-analytics
+- title: Data Exchange
+  directory: data-exchange
+  children:
     - title: Data Integrations
       children:
         - adobe-analytics
         - adjust
         - amplitude
         - appboy
+        - appmetrica
         - appsflyer
+        - fabric-answers
         - google-analytics
         - kochava
         - localytics
         - mixpanel
         - tune
-        - appmetrica
-    - title: Third Party Tools
+    - title: Data Ingestion
+      # children:
+    - title: Data Export
       children:
-        - apptimize
-        - ad-network-analytics
-    - title: Fabric
-      children:
-        - fabric-answers
-    - strategic-partners-guide
-- title: Reference
-  directory: methods-endpoints
-  children:
-    - title: iOS SDK
-    - title: Android SDK
-    - title: Web SDK
-    - title: Cordova/Ionic SDK
-    - title: Xamarin SDK
-    - title: Unity SDK
-    - title: Adobe AIR SDK
-    - title: Titanium SDK
-    - title: React Native SDK
-    - title: HTTP API
-    - data-export-api
+        - data-export-api
+    - webhooks
+# - title: Basic Setup
+#   directory: getting-started
+#   children:
+#     - sdk-integration-guide
+#     - universal-app-links
+#     - title: 3. Create Links
+#       children:
+#         - link-behavior
+#         - creating-links
+#         - configuring-links
+#         - hosted-deep-link-data
+#     - deep-link-routing
+#     - title: 5. Dashboard Guide
+#       children:
+#         - link-domain-subdomain
+#         - organizing-link-data
+#         - growth-attribution
+#         - user-value-attribution
+#     - title: Advanced
+#       children:
+#         - integration-testing
+#         - matching-accuracy
+#         - branch-universal-object
+#         - webhooks
+# - title: Features
+#   directory: features
+#   children:
+#     - title: Sharing and Personalization
+#       children:
+#         - content-sharing
+#         - custom-onboarding
+#     - title: Web to App Conversion
+#       children:
+#         - deepviews
+#         - journeys
+#         - text-me-the-app
+#     - title: Marketing for Mobile
+#       children:
+#         - deep-linked-feeds
+#         - facebook-ads
+#         - facebook-dynamic-ads
+#         - facebook-app-invites
+#         - google-search-ads
+#         - google-uac
+#         - instagram-ads
+#         - twitter-ads
+#         - apple-search-ads
+#         - revenue-analytics
+#         - ios-imessage
+#         - referral-programs
+#     - title: Content Indexing
+#       children:
+#         - google-app-indexing
+#         - spotlight-indexing
+# - title: Integrations
+#   directory: third-party-integrations
+#   children:
+#     - title: Deep Linked Emails
+#       children:
+#         - responsys
+#         - salesforce
+#         - sendgrid
+#         - sailthru
+#         - appboy-with-sendgrid
+#     - title: Data Integrations
+#       children:
+#         - adobe-analytics
+#         - adjust
+#         - amplitude
+#         - appboy
+#         - appsflyer
+#         - google-analytics
+#         - kochava
+#         - localytics
+#         - mixpanel
+#         - tune
+#         - appmetrica
+#     - title: Third Party Tools
+#       children:
+#         - apptimize
+#         - ad-network-analytics
+#     - title: Fabric
+#       children:
+#         - fabric-answers
+#     - strategic-partners-guide
+# - title: Reference
+#   directory: methods-endpoints
+#   children:
+#     - title: iOS SDK
+#     - title: Android SDK
+#     - title: Web SDK
+#     - title: Cordova/Ionic SDK
+#     - title: Xamarin SDK
+#     - title: Unity SDK
+#     - title: Adobe AIR SDK
+#     - title: Titanium SDK
+#     - title: React Native SDK
+#     - title: HTTP API
+#     - data-export-api
