@@ -304,6 +304,8 @@ Open your **AppDelegate.m** file and add the following method (if you completed 
 {% endif %}
 
 {% if page.mparticle_ios %}
+{% tabs %}
+{% tab objective-c %}
 Open your **AppDelegate.m** file and add the following methods (if you completed the [SDK Integration Guide]({{base.url}}/getting-started/sdk-integration-guide), these are likely already present).
 
 {% highlight objc %}
@@ -344,6 +346,46 @@ Open your **AppDelegate.m** file and add the following methods (if you completed
     }];
 }
 {% endhighlight %}
+{% endtab %}
+{% tab swift %}
+Open your **AppDelegate.swift** file and add the following methods (if you completed the [SDK Integration Guide]({{base.url}}/getting-started/sdk-integration-guide), these are likely already present).
+
+{% highlight swift %}
+func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
+    checkForDeeplink()
+    return true
+}
+
+func checkForDeeplink() {
+    MParticle.sharedInstance().checkForDeferredDeepLink { linkInfo, error in
+        // A few typical scenarios where this block would be invoked:
+        //
+        // (1) Base case:
+        //     - User does not tap on a link, and then opens the app (either after a fresh install or not)
+        //     - This block will be invoked with Branch Metrics' response indicating that this user did not tap on a link
+        //
+        // (2) Deferred deep link:
+        //     - User without the app installed taps on a link
+        //     - User is redirected from Branch Metrics to the App Store and installs the app
+        //     - User opens the app
+        //     - This block will be invoked with Branch Metrics' response containing the details of the link
+        //
+        // (3) Deep link with app installed:
+        //     - User with the app already installed taps on a link
+        //     - Application opens via openUrl/continueUserActivity, mParticle forwards launch options etc to Branch
+        //     - This block will be invoked with Branch Metrics' response containing the details of the link
+        //
+        // If the user navigates away from the app without killing it, this block could be invoked several times:
+        // once for the initial launch, and then again each time the user taps on a link to re-open the app.
+
+        guard let linkInfo = linkInfo else { return }
+
+        print("params:" + linkInfo)
+    }
+}
+{% endhighlight %}
+{% endtab %}
+{% endtabs %}
 {% endif %}
 
 ## Test your Universal Links implementation
