@@ -26,12 +26,12 @@ Configuring Twitter install ads to use Branch links is very simple. The only tri
 
 {% endprerequisite %}
 
-## Create a Marketing link on the Branch dashboard
+## Create a Quick Link on the Branch dashboard
 
-### Add a marketing link
+### Add a Quick Link
 
 1. Visit the [Marketing page](https://dashboard.branch.io/#/marketing) on the Branch dashboard and click **+ Add link**.
-1. Pick a **Marketing Title** for later reference. For example: "Ad for blue sneakers" {% image src='/img/pages/features/twitter-ads/ad_example_create.png' 3-quarters center alt='Create Marketing Link' %}
+1. Pick a **Marketing Title** for later reference. For example: "Ad for blue sneakers" {% image src='/img/pages/features/twitter-ads/ad_example_create.png' 3-quarters center alt='Create Quick Link' %}
 1. **Channel** and **Campaign** are optional but recommended. **Tags** is free form.
 
 {% protip title="Optional: Deep Link Data (Advanced)" %}
@@ -52,9 +52,9 @@ Go to Twitter and set up a new ad campaign. When selecting the campaign type tha
 
 Set the device targeting as desired. 
 
-## Enter Branch marketing link
+## Enter Branch Quick Link
 
-On the ad creation card, enter the Branch marketing link you created in the **Website URL** field.
+On the ad creation card, enter the Branch Quick Link you created in the **Website URL** field.
 
 {% image src='/img/pages/features/twitter-ads/twitter_screenshot_1.png' full center alt='Twitter Ads' %}
 

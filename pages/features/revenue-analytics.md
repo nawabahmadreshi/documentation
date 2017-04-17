@@ -17,10 +17,10 @@ platforms:
 
 Branch allows you to easily track purchases and revenue in the Branch dashboard. With Branch links in every channel, it’s easy to compare the quality of traffic coming in from your marketing efforts. 
 
-This week you can see commerce data in Source Analytics and Marketing Links pages, allowing you to determine which campaigns, channels, features and links are resulting in the most revenue. From there, you can decide how to allocate resources and spend to most effectively achieve conversions.
+This week you can see commerce data in Source Analytics and Quick Links pages, allowing you to determine which campaigns, channels, features and links are resulting in the most revenue. From there, you can decide how to allocate resources and spend to most effectively achieve conversions.
 
 {% image src="/img/pages/features/revenue-analytics/revenue-marketing-links.png" full center %}
-**Viewing revenue driven by individual marketing links ([go to Marketing Links Page](https://dashboard.branch.io/marketing)).**
+**Viewing revenue driven by individual Quick Links ([go to Quick Links Page](https://dashboard.branch.io/quick-links)).**
 
 {% getstarted %}{% endgetstarted %}
 
@@ -104,7 +104,7 @@ The best way to test is to trigger a purchase event (using the code snippet abov
 
 {% image src="/img/pages/features/revenue-analytics/revenue-live-view.png" full center %}
 
-To test end to end, first click on a Branch link, such as a marketing link, then trigger a purchase. Then in Live View you can select `Columns`, check `Link Data`, and ensure the data is present for the link you clicked prior to purchase.
+To test end to end, first click on a Branch link, such as a Quick Link, then trigger a purchase. Then in Live View you can select `Columns`, check `Link Data`, and ensure the data is present for the link you clicked prior to purchase.
 
 
 ## Viewing Revenue Analytics in the Dashboard
@@ -112,9 +112,9 @@ To test end to end, first click on a Branch link, such as a marketing link, then
 Right now, revenue data is visible in two places:
 
 - [Source Analytics](https://dashboard.branch.io/analytics/source)
-- [Marketing Links](https://dashboard.branch.io/marketing)
+- [Quick Links](https://dashboard.branch.io/quick-links)
 
-On the [previous page](/features/revenue-analytics/overview/) we showed you a screenshot of revenue on the Marketing Links page. Here's a quick look at how you can see revenue breakdowns on the Source Analytics page:
+On the [previous page](/features/revenue-analytics/overview/) we showed you a screenshot of revenue on the Quick Links page. Here's a quick look at how you can see revenue breakdowns on the Source Analytics page:
 
 {% image src="/img/pages/features/revenue-analytics/revenue-source-analytics.png" full center %}
 

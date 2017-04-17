@@ -81,7 +81,7 @@ If you are interested in advanced network attribution segmentation in Kochava, y
 If you enabled the Kochava integration before August 12th 2016, you will need to disable and re-enable the Kochava card in your dashboard before carrying out the instructions below.
 {% endcaution %}
 
-1. Start with an existing Branch link, for example, a [ marketing link](/features/google-search-ads/guide/#create-a-marketing-link-on-the-branch-dashboard){:target="_blank"}.
+1. Start with an existing Branch link, for example, a [ Quick Link](/features/google-search-ads/guide/#create-a-marketing-link-on-the-branch-dashboard){:target="_blank"}.
 1. Next, [create a Kochava Click URL](http://support.kochava.com/campaign-management/create-an-install-campaign){:target="_blank"} in the Kochava Dashboard with the parameters you'd like to capture.
 	- Select the "Click" URL (as opposed to the Impression URL)
 	- After creating the URL, copy everything after **click** value and append the parameters to the end of your Branch link.

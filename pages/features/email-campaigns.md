@@ -4,8 +4,8 @@ directory: features
 title: Email Campaigns
 page_title: Email campaigns with deep links
 description: How to create deep links for email campaigns featuring your app. Branch Links enable deep linking, install attribution, and in-depth analytics.
-ios_keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, email campaigns, marketing links
-android_keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views,email campaigns, marketing links, Android
+ios_keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, email campaigns, Quick Links
+android_keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views,email campaigns, Quick Links, Android
 hide_platform_selector: true
 sections:
 - overview
@@ -17,7 +17,7 @@ sections:
 
 You can use Branch links in email campaigns to launch your app or gracefully fall back to the App or Play Store download page. For more advanced purposes, you can even deep link users directly to content after your app opens.
 
-{% image src='/img/pages/features/email-campaigns/email.png' half center alt='Create Marketing Link' %}
+{% image src='/img/pages/features/email-campaigns/email.png' half center alt='Create Quick Link' %}
 
 {% getstarted %}{% endgetstarted %}
 
@@ -30,10 +30,10 @@ You can use Branch links in email campaigns to launch your app or gracefully fal
 
 {% endprerequisite %}
 
-## Create a Marketing link on the Branch dashboard
+## Create a Quick Link on the Branch dashboard
 
 1. Visit the [Marketing page](https://dashboard.branch.io/#/marketing) on the Branch dashboard and click **+ Add link**.
-1. Pick a **Link Description** for later reference. For example: "Launch Email" {% image src='/img/pages/features/email-campaigns/add_email.png' 2-thirds center alt='Create Marketing Link' %}
+1. Pick a **Link Description** for later reference. For example: "Launch Email" {% image src='/img/pages/features/email-campaigns/add_email.png' 2-thirds center alt='Create Quick Link' %}
 
 ## Configure link analytics
 

@@ -14,7 +14,7 @@ The following variables can/should be passed in
 	<title>{{ include.page_title }}{% if page.title %} - {% endif %}{{ include.site_title | default: 'Branch Documentation' }}</title>
 
 	<meta name="keywords" content="{% if include.ios_keywords != "true" and include.android_keywords != "true" %}{{ include.keywords | default: 'Mobile, Referral, Deep, Linking, Personalized, Install, Attribution, Growth, Hacking, Sharing' }}{% endif %}{% if include.ios_keywords == "true" %}{{ include.ios_keywords }}{% endif %}{% if include.android_keywords == "true" %}{{ include.android_keywords }}{% endif %}" />
-	<meta name="description" content="{% if include.ios_description != "true" and include.android_description != "true" %}{{ include.description | default: 'Branch helps mobile apps grow with deep links that power referral systems, sharing links, invites and marketing links with full attribution and analytics' }}{% endif %}{% if include.ios_description == "true" %}{{ include.ios_description }}{% endif %}{% if include.android_description == "true" %}{{ include.android_description }}{% endif %}" />
+	<meta name="description" content="{% if include.ios_description != "true" and include.android_description != "true" %}{{ include.description | default: 'Branch helps mobile apps grow with deep links that power referral systems, sharing links, invites and Quick Links with full attribution and analytics' }}{% endif %}{% if include.ios_description == "true" %}{{ include.ios_description }}{% endif %}{% if include.android_description == "true" %}{{ include.android_description }}{% endif %}" />
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
 	<meta name="apple-mobile-web-app-capable" content="yes" />
@@ -41,7 +41,7 @@ The following variables can/should be passed in
 	<meta property="og:url" content="{{ include.url }}" />
 	{% endif %}
 	<meta property="og:image" content="{{ include.thumbnail | default: '/img/og_image.png' }}" />
-	<meta property="og:description" content="{{ include.description | default: 'Branch helps mobile apps grow with contextual deep links that power referral systems, sharing links, invites and marketing links with full attribution and analytics' }}" />
+	<meta property="og:description" content="{{ include.description | default: 'Branch helps mobile apps grow with contextual deep links that power referral systems, sharing links, invites and Quick Links with full attribution and analytics' }}" />
 
 	<link href="//fonts.googleapis.com/css?family=Open+Sans:400,700,600,300" rel="stylesheet" type="text/css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">

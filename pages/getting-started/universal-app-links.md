@@ -350,7 +350,7 @@ Open your **AppDelegate.m** file and add the following methods (if you completed
 
 After completing this guide and installing a new build of your app on your testing device, you can verify Universal Links are working correctly by following these steps:
 
-1. [Create a new Marketing Link](https://dashboard.branch.io/#/marketing/new) on the Branch dashboard. Leave all configuration items at their default options.
+1. [Create a new Quick Link](https://dashboard.branch.io/#/marketing/new) on the Branch dashboard. Leave all configuration items at their default options.
 1. Open this link on your testing device via Messages, Mail, Notes, or one of the other apps listed as **works** on [this page]({{base.url}}/getting-started/universal-app-links/support/#appsbrowsers-that-support-universal-links).
 1. If successful, your app should launch immediately without routing through Safari. If not, please check the [Troubleshooting section]({{base.url}}/getting-started/universal-app-links/support/#troubleshooting-universal-links).
 
@@ -499,7 +499,7 @@ If you use a [custom domain or subdomain for your Branch links]({{base.url}}/get
 
 After completing this guide and installing a new build of your app on your testing device, you can verify App Links are working correctly by following these steps:
 
-1. [Create a new Marketing Link](https://dashboard.branch.io/#/marketing/new) on the Branch dashboard. Leave all configuration items at their default options.
+1. [Create a new Quick Link](https://dashboard.branch.io/#/marketing/new) on the Branch dashboard. Leave all configuration items at their default options.
 1. Open this link on your testing device.
 1. If successful, your app should launch immediately without routing through the web browser, showing an **Open With...** dialog.
 

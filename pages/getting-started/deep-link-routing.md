@@ -557,9 +557,9 @@ let {url} = await branchUniversalObject.generateShortUrl(linkProperties, control
 
 {% endexample %}
 
-{% example title="When creating Marketing links on the Branch dashboard" %}
+{% example title="When creating Quick Links on the Branch dashboard" %}
 
-You can specify the control parameters for individual marketing links by inserting the keys and values into the _Deep Link Data (Advanced)_ section.
+You can specify the control parameters for individual Quick Links by inserting the keys and values into the _Deep Link Data (Advanced)_ section.
 
 {% image src='/img/pages/getting-started/deep-link-routing/deep-link_path.png' 3-quarters center alt='deeplink path' %}
 
