@@ -255,4 +255,8 @@ A: With full numbers, you are required to use "+" and the country code. If you k
 
 In the example above, "+91" is the code for the country your users are based in.
 
+##### Q: Why have the SMS links sent from Text Me The App expired?
+
+A: All links links generated from the Text Me the App feature will expire after 7 days. 
+
 {% endif %}
