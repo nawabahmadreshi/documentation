@@ -214,7 +214,7 @@ product.setSku("acme007");
 product.setName("Acme brand 1 ton weight");
 product.setQuantity(1);
 product.setBrand("Acme");
-product.setProductCategory(ProductCategory.MEDIA);
+product.setCategory(ProductCategory.MEDIA);
 product.setVariant("Lite Weight");
 
 CommerceEvent commerceEvent = new CommerceEvent();
