@@ -811,7 +811,11 @@ Finally, add these two new methods to your **AppDelegate.m** file. The first res
 // Respond to URI scheme links
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
     // pass the url to the handle deep link call
-    [[Branch getInstance] handleDeepLink:url];
+    [[Branch getInstance]
+        application:application
+            openURL:url
+  sourceApplication:sourceApplication
+         annotation:annotation];
 
     // do other deep link routing for the Facebook SDK, Pinterest SDK, etc
     return YES;
@@ -834,7 +838,11 @@ Finally, add these two new methods to your **AppDelegate.swift** file. The first
 // Respond to URI scheme links
 func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
     // pass the url to the handle deep link call
-    Branch.getInstance().handleDeepLink(url);
+    Branch.getInstance().application(application,
+        open: url,
+        sourceApplication: sourceApplication,
+        annotation: annotation
+    )
 
     // do other deep link routing for the Facebook SDK, Pinterest SDK, etc
     return true

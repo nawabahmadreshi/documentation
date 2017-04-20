@@ -57,7 +57,7 @@ The tutorial is broken up into six parts: integrating the Branch SDK, setting up
 6. In Xcode, open your project’s info.plist file from the project navigator
 {% image src="/img/pages/getting-started/content-sharing-tutorial/screenshots/info_plist.png" center half %}
 7. Mouse hover over “Information Property List” until a `+` appears to the right. Click it.
-8. A new row will have been added under “Information Property List.” 
+8. A new row will have been added under “Information Property List.”
 9. Edit the new row so that the key is "branch_key" and the value is the Branch Key that you copied in step 5:
 
 | Key | Type | Value |
@@ -129,7 +129,11 @@ Copy and paste the following code into **AppDelegate.swift** right before the ve
 // Respond to URI scheme links
 func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
     // pass the url to the handle deep link call
-    Branch.getInstance().handleDeepLink(url);
+    Branch.getInstance().application(application,
+        open: url,
+        sourceApplication: sourceApplication,
+        annotation: annotation
+    )
 
     // do other deep link routing for the Facebook SDK, Pinterest SDK, etc
     return true
