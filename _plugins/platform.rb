@@ -72,7 +72,8 @@ module Jekyll
         'marketing-channels' => {},
         'cross-channel-analytics' => {},
         'data-exchange' => {},
-        'getting-started' => {}
+        'basic-setup' => {},
+        'next-steps' => {}
       }
 
       group_pages.each do |page|
