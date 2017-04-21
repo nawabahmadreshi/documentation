@@ -34,35 +34,32 @@ module Jekyll
     def generate(site)
       @site = site
 
-      process_posts
       process_pages
-    end
-
-    def process_posts
-      @site.posts.each do |post|
-        generate_aliases(post.url, post.data['alias'])
-      end
     end
 
     def process_pages
       @site.pages.each do |page|
-        generate_aliases(page.destination('').gsub(/index\.(html|htm)$/, ''), page.data['alias'])
+        generate_aliases(page, page.data['alias'])
       end
     end
 
-    def generate_aliases(destination_path, aliases)
+    def generate_aliases(page, aliases)
       alias_paths ||= Array.new
       alias_paths << aliases
       alias_paths.compact!
 
       alias_paths.flatten.each do |alias_path|
+        destination_path = alias_path.to_s.split('/')
+        destination_path[1] = page['directory']
+        destination_path = destination_path.join('/')
+
         alias_path = File.join('/', alias_path.to_s)
 
         alias_dir  = File.extname(alias_path).empty? ? alias_path : File.dirname(alias_path)
         alias_file = File.extname(alias_path).empty? ? "index.html" : File.basename(alias_path)
 
         fs_path_to_dir = File.join(@site.dest, alias_dir)
-        alias_sections = alias_dir.split('/')[1..-1]
+        alias_sections = alias_dir.split('/').drop(1)
 
         FileUtils.mkdir_p(fs_path_to_dir)
 
