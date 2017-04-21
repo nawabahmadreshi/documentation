@@ -19,6 +19,7 @@ platforms:
 sections:
 - guide
 contents: list
+alias: [ /getting-started/growth-attribution/guide/, /getting-started/growth-attribution/guide/ios/, /getting-started/growth-attribution/guide/android/, /getting-started/growth-attribution/guide/cordova/, /getting-started/growth-attribution/guide/xamarin/, /getting-started/growth-attribution/guide/unity/, /getting-started/growth-attribution/guide/adobe/, /getting-started/growth-attribution/guide/titanium/, /getting-started/growth-attribution/guide/react/ ]
 ---
 
 {% ingredient quickstart-prerequisite %}{% endingredient %}

@@ -13,6 +13,7 @@ sections:
 - guide
 - advanced
 - support
+alias: [ /third-party-integrations/amplitude/, /third-party-integrations/amplitude/overview/, /third-party-integrations/amplitude/guide/, /third-party-integrations/amplitude/advanced/, /third-party-integrations/amplitude/support/ ] 
 ---
 
 {% if page.overview %}

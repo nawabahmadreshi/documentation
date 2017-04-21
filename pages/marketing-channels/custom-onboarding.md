@@ -19,6 +19,7 @@ sections:
 - overview
 - guide
 - advanced
+alias: [ /features/custom-onboarding/, /features/custom-onboarding/overview/, /features/custom-onboarding/guide/ios/, /features/custom-onboarding/guide/android/, /features/custom-onboarding/guide/cordova/, /features/custom-onboarding/guide/xamarin/, /features/custom-onboarding/guide/unity/, /features/custom-onboarding/guide/adobe/, /features/custom-onboarding/guide/titanium/, /features/custom-onboarding/guide/react/, /features/custom-onboarding/advanced/ios/, /features/custom-onboarding/advanced/android/, /features/custom-onboarding/advanced/cordova/, /features/custom-onboarding/advanced/xamarin/, /features/custom-onboarding/advanced/unity/, /features/custom-onboarding/advanced/adobe/, /features/custom-onboarding/advanced/titanium/, /features/custom-onboarding/advanced/react/ ]
 ---
 
 {% if page.overview %}

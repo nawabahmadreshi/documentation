@@ -11,6 +11,7 @@ sections:
 - overview
 - guide
 - advanced
+alias: [ /third-party-integrations/kochava/, /third-party-integrations/kochava/overview/, /third-party-integrations/kochava/guide/, /third-party-integrations/kochava/advanced/ ] 
 ---
 
 {% if page.overview %}

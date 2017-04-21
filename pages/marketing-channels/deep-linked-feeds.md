@@ -12,6 +12,7 @@ sections:
 - guide
 - advanced
 - support
+alias: [ /features/deep-linked-feeds/, /features/deep-linked-feeds/overview/, /features/deep-linked-feeds/guide/, /features/deep-linked-feeds/advanced/, /features/deep-linked-feeds/support/ ] 
 ---
 
 {% if page.overview %}

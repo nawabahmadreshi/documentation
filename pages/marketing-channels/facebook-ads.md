@@ -12,6 +12,7 @@ sections:
 - overview
 - guide
 - support
+alias: [ /features/facebook-ads/, /features/facebook-ads/overview/, /features/facebook-ads/guide/, /features/facebook-ads/guide/ios/, /features/facebook-ads/guide/android/, /features/facebook-ads/support/ios/, /features/facebook-ads/support/android/ ] 
 ---
 
 {% if page.overview %}

@@ -13,6 +13,7 @@ sections:
 - guide
 - advanced
 - support
+alias: [ /third-party-integrations/appsflyer/, /third-party-integrations/appsflyer/overview/, /third-party-integrations/appsflyer/guide/, /third-party-integrations/appsflyer/advanced/, /third-party-integrations/appsflyer/support/ ] 
 ---
 
 {% if page.overview %}

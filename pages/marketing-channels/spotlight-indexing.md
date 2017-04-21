@@ -10,6 +10,7 @@ sections:
 - overview
 - guide
 - advanced
+alias: [ /features/spotlight-indexing/overview/, /features/spotlight-indexing/overview/, /features/spotlight-indexing/guide/, /features/spotlight-indexing/advanced/ ] 
 ---
 
 {% if page.overview %}

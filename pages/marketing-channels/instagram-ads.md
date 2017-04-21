@@ -12,6 +12,7 @@ sections:
 - overview
 - guide
 - support
+alias: [ /features/instagram-ads/, /features/instagram-ads/overview/, /features/instagram-ads/guide/ios/, /features/instagram-ads/guide/android/, /features/instagram-ads/support/ios/, /features/instagram-ads/support/android/ ]
 ---
 
 {% if page.overview %}

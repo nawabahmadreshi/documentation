@@ -11,6 +11,7 @@ sections:
 - overview
 - guide
 - advanced
+alias: [ /third-party-integrations/localytics/, /third-party-integrations/localytics/overview/, /third-party-integrations/localytics/guide/, /third-party-integrations/localytics/advanced/ ] 
 ---
 
 {% if page.overview %}

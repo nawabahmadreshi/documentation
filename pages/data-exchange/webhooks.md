@@ -11,6 +11,7 @@ sections:
 - guide
 - advanced
 - support
+alias: [ /getting-started/webhooks/, /getting-started/webhooks/overview/, /getting-started/webhooks/guide/, /getting-started/webhooks/advanced/, /getting-started/webhooks/support/ ]
 ---
 
 {% if page.overview %}

@@ -10,6 +10,7 @@ sections:
 - overview
 - guide
 - support
+alias: [ /features/facebook-dynamic-ads/overview/, /features/facebook-dynamic-ads/overview/, /features/facebook-dynamic-ads/guide/, /features/facebook-dynamic-ads/support/ ]  
 ---
 
 {% if page.overview %}

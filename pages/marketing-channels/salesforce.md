@@ -15,6 +15,7 @@ sections:
 contents:
   number:
     - setup
+alias: [ /third-party-integrations/salesforce/, /third-party-integrations/salesforce/overview/, /third-party-integrations/salesforce/setup/, /third-party-integrations/salesforce/usage/, /third-party-integrations/salesforce/support/ ] 
 ---
 
 {% if page.overview %}

@@ -15,6 +15,7 @@ sections:
 contents:
   number:
     - setup
+alias: [ /third-party-integrations/sendgrid/, /third-party-integrations/sendgrid/overview/, /third-party-integrations/sendgrid/setup/, /third-party-integrations/sendgrid/usage/, /third-party-integrations/sendgrid/support/ ] 
 ---
 
 {% if page.overview %}

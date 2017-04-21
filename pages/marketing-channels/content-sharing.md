@@ -19,6 +19,7 @@ sections:
 - overview
 - guide
 - advanced
+alias: [ /features/content-sharing/, /features/content-sharing/overview/, /features/content-sharing/guide/ios/, /features/content-sharing/guide/android/, /features/content-sharing/guide/cordova/, /features/content-sharing/guide/xamarin/, /features/content-sharing/guide/unity/, /features/content-sharing/guide/adobe/, /features/content-sharing/guide/titanium/, /features/content-sharing/guide/react/, /features/content-sharing/advanced/ios/, /features/content-sharing/advanced/android/, /features/content-sharing/advanced/cordova/, /features/content-sharing/advanced/xamarin/, /features/content-sharing/advanced/unity/, /features/content-sharing/advanced/adobe/, /features/content-sharing/advanced/titanium/, /features/content-sharing/advanced/react/ ]
 ---
 
 {% if page.overview %}

@@ -9,6 +9,7 @@ sections:
 - overview
 - guide
 - support
+alias: [ /features/google-uac/overview/, /features/google-uac/overview/, /features/google-uac/guide/, /features/google-uac/support/ ]
 ---
 
 {% if page.overview %}

@@ -7,6 +7,7 @@ description: A quick guide on how to configure your Branch links to track instal
 hide_platform_selector: true
 sections:
 - guide
+alias: [ /features/ios-imessage/, /features/ios-imessage/guide/, ]
 ---
 
 With iOS 10, Branch has [added support](https://blog.branch.io/setting-up-your-ios-10-imessages-app-with-attribution-and-deep-linking) for extension type apps so that you can bundle the SDK into your iMessage app. Apple didn't build full deep linking support into extension apps, so unfortunately the use cases are limited to driving new installs for now. We'll wait patiently to observe updates over time

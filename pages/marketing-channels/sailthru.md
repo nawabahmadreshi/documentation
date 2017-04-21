@@ -16,6 +16,7 @@ contents:
   number:
     - setup
     - usage
+alias: [ /third-party-integrations/sailthru/overview/, /third-party-integrations/sailthru/overview/, /third-party-integrations/sailthru/setup/, /third-party-integrations/sailthru/usage/, /third-party-integrations/sailthru/support/ ] 
 ---
 
 {% if page.overview %}

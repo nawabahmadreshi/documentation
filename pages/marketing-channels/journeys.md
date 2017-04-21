@@ -12,6 +12,7 @@ sections:
 - guide
 - advanced
 - examples
+alias: [ /features/journeys/, /features/journeys/overview/, /features/journeys/guide/, /features/journeys/advanced/, /features/journeys/examples/ ]
 ---
 
 {% if page.overview %}

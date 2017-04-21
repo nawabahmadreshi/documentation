@@ -12,6 +12,7 @@ sections:
 - overview
 - guide
 - advanced
+alias: [ /third-party-integrations/mixpanel/, /third-party-integrations/mixpanel/overview/, /third-party-integrations/mixpanel/guide/, /third-party-integrations/mixpanel/advanced/ ] 
 ---
 
 {% if page.overview %}

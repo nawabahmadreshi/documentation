@@ -17,6 +17,7 @@ sections:
 - overview
 - guide
 - advanced
+alias: [ /features/google-app-indexing/, /features/google-app-indexing/overview/, /features/google-app-indexing/guide/ios/, /features/google-app-indexing/guide/android/, /features/google-app-indexing/guide/cordova/, /features/google-app-indexing/guide/xamarin/, /features/google-app-indexing/guide/unity/, /features/google-app-indexing/guide/titanium/, /features/google-app-indexing/guide/react/, /features/google-app-indexing/advanced/ios/, /features/google-app-indexing/advanced/android/, /features/google-app-indexing/advanced/cordova/, /features/google-app-indexing/advanced/xamarin/, /features/google-app-indexing/advanced/unity/, /features/google-app-indexing/advanced/titanium/, /features/google-app-indexing/advanced/react/ ] 
 ---
 
 {% if page.overview %}

@@ -11,6 +11,7 @@ sections:
 - overview
 - guide
 - support
+alias: [ /third-party-integrations/appboy/, /third-party-integrations/appboy/overview/, /third-party-integrations/appboy/guide/, /third-party-integrations/appboy/support/ ] 
 ---
 
 {% if page.overview %}

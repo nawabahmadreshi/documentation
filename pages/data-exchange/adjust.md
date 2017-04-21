@@ -12,6 +12,7 @@ sections:
 - overview
 - guide
 - advanced
+alias: [ /third-party-integrations/adjust/, /third-party-integrations/adjust/overview/, /third-party-integrations/adjust/guide/, /third-party-integrations/adjust/advanced/ ] 
 ---
 
 {% if page.overview %}

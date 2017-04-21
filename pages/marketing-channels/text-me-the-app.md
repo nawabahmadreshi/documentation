@@ -13,6 +13,7 @@ sections:
 - guide
 - advanced
 - support
+alias: [ /features/text-me-the-app/, /features/text-me-the-app/overview/, /features/text-me-the-app/guide/, /features/text-me-the-app/advanced/, /features/text-me-the-app/support/ ]
 ---
 
 {% if page.overview %}

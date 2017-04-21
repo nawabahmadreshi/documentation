@@ -7,6 +7,7 @@ hide_platform_selector: true
 sections:
 - overview
 - guide
+alias: [ /features/apple-search-ads/, /features/apple-search-ads/overview/, /features/apple-search-ads/guide/ ] 
 ---
 
 {% if page.overview %}

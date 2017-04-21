@@ -1,7 +1,7 @@
 ---
 type: recipe
 directory: data-exchange
-title: Data Export API
+title: Query API
 repo: Deferred-Deep-Linking-Public-API
 page_title: Export API Reference
 description: This Branch Metrics Export API reference lists the specifications for pulling data from Branch via API.
@@ -10,6 +10,7 @@ hide_platform_selector: true
 hide_section_selector: true
 sections:
 - guide
+alias: [ /methods-endpoints/data-export-api/guide/ ]
 ---
 
 ## Data Export API

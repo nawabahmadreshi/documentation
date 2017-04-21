@@ -13,6 +13,7 @@ sections:
 - guide
 - advanced
 - support
+alias: [ /third-party-integrations/tune/, /third-party-integrations/tune/overview/, /third-party-integrations/tune/guide/, /third-party-integrations/tune/advanced/, /third-party-integrations/tune/support/ ] 
 ---
 
 {% if page.overview %}

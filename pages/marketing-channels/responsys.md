@@ -16,6 +16,7 @@ contents:
   number:
     - setup
     - usage
+alias: [ /third-party-integrations/responsys/, /third-party-integrations/responsys/overview/, /third-party-integrations/responsys/setup/, /third-party-integrations/responsys/usage/, /third-party-integrations/responsys/support/ ]
 ---
 
 {% if page.overview %}

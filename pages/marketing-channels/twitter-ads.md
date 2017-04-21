@@ -7,6 +7,7 @@ hide_platform_selector: true
 sections:
 - overview
 - guide
+alias: [ /features/twitter-ads/overview/, /features/twitter-ads/overview/, /features/twitter-ads/guide/ ]
 ---
 
 {% if page.overview %}

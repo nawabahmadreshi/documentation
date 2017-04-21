@@ -15,6 +15,7 @@ sections:
 contents:
   number:
     - setup
+alias: [ /third-party-integrations/appboy-with-sendgrid/ /third-party-integrations/appboy-with-sendgrid/overview/, /third-party-integrations/appboy-with-sendgrid/setup/, /third-party-integrations/appboy-with-sendgrid/usage/, /third-party-integrations/appboy-with-sendgrid/support/ ]
 ---
 
 {% if page.overview %}

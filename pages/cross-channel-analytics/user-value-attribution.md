@@ -20,6 +20,7 @@ platforms:
 sections:
 - guide
 contents: list
+alias: [ /getting-started/user-value-attribution/guide/, /getting-started/user-value-attribution/guide/ios/, /getting-started/user-value-attribution/guide/android/, /getting-started/user-value-attribution/guide/web/, /getting-started/user-value-attribution/guide/cordova/, /getting-started/user-value-attribution/guide/xamarin/, /getting-started/user-value-attribution/guide/unity/, /getting-started/user-value-attribution/guide/adobe/, /getting-started/user-value-attribution/guide/titanium/, /getting-started/user-value-attribution/guide/react/ ]
 ---
 
 {% ingredient quickstart-prerequisite %}{% endingredient %}

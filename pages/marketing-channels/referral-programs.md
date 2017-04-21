@@ -18,6 +18,7 @@ platforms:
 sections:
 - overview
 - guide
+alias: [ /features/referral-programs/overview/, /features/referral-programs/overview/, /features/referral-programs/advanced/ios/, /features/referral-programs/advanced/android/, /features/referral-programs/advanced/cordova/, /features/referral-programs/advanced/xamarin/, /features/referral-programs/advanced/unity/, /features/referral-programs/advanced/titanium/, /features/referral-programs/advanced/react/ ]
 ---
 
 {% if page.overview %}
