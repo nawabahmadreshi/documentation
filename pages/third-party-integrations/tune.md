@@ -95,7 +95,7 @@ Branch Click ID | tracking_id
 
 We rely on 3 methods to match attributions into TUNE’s dashboard.
 
-1. The first is snapshoting, which is the most basic. This is when we send a click event to Tune with IP address and User Agent and Tune completes the attribution.
+1. The first is snapshotting, which is the most basic. This is when we send a click event to Tune with IP address and User Agent and Tune completes the attribution.
 1. The next method is passing the Google Advertising Id or IDFA on iOS. This occurs when a Universal or App link drove open the app session via Branch (meaning a click never touched the browser). In this case, we can attribute Branch correctly in TUNE’s dashboard 100% of the time, because TUNE receives the IDFA / GAID from Branch while also keeping reference to it through their own SDK.
 1. The third method is passing along Branch’s click ID through the install referrer on Android, and the URI scheme on iOS. The TUNE SDK consumes the click ID through these mechanisms and then Branch sends that same click id back to TUNE. This also results in a 100% match.
 
