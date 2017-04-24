@@ -1,4 +1,4 @@
----
+snapshot---
 type: recipe
 directory: getting-started
 title: Configuring Links
@@ -70,7 +70,7 @@ Use analytics labels to help _organize your data_. Track updates, run A/B tests 
 | Key | Usage | Default
 | --- | --- | ---
 | alias | Specify a link alias in place of the standard encoded short URL (e.g., `[branchsubdomain]/youralias` or `yourdomain.co/youralias`). Link aliases are unique, immutable objects that cannot be deleted. **Aliases on the legacy `bnc.lt` domain are incompatible with [Universal Links]({{base.url}}/getting-started/universal-app-links) and [Spotlight]({{base.url}}/features/spotlight-indexing)**
-| duration | *(Deprecated. Use `$match_duration`)* Lets you control the fingerprinting match timeout (the time that a click will wait for an app open to match) also known as attribution window. Specified in seconds | `7200`
+| duration | *(Deprecated. Use `$match_duration`)* Lets you control the snapshoting match timeout (the time that a click will wait for an app open to match) also known as attribution window. Specified in seconds | `7200`
 | type | *(Advanced)* Set to `1` to limit deep linking behavior of the generated link to a single use. Set type to `2` to make the link show up under [Marketing page](https://dashboard.branch.io/#/marketing) in the dashboard | `0`
 
 {% ingredient branchsubdomain %}{% endingredient %}
@@ -160,7 +160,7 @@ Use these keys to control how URI scheme deep linking functions when opening you
 | $deeplink_path | Set the deep link path for _all_ platforms - so you don't have to enable it by platform. When the Branch SDK receives a link with this parameter set, it will automatically load the custom URI path contained within | `open?link_click_id=1234`
 | $android_deeplink_path | Set the deep link path for Android apps. When the Branch SDK receives a link with this parameter set, it will automatically load the custom URI path contained within | *null*
 | $ios_deeplink_path | Set the deep link path for iOS apps. When the Branch SDK receives a link with this parameter set, it will automatically load the custom URI path contained within | *null*
-| **$match_duration** | Lets you control the fingerprinting match timeout (the time that a click will wait for an app open to match) also known as attribution window. Specified in seconds | `7200` (2 hours)
+| **$match_duration** | Lets you control the snapshoting match timeout (the time that a click will wait for an app open to match) also known as attribution window. Specified in seconds | `7200` (2 hours)
 | $always_deeplink | Set to `false` to make links always fall back to your mobile site. Does not apply to Universal Links or Android App Links. We recommend using `$web_only: false` in place of `$always_deeplink: false`. | `true`
 | $ios_redirect_timeout | Control the timeout that the client-side JS waits after trying to open up the app before redirecting to the App Store. Specified in milliseconds | `750`
 | $android_redirect_timeout | Control the timeout that the clientside JS waits after trying to open up the app before redirecting to the Play Store. Specified in milliseconds | `750`
