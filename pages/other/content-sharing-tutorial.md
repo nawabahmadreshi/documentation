@@ -1,6 +1,6 @@
 ---
 type: recipe
-directory: getting-started
+directory: other
 title: Content Sharing Tutorial
 page_title: Content Sharing Tutorial
 description: Learn how to create Branch Links and share content with your friends directly from your app!

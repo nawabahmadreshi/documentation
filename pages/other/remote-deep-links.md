@@ -1,6 +1,7 @@
 ---
 type: recipe
-directory: third-party-integrations
+directory: other
+exclude_from_google_search: true
 title: Creating Remote Deep Links
 page_title: Create premium deep links for use in email and advertising campaigns.
 description: A how to guide on creating deep links for use in email and advertising campaigns.

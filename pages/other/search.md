@@ -1,6 +1,6 @@
 ---
 type: recipe
-directory: features
+directory: other
 title: "In-App Search"
 page_title: "Content Indexing & In-App Search"
 description: Learn how to enable your app to support a Branch powered In-App Search Experience. With this functionality you can list in-app content on the on-device search index. This also gives you insight via analytics into content that your users are interacting with to let you build out powerful re-engagement experiences.

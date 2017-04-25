@@ -1,6 +1,7 @@
 ---
 type: recipe
-directory: third-party-integrations
+directory: other
+exclude_from_google_search: true
 title: "Ad Network Analytics"
 page_title: Use Branch together with an external analytics tool
 description: Learn what needs to be done in order to put a Branch deep link in between a third party ad network and a third party measurement service.

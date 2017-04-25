@@ -1,6 +1,6 @@
 ---
 type: recipe
-directory: getting-started
+directory: other
 title: Creating Links in Apps
 page_title: How to create Branch links inside your mobile app
 description: Learn how to create Branch deep links for iOS and Android apps using the Branch mobile SDKs.

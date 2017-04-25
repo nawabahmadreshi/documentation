@@ -1,6 +1,7 @@
 ---
 type: recipe
-directory: third-party-integrations
+directory: other
+exclude_from_google_search: true
 title: "Referral SaaSquatch"
 page_title: "Using Branch and Referral Saasquatch together"
 platforms:

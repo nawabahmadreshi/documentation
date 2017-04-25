@@ -1,6 +1,7 @@
 ---
 type: recipe
-directory: third-party-integrations
+directory: other
+exclude_from_google_search: true
 title: "Strategic Partners Guide"
 page_title: Branch Preferred Partner (Whitelabel) Guide
 description: Learn how to create white-labeled Branch accounts for your customers.  Give your clients best-in-class deep linking while keeping your branding intact! 

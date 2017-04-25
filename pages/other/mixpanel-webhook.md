@@ -1,5 +1,10 @@
 ---
+type: recipe
+directory: other
 exclude_from_google_search: true
+title: Mixpanel Webhook
+page_title: Mixpanel Webhook
+
 ---
 
 # Branch / Mixpanel Integration Guide

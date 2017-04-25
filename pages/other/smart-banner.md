@@ -1,6 +1,6 @@
 ---
 type: recipe
-directory: features
+directory: other
 title: Smart Banner
 page_title: Journeys Smart App Download Banner
 ios_description: Insert this short code snippet to add a smart app download banner to both your desktop and mobile web pages and drive iOS app downloads.

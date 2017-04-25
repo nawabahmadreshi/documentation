@@ -1,6 +1,6 @@
 ---
 type: recipe
-directory: features
+directory: other
 title: "Criteo Dynamic Ads"
 page_title: "Advertising with Deep Links: Criteo Dynamic Ads"
 description: Learn how to create Criteo Dynamic Ads that are powered by Branch Metrics deep links. It’s simple - configure the dashboard, generate links and set up your app.

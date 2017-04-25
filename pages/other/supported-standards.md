@@ -1,6 +1,6 @@
 ---
 type: recipe
-directory: getting-started
+directory: other
 title:  Supported Standards
 page_title: Deep Linking Standards Supported By Branch
 description: How Branch Metrics deep links handle all deep linking standards and app portals automatically – whether it's Facebook, Apple, Twitter or Pinterest.

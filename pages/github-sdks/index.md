@@ -1,7 +1,7 @@
 ---
 type: landing
-directory: methods-endpoints
-title: "Reference"
+directory: github-sdks
+title: References
 page_title: "Branch reference materials"
 description: "Branch reference materials"
 keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Android App Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Dashboard, iOS9

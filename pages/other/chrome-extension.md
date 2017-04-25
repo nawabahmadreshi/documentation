@@ -1,6 +1,6 @@
 ---
 type: recipe
-directory: features
+directory: other
 title: Chrome Extension
 page_title: Branch Chrome Extension
 description: Every app is assigned a custom app.link subdomain. Learn how to use this when setting up your Branch configuration

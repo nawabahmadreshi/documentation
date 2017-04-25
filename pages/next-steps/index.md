@@ -1,9 +1,9 @@
 ---
 type: landing
-directory: premium-solutions
-title: Premium Solutions
-page_title: Premium Solutions from Branch
-description: Learn about industry-leading features offered by Branch
+directory: next-steps
+title: Next Steps
+page_title: Next Steps
+description: Branch Metrics Next Steps
 keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Android App Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Dashboard, iOS9
 hide_platform_selector: true
 hide_section_selector: true

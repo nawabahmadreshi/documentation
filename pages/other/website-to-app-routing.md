@@ -1,6 +1,6 @@
 ---
 type: recipe
-directory: features
+directory: other
 title: Website to App Routing
 page_title: Automatically route website users to your app
 description: Add powerful, best in class deep linking to your mobile website.

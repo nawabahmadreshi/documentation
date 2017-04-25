@@ -1,6 +1,6 @@
 ---
 type: recipe
-directory: getting-started
+directory: other
 title: Universal Linking Validator
 page_title: Using the Universal Linking Validator
 description: "Learn how to make use of this validator to check your Universal Linking setup"

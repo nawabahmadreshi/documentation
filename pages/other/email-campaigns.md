@@ -1,6 +1,6 @@
 ---
 type: recipe
-directory: features
+directory: other
 title: Email Campaigns
 page_title: Email campaigns with deep links
 description: How to create deep links for email campaigns featuring your app. Branch Links enable deep linking, install attribution, and in-depth analytics.

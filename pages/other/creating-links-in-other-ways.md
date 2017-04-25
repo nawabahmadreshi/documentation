@@ -1,6 +1,6 @@
 ---
 type: recipe
-directory: getting-started
+directory: other
 title: Creating Links in Other Ways
 page_title: How to create Branch links in other ways
 description: Learn about the multiple ways to create Branch deep links for iOS and Android apps.

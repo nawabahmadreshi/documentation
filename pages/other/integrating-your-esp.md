@@ -1,6 +1,7 @@
 ---
 type: recipe
-directory: third-party-integrations
+directory: other
+exclude_from_google_search: true
 title: Integrating Your ESP
 page_title: Automatically convert your email links into multi-platform deep links.
 description: Add powerful, best in class deep linking to your email campaigns.

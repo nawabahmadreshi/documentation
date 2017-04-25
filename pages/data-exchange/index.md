@@ -1,21 +1,33 @@
 ---
 type: landing
-directory: getting-started
-title: "Getting Started"
-page_title: "Getting started with Branch"
-description: "Getting started with Branch"
+directory: data-exchange
+title: Data Exchange
+page_title: Data Exchange
+description: Branch Metrics Cross Data Exchange
 keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Android App Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Dashboard, iOS9
 hide_platform_selector: true
 hide_section_selector: true
+alias: [ /methods-endpoints/ ]
 ---
 
-There are a million and one ways to use Branch in your app! In this section, we get you up to speed on the basics of the Branch platform.
+Branch can integrate with a number of other platforms to enable powerful, customized workflows.
 
-#### If this is your first visit...
-- The **[SDK Integration Guide](sdk-integration-guide)** is a good place to begin. This covers what you need to get our mobile SDK integrated into your app, which is the foundation for everything else.
+{% protip %}
 
-#### Next steps to take
-- After integrating the SDK, you will want to enable **[Universal and App Links](universal-app-links)**, especially if your app contains an iOS version. **You must enable Universal Links before Branch can function correctly on iOS 9.2+!**
-- The **[Creating Links in Apps](creating-links/apps)** page describes how to generate Branch links inside your app.
-- **[Deep Link Routing](deep-link-routing)** allows you to control what users see first after opening your app from a Branch link. It's a powerful feature you will want to enable.
-- **[Custom Event Tracking](user-value-attribution#custom-event-tracking)** lets you track events beyond clicks, installs, and opens. Custom Events are reported in the dashboard, so you can see how a link click relates to post-install activities like purchases, signups, and anything else you can imagine.
+<h3 style="margin-top:0;">Deep Linked Emails <img class="premium-label" src="/img/premium_label.png" /></h3>
+
+Offer a better user experience by using our Email Service Provider integrations to send emails with Branch links inside. We work with **[Responsys](responsys)**, **[Sailthru](sailthru)**, **[SendGrid](sendgrid)**, and **[Salesforce Marketing Cloud](salesforce)**, with more on the way!
+
+{% endprotip %}
+{% protip %}
+
+<h3 style="margin-top:0;">Data Integrations <img class="premium-label" src="/img/premium_label.png" /></h3>
+
+- Use **[Tune](tune)**, **[Localytics](localytics)**, **[Adjust](adjust)**, or **[Kochava](kochava)** to fully understand your organic and paid acquisition channels.
+- Send Branch data to **[Google Analytics](google-analytics),** **[Amplitude](amplitude)** and **[Mixpanel](mixpanel),** giving additional relevancy to your app analytics.
+
+{% endprotip %}
+
+#### Deep linked ads
+
+To learn about using deep links in ads on Google, Facebook, and Twitter, check out the **Features ⇨ Marketing for Mobile** section.

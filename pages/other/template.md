@@ -1,6 +1,6 @@
 ---
 type: recipe
-directory: features
+directory: other
 title: "Template Page"
 page_title: "A template for Branch documentation pages"
 description: Use this file as a template when creating new pages for the Branch documentation portal.
