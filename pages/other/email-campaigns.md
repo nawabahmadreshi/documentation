@@ -11,6 +11,7 @@ sections:
 - overview
 - guide
 - advanced
+alias: [ /features/email-campaigns/, /features/email-campaigns/overview/, /features/email-campaigns/guide/, /features/email-campaigns/advanced/ ]
 ---
 
 {% if page.overview %}

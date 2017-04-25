@@ -11,6 +11,7 @@ platforms:
 sections:
 - guide
 exclude_from_google_search: true
+alias: [ /getting-started/creating-links-in-other-ways/ ]
 ---
 
 Links are the foundation of everything Branch offers. There are many ways to create links, depending on your needs.

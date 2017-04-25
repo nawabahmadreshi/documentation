@@ -13,6 +13,7 @@ sections:
 - guide
 - advanced
 - support
+alias: [ /third-party-integrations/other-esp/, /third-party-integrations/other-esp/overview/, /third-party-integrations/other-esp/guide/, /third-party-integrations/other-esp/advanced/, /third-party-integrations/other-esp/support/ ]
 ---
 
 {% if page.overview %}

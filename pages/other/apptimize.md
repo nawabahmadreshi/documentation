@@ -13,6 +13,7 @@ sections:
 - overview
 - guide
 - support
+alias: [ /third-party-integrations/apptimize/, /third-party-integrations/apptimize/overview, /third-party-integrations/apptimize/guide/ios/, /third-party-integrations/apptimize/android/, /third-party-integrations/apptimize/support/ios/, /third-party-integrations/apptimize/support/android/ ]
 ---
 
 {% if page.overview %}

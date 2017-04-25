@@ -11,6 +11,7 @@ exclude_from_google_search: true
 sections:
 - overview
 - guide
+alias: [ /third-party-integrations/remote-deep-links/, /third-party-integrations/remote-deep-links/overview/, /third-party-integrations/remote-deep-links/guide/ ]
 ---
 
 {% if page.overview %}

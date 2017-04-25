@@ -12,6 +12,7 @@ platforms:
 sections:
 - guide
 content: list
+alias: [ /getting-started/content-sharing-tutorial/ ]
 ---
 
 Welcome to the Branch Content Sharing Tutorial! Today you will be learning how to share deep linked content with your friends by simply pressing a button inside your app and generating a link with the Branch SDK.

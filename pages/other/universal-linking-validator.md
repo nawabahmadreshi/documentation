@@ -10,6 +10,7 @@ hide_section_selector: false
 sections:
 - overview
 - guide
+alias: [ /getting-started/universal-linking-validator/, /getting-started/universal-linking-validator/overview/, /getting-started/universal-linking-validator/guide/ ]
 ---
 {% if page.overview %}
 

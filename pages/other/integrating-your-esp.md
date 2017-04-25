@@ -12,6 +12,7 @@ sections:
 - overview
 - guide
 - support
+alias: [ /third-party-integrations/integrating-your-esp/, /third-party-integrations/integrating-your-esp/overview/, /third-party-integrations/integrating-your-esp/guide/, /third-party-integrations/integrating-your-esp/support/ ]
 ---
 
 {% if page.overview %}

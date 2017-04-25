@@ -12,6 +12,7 @@ sections:
 - overview
 - guide
 - support
+alias: [ /features/smart-banner/, /features/smart-banner/overview/, /features/smart-banner/guide/, /features/smart-banner/support/ ] 
 ---
 
 {% if page.overview %}

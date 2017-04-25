@@ -16,6 +16,7 @@ sections:
 contents:
   number:
     - setup
+alias: [ /third-party-integrations/epsilon-harmony/, /third-party-integrations/epsilon-harmony/overview/, /third-party-integrations/epsilon-harmony/setup/, /third-party-integrations/epsilon-harmony/usage/, /third-party-integrations/epsilon-harmony/support/ ]
 ---
 
 {% if page.overview %}

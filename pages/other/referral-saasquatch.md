@@ -10,6 +10,7 @@ platforms:
 sections:
 - overview
 - guide
+alias: [ /third-party-integrations/referral-saasquatch/, /third-party-integrations/referral-saasquatch/overview/, /third-party-integrations/referral-saasquatch/guide/ ]
 ---
 
 {% if page.overview %}

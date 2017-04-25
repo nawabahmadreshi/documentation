@@ -10,6 +10,7 @@ hide_platform_selector: true
 sections:
 - overview
 - guide
+alias: [ /third-party-integrations/strategic-partners-guide/, /third-party-integrations/strategic-partners-guide/overview/, /third-party-integrations/strategic-partners-guide/guide/ ]
 ---
 
 {% if page.overview %}

@@ -8,6 +8,7 @@ keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplink
 hide_platform_selector: true
 sections:
 - guide
+alias: [ /features/chrome-extension/, /features/chrome-extension/guide/ ]
 ---
 
 {% if page.guide %}

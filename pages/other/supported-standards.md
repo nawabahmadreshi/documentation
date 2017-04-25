@@ -10,6 +10,7 @@ hide_section_selector: true
 sections:
 - guide
 contents: list
+alias: [ /getting-started/supported-standards/ ]
 ---
 
 A Branch Link is the only link you need- we handle all the changing standards for you so that your app is always accessible on any platform.

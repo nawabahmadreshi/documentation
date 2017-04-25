@@ -10,6 +10,7 @@ sections:
 - overview
 - guide
 - support
+alias: [ /features/criteo-dynamic-ads/, /features/criteo-dynamic-ads/overview/, /features/criteo-dynamic-ads/guide/, /features/criteo-dynamic-ads/support/]
 ---
 
 {% if page.overview %}

@@ -11,6 +11,7 @@ sections:
 - guide
 - advanced
 - support
+alias: [ /features/website-to-app-routing/, /features/website-to-app-routing/overview/, /features/website-to-app-routing/guide/, /features/website-to-app-routing/advanced/, /features/website-to-app-routing/support/ ]
 ---
 
 {% if page.overview %}
