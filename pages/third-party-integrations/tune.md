@@ -44,7 +44,7 @@ See your Branch organic acquisition campaigns alongside your Tune data. You can 
 
 ## Get credentials from your Tune dashboard
 
-To set up the integration you will need your **Tune Advertiser ID** (an account-level identifier), your platform-specific Tune **Site IDs** (also known as App IDs) and a Tune **Publisher ID** for Branch. 
+To set up the integration you will need your **Tune Advertiser ID** (an account-level identifier), your platform-specific Tune **Site IDs** (also known as App IDs) and a Tune **Publisher ID** for Branch.
 
 You can find your **Advertiser ID** by navigating to "Accounts > Advertiser Account" in the left hand sidebar and finding the Advertiser ID in the Account Details.
 
@@ -56,11 +56,11 @@ You can find your **Site ID** by navigating to "Mobile Apps" in the left hand si
 
 To retrieve Branch's **Publisher ID** from Tune it is first necessary to set Branch up as an [Integrated Partner](https://help.tune.com/marketing-console/setting-up-an-integrated-advertising-partner/#1-enable-the-advertising-partner-integration) and find the Publisher ID:
 
-1. Log in to Tune and go to Attribution Analytics 
-1. In the navigation bar on the left side of the portal, under the Partners section, click: Integrations 
-1. On the Integrated Partners page (on the right side), search for Branch 
-1. Select Branch and, in the far-right column, click: Enable 
-1. Click on the Branch logo, then click on the "Attribution Settings" tab and copy the Partner ID (also known as the Branch Publisher ID) 
+1. Log in to Tune and go to Attribution Analytics
+1. In the navigation bar on the left side of the portal, under the Partners section, click: Integrations
+1. On the Integrated Partners page (on the right side), search for Branch
+1. Select Branch and, in the far-right column, click: Enable
+1. Click on the Branch logo, then click on the "Attribution Settings" tab and copy the Partner ID (also known as the Branch Publisher ID)
 
 {% image src="/img/pages/third-party-integrations/tune/tune-branch-partner-id.png" half center alt='Branch Partner ID' %}
 
@@ -95,7 +95,7 @@ Branch Click ID | tracking_id
 
 We rely on 3 methods to match attributions into TUNE’s dashboard.
 
-1. The first is fingerprinting, which is the most basic. This is when we send a click event to Tune with IP address and User Agent and Tune completes the attribution.
+1. The first is snapshotting, which is the most basic. This is when we send a click event to Tune with IP address and User Agent and Tune completes the attribution.
 1. The next method is passing the Google Advertising Id or IDFA on iOS. This occurs when a Universal or App link drove open the app session via Branch (meaning a click never touched the browser). In this case, we can attribute Branch correctly in TUNE’s dashboard 100% of the time, because TUNE receives the IDFA / GAID from Branch while also keeping reference to it through their own SDK.
 1. The third method is passing along Branch’s click ID through the install referrer on Android, and the URI scheme on iOS. The TUNE SDK consumes the click ID through these mechanisms and then Branch sends that same click id back to TUNE. This also results in a 100% match.
 
