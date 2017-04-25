@@ -183,7 +183,7 @@ product.variant = "Lite Weight";
 
 let commerceEvent = BNCCommerceEvent.init()
 commerceEvent.revenue = NSDecimalNumber.init(string:"1101.99")
-commerceEvent.currency = "Smackeroos"
+commerceEvent.currency = "USD"
 commerceEvent.transactionID = "tr00x8"
 commerceEvent.shipping = NSDecimalNumber.init(string:"100.00")
 commerceEvent.tax = NSDecimalNumber.init(string:"1.00");
@@ -287,9 +287,7 @@ Here are some additional values you can send to Branch
 
 If you do not specify a currency, we assume that `USD` is being used. Otherwise we convert to `USD` using a current exchange rate (no more than 24 hours old). This allows you to send revenue data to Branch in a wide range of currencies and still be able to see analytics for the totals.
 
-Please use the three letter codes specified by ISO 4217. As of this page being published, there were 179 values, which can be found on the [Wikipedia page for ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-
-Note: currency conversion is still being finalized. If you wish to track revenue in a currency other than USD, please [contact us](https://support.branch.io/support/tickets/new) with the title `Currency Conversion Support (Attn: Derrick)`. 
+Please use the three letter codes specified by ISO 4217. As of March 2017, there were 179 values, which can be found on the [Wikipedia page for ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
 
 
 ## Product Category
