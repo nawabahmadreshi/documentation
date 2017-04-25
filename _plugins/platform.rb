@@ -73,7 +73,10 @@ module Jekyll
         'cross-channel-analytics' => {},
         'data-exchange' => {},
         'basic-setup' => {},
-        'next-steps' => {}
+        'next-steps' => {},
+        'github-sdks' => {},
+        'getting-started' => {},
+        'other' => {}
       }
 
       group_pages.each do |page|
