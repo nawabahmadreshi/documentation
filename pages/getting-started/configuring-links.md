@@ -1,4 +1,4 @@
-snapshot---
+---
 type: recipe
 directory: getting-started
 title: Configuring Links
