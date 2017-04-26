@@ -11,6 +11,7 @@ markdown: kramdown
 highlighter: pygments
 dashboard_url: "https://dashboard.branch.io"
 branch_github_url: "https://github.com/BranchMetrics"
+safe: false
 
 exclude:
 - vendor

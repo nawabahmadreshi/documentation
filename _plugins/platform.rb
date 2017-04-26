@@ -69,11 +69,14 @@ module Jekyll
     def buildSiteMap(site)
       group_pages = site.pages.select { |page| ['recipe', 'overview', 'domain', 'reference'].include?(page.data['type']) }
       site.data['site_map'] = {
-        'features' => {},
-        'premium-solutions' => {}, # Special case — not actually used as a directory
-        'third-party-integrations' => {},
+        'marketing-channels' => {},
+        'cross-channel-analytics' => {},
+        'data-exchange' => {},
+        'basic-setup' => {},
+        'next-steps' => {},
+        'github-sdks' => {},
         'getting-started' => {},
-        'methods-endpoints' => {}
+        'other' => {}
       }
 
       group_pages.each do |page|

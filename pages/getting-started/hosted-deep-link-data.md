@@ -17,7 +17,7 @@ Make it easy for your marketers to create links! If you host deep link data in y
 Furthermore, Branch can reliably parse your Content Analytics data and provide you with more valuable information about which content is driving clicks, installs, opens, and in-app engagement.
 
 {% protip %}
-Today, you can use this functionality for [Journeys](https://branch.io/journeys), [Deep Linked Email](https://branch.io/email/), the Branch [marketing link creator]({{base.url}}/getting-started/creating-links/dashboard) and [Chrome extension]({{base.url}}/getting-started/creating-links/chrome-extension/) - they will all scrape your web URL for deep link data to make link creation even easier.
+Today, you can use this functionality for [Journeys](https://branch.io/journeys), [Deep Linked Email](https://branch.io/email/), the Branch [Quick Link creator]({{base.url}}/getting-started/creating-links/dashboard) and [Chrome extension]({{base.url}}/getting-started/creating-links/chrome-extension/) - they will all scrape your web URL for deep link data to make link creation even easier.
 {% endprotip %}
 
 {% protip title="Using App Links already?" %}

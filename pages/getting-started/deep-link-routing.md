@@ -557,9 +557,9 @@ let {url} = await branchUniversalObject.generateShortUrl(linkProperties, control
 
 {% endexample %}
 
-{% example title="When creating Marketing links on the Branch dashboard" %}
+{% example title="When creating Quick Links on the Branch dashboard" %}
 
-You can specify the control parameters for individual marketing links by inserting the keys and values into the _Deep Link Data (Advanced)_ section.
+You can specify the control parameters for individual Quick Links by inserting the keys and values into the _Deep Link Data (Advanced)_ section.
 
 {% image src='/img/pages/getting-started/deep-link-routing/deep-link_path.png' 3-quarters center alt='deeplink path' %}
 
@@ -744,6 +744,14 @@ Assuming you have the right permissions for push notifications and can reliably 
 Intent resultIntent = new Intent(this, DeepLinkActivity.class);
 intent.putExtra("branch","http://[branchsubdomain]/abcde12345");
 PendingIntent resultPendingIntent =  PendingIntent.getActivity(this, 0, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+{% endhighlight %}
+
+If you would like to support push notification based routing while your app already in foreground, please add the following to your notification intent.
+
+{% highlight java %}
+
+intent.putExtra("branch_force_new_session",true);
 
 {% endhighlight %}
 

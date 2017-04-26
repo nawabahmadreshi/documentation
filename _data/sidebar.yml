@@ -1,6 +1,33 @@
 ---
 
-- title: Getting Started
+# - title: Basic Setup
+#   directory: basic-setup
+#   children:
+#     - title: Prepare to Integrate (MISSING)
+#     - title: Complete the Branch Dashboard (MISSING)
+#     - title: Add the Mobile SDK (MISSING)
+#     - title: Add Universal & App Links (MISSING)
+#     - title: Add the Web SDK (MISSING)
+#     - title: Track Custom Events & Revenue (MISSING)
+#     - title: Add Hosted Deep Link Data (MISSING)
+#     - title: Test Your Configuration (MISSING)
+# - title: Next Steps
+#   directory: next-steps
+#   children:
+#     - title: Web to App Conversions (MISSING)
+#     - title: Deep Linked Emails (MISSING)
+#     - title: Deep Linked Feeds (MISSING)
+#     - title: Data Exchange (MISSING)
+#     - title: Social Sharing (MISSING)
+#       children:
+#         - title: The Basics (MISSING)
+#         - title: Content Sharing (MISSING)
+#         - title: Custom Onboarding (MISSING)
+#         - title: Referral Programs (MISSING)
+#     - title: Organic Search
+
+
+- title: Basic Setup
   directory: getting-started
   children:
     - sdk-integration-guide
@@ -16,75 +43,101 @@
       children:
         - link-domain-subdomain
         - organizing-link-data
-        - growth-attribution
-        - user-value-attribution
     - title: Advanced
       children:
         - integration-testing
         - matching-accuracy
         - branch-universal-object
-        - webhooks
-- title: Features
-  directory: features
+- title: Marketing Channels
+  directory: marketing-channels
   children:
-    - title: Sharing and Personalization
-      children:
-        - content-sharing
-        - custom-onboarding
     - title: Web to App Conversion
       children:
         - deepviews
-        - journeys
         - text-me-the-app
-    - title: Marketing for Mobile
+        - journeys
+    - title: App Only Ads
+      children:
+        - title: Google
+          children:
+            - google-search-ads
+            - google-uac
+        - title: Facebook
+          children:
+            - facebook-ads
+            - facebook-dynamic-ads
+            - instagram-ads
+        - title: Twitter
+          children:
+            - twitter-ads
+        - title: Apple
+          children:
+            - apple-search-ads
+    - title: Product Ads
       children:
         - deep-linked-feeds
-        - facebook-ads
-        - facebook-dynamic-ads
-        - facebook-app-invites
-        - google-search-ads
-        - google-uac
-        - instagram-ads
-        - twitter-ads
-        - apple-search-ads
-        - revenue-analytics
-        - ios-imessage
-        - referral-programs
-    - title: Content Indexing
-      children:
-        - google-app-indexing
-        - spotlight-indexing
-- title: Integrations
-  directory: third-party-integrations
-  children:
-    - title: Deep Linked Emails
+    - title: Email
       children:
         - responsys
         - salesforce
         - sendgrid
         - sailthru
         - appboy-with-sendgrid
+        # - title: Self Serve (MISSING)
+    - title: Referral
+      children:
+        - referral-programs
+        - content-sharing
+        - custom-onboarding
+        - facebook-app-invites
+        # - title: Influencer Analytics (MISSING)
+    - title: Organic Search
+      children:
+        - google-app-indexing
+        - spotlight-indexing
+    - title: App to App
+      children:
+        # - title: Android Instant App (MISSING)
+        - ios-imessage
+        # - title: Roots SDK (MISSING)
+- title: Cross Channel Analytics
+  directory: cross-channel-analytics
+  children:
+    - title: Attribution
+      children:
+        - growth-attribution
+        - user-value-attribution
+    - title: Analytics
+      children:
+        - revenue-analytics
+        # - title: Ads Analytics (MISSING)
+        # - title: Email Analytics (MISSING)
+        # - title: Other Analytics (MISSING)
+- title: Data Connectors
+  directory: data-exchange
+  children:
     - title: Data Integrations
       children:
         - adobe-analytics
         - adjust
         - amplitude
         - appboy
+        - appmetrica
         - appsflyer
+        - fabric-answers
         - google-analytics
         - kochava
         - localytics
         - mixpanel
         - tune
-        - appmetrica
-    - title: Third Party Tools
+    # - title: Data Ingestion
+    #   children:
+    #     - title: mParticle (MISSING)
+    #     - title: Segment (MISSING)
+    - title: Data Export
       children:
-        - apptimize
-        - ad-network-analytics
-    - title: Fabric
-      children:
-        - fabric-answers
-    - strategic-partners-guide
+        - data-export-api
+    - webhooks
 - title: Reference
   directory: methods-endpoints
   children:
@@ -98,4 +151,3 @@
     - title: Titanium SDK
     - title: React Native SDK
     - title: HTTP API
-    - data-export-api

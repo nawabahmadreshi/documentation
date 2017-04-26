@@ -350,7 +350,7 @@ Open your **AppDelegate.m** file and add the following methods (if you completed
 
 After completing this guide and installing a new build of your app on your testing device, you can verify Universal Links are working correctly by following these steps:
 
-1. [Create a new Marketing Link](https://dashboard.branch.io/#/marketing/new) on the Branch dashboard. Leave all configuration items at their default options.
+1. [Create a new Quick Link](https://dashboard.branch.io/#/marketing/new) on the Branch dashboard. Leave all configuration items at their default options.
 1. Open this link on your testing device via Messages, Mail, Notes, or one of the other apps listed as **works** on [this page]({{base.url}}/getting-started/universal-app-links/support/#appsbrowsers-that-support-universal-links).
 1. If successful, your app should launch immediately without routing through Safari. If not, please check the [Troubleshooting section]({{base.url}}/getting-started/universal-app-links/support/#troubleshooting-universal-links).
 
@@ -499,7 +499,7 @@ If you use a [custom domain or subdomain for your Branch links]({{base.url}}/get
 
 After completing this guide and installing a new build of your app on your testing device, you can verify App Links are working correctly by following these steps:
 
-1. [Create a new Marketing Link](https://dashboard.branch.io/#/marketing/new) on the Branch dashboard. Leave all configuration items at their default options.
+1. [Create a new Quick Link](https://dashboard.branch.io/#/marketing/new) on the Branch dashboard. Leave all configuration items at their default options.
 1. Open this link on your testing device.
 1. If successful, your app should launch immediately without routing through the web browser, showing an **Open With...** dialog.
 
@@ -586,7 +586,11 @@ Branch *branch = [Branch getInstance];
 // Entry point for users on iOS 8 and lower
 
 -(BOOL) application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-   [[Branch getInstance] handleDeepLink:url];
+    [[Branch getInstance]
+        application:application
+            openURL:url
+  sourceApplication:sourceApplication
+         annotation:annotation];
    self.ignoreDeeplinkPath = YES;
 
    // ... your other logic here, such as ...
@@ -635,7 +639,11 @@ func application(application: UIApplication, didFinishLaunchingWithOptions launc
 // Entry point for users on iOS 8 and lower
 
 func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
-   Branch.getInstance().handleDeepLink(url)
+   Branch.getInstance().application(application,
+        open: url,
+        sourceApplication: sourceApplication,
+        annotation: annotation
+   )
    self.ignoreDeeplinkPath = true
 
    // ... your other logic here, such as ...
@@ -774,7 +782,7 @@ You can check if your Xcode project is correctly configured by using our [Univer
 Universal Links don't work properly when entered into Safari. Use Notes or iMessage for testing.
 
 ##### Are you wrapping Branch links with another link and redirecting?
-In most cases, Universal Links won't open the app when they are "wrapped" by click tracking links. Universal links, including Branch links, must be freestanding. If you want Universal Links to work in all situations, do not use other links that redirect to your Branch links. 
+In most cases, Universal Links won't open the app when they are "wrapped" by click tracking links. Universal links, including Branch links, must be freestanding. If you want Universal Links to work in all situations, do not use other links that redirect to your Branch links.
 
 ##### Do your Team ID & Bundle ID match those on your dashboard?
 You can find them in the Dashboard under Settings > Link Settings, in the iOS section next to "Enable Universal Links." They should match your Team ID and Bundle ID. Team ID can be found here [https://developer.apple.com/membercenter/index.action#accountSummary](https://developer.apple.com/membercenter/index.action#accountSummary). Your Bundle ID is found in Xcode, in the `General` tab for the correct build target. If your Apple App Prefix is different from your Team ID, you should use your App Prefix. Your app prefix can be found from App IDs on Apple's Developer Portal.

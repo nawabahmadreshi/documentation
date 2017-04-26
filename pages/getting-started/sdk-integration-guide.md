@@ -811,7 +811,11 @@ Finally, add these two new methods to your **AppDelegate.m** file. The first res
 // Respond to URI scheme links
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
     // pass the url to the handle deep link call
-    [[Branch getInstance] handleDeepLink:url];
+    [[Branch getInstance]
+        application:application
+            openURL:url
+  sourceApplication:sourceApplication
+         annotation:annotation];
 
     // do other deep link routing for the Facebook SDK, Pinterest SDK, etc
     return YES;
@@ -834,7 +838,11 @@ Finally, add these two new methods to your **AppDelegate.swift** file. The first
 // Respond to URI scheme links
 func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
     // pass the url to the handle deep link call
-    Branch.getInstance().handleDeepLink(url);
+    Branch.getInstance().application(application,
+        open: url,
+        sourceApplication: sourceApplication,
+        annotation: annotation
+    )
 
     // do other deep link routing for the Facebook SDK, Pinterest SDK, etc
     return true
@@ -1382,7 +1390,7 @@ For more information on tracking and configuring custom events, see the [user va
 
 ## Next steps
 
-The Branch SDK is now integrated into your app, and you can use the [Branch dashboard](https://dashboard.branch.io/#){:target="_blank"} to track completed installs from [Marketing links](https://dashboard.branch.io/#/marketing){:target="_blank"}. However, this only scratches the surface of what is possible with Branch.
+The Branch SDK is now integrated into your app, and you can use the [Branch dashboard](https://dashboard.branch.io/#){:target="_blank"} to track completed installs from [Quick Links](https://dashboard.branch.io/#/marketing){:target="_blank"}. However, this only scratches the surface of what is possible with Branch.
 
 Here are some recommended next steps:
 

@@ -45,7 +45,7 @@ By default, Branch will attempt to launch your app every single time a link is o
 
 To make it easier for you to get rich attribution data in your dashboard, Branch will map UTM parameters to the Branch Analytics Tags.
 
-Currently, this is available only for parameters appended to **[dynamic Branch links]({{base.url}}/getting-started/creating-links/other-ways#appending-query-parameters)**. At this time, it is not enabled for parameters on $fallback_url or for other links, like Marketing links - coming soon!
+Currently, this is available only for parameters appended to **[dynamic Branch links]({{base.url}}/getting-started/creating-links/other-ways#appending-query-parameters)**. At this time, it is not enabled for parameters on $fallback_url or for other links, like Quick Links - coming soon!
 
 The mapping is as follows:
 
