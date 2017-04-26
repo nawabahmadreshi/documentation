@@ -4,7 +4,7 @@ directory: getting-started
 title: Matching Platform
 page_title: How to get the most out of Branch deep linking
 description: How does Branch matching work? Learn about mechanisms we use to pass data through to the app and attribute app sessions back to the source.
-keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, matching, fingerprint, accuracy, direct deep linking
+keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, matching, fingerprint, snapshot, accuracy, direct deep linking
 hide_platform_selector: true
 sections:
 - overview
@@ -42,19 +42,19 @@ We've built out custom deep linking mechanisms that are specific to each platfor
 
 ## Methods without 100% match accuracy
 
-### Browser to app fingerprint match
+### Browser to app snapshot match
 
-Branch collects information about devices both when a user is in the browser -- via a click on a Branch link -- and then after they open the app. This information includes **IP Address**, **OS**, **OS version**, **device model** and other parameters. This is the user's **_digital fingerprint_** and can be obtained in the browser and in the app.
+Branch collects information about devices both when a user is in the browser -- via a click on a Branch link -- and then after they open the app. This information includes **IP Address**, **OS**, **OS version**, **device model** and other parameters. This is the user's **_digital snapshot_** and can be obtained in the browser and in the app.
 
-When no 100% match method is available, we connect the unique fingerprint collected in the app to the unique fingerprint collected in the browser to determine where user originated.
+When no 100% match method is available, we connect the unique snapshot collected in the app to the unique snapshot collected in the browser to determine where user originated.
 
-{% protip title="Customize the fingerprint matching criteria" %}
+{% protip title="Customize the snapshot matching criteria" %}
 
-If you are concerned that users may potentially have the same fingerprint, you can choose to have us not match users if two identical fingerprints are outstanding. On the Dashboard's [Link Settings](https://dashboard.branch.io/#/settings/link) page, under advanced options, you should set **Match Type** to `Unique`. You can also modify the 7200 second (2 hour) default expiration for all links, or [configure it for individual links]({{base.url}}/getting-started/configuring-links) by using the `$match_duration` control parameter.
+If you are concerned that users may potentially have the same snapshot, you can choose to have us not match users if two identical snapshots are outstanding. On the Dashboard's [Link Settings](https://dashboard.branch.io/#/settings/link) page, under advanced options, you should set **Match Type** to `Unique`. You can also modify the 7200 second (2 hour) default expiration for all links, or [configure it for individual links]({{base.url}}/getting-started/configuring-links) by using the `$match_duration` control parameter.
 
 {% image src="/img/pages/getting-started/matching-accuracy/match_type.png" center full alt="match_type" %}
 
-This means that if two users with the same fingerprint, on the same wifi, were to click a Branch link for your app, we would blacklist those digital fingerprints for the expiration duration. Therefore, when either user opens up your app, no match would be made.
+This means that if two users with the same snapshot, on the same wifi, were to click a Branch link for your app, we would blacklist those digital snapshots for the expiration duration. Therefore, when either user opens up your app, no match would be made.
 
 {% endprotip %}
 
