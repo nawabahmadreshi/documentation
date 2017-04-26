@@ -51,7 +51,7 @@
 - title: Marketing Channels
   directory: marketing-channels
   children:
-    - title: Web to App Conversion
+    - title: Web to App
       children:
         - deepviews
         - text-me-the-app

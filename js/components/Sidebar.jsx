@@ -72,12 +72,9 @@ var LinkInternal = React.createClass({
 		if ((page.platforms[props.platform]) && (Object.keys(page.sections)[0] != 'overview')) {
 			path.push(props.platform);
 		}
-		if (page_key == 'journeys' || page_key == 'deep-linked-feeds') { // Yuck...fix this
-			return (<a href={ '/' + path.join('/') } className={ isCurrentPath ? 'sidebar-link-selected' : '' } onClick={ self._handleClick(Object.keys(page.sections)[0]) }>{ page.title } <i className="fa fa-star premium" aria-hidden="true"></i></a>);
-		}
-		else {
-			return (<a href={ '/' + path.join('/') } className={ isCurrentPath ? 'sidebar-link-selected' : '' } onClick={ self._handleClick(Object.keys(page.sections)[0]) }>{ page.title }</a>);
-		}
+
+		return (<a href={ '/' + path.join('/') } className={ isCurrentPath ? 'sidebar-link-selected' : '' } onClick={ self._handleClick(Object.keys(page.sections)[0]) }>{ page.title }</a>);
+
 	}
 });
 
