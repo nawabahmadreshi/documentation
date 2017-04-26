@@ -66,7 +66,6 @@
           children:
             - facebook-ads
             - facebook-dynamic-ads
-            - facebook-app-invites
             - instagram-ads
         - title: Twitter
           children:
@@ -84,12 +83,13 @@
         - sendgrid
         - sailthru
         - appboy-with-sendgrid
-        - title: Self Serve (MISSING)
+        # - title: Self Serve (MISSING)
     - title: Referral
       children:
         - referral-programs
         - content-sharing
         - custom-onboarding
+        - facebook-app-invites
         # - title: Influencer Analytics (MISSING)
     - title: Organic Search
       children:
@@ -113,7 +113,7 @@
         # - title: Ads Analytics (MISSING)
         # - title: Email Analytics (MISSING)
         # - title: Other Analytics (MISSING)
-- title: Data Exchange
+- title: Data Connectors
   directory: data-exchange
   children:
     - title: Data Integrations
