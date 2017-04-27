@@ -84,7 +84,7 @@
         - sailthru
         - appboy-with-sendgrid
         # - title: Self Serve (MISSING)
-    - title: Referral
+    - title: Referrals
       children:
         - referral-programs
         - content-sharing
