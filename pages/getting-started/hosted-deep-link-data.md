@@ -73,6 +73,6 @@ Mother's day promotion | https://shop.com/your-mother-is-great | `<meta name="br
 
 {% caution title="Do not use Google Tag Manager"%}
 
-Do not user Google Tag Manager (GTM) to insert your content metatags. GTM requires Javascript to load on the page, and the Branch link data scraper does not support Javascript execution at this time.
+Do not use Google Tag Manager (GTM) to insert your content metatags. GTM requires Javascript to load on the page, and the Branch link data scraper does not support Javascript execution at this time.
 
 {% endcaution %}
