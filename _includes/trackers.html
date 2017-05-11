@@ -56,10 +56,10 @@
       document.cookie = name + '=' + value + '; expires=' + d.toGMTString() + '; path=/; domain=.branch.io';
     }
 
-    var returning_visitor = getCookie('returning_visitor'); // Cookie will have a value of '1' if user has been seen before, or won't exist if not
+    var returning_visitor = getCookie('bnc_returning_visitor'); // Cookie will have a value of '1' if user has been seen before, or won't exist if not
     var page_url = window.location.host + window.location.pathname; // Page URL for first time visitor attribution
 
-    setCookie('returning_visitor', "1", 30); // Extend first time visitor attribution window to 30 days from current visit
+    setCookie('bnc_returning_visitor', "1", 30); // Extend first time visitor attribution window to 30 days from current visit
 
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
