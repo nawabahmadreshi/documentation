@@ -11,7 +11,11 @@ sections:
 - overview
 - guide
 - advanced
+- amp
 - examples
+contents:
+  number:
+    - amp
 alias: [ /features/journeys/, /features/journeys/overview/, /features/journeys/guide/, /features/journeys/advanced/, /features/journeys/examples/ ]
 ---
 
@@ -698,6 +702,82 @@ If you're not using a mobile viewport tag (`<meta name="viewport" content="width
     - `zoom: 3;`
 
 The image will not look scaled properly in the editor view. This is because the dashboard is mobile optimized. Use the preview test link on the validation page to make sure the banner looks right
+
+{% elsif page.amp %}
+
+[Accelerated Mobile Pages (AMP)](https://www.ampproject.org/){:target="_blank"} are a way to build pages that serve static content so that they load in Google search results much faster. Google uses AMP to quickly serve content on mobile devices without users having to click through to a website to view the content, and Google prioritizes AMP pages at the top of mobile search results. 
+
+AMP pages by design make it difficult for users to go anywhere except back to Google search, and difficult for you to convert users to your website or your app. With AMP-compatible Journeys, you can convert mobile web traffic from Google search results to your app and take advantage of Google’s prioritization of AMP pages. Select Journeys templates can be shown on your AMP-compatible website.
+
+[image]
+
+{% prerequisite %}
+
+- To be prioritized in mobile search results, your webpage must be [AMP-compatible](https://www.ampproject.org/docs/){:target="_blank"}. If you do not want to build an AMP-compatible website, consider using [AMP Deepviews](#) for Google search instead.
+- Journeys uses your alternate domain for Universal Links. Make sure you include your `xxxx-alternate.app.link` domain in your [Associated Domains]({{base.url}}/getting-started/universal-app-links/guide/ios/#add-the-associated-domains-entitlement-to-your-project).
+- If you use a custom domain or subdomain for your Branch links, you should instead add entries for `applinks:[mycustomdomainorsubdomain]` and `XXXX-alternate.app.link`. If you’re unsure of your Branch-assigned app.link subdomain, [contact support](https://support.branch.io), and we can provide it.
+
+{% endprerequisite %}
+
+## Target AMP Web in your audience
+
+You can target users on AMP pages by checking the box **AMP Web** on the Select Audience step:
+
+{% image src='/img/pages/features/journeys/amp-checkbox.png' center half alt='AMP Web checkbox' %}
+
+See the [Journeys Guide](/marketing-channels/journeys/guide#select-audience) for more information on selecting your audience.
+
+### Audience rule limitations
+
+Because cookies are restricted on both AMP and iOS, event-based audience rules on AMP Journeys are cookie-restricted. Practically, it means that targeting works *only within AMP* for the following rules:
+
+* Has completed event
+* Has visited web
+* Has visited the app
+* Has the app installed
+
+Once a user has clicked any Branch link outside of AMP, event-based audience rules will adhere to the regular web cookie for that user, and will work across AMP and non-AMP web.
+
+## Select an AMP-compatible template
+
+Once you have your audience selected, you can configure your templates. Currently, only **Branch Banner Bottom** is supported on AMP because Google requires that banners not show in the top 75% of an AMP page. Over time, Branch will add support for more Journeys templates.
+
+When you click **Select Template** from the **Configure Views** step, the **AMP-compatible** view type should already be selected, showing you the Journeys templates that are compatible with AMP:
+
+{% image src='/img/pages/features/journeys/amp-select-template.png' center third alt='AMP-compatible templates' %}
+
+Hover over the template and click **Create**.
+
+### Customization limitations
+
+For the time being, only banners of a fixed height and placement (bottom of the page) are compatible with AMP.
+
+## Validate & Test your AMP Journey
+
+On the **Validate & Test** step, you will see AMP-specific messages if you have targeted **AMP Web** users on the [Select Audience](#target-amp-web-in-your-audience) step.
+
+{% image src='/img/pages/features/journeys/amp-validation.png' center 2-thirds alt='AMP validation messages' %}
+
+### Add the AMP SDK to your site
+
+The AMP SDK consists of 2-3 snippets that you can insert into your AMP page. If Branch has not detected a click from your AMP page powered by the AMP SDK, you will see an error on the **Validate & Test** step.
+
+Add the following snippet between the AMP page’s `<head></head>` tags:
+   {% highlight html %}<style amp-custom>#branch-amp-journey{bottom:0;width:100%;height:72px;position:fixed;}.hideme{width:100%;height:72px;left:24px;background-color:none;position:fixed;}.close{width:24px;height:100%;left:0;z-index:10000;background-color:none;position:fixed;}.branch-amp-journey-inner{position:relative;width:100%;height:100%;z-index:9999;}.donotdisplay{display:none;}</style>{% endhighlight %}
+Modify the following snippet to include your domain instead of `DOMAIN_HERE`and your Branch key instead of `BRANCH_KEY_HERE` - in both the `amp-list` tag and the `amp-iframe` tag. You can find these in Account Settings and Link Settings.
+   {% highlight html %}<amp-list tabindex=0 role="" on="tap:branch-amp-journey.hide" id="branch-amp-journey" src="https://DOMAIN-HERE/branch-amp-journeys-pre?branch_key=BRANCH_KEY_HERE&__aj_cid=CLIENT_ID(_s)&__amp_viewer=VIEWER&__aj_source_url=SOURCE_URL&__aj_canonical_url=CANONICAL_URL&__aj_v=1.0.0" layout=fixed-height height="72px"><template type="amp-mustache" id="journey-template"><a class="close" on="tap:branch-amp-journey.hide"></a><div class="hideme" ></div><amp-iframe class="branch-amp-journey-inner {{do_not_display}}" layout="fixed-height" height="72px" resizable src="https://DOMAIN-HERE/branch-amp-journeys?branch_key=BRANCH_KEY_HERE&__aj_cid={{__aj_cid}}&__aj_source_url={{__aj_source_url}}&__aj_canonical_url={{__aj_canonical_url}}&_branch_view_id={{_branch_view_id}}&__aj_v=1.0.0" sandbox="allow-scripts allow-top-navigation allow-same-origin" frameborder="0"><div overflow></div></amp-iframe></template></amp-list>{% endhighlight %}
+Then add the snippeet between the `<body></body>` tags of your AMP page, preferably near or at the bottom.
+
+Finally, if you do not already have the required AMP scripts, add them between the AMP page's `<head></head>` tags:
+   {% highlight html %}<script async src="https://cdn.ampproject.org/v0/amp-list-0.1.js" custom-element="amp-list"></script><script async src="https://cdn.ampproject.org/v0/amp-mustache-0.1.js" custom-template="amp-mustache"></script><script async src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js" custom-element="amp-iframe"></script>{% endhighlight %} 
+
+### Select an AMP-compatible template
+
+## Deep linking with AMP
+
+## AMP-specific restrictions
+
+Because javascript is limited on AMP and cookies are restricted on both AMP and iOS, AMP Journeys does not offer 100% of the functionality that standard Journeys does.
 
 {% elsif page.examples %}
 
