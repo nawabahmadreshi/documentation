@@ -29,7 +29,7 @@ If you already have [Facebook App Links metatags](https://developers.facebook.co
 
 ## Understand your web and app content
 
-The first step to successfully putting deep link data on your webiste is to understand how your deep links correspond to your web URLs. Ask yourself the following questions, and group your content accordingly.
+The first step to successfully putting deep link data on your website is to understand how your deep links correspond to your web URLs. Ask yourself the following questions, and group your content accordingly.
 
 1. Do you have any content on web that doesn't exist in the app? Examples include: time-sensitive promotions, splash pages, micro-sites.
 1. For content that has corresponding app content, what type of pages do you have? Examples include: search result pages, category homepages, product pages.
@@ -73,6 +73,6 @@ Mother's day promotion | https://shop.com/your-mother-is-great | `<meta name="br
 
 {% caution title="Do not use Google Tag Manager"%}
 
-Do not user Google Tag Manager (GTM) to insert your content metatags. GTM requires Javascript to load on the page, and the Branch link data scraper does not support Javascript execution at this time.
+Do not use Google Tag Manager (GTM) to insert your content metatags. GTM requires Javascript to load on the page, and the Branch link data scraper does not support Javascript execution at this time.
 
 {% endcaution %}
