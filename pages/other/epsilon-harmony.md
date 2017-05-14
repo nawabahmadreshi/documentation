@@ -41,7 +41,7 @@ When a link is clicked by a user without the app, it will route that user to the
 
 Contact your Branch Account Manager or [accounts@branch.io](mailto:accounts@branch.io) at any time for assistance with the setup steps.
 
-## Choose your email service provider
+<!-- ## Choose your email service provider
 
 Navigate to the [Deep Linked Email](https://dashboard.branch.io/email){:target="_blank"} section of the Branch dashboard. Select Epsilon Harmony as your email service provider and click **Get Started**.
 
@@ -131,25 +131,33 @@ If you use your web URL as a deep link value:
 The Branch [Quick Link creator](/getting-started/creating-links/dashboard/) also scrapes your web URL for deep link data to make link creation even easier. [Hosting Deep Link Data](/getting-started/hosted-deep-link-data/guide/) on your website will make using Branch products easier in future.
 {% endprotip %}
 
-In the meantime, you can proceed to the next step: **Configure ESP**.
+In the meantime, you can proceed to the next step: **Configure ESP**. -->
 
 ## Configure your ESP
 
 To open the app directly on iOS 9.2+, you must configure your Epsilon Harmony integration to support [Universal Links](/getting-started/universal-app-links/), and configure your app to support Epsilon Harmony + Universal Links.
 
-### Tell us your click tracking IP
 
-When you whitelabel your click tracking domain with Epsilon Harmony, you will change the DNS record for your domain to an IP.
+### Prerequisites
 
-Ask your Harmony Account Manager to provide the IP that you have set your domain to, and give it to your Branch Account Manager.
+- Confirm with your Branch Account Manager that you are enabled for the Branch email product.
+- Notify your Epsilon Harmony Account Manager that you plan to use Branch Deep Linked Email.
+- Ask your Harmony Account Manager to provide the IP that you set your click tracking domains to, and give that IP to your Branch Account Manager.
+
+
+### Create a click tracking domain
+
+We recommend creating a new click tracking domain for the Epsilon Harmony integration. You can switch over your production click tracking domain to Epsilon but we recommend testing with a different domain to get started.
+
+1. Create a new click tracking domain like `clicktrack2.mycompany.com`
+1. CNAME that click tracking domain to `epsilon.thirdparty.bnc.lt`
+1. Notify your Branch and Epsilon Account Managers that you have prepared your domain. 
+1. Branch will configure your domain and notify your Epsilon Account Manager that the domain is ready.
+1. Epsilon will whitelist your integration. 
 
 Once you've done this, an AASA file - required for Universal Links - specific to that domain will be generated.
 
 ### Configure your app for your click tracking domain
-
-{% image src="/img/pages/third-party-integrations/responsys/configure-responsys-2.png" center 2-thirds alt='Developer email' %}
-
-In this prompt, enter the email of someone on your team who is qualified to modify your iOS app, and then click **Send**. They will complete the [technical setup](#technical-setup) steps below.
 
 ## Technical setup
 
@@ -160,13 +168,6 @@ You should have [received an email from Branch](#configure-your-app-for-your-cli
 {% protip title="How does it work?"%}
 Apple recognizes the click tracking domain as a Universal Link, and opens the app immediately without the browser opening. Once the app has opened, Branch will collect the referring URL that opened the app (at this time, it will be the click tracking url). Inside the app, Branch will robotically “click” the link, registering the click with the ESP, and returning the Branch link information to the Branch SDK inside the app. This information is then used to deep link the user to the correct in-app content. See the [Support](/third-party-integrations/epsilon-harmony/support) tab for more information.
 {% endprotip %}
-
-### Set up your click tracking domain
-
-Only do this step after you've [provided your click tracking domain](#tell-us-your-click-tracking-domain) to Branch.
-
-1. Create a CNAME for your subdomain and point it to `thirdparty.bnc.lt`
-1. Confirm with your Branch Account Manager that the domain is working correctly.
 
 ### Add your click tracking domain to your Associated Domains
 
@@ -288,15 +289,16 @@ Wherever you are using `<a>` tags in your email templates, replace it with these
 
 {% endexample %}
 
-{% elsif page.support %}
-
-
 Here is how links look before and after (the latter being a Branch deep link).
 
 1. *Before:* http://example.com/?foo=bar
 2. *After:* https://vza3.app.link/3p?%243p=e_ep&%24original_url=http%3A%2F%2Fexample.com%2F%3Ffoo%3Dbar
 
 (note that these are simplified examples, not actual demo links)
+
+{% protip title="Advanced Features" %}
+The above script is compatible with dynamic content, transactional/real time emails and query parameters added via the query parameter box in the "Link" tab in Epsilon Harmony content creation. We recommend verifying emails created with the script - particularly that encoded parameters on website URLs are accepted by your website.
+{% endprotip %}
 
 {% elsif page.support %}
 
@@ -330,5 +332,9 @@ When you click a Branch link directly from an email inside the Mail app on iOS 9
 To solve this, Branch will host the AASA file on your click tracking domain. We’ll help you get set up with this.
 
 {% image src="/img/pages/third-party-integrations/responsys/deep-linked-email-universal-links.png" center full alt='Deep Linked Email Universal Links' %}
+
+### Link resolution technical diagram
+
+{% image src="/img/pages/third-party-integrations/epsilon/click-resolve.png" center full alt='Resolving Epsilon Links' %}
 
 {% endif %}
