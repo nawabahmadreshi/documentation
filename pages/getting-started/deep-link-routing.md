@@ -254,9 +254,12 @@ branch.subscribe((bundle) => {
 {% endif %}
 
 {% if page.mparticle_ios %}
+{% tabs %}
+{% tab objective-c %}
 Inside the callback for `checkForDeferredDeepLinkWithCompletionHandler` method in your AppDelegate, examine the params dictionary to determine whether the user opened a link to content. Below is an example assuming that the links correspond to pictures.
 
-{% highlight objc %}- (void)checkForDeeplink {
+{% highlight objc %}
+- (void)checkForDeeplink {
     MParticle * mParticle = [MParticle sharedInstance];
 
     [mParticle checkForDeferredDeepLinkWithCompletionHandler:^(NSDictionary<NSString *,NSString *> * _Nullable params, NSError * _Nullable error) {
@@ -283,6 +286,27 @@ Inside the callback for `checkForDeferredDeepLinkWithCompletionHandler` method i
     }];
 }
 {% endhighlight %}
+{% endtab %}
+{% tab swift %}
+Inside the callback for `checkForDeferredDeepLink` method in your AppDelegate, examine the linkInfo dictionary to determine whether the user opened a link to content. Below is an example assuming that the links correspond to pictures.
+
+{% highlight swift %}
+func checkForDeepLink() {
+    MParticle.sharedInstance().checkForDeferredDeepLink { linkInfo, error in
+        guard let linkInfo = linkInfo else {return }
+
+        if error == nil && linkInfo["+clicked_branch_link"] != nil && linkInfo["pictureId"] != nil {
+            print("Clicked picture link!")
+
+            // Load the view to show the picture
+        } else {
+            // Load your normal view
+        }
+    }
+}
+{% endhighlight %}
+{% endtab %}
+{% endtabs %}
 {% endif %}
 
 {% if page.mparticle_android %}
