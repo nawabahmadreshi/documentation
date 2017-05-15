@@ -1,4 +1,4 @@
-This is the open source repository for Branch's main documentation portal. You can find the live version at https://dev.branch.io
+This is the open source repository for Branch's main documentation portal. You can find the live version at https://dev.branch.io. Staging is at http://dev.staging.branch.io.s3-website-us-west-1.amazonaws.com
 
 # Installation
 
@@ -8,24 +8,17 @@ If you're interested in building the documentation portal on your local machine,
 > - [Node.js](https://nodejs.org/en/)
 > - [Ruby](http://www.ruby-lang.org/en/downloads/) and [RubyGems](https://rubygems.org/)
 > - Linux, Unix, or Mac OS X
+> - Xcode command line tools (run `xcode-select --install`)
+> - [Bundler](http://bundler.io) (run `gem install bundler`)
 
-### 1. Set up dependencies
-Open a shell and run these commands:
-
-```
-gem install bundler;
-xcode-select --install;
-gem install nokogiri -v '1.6.6.2';
-```
-
-### 2. Clone repo
+### 1. Clone repo
 In your shell, navigate to the location you want to store the documentation site. Next run:
 
 ```
 git clone https://github.com/BranchMetrics/documentation.git
 ```
 
-### 3. Install Jekyll and Dependencies
+### 2. Install Jekyll and Dependencies
 Install all the required Node.js and Ruby packages:
 
 ```
@@ -132,12 +125,10 @@ All main content files are kept inside the `pages` directory. Generally:
 
 | Directory | URL
 | --- | ---
-| pages/getting-started | https://dev.branch.io/getting-started/...
-| pages/features | https://dev.branch.io/features/...
-| pages/third-party-integrations | https://dev.branch.io/third-party-integrations/...
-| pages/methods-endpoints | https://dev.branch.io/methods-endpoints/...
+| pages/basic-setup | https://dev.branch.io/basic-setup/...
+| pages/cross-channel-analytics | https://dev.branch.io/cross-challen-analytics/...
 
-***Note:*** *second level directories (e.g. Features* > **Sharing and Personalization** > *Content Sharing) in the sidebar and breadcrumbs are not reflected in the URL or file system)*
+***Note:*** *second level directories (e.g. Marketing Channelss* > **Web to App** > *Deepviews) in the sidebar and breadcrumbs are not reflected in the URL or file system)*
 
 ### Ingredients
 
@@ -450,7 +441,7 @@ Used at the bottom of the Overview page section. Creates a button to the next se
 | ---: | ---
 | **title** | Specify the text of the button. Will default to "Get Started:** Page Title - Section**" if left blank.
 | **next** | Set to true to change "Get Started" to "Next". Button text is "Next:** Page Title - Section**".
-| **next**, **title** | Specify the text of the next button as well as a page to link to. 
+| **next**, **title** | Specify the text of the next button as well as a page to link to.
 
 ```
 {% getstarted %}{% endgetstarted %}
