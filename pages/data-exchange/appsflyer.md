@@ -82,10 +82,6 @@ You can also append additional [AppsFlyer Parameters in this format](https://sup
 For example, if you wanted to add Ad and Ad Set values to your link, you can do the following:
 `https://mycompany.app.link/123245?af_ad=MyAd&af_adset=MyAdSet`
 
-{% caution title="Watch out for this!" %}
-On Android, for Appsflyer to attribute installs properly to Branch please ensure that fingerprinting is enabled for your Android app on Appsflyer.
-{% endcaution %}
-
 {% elsif page.support %}
 
 ## Troubleshooting
@@ -102,5 +98,8 @@ It's likely that the device being tested on is already attributed. The proper st
 4. Click Branch link
 5. Deploy app from XCode or Android Studio
 6. Confirm a fresh install occurred on Branch / AppsFlyer. 
+
+### Installs not being attributed to Branch
+For AppsFlyer to attribute installs properly to Branch, fingerprinting must be enabled for your app in your AppsFlyer settings. If you see clicks but not installs appearing, this may be the issue.
 
 {% endif %}
