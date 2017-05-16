@@ -773,15 +773,15 @@ Google has recently announced that it will begin punishing sites that show a ful
 
 {% image src='/img/pages/features/journeys/examples/seo_friendly_0.png' center full alt='seo friendly 0' %}
 
-Next, you'll choose the `containing` in the middle section to match a substring:
+Next, you'll choose the `starts with` in the middle section to match a substring:
 
 {% image src='/img/pages/features/journeys/examples/seo_friendly_1.png' center full alt='seo friendly 1' %}
 
-Finally, you'll enter `google.com` to target users who came from Google search (where the referrer contains google.com):
+Finally, you'll enter `google.com` to target users who came from Google search (where the referrer starts with google.com):
 
 {% image src='/img/pages/features/journeys/examples/seo_friendly_2.png' center full alt='seo friendly 2' %}
 
-Alternatively, you can target users who did NOT come from Google search (where the referrer doesn't contain google.com):
+Alternatively, you can target users who did NOT come from Google search (where the referrer doesn't start with google.com):
 
 {% image src='/img/pages/features/journeys/examples/seo_friendly_3.png' center full alt='seo friendly 3' %}
 
