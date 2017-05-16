@@ -99,4 +99,7 @@ It's likely that the device being tested on is already attributed. The proper st
 5. Deploy app from XCode or Android Studio
 6. Confirm a fresh install occurred on Branch / AppsFlyer. 
 
+### Installs not being attributed to Branch
+For AppsFlyer to attribute installs properly to Branch, fingerprinting must be enabled for your app in your AppsFlyer settings. If you see Branch clicks but not installs appearing, this may be the issue. Ask your AppsFlyer Account Manager to enable fingerprinting for your app.
+
 {% endif %}
