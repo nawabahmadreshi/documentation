@@ -97,7 +97,7 @@
         - spotlight-indexing
     - title: App to App
       children:
-        # - title: Android Instant App (MISSING)
+        - android-instant-apps
         - ios-imessage
         # - title: Roots SDK (MISSING)
 - title: Cross Channel Analytics
