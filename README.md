@@ -128,7 +128,7 @@ All main content files are kept inside the `pages` directory. Generally:
 | pages/basic-setup | https://dev.branch.io/basic-setup/...
 | pages/cross-channel-analytics | https://dev.branch.io/cross-challen-analytics/...
 
-***Note:*** *second level directories (e.g. Marketing Channelss* > **Web to App** > *Deepviews) in the sidebar and breadcrumbs are not reflected in the URL or file system)*
+***Note:*** *second level directories (e.g. Marketing Channels* > **Web to App** > *Deepviews) in the sidebar and breadcrumbs are not reflected in the URL or file system)*
 
 ### Ingredients
 
@@ -215,7 +215,7 @@ The next thing to do
 ## Liquid tags
 There are a number of liquid tags available to structure content. All follow standard Jekyll syntax and must be terminated: `{% example %} Content here {% endexample %}`
 
-### protip
+### pro tip
 
 ![](img/readme/protip.png)
 
@@ -329,13 +329,13 @@ branch.link({
     channel: 'sms',
     feature: 'share',
     data: {
-		"$ios_deepview": "default_template",
-		"$android_deepview": "default_template"
+    "$ios_deepview": "default_template",
+    "$android_deepview": "default_template"
     }
 }, function(err, link) {
-	if (!err) {
-    	console.log("Ready to share my " + link);
-	}
+  if (!err) {
+      console.log("Ready to share my " + link);
+  }
 });
 {% endhighlight %}
 ```
@@ -507,7 +507,7 @@ contents:
 | **type** | The page type. The only currently option in use is `recipe`
 | **directory** | The pretty URL directory for this page in the rendered site. Options: `features`, `third-party-integrations`, `getting-started`, `methods-endpoints`
 | **title** | Page name used in the navigation sidebar, in breadcrumbs, and at the top of the content area.
-| **page_title** | Longer page name used in the browser titlebar. Can also be specified by platform using **ios_page_title** and **android_page_title** instead.
+| **page_title** | Longer page name used in the browser title bar. Can also be specified by platform using **ios_page_title** and **android_page_title** instead.
 | **description** | Short description of page content, used in search results and section landing pages. Can also be specified by platform using **ios_description** and **android_description** instead.
 | **keywords** | Comma-separated keywords used for search. Can also be specified by platform using **ios_keywords** and **android_keywords** instead.
 | **platforms** | *(Optional)* Items to show in the platform selector, which appears at the top of every page section except Overview. Available options are `ios`, `android`, `cordova`, `xamarin`, `unity`, `adobe`, `titanium`, `react`, and `web`
