@@ -451,6 +451,17 @@ Branch opens your app by using its URI scheme (`yourapp://`), which should be un
 </intent-filter>
 {% endhighlight %}
 
+{% caution %}
+To ensure proper deep linking from other apps such as Facebook, this Activity must be launched in `singleTask` mode. This is done in the Activity definition as so:
+
+{% highlight xml %}
+<activity
+    android:name="com.yourapp.SplashActivity"
+    android:label="@string/app_name"
+    android:launchMode="singleTask">
+{% endhighlight %}
+{% endcaution %}
+
 {% if page.android or page.react %}
 ### Enable Auto Session Management
 
