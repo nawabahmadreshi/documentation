@@ -749,14 +749,14 @@ See the [Journeys Guide](/marketing-channels/journeys/guide#select-audience) for
 
 ### Audience rule limitations
 
-Because cookies are restricted on both AMP and iOS, event-based audience rules on AMP Journeys are cookie-restricted. Practically, it means that targeting works *only within AMP* for the following rules:
+Because cookies are restricted on both AMP and iOS, event-based audience rules on AMP Journeys are cookie-restricted. Practically, this means that targeting works *only within AMP* for the following rules:
 
 * Has completed event
 * Has visited web
 * Has visited the app
 * Has the app installed
 
-Once a user has clicked any Branch link outside of AMP, event-based audience rules will adhere to the regular web cookie for that user, and will work across AMP and non-AMP web.
+Once a user has clicked a Branch link outside of AMP, event-based audience rules will adhere to the regular web cookie for that user, and will work across AMP and non-AMP web.
 
 ## Select an AMP-compatible template
 
@@ -780,11 +780,11 @@ On the **Validate & Test** step, you will see AMP-specific messages if you have 
 
 ### The AMP SDK is not integrated
 
-If Branch has not detected a click from your AMP page powered by the Branch AMP SDK, you will see an error on the **Validate & Test** step. (See what you need to add)[#add-the-branch-amp-sdk-to-your-site].
+If Branch has not detected a click from your AMP page powered by the Branch AMP SDK, you will see an error on the **Validate & Test** step. [See what you need to add](#add-the-branch-amp-sdk-to-your-site).
 
 ### The selected template is not AMP-compatible
 
-If Branch has detected that you have selected a template that is not compatible with AMP, you will see an error on the **Validate & Test** step. (See which templates are currently compatible)[#customization-limitations].
+If Branch has detected that you have selected a template that is not compatible with AMP, you will see an error on the **Validate & Test** step. [See which templates are currently compatible](#customization-limitations).
 
 ## Deep linking with AMP
 
@@ -793,13 +793,35 @@ You can [configure links] with deep link data on AMP in two ways:
 1. Add query parameters to your Branch link in the AMP SDK
 1. Add deep link data to a Journey in the dashboard
 
+{% protip title="Use $canonical_url for deep linking" %}
+AMP Journeys, along with regular Journeys and the Quick Link Creator, automatically embeds `$canonical_url` in your link data based on meta tags on your web or AMP page. If you use this key to route to specific content in your app, you do not have to add anything extra for AMP.
+{% endprotip %}
+
 ### Add query parameters in the AMP SDK
+
+To deep link to specific content in your app, you can add query parameters to your Branch link within the `amp-iframe`. Here is what the `amp-iframe` looks like without any query parameters:
+
+{% highlight html %}
+<amp-iframe class="branch-amp-journey-inner {{do_not_display}}" layout="fixed-height" height="72px" resizable src="https://DOMAIN-HERE/branch-amp-journeys?branch_key=BRANCH_KEY_HERE&__aj_cid={{__aj_cid}}&__aj_source_url={{__aj_source_url}}&__aj_canonical_url={{__aj_canonical_url}}&_branch_view_id={{_branch_view_id}}&__aj_v=1.0.0" sandbox="allow-scripts allow-top-navigation allow-same-origin" frameborder="0"><div overflow></div></amp-iframe>
+{% endhighlight %}
+
+If your deep linking keys were **productId** and **category**, for example, you would add `&productId=1234&category=shoes` to your `amp-iframe` like this:
+
+{% highlight html %}
+<amp-iframe class="branch-amp-journey-inner {{do_not_display}}" layout="fixed-height" height="72px" resizable src="https://DOMAIN-HERE/branch-amp-journeys?branch_key=BRANCH_KEY_HERE&__aj_cid={{__aj_cid}}&__aj_source_url={{__aj_source_url}}&__aj_canonical_url={{__aj_canonical_url}}&_branch_view_id={{_branch_view_id}}&__aj_v=1.0.0&productId=1234&category=shoes" sandbox="allow-scripts allow-top-navigation allow-same-origin" frameborder="0"><div overflow></div></amp-iframe>
+{% endhighlight %}
+
+If you are generating AMP pages programmatically, it makes sense to generate these keys as query params at the same time.
 
 ### Add deep link data in the Journeys dashboard
 
+You can also add deep link data to a Journey in the dashboard. In the **Customize Template** screen, click the button and add your key:value pairs in the deep link data fields. For example if your deep linking key was **productId**:
+
+{% image src='/img/pages/features/journeys/amp-deep-link-data.png' center 3-quarters alt='Add rule' %}
+
 ## AMP-specific restrictions
 
-Because javascript is limited on AMP and cookies are restricted on both AMP and iOS, AMP Journeys does not offer 100% of the functionality that standard Journeys does. The following Journeys features are affected:
+Because javascript is limited on AMP and cookies are restricted on both AMP and iOS, AMP Journeys does not support all of standard Journeys functionality. The following Journeys features are affected:
 
 * Event-based audience rules work within AMP only or after a Branch link click on an AMP page. [Read more](#audience-rule-limitations).
 * Only templates on the top of the page and equal to 76px in height show on AMP. [Read more](#customization-limitations).
