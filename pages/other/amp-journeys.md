@@ -6,14 +6,13 @@ page_title: Journeys App Banner Platform
 description: A complete guide to using the Journeys tool to drive high value, retained users to your app.
 keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Apple Universal Links, Facebook App Links, AppLinks, Deepviews, Deep views, Smart Banner, App Download Banner, Banner, Interstitial, Download Interstitial
 hide_platform_selector: true
-hide_contents: true
-hide_from_google_search: true
+hide_section_selector: true
+exclude_from_google_search: true
 sections:
 - amp
 contents:
   number:
     - amp
-alias: [ /features/journeys/, /features/journeys/overview/, /features/journeys/guide/, /features/journeys/advanced/, /features/journeys/examples/ ]
 ---
 
 {% if page.amp %}
@@ -22,11 +21,9 @@ alias: [ /features/journeys/, /features/journeys/overview/, /features/journeys/g
 
 AMP pages by design make it difficult for users to go anywhere except back to Google search, and difficult for you to convert users to your website or your app. With AMP-compatible Journeys, you can convert mobile web traffic from Google search results to your app and take advantage of Google’s prioritization of AMP pages. Select Journeys templates can be shown on your AMP-compatible website.
 
-[image]
-
 {% prerequisite %}
 
-- To be prioritized in mobile search results, your webpage must be [AMP](https://www.ampproject.org/docs/){:target="_blank"}-compatible. If you do not want to build an AMP-compatible website, consider using [AMP Deepviews](#) for Google search instead.
+- To be prioritized in mobile search results, your webpage must be [AMP](https://www.ampproject.org/docs/){:target="_blank"}-compatible.
 
 {% endprerequisite %}
 

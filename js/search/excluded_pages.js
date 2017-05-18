@@ -6,7 +6,8 @@ var excludedPages = [
     'creating-links-in-apps',
     'creating-links-in-other-ways',
     'exacttarget',
-    'search'
+    'search',
+    'amp-journeys'
 ];
 
 module.exports = excludedPages;
