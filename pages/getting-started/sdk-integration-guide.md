@@ -451,6 +451,17 @@ Branch opens your app by using its URI scheme (`yourapp://`), which should be un
 </intent-filter>
 {% endhighlight %}
 
+{% caution %}
+To ensure proper deep linking from other apps such as Facebook, this Activity must be launched in `singleTask` mode. This is done in the Activity definition as so:
+
+{% highlight xml %}
+<activity
+    android:name="com.yourapp.SplashActivity"
+    android:label="@string/app_name"
+    android:launchMode="singleTask">
+{% endhighlight %}
+{% endcaution %}
+
 {% if page.android or page.react %}
 ### Enable Auto Session Management
 
@@ -1213,6 +1224,8 @@ public class MainActivity extends ReactActivity {
 
 ## Handle Incoming Links
 
+{% tabs %}
+{% tab objective-c %}
 1. In Xcode, open your **AppDelegate.m** file.
 1. In the `didFinishLaunchingWithOptions` method, before you initialize your mParticle session, add the following:
 
@@ -1223,7 +1236,23 @@ NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
                            name:mParticleKitDidBecomeActiveNotification
                          object:nil];
 {% endhighlight %}
+{% endtab %}
+{% tab swift %}
+1. In Xcode, open your **AppDelegate.swift** file.
+1. In the `application:didFinishingLaunchingWithOptions:` method, before you initialize your mParticle session, add the following:
 
+{% highlight swift %}
+NotificationCenter.default.addObserver(self, selector: #selector(handleKitDidBecomeActive(_:)), name: Notification.Name.mParticleKitDidBecomeActive, object: nil)
+{% endhighlight %}
+{% endtab %}
+{% endtabs %}
+
+{% caution %}
+This observer must be added _before_ initializing the mParticle session. Failure to do so will cause some deep links to be missed.
+{% endcaution %}
+
+{% tabs %}
+{% tab objective-c %}
 Add the following methods to your **AppDelegate.m** file:
 
 {% highlight objc %}
@@ -1274,6 +1303,58 @@ Add the following methods to your **AppDelegate.m** file:
     }];
 }
 {% endhighlight %}
+{% endtab %}
+{% tab swift %}
+Add the following methods to your **AppDelegate.swift** file:
+
+{% highlight swift %}
+func handleKitDidBecomeActive(_ notification: Notification) {
+    guard let kitNumber = notification.userInfo?[mParticleKitInstanceKey] as? NSNumber else { return }
+    guard let kitInstance = MPKitInstance(rawValue: kitNumber.uintValue) else { return }
+
+    switch kitInstance {
+        case .branchMetrics:
+            checkForDeeplink()
+        default:
+            break
+    }
+}
+
+func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
+    checkForDeeplink()
+    return true
+}
+
+func checkForDeeplink() {
+    MParticle.sharedInstance().checkForDeferredDeepLink { linkInfo, error in
+        // A few typical scenarios where this block would be invoked:
+        //
+        // (1) Base case:
+        //     - User does not tap on a link, and then opens the app (either after a fresh install or not)
+        //     - This block will be invoked with Branch Metrics' response indicating that this user did not tap on a link
+        //
+        // (2) Deferred deep link:
+        //     - User without the app installed taps on a link
+        //     - User is redirected from Branch Metrics to the App Store and installs the app
+        //     - User opens the app
+        //     - This block will be invoked with Branch Metrics' response containing the details of the link
+        //
+        // (3) Deep link with app installed:
+        //     - User with the app already installed taps on a link
+        //     - Application opens via openUrl/continueUserActivity, mParticle forwards launch options etc to Branch
+        //     - This block will be invoked with Branch Metrics' response containing the details of the link
+        //
+        // If the user navigates away from the app without killing it, this block could be invoked several times:
+        // once for the initial launch, and then again each time the user taps on a link to re-open the app.
+
+        guard let linkInfo = linkInfo else { return }
+
+        print("params:" + linkInfo)
+    }
+}
+{% endhighlight %}
+{% endtab %}
+{% endtabs %}
 
 {% endif %}
 <!-- mParticle - iOS -->

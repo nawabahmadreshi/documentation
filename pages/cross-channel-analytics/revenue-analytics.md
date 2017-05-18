@@ -11,7 +11,7 @@ platforms:
 - ios
 - android
 - web
-alias: [ /features/revenue-analytics/overview/, /features/revenue-analytics/overview/, /features/revenue-analytics/guide/ios/, /features/revenue-analytics/guide/android/, /features/revenue-analytics/guide/web/, /features/revenue-analytics/advanced/ios/, /features/revenue-analytics/advanced/android/, /features/revenue-analytics/advanced/web/ ] 
+alias: [ /features/revenue-analytics/, /features/revenue-analytics/overview/, /features/revenue-analytics/guide/ios/, /features/revenue-analytics/guide/android/, /features/revenue-analytics/guide/web/, /features/revenue-analytics/advanced/ios/, /features/revenue-analytics/advanced/android/, /features/revenue-analytics/advanced/web/ ] 
 ---
 
 {% if page.overview %}
