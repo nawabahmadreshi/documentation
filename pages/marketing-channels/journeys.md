@@ -249,8 +249,8 @@ For more detailed Journeys prioritization questions, visit our [Advanced section
 Journeys map to [standard Branch analytics labels](/getting-started/configuring-links/#analytics-labels):
 
 - All Journeys: `feature` = `journeys`
-- Each Journey:	`campaign` = `[Journey Name]`
-- Individual Templates:	`tags` = `[Template Name]` (+ any additional tags you specify during configuration)
+- Each Journey: `campaign` = `[Journey Name]`
+- Individual Templates: `tags` = `[Template Name]` (+ any additional tags you specify during configuration)
 
 You can access your Journey’s performance by selecting **View Performance** from the actions menu in the Journeys Manager.
 
