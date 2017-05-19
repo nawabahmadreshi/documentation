@@ -19,7 +19,7 @@ Branch has made it incredibly easy to start using your basic Branch links in you
 
 {% image src='/img/pages/features/android-instant-apps/android_instant_apps.png' full center alt='instant app diagram' %}
 
-**Note:** This guide is not about how to configure your Android app to be an Instant App. Please see [Google's documentation for detailed instructions](https://developers.google.com/android/instant-apps/) on how to do this. Come back to this guide when you're ready to enable Branch.
+**Note:** This guide is not about how to configure your Android app to be an Instant App. Please see [Google's documentation for detailed instructions](https://developer.android.com/topic/instant-apps/index.html) on how to do this. Come back to this guide when you're ready to enable Branch.
 
 ## Why use Branch for your Instant Apps
 
