@@ -6,9 +6,12 @@ page_title: "Deep Linking and Attributing your Android Instant App"
 description: A guide to enable Branch links to your Android Instant App, in addition to deferred deep linking to your full Android app.
 hide_platform_selector: true
 sections:
+- overview
 - guide
 alias: [ /features/android-instant-apps/, /features/android-instant-apps/guide/, ]
 ---
+
+{% if page.overview %}
 
 At the 2017 Google IO, Google launched the public version of Instant Apps for developers to adopt and build on. Instant Apps are a way to load a partial section (or `split` as Google refers to them), without the user having to visit the Play Store and install your app. In effect, it's instant access to your native app. If you have been using a website as a fallback when your full Android app is not installed, an Instant App is an alternative. You'll have to choose between mobile web and your Instant App on Android so make sure you plan out your integration!
 
@@ -30,11 +33,15 @@ Here's a list of the potential use cases for Branch links and Instant Apps:
 4. You can use Branch links to deferred deep link from the Android Instant App to the full Android App. You'll likely build a feature that pushes users from the Instant App to the full Android app, and Branch can do its magic on this transition.
 5. Branch can measure and attribute `clicks`, `installs` and custom conversion events inside your full native Android App for users who were referred from an Instant App, showing the conversion from click -> Instant App -> Full App on the dashboard.
 
+{% getstarted %}{% endgetstarted %}
+
+{% elsif page.guide %}
+
 ## Integrating Branch for your Instant App
 
 So you're convinced. Let's get started! If at any time, you need a real example, you can check out a [full demo application](https://github.com/BranchMetrics/Branch-Monster-Factory-Example-Android-Instant-Apps) on our Github. We've replicated our [original Android demo application](https://github.com/BranchMetrics/Branch-Example-Deep-Linking-Branchster-Android) and modified it to support Android Instant Apps.
 
-**1. Initialize the Branch SDK**
+## Initialize the Branch SDK
 
 Head to your _core library project_, where your Application class is defined and drop in the snippet of code to the onCreate() method as follows. If you plan on deep linking from your Android Instant App to your full Android app after its installed, you'll need to add the line `enablePlayStoreReferrer`. This adds a delay to the initialization to wait for the Google Play Referrer, which can take up to a second.
 
@@ -50,7 +57,7 @@ public void onCreate() {
 }
 {% endhighlight %}
 
-**2. Add your Branch keys and register for Install Referrer**
+## Add your Branch keys and register for Install Referrer
 
 Instant Apps can be rather confusing as there are many different manifests, but you want to find the Manifest that contains your `application` tags. Make sure your Application class name is defined here, and then specify the Branch keys _inside_ the `application` element.
 
@@ -74,7 +81,7 @@ Instant Apps can be rather confusing as there are many different manifests, but 
 </application>
 {% endhighlight %}
 
-**3. Configure your Branch links as Android App Links**
+## Configure your Branch links as Android App Links
 
 This guide presumes that you've already configured Branch for Android App Links in the past. If you haven't configured your full native app to use Branch as Android App Links, [please complete this guide]({{base.url}}/getting-started/universal-app-links/guide/android/) which will correctly configure the dashboard and manifest.
 
@@ -83,7 +90,7 @@ Now, you simply need to edit the above manifest and paste in the following snipp
 {% highlight xml %}
 <application
   ......>
-  
+
   ......
 
   <intent-filter android:autoVerify="true">
@@ -93,11 +100,11 @@ Now, you simply need to edit the above manifest and paste in the following snipp
       <data android:scheme="https" android:host="xxxx.app.link" />
       <data android:scheme="https" android:host="xxxx-alternate.app.link" />
   </intent-filter>
-  
+
 </application>
 {% endhighlight %}
 
-**4. Retrieve Branch deep link data**
+## Retrieve Branch deep link data
 
 Add Branch initSession in Activities which are configured to open from a link click in order to receive the deep link params. This will return the deep link data from the referring link.
 
@@ -113,7 +120,7 @@ protected void onStart() {
 }
 {% endhighlight %}
 
-**5. Configure the deep linking from Instant App to your Full App**
+## Configure the deep linking from Instant App to your Full App
 
 Now, the user has arrived in your Instant App and you're ready to convert them to install your full native app. Don't worry, Branch as got your covered! We have overridden the default `showInstallPrompt` with a method that auto configures the Google Play prompt with all of the deep link data you need to carry context through install. Additionally, we can provide you the full set of attribution on how many users conver through this prompt.
 
@@ -124,7 +131,7 @@ Branch SDK provides convenient methods to check for app types and full app conve
 This convenience methods checks whether the current version of app running is Instant App or Full Android App to allow you convenience
 
 - `Branch#showInstallPrompt()`
-      
+
 This methods shows an install prompt for the full Android app, allowing you an easy way to pass Branch referring deep data to the full app through the install process. Similar to how deferred deep linking works for Branch normally, the full app will receive the deep link params in the handle callback.
 
 The below example shows how to create a custom Branch Universal Object, the associate it with the installation prompt that will be passed through to your full native Android app after the user installs.
@@ -151,6 +158,8 @@ if (Branch.isInstantApp(this)) {
 }
 {% endhighlight %}
 
-**6. Test Instant Apps**
+## Test Instant Apps
 
 You can create Branch links in [a million different ways]({{base.url}}/getting-started/creating-links/overview/), but to quickly test your Branch integration, head to the [quick links section](https://dashboard.branch.io/quick-links) on our dashboard and create a link. If you configured deep linking via a specific key in the deep link data, make sure that you add it to your quick link to properly simulate a real live Branch link.
+
+{% endif %}
