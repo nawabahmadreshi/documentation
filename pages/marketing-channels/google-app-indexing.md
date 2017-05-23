@@ -223,7 +223,7 @@ If you'd like to view all associated customizations with the Branch Universal Ob
 
 ## Enable App Indexing for Google on Branch
 
-If you have completed the prerequisites, you've done the hard part! Now you should go enable automatic sitemap generation on the [Settings](https://dashboard.branch.io/#/settings) page of the Branch Dashboard. Look for the option `Automatic sitemap generation (for Google App Indexing)`.
+If you have completed the prerequisites, you've done the hard part! Now you should go enable automatic sitemap generation on the [Organic Search](https://dashboard.branch.io/search) page of the Branch Dashboard. Check the `Automatic sitemap generation` checkbox.
 
 {% image src="/img/pages/features/google-app-indexing/db-settings.png" 2-thirds center alt="Settings page" %}
 
@@ -231,7 +231,7 @@ Once you enable this, your app will be included in our nightly job to automatica
 
 ## When does Google scrape?
 
-After you've enabled App Indexing, how can you know that Google has even seen your content? We've created a graph, which is currently located at the bottom of the Dashboard's [Summary](https://dashboard.branch.io/#) page. This graph lists four pieces of information:
+After you've enabled App Indexing, how can you know that Google has even seen your content? We've created a graph, which is currently located at the bottom of the Dashboard's [Summary](https://dashboard.branch.io) page. This graph lists four pieces of information:
 
 1. The date the sitemap files were last generated (and included at least one of your links)
 2. The total number of links to unique pieces content that Branch has included in sitemaps
@@ -321,7 +321,7 @@ We have read on Google's official blog that Googlebot renders javascript before 
 
 Curious as to how well your content is performing -- how many clicks and installs it is driving?
 
-We automatically tag clicks on these links as coming from Google App Indexing. In the Click Flow section of our Dashboard's [Summary](http://dashboard.dev2.branch.io/#) page, you can filter for these clicks. Just select either `channel: google_search` or `feature: google_app_index`.
+We automatically tag clicks on these links as coming from Google App Indexing. In the Click Flow section of our Dashboard's [Summary](http://dashboard.branch.io/#) page, you can filter for these clicks. Just select either `channel: google_search` or `feature: google_app_index`.
 
 ## For Branch hosting: Hiding content from the index
 

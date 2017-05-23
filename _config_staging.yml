@@ -1,0 +1,34 @@
+# Site settings
+title: Branch Documentation
+name: Branch Metrics
+email: info@branchmetrics.io
+description: "Helping apps grow through seamless referrals, sharing and deep linking across install."
+url: "http://dev.staging.branch.io.s3-website-us-west-1.amazonaws.com"
+baseurl: "http://dev.staging.branch.io.s3-website-us-west-1.amazonaws.com"
+environment: production
+permalink: pretty
+markdown: kramdown
+highlighter: pygments
+dashboard_url: "https://dashboard.branch.io"
+branch_github_url: "https://github.com/BranchMetrics"
+safe: false
+
+exclude:
+- vendor
+- .gitignore
+- README.md
+- ingredients
+- js/components
+- js/stores
+- js/actions
+- js/support
+- node_modules
+- package.json
+- node.txt
+- Gemfile
+- Gemfile.lock
+- circle.yml
+- s3_website.yml
+
+sass:
+    sass_dir: css
