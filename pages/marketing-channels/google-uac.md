@@ -89,11 +89,11 @@ You can use this configuration section to specify custom link parameters that wi
 
 Now that you've created your Branch link, we need to associate your conversion postback with the correct link. As a result, you can have 1 link per platform conversion.
 
-**1)** Grab the Branch link off of the dashboard and append `?debug=true` to the end of it. For example:{% highlight sh %}https://bnc.lt/ALMc/acIgIP2Jcx{% endhighlight %} would become {% highlight sh %}https://bnc.lt/ALMc/acIgIP2Jcx?debug=true{% endhighlight %}
+**1)** Grab the Branch link off of the dashboard and append `?debug=true` to the end of it. For example:{% highlight sh %}https://branchster.app.link/znlg7dlCJD{% endhighlight %} would become {% highlight sh %}https://branchster.app.link/znlg7dlCJD?debug=true{% endhighlight %}
 
 **2)** Paste the link with `?debug=true` into your desktop browser’s address bar.
 
-**3)** You can read the link ID from the redirected URL in the browser address bar, as well as the “~id” parameter in the “Data” section on the page. In example below, `242272926307502477` is the link ID.{% highlight sh %}https://dashboard.branch.io/#/link-debug/242272926307502477{% endhighlight %}
+**3)** You can read the link ID from the redirected URL in the browser address bar, as well as the “~id” parameter in the “Data” section on the page. In example below, `400316647170355019` is the link ID.{% highlight sh %}https://dashboard.branch.io/link-debug/400316647170355019{% endhighlight %}
 
 **4)** Head back to your [Adwords dashboard](https://adwords.google.com/cm/CampaignMgmt){:target="_blank"}.
 
@@ -101,7 +101,7 @@ Now that you've created your Branch link, we need to associate your conversion p
 
 **6)** Find you previous Branch conversion(s) and click `Edit Settings`
 
-**7)** Modify the `Postback URL` to append `&link_identifier=link-<link ID from previous steps>`. For example, if you read `242272926307502477` from step 3, you would change your `Postback URL` to include the following query parameter:{% highlight sh %}http://branch.io?adid={adid}&lat={lat}&click_url={click_url}&link_identifier=link-242272926307502477{% endhighlight %}
+**7)** Modify the `Postback URL` to append `&link_identifier=link-<link ID from previous steps>`. For example, if you read `400316647170355019` from step 3, you would change your `Postback URL` to include the following query parameter:{% highlight sh %}http://branch.io?adid={adid}&lat={lat}&click_url={click_url}&link_identifier=link-400316647170355019{% endhighlight %}
 
 **8)** Click `Save`
 
@@ -109,11 +109,11 @@ You're all good to go! Just create your Universal App Campaign and you'll see th
 
 ## View your data using the Branch dashboard
 
-The [Marketing page](https://dashboard.branch.io/#/marketing) on the Branch dashboard shows the performance of each individual link. You can find your link listed in the table with a quick summary of the _total_ clicks and installs. 
+The [Quick Links page](https://dashboard.branch.io/quick-links) on the Branch dashboard shows the performance of each individual link. You can find your link listed in the table with a quick summary of the _total_ clicks and installs. 
 
 {% image src='/img/pages/features/google-search-ads/marketing_link_row.png' full center alt='Facebook Example Ad' %}
 
-To view more detailed stats, click the _small button that looks like a bar chart_ on the far right. Note that these stats are **limited to the date range** at the top. You can expand the range if you'd like.
+To view more detailed stats, click the _small button_ in the **Actions** column and select `View stats`. Note that these stats are **limited to the date range** at the top. You can expand the range if you'd like.
 
 {% image src='/img/pages/features/google-search-ads/click_flow_analytics.png' full center alt='Facebook Example Ad' %}
 
