@@ -126,7 +126,7 @@ You can also add deep link data to a Journey in the dashboard. In the **Customiz
 Because javascript is limited on AMP and cookies are restricted on both AMP and iOS, AMP Journeys does not support all of standard Journeys functionality. The following Journeys features are affected:
 
 * Event-based audience rules work within AMP only or after a Branch link click on an AMP page. [Read more](#audience-rule-limitations).
-* Only templates on the top of the page and equal to 76px in height show on AMP. [Read more](#customization-limitations).
+* Only templates on the bottom of the page and equal to 76px in height show on AMP. [Read more](#customization-limitations).
 * [Dismiss period](/marketing-channels/journeys/guide/#dismiss) is not supported - after dismiss, Journeys will show again during the next AMP session.
 * [Client-side javascript controls](/marketing-channels/journeys/guide/#clientside-javascript-journeys-controls) are not supported.
 * Auto-opening the app with open_app: true is not supported.
