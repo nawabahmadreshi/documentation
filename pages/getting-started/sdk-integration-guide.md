@@ -820,7 +820,7 @@ Finally, add these two new methods to your **AppDelegate.m** file. The first res
 
 {% highlight objc %}
 // Respond to URI scheme links
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
     // pass the url to the handle deep link call
     [[Branch getInstance]
         application:application
@@ -847,7 +847,7 @@ Finally, add these two new methods to your **AppDelegate.swift** file. The first
 
 {% highlight swift %}
 // Respond to URI scheme links
-func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
     // pass the url to the handle deep link call
     Branch.getInstance().application(application,
         open: url,
