@@ -135,6 +135,7 @@ Branch.createBranchUniversalObject(properties).then(function(res) {
 
 BranchUniversalObject universalObject = new BranchUniversalObject();
 universalObject.canonicalIdentifier = "content/12345";
+universalObject.canonicalUrl = "http://mypage.com/content/12345"; // optional
 universalObject.title = "My Content Title";
 universalObject.contentDescription = "My Content Description";
 universalObject.imageUrl = "https://example.com/mycontent-12345.png";
@@ -149,6 +150,7 @@ universalObject.metadata.Add("user_id", "6789");
 {% highlight c# %}
 BranchUniversalObject universalObject = new BranchUniversalObject();
 universalObject.canonicalIdentifier = "content/12345";
+universalObject.canonicalUrl = "http://mypage.com/content/12345"; // optional
 universalObject.title = "My Content Title";
 universalObject.contentDescription = "My Content Description";
 universalObject.imageUrl = "https://example.com/mycontent-12345.png";
@@ -255,6 +257,7 @@ Some of these parameters automatically [populate the link parameters]({{base.url
 | Parameter | Usage | Link Parameter
 | --- | --- | ---
 | canonicalIdentifier | This is the unique identifier for content that will help Branch dedupe across many instances of the same thing. Suitable options: a website with pathing, or a database with identifiers for entities | $canonical_identifier
+| canonicalUrl | | The canonical URL, used for SEO purposes | `$canonical_url`
 | title | The name for the piece of content | $og_title
 | contentDescription | A description for the content | $og_description
 | contentImageUrl | The image URL for the content | $og_image_url
@@ -268,7 +271,7 @@ Some of these parameters automatically [populate the link parameters]({{base.url
 | Parameter | Usage | Link Parameter
 | --- | --- | ---
 | canonicalIdentifier | This is the unique identifier for content that will help Branch dedupe across many instances of the same thing. Suitable options: a website with pathing, or a database with identifiers for entities | $canonical_identifier
-| canonicalUrl | The canonical URL, used for SEO purposes
+| canonicalUrl | The canonical URL, used for SEO purposes | `$canonical_url`
 | title | The name for the piece of content | $og_title
 | contentDescription | A description for the content | $og_description
 | imageUrl | The image URL for the content | $og_image_url
