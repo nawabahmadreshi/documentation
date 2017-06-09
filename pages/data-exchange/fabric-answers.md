@@ -1,4 +1,4 @@
----
+ ---
 type: recipe
 directory: data-exchange
 title: Fabric Answers
@@ -14,6 +14,7 @@ alias: [ /third-party-integrations/fabric-answers/guide/ ]
 
 {% prerequisite %}
 - This guide requires you to have already [integrated the Branch SDK]({{base.url}}/getting-started/sdk-integration-guide) into your app.
+- Note that this integration only works on the core Android and iOS SDKs, not the 3rd party platforms like Unity, Xamarin, etc. You must call the Answers SDK even tracking methods directly send the data.
 {% endprerequisite %}
 
 ## How it works
