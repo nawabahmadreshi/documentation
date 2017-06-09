@@ -956,7 +956,7 @@ Now whenever your app launches from a Branch link that has the `product_picture`
 | ---: | --- |
 | **BNCViewControllerOptionShow** | This option pushes view controller onto the navigation stack in a similar way as the showViewController
 | **BNCViewControllerOptionPush** | This option pushes view controller onto the navigation stack in a similar way as the pushViewController
-| **BNCViewControllerOptionPresent** | This option presents vc onto the vc in a similar way as the presentViewController
+| **BNCViewControllerOptionPresent** | This option presents view controller onto the root view controller of window in a similar way as the presentViewController
 
 {% protip title="Note" %}
 
