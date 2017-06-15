@@ -300,7 +300,7 @@ Note that `click.device` this will only be available or Universal/App Links wher
 
 | Key | Description
 | --- | ---
-| click.link_data.~id | ID of the link
+| click.link_data.~id | ID of the link (0 for dynamic and 3P links)
 | click.link_data.~creation_source | How the link was created, e.g. iOS SDK, API, etc.
 | click.link_data.~tags | Tags of the link
 | click.link_data.~campaign | Campaign of the link
@@ -361,7 +361,7 @@ Except for `identity.id`, these will not be populated if the user installed your
 
 | Key | Description
 | --- | ---
-| identity.link_data.~id | ID of the link
+| identity.link_data.~id | ID of the link (0 for dynamic and 3P links)
 | identity.link_data.~creation_source | How the link was created, e.g. iOS SDK, API, etc.
 | identity.link_data.~tags | Tags of the link
 | identity.link_data.~campaign | Campaign of the link
@@ -393,7 +393,7 @@ The `session.link_data` keys refer to the link that initiated the session.
 
 | Key | Description
 | --- | ---
-| session.link_data.~id | ID of the link
+| session.link_data.~id | ID of the link (0 for dynamic and 3P links)
 | session.link_data.~creation_source | How the link was created, e.g. iOS SDK, API, etc.
 | session.link_data.~tags | Tags of the link
 | session.link_data.~campaign | Campaign of the link
