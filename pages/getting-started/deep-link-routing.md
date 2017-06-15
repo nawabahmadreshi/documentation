@@ -385,7 +385,7 @@ In addition to any custom key/value pairs specified in the link data dictionary,
 | **~stage** | The stage, specified at link creation time
 | **~creation_source** | Where the link was created ('API', 'Dashboard', 'SDK', 'iOS SDK', 'Android SDK', or 'Web SDK')
 | **~referring_link** | The referring link that drove the install/open, if present
-| **~id** | Automatically generated 18 digit ID number for the link that drove the install/open, if present
+| **~id** | Automatically generated 18 digit ID number for the link that drove the install/open, if present (0 for dynamic and 3P links)
 | **+match_guaranteed** | True or false as to whether the match was made with 100% accuracy
 | **+referrer** | The referrer for the link click, if a link was clicked
 | **+phone_number** | The phone number of the user, if the user texted himself/herself the app
