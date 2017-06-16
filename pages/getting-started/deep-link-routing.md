@@ -935,7 +935,7 @@ Remove it, and insert this snippet in the same place:
 {% highlight objc %}
 ExampleDeepLinkingController *controller = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"DeepLinkingController"];
 
-[branch registerDeepLinkController:controller forKey:@"product_picture" withOption:BNCViewControllerOptionShow];
+[branch registerDeepLinkController:controller forKey:@"product_picture" withPresentation:BNCViewControllerOptionShow];
 [branch initSessionWithLaunchOptions:launchOptions automaticallyDisplayDeepLinkController:YES];
 {% endhighlight %}
 {% endtab %}
@@ -944,7 +944,7 @@ ExampleDeepLinkingController *controller = [[UIStoryboard storyboardWithName:@"M
 {% highlight swift %}
 var controller = UIStoryboard.init("Main", NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("DeepLinkingController")
 
-branch.registerDeepLinkController(controller, forKey: "product_picture", with: .show)
+branch.registerDeepLinkController(controller, forKey: "product_picture", withPresentation: .optionShow)
 branch.initSession(launchOptions: launchOptions, automaticallyDisplayDeepLinkController: true)
 {% endhighlight %}
 {% endtab %}
