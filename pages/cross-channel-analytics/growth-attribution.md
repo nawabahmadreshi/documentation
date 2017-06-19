@@ -240,5 +240,5 @@ The [Influencers page](https://dashboard.branch.io/#/referrals/influencers){:tar
 {% image src='/img/pages/getting-started/growth-attribution/influencers.png' full center alt='analytics filtering options' %}
 
 {% protip %}
-You must [identify your users](#setting-identities) in order for the `User ID` column to be populated. The `Branch ID` refers to the internal Branch ID associated with that user. It is set automatically in the SDK.
+You must [identify your users](/cross-channel-analytics/growth-attribution/guide/ios/#setting-identities) in order for the `User ID` column to be populated. The `Branch ID` refers to the internal Branch ID associated with that user. It is set automatically in the SDK.
 {% endprotip %}
