@@ -80,10 +80,6 @@ On the **Validate & Test** step, you will see AMP-specific messages if you have 
 
 {% image src='/img/pages/features/journeys/amp-validation.png' center 2-thirds alt='AMP validation messages' %}
 
-### The AMP SDK is not integrated
-
-If Branch has not detected a click from your AMP page powered by the Branch AMP SDK, you will see an error on the **Validate & Test** step. [See what you need to add](#add-the-branch-amp-sdk-to-your-site).
-
 ### The selected template is not AMP-compatible
 
 If Branch has detected that you have selected a template that is not compatible with AMP, you will see an error on the **Validate & Test** step. [See which templates are currently compatible](#customization-limitations).
@@ -117,15 +113,13 @@ If you are generating AMP pages programmatically, it makes sense to generate the
 
 #### Dynamic layout customization
 
-You can customize the appearance of a Journey dynamically using query parameters on your `amp-iframe` link.
+You can customize the appearance of a Journey dynamically using query parameters on your `amp-iframe` link. These are the fields currently supported for dynamic layout customization on AMP:
 
-| **Link Data Key** | **Value** | **Example Value** |
+| **Link Data Key** | **Value** | **Example** |
 | ---: | --- | --- |
 | `$journeys_button_get_has_app` | The call to action button when the app is currently installed | `$journeys_button_get_has_app=Download` |
 | `$journeys_button_get_no_app` | The call to action button when the app is **not** currently installed | `$journeys_button_get_no_app=Read` |
-| `$journeys_description` | This is the description or subtitle in the frame | $journeys_description=Continue+reading+in+the+app. |
-
-Note that not all template support all override keys. For example, the floating button does not support title, description or icon image url. If a template is to be rendered and the key you've specified does not exist, we'll simply ignore it while rendering the template. 
+| `$journeys_description` | This is the description or subtitle in the frame | `$journeys_description=Continue+reading+in+the+app.` |
 
 ### Add deep link data in the Journeys dashboard
 
