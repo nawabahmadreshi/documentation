@@ -32,7 +32,7 @@ AMP pages by design make it difficult for users to go anywhere except back to Go
 The AMP SDK consists of 2-3 snippets that you can insert into your AMP page.
 
 Add the following snippet between the AMP page’s `<head></head>` tags:
-   {% highlight html %}<style amp-custom>#branch-amp-journey{bottom:0;width:100%;height:77px;position:fixed;}.hideme{width:100%;height:77px;left:24px;background-color:none;position:fixed;}.close{width:24px;height:100%;left:0;z-index:10000;background-color:none;position:fixed;}.branch-amp-journey-inner{position:relative;width:100%;height:100%;z-index:9999;}.donotdisplay{display:none;}</style>{% endhighlight %}
+   {% highlight html %}<style amp-custom>#branch-amp-journey{bottom:0;left:0;width:100%;height:77px;position:fixed;}.hideme{width:100%;height:77px;left:24px;background-color:none;position:fixed;}.close{width:24px;height:100%;left:0;z-index:10000;background-color:none;position:fixed;}.branch-amp-journey-inner{position:relative;width:100%;height:100%;z-index:9999;}.donotdisplay{display:none;}</style>{% endhighlight %}
 
 Modify the following snippet to include your domain instead of **`DOMAIN_HERE`** and your Branch key instead of **`BRANCH_KEY_HERE`** - in both the `amp-list` tag and the `amp-iframe` tag. You can find these in [Link Settings](https://dashboard.branch.io/link-settings){:target="_blank"} and [Account Settings](https://dashboard.branch.io/account-settings){:target="_blank"}.
    {% highlight html %}{% raw %}<amp-list tabindex=0 role="" on="tap:branch-amp-journey.hide" id="branch-amp-journey" src="https://DOMAIN-HERE/branch-amp-journeys-pre?branch_key=BRANCH_KEY_HERE&__aj_cid=CLIENT_ID(_s)&__amp_viewer=VIEWER&__aj_source_url=SOURCE_URL&__aj_canonical_url=CANONICAL_URL&__aj_v=1.0.0" layout=fixed-height height="77px"><template type="amp-mustache" id="journey-template"><a class="close" on="tap:branch-amp-journey.hide"></a><div class="hideme" ></div><amp-iframe class="branch-amp-journey-inner {{do_not_display}}" layout="fixed-height" height="77px" resizable src="https://DOMAIN-HERE/branch-amp-journeys?branch_key=BRANCH_KEY_HERE&__aj_cid={{__aj_cid}}&__aj_source_url={{__aj_source_url}}&__aj_canonical_url={{__aj_canonical_url}}&_audience_rule_id={{_audience_rule_id}}&_branch_view_id={{_branch_view_id}}&__aj_v=1.0.0" sandbox="allow-scripts allow-top-navigation allow-same-origin" frameborder="0"><div overflow></div></amp-iframe></template></amp-list>{% endraw %}{% endhighlight %}
@@ -114,6 +114,18 @@ If your deep linking keys were **productId** and **category**, for example, you 
 {% endraw %}{% endhighlight %}
 
 If you are generating AMP pages programmatically, it makes sense to generate these keys as query params at the same time.
+
+#### Dynamic layout customization
+
+You can customize the appearance of a Journey dynamically using query parameters on your `amp-iframe` link.
+
+| **Link Data Key** | **Value** | **Example Value** |
+| ---: | --- | --- |
+| `$journeys_button_get_has_app` | The call to action button when the app is currently installed | `$journeys_button_get_has_app=Download` |
+| `$journeys_button_get_no_app` | The call to action button when the app is **not** currently installed | `$journeys_button_get_no_app=Read` |
+| `$journeys_description` | This is the description or subtitle in the frame | $journeys_description=Continue+reading+in+the+app. |
+
+Note that not all template support all override keys. For example, the floating button does not support title, description or icon image url. If a template is to be rendered and the key you've specified does not exist, we'll simply ignore it while rendering the template. 
 
 ### Add deep link data in the Journeys dashboard
 
