@@ -526,6 +526,27 @@ Your `Activity` also has an `onCreate()` method. Be sure you do not mix the two 
 - [I don't use a custom application class]({{base.url}}/getting-started/sdk-integration-guide/advanced/android#using-the-default-application-class){:target="_blank"}
 - [I need to support pre-15 Android]({{base.url}}/getting-started/sdk-integration-guide/advanced/android#supporting-pre-15-android){:target="_blank"}
 {% endprotip %}
+
+#### Optimize Performance
+
+By default, Branch will delay the *install* call only for up to 1.5 seconds. We delay the install call in order to capture the install referrer string passed through Google Play, which increases attribution and deferred deep linking accuracy. We do not delay any other call, and the install call only occurs the first time a user opens your app.
+
+If we receive the referrer string before 1.5 seconds, we will immediately fire the call, meaning this delay is up to 1.5 seconds, but not guaranteed to take that long.
+
+If you'd like to optimize the first install call, simply paste the following code in your Application class, and we will not delay the first install call.
+
+{% highlight java %}
+public final class CustomApplicationClass {
+  @Override
+  public void onCreate() {
+      super.onCreate();
+      // initialize the Branch object
+      Branch.setPlayStoreReferrerCheckTimeout(0);
+      Branch.getAutoInstance(this);
+  }
+}
+{% endhighlight %}
+
 {% endif %}
 
 {% endif %}
