@@ -112,6 +112,18 @@ With extensive use, the Android SDK footprint is **187 kb**.
 
 Add `compile 'io.branch.sdk.android:library:2.+'` to the dependencies section of your `build.gradle` file.
 
+### Add Google Play Services
+
+To ensure full measurement and deferred deep linking, include the Google Play Services library in the same `build.gradle` file. Follow these steps to ensure you have added the Google Play Services library.
+
+1. Add `compile 'com.google.android.gms:play-services-ads:9+'` or greater version in your dependencies section.
+1. Add the following line in your Proguard settings:
+
+{% highlight xml %}
+-keep class com.google.android.gms.ads.identifier.** { *; }
+{% endhighlight %}
+
+
 {% protip %}
 You can also find the [source and JAR file here](https://github.com/BranchMetrics/android-branch-deep-linking){:target="_blank"}.
 {% endprotip %}
@@ -1630,7 +1642,7 @@ You do not need to perform these steps if you installed the Branch framework man
 
 {% endif %}
 
-{% if page.android or page.mparticle_android %}
+{% if page.mparticle_android %}
 
 ## Submitting to the Play Store
 
