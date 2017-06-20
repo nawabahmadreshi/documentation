@@ -403,6 +403,36 @@ branch.track('pageview');
 
 **Note:** If a user has closed a Journey in the past, then firing the aforementioned event will not override a user's preference.
 
+### Disable Journeys Animations
+
+You can disable Journeys animations on a page by setting two flags - `disable_entry_animation` and `disable_exit_animation` - when you’re calling either init() or track() with Branch’s Web SDK.
+
+Journeys animations can be disabled in order to reduce the amount of time it takes to load a Journey on a page. They can also be disabled in order to improve Journeys UX on single-page web apps, where Journeys animations can be jarring. When switching between multiple Journeys on a single-page web app, remember to use [setBranchViewData()](https://dev.branch.io/marketing-channels/journeys/guide/#deep-linking-from-the-banner-or-interstitial) to change the link behind the CTA.
+
+To disable animations during initialization, insert `disable_entry_animation` and/or `disable_exit_animation`, with values of `true`, into the options:
+
+{% highlight javascript %}
+branch.init(‘BRANCH_KEY’,
+    {
+        ‘disable_entry_animation’ : true,
+        ‘disable_exit_animation’ : true
+    }
+);
+{% endhighlight %}
+
+To disable animations using track(), insert `disable_entry_animation` and/or `disable_exit_animation`, with values of `true`, into the event metadata:
+
+{% highlight javascript %}
+branch.track(
+    ‘pageview’,
+    {},
+	{
+	    ‘disable_entry_animation’ : true,
+        ‘disable_exit_animation’ : true
+    }
+);
+{% endhighlight %}
+
 ### Listen to Journeys lifecycle events
 
 You can easily listen to Journeys lifecycle events by registering listener functions like so:
