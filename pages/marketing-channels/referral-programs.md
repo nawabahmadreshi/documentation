@@ -23,7 +23,7 @@ alias: [ /features/referral-programs/overview/, /features/referral-programs/over
 
 {% if page.overview %}
 
-Branch allows you reward users with credits, track those credits, and redeem them when appropriate. It is a unit-less currency available to your users without you having to build a system from scratch.
+Branch allows you to reward users with credits, track those credits, and redeem them when appropriate. It is a unit-less currency available to your users without you having to build a system from scratch.
 
 {% getstarted %}{% endgetstarted %}
 
