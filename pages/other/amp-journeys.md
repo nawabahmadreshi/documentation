@@ -17,13 +17,13 @@ contents:
 
 {% if page.amp %}
 
-[Accelerated Mobile Pages (AMP)](https://www.ampproject.org/){:target="_blank"} are a way to build pages that serve static content so that they load in Google search results much faster. Google uses AMP to quickly serve content on mobile devices without users having to click through to a website to view the content, and Google prioritizes AMP pages at the top of mobile search results. 
+[Accelerated Mobile Pages (AMP)](https://www.ampproject.org/){:target="_blank"} are a way to build pages that serve static content so that they load in Google search results much faster. Google uses AMP to quickly serve content on mobile devices without users having to click through to a website to view the content, and AMP pages often appear at the top of mobile search results. 
 
-AMP pages by design make it difficult for users to go anywhere except back to Google search, and difficult for you to convert users to your website or your app. With AMP-compatible Journeys, you can convert mobile web traffic from Google search results to your app and take advantage of Google’s prioritization of AMP pages. Select Journeys templates can be shown on your AMP-compatible website.
+AMP pages by design make it difficult for users to go anywhere except back to Google search, and difficult for you to convert users to your website or your app. With AMP-compatible Journeys, you can convert mobile web traffic from Google search results to your app and take advantage of extra traffic from AMP pages. Select Journeys templates can be shown on your AMP-compatible website.
 
 {% prerequisite %}
 
-- To be prioritized in mobile search results, your webpage must be [AMP](https://www.ampproject.org/docs/){:target="_blank"}-compatible.
+- To be host AMP Journeys and show in Google search as an AMP page, your webpage must be [AMP](https://www.ampproject.org/docs/){:target="_blank"}-compatible.
 
 {% endprerequisite %}
 
@@ -40,6 +40,12 @@ Then add the modified snippet between the `<body></body>` tags of your AMP page,
 
 Finally, if you do not already have the following AMP scripts on your page, add them between the AMP page's `<head></head>` tags:
    {% highlight html %}<script async src="https://cdn.ampproject.org/v0/amp-list-0.1.js" custom-element="amp-list"></script><script async src="https://cdn.ampproject.org/v0/amp-mustache-0.1.js" custom-template="amp-mustache"></script><script async src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js" custom-element="amp-iframe"></script>{% endhighlight %} 
+
+{% protip title="Include canonical URL for SEO and deep linking" %}
+[Google recommends](https://www.ampproject.org/docs/guides/discovery){:target="_blank"} that on your AMP page, you include a reference to the canonical URL of the non-AMP page with the same content. For example, you should include a tag like this in the `<head></head>` section of your AMP page:
+  {% highlight html %}<link rel="canonical" href="https://example.com/article.html">{% endhighlight %}
+This helps make your AMP page discoverable, and likely helps ensure that SEO information is shared between these two pages. Additionally, Branch automatically embeds the canonical URL in the Journey link data, leading to better identification of content and the ability to use this key for deep linking.
+{% endprotip %}
 
 ## Target AMP Web in your audience
 
@@ -60,13 +66,17 @@ Because cookies are restricted on both AMP and iOS, event-based audience rules o
 
 Once a user has clicked a Branch link outside of AMP, event-based audience rules will adhere to the regular web cookie for that user, and will work across AMP and non-AMP web.
 
+### URL-based targeting with AMP
+
+With AMP, Google will serve your page from the Google AMP cache. This means that the URL that serves your AMP page will look something like `https://www-example-com.cdn.ampproject.org/c/www.example.com/amp/doc.html`. For the advanced audience filter **Is viewing a page URL**, you'll want to use your AMP cache URL.
+
 ## Select an AMP-compatible template
 
-Once you have your audience selected, you can configure your templates. Currently, only **Branch Banner Bottom** is supported on AMP because Google requires that banners not show in the top 75% of an AMP page. Over time, Branch will add support for more Journeys templates.
+Once you have your audience selected, you can configure your templates. Currently, only **Branch Standard Banner Bottom** is supported on AMP because Google requires that banners not show in the top 75% of an AMP page. Over time, Branch will add support for more Journeys templates.
 
-When you click **Select Template** from the **Configure Views** step, the **AMP-compatible** view type should already be selected, showing you the Journeys templates that are compatible with AMP:
+When you click **Select Template** from the **Configure Views** step, the **standard bottom banner** view type should already be selected, showing you the Journeys templates that are compatible with AMP:
 
-{% image src='/img/pages/features/journeys/amp-select-template.png' center third alt='AMP-compatible templates' %}
+{% image src='/img/pages/features/journeys/amp-select-template.png' center half alt='AMP-compatible templates' %}
 
 Hover over the template and click **Create**.
 
@@ -127,6 +137,12 @@ You can also add deep link data to a Journey in the dashboard. In the **Customiz
 
 {% image src='/img/pages/features/journeys/amp-deep-link-data.png' center 3-quarters alt='Add rule' %}
 
+## AMP Journeys analytics
+
+Analytics for AMP Journeys works the [same way as for regular Journeys](/marketing-channels/journeys/guide/#visualizing-journeys-performance), in that you can see clicks, opens, installs, and custom events tied to your Journey by clicking **View Performance** from the actions menu for your AMP Journey.
+
+{% image src='/img/pages/features/journeys/view-performance.png' quarter center alt='view performance' %}
+
 ## AMP-specific restrictions
 
 Because javascript is limited on AMP and cookies are restricted on both AMP and iOS, AMP Journeys does not support all of standard Journeys functionality. The following Journeys features are affected:
@@ -136,6 +152,6 @@ Because javascript is limited on AMP and cookies are restricted on both AMP and 
 * [Dismiss period](/marketing-channels/journeys/guide/#dismiss) is not supported - after dismiss, Journeys will show again during the next AMP session.
 * [Client-side javascript controls](/marketing-channels/journeys/guide/#clientside-javascript-journeys-controls) are not supported.
 * Auto-opening the app with open_app: true is not supported.
-* [Deep linking with setBranchBiewData](/marketing-channels/journeys/guide/#deep-linking-from-the-banner-or-interstitial) is not supported. [Learn how](#deep-linking-with-amp) you can deep link to content from AMP pages.
+* [Deep linking with setBranchViewData](/marketing-channels/journeys/guide/#deep-linking-from-the-banner-or-interstitial) is not supported. [Learn how](#deep-linking-with-amp) you can deep link to content from AMP pages.
 
 {% endif %}
