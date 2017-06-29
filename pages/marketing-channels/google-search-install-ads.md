@@ -10,26 +10,28 @@ sections:
 - ios
 - android
 - support
-alias: [ /features/google-search-ads/, /features/google-search-ads/overview/, /features/google-search-ads/guide/, /features/google-search-ads/support/ ]
+alias: [ /features/google-search-install-ads/, /features/google-search-install-ads/overview/, /features/google-search-intall-ads/guide/, /features/google-search-install-ads/support/ ]
 ---
 
 {% if page.overview %}
-If you're running Google AdWords Search Install Campaigns, you'll find everything you need right here.
+If you're running Google AdWords Search Mobile Install Campaigns, you'll find everything you need right here.
+
+{% ingredient deep-linked-ad-ideas %}{% endingredient %}
 
 This documentation supports the following Google Campaign types:
 
 Google Campaign | Campaign Type/Objective | Branch Ad Format
 --- | --- | ---
-Search Network | Mobile app installs | App Only: Install
+Search Network | Mobile App Installs | App Only: Install
 
-#### OS Support and major differences
+#### OS Support and Major Differences
 
-Operating System | Supported by AdWords Search Install Ads? | Key differences | Documentation
+Operating System | Supported by AdWords Search Install Ads? | Key Differences | Documentation
 --- | --- | --- | ---
 iOS | Yes | Uses tracking template, must redirect iOS app store | [link]({{base.url}}/marketing-channels/google-search-install-ads/ios)
 Android | Yes | Uses Final URL with ValueTrack Parameters, no tracking template | [link]({{base.url}}/marketing-channels/google-search-install-ads/android)
 
-{% ingredient deep-linked-ad-ideas %}{% endingredient %}
+{% ingredient link-to-google-ads-overview %}{% endingredient %}
 
 {% getstarted %}{% endgetstarted %}
 
@@ -42,7 +44,7 @@ Android | Yes | Uses Final URL with ValueTrack Parameters, no tracking template 
 
 ## Enable Google as an Ad Partner
 
-Add Ingredient Here
+TODO: Add Ingredient Here
 
 ## Create a Branch Ad Link
 
@@ -142,7 +144,7 @@ Because of the Adwords implementation for Search Network Mobile App Install Camp
 
 {% caution title="Limited Click Attribution" %}
 
-Due to the current Adwords Search Network Mobile App Install Campaign implementation, *Android Click attribution* is only measured when a user installs the mobile application.
+Due to the current Adwords Search Network Mobile App Install Campaign implementation, **_Android Click attribution_** is only measured when a user installs the mobile application.
 
 {% endcaution %}
 
@@ -156,10 +158,8 @@ Due to the current Adwords Search Network Mobile App Install Campaign implementa
 
 Sometimes, your ad may be disapproved if the Branch link does not re-direct to Google Play or App Store when clicked on a desktop. Please ensure that for the Branch link you're using to track installs, Deepviews are disabled and a desktop redirect is set to either the App / Play store.
 
-{% caution title="Limited Click Attribution" %}
+**Q: Why am I seeing inaccurate click attribution values for my Search Network Mobile App Install Campaign on Android?**
 
-Due to the current Adwords Search Network Mobile App Install Campaign implementation, *Android Click attribution* is only measured when a user installs the mobile application.
-
-{% endcaution %}
+**A:** Due to the current Adwords Search Network Mobile App Install Campaign implementation, **_Android Click attribution_** is only measured when a user installs the mobile application.
 
 {% endif %}
