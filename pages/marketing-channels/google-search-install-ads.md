@@ -7,43 +7,61 @@ description:
 hide_platform_selector: true
 sections:
 - overview
-- guide
+- ios
+- android
 - support
+contents:
+  number:
+    - ios
+    - android
 alias: [ /features/google-search-ads/, /features/google-search-ads/overview/, /features/google-search-ads/guide/, /features/google-search-ads/support/ ]
 ---
 
 {% if page.overview %}
 If you're running Google AdWords Search Install Campaigns, you'll find everything you need right here.
 
-{% ingredient deep-linked-ad-ideas %}{% endingredient %}
-
 This documentation supports the following Google Campaign types:
 
-Google Campaign  | Campaign Type/Objective
---- | ---
-Search Network only | Mobile app installs
-Channel | my_placement
-Feature | my_keyword
-Branch Click ID | tracking_id
+Google Campaign | Campaign Type/Objective | Branch Ad Format
+--- | --- | ---
+Search Network | Mobile app installs | App Only: Install 
+
+#### OS Support and major differences
+
+Operating System | Supported by AdWords Search Install Ads? | Key differences | Documentation
+--- | --- | --- | ---
+Android | Yes | Uses Final URL with ValueTrack Parameters, no tracking template | link
+iOS | Yes | Uses tracking template, must redirect iOS app store | link
+
+{% ingredient link-to-google-ads-overview %}{% endingredient %}
 
 {% getstarted %}{% endgetstarted %}
 
-{% elsif page.guide %}
+{% elsif page.ios %}
 
 {% prerequisite %}
 - To track installs from Google Ads you should [integrate the Branch SDK]({{base.url}}/getting-started/sdk-integration-guide) into your app.
 - If you want to deep link from your ads directly to content, you should [configure deep link routing]({{base.url}}/getting-started/deep-link-routing).
+- Enable the Deep Linked Ads product in your [dashboard](https://dashboard.branch.io/ads) or reach out to your Branch Account Manager.
 {% endprerequisite %}
 
-## Create a Quick Link on the Branch dashboard
+{% ingredient enable-google-ad-partner %}{% endingredient %}
 
-1. Visit the [Marketing page](https://dashboard.branch.io/#/marketing) on the Branch dashboard and click **+ Add link**.
-1. Pick a **Marketing Title** for later reference. For example: "Ad for blue sneakers" {% image src='/img/pages/features/google-search-ads/ad_example_create.png' 3-quarters center alt='Create Quick Link' %}
-1. **Channel** and **Campaign** are optional but recommended. **Tags** is free form.
+{% elsif page.android %}
+
+{% prerequisite %}
+- To track installs from Google Ads you should [integrate version 2.10.0 of the Branch Android SDK]({{base.url}}/getting-started/sdk-integration-guide/android) into your app.
+- If you want to deep link from your ads directly to content, you should [configure deep link routing]({{base.url}}/getting-started/deep-link-routing).
+- Enable the Deep Linked Ads product in your [dashboard](https://dashboard.branch.io/ads) or reach out to your Branch Account Manager.
+{% endprerequisite %}
+
+{% ingredient enable-google-ad-partner %}{% endingredient %}
+
+## Create a Google AdWords App Only Link
 
 {% example title="Use the pre-configured link" %}
 
-If you just want to track which keywords drove installs, Branch provides a pre-configured link for you to use in the *Ad URL options* field in the step below. Simply navigate to Link Settings on the Branch dashboard, and copy and paste the value inside `AdWords URL`. You can optionally [add additional parameters]({{base.url}}/getting-started/configuring-links) to that link (such as campaign, channel, and other deep link data).
+
 
 {% endexample %}
 
