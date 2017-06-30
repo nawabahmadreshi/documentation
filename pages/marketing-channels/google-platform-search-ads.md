@@ -13,7 +13,7 @@ alias: [ /features/google-ads/google-platform-search-ads/, /features/google-ads/
 ---
 
 {% if page.overview %}
-If you're running Google AdWords Search Network , you'll find everything you need right here.
+If you're running Google AdWords Search Network ads, you'll find everything you need right here.
 
 This documentation supports the following Google Campaign types:
 
@@ -75,8 +75,8 @@ To set up a Search Network campaign, first create the campaign on Google Adwords
 
 During Ad creation follow the following procedures for Branch link tracking
 
-1. For Dynamic Search Ads, set the website used to be the Final Website the ad should route to and for Standard Search ads, Set the **Final URL** field to the Final Website value.
-1. Locate the **Ad URL options (advanced)** section and expand it. Now copy your Branch Ad link from the previous into the **Tracking Template** field. _Note: for Standard Search ads the advanced URL options are not available in the default campaign creation flow, but are available when editing or creating additional ads in the campaign._
+1. For Dynamic Search Ads, set the website used to be the Final Website the ad should route to, and for Standard Search ads set the **Final URL** field to the Final Website value. This should be the same website that your Branch link routes to.
+1. Locate the **Ad URL options (advanced)** section and expand it. Now copy your Branch Ad link from the previous step into the **Tracking Template** field. _Note: for Standard Search ads the advanced URL options are not available in the default campaign creation flow, but are available when editing or creating additional ads in the campaign._
 
 {% image src="/img/pages/features/google-ads/google-platform-search-ads/full-branch-link.png" half center alt='Example Link' %}
 

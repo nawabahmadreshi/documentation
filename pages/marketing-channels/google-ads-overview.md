@@ -21,12 +21,12 @@ Google Campaign | Campaign Type/Objective | Branch Documentation Link | Branch A
 Search Network | Mobile app installs | **[link]({{base.url}}/marketing-channels/google-search-install-ads)** | App Only: Install
 Search Network | Mobile app engagement | **[link]({{base.url}}/marketing-channels/google-search-engagement-ads)** | App Only: Engagement
 Search Network | Standard  | **[link]({{base.url}}/marketing-channels/google-platform-search-ads)** | Cross-platform Search
-Search Network | Dynamic Search Ads  | link here | Cross-platform Search
+Search Network | Dynamic Search Ads  | **[link]({{base.url}}/marketing-channels/google-platform-search-ads)** | Cross-platform Search
 Display Network | Install your mobile app | **[link]({{base.url}}/marketing-channels/google-display-install-ads)** | App Only: Install
 Display Network | Engage with your mobile app | **[link]({{base.url}}/marketing-channels/google-display-engagement-ads)** | App Only: Engagement
 Display Network | Others (Visit your website, Influence, etc.)  | **[link]({{base.url}}/marketing-channels/google-platform-display-ads)** | Cross-platform Display
-Video | Mobile App Installs | link here | App Only: Install
-Video | Standard | link here | Cross-platform Display
+Video | Mobile App Installs | **[link]({{base.url}}/marketing-channels/google-video-ads)** | App Only: Install
+Video | Standard | **[link]({{base.url}}/marketing-channels/google-video-ads)**  | Cross-platform Display
 Universal App Campaigns | Universal App Campaigns | **[link]({{base.url}}/marketing-channels/google-uac)** | App Only: Install
 
 {::comment}
