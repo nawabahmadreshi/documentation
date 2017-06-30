@@ -9,8 +9,6 @@ sections:
 - overview
 - guide
 - advanced
-- support
-alias: [ /features/google-search-ads/, /features/google-search-ads/overview/, /features/google-search-ads/guide/, /features/google-search-ads/support/ ]
 ---
 
 {% if page.overview %}
@@ -44,7 +42,7 @@ Branch Universal Ads help you drive results for web and app campaigns.
 
 {% protip title="Enabling postbacks" %}
 
-Basic postbacks will automatically be activated for events like _Install_ and _Purchase_ when you enable your ad partner. You can then [add additional postbacks](../marketing-channels/ad-network-integrations/advanced/#adding-more-postbacks), for example, if you wanted to add postbacks for custom events that are specific to your app like _Account Created_. You can also [edit postbacks](../marketing-channels/ad-network-integrations/advanced/#advanced-editing-postbacks) if there's additional data you really need to pass along to your ad partner.
+Basic postbacks will automatically be activated for events like _Install_ and _Purchase_ when you enable your ad partner. You can then [add additional postbacks](../advanced/#adding-more-postbacks), for example, if you wanted to add postbacks for custom events that are specific to your app like _Account Created_. You can also [edit postbacks](../advanced/#advanced-editing-postbacks) if there's additional data you really need to pass along to your ad partner.
 
 {% endprotip %}
 
@@ -78,9 +76,16 @@ It's easier to slice your data in our analytics platform if you properly assign 
 
 {% endprotip %}
 
-## View your data using the Branch Ads Analytics page
+## View your data using the Universal Ads Analytics page
 
-The [Ads Analytics Page page](https://dashboard.branch.io/ads/analytics) on the Branch dashboard shows the performance of your ad campaigns. You can view performance over time, including purchase and other custom events. 
+The [Ads Analytics Page page](https://dashboard.branch.io/ads/analytics) on the Branch dashboard shows the performance of your ad campaigns _across both web and app_. You can view performance over time, including purchase and other custom events. 
+
+Events are attributed using Branch's unified last-click attribution model. This means that Branch will attribute to the last click across channels, and across platforms.
+
+For example, if a customer clicks a Branch email link, and then clicks an ad, installs the the app and purchases an item, Branch will attribute the install and the purchase to the last clicked ad link.
+
+If the customer then goes on to purchase an item on web within the attribution window, Branch will also attribute the web purchase to the same ad link, connecting the web and app actions taken by a single user for a more accurate view of your marketing channels and customer behavior.
+
 
 {% elsif page.advanced %}
 
@@ -97,7 +102,6 @@ When you enable an ad partner, your ad partner postbacks can be found under the 
 
 {% image src="/img/pages/marketing-channels/deep-linked-ads/add-new-postback-modal.png" center half alt='Add New Postback Modal' %}
 
-
 ## Advanced: editing postbacks
 
 For advanced integrations, you may want to provide additional information in your postback that isn't there by default. You can edit postbacks by adding data into the textbox, then clicking save. When the postback is saved, it is then validated - if you enter an invalid postback, you'll get an error at the top of your screen.
@@ -108,10 +112,12 @@ We all make mistakes from time to time. If you need to reset your postbacks and 
 
 {% endprotip %}
 
-{% elsif page.support %}
+## Changing attribution windows
 
-## FAQ / Debugging
+You can edit your attribution windows under Link Settings > Attribution Windows. View through attribution is not yet available, but will be coming soon. 
 
-Sometimes, your ad may be disapproved if the Branch link does not re-direct to Google Play or App Store when clicked on a desktop. Please ensure that for the Branch link you're using to track installs, Deepviews are disabled and a desktop redirect is set to either the App / Play store.
+{% image src="/img/pages/marketing-channels/deep-linked-ads/attribution-windows.png" center half alt='Attribution Windows' %}
+
+For customer experience and data accuracy, please do not set your deep linking window longer than the other attribution windows.
 
 {% endif %}
