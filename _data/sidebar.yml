@@ -51,6 +51,10 @@
 - title: Marketing Channels
   directory: marketing-channels
   children:
+    - title: Universal Ads
+      children:
+        - enabling-ad-partners
+        - creating-ad-links
     - title: Web to App
       children:
         - deepviews
