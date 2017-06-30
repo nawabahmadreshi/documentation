@@ -385,7 +385,7 @@ In addition to any custom key/value pairs specified in the link data dictionary,
 | **~stage** | The stage, specified at link creation time
 | **~creation_source** | Where the link was created ('API', 'Dashboard', 'SDK', 'iOS SDK', 'Android SDK', or 'Web SDK')
 | **~referring_link** | The referring link that drove the install/open, if present
-| **~id** | Automatically generated 18 digit ID number for the link that drove the install/open, if present
+| **~id** | Automatically generated 18 digit ID number for the link that drove the install/open, if present (0 for dynamic and 3P links)
 | **+match_guaranteed** | True or false as to whether the match was made with 100% accuracy
 | **+referrer** | The referrer for the link click, if a link was clicked
 | **+phone_number** | The phone number of the user, if the user texted himself/herself the app
@@ -935,7 +935,7 @@ Remove it, and insert this snippet in the same place:
 {% highlight objc %}
 ExampleDeepLinkingController *controller = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"DeepLinkingController"];
 
-[branch registerDeepLinkController:controller forKey:@"product_picture"];
+[branch registerDeepLinkController:controller forKey:@"product_picture" withPresentation:BNCViewControllerOptionShow];
 [branch initSessionWithLaunchOptions:launchOptions automaticallyDisplayDeepLinkController:YES];
 {% endhighlight %}
 {% endtab %}
@@ -944,13 +944,25 @@ ExampleDeepLinkingController *controller = [[UIStoryboard storyboardWithName:@"M
 {% highlight swift %}
 var controller = UIStoryboard.init("Main", NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("DeepLinkingController")
 
-branch.registerDeepLinkController(controller, forKey: "product_picture")
+branch.registerDeepLinkController(controller, forKey: "product_picture", withPresentation: .optionShow)
 branch.initSession(launchOptions: launchOptions, automaticallyDisplayDeepLinkController: true)
 {% endhighlight %}
 {% endtab %}
 {% endtabs %}
 
 Now whenever your app launches from a Branch link that has the `product_picture` key set in its data dictionary, the `ExampleDeepLinkingController` view controller will be displayed!
+
+| **Option** | **Meaning** |
+| ---: | --- |
+| **BNCViewControllerOptionShow** | This option pushes view controller onto the navigation stack in a similar way as the showViewController
+| **BNCViewControllerOptionPush** | This option pushes view controller onto the navigation stack in a similar way as the pushViewController
+| **BNCViewControllerOptionPresent** | This option presents view controller onto the root view controller of window in a similar way as the presentViewController
+
+{% protip title="Note" %}
+
+**BNCViewControllerOptionShow** or **BNCViewControllerOptionPush** option would only push a view controller if the root view controller of window is of type **UINavigationViewController**. Or else, the view controller would be presented by default.
+
+{% endprotip %}
 
 {% endif %}
 {% if page.android or page.mparticle_android %}

@@ -23,7 +23,7 @@ alias: [ /features/referral-programs/overview/, /features/referral-programs/over
 
 {% if page.overview %}
 
-Branch allows you reward users with credits, track those credits, and redeem them when appropriate. It is a unit-less currency available to your users without you having to build a system from scratch.
+Branch allows you to reward users with credits, track those credits, and redeem them when appropriate. It is a unit-less currency available to your users without you having to build a system from scratch.
 
 {% getstarted %}{% endgetstarted %}
 
@@ -40,7 +40,7 @@ Branch allows you reward users with credits, track those credits, and redeem the
 With every event that is recorded in Branch, we check automatically if that event is eligible for credits based on the rules that you configured, then deposit the credits if so. Reward rules can be based on both [automatic events](/getting-started/tracking-events#automatic-events) and [custom events](/getting-started/tracking-events#custom-events).
 
 {% caution title="If you identify your users" %}
-Because we do not merge identities, you should set rewards on custom events instead of using the events we automatically track (`install` and `open`), and do so only *after* you have identified a user using our [identity methods]({{base.url}}/getting-started/setting-identities). This will help avoid duplicate rewards and missing credits.
+Because we do not merge identities, you should set rewards on custom events instead of using the events we automatically track (`install` and `open`), and do so only *after* you have identified a user using our [identity methods](/cross-channel-analytics/growth-attribution/guide/ios/#setting-identities). This will help avoid duplicate rewards and missing credits.
 {% endcaution %}
 
 ## Awarding credits

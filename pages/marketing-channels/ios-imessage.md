@@ -20,7 +20,7 @@ iMessage apps are now completely separate from your main App Store app, and shou
 
 We highly recommend that you create a _separate_ Branch app via the dashboard for your iMessage app than your full iOS app. Why? Because there's no technical way to handle deep link routing elegantly between your core app and the messages app. Apple has not built support for this use case.
 
-Configure one Branch app's settings to link to your messages app in the iMessage App Store, then configure another Branch app settigns to link to your core app in the main App Store. This means you'll integrate the SDK into your messages app with a different Branch key than your main app.
+Configure one Branch app's settings to link to your messages app in the iMessage App Store, then configure another Branch app settings to link to your core app in the main App Store. This means you'll integrate the SDK into your messages app with a different Branch key than your main app.
 
 #### Only use Branch for driving installs of messages apps
 

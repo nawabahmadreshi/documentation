@@ -42,10 +42,6 @@ You'll have the flexibility to analyze data as needed in the Adobe Analytics pla
 
 Branch events are similar to Adobe Analytics events in that they can be used to build custom reports and are tracked on the various pages and dashboards. However, unlike normal events, Branch events contain valuable information about how users ended up in your app in the first place.
 
-{% protip title="Adobe Analytics is in private beta" %}
-For access to the Adobe Analytics beta please contact your Branch account manager or [w@branch.io](mailto:w@branch.io).
-{% endprotip %}
-
 {% getstarted %}{% endgetstarted %}
 
 {% elsif page.guide %}
@@ -58,10 +54,6 @@ For access to the Adobe Analytics beta please contact your Branch account manage
 {% endprerequisite %}
 
 ## Activate the Branch Data Connector
-
-{% protip title="Adobe Analytics is in beta" %}
-Please let your Branch account manager know that you would like the Data Connector activated. Your Branch account manager will need to contact Adobe to activate the Data Connector for you.
-{% endprotip %}
 
 In your Adobe Analytics dashboard, under the *Admin* tab, find *Data Connectors*.
 
@@ -119,10 +111,6 @@ Timestamp | Offline Tracking
 For `Analytics Server Domain`, please do not include `http` or `https`. If your value for this is `http://test.com`, simply put in `test.com`. This means no extra slashes, and no protocol.
 
 ## Configure the Branch Dashboard
-
-{% protip title="Adobe Analytics is in private beta" %}
-To enable the Adobe Analytics beta please contact your Branch account manager or [w@branch.io](mailto:w@branch.io).
-{% endprotip %}
 
 1. On the Branch Dashboard (dashboard.branch.io), navigate to the [Integrations page](https://dashboard.branch.io/integrations).
 1. Locate Adobe Analytics and choose **Enable**.

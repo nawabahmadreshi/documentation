@@ -112,6 +112,18 @@ With extensive use, the Android SDK footprint is **187 kb**.
 
 Add `compile 'io.branch.sdk.android:library:2.+'` to the dependencies section of your `build.gradle` file.
 
+### Add Google Play Services
+
+To ensure full measurement and deferred deep linking, include the Google Play Services library in the same `build.gradle` file. Follow these steps to ensure you have added the Google Play Services library.
+
+1. Add `compile 'com.google.android.gms:play-services-ads:9+'` or greater version in your dependencies section.
+1. Add the following line in your Proguard settings:
+
+{% highlight xml %}
+-keep class com.google.android.gms.ads.identifier.** { *; }
+{% endhighlight %}
+
+
 {% protip %}
 You can also find the [source and JAR file here](https://github.com/BranchMetrics/android-branch-deep-linking){:target="_blank"}.
 {% endprotip %}
@@ -514,6 +526,27 @@ Your `Activity` also has an `onCreate()` method. Be sure you do not mix the two 
 - [I don't use a custom application class]({{base.url}}/getting-started/sdk-integration-guide/advanced/android#using-the-default-application-class){:target="_blank"}
 - [I need to support pre-15 Android]({{base.url}}/getting-started/sdk-integration-guide/advanced/android#supporting-pre-15-android){:target="_blank"}
 {% endprotip %}
+
+#### Optimize Performance
+
+By default, Branch will delay the *install* call only for up to 1.5 seconds. We delay the install call in order to capture the install referrer string passed through Google Play, which increases attribution and deferred deep linking accuracy. We do not delay any other call, and the install call only occurs the first time a user opens your app.
+
+If we receive the referrer string before 1.5 seconds, we will immediately fire the call, meaning this delay is up to 1.5 seconds, but not guaranteed to take that long.
+
+If you'd like to optimize the first install call, simply paste the following code in your Application class, and we will not delay the first install call.
+
+{% highlight java %}
+public final class CustomApplicationClass {
+  @Override
+  public void onCreate() {
+      super.onCreate();
+      // initialize the Branch object
+      Branch.setPlayStoreReferrerCheckTimeout(0);
+      Branch.getAutoInstance(this);
+  }
+}
+{% endhighlight %}
+
 {% endif %}
 
 {% endif %}
@@ -820,13 +853,12 @@ Finally, add these two new methods to your **AppDelegate.m** file. The first res
 
 {% highlight objc %}
 // Respond to URI scheme links
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
     // pass the url to the handle deep link call
     [[Branch getInstance]
-        application:application
+        application:app
             openURL:url
-  sourceApplication:sourceApplication
-         annotation:annotation];
+            options:options];
 
     // do other deep link routing for the Facebook SDK, Pinterest SDK, etc
     return YES;
@@ -847,12 +879,11 @@ Finally, add these two new methods to your **AppDelegate.swift** file. The first
 
 {% highlight swift %}
 // Respond to URI scheme links
-func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
     // pass the url to the handle deep link call
-    Branch.getInstance().application(application,
+    Branch.getInstance().application(app,
         open: url,
-        sourceApplication: sourceApplication,
-        annotation: annotation
+        options:options
     )
 
     // do other deep link routing for the Facebook SDK, Pinterest SDK, etc
@@ -1632,7 +1663,7 @@ You do not need to perform these steps if you installed the Branch framework man
 
 {% endif %}
 
-{% if page.android or page.mparticle_android %}
+{% if page.mparticle_android %}
 
 ## Submitting to the Play Store
 
