@@ -872,7 +872,7 @@ This helps make your AMP page discoverable, and likely helps ensure that SEO inf
 
 ## Target AMP Web in your audience
 
-AMP Journeys can bre created as part of the normal [Journeys creation flow](https://dashboard.branch.io/web/journeys/audiencerule/new){:target="_blank"}. You can target users on AMP pages by checking the box **AMP Web** on the Select Audience step:
+AMP Journeys can be created as part of the normal [Journeys creation flow](https://dashboard.branch.io/web/journeys/audiencerule/new){:target="_blank"}. You can target users on AMP pages by checking the box **AMP Web** on the Select Audience step:
 
 {% image src='/img/pages/features/journeys/amp-checkbox.png' center half alt='AMP Web checkbox' %}
 
