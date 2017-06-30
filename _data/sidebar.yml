@@ -60,6 +60,7 @@
       children:
         - title: Google
           children:
+            - google-ads-overview
             - google-search-install-ads
             - google-search-engagement-ads
             - google-display-install-ads
