@@ -51,18 +51,13 @@ Basic postbacks will automatically be activated for events like _Install_ and _P
 Once you've enabled an ad partner, it's time to create a tracking link. 
 
 1. First, select an ad format. For App Install or App Engagement campaigns you'll want to select the **App Only** format. For Search or Display campaigns where the user should go to web if they don't have the app, then you should select **Cross-Platform Search** or **Cross-Platform Display**. **Product Links** are for shopping or dynamic remarketing campaigns and will take you to create a Deep Linked Product Feed. 
-
 {% image src="/img/pages/marketing-channels/deep-linked-ads/choose-ad-format.png" center 3-quarters alt='Save and Enable' %}
 1. At this point you need to name your link. Select something that will make it easy to find if you need it later. Your Ad Format and Ad Partner should be selected already, but feel free to choose one if they aren't. It's important that you select the right Ad Partner for analytics later on. Click **Configure Options** to continue.
-
 {% image src="/img/pages/marketing-channels/deep-linked-ads/name-ad-link.png" center 3-quarters alt='Name Ad Link' %}
 1. This is your chance to add deep link data and analytics tags. Analytics tags are important for later segmentation, so click the **Analytics** sub tab to add a Channel and Campaign value. 
-
 {% image src="/img/pages/marketing-channels/deep-linked-ads/add-analytics-tags.png" center 3-quarters alt='Set Analytics Tags' %}
 1. Click **Create Link Now**, and you have your tracking link! Take this link and give it to your Ad Partner's Account Manager or paste it into the tracking section of your campaign yourself.
-
 {% image src="/img/pages/marketing-channels/deep-linked-ads/finished-ad-link.png" center 3-quarters alt='Finish Ad Link Creation' %}
-
 
 {% protip title="Optional: Deep Link Data (Advanced)" %}
 
@@ -76,7 +71,7 @@ It's easier to slice your data in our analytics platform if you properly assign 
 
 {% endprotip %}
 
-## View your data using the Universal Ads Analytics page
+## View your data with Unified Analytics
 
 The [Ads Analytics Page page](https://dashboard.branch.io/ads/analytics) on the Branch dashboard shows the performance of your ad campaigns _across both web and app_. You can view performance over time, including purchase and other custom events. 
 
@@ -86,6 +81,7 @@ For example, if a customer clicks a Branch email link, and then clicks an ad, in
 
 If the customer then goes on to purchase an item on web within the attribution window, Branch will also attribute the web purchase to the same ad link, connecting the web and app actions taken by a single user for a more accurate view of your marketing channels and customer behavior.
 
+{% image src="/img/pages/marketing-channels/deep-linked-ads/install-by-secondary-pub.png" center full alt='Example Analytics Screenshot' %}
 
 {% elsif page.advanced %}
 
@@ -96,10 +92,8 @@ When you enable an ad partner, your ad partner postbacks can be found under the 
 {% image src="/img/pages/marketing-channels/deep-linked-ads/postbacks-tab.png" center 3-quarters alt='Postbacks Tab' %}
 
 1. Click the **Add New Postback** button at the bottom of the screen.
-
 {% image src="/img/pages/marketing-channels/deep-linked-ads/add-new-postback-button.png" center 3-quarters alt='Add New Postback Button' %}
 1. A modal will appear with Branch default events, as well as any commerce or custom events you've set up. Select an event, enter a postback URL if you're asked to, and click **Save**. This will be the event that triggers your new postback.
-
 {% image src="/img/pages/marketing-channels/deep-linked-ads/add-new-postback-modal.png" center half alt='Add New Postback Modal' %}
 
 ## Advanced: editing postbacks
@@ -116,7 +110,7 @@ We all make mistakes from time to time. If you need to reset your postbacks and 
 
 You can edit your attribution windows under Link Settings > Attribution Windows. View through attribution is not yet available, but will be coming soon. 
 
-{% image src="/img/pages/marketing-channels/deep-linked-ads/attribution-windows.png" center half alt='Attribution Windows' %}
+{% image src="/img/pages/marketing-channels/deep-linked-ads/attribution-windows.png" center 3-quarters alt='Attribution Windows' %}
 
 For customer experience and data accuracy, please do not set your deep linking window longer than the other attribution windows.
 
