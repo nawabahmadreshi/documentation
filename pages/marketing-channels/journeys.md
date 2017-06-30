@@ -846,7 +846,7 @@ AMP pages by design make it difficult for users to go anywhere except back to Go
 
 {% prerequisite %}
 
-- To be host AMP Journeys and show in Google search as an AMP page, your webpage must be [AMP](https://www.ampproject.org/docs/){:target="_blank"}-compatible.
+- To host AMP Journeys and show in Google search as an AMP page, your webpage must be [AMP](https://www.ampproject.org/docs/){:target="_blank"}-compatible.
 
 {% endprerequisite %}
 
@@ -872,7 +872,7 @@ This helps make your AMP page discoverable, and likely helps ensure that SEO inf
 
 ## Target AMP Web in your audience
 
-You can target users on AMP pages by checking the box **AMP Web** on the Select Audience step:
+AMP Journeys can be created as part of the normal [Journeys creation flow](https://dashboard.branch.io/web/journeys/audiencerule/new){:target="_blank"}. You can target users on AMP pages by checking the box **AMP Web** on the Select Audience step:
 
 {% image src='/img/pages/features/journeys/amp-checkbox.png' center half alt='AMP Web checkbox' %}
 
@@ -891,7 +891,7 @@ Once a user has clicked a Branch link outside of AMP, event-based audience rules
 
 ### URL-based targeting with AMP
 
-With AMP, Google will serve your page from the Google AMP cache. This means that the URL that serves your AMP page will look something like `https://www-example-com.cdn.ampproject.org/c/www.example.com/amp/doc.html`. For the advanced audience filter **Is viewing a page URL**, you'll want to use your AMP cache URL.
+With AMP, Google will serve your page from the Google AMP cache. This means that the URL that serves your AMP page will look something like `https://www.google.com/amp/s/www.example.com/amp/doc.html`. However, Branch passes through your original source URL, and this is what you should use for audience targeting. For the advanced audience filter **Is viewing a page URL**, you'll want to use the original URL where you host the AMP page. In this example, that would be `https://www.example.com/amp/doc.html`.
 
 ## Select an AMP-compatible template
 
