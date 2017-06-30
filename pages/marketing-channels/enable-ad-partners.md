@@ -1,8 +1,8 @@
 ---
 type: recipe
 directory: marketing-channels
-title: "Search Ads"
-page_title: "Advertising with Deep Links: Google Ads - Search and Display"
+title: "Ad Network Integrations"
+page_title: "Advertising with Deep Links: Ad Network Integrations"
 description:
 hide_platform_selector: true
 sections:
@@ -35,15 +35,18 @@ Branch Universal Ads help you drive results for web and app campaigns.
 
 1. Visit the [Ads page](https://dashboard.branch.io/ads) on the Branch dashboard.
 1. Select [Partner Management](https://dashboard.branch.io/ads/partner-management) from the sidebar.
-1. Search for the Ad Partner that you'd like to enable. 
+{% image src="/img/pages/marketing-channels/deep-linked-ads/ads-partner-management.png" center 3-quarters alt='Ads Partner Management' %}
+1. Search for the Ad Partner that you'd like to enable.
+{% image src="/img/pages/marketing-channels/deep-linked-ads/find-applovin.png" center 3-quarters alt='Find your ad partner' %}
+1. Enter any credentials that may be required, and click **Save and Enable** in the bottom right hand corner.
+{% image src="/img/pages/marketing-channels/deep-linked-ads/save-and-enable.png" center 3-quarters alt='Save and Enable' %}
 
+## Create an ad link
 
+Once you've enabled an ad partner, it's time to create a tracking link.
 
-{% example title="Use the pre-configured link" %}
+First, set your ad format. If you're using an ad network integration for an **App Install** or 
 
-If you just want to track which keywords drove installs, Branch provides a pre-configured link for you to use in the *Ad URL options* field in the step below. Simply navigate to Link Settings on the Branch dashboard, and copy and paste the value inside `AdWords URL`. You can optionally [add additional parameters]({{base.url}}/getting-started/configuring-links) to that link (such as campaign, channel, and other deep link data).
-
-{% endexample %}
 
 {% protip title="Optional: Deep Link Data (Advanced)" %}
 
@@ -51,12 +54,15 @@ You can use this configuration section to specify custom link parameters that wi
 
 {% endprotip %}
 
+{% protip title="Additional Analytic parameters" %}
+
+It's easier to slice your data in our analytics platform if you properly assign analytics parameters to your link. Look for the "Analytics" subtab of "Configure Options to ad analytics parameters"
+
+{% endprotip %}
+
 ## Configure an ad
 
-1. Grab your app's iTunes URL or Google Play Store URL.
-1. After you've added your headline and description for the ad units, navigate to the **Final URL** and **Ad URL options** section.
-1. In the **Final URL**, you will put your iTunes App Store URL, or Google Play Store URL.
-1. Expand **Ad URL options**. and place your Branch link from the first step in the **Tracking template** box. No need to add any extra parameters.
+When you create your ad, paste your ad link into 
 
 {% protip %}
 If you are running **Search Install Ads** on **Android** only, you'll need to modify your Play Store URL and be on v2.6.0 of the Branch Android SDK. Simply append &referrer=google_search_install_referrer%3D\<link-id\> to the end of your Play Store URL, but be sure to replace \<link-id\> with the ID of the link created above. The Play Store URL should not have brackets, and would look like this: https://play.google.com/io.branch.branchster?referrer=google_search_install_referrer%3D123456789. In order to get the link id follow the steps mentioned below:

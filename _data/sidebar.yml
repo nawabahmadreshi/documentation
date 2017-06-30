@@ -53,8 +53,7 @@
   children:
     - title: Universal Ads
       children:
-        - enabling-ad-partners
-        - creating-ad-links
+        - ad-network-integrations
     - title: Web to App
       children:
         - deepviews
