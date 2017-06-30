@@ -19,18 +19,18 @@ This documentation supports the following Google Campaign types:
 Google Campaign | Campaign Type/Objective | Branch Documentation Link | Branch Ad Format
 --- | --- | --- | ---
 Search Network | Mobile app installs | **[link]({{base.url}}/marketing-channels/google-search-install-ads)** | App Only: Install
-Search Network | Mobile app engagement | link here | App Only: Engagement
-Search Network | Standard  | link here | Cross-platform Search
+Search Network | Mobile app engagement | **[link]({{base.url}}/marketing-channels/google-search-engagement-ads)** | App Only: Engagement
+Search Network | Standard  | **[link]({{base.url}}/marketing-channels/google-platform-search-ads)** | Cross-platform Search
 Search Network | Dynamic Search Ads  | link here | Cross-platform Search
-Display Network | Install your mobile app | link here | App Only: Install
-Display Network | Engage with your mobile app | link here | App Only: Engagement
-Display Network | Others (Visit your website, Influence, etc.)  | link here | Cross-platform Display
+Display Network | Install your mobile app | **[link]({{base.url}}/marketing-channels/google-display-install-ads)** | App Only: Install
+Display Network | Engage with your mobile app | **[link]({{base.url}}/marketing-channels/google-display-engagement-ads)** | App Only: Engagement
+Display Network | Others (Visit your website, Influence, etc.)  | **[link]({{base.url}}/marketing-channels/google-platform-display-ads)** | Cross-platform Display
 Video | Mobile App Installs | link here | App Only: Install
 Video | Standard | link here | Cross-platform Display
-Shopping | Shopping | link here | Cross-platform Product Links
-Universal App Campaigns | Universal App Campaigns | link here | App Only: Install
+Universal App Campaigns | Universal App Campaigns | **[link]({{base.url}}/marketing-channels/google-uac)** | App Only: Install
 
 {::comment}
+Shopping | Shopping | link here | Cross-platform Product Links
 Video (YouTube TrueView) | Shopping | link here | Cross-platform Product Links
 {:/comment}
 

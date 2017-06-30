@@ -53,7 +53,7 @@ You can use this configuration section to specify custom link parameters that wi
 
 {% protip %}
 If you are running **Search Install Ads** on **Android** only, you'll need to modify your Play Store URL and be on v2.6.0 of the Branch Android SDK. Simply append &referrer=google_search_install_referrer%3D\<link-id\> to the end of your Play Store URL, but be sure to replace \<link-id\> with the ID of the link created above. The Play Store URL should not have brackets, and would look like this: https://play.google.com/io.branch.branchster?referrer=google_search_install_referrer%3D123456789. In order to get the link id follow the steps mentioned below:
-	
+
 **1)** Grab the Branch link off of the dashboard and append `?debug=true` to the end of it. For example:{% highlight sh %}https://branchster.app.link/znlg7dlCJD{% endhighlight %} would become {% highlight sh %}https://branchster.app.link/znlg7dlCJD?debug=true{% endhighlight %}
 
 **2)** Paste the link with `?debug=true` into your desktop browser’s address bar.
