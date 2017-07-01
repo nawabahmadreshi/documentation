@@ -10,6 +10,10 @@ sections:
 - ios
 - android
 - support
+contents:
+  number:
+  - ios
+  - android
 alias: [ /features/google-ads/google-display-engagement-ads/, /features/google-ads/google-display-engagement-ads/overview/, /features/google-display-engagement-ads/ios/, /features/google-display-engagement-ads/android/, /features/google-ads/google-display-engagement-ads/support/ ]
 ---
 
@@ -44,23 +48,17 @@ Android | Yes | Uses tracking template, must redirect Google Play store | [link]
 
 ## Enable Google as an Ad Partner
 
-TODO: Add Ingredient Here
+{% ingredient enable-google-ad-partner %}{% endingredient %}
 
 ## Create a Branch Ad Link
 
-1. Create a Branch Ad link from the [Partner Management page](https://dashboard.branch.io/ads/partner-management)'s **Create Google Adwords Link** button under the Google Adwords Partner and select **App Install or Engagement**
+1. Create a Branch Ad link from the [Partner Management page](https://dashboard.branch.io/ads/partner-management)'s `Create Google Adwords Link` button under the Google Adwords Partner and select **App Install or Engagement**
 {% image src='/img/pages/features/google-ads/create-link-install-engagement.png' 3-quarters center alt='Link Creation' %}
 1. Under the Define Section, pick a **Link Name** for later reference
 1. Configure the link with the Ad Format set to **App Only**, the Ad Partner set to **Google Adwords**, and the Secondary Ad Format set to **Google Display App Engagement iOS**, while leaving the Campaign field blank
 {% image src='/img/pages/features/google-ads/google-display-engagement-ads/iOS/ad-link-setup.png' 3-quarters center alt='Create Ad Link' %}
 1. Under the Configure Tags Section and Analytics Tags sub section additional tags can be set. `Channel` and `Campaign` are optional but recommended, while `Tags` is free form
 {% image src='/img/pages/features/ads-analytics/analytics-tags.png' 3-quarters center alt='Analytics Tags' %}
-
-{% example title="Use the pre-configured link" %}
-
-If you just want to track which keywords drove installs, Branch provides a pre-configured link for you to use in the *Ad URL options* field in the step below. Simply navigate to Link Settings on the Branch dashboard, and copy and paste the value inside `AdWords URL`. You can optionally [add additional parameters]({{base.url}}/getting-started/configuring-links) to that link (such as campaign, channel, and other deep link data).
-
-{% endexample %}
 
 {% protip title="Optional: Deep Link Data (Advanced)" %}
 
@@ -70,11 +68,11 @@ You can use this configuration section to specify custom link parameters that wi
 
 ## Configure an Ad
 
-To set up a Display Network Mobile App Engagement Campaign on iOS, first create the campaign on Google Adwords following the instructions [here](https://support.google.com/adwords/answer/6310670?hl=en) and stop at the Ad creation step.
+To set up a Display Network Mobile App Engagement Campaign on iOS, first create the campaign on Google Adwords following the instructions **[here](https://support.google.com/adwords/answer/6310670?hl=en)** and stop at the Ad creation step.
 
 During Ad creation follow the following procedures for Branch link tracking
 
-1. Copy your Branch Ad Link from the last section and ensure the copied link has the appropriate additional params (~campaign_id, ~ad_set_id, lpurl, etc.)
+1. Copy your Branch Ad Link from the last section and ensure the copied link has the appropriate additional params (~campaign_id, ~ad_set_id, lpurl, etc.) which should be automatically generated on your Branch dashboard.
 1. Paste the link into the **Direct link** field of the ad creator
 
 {% image src="/img/pages/features/google-ads/google-display-engagement-ads/iOS/full-branch-link.png" half center alt='Example Link' %}
@@ -94,23 +92,17 @@ During Ad creation follow the following procedures for Branch link tracking
 
 ## Enable Google as an Ad Partner
 
-Add Ingredient Here
+{% ingredient enable-google-ad-partner %}{% endingredient %}
 
 ## Create a Branch Ad Link
 
-1. Create a Branch Ad link from the [Partner Management page](https://dashboard.branch.io/ads/partner-management)'s **Create Google Adwords Link** button under the Google Adwords Partner and select **App Install or Engagement**
-{% image src='/img/pages/features/google-ads/google-display-engagement-ads/create-adwords-link.png' 3-quarters center alt='Analytics Tags' %}
+1. Create a Branch Ad link from the [Partner Management page](https://dashboard.branch.io/ads/partner-management)'s `Create Google Adwords Link` button under the Google Adwords Partner and select **App Install or Engagement**
+{% image src='/img/pages/features/google-ads/create-link-install-engagement.png' 3-quarters center alt='Link Creation' %}
 1. Under the Define Section, pick a **Link Name** for later reference
 1. Configure the link with the Ad Format set to **App Only**, the Ad Partner set to **Google Adwords**, and the Secondary Ad Format set to **Google Display App Engagement Android**, while leaving the Campaign field blank
 {% image src='/img/pages/features/google-ads/google-display-engagement-ads/Android/ad-link-setup.png' 3-quarters center alt='Create Ad Link' %}
 1. Under the Configure Tags Section and Analytics Tags sub section additional tags can be set. `Channel` and `Campaign` are optional but recommended, while `Tags` is free form
-{% image src='/img/pages/features/google-ads/google-display-engagement-ads/analytics-tags.png' 3-quarters center alt='Analytics Tags' %}
-
-{% example title="Use the pre-configured link" %}
-
-If you just want to track which keywords drove installs, Branch provides a pre-configured link for you to use in the *Ad URL options* field in the step below. Simply navigate to Link Settings on the Branch dashboard, and copy and paste the value inside `AdWords URL`. You can optionally [add additional parameters]({{base.url}}/getting-started/configuring-links) to that link (such as campaign, channel, and other deep link data).
-
-{% endexample %}
+{% image src='/img/pages/features/ads-analytics/analytics-tags.png' 3-quarters center alt='Analytics Tags' %}
 
 {% protip title="Optional: Deep Link Data (Advanced)" %}
 
@@ -120,11 +112,11 @@ You can use this configuration section to specify custom link parameters that wi
 
 ## Configure an Ad
 
-To set up a Display Network Mobile App Install Campaign on iOS, first create the campaign on Google Adwords following the instructions [here](https://support.google.com/adwords/answer/6310670?hl=en) and stop at the Ad creation step.
+To set up a Display Network Mobile App Engagement Campaign on Android, first create the campaign on Google Adwords following the instructions [here](https://support.google.com/adwords/answer/6310670?hl=en) and stop at the Ad creation step.
 
 During Ad creation follow the following procedures for Branch link tracking
 
-1. Copy your Branch Ad Link from the last section and ensure the copied link has the appropriate additional params (~campaign_id, ~ad_set_id, lpurl, etc.)
+1. Copy your Branch Ad Link from the last section and ensure the copied link has the appropriate additional params (~campaign_id, ~ad_set_id, lpurl, etc.) which should be automatically generated on your Branch dashboard.
 1. Paste the link into the **Direct link** field of the ad creator
 
 {% image src="/img/pages/features/google-ads/google-display-engagement-ads/Android/full-branch-link.png" half center alt='Example Link' %}

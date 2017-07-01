@@ -10,6 +10,10 @@ sections:
 - ios
 - android
 - support
+contents:
+  number:
+  - ios
+  - android
 alias: [ /features/google-ads/google-search-install-ads/, /features/google-ads/google-search-install-ads/overview/, /features/google-search-install-ads/ios/, /features/google-search-install-ads/android/, /features/google-ads/google-search-install-ads/support/ ]
 ---
 
@@ -44,23 +48,17 @@ Android | Yes | Uses Final URL with ValueTrack Parameters, no tracking template 
 
 ## Enable Google as an Ad Partner
 
-TODO: Add Ingredient Here
+{% ingredient enable-google-ad-partner %}{% endingredient %}
 
 ## Create a Branch Ad Link
 
-1. Create a Branch Ad link from the [Partner Management page](https://dashboard.branch.io/ads/partner-management)'s **Create Google Adwords Link** button under the Google Adwords Partner and select **App Install or Engagement**
+1. Create a Branch Ad link from the [Partner Management page](https://dashboard.branch.io/ads/partner-management)'s `Create Google Adwords Link` button under the Google Adwords Partner and select `App Install or Engagement`
 {% image src='/img/pages/features/google-ads/create-link-install-engagement.png' 3-quarters center alt='Link Creation' %}
 1. Under the Define Section, pick a **Link Name** for later reference
 1. Configure the link with the Ad Format set to **App Only**, the Ad Partner set to **Google Adwords**, and the Secondary Ad Format set to **Google Search Install iOS**, while leaving the Campaign field blank
 {% image src='/img/pages/features/google-ads/google-search-install-ads/iOS/ad-link-setup.png' 3-quarters center alt='Create Ad Link' %}
 1. Under the Configure Tags Section and Analytics Tags sub section additional tags can be set. `Channel` and `Campaign` are optional but recommended, while `Tags` is free form
 {% image src='/img/pages/features/ads-analytics/analytics-tags.png' 3-quarters center alt='Analytics Tags' %}
-
-{% example title="Use the pre-configured link" %}
-
-If you just want to track which keywords drove installs, Branch provides a pre-configured link for you to use in the *Ad URL options* field in the step below. Simply navigate to Link Settings on the Branch dashboard, and copy and paste the value inside `AdWords URL`. You can optionally [add additional parameters]({{base.url}}/getting-started/configuring-links) to that link (such as campaign, channel, and other deep link data).
-
-{% endexample %}
 
 {% protip title="Optional: Deep Link Data (Advanced)" %}
 
@@ -70,12 +68,12 @@ You can use this configuration section to specify custom link parameters that wi
 
 ## Configure an Ad
 
-To set up a Search Network Mobile App Install Campaign on iOS, first create the campaign on Google Adwords following the instructions [here](https://support.google.com/adwords/answer/6309969?hl=en) and stopping at the Ad creation step.
+To set up a Search Network Mobile App Install Campaign on iOS, first create the campaign on Google Adwords following the instructions **[here](https://support.google.com/adwords/answer/6309969?hl=en)** and stopping at the Ad creation step.
 
 During Ad creation follow the following procedures for Branch link tracking
 
 1. Grab your app's iTunes App Store URL and fill it into the **Final URL** field of your ad setup
-1. Expand the **Ad URL options**. and place your Branch Ad link from the first section in the **Tracking template** box. Ensure the copied link has the appropriate additional params (~campaign_id, ~ad_set_id, lpurl, etc.)
+1. Expand the `Ad URL options`. and place your Branch Ad link from the first section in the **Tracking template** field. Ensure the copied link has the appropriate additional params (~campaign_id, ~ad_set_id, lpurl, etc.) which should be automatically generated on your Branch dashboard.
 
 {% image src="/img/pages/features/google-ads/google-search-install-ads/iOS/full-branch-link.png" half center alt='Example Link' %}
 
@@ -100,23 +98,17 @@ Because the **Final URL** for your app install campaigns must match your app sto
 
 ## Enable Google as an Ad Partner
 
-Add Ingredient Here
+{% ingredient enable-google-ad-partner %}{% endingredient %}
 
 ## Create a Branch Ad Link
 
-1. Create a Branch Ad link from the [Partner Management page](https://dashboard.branch.io/ads/partner-management)'s **Create Google Adwords Link** button under the Google Adwords Partner and select **App Install or Engagement**
+1. Create a Branch Ad link from the [Partner Management page](https://dashboard.branch.io/ads/partner-management)'s **Create Google Adwords Link** button under the Google Adwords Partner and select 'App Install or Engagement'
 {% image src='/img/pages/features/google-ads/create-link-install-engagement.png' 3-quarters center alt='Link Creation' %}
 1. Under the Define Section, pick a **Link Name** for later reference
 1. Configure the link with the Ad Format set to **App Only**, the Ad Partner set to **Google Adwords**, and the Secondary Ad Format set to **Google Search Install Android**, while leaving the Campaign field blank
 {% image src='/img/pages/features/google-ads/google-search-install-ads/Android/ad-link-setup.png' 3-quarters center alt='Create Ad Link' %}
 1. Under the Configure Tags Section and Analytics Tags sub section additional tags can be set. `Channel` and `Campaign` are optional but recommended, while `Tags` is free form
 {% image src='/img/pages/features/ads-analytics/analytics-tags.png' 3-quarters center alt='Analytics Tags' %}
-
-{% example title="Use the pre-configured link" %}
-
-If you just want to track which keywords drove installs, Branch provides a pre-configured link for you to use in the *Ad URL options* field in the step below. Simply navigate to Link Settings on the Branch dashboard, and copy and paste the value inside `AdWords URL`. You can optionally [add additional parameters]({{base.url}}/getting-started/configuring-links) to that link (such as campaign, channel, and other deep link data).
-
-{% endexample %}
 
 {% protip title="Optional: Deep Link Data (Advanced)" %}
 
@@ -126,13 +118,13 @@ You can use this configuration section to specify custom link parameters that wi
 
 ## Configure an Ad
 
-To set up a Search Network Mobile App Install Campaign on Android, first create the campaign on Google Adwords following the instructions [here](https://support.google.com/adwords/answer/6309969?hl=en) and stop at the Ad creation step
+To set up a Search Network Mobile App Install Campaign on Android, first create the campaign on Google Adwords following the instructions **[here](https://support.google.com/adwords/answer/6309969?hl=en)** and stop at the Ad creation step
 
 During Ad creation follow the following procedures for Branch link tracking
 
 1. Copy the Branch Ad link from the first section and ensure that it is in the format below
 {% image src="/img/pages/features/google-ads/google-search-install-ads/Android/full-branch-link.png" half center alt='Example Link' %}
-1. Paste this Ad link into the Final URL field
+1. Paste this Ad link into the **Final URL** field
 
 {% image src="/img/pages/features/google-ads/google-search-install-ads/Android/adwords-configuration.png" half center alt='Example Ad' %}
 
@@ -144,7 +136,7 @@ Because of the Adwords implementation for Search Network Mobile App Install Camp
 
 {% caution title="Limited Click Attribution" %}
 
-Due to the current Adwords Search Network Mobile App Install Campaign implementation, Branch's **_Android Click attribution_** is only measured when a user installs the mobile application.
+As of June 2017, due to the current Adwords Search Network Mobile App Install Campaign implementation, Branch's **Android Click attribution** is only measured when a user installs the mobile application.
 
 {% endcaution %}
 
@@ -160,6 +152,6 @@ Sometimes, your ad may be disapproved if the Branch link does not re-direct to G
 
 **Q: Why am I seeing inaccurate click attribution values for my Search Network Mobile App Install Campaign on Android?**
 
-**A:** Due to the current Adwords Search Network Mobile App Install Campaign implementation, **_Android Click attribution_** is only measured when a user installs the mobile application.
+**A:** Due to the current Adwords Search Network Mobile App Install Campaign implementation, **Android Click attribution** is only measured when a user installs the mobile application.
 
 {% endif %}

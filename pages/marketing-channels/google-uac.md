@@ -2,18 +2,27 @@
 type: recipe
 directory: marketing-channels
 title: "Universal App Campaigns"
-page_title: "Advertising with Deep Links: Google Ads - Universal App Campaign"
-description: 
+page_title: "Advertising with Deep Links: Google Ads - Universal App Campaigns"
+description:
 hide_platform_selector: true
 sections:
 - overview
 - guide
 - support
-alias: [ /features/google-uac/overview/, /features/google-uac/overview/, /features/google-uac/guide/, /features/google-uac/support/ ]
+contents:
+  number:
+  - guide
+alias: [ /features/google-ads/google-uac/overview/, /features/google-ads/google-uac/guide/, /features/google-ads/google-uac/support/ ]
 ---
 
 {% if page.overview %}
 If you're running Google's new Universal App Campaign, Branch links can be placed inside your ads. This allows you to track ad-driven installs across Android and iOS on the Branch dashboard and deep link those new users directly to content the first time they open your app.
+
+Google Campaign | Campaign Type/Objective | Branch Ad Format
+--- | --- | ---
+Universal App Campaign | Mobile App Install | App Only: Install
+
+{% ingredient link-to-google-ads-overview %}{% endingredient %}
 
 {% ingredient deep-linked-ad-ideas %}{% endingredient %}
 
@@ -21,16 +30,36 @@ If you're running Google's new Universal App Campaign, Branch links can be place
 
 {% elsif page.guide %}
 
-Universal App Campaigns don’t use traditional ads and ad groups. Instead different types of ad units are automatically created by Google using information given at the campaign level. There are no destination URLs, you will just use your App Store or Play Store ID. 
+Universal App Campaigns don’t use traditional ads and ad groups. Instead different types of ad units are automatically created by Google using information given at the campaign level. There are no destination URLs, you will just use your Apple App Store or Google Play Store Applications.
 
 {% prerequisite %}
 - To track installs from Google Ads you should [integrate the Branch SDK]({{base.url}}/getting-started/sdk-integration-guide) into your app.
 - If you want to deep link from your ads directly to content, you should [configure deep link routing]({{base.url}}/getting-started/deep-link-routing).
 {% endprerequisite %}
 
-## One time setup: Google Adwords <> Branch postback
+## Enable Google as an Ad Partner
 
-The following steps will add a Branch postback to your Adwords account, allowing Branch to check with Google every time we see an install of your app. You'll only need to do this once per mobile platform!
+{% ingredient enable-google-ad-partner %}{% endingredient %}
+
+## Create a Branch Ad Link
+
+1. Create a Branch Ad link from the [Partner Management page](https://dashboard.branch.io/ads/partner-management)'s `Create Google Adwords Link` button under the Google Adwords Partner and select **App Install/Engagement**
+{% image src='/img/pages/features/google-ads/create-link-install-engagement.png' 3-quarters center alt='Link Creation' %}
+1. Under the Define Section, pick a **Link Name** for later reference
+1. Configure the link with the Ad Format set to **Display**, the Ad Partner set to **Google Adwords**, and the Secondary Ad Format set to **Universal App Campaign iOS/Android** while leaving the Campaign field blank
+{% image src='/img/pages/features/google-ads/google-uac/ad-link-setup.png' 3-quarters center alt='Create Ad Link' %}
+1. Under the Configure Tags Section and Analytics Tags sub section additional tags can be set. `Channel` and `Campaign` are optional but recommended, while `Tags` is free form
+{% image src='/img/pages/features/ads-analytics/analytics-tags.png' 3-quarters center alt='Analytics Tags' %}
+
+{% protip title="Optional: Deep Link Data (Advanced)" %}
+
+You can use this configuration section to specify custom link parameters that will be deep linked into the app after install. These could include a coupon code or a page identifier to route the user. Visit the [Deep Link Routing]({{base.url}}/getting-started/deep-link-routing) page to learn more.
+
+{% endprotip %}
+
+## One time setup: Google Adwords <> Branch Postback
+
+The following steps will add a Branch postback to your Adwords account, allowing Branch to check with Google every time we see an install of your app. You'll only need to do this once per mobile platform (iOS/Android)!
 
 **1)** Go to your [Adwords dashboard](https://adwords.google.com/cm/CampaignMgmt){:target="_blank"}.
 
@@ -38,7 +67,7 @@ The following steps will add a Branch postback to your Adwords account, allowing
 
 **3)** Click `+ Add a Conversion` button.
 
-**4)** Select `App` from the cards. 
+**4)** Select `App` from the cards.
 
 **5)** Select `First opens and in-app actions`.
 
@@ -48,16 +77,20 @@ The following steps will add a Branch postback to your Adwords account, allowing
 
 **8)** Now fill out the conversion action page:
 
-- Give it a name like `Branch Android Conversion`
+- Give it a name like `Branch Android/iOS Conversion`
 - Under `Value` assign a value (or select “Don’t assign a value to this install”)
 - Under `Mobile app` input your application details
-- In the `Postback URL` section, input the following link for Android:{% highlight sh %}http://branch.io?adid={adid}&lat={lat}&click_url={click_url}{% endhighlight %}and the following link for iOS:{% highlight sh %}http://branch.io?idfa={md5_advertising_id}&lat={lat}&click_url={click_url}{% endhighlight %}
+- In the `Postback URL` section, copy and paste the Branch Ad link generated in the last section.
+
+{% image src="/img/pages/features/google-ads/google-uac/full-branch-link.png" half center alt='Example Adwords Config' %}
+
+{% image src="/img/pages/features/google-ads/google-uac/postback-setup.png" half center alt='Example Adwords Config' %}
 
 **9)** Click `Save and continue`.
 
 **10)** Select the option to have a server report conversions: `Set up a server-to-server conversion feed...`.
 
-**11)** Note your `Conversion ID` & `Conversion label` as shown in the screenshot below.{% image src="/img/pages/features/google-uac/adwords-conversions.png" half center alt='Conversion IDs' %}
+**11)** Note your `Conversion ID` & `Conversion label` as shown in the screenshot below.{% image src="/img/pages/features/google-ads/google-uac/adwords-conversions.png" half center alt='Conversion IDs' %}
 
 **12)** Head to the [Branch dashboard link settings](https://dashboard.branch.io/settings/link){:target="_blank"} and scroll to `Google Ads Conversions`.
 
@@ -69,53 +102,15 @@ The following steps will add a Branch postback to your Adwords account, allowing
 
 If you're running a Universal App Campaign for both iOS and Android, all four fields under your Branch Link Settings should be populated, even if you have the same conversion ID and Label for iOS and Android. If you want to stop running Universal App Campaign reporting for a platform, just remove the two fields for that platform.
 
-{% image src='/img/pages/features/google-uac/conversions-branch.png' full center alt='Branch Settings For Conversions' %}
+{% image src='/img/pages/features/google-ads/google-uac/conversions-branch.png' full center alt='Branch Settings For Conversions' %}
 
 You're all set with this one time setup. Note that you will be modifying the postback URL occasionally in this conversion, but we'll get to that later.
-
-## Create a Quick Link on the Branch dashboard
-
-1. Visit the [Marketing page](https://dashboard.branch.io/#/marketing) on the Branch dashboard and click **+ Add link**.
-1. Pick a **Marketing Title** for later reference. For example: "Ad for blue sneakers" {% image src='/img/pages/features/google-search-ads/ad_example_create.png' 3-quarters center alt='Create Quick Link' %}
-1. **Channel** and **Campaign** are optional but recommended. **Tags** is free form.
-
-{% protip title="Optional: Deep Link Data (Advanced)" %}
-
-You can use this configuration section to specify custom link parameters that will be deep linked into the app after install. These could include a `$deeplink_path` or a product identifier to route the user. Visit the [Deep Link Routing]({{base.url}}/getting-started/deep-link-routing) page to learn more.
-
-{% endprotip %}
-
-## Modify your postback URL with the Branch link reference
-
-Now that you've created your Branch link, we need to associate your conversion postback with the correct link. As a result, you can have 1 link per platform conversion.
-
-**1)** Grab the Branch link off of the dashboard and append `?debug=true` to the end of it. For example:{% highlight sh %}https://branchster.app.link/znlg7dlCJD{% endhighlight %} would become {% highlight sh %}https://branchster.app.link/znlg7dlCJD?debug=true{% endhighlight %}
-
-**2)** Paste the link with `?debug=true` into your desktop browser’s address bar.
-
-**3)** You can read the link ID from the redirected URL in the browser address bar, as well as the “~id” parameter in the “Data” section on the page. In example below, `400316647170355019` is the link ID.{% highlight sh %}https://dashboard.branch.io/link-debug/400316647170355019{% endhighlight %}
-
-**4)** Head back to your [Adwords dashboard](https://adwords.google.com/cm/CampaignMgmt){:target="_blank"}.
-
-**5)** In the top nav bar, click into `Tools` > `Conversions`.
-
-**6)** Find you previous Branch conversion(s) and click `Edit Settings`
-
-**7)** Modify the `Postback URL` to append `&link_identifier=link-<link ID from previous steps>`. For example, if you read `400316647170355019` from step 3, you would change your `Postback URL` to include the following query parameter:{% highlight sh %}http://branch.io?adid={adid}&lat={lat}&click_url={click_url}&link_identifier=link-400316647170355019{% endhighlight %}
-
-**8)** Click `Save`
 
 You're all good to go! Just create your Universal App Campaign and you'll see the data start to populate in your Branch dashboard.
 
 ## View your data using the Branch dashboard
 
-The [Quick Links page](https://dashboard.branch.io/quick-links) on the Branch dashboard shows the performance of each individual link. You can find your link listed in the table with a quick summary of the _total_ clicks and installs. 
-
-{% image src='/img/pages/features/google-search-ads/marketing_link_row.png' full center alt='Facebook Example Ad' %}
-
-To view more detailed stats, click the _small button_ in the **Actions** column and select `View stats`. Note that these stats are **limited to the date range** at the top. You can expand the range if you'd like.
-
-{% image src='/img/pages/features/google-search-ads/click_flow_analytics.png' full center alt='Facebook Example Ad' %}
+{% ingredient view-ad-link-data %}{% endingredient %}
 
 {% elsif page.support %}
 
