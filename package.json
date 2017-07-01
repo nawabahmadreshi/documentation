@@ -30,8 +30,8 @@
   "devDependencies": {
     "babel-eslint": "4.1.6",
     "escope": "3.3.0",
-    "eslint": "1.10.3",
-    "precommit-hook": "1.0.7",
-    "hooks": "*"
+    "eslint": "^1.10.3",
+    "hooks": "*",
+    "precommit-hook": "1.0.7"
   }
 }

@@ -58,7 +58,7 @@ Android | Yes | Uses tracking template, must redirect Google Play store | [link]
 1. Create a Branch Ad link from the [Partner Management page](https://dashboard.branch.io/ads/partner-management)'s `Create Google Adwords Link` button under the Google Adwords Partner and select **Create Display Link**
 {% image src='/img/pages/features/google-ads/create-link-display.png' 3-quarters center alt='Link Creation' %}
 1. Under the Define Section, pick a **Link Name** for later reference
-1. Configure the link with the Ad Format set to **Display**, the Ad Partner set to **Google Adwords**, while leaving the Campaign field blank
+1. Configure the link with the Ad Format set to **Display** and the Ad Partner set to **Google Adwords**, while leaving the Campaign field blank
 {% image src='/img/pages/features/google-ads/google-xplatform-display-ads/ad-link-setup.png' 3-quarters center alt='Create Ad Link' %}
 1. Under the Configure Tags Section and Analytics Tags sub section additional tags can be set. `Channel` and `Campaign` are optional but recommended, while `Tags` is free form
 {% image src='/img/pages/features/ads-analytics/analytics-tags.png' 3-quarters center alt='Analytics Tags' %}
