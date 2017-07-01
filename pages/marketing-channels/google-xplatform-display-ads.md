@@ -9,7 +9,10 @@ sections:
 - overview
 - guide
 - support
-alias: [ /features/google-ads/google-platform-display-ads/, /features/google-ads/google-platform-display-ads/overview/, /features/google-platform-display-ads/guide/, /features/google-ads/google-platform-display-ads/support/ ]
+contents:
+  number:
+  - guide
+alias: [ /features/google-ads/google-xplatform-display-ads/, /features/google-ads/google-xplatform-display-ads/overview/, /features/google-xplatform-display-ads/guide/, /features/google-ads/google-xplatform-display-ads/support/ ]
 ---
 
 {% if page.overview %}
@@ -29,9 +32,9 @@ Display Network | Drive Action: Take an action on your website | Cross-platform 
 
 Operating System | Supported by AdWords Display Engagement Ads? | Key Differences | Documentation
 --- | --- | --- | ---
-Web | Yes | Uses tracking template, must redirect to Final Website | [link]({{base.url}}/marketing-channels/google-platform-display-ads/ios)
-iOS | Yes | Uses tracking template, must redirect iOS app store | [link]({{base.url}}/marketing-channels/google-platform-display-ads/ios)
-Android | Yes | Uses tracking template, must redirect Google Play store | [link]({{base.url}}/marketing-channels/google-platform-display-ads/android)
+Web | Yes | Uses tracking template, must redirect to Final Website | [link]({{base.url}}/marketing-channels/google-xplatform-display-ads/guide)
+iOS | Yes | Uses tracking template, must redirect iOS app store | [link]({{base.url}}/marketing-channels/google-xplatform-display-ads/guide)
+Android | Yes | Uses tracking template, must redirect Google Play store | [link]({{base.url}}/marketing-channels/google-xplatform-display-ads/guide)
 
 {% ingredient link-to-google-ads-overview %}{% endingredient %}
 
@@ -48,23 +51,17 @@ Android | Yes | Uses tracking template, must redirect Google Play store | [link]
 
 ## Enable Google as an Ad Partner
 
-TODO: Add Ingredient Here
+{% ingredient enable-google-ad-partner %}{% endingredient %}
 
 ## Create a Branch Ad Link
 
-1. Create a Branch Ad link from the [Partner Management page](https://dashboard.branch.io/ads/partner-management)'s **Create Google Adwords Link** button under the Google Adwords Partner and select **Create Display Link**
+1. Create a Branch Ad link from the [Partner Management page](https://dashboard.branch.io/ads/partner-management)'s `Create Google Adwords Link` button under the Google Adwords Partner and select **Create Display Link**
 {% image src='/img/pages/features/google-ads/create-link-display.png' 3-quarters center alt='Link Creation' %}
 1. Under the Define Section, pick a **Link Name** for later reference
 1. Configure the link with the Ad Format set to **Display**, the Ad Partner set to **Google Adwords**, while leaving the Campaign field blank
-{% image src='/img/pages/features/google-ads/google-platform-display-ads/ad-link-setup.png' 3-quarters center alt='Create Ad Link' %}
+{% image src='/img/pages/features/google-ads/google-xplatform-display-ads/ad-link-setup.png' 3-quarters center alt='Create Ad Link' %}
 1. Under the Configure Tags Section and Analytics Tags sub section additional tags can be set. `Channel` and `Campaign` are optional but recommended, while `Tags` is free form
 {% image src='/img/pages/features/ads-analytics/analytics-tags.png' 3-quarters center alt='Analytics Tags' %}
-
-{% example title="Use the pre-configured link" %}
-
-If you just want to track which keywords drove installs, Branch provides a pre-configured link for you to use in the *Ad URL options* field in the step below. Simply navigate to Link Settings on the Branch dashboard, and copy and paste the value inside `AdWords URL`. You can optionally [add additional parameters]({{base.url}}/getting-started/configuring-links) to that link (such as campaign, channel, and other deep link data).
-
-{% endexample %}
 
 {% protip title="Optional: Deep Link Data (Advanced)" %}
 
@@ -79,16 +76,16 @@ To set up a Display Network Mobile App Engagement Campaign on iOS, first create 
 During Ad creation follow the following procedures for Branch link tracking
 
 1. Enter your desired Final Website into the **Final URL** field. This should be the same website that your Branch link routes to.
-1. Copy your Branch Ad Link from the last section and ensure the copied link has the appropriate additional params (~campaign_id, ~ad_set_id, lpurl, etc.)
+1. Copy your Branch Ad Link from the last section and ensure the copied link has the appropriate additional params (~campaign_id, ~ad_set_id, lpurl, etc.) which should be automatically generated on your Branch dashboard.
 1. Expand the **Advanced URL options** and paste your Branch Ad link into the **Tracking URL template** field.
 
-{% image src="/img/pages/features/google-ads/google-platform-display-ads/full-branch-link.png" half center alt='Example Link' %}
+{% image src="/img/pages/features/google-ads/google-xplatform-display-ads/full-branch-link.png" half center alt='Example Link' %}
 
-{% image src="/img/pages/features/google-ads/google-platform-display-ads/adwords-configuration.png" half center alt='Example Adwords Config' %}
+{% image src="/img/pages/features/google-ads/google-xplatform-display-ads/adwords-configuration.png" half center alt='Example Adwords Config' %}
 
 {% protip %}
 
-Because the **Final URL** for your app install campaigns must match your app store domain, you cannot put a Branch link in that box. However, capturing installs and deep linking users through content is still possible due to the **Tracking template** configuration.
+Because the **Final URL** for your app install campaigns must match your final destination website, you cannot put a Branch link in that box. However, capturing installs and deep linking users through content is still possible due to the **Tracking template** configuration.
 
 {% endprotip %}
 

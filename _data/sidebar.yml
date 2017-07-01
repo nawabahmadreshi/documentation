@@ -69,8 +69,8 @@
             - google-display-install-ads
             - google-display-engagement-ads
             - google-uac
-            - google-platform-search-ads
-            - google-platform-display-ads
+            - google-xplatform-search-ads
+            - google-xplatform-display-ads
             - google-video-ads
         - title: Facebook
           children:
