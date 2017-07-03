@@ -45,8 +45,6 @@ Android | Yes | Uses Final URL with ValueTrack Parameters, no tracking template 
 - Ensure you have entered your Android application's URI scheme under `Link Settings > Android URI Scheme` in your Branch dashboard.
 {% endprerequisite %}
 
-## Enable Google as an Ad Partner
-
 {% ingredient enable-google-ad-partner %}{% endingredient %}
 
 ## Create a Branch Ad Link

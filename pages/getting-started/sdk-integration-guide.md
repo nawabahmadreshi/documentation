@@ -722,7 +722,7 @@ A Branch session needs to be started every single time your app opens. We check 
 {% tab objective-c %}
 
 1. In Xcode, open your **App.Delegate.m** file.
-1. Add `#import "Branch.h"` at the top to import the Branch framework.
+1. Add `#import "Branch/Branch.h"` at the top to import the Branch framework.
 1. Define and initialize Branch
 
 {% image src='/img/pages/getting-started/sdk-integration-guide/objc_initSession.gif' center alt='Initialize the SDK'%}
