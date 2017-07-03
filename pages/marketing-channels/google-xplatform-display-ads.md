@@ -49,8 +49,6 @@ Android | Yes | Uses tracking template, must redirect Google Play store | [link]
 - If you want to deep link from your ads directly to content, you should [configure deep link routing]({{base.url}}/getting-started/deep-link-routing).
 {% endprerequisite %}
 
-## Enable Google as an Ad Partner
-
 {% ingredient enable-google-ad-partner %}{% endingredient %}
 
 ## Create a Branch Ad Link

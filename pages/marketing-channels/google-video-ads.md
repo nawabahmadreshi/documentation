@@ -49,8 +49,6 @@ Android | Yes | Uses tracking template, must redirect Google Play store | [link]
 - If you want to deep link from your ads directly to content, you should [configure deep link routing]({{base.url}}/getting-started/deep-link-routing).
 {% endprerequisite %}
 
-## Enable Google as an Ad Partner
-
 {% ingredient enable-google-ad-partner %}{% endingredient %}
 
 ## Create a Branch Ad Link
@@ -103,8 +101,6 @@ As of June 2017, Adwords does not support Tracking Templates on Video discovery 
 - To track installs from Google Ads you should [integrate the Branch SDK]({{base.url}}/getting-started/sdk-integration-guide) into your app.
 - If you want to deep link from your ads directly to content, you should [configure deep link routing]({{base.url}}/getting-started/deep-link-routing).
 {% endprerequisite %}
-
-## Enable Google as an Ad Partner
 
 {% ingredient enable-google-ad-partner %}{% endingredient %}
 
