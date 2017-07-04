@@ -50,7 +50,7 @@ Android | Yes | Uses Final URL with ValueTrack Parameters, no tracking template 
 ## Create a Branch Ad Link
 
 1. Create a Branch Ad link from the [Partner Management page](https://dashboard.branch.io/ads/partner-management)'s `Create Google Adwords Link` button under the Google Adwords Partner and select `App Install or Engagement`
-{% image src='/img/pages/features/google-ads/create-link-install-engagement.png' 3-quarters center alt='Link Creation' %}
+{% image src='/img/pages/features/google-ads/create-link-install-engagement.png' half center alt='Link Creation' %}
 1. Under the Define Section, pick a Link Name for later reference
 1. Configure the link with the Ad Format set to **App Only**, the Ad Partner set to **Google Adwords**, and the Secondary Ad Format set to **Google Search App Engagement Android**, while leaving the Campaign field blank
 {% image src='/img/pages/features/google-ads/google-search-engagement-ads/Android/ad-link-setup.png' 3-quarters center alt='Create Ad Link' %}
@@ -76,18 +76,18 @@ To set up a Search Network Mobile App Engagement Campaign on Android, you will n
 #### Create Your Campaign
 
 1. Select `Search Network only` on Adwords
-{% image src='/img/pages/features/google-ads/adwords-search-network.png' 3-quarters center alt='Adwords Network' %}
+{% image src='/img/pages/features/google-ads/adwords-search-network.png' third center alt='Adwords Network' %}
 1. For the type of Search campaign select `Mobile app engagement`
 {% image src='/img/pages/features/google-ads/google-search-engagement-ads/adwords-search-engagement.png' 3-quarters center alt='Adwords Setup' %}
 1. Continue setting the campaign and ad group parameters
 
 #### Ad Creation
 
-1. Copy the Branch Ad link from the first section and ensure that it is in the format _App URI://open?link_click_id=link-..._.
+1. Copy the Branch Ad link from the first section and ensure that it is in the format _App URI://open?link_click_id=link-..._. Refer to the [Create A Branch Ad Link]({{base.url}}/marketing-channels/google-search-engagement-ads/android/#create-a-branch-ad-link) section if the link is not in this format to ensure the link creation was setup properly.
 {% image src="/img/pages/features/google-ads/google-search-engagement-ads/Android/full-branch-link.png" half center alt='Example Link' %}
 1. In the Ad creator, locate the **Scheme** field and enter the scheme portion of the Branch Ad link. This should be the portion of the link before the **://** symbol.
 1. Now locate the **Host and path** field and enter the rest of your Branch Ad link following the **://** symbol.
-{% image src="/img/pages/features/google-ads/google-search-engagement-ads/Android/adwords-configuration.png" half center alt='Example Ad' %}
+{% image src="/img/pages/features/google-ads/google-search-engagement-ads/Android/adwords-configuration.png" 3-quarters center alt='Example Ad' %}
 
 {% ingredient view-ad-link-data %}{% endingredient %}
 
@@ -102,11 +102,6 @@ To set up a Search Network Mobile App Engagement Campaign on Android, you will n
 **Q: Can I run a Adwords Search Network Mobile Engagement Campaign for iOS?**
 
 **A:** As of June 2017, Google Adwords currently does not support this campaign type. We'll update our documentation if the campaign type gets supported in the future!
-
-**Q: My Branch Ad link appears to be in the wrong format. **
-
-**A:** You can create your own link by following the following format. You will need your link Id as well as your App URI scheme.
-`AppURI://open?link_click_id=link-linkidhere~campaign_id={campaignid}&~ad_set_id={adgroupid}&~keyword_text={keyword}&~placement={placement}&~channel={network}&lpurl={lpurl}`.
 
 **Q: How can I test the Branch Ad link?**
 

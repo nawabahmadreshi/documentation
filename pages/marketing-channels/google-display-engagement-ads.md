@@ -51,7 +51,7 @@ Android | Yes | Uses tracking template, must redirect to Google Play store | [li
 ## Create a Branch Ad Link
 
 1. Create a Branch Ad link from the [Partner Management page](https://dashboard.branch.io/ads/partner-management)'s `Create Google Adwords Link` button under the Google Adwords Partner and select `App Install or Engagement`
-{% image src='/img/pages/features/google-ads/create-link-install-engagement.png' 3-quarters center alt='Link Creation' %}
+{% image src='/img/pages/features/google-ads/create-link-install-engagement.png' half center alt='Link Creation' %}
 1. Under the Define Section, pick a Link Name for later reference
 1. Configure the link with the Ad Format set to **App Only**, the Ad Partner set to **Google Adwords**, and the Secondary Ad Format set to **Google Display App Engagement iOS**, while leaving the Campaign field blank
 {% image src='/img/pages/features/google-ads/google-display-engagement-ads/iOS/ad-link-setup.png' 3-quarters center alt='Create Ad Link' %}
@@ -79,7 +79,7 @@ To set up a Display Network Mobile App Engagement Campaign on iOS, you will need
 #### Create Your Campaign
 
 1. Select `Display Network only` on Adwords
-{% image src='/img/pages/features/google-ads/adwords-display-network.png' 3-quarters center alt='Adwords Network' %}
+{% image src='/img/pages/features/google-ads/adwords-display-network.png' third center alt='Adwords Network' %}
 1. For the type of Display campaign select `Engage with your mobile app`
 {% image src='/img/pages/features/google-ads/google-display-engagement-ads/adwords-display-engagement.png' 3-quarters center alt='Adwords Setup' %}
 1. Continue setting the campaign and ad group parameters
@@ -89,9 +89,9 @@ To set up a Display Network Mobile App Engagement Campaign on iOS, you will need
 1. Copy your Branch Ad Link from the last section and ensure the copied link has the appropriate additional params (~campaign_id, ~ad_set_id, lpurl, etc.) which should be automatically generated on your Branch dashboard.
 1. Paste the link into the **Direct link** field of the ad creator
 
-{% image src="/img/pages/features/google-ads/google-display-engagement-ads/iOS/full-branch-link.png" half center alt='Example Link' %}
+{% image src="/img/pages/features/google-ads/google-display-engagement-ads/iOS/full-branch-link.png" 3-quarters center alt='Example Link' %}
 
-{% image src="/img/pages/features/google-ads/google-display-engagement-ads/iOS/adwords-configuration.png" half center alt='Example Adwords Config' %}
+{% image src="/img/pages/features/google-ads/google-display-engagement-ads/iOS/adwords-configuration.png" 3-quarters center alt='Example Adwords Config' %}
 
 {% ingredient view-ad-link-data %}{% endingredient %}
 
@@ -107,7 +107,7 @@ To set up a Display Network Mobile App Engagement Campaign on iOS, you will need
 ## Create a Branch Ad Link
 
 1. Create a Branch Ad link from the [Partner Management page](https://dashboard.branch.io/ads/partner-management)'s `Create Google Adwords Link` button under the Google Adwords Partner and select `App Install or Engagement`
-{% image src='/img/pages/features/google-ads/create-link-install-engagement.png' 3-quarters center alt='Link Creation' %}
+{% image src='/img/pages/features/google-ads/create-link-install-engagement.png' half center alt='Link Creation' %}
 1. Under the Define Section, pick a Link Name for later reference
 1. Configure the link with the Ad Format set to **App Only**, the Ad Partner set to **Google Adwords**, and the Secondary Ad Format set to **Google Display App Engagement Android**, while leaving the Campaign field blank
 {% image src='/img/pages/features/google-ads/google-display-engagement-ads/Android/ad-link-setup.png' 3-quarters center alt='Create Ad Link' %}
@@ -135,7 +135,7 @@ To set up a Display Network Mobile App Install Campaign on iOS, you will need to
 #### Create Your Campaign
 
 1. Select `Display Network only` on Adwords
-{% image src='/img/pages/features/google-ads/adwords-display-network.png' 3-quarters center alt='Adwords Network' %}
+{% image src='/img/pages/features/google-ads/adwords-display-network.png' third center alt='Adwords Network' %}
 1. For the type of Display campaign select `Engage with your mobile app`
 {% image src='/img/pages/features/google-ads/google-display-engagement-ads/adwords-display-engagement.png' 3-quarters center alt='Adwords Setup' %}
 1. Continue setting the campaign and ad group parameters
@@ -145,9 +145,9 @@ To set up a Display Network Mobile App Install Campaign on iOS, you will need to
 1. Copy your Branch Ad Link from the last section and ensure the copied link has the appropriate additional params (~campaign_id, ~ad_set_id, lpurl, etc.) which should be automatically generated on your Branch dashboard.
 1. Paste the link into the **Direct link** field of the ad creator
 
-{% image src="/img/pages/features/google-ads/google-display-engagement-ads/Android/full-branch-link.png" half center alt='Example Link' %}
+{% image src="/img/pages/features/google-ads/google-display-engagement-ads/Android/full-branch-link.png" 3-quarters center alt='Example Link' %}
 
-{% image src="/img/pages/features/google-ads/google-display-engagement-ads/Android/adwords-configuration.png" half center alt='Example Adwords Config' %}
+{% image src="/img/pages/features/google-ads/google-display-engagement-ads/Android/adwords-configuration.png" 3-quarters center alt='Example Adwords Config' %}
 
 {% ingredient view-ad-link-data %}{% endingredient %}
 

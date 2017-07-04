@@ -54,7 +54,7 @@ Android | Yes | Uses tracking template, must redirect to Google Play store | [li
 ## Create a Branch Ad Link
 
 1. Create a Branch Ad link from the [Partner Management page](https://dashboard.branch.io/ads/partner-management)'s `Create Google Adwords Link` button under the Google Adwords Partner and select `Create Display Link`
-{% image src='/img/pages/features/google-ads/create-link-display.png' 3-quarters center alt='Link Creation' %}
+{% image src='/img/pages/features/google-ads/create-link-display.png' half center alt='Link Creation' %}
 1. Under the Define Section, pick a Link Name for later reference
 1. Configure the link with the Ad Format set to **Display** and the Ad Partner set to **Google Adwords**, while leaving the Campaign field blank
 {% image src='/img/pages/features/google-ads/google-video-ads/ad-link-setup.png' 3-quarters center alt='Create Ad Link' %}
@@ -82,7 +82,7 @@ To set up a Video Campaign, you will need to first create your campaign and then
 #### Create Your Campaign
 
 1. Select `Video` on Adwords
-{% image src='/img/pages/features/google-ads/adwords-video-network.png' 3-quarters center alt='Adwords Network' %}
+{% image src='/img/pages/features/google-ads/adwords-video-network.png' third center alt='Adwords Network' %}
 1. Select the 'Mobile app installs' campaign type
 {% image src='/img/pages/features/google-ads/google-video-ads/install/adwords-video-install.png' 3-quarters center alt='Adwords Setup' %}
 1. Complete the rest of the ad campaign setup
@@ -93,9 +93,9 @@ To set up a Video Campaign, you will need to first create your campaign and then
 1. Select the ad and select `Edit > Change URL options`.
 1. In the Change URL options window, copy and paste your Branch Ad link from the previous section into the Tracking template field and confirm the change.
 
-{% image src="/img/pages/features/google-ads/google-video-ads/full-branch-link.png" half center alt='Example Link' %}
+{% image src="/img/pages/features/google-ads/google-video-ads/full-branch-link.png" 3-quarters center alt='Example Link' %}
 
-{% image src="/img/pages/features/google-ads/google-video-ads/install/adwords-configuration-instream.png" half center alt='Example Adwords Config' %}
+{% image src="/img/pages/features/google-ads/google-video-ads/install/adwords-configuration-instream.png" 3-quarters center alt='Example Adwords Config' %}
 
 {% protip %}
 
@@ -123,7 +123,7 @@ As of June 2017, Adwords does not support Tracking Templates on Video discovery 
 ## Create a Branch Ad Link
 
 1. Create a Branch Ad link from the [Partner Management page](https://dashboard.branch.io/ads/partner-management)'s `Create Google Adwords Link` button under the Google Adwords Partner and select `Create Display Link`
-{% image src='/img/pages/features/google-ads/create-link-display.png' 3-quarters center alt='Link Creation' %}
+{% image src='/img/pages/features/google-ads/create-link-display.png' half center alt='Link Creation' %}
 1. Under the Define Section, pick a Link Name for later reference
 1. Configure the link with the Ad Format set to **Display** and the Ad Partner set to **Google Adwords**, while leaving the Campaign field blank
 {% image src='/img/pages/features/google-ads/google-video-ads/ad-link-setup.png' 3-quarters center alt='Create Ad Link' %}
@@ -151,7 +151,7 @@ To set up a Video Campaign, you will need to first create your campaign and then
 #### Create Your Campaign
 
 1. Select `Video` on Adwords
-{% image src='/img/pages/features/google-ads/adwords-video-network.png' 3-quarters center alt='Adwords Network' %}
+{% image src='/img/pages/features/google-ads/adwords-video-network.png' third center alt='Adwords Network' %}
 1. Select the 'Standard' campaign type
 {% image src='/img/pages/features/google-ads/google-video-ads/standard/adwords-video-standard.png' 3-quarters center alt='Adwords Setup' %}
 1. Complete the rest of the campaign and ad group setup
@@ -161,15 +161,15 @@ To set up a Video Campaign, you will need to first create your campaign and then
 1. On the ad creation section, select your desired Video ad format and fill in the **Final URL** field with the final website URL of your ad
 1. Locate the `Ad URL options (advanced)` section and expand it. Now copy your Branch Ad link from the previous step into the **Tracking Template** field.
 
-{% image src="/img/pages/features/google-ads/google-video-ads/full-branch-link.png" half center alt='Example Link' %}
+{% image src="/img/pages/features/google-ads/google-video-ads/full-branch-link.png" 3-quarters center alt='Example Link' %}
 
 #### Instream Video Setup
 
-{% image src="/img/pages/features/google-ads/google-video-ads/standard/adwords-configuration-instream.png" half center alt='Example Adwords Config' %}
+{% image src="/img/pages/features/google-ads/google-video-ads/standard/adwords-configuration-instream.png" 3-quarters center alt='Example Adwords Config' %}
 
 #### Bumper Video Setup
 
-{% image src="/img/pages/features/google-ads/google-video-ads/standard/adwords-configuration-bumper.png" half center alt='Example Adwords Config' %}
+{% image src="/img/pages/features/google-ads/google-video-ads/standard/adwords-configuration-bumper.png" 3-quarters center alt='Example Adwords Config' %}
 
 {% protip %}
 

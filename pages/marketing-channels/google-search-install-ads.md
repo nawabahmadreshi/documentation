@@ -51,7 +51,7 @@ Android | Yes | Uses Final URL with ValueTrack Parameters, no tracking template 
 ## Create a Branch Ad Link
 
 1. Create a Branch Ad link from the [Partner Management page](https://dashboard.branch.io/ads/partner-management)'s `Create Google Adwords Link` button under the Google Adwords Partner and select `App Install or Engagement`
-{% image src='/img/pages/features/google-ads/create-link-install-engagement.png' 3-quarters center alt='Link Creation' %}
+{% image src='/img/pages/features/google-ads/create-link-install-engagement.png' half center alt='Link Creation' %}
 1. Under the Define Section, pick a Link Name for later reference
 1. Configure the link with the Ad Format set to **App Only**, the Ad Partner set to **Google Adwords**, and the Secondary Ad Format set to **Google Search Install iOS**, while leaving the Campaign field blank
 {% image src='/img/pages/features/google-ads/google-search-install-ads/iOS/ad-link-setup.png' 3-quarters center alt='Create Ad Link' %}
@@ -80,7 +80,7 @@ To set up a Search Network Mobile App Install Campaign on iOS, you will need to 
 #### Create Your Campaign
 
 1. Select `Search Network only` on Adwords
-{% image src='/img/pages/features/google-ads/adwords-search-network.png' actual center alt='Adwords Network' %}
+{% image src='/img/pages/features/google-ads/adwords-search-network.png' third center alt='Adwords Network' %}
 1. For the type of Search campaign select `Mobile app installs`
 {% image src='/img/pages/features/google-ads/google-search-install-ads/adwords-search-install.png' 3-quarters center alt='Adwords Setup' %}
 1. Continue setting the campaign and ad group parameters
@@ -90,9 +90,9 @@ To set up a Search Network Mobile App Install Campaign on iOS, you will need to 
 1. Grab your app's iTunes App Store URL and fill it into the **Final URL** field of your ad setup
 1. Expand the `Ad URL options`. and place your Branch Ad link from the first section in the **Tracking template** field. Ensure the copied link has the appropriate additional params (~campaign_id, ~ad_set_id, lpurl, etc.) which should be automatically generated on your Branch dashboard.
 
-{% image src="/img/pages/features/google-ads/google-search-install-ads/iOS/full-branch-link.png" half center alt='Example Link' %}
+{% image src="/img/pages/features/google-ads/google-search-install-ads/iOS/full-branch-link.png" 3-quarters center alt='Example Link' %}
 
-{% image src="/img/pages/features/google-ads/google-search-install-ads/iOS/adwords-configuration.png" half center alt='Example Adwords Config' %}
+{% image src="/img/pages/features/google-ads/google-search-install-ads/iOS/adwords-configuration.png" 3-quarters center alt='Example Adwords Config' %}
 
 {% protip %}
 
@@ -109,12 +109,18 @@ Because the **Final URL** for your app install campaigns must match your app sto
 - If you want to deep link from your ads directly to content, you should [configure deep link routing]({{base.url}}/getting-started/deep-link-routing).
 {% endprerequisite %}
 
+{% caution title="Android SDK v2.10.0" %}
+
+Ensure the application being promoted by the Ad campaign has the SDK version of **v2.10.0** or later. Starting at this version, accurate measurement of the Google Play link referrer is used which is required to support this Adwords campaign type.
+
+{% endcaution %}
+
 {% ingredient enable-google-ad-partner %}{% endingredient %}
 
 ## Create a Branch Ad Link
 
 1. Create a Branch Ad link from the [Partner Management page](https://dashboard.branch.io/ads/partner-management)'s **Create Google Adwords Link** button under the Google Adwords Partner and select 'App Install or Engagement'
-{% image src='/img/pages/features/google-ads/create-link-install-engagement.png' 3-quarters center alt='Link Creation' %}
+{% image src='/img/pages/features/google-ads/create-link-install-engagement.png' half center alt='Link Creation' %}
 1. Under the Define Section, pick a Link Name for later reference
 1. Configure the link with the Ad Format set to **App Only**, the Ad Partner set to **Google Adwords**, and the Secondary Ad Format set to **Google Search Install Android**, while leaving the Campaign field blank
 {% image src='/img/pages/features/google-ads/google-search-install-ads/Android/ad-link-setup.png' 3-quarters center alt='Create Ad Link' %}
@@ -140,18 +146,18 @@ To set up a Search Network Mobile App Install Campaign on Android, you will need
 #### Create Your Campaign
 
 1. Select `Search Network only` on Adwords
-{% image src='/img/pages/features/google-ads/adwords-search-network.png' 3-quarters center alt='Adwords Network' %}
+{% image src='/img/pages/features/google-ads/adwords-search-network.png' third center alt='Adwords Network' %}
 1. For the type of Search campaign select `Mobile app installs`
 {% image src='/img/pages/features/google-ads/google-search-install-ads/adwords-search-install.png' 3-quarters center alt='Adwords Setup' %}
 1. Continue setting the campaign and ad group parameters
 
 #### Ad Creation
 
-1. Copy the final Branch Ad link generated from the previous section. _Note: This link should begin with **https://play.google.com...** instead of the normal Branch link domain._
+1. Copy the final Branch Ad link generated from the previous section. Note: This link should begin with **https://play.google.com...** instead of the normal Branch link domain. Refer to the [Create A Branch Ad Link]({{base.url}}/marketing-channels/google-search-install-ads/android/#create-a-branch-ad-link) section if the link is not in this format to ensure the link creation was setup properly.
 {% image src="/img/pages/features/google-ads/google-search-install-ads/Android/full-branch-link.png" half center alt='Example Link' %}
 1. Paste this Ad link into the **Final URL** field
 
-{% image src="/img/pages/features/google-ads/google-search-install-ads/Android/adwords-configuration.png" half center alt='Example Ad' %}
+{% image src="/img/pages/features/google-ads/google-search-install-ads/Android/adwords-configuration.png" 3-quarters center alt='Example Ad' %}
 
 {% caution title="Using the Final URL"%}
 

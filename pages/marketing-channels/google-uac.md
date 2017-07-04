@@ -64,12 +64,12 @@ Set up Google as an Ad Partner and conversion tracking from Adwords on the Branc
 1. Select `First opens and in-app actions`.
 1. Select the appropriate platform (iOS or Android).
 1. Select `App installs (first-open)`.
-{% image src="/img/pages/features/google-ads/google-uac/adwords-app-conversion-card.png" half center alt='Conversion IDs' %}
+{% image src="/img/pages/features/google-ads/google-uac/adwords-app-conversion-card.png" third center alt='Conversion IDs' %}
 1. Now fill out the conversion action page:
-- Give it a name like `Branch Android/iOS Conversion`
-- Under `Value` assign a value (or select “Don’t assign a value to this install”)
-- Under `Mobile app` input your application details
-- Select `Include in "Conversions"` to have the conversion events appear in your Adwords columns
+   * Give it a name like `Branch Android/iOS Conversion`
+   * Under `Value` assign a value (or select “Don’t assign a value to this install”)
+   * Under `Mobile app` input your application details
+   * Select `Include in "Conversions"` to have the conversion events appear in your Adwords columns
 1. Click `Save and continue`.
 1. Select the option to have a server report conversions: `Set up a server-to-server conversion feed...`.
 1. Note your `Conversion ID` & `Conversion label` as shown in the screenshot below.{% image src="/img/pages/features/google-ads/google-uac/adwords-conversions.png" half center alt='Conversion IDs' %}
@@ -82,18 +82,16 @@ Set up Google as an Ad Partner and conversion tracking from Adwords on the Branc
 1. Finally, to create a Google ads link click the `Create Google AdWords` Link in the top right hand corner.
 {% image src="/img/pages/marketing-channels/deep-linked-ads/google-adwords/create-adwords-link.png" center 3-quarters alt='Create Google AdWords link' %}
 
-{% protip title="UAC for both Android iOS" %}
+{% protip title="Universal App Campaigns for both Android & iOS" %}
 
 If you're running a Universal App Campaign for both iOS and Android, all four fields under your Adwords Partner Settings should be populated, even if you have the same conversion ID and Label for iOS and Android. If you want to stop running Universal App Campaign reporting for a platform, just remove the two fields for that platform.
-
-{% image src='/img/pages/features/google-ads/google-uac/conversions-branch.png' full center alt='Branch Settings For Conversions' %}
 
 {% endprotip %}
 
 ## Create a Branch Ad Link
 
 1. Create a Branch Ad link from the [Partner Management page](https://dashboard.branch.io/ads/partner-management)'s `Create Google Adwords Link` button under the Google Adwords Partner and select `App Install or Engagement`
-{% image src='/img/pages/features/google-ads/create-link-install-engagement.png' 3-quarters center alt='Link Creation' %}
+{% image src='/img/pages/features/google-ads/create-link-install-engagement.png' half center alt='Link Creation' %}
 1. Under the Define Section, pick a Link Name for later reference
 1. Configure the link with the Ad Format set to **Display**, the Ad Partner set to **Google Adwords**, and the Secondary Ad Format set to **Universal App Campaign iOS/Android** while leaving the Campaign field blank
 {% image src='/img/pages/features/google-ads/google-uac/ad-link-setup.png' 3-quarters center alt='Create Ad Link' %}
@@ -118,8 +116,8 @@ To setup a Universal App Campaign we will place our unique Branch Ad link into a
 
 #### Create Your Campaign
 
-1. Select 'Universal app campaign' on Adwords
-{% image src='/img/pages/features/google-ads/adwords-search-network.png' 3-quarters center alt='Adwords Network' %}
+1. Select `Universal app campaign` on Adwords
+{% image src='/img/pages/features/google-ads/adwords-search-network.png' third center alt='Adwords Network' %}
 1. Complete setting up the campaign completely with your desired app to promote
 
 #### Setup the Branch Link
@@ -132,15 +130,17 @@ To setup a Universal App Campaign we will place our unique Branch Ad link into a
 1. Click `Edit Settings` and locate the **Postback URL** field.
 1. Copy and paste the generated Branch link into the Postback URL field and save the changes to the Conversion.
 
-{% image src="/img/pages/features/google-ads/google-uac/postback-setup.png" half center alt='Example Adwords Config' %}
+{% image src="/img/pages/features/google-ads/google-uac/postback-setup.png" 3-quarters center alt='Example Adwords Config' %}
 
 The setup to measure your Universal App Campaign is complete and Adwords will send Branch information on conversions from ads in your Campaign!
+
+{% ingredient view-ad-link-data %}{% endingredient %}
 
 {% elsif page.support %}
 
 ## FAQ / Debugging
 
-**Q: I'm getting discrepency between conversion counts in Branch and Google Adwords**
+**Q: I'm getting discrepancy between conversion counts in Branch and Google Adwords**
 
 **A:** While we should always expect around a 5% discrepancy due to time zone differences and the like, if you are seeing significant discrepancies, it could be an indication of a broader problem.
 

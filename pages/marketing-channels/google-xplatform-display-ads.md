@@ -54,7 +54,7 @@ Android | Yes | Uses tracking template, must redirect to Google Play store | [li
 ## Create a Branch Ad Link
 
 1. Create a Branch Ad link from the [Partner Management page](https://dashboard.branch.io/ads/partner-management)'s `Create Google Adwords Link` button under the Google Adwords Partner and select `Create Display Link`
-{% image src='/img/pages/features/google-ads/create-link-display.png' 3-quarters center alt='Link Creation' %}
+{% image src='/img/pages/features/google-ads/create-link-display.png' half center alt='Link Creation' %}
 1. Under the Define Section, pick a Link Name for later reference
 1. Configure the link with the Ad Format set to **Display** and the Ad Partner set to **Google Adwords**, while leaving the Campaign field blank
 {% image src='/img/pages/features/google-ads/google-xplatform-display-ads/ad-link-setup.png' 3-quarters center alt='Create Ad Link' %}
@@ -82,7 +82,7 @@ To set up a Display Network Campaign, you will need to first create your campaig
 #### Create Your Campaign
 
 1. Select `Display Network only` on Adwords
-{% image src='/img/pages/features/google-ads/adwords-display-network.png' 3-quarters center alt='Adwords Network' %}
+{% image src='/img/pages/features/google-ads/adwords-display-network.png' third center alt='Adwords Network' %}
 1. Select the desired type of Display Campaign
 {% image src='/img/pages/features/google-ads/google-xplatform-display-ads/adwords-display-network.png' 3-quarters center alt='Adwords Setup' %}
 1. Continue setting the campaign and ad group parameters
@@ -93,9 +93,9 @@ To set up a Display Network Campaign, you will need to first create your campaig
 1. Copy your Branch Ad Link from the last section and ensure the copied link has the appropriate additional params (~campaign_id, ~ad_set_id, lpurl, etc.) which should be automatically generated on your Branch dashboard.
 1. Expand the **Advanced URL options** and paste your Branch Ad link into the **Tracking URL template** field.
 
-{% image src="/img/pages/features/google-ads/google-xplatform-display-ads/full-branch-link.png" half center alt='Example Link' %}
+{% image src="/img/pages/features/google-ads/google-xplatform-display-ads/full-branch-link.png" 3-quarters center alt='Example Link' %}
 
-{% image src="/img/pages/features/google-ads/google-xplatform-display-ads/adwords-configuration.png" half center alt='Example Adwords Config' %}
+{% image src="/img/pages/features/google-ads/google-xplatform-display-ads/adwords-configuration.png" 3-quarters center alt='Example Adwords Config' %}
 
 {% protip %}
 

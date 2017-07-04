@@ -51,7 +51,7 @@ Android | Yes | Uses tracking template, must redirect to Google Play store | [li
 ## Create a Branch Ad Link
 
 1. Create a Branch Ad link from the [Partner Management page](https://dashboard.branch.io/ads/partner-management)'s `Create Google Adwords Link` button under the Google Adwords Partner and select `Create Search Link`
-{% image src='/img/pages/features/google-ads/create-link-search.png' 3-quarters center alt='Link Creation' %}
+{% image src='/img/pages/features/google-ads/create-link-search.png' half center alt='Link Creation' %}
 1. Under the Define Section, pick a Link Name for later reference
 1. Configure the link with the Ad Format set to **Search** and the Ad Partner set to **Google Adwords**, while leaving the Campaign field blank
 {% image src='/img/pages/features/google-ads/google-xplatform-search-ads/ad-link-setup.png' 3-quarters center alt='Create Ad Link' %}
@@ -79,7 +79,7 @@ To set up a Search Network Campaign, you will need to first create your campaign
 #### Create Your Campaign
 
 1. Select `Search Network only` on Adwords
-{% image src='/img/pages/features/google-ads/adwords-search-network.png' 3-quarters center alt='Adwords Network' %}
+{% image src='/img/pages/features/google-ads/adwords-search-network.png' third center alt='Adwords Network' %}
 1. Select the desired type of Search Campaign (Branch links support **Standard** and **Dynamic Search** types)
 {% image src='/img/pages/features/google-ads/google-xplatform-search-ads/adwords-search-network.png' 3-quarters center alt='Adwords Setup' %}
 1. Continue setting the campaign and ad group parameters
@@ -89,9 +89,9 @@ To set up a Search Network Campaign, you will need to first create your campaign
 1. For Dynamic Search Ads, set the website used to be the Final Website the ad should route to, and for Standard Search ads set the **Final URL** field to the Final Website value. This should be the same website that your Branch link routes to.
 1. Locate the `Ad URL options (advanced)` section and expand it. Now copy your Branch Ad link from the previous step into the **Tracking Template** field. _Note: for Standard Search ads the advanced URL options are not available in the default campaign creation flow, but can be accessed any time after the Search Network campaign has been set up_
 
-{% image src="/img/pages/features/google-ads/google-xplatform-search-ads/full-branch-link.png" half center alt='Example Link' %}
+{% image src="/img/pages/features/google-ads/google-xplatform-search-ads/full-branch-link.png" 3-quarters center alt='Example Link' %}
 
-{% image src="/img/pages/features/google-ads/google-xplatform-search-ads/adwords-configuration.png" half center alt='Example Adwords Config' %}
+{% image src="/img/pages/features/google-ads/google-xplatform-search-ads/adwords-configuration.png" 3-quarters center alt='Example Adwords Config' %}
 
 {% protip %}
 
