@@ -33,9 +33,9 @@ Branch _automatically_ creates events whenever a user accesses your site or your
 | Event | Description
 | --- | ---
 | `install` | Triggered the first time a user launches your app
-| `open` | Trigged when the user opens the app after the very first launch OR if a user reinstalls the app after uninstalling it
+| `open` | Triggered whenever the app becomes active (includes reinstalls)
+| `referred session` | Triggered *in addition* to install, open or web session start if a user comes from a Branch link
 | `web session start` | Triggered when the user views a webpage using the Branch Web SDK.
-| `referred session` | Triggered _in addition_ to install, open or web session start if a user comes from a Branch link
 
 {% protip title="Receiving Postbacks" %}
 You can be notified via a postback to your server every time that an event occurs. Visit the [Webhooks](/getting-started/webhooks/) page for more information on configuring postbacks.
