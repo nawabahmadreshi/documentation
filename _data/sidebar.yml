@@ -51,17 +51,27 @@
 - title: Marketing Channels
   directory: marketing-channels
   children:
+    - title: Universal Ads
+      children:
+        - ad-network-integrations
     - title: Web to App
       children:
         - deepviews
         - text-me-the-app
         - journeys
-    - title: App Only Ads
+    - title: Deep Linked Ads
       children:
         - title: Google
           children:
-            - google-search-ads
+            - google-ads-overview
+            - google-search-install-ads
+            - google-search-engagement-ads
+            - google-display-install-ads
+            - google-display-engagement-ads
             - google-uac
+            - google-xplatform-search-ads
+            - google-xplatform-display-ads
+            - google-video-ads
         - title: Facebook
           children:
             - facebook-ads

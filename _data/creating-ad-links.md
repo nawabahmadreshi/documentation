@@ -13,7 +13,11 @@ alias: [ /features/google-search-ads/, /features/google-search-ads/overview/, /f
 ---
 
 {% if page.overview %}
-If you're running Google AdWords campaigns, whether they're of the Search or Display variety, Branch links can be placed inside your ads. This allows you to track ad-driven installs on the Branch dashboard and deep link those new users directly to content the first time they open your app.
+Branch Universal Ads help you drive results for web and app campaigns. 
+
+- Create Ad Links with tracking parameters and deep linking
+- Enable Ad Partners to send them preconfigured conversion postbacks
+- View ad performance with web and app analytics
 
 {% ingredient deep-linked-ad-ideas %}{% endingredient %}
 
@@ -22,15 +26,18 @@ If you're running Google AdWords campaigns, whether they're of the Search or Dis
 {% elsif page.guide %}
 
 {% prerequisite %}
-- To track installs from Google Ads you should [integrate the Branch SDK]({{base.url}}/getting-started/sdk-integration-guide) into your app.
+- To track installs from Ads you should [integrate the Branch SDK]({{base.url}}/getting-started/sdk-integration-guide) into your app.
 - If you want to deep link from your ads directly to content, you should [configure deep link routing]({{base.url}}/getting-started/deep-link-routing).
+- Ads is a premium product priced on Monthly Active Users. Sign up for the Ads product to enable this functionality. 
 {% endprerequisite %}
 
-## Create a Quick Link on the Branch dashboard
+## Enable an ad partner
 
-1. Visit the [Marketing page](https://dashboard.branch.io/#/marketing) on the Branch dashboard and click **+ Add link**.
-1. Pick a **Marketing Title** for later reference. For example: "Ad for blue sneakers" {% image src='/img/pages/features/google-search-ads/ad_example_create.png' 3-quarters center alt='Create Quick Link' %}
-1. **Channel** and **Campaign** are optional but recommended. **Tags** is free form.
+1. Visit the [Ads page](https://dashboard.branch.io/ads) on the Branch dashboard.
+1. Select [Partner Management](https://dashboard.branch.io/ads/partner-management) from the sidebar.
+1. Search for the Ad Partner that you'd like to enable. 
+
+
 
 {% example title="Use the pre-configured link" %}
 
