@@ -1,3 +1,5 @@
+## View Your Data
+
 The [Ads Analytics Page](https://dashboard.branch.io/ads/analytics) on the Branch dashboard provides an interactive time series graph and table to view the performance of your Ad campaigns.
 
 {% image src='/img/pages/features/ads-analytics/analytics-graph.png' full center alt='Example Ads Graph' %}
