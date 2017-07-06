@@ -48,14 +48,14 @@ Set up Google as an Ad Partner and conversion tracking from Adwords on the Branc
 
 1. Go to your [Adwords dashboard](https://adwords.google.com/cm/CampaignMgmt){:target="_blank"}.
 1. In the top nav bar, click into `Tools` > `Conversions`.
-{% image src="/img/pages/features/google-ads/google-conversions/adwords-tools-conversion.png" third center alt='Conversion Menu' %}
+{% image src="/img/pages/features/google-dla/google-conversions/adwords-tools-conversion.png" third center alt='Conversion Menu' %}
 1. Click `+ Add a Conversion` button.
 1. Select `App` from the cards.
-{% image src="/img/pages/features/google-ads/google-conversions/adwords-conversion-install.png" 3-quarters center alt='Conversion App Install' %}
+{% image src="/img/pages/features/google-dla/google-conversions/adwords-conversion-install.png" 3-quarters center alt='Conversion App Install' %}
 1. Select `First opens and in-app actions`.
 1. Select the appropriate platform (iOS or Android).
 1. Select `App installs (first-open)`.
-{% image src="/img/pages/features/google-ads/google-conversions/adwords-app-conversion-card.png" half center alt='Conversion IDs' %}
+{% image src="/img/pages/features/google-dla/google-conversions/adwords-app-conversion-card.png" half center alt='Conversion IDs' %}
 1. Now fill out the conversion action page:
    * Give it a name like `Branch Android/iOS Conversion`
    * Under `Value` assign a value (or select “Don’t assign a value to this install”)
@@ -63,7 +63,7 @@ Set up Google as an Ad Partner and conversion tracking from Adwords on the Branc
    * Select `Include in "Conversions"` to have the conversion events appear in your Adwords columns
 1. Click `Save and continue`.
 1. Select the option to have a server report conversions: `Set up a server-to-server conversion feed...`.
-1. Note your `Conversion ID` & `Conversion label` as shown in the screenshot below.{% image src="/img/pages/features/google-ads/google-conversions/adwords-conversions.png" 3-quarters center alt='Conversion IDs' %}
+1. Note your `Conversion ID` & `Conversion label` as shown in the screenshot below.{% image src="/img/pages/features/google-dla/google-conversions/adwords-conversions.png" 3-quarters center alt='Conversion IDs' %}
 1. Head to the [Branch Dashboard Adwords Settings](https://dashboard.branch.io/ads/partner-management/a_google_adwords?tab=settings){:target="_blank"}.
 1. Paste in the `Conversion ID` and `Conversion label` from your Adwords dashboard into the appropriate fields for either iOS or Android
 1. Click the `Save and Enable` button in the lower right hand corner.
@@ -90,5 +90,7 @@ Adwords has a default 30 day conversion window for app install actions which can
 **Q: My campaign is reporting a number of conversions much higher than the number of conversions shown in the conversion table in Adwords**
 
 **A:** When viewing a campaign, it shows the sum of all conversion events that apply to it. To view by conversion, navigate to `Segment` > `Conversions` > `Conversion name`, in order to clearly see the breakdown of your campaign's conversions.
+
+{% image src="/img/pages/features/google-dla/google-conversions/conversion-segment.png" 3-quarters center alt='Adwords Conversion Segment' %}
 
 {% endif %}
