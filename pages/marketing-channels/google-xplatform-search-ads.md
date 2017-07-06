@@ -1,7 +1,7 @@
 ---
 type: recipe
 directory: marketing-channels
-title: "Google Search Network Ads"
+title: "Search Network Ads"
 page_title: "Advertising with Deep Links: Google Search Network Ads"
 description:
 hide_platform_selector: true
@@ -44,6 +44,7 @@ Android | Yes | Uses tracking template, must redirect to Google Play store | [li
 {% prerequisite %}
 - To track installs from Google Ads you should [integrate the Branch SDK]({{base.url}}/getting-started/sdk-integration-guide) into your app.
 - If you want to deep link from your ads directly to content, you should [configure deep link routing]({{base.url}}/getting-started/deep-link-routing).
+- Ads is a premium product priced on Monthly Active Users. Sign up for the Ads product to enable this functionality.
 {% endprerequisite %}
 
 {% ingredient enable-google-ad-partner %}{% endingredient %}

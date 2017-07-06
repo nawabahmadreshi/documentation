@@ -1,20 +1,21 @@
 ---
 type: recipe
 directory: marketing-channels
-title: "Google Display Install Ads"
+title: "Display App Install Ads"
 page_title: "Advertising with Deep Links: Google Display Install Ads"
 description:
-hide_platform_selector: true
-sections:
-- overview
+platforms:
 - ios
 - android
+sections:
+- overview
+- guide
 - support
 contents:
   number:
   - ios
   - android
-alias: [ /features/google-display-install-ads/, /features/google-display-install-ads/overview/, /features/google-display-install-ads/ios/, /features/google-display-install-ads/android/, /features/google-display-install-ads/support/ ]
+alias: [ /features/google-display-install-ads/, /features/google-display-install-ads/overview/, /features/google-display-install-ads/guide/ios/, /features/google-display-install-ads/guide/android/, /features/google-display-install-ads/support/ ]
 ---
 
 {% if page.overview %}
@@ -39,14 +40,17 @@ Android | Yes | Uses tracking template, must redirect to Google Play store | [li
 
 {% getstarted %}{% endgetstarted %}
 
-{% elsif page.ios %}
+{% elsif page.guide %}
 
 {% prerequisite %}
 - To track installs from Google Ads you should [integrate the Branch SDK]({{base.url}}/getting-started/sdk-integration-guide) into your app.
 - If you want to deep link from your ads directly to content, you should [configure deep link routing]({{base.url}}/getting-started/deep-link-routing).
+- Ads is a premium product priced on Monthly Active Users. Sign up for the Ads product to enable this functionality.
 {% endprerequisite %}
 
 {% ingredient enable-google-ad-partner %}{% endingredient %}
+
+{% if page.ios %}
 
 ## Create a Branch Ad Link
 
@@ -99,16 +103,7 @@ Because the **Final URL** for your app install campaigns must match your app sto
 
 {% endprotip %}
 
-{% ingredient view-ad-link-data %}{% endingredient %}
-
 {% elsif page.android %}
-
-{% prerequisite %}
-- To track installs from Google Ads you should [integrate the Branch SDK]({{base.url}}/getting-started/sdk-integration-guide) into your app.
-- If you want to deep link from your ads directly to content, you should [configure deep link routing]({{base.url}}/getting-started/deep-link-routing).
-{% endprerequisite %}
-
-{% ingredient enable-google-ad-partner %}{% endingredient %}
 
 ## Create a Branch Ad Link
 
@@ -160,6 +155,8 @@ To set up a Display Network Mobile App Install Campaign on Android, you will nee
 Because the **Final URL** for your app install campaigns must match your app store domain, you cannot put a Branch link in that box. However, capturing installs and deep linking users through content is still possible due to the **Tracking template** configuration.
 
 {% endprotip %}
+
+{% endif %}
 
 {% ingredient view-ad-link-data %}{% endingredient %}
 

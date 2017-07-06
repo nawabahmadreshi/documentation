@@ -1,7 +1,7 @@
 ---
 type: recipe
 directory: marketing-channels
-title: "Google Search Install Ads"
+title: "Search App Install Ads"
 page_title: "Advertising with Deep Links: Google Search Install Ads"
 description:
 platforms:
@@ -45,6 +45,7 @@ Android | Yes | Uses Final URL with ValueTrack Parameters, no tracking template 
 {% prerequisite %}
 - To track installs from Google Ads you should [integrate the Branch SDK]({{base.url}}/getting-started/sdk-integration-guide) into your app.
 - If you want to deep link from your ads directly to content, you should [configure deep link routing]({{base.url}}/getting-started/deep-link-routing).
+- Ads is a premium product priced on Monthly Active Users. Sign up for the Ads product to enable this functionality.
 {% endprerequisite %}
 
 {% if page.android %}
@@ -110,9 +111,7 @@ Because the **Final URL** for your app install campaigns must match your app sto
 
 {% endprotip %}
 
-{% endif %}
-
-{% if page.android %}
+{% elsif page.android %}
 
 ## Create a Branch Ad Link
 
@@ -182,10 +181,14 @@ As of June 2017, due to the current Adwords Search Network Mobile App Install Ca
 
 **A:** Sometimes, your ad may be disapproved if the Branch link does not re-direct to Google Play or App Store when clicked on a desktop. Please ensure that for the Branch link you're using to track installs, Deepviews are disabled and a desktop redirect is set to either the App / Play store.
 
+{% if page.android %}
+
 **Q: Why am I seeing inaccurate click attribution values for my Search Network Mobile App Install Campaign on Android?**
 
 **A:** Google Adwords current implementation of the Search Network Mobile App Install Campaign for Android **fails to support Tracking Templates** despite the option to set them up in the Ad creation process.
 
 Therefore, a unique Play Store link is used in this setup which corresponds to a Branch link. All install capturing and deep linking of content is still possible through this setup.
+
+{% endif %}
 
 {% endif %}

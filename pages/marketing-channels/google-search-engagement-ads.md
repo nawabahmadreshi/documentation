@@ -1,18 +1,19 @@
 ---
 type: recipe
 directory: marketing-channels
-title: "Google Search Engagement Ads"
+title: "Search App Engagement Ads"
 page_title: "Advertising with Deep Links: Google Search Install Ads"
 description:
-hide_platform_selector: true
+platforms:
+- android
 sections:
 - overview
-- android
+- guide
 - support
 contents:
   number:
   - android
-alias: [ /features/google-search-engagement-ads/, /features/google-search-engagement-ads/overview/, /features/google-search-engagement-ads/android/, /features/google-search-engagement-ads/support/ ]
+alias: [ /features/google-search-engagement-ads/, /features/google-search-engagement-ads/overview/, /features/google-search-engagement-ads/guide/android/, /features/google-search-engagement-ads/support/ ]
 ---
 
 {% if page.overview %}
@@ -37,12 +38,13 @@ Android | Yes | Uses Final URL with ValueTrack Parameters, no tracking template 
 
 {% getstarted %}{% endgetstarted %}
 
-{% elsif page.android %}
+{% elsif page.guide %}
 
 {% prerequisite %}
 - To track installs from Google Ads you should [integrate the Branch SDK]({{base.url}}/getting-started/sdk-integration-guide) into your app.
 - If you want to deep link from your ads directly to content, you should [configure deep link routing]({{base.url}}/getting-started/deep-link-routing).
 - Ensure you have entered your Android application's URI scheme under `Link Settings > Android URI Scheme` in your Branch dashboard.
+- Ads is a premium product priced on Monthly Active Users. Sign up for the Ads product to enable this functionality.
 {% endprerequisite %}
 
 {% ingredient enable-google-ad-partner %}{% endingredient %}

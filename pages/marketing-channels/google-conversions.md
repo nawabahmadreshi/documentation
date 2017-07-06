@@ -1,7 +1,7 @@
 ---
 type: recipe
 directory: marketing-channels
-title: "Google Conversion Setup"
+title: "Adwords Conversions Setup"
 page_title: "Advertising with Deep Links: Google Ads - Conversion Setup"
 description:
 hide_platform_selector: true
@@ -32,6 +32,7 @@ Setting up Adwords conversion events with Branch allows Branch to get direct con
 {% prerequisite %}
 - To track installs from Google Ads you should [integrate the Branch SDK]({{base.url}}/getting-started/sdk-integration-guide) into your app.
 - If you want to deep link from your ads directly to content, you should [configure deep link routing]({{base.url}}/getting-started/deep-link-routing).
+- Ads is a premium product priced on Monthly Active Users. Sign up for the Ads product to enable this functionality.
 {% endprerequisite %}
 
 ## Conversion Setup
