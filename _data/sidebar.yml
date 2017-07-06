@@ -72,6 +72,7 @@
             - google-xplatform-search-ads
             - google-xplatform-display-ads
             - google-video-ads
+            - google-conversions
         - title: Facebook
           children:
             - facebook-ads
