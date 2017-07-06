@@ -42,14 +42,22 @@ Android | Yes | Uses Final URL with ValueTrack Parameters, no tracking template 
 
 {% elsif page.guide %}
 
-{% if page.ios %}
-
 {% prerequisite %}
 - To track installs from Google Ads you should [integrate the Branch SDK]({{base.url}}/getting-started/sdk-integration-guide) into your app.
 - If you want to deep link from your ads directly to content, you should [configure deep link routing]({{base.url}}/getting-started/deep-link-routing).
 {% endprerequisite %}
 
+{% if page.android %}
+{% caution title="Android SDK v2.10.0" %}
+
+Ensure the application being promoted by the Ad campaign has the SDK version of **v2.10.0** or later. Starting at this version, accurate measurement of the Google Play link referrer is used which is required to support this Adwords campaign type.
+
+{% endcaution %}
+{% endif %}
+
 {% ingredient enable-google-ad-partner %}{% endingredient %}
+
+{% if page.ios %}
 
 ## Create a Branch Ad Link
 
@@ -74,7 +82,6 @@ It is recommended to leave the Channel and Campaign Tags empty as Branch will dy
 You can use this configuration section to specify custom link parameters that will be deep linked into the app after install. These could include a coupon code or a page identifier to route the user. Visit the [Deep Link Routing]({{base.url}}/getting-started/deep-link-routing) page to learn more.
 
 {% endprotip %}
-
 
 ## Configure an Ad
 
@@ -103,20 +110,9 @@ Because the **Final URL** for your app install campaigns must match your app sto
 
 {% endprotip %}
 
-{% ingredient view-ad-link-data %}{% endingredient %}
+{% endif %}
 
-{% prerequisite %}
-- To track installs from Google Ads you should [integrate the Branch SDK]({{base.url}}/getting-started/sdk-integration-guide) into your app.
-- If you want to deep link from your ads directly to content, you should [configure deep link routing]({{base.url}}/getting-started/deep-link-routing).
-{% endprerequisite %}
-
-{% caution title="Android SDK v2.10.0" %}
-
-Ensure the application being promoted by the Ad campaign has the SDK version of **v2.10.0** or later. Starting at this version, accurate measurement of the Google Play link referrer is used which is required to support this Adwords campaign type.
-
-{% endcaution %}
-
-{% ingredient enable-google-ad-partner %}{% endingredient %}
+{% if page.android %}
 
 ## Create a Branch Ad Link
 
@@ -174,9 +170,9 @@ As of June 2017, due to the current Adwords Search Network Mobile App Install Ca
 
 {% endcaution %}
 
-{% ingredient view-ad-link-data %}{% endingredient %}
-
 {% endif %}
+
+{% ingredient view-ad-link-data %}{% endingredient %}
 
 {% elsif page.support %}
 
