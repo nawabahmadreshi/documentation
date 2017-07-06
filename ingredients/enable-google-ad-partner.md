@@ -5,8 +5,10 @@ If you haven't enabled Google as an Ad Partner on the Branch dashboard follow th
 1. Navigate to the [Partner Management tab](https://dashboard.branch.io/ads/partner-management).
 {% image src="/img/pages/marketing-channels/deep-linked-ads/google/ads-partner-management.png" center 3-quarters alt='Ads Partner Management' %}
 1. Search for **Google AdWords**.
+<<<<<<< Updated upstream
 {% image src="/img/pages/marketing-channels/deep-linked-ads/google/find-google-partner.png" center 3-quarters alt='Find Google AdWords in Partner Manager' %}
-1. Enter values for the **conversion IDs and labels**. You can put in placeholders for now, but we recommend setting up install conversion tracking in AdWords before launching your campaign.
+1. Enter values for the **conversion IDs and labels**. You can put in placeholders for now, but we recommend setting up install conversion tracking in AdWords before launching your campaign. For setup instructions on conversion tracking, check out [Google Conversion Setup]({{base.url}/marketing-channels/google-adwords-conversions}).
+>>>>>>> Stashed changes
 1. Click the `Save and Enable` button in the lower right hand corner.
 {% image src="/img/pages/marketing-channels/deep-linked-ads/google/save-and-enable-google.png" center 3-quarters alt='Save and Enable Google AdWords in Partner Manager' %}
 1. Google AdWords is now enabled as an ad partner.

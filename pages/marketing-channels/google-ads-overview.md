@@ -34,6 +34,8 @@ Shopping | Shopping | link here | Cross-platform Product Links
 Video (YouTube TrueView) | Shopping | link here | Cross-platform Product Links
 {:/comment}
 
+**Optional for non Universal App Campaigns:** For setup instructions for Adwords Conversion tracking with Branch check out [Google Conversion Setup]({{base.url}/marketing-channels/google-adwords-conversions}).
+
 {% ingredient deep-linked-ad-ideas %}{% endingredient %}
 
 {% getstarted title='Search Mobile App Install' next='features/google-search-install-ads' %}{% endgetstarted %}

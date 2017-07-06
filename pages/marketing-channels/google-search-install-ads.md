@@ -4,17 +4,18 @@ directory: marketing-channels
 title: "Google Search Install Ads"
 page_title: "Advertising with Deep Links: Google Search Install Ads"
 description:
-hide_platform_selector: true
-sections:
-- overview
+platforms:
 - ios
 - android
+sections:
+- overview
+- guide
 - support
 contents:
   number:
   - ios
   - android
-alias: [ /features/google-search-install-ads/, /features/google-search-install-ads/overview/, /features/google-search-install-ads/ios/, /features/google-search-install-ads/android/, /features/google-search-install-ads/support/ ]
+alias: [ /features/google-search-install-ads/, /features/google-search-install-ads/overview/, /features/google-search-install-ads/guide/ios/, /features/google-search-install-ads/guide/android/, /features/google-search-install-ads/support/ios/, /features/google-search-install-ads/support/android/  ]
 ---
 
 {% if page.overview %}
@@ -39,7 +40,9 @@ Android | Yes | Uses Final URL with ValueTrack Parameters, no tracking template 
 
 {% getstarted %}{% endgetstarted %}
 
-{% elsif page.ios %}
+{% elsif page.guide %}
+
+{% if page.ios %}
 
 {% prerequisite %}
 - To track installs from Google Ads you should [integrate the Branch SDK]({{base.url}}/getting-started/sdk-integration-guide) into your app.
@@ -101,8 +104,6 @@ Because the **Final URL** for your app install campaigns must match your app sto
 {% endprotip %}
 
 {% ingredient view-ad-link-data %}{% endingredient %}
-
-{% elsif page.android %}
 
 {% prerequisite %}
 - To track installs from Google Ads you should [integrate the Branch SDK]({{base.url}}/getting-started/sdk-integration-guide) into your app.
@@ -174,6 +175,8 @@ As of June 2017, due to the current Adwords Search Network Mobile App Install Ca
 {% endcaution %}
 
 {% ingredient view-ad-link-data %}{% endingredient %}
+
+{% endif %}
 
 {% elsif page.support %}
 
