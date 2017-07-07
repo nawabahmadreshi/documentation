@@ -31,8 +31,8 @@ Display Network | Mobile App Engagement | App Only: Engagement
 
 Operating System | Supported by AdWords Display Engagement Ads? | Key Differences | Documentation
 --- | --- | --- | ---
-iOS | Yes | Uses tracking template, must redirect to iOS app store | [link]({{base.url}}/marketing-channels/google-display-engagement-ads/ios)
-Android | Yes | Uses tracking template, must redirect to Google Play store | [link]({{base.url}}/marketing-channels/google-display-engagement-ads/android)
+iOS | Yes | Uses tracking template, must redirect to iOS app store | [link]({{base.url}}/marketing-channels/google-display-engagement-ads/guide/ios)
+Android | Yes | Uses tracking template, must redirect to Google Play store | [link]({{base.url}}/marketing-channels/google-display-engagement-ads/guide/android)
 
 {% ingredient link-to-google-ads-overview %}{% endingredient %}
 

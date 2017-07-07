@@ -35,7 +35,7 @@ Setting up Adwords conversion events with Branch allows Branch to get direct con
 - Ads is a premium product priced on Monthly Active Users. Sign up for the Ads product to enable this functionality.
 {% endprerequisite %}
 
-## Conversion Setup
+## Conversions Setup
 
 Set up Google as an Ad Partner and conversion tracking from Adwords on the Branch dashboard. If you already have Google enabled as an ad partner, continue with the _Enable Adwords Conversions_ instructions.
 
@@ -77,6 +77,9 @@ You're all setup to confirm app install conversions between Branch and Adwords!
 {% protip title="Conversion Windows" %}
 
 Adwords has a default 30 day conversion window for app install actions which can't be changed. To minimize discrepancies between Branch and Adwords conversion values, we recommend setting your Branch attribution window to the same value. Navigate to `Link Settings` > `Attribution Windows` and set the **Click to conversion event** to 30 days.
+**By default, the window is set to 30 days in the Branch dashboard.**
+
+{% image src="/img/pages/features/google-dla/google-conversions/attribution-window.png" 3-quarters center alt='Branch Conversion Window' %}
 
 {% endprotip %}
 
@@ -92,6 +95,6 @@ Adwords has a default 30 day conversion window for app install actions which can
 
 **A:** When viewing a campaign, it shows the sum of all conversion events that apply to it. To view by conversion, navigate to `Segment` > `Conversions` > `Conversion name`, in order to clearly see the breakdown of your campaign's conversions.
 
-{% image src="/img/pages/features/google-dla/google-conversions/conversion-segment.png" 3-quarters center alt='Adwords Conversion Segment' %}
+{% image src="/img/pages/features/google-dla/google-conversions/conversion-segment.png" third center alt='Adwords Conversion Segment' %}
 
 {% endif %}

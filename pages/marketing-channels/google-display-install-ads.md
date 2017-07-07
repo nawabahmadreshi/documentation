@@ -31,8 +31,8 @@ Display Network | Mobile App Installs | App Only: Install
 
 Operating System | Supported by AdWords Display Install Ads? | Key Differences | Documentation
 --- | --- | --- | ---
-iOS | Yes | Uses tracking template, must redirect to iOS app store | [link]({{base.url}}/marketing-channels/google-display-install-ads/ios)
-Android | Yes | Uses tracking template, must redirect to Google Play store | [link]({{base.url}}/marketing-channels/google-display-install-ads/android)
+iOS | Yes | Uses tracking template, must redirect to iOS app store | [link]({{base.url}}/marketing-channels/google-display-install-ads/guide/ios)
+Android | Yes | Uses tracking template, must redirect to Google Play store | [link]({{base.url}}/marketing-channels/google-display-install-ads/guide/android)
 
 {% ingredient link-to-google-ads-overview %}{% endingredient %}
 

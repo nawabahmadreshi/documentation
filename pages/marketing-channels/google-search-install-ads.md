@@ -31,8 +31,8 @@ Search Network | Mobile App Installs | App Only: Install
 
 Operating System | Supported by AdWords Search Install Ads? | Key Differences | Documentation
 --- | --- | --- | ---
-iOS | Yes | Uses tracking template, must redirect to iOS app store | [link]({{base.url}}/marketing-channels/google-search-install-ads/ios)
-Android | Yes | Uses Final URL with ValueTrack Parameters, no tracking template | [link]({{base.url}}/marketing-channels/google-search-install-ads/android)
+iOS | Yes | Uses tracking template, must redirect to iOS app store | [link]({{base.url}}/marketing-channels/google-search-install-ads/guide/ios)
+Android | Yes | Uses Final URL with ValueTrack Parameters, no tracking template | [link]({{base.url}}/marketing-channels/google-search-install-ads/guide/android)
 
 {% ingredient link-to-google-ads-overview %}{% endingredient %}
 

@@ -30,7 +30,7 @@ Search Network | Mobile App Engagement | App Only: Engagement
 Operating System | Supported by AdWords Search Engagement Ads? | Key differences | Documentation
 --- | --- | --- | ---
 iOS | No | The Search Mobile Engagement Campaign type currently does not support iOS | N/A
-Android | Yes | Uses Final URL with ValueTrack Parameters, no tracking template |  [link]({{base.url}}/marketing-channels/google-search-engagement-ads/android)
+Android | Yes | Uses Final URL with ValueTrack Parameters, no tracking template |  [link]({{base.url}}/marketing-channels/google-search-engagement-ads/guide/android)
 
 {% ingredient link-to-google-ads-overview %}{% endingredient %}
 
