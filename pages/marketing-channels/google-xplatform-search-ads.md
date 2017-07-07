@@ -73,7 +73,7 @@ You can use this configuration section to specify custom link parameters that wi
 
 {% endprotip %}
 
-{% protip title="Attribution Windows" %}
+{% protip title="Setting Attribution Windows" %}
 
 You can specify the attribution windows for your links either at an overall account or per link level. Use these windows to accurately measure attribution data for your Branch links. Refer to [Changing attribution windows]({{base.url}}/marketing-channels/ad-network-integrations/advanced/#changing-attribution-windows) for instructions.
 
@@ -114,7 +114,7 @@ Because the **Final URL** for your app install campaigns must match the final de
 
 **Q: Why is my advertisement being disapproved on Adwords?**
 
-**A:** Sometimes, your ad may be disapproved if the Branch link does not re-direct to Google Play or App Store when clicked on a desktop. Please ensure that for the Branch link you're using to track installs, Deepviews are disabled and a desktop redirect is set to either the App / Play store.
+**A:** For Cross Platform campaigns, sometimes your ad may be disapproved if the Branch link does not re-direct to your Final destination URL specified in the ad. Please ensure that your Branch link redirects to your Final URL specified in your ad. To ensure install tracking is functional please ensure that for the Branch link you're using to track installs, Deepviews are disabled and your Branch link's iOS/Android redirects are set to their respective App / Play Store.
 
 **Q: I don't see the `Ad URL options (advanced)` option for my Search ad. Where do I find it?**
 

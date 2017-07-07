@@ -84,7 +84,7 @@ You can use this configuration section to specify custom link parameters that wi
 
 {% endprotip %}
 
-{% protip title="Attribution Windows" %}
+{% protip title="Setting Attribution Windows" %}
 
 You can specify the attribution windows for your links either at an overall account or per link level. Use these windows to accurately measure attribution data for your Branch links. Refer to [Changing attribution windows]({{base.url}}/marketing-channels/ad-network-integrations/advanced/#changing-attribution-windows) for instructions.
 
@@ -141,7 +141,7 @@ You can use this configuration section to specify custom link parameters that wi
 
 {% endprotip %}
 
-{% protip title="Attribution Windows" %}
+{% protip title="Setting Attribution Windows" %}
 
 You can specify the attribution windows for your links either at an overall account or per link level. Use these windows to accurately measure attribution data for your Branch links. Refer to [Changing attribution windows]({{base.url}}/marketing-channels/ad-network-integrations/advanced/#changing-attribution-windows) for instructions.
 
@@ -191,7 +191,7 @@ As of June 2017, due to the current Adwords Search Network Mobile App Install Ca
 
 **Q: Why is my advertisement being disapproved on Adwords?**
 
-**A:** Sometimes, your ad may be disapproved if the Branch link does not re-direct to Google Play or App Store when clicked on a desktop. Please ensure that for the Branch link you're using to track installs, Deepviews are disabled and a desktop redirect is set to either the App / Play store.
+**A:** For App Install/Engagement Campaigns, sometimes your ad may be disapproved if the Branch link does not re-direct to Google Play or App Store when clicked on a desktop. Please ensure that for the Branch link you're using to track installs, Deepviews are disabled and a desktop redirect is set to either the App / Play store.
 
 {% if page.android %}
 
