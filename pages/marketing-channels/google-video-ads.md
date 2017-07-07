@@ -76,6 +76,12 @@ You can use this configuration section to specify custom link parameters that wi
 
 {% endprotip %}
 
+{% protip title="Attribution Windows" %}
+
+You can specify the attribution windows for your links either at an overall account or per link level. Use these windows to accurately measure attribution data for your Branch links. Refer to [Changing attribution windows]({{base.url}}/marketing-channels/ad-network-integrations/advanced/#changing-attribution-windows) for instructions.
+
+{% endprotip %}
+
 ## Configure an Ad
 
 To set up a Video Campaign, you will need to first create your campaign and then setup a tracking template on the ad. Additional Adwords information on Video campaigns can be found **[here](https://support.google.com/adwords/answer/6340491?hl=en)**. To set up a Video App Install campaign, you must first complete the entire creation flow for the campaign and ad on Google Adwords.
@@ -142,6 +148,12 @@ It is recommended to leave the Channel and Campaign Tags empty as Branch will dy
 {% protip title="Optional: Deep Link Data (Advanced)" %}
 
 You can use this configuration section to specify custom link parameters that will be deep linked into the app after install. These could include a coupon code or a page identifier to route the user. Visit the [Deep Link Routing]({{base.url}}/getting-started/deep-link-routing) page to learn more.
+
+{% endprotip %}
+
+{% protip title="Attribution Windows" %}
+
+You can specify the attribution windows for your links either at an overall account or per link level. Use these windows to accurately measure attribution data for your Branch links. Refer to [Changing attribution windows]({{base.url}}/marketing-channels/ad-network-integrations/advanced/#changing-attribution-windows) for instructions.
 
 {% endprotip %}
 

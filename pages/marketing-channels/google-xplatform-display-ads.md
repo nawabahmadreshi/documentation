@@ -76,6 +76,12 @@ You can use this configuration section to specify custom link parameters that wi
 
 {% endprotip %}
 
+{% protip title="Attribution Windows" %}
+
+You can specify the attribution windows for your links either at an overall account or per link level. Use these windows to accurately measure attribution data for your Branch links. Refer to [Changing attribution windows]({{base.url}}/marketing-channels/ad-network-integrations/advanced/#changing-attribution-windows) for instructions.
+
+{% endprotip %}
+
 ## Configure an Ad
 
 To set up a Display Network Campaign, you will need to first create your campaign and then setup a tracking template on the ad. Additional Adwords information on Display Network campaigns can be found **[here](https://support.google.com/adwords/answer/6340468?hl=en)**.
