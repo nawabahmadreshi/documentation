@@ -15,7 +15,7 @@ class BranchUtils
     @port = (20000 + rand(1000)).to_s
 
     @pid = fork do
-      exec 'node', File.dirname(__FILE__) + '/_render.js', @port
+      exec 'node', '--max_old_space_size=4096',File.dirname(__FILE__) + '/_render.js', @port
     end
     sleep 1
   end

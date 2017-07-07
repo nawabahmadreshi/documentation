@@ -9,13 +9,15 @@
     "esprima-fb": "15001.1.0-dev-harmony-fb",
     "jscs": "1.13.1",
     "lunr": "0.5.11",
+    "process-nextick-args": "^1.0.7",
     "ramda": "0.13.0",
     "react": "0.13.1",
     "react-tools": "0.13.1",
     "reactify": "1.1.0",
     "superagent": "1.2.0",
     "through2": "0.6.3",
-    "uglify-js": "2.4.20"
+    "uglify-js": "2.4.20",
+    "util-deprecate": "^1.0.2"
   },
   "scripts": {
     "build_search": "node ./_site/js/search/build_scripts/index_builder.js",

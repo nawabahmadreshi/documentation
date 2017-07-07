@@ -12,7 +12,7 @@ sections:
 ---
 
 {% if page.overview %}
-Branch Universal Ads help you drive results for web and app campaigns. 
+Branch Universal Ads help you drive results for web and app campaigns.
 
 - Create Ad Links with tracking parameters and deep linking
 - Enable Ad Partners to send them preconfigured conversion postbacks
@@ -27,7 +27,7 @@ Branch Universal Ads help you drive results for web and app campaigns.
 {% prerequisite %}
 - To track installs from Ads you should [integrate the Branch SDK]({{base.url}}/getting-started/sdk-integration-guide) into your app.
 - If you want to deep link from your ads directly to content, you should [configure deep link routing]({{base.url}}/getting-started/deep-link-routing).
-- Ads is a premium product priced on Monthly Active Users. Sign up for the Ads product to enable this functionality. 
+- Ads is a premium product priced on Monthly Active Users. Sign up for the Ads product to enable this functionality.
 {% endprerequisite %}
 
 ## Enable an ad partner
@@ -48,13 +48,13 @@ Basic postbacks will automatically be activated for events like _Install_ and _P
 
 ## Create an ad link
 
-Once you've enabled an ad partner, it's time to create a tracking link. 
+Once you've enabled an ad partner, it's time to create a tracking link.
 
-1. First, select an ad format. For App Install or App Engagement campaigns you'll want to select the **App Only** format. For Search or Display campaigns where the user should go to web if they don't have the app, then you should select **Cross-Platform Search** or **Cross-Platform Display**. **Product Links** are for shopping or dynamic remarketing campaigns and will take you to create a Deep Linked Product Feed. 
+1. First, select an ad format. For App Install or App Engagement campaigns you'll want to select the **App Only** format. For Search or Display campaigns where the user should go to web if they don't have the app, then you should select **Cross-Platform Search** or **Cross-Platform Display**. **Product Links** are for shopping or dynamic remarketing campaigns and will take you to create a Deep Linked Product Feed.
 {% image src="/img/pages/marketing-channels/deep-linked-ads/choose-ad-format.png" center 3-quarters alt='Save and Enable' %}
 1. At this point you need to name your link. Select something that will make it easy to find if you need it later. Your Ad Format and Ad Partner should be selected already, but feel free to choose one if they aren't. It's important that you select the right Ad Partner for analytics later on. Click **Configure Options** to continue.
 {% image src="/img/pages/marketing-channels/deep-linked-ads/name-ad-link.png" center 3-quarters alt='Name Ad Link' %}
-1. This is your chance to add deep link data and analytics tags. Analytics tags are important for later segmentation, so click the **Analytics** sub tab to add a Channel and Campaign value. 
+1. This is your chance to add deep link data and analytics tags. Analytics tags are important for later segmentation, so click the **Analytics** sub tab to add a Channel and Campaign value.
 {% image src="/img/pages/marketing-channels/deep-linked-ads/add-analytics-tags.png" center 3-quarters alt='Set Analytics Tags' %}
 1. Click **Create Link Now**, and you have your tracking link! Take this link and give it to your Ad Partner's Account Manager or paste it into the tracking section of your campaign yourself.
 {% image src="/img/pages/marketing-channels/deep-linked-ads/finished-ad-link.png" center 3-quarters alt='Finish Ad Link Creation' %}
@@ -73,7 +73,7 @@ It's easier to slice your data in our analytics platform if you properly assign 
 
 ## View your data with Unified Analytics
 
-The [Ads Analytics Page page](https://dashboard.branch.io/ads/analytics) on the Branch dashboard shows the performance of your ad campaigns _across both web and app_. You can view performance over time, including purchase and other custom events. 
+The [Ads Analytics Page page](https://dashboard.branch.io/ads/analytics) on the Branch dashboard shows the performance of your ad campaigns _across both web and app_. You can view performance over time, including purchase and other custom events.
 
 Events are attributed using Branch's unified last-click attribution model. This means that Branch will attribute to the last click across channels, and across platforms.
 
@@ -108,10 +108,31 @@ We all make mistakes from time to time. If you need to reset your postbacks and 
 
 ## Changing attribution windows
 
-You can edit your attribution windows under Link Settings > Attribution Windows. View through attribution is not yet available, but will be coming soon. 
+Attribution windows can be specified at the global account level or on a per link basis with the link level window taking priority. See the below instructions for setup.
+
+For customer experience and data accuracy, please do not set your deep linking window longer than the other attribution windows.
+
+#### Account Level Attribution Windows
+
+You can edit your attribution windows under Link Settings > Attribution Windows. View through attribution is not yet available, but will be coming soon.
 
 {% image src="/img/pages/marketing-channels/deep-linked-ads/attribution-windows.png" center 3-quarters alt='Attribution Windows' %}
 
-For customer experience and data accuracy, please do not set your deep linking window longer than the other attribution windows.
+#### Link Level Attribution Windows
+
+To set attribution windows on a link level, you can append the following parameters to your generated Branch link.
+
+Key | Example Link
+--- | ---
+$click_session_start_window_days | https://branchster.app.link/hpNVE52gxE?$click_session_start_window_days=7
+$click_conversion_window_days | https://branchster.app.link/hpNVE52gxE?$click_session_start_window_days=30
+$impression_session_start_window_days | https://branchster.app.link/hpNVE52gxE?$click_session_start_window_days=1
+$impression_conversion_window_days | https://branchster.app.link/hpNVE52gxE?$click_session_start_window_days=7
+
+{% caution title="Link Level Attribution Support for Standard Branch links" %}
+
+As of July 2017, link level attribution window setting is only available on standard Branch links. Special Branch links such as the ones used for Google's Universal App Campaign or Play Store links with Branch link Ids are currently not supported.
+
+{% endcaution %}
 
 {% endif %}
