@@ -26,7 +26,7 @@ alias: [ /third-party-integrations/appboy/, /third-party-integrations/appboy/ove
 2. From Appboy's Dashboard, **Edit** your campaign.
 3. From the **Compose** tab scroll down to **iOS**.
 4. Within the **On-click Behavior** section, select **Deep Link Into App** or **Redirect to Web URL**.
-5. To understand what to insert into this field, find a Branch Marketing link you would like users to get deep linked to and then follow the instructions [here](https://dev.branch.io/features/facebook-ads/support/ios/#use-a-direct-deep-link).
+5. Insert the Branch Quick Link you would like users to get deep linked to.
 6. **Update** your campaign.
 
 ## Handle Branch links in Appboy delegate
