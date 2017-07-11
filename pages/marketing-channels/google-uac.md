@@ -51,9 +51,9 @@ Universal App Campaigns don’t use traditional ads and ad groups. Instead diffe
 Set up Google as an Ad Partner and conversion tracking from Adwords on the Branch dashboard. If you already have Google enabled as an ad partner, follow the conversion tracking steps to ensure the conversion ID and label parameters are setup.
 
 1. Navigate to the [Partner Management tab](https://dashboard.branch.io/ads/partner-management).
-{% image src="/img/pages/marketing-channels/deep-linked-ads/google-adwords/ads-partner-management.png" center 3-quarters alt='Ads Partner Management' %}
+{% image src="/img/pages/marketing-channels/deep-linked-ads/google/ads-partner-management.png" center 3-quarters alt='Ads Partner Management' %}
 1. Search for **Google AdWords**.
-{% image src="/img/pages/marketing-channels/deep-linked-ads/google-adwords/find-google-adwords.png" center 3-quarters alt='Find Google AdWords in Partner Manager' %}
+{% image src="/img/pages/marketing-channels/deep-linked-ads/google/find-google-partner.png" center 3-quarters alt='Find Google AdWords in Partner Manager' %}
 1. We will now fill in the conversion ID and Label fields.
 
 #### Enable Adwords Conversions
