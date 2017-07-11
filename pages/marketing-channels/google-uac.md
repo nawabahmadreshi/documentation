@@ -113,7 +113,7 @@ You can use this configuration section to specify custom link parameters that wi
 
 ## Configure an Add
 
-To setup a Universal App Campaign we will place our unique Branch Ad link into a Adwords Conversion Postback setting. Adwords campaign documentation is available **[here](https://support.google.com/adwords/answer/6247380?hl=en)**
+To setup a Universal App Campaign we will place our unique Branch Ad link into a Adwords Conversion Postback setting. Adwords campaign documentation is available **[here](https://support.google.com/adwords/answer/6247380?hl=en)**.
 
 #### Create Your Campaign
 

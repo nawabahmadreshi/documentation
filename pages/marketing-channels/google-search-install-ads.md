@@ -161,7 +161,7 @@ To set up a Search Network Mobile App Install Campaign on Android, you will need
 
 #### Ad Creation
 
-1. Copy the final Branch Ad link generated from the previous section. Note: This link should begin with **https://play.google.com...** instead of the normal Branch link domain. Refer to the [Create A Branch Ad Link]({{base.url}}/marketing-channels/google-search-install-ads/android/#create-a-branch-ad-link) section if the link is not in this format to ensure the link creation was setup properly.
+1. Copy the final Branch Ad link generated from the previous section. Note: This link should begin with **https://play.google.com...** instead of the normal Branch link domain. Refer to the [Create A Branch Ad Link]({{base.url}}/marketing-channels/google-search-install-ads/guide/android/#create-a-branch-ad-link) section if the link is not in this format to ensure the link creation was setup properly.
 {% image src="/img/pages/features/google-dla/google-search-install-ads/Android/full-branch-link.png" half center alt='Example Link' %}
 1. Paste this Ad link into the **Final URL** field
 
