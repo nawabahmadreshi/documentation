@@ -91,7 +91,7 @@ To set up a Search Network Mobile App Engagement Campaign on Android, you will n
 
 #### Ad Creation
 
-1. Copy the Branch Ad link from the first section and ensure that it is in the format _App URI://open?link_click_id=link-..._. Refer to the [Create A Branch Ad Link]({{base.url}}/marketing-channels/google-search-engagement-ads/android/#create-a-branch-ad-link) section if the link is not in this format to ensure the link creation was setup properly.
+1. Copy the Branch Ad link from the first section and ensure that it is in the format _App URI://open?link_click_id=link-..._. Refer to the [Create A Branch Ad Link]({{base.url}}/marketing-channels/google-search-engagement-ads/guide/android/#create-a-branch-ad-link) section if the link is not in this format to ensure the link creation was setup properly.
 {% image src="/img/pages/features/google-dla/google-search-engagement-ads/Android/full-branch-link.png" half center alt='Example Link' %}
 1. In the Ad creator, locate the **Scheme** field and enter the scheme portion of the Branch Ad link. This should be the portion of the link before the **://** symbol.
 1. Now locate the **Host and path** field and enter the rest of your Branch Ad link following the **://** symbol.
