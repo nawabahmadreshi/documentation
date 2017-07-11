@@ -101,12 +101,6 @@ To set up a Search Network Campaign, you will need to first create your campaign
 
 {% image src="/img/pages/features/google-dla/google-xplatform-search-ads/standard/adwords-configuration.png" 3-quarters center alt='Example Adwords Config' %}
 
-{% protip %}
-
-Because the **Final URL** for your app install campaigns must match the final destination website, you cannot put a Branch link in that box. However, capturing installs and deep linking users through content is still possible due to the **Tracking template** configuration.
-
-{% endprotip %}
-
 {% ingredient view-ad-link-data %}{% endingredient %}
 
 {% elsif page.dynamic %}

@@ -34,7 +34,7 @@ Branch Universal Ads help you drive results for web and app campaigns.
 
 1. Visit the [Ads page](https://dashboard.branch.io/ads) on the Branch dashboard.
 1. Select [Partner Management](https://dashboard.branch.io/ads/partner-management) from the sidebar.
-{% image src="/img/pages/marketing-channels/deep-linked-ads/google-adwords/ads-partner-management.png" center 3-quarters alt='Ads Partner Management' %}
+{% image src="/img/pages/marketing-channels/deep-linked-ads/google/ads-partner-management.png" center 3-quarters alt='Ads Partner Management' %}
 1. Search for the Ad Partner that you'd like to enable.
 {% image src="/img/pages/marketing-channels/deep-linked-ads/find-applovin.png" center 3-quarters alt='Find your ad partner' %}
 1. Enter any credentials that may be required, and click **Save and Enable** in the bottom right hand corner.
