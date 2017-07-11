@@ -243,17 +243,17 @@ Copy the following snippet, and using the “Source” view, paste the snippet d
 
 ## Create deep links
 
-Wherever you are using `<a>` tags in your email templates, replace those with `<@deeplink>` tags, or `<@tracked_deeplink>` for web URLs that you would like to deep link.
+Wherever you are using `<a>` tags in your email templates, replace those with `<@deeplink>` tags, or add `<@tracked_deeplink />` for web URLs that you would like to deep link.
 
 {% example title="With Link Tracking Disabled" %}
 
 **Before:**
 
-`<a href=“https://branch.io”>Example link</a>`
+`<a href="https://branch.io">Example link</a>`
 
 **After:**
 
-`<@deeplink “https://branch.io”>Example link</@deeplink>`
+`<@deeplink "https://branch.io">Example link</@deeplink>`
 {% endexample %}
 
 {% example title="With Link Tracking Enabled" %}
@@ -265,7 +265,7 @@ With link tracking enabled, you can still use Branch links in emails.
 
 **After:**
 
-`<@tracked_deeplink "https://branch.io/product/1234">
+`<@tracked_deeplink "https://branch.io/product/1234" />
 <a href="${clickthrough('TEST_TRACKED_DEEPLINK' , 'deeplink=' + deeplink)}">Example link</a>`
 
 This latter example pulls from a Link Table. In the link table, set the `IOS Link URL` and `Android link URL` to the value `${deeplink}`.
@@ -332,7 +332,7 @@ Launch Failed: Launch failed: Template /contentlibrary/branch test campaign/My D
 
 ## Using dynamic data from profile extension tables
 {% example %}
-The `<@deeplink >` and `<@tracked_deeplink >` tags even work with dynamic links injected via RPL.
+The `<@deeplink >` and `<@tracked_deeplink />` tags even work with dynamic links injected via RPL.
 {% highlight html %}<@deeplink "${latestProduct.url}">${latestProduct.name}</@deeplink>{% endhighlight %}
 {% endexample%}
 
