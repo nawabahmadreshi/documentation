@@ -1,7 +1,7 @@
 ---
 type: recipe
 directory: marketing-channels
-title: "App Invites"
+title: "Facebook App Invites"
 page_title: Set up Facebook App Invites for Apps
 description: How to set up Facebook App Invites and ad campaigns for your app using Branch deep links. With code snippets.
 ios_keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Facebook App Invites, App Invites, iOS, objective-c, swift
@@ -14,7 +14,7 @@ sections:
 - guide
 - advanced
 - support
-alias: [ /features/facebook-app-invites/, /features/facebook-app-invites/overview/, /features/facebook-app-invites/guide/ios/, /features/facebook-app-invites/guide/android/, /features/facebook-app-invites/advanced/ios/, /features/facebook-app-invites/advanced/android/, /features/facebook-app-invites/support/ios/, /features/facebook-app-invites/support/android/ ] 
+alias: [ /features/facebook-app-invites/, /features/facebook-app-invites/overview/, /features/facebook-app-invites/guide/ios/, /features/facebook-app-invites/guide/android/, /features/facebook-app-invites/advanced/ios/, /features/facebook-app-invites/advanced/android/, /features/facebook-app-invites/support/ios/, /features/facebook-app-invites/support/android/ ]
 ---
 
 {% if page.overview %}
