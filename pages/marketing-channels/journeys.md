@@ -366,7 +366,6 @@ We now support the use case where you can customize the appearance of a Journey 
 | `$journeys_title` | The title or main text of your Journey | "Download Appsolutely today" |
 | `$journeys_description` | This is the description or subtitle in the frame | "This app is disrupting apps" |
 | `$journeys_icon_image_url` | The app icon displayed in the layout | "https://mysite.com/image.png" |
-| `$journeys_background_image_url` | The background image for the frame when the template supports it. *Coming soon!* | "https://mysite.com/background.png" |
 
 Note that not all template support all override keys. For example, the floating button does not support title, description or icon image url. If a template is to be rendered and the key you've specified does not exist, we'll simply ignore it while rendering the template. 
 
