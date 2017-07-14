@@ -41,6 +41,8 @@ Also, note that Universal Links were only introduced with iOS 9. Consequently, d
 | Facebook Messenger | Will redirect to the App Store **
 | Twitter | Opens app via a URI scheme
 | Pinterest | Opens app via a URI scheme
+| Snapchat Message Link | Will redirect to the App store **
+| Snapchat Story Link | Can only go to websites. Snapchat has deviously blocked all links out, even to the App Store
 
 (*) Note that when links are entered into the Safari address bar: 
 
@@ -82,6 +84,8 @@ The following assumes that you've correctly configured your [Branch link setting
 | Pinterest | Opens app via URI scheme intent
 | Hangouts | Opens app via Chrome intent
 | Google+ | Opens app via Chrome intent
+| Snapchat Message Link | Will redirect to the Play Store
+| Snapchat Story Link | Can only go to websites. Snapchat has deviously blocked all links out, even to the Play Store
 
 ### App - not - installed
 
