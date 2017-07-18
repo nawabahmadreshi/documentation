@@ -17,6 +17,8 @@ alias: [ /features/facebook-app-install/, /features/facebook-app-install/overvie
 
 Branch links can be used together with Facebook App Install Campaign ads, allowing you to track ad-driven installs on the Branch dashboard and deep link those new users directly to content the first time they open your app.
 
+Note: This documentation applies for Ad placements across Facebook, Instagram, and the Audience Network.
+
 This documentation supports the following Facebook Ad Campaign types:
 
 Facebook Campaign Category | Campaign Type/Objective | Branch Ad Format
@@ -25,9 +27,9 @@ Consideration | App Installs | App Only: Install
 
 #### Facebook Campaign Advert Format Support Table
 
-Facebook Campaign Type | Photo | Video | Carousel | Slideshow | Collection | Dynamic
+Facebook Campaign Type | Photo | Video | Carousel | Slideshow | Collection | Dynamic | Canvas
 --- | --- | --- | --- | --- | --- | ---
-App Installs | ✔︎ | ✔︎ | ✔︎ | ✔︎ |  |
+App Installs | ✔︎ | ✔︎ | ✔︎ | ✔︎ |  |  | ✔︎
 
 {% ingredient link-to-facebook-ads-overview %}{% endingredient %}
 
@@ -84,8 +86,11 @@ To set up a Facebook App Install campaign, you will need to first create your ca
 {% image src='/img/pages/features/facebook-ads/facebook-app-install/campaign-selection.png' 3-quarters center alt='Campaign Selection' %}
 1. Continue with campaign creation selecting the app to advertise, audience, placement, and budget. Then press continue to enter the Advert creation step.
 1. Now select an advertisement format and customize your ad
-1. After setting up your advertisement, fill in the **Deep Link** field with your Branch Ad link
-{% image src='/img/pages/features/facebook-ads/facebook-app-install/ad-deep-link.png' 3-quarters center alt='Deep Link Placement' %}
+1. Under the **Destination** field, you can select to direct your advertisement to the App Store or a Facebook Canvas Advertisement.
+	- If you select the App Store, fill in the **Deep Link** field with your Branch Ad link
+	{% image src='/img/pages/features/facebook-ads/facebook-app-install/ad-deep-link.png' 3-quarters center alt='Deep Link Placement' %}
+	- If you select Canvas, add your Branch Ad link as the **Destination** Website URL for your canvas advertisement components
+	{% image src='/img/pages/features/facebook-ads/facebook-app-install/facebook-canvas-setup.png' 3-quarters center alt='Canvas Setup' %}
 1. Complete the rest of the ad campaign setup.
 
 Your Facebook Ad Campaign is now setup to use Branch Links to handle App Installs!

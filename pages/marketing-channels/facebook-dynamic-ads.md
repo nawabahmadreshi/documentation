@@ -17,6 +17,8 @@ alias: [ /features/facebook-dynamic-ads/overview/, /features/facebook-dynamic-ad
 
 Branch links can be used in conjunction with Facebook's dynamic advertisements. Dynamic remarketing campaigns on desktop have been proven to deliver 16x return on ad spend. Now you can easily set up Facebook Dynamic Ads on mobile to drive incredible results.
 
+Note: This documentation applies for Ad placements across Facebook, Instagram, and the Audience Network.
+
 This documentation supports the following Facebook Ad Campaign types:
 
 Facebook Campaign Category | Campaign Type/Objective | Branch Ad Format
@@ -25,9 +27,9 @@ Conversion | Product Catalogue Sales | Cross-platform Product Links
 
 #### Facebook Campaign Advert Format Support Table
 
-Facebook Campaign Type | Photo | Video | Carousel | Slideshow | Collection | Dynamic
+Facebook Campaign Type | Photo | Video | Carousel | Slideshow | Collection | Dynamic | Canvas
 --- | --- | --- | --- | --- | --- | ---
-Product Catalogue Sales | ✔︎ |  | ✔︎ |  |  |
+Product Catalogue Sales | ✔︎ |  | ✔︎ |  |  |  | 
 
 {% ingredient link-to-facebook-ads-overview %}{% endingredient %}
 
