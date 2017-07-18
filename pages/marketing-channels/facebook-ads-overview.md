@@ -19,14 +19,13 @@ This documentation supports the following Facebook Ad Campaigns:
 
 Facebook Campaign Category | Campaign Type/Objective | Branch Documentation Link | Branch Ad Format
 --- | --- | --- | ---
-Awareness | Brand Awareness | **[link]()** | Cross-platform Display
-Awareness | Reach | **[link]()** | Cross-platform Display
-Consideration | Traffic | **[link]()** | Cross-platform Search
-Consideration | Engagement | **[link]()** | Cross-platform Engagement
+Awareness | Brand Awareness | **[link]({{base.url}}/marketing-channels/facebook-platform-ads/)** | Cross-platform Display
+Awareness | Reach | **[link]({{base.url}}/marketing-channels/facebook-platform-ads/)** | Cross-platform Display
+Consideration | Traffic | **[link](){{base.url}}/marketing-channels/facebook-engagement-ads/** | Cross-platform Search
 Consideration | App Installs | **[link]({{base.url}}/marketing-channels/facebook-app-install/)** | App Only: Installs
-Consideration | Video Views | **[link]()** | Cross-platform Display
-Consideration | Lead Generation | **[link]()** | Cross-platform Search
-Conversion | Conversions | **[link]()** | Cross-platform Engagement
+Consideration | Video Views | **[link]({{base.url}}/marketing-channels/facebook-platform-ads/)** | Cross-platform Display
+Consideration | Lead Generation | **[link]({{base.url}}/marketing-channels/facebook-platform-ads/)** | Cross-platform Search
+Conversion | Conversions | **[link]({{base.url}}/marketing-channels/facebook-engagement-ads/)** | Cross-platform Engagement
 Conversion | Product Catalogue Sales | **[link]({{base.url}}/marketing-channels/facebook-dynamic-ads/)** | Cross-platform Product Links
 
 {::comment}

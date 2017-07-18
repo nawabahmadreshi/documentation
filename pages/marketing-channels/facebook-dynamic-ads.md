@@ -29,7 +29,7 @@ Conversion | Product Catalogue Sales | Cross-platform Product Links
 
 Facebook Campaign Type | Photo | Video | Carousel | Slideshow | Collection | Dynamic | Canvas
 --- | --- | --- | --- | --- | --- | ---
-Product Catalogue Sales | ✔︎ |  | ✔︎ |  |  |  | 
+Product Catalogue Sales | ✔︎ |  | ✔︎ |  |  |  |
 
 {% ingredient link-to-facebook-ads-overview %}{% endingredient %}
 
