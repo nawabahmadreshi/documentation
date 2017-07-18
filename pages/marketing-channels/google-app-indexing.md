@@ -30,11 +30,11 @@ Here's how App Indexing works:
 - App Indexing makes that web result _also_ open up your app. There are a few ways to achieve this:
 
   - Make your existing website support Apple's Universal Links and Android's App Links. After this, all of your links will correctly open the app and you're done.
-  - OR Add the undocumented header `<link rel="alternate" ..` tags to your website for when Google crawls the page. Branch can assist with this task through the WebSDK function `autoAppIndex()` described [here]({{base.url}}/features/google-app-indexing/advanced/#alternative-path-have-the-websdk-inject-app-indexing-tags-into-your-webpage). 
+  - OR Add the undocumented header `<link rel="alternate" ..` tags to your website for when Google crawls the page. Branch can assist with this task through the WebSDK function `autoAppIndex()` described [here]({{base.url}}/marketing-channels/google-app-indexing/advanced/ios/#alternative-path-have-the-websdk-inject-app-indexing-tags-into-your-webpage). 
 
 - If Google knows your website opens the app, when it shows up in a search result, and the user has the app installed, the app will open instead of the website
 
-**Branch's App Indexing integration is designed for businesses that don't have a website, and want Branch to host their site for them. If you have a website, Branch can dynamically inject App Indexing tags through the WebSDK function `autoAppIndex()` described [here]({{base.url}}/features/google-app-indexing/advanced/#alternative-path-have-the-websdk-inject-app-indexing-tags-into-your-webpage).** Note that in order for you to get traffic from this feature, your Branch link will need to appear in search results. We've just now supercharged our app indexing feature with AMP tech to leverage Google's new prioritization of these pages.
+**Branch's App Indexing integration is designed for businesses that don't have a website, and want Branch to host their site for them. If you have a website, Branch can dynamically inject App Indexing tags through the WebSDK function `autoAppIndex()` described [here]({{base.url}}/marketing-channels/google-app-indexing/advanced/ios/#alternative-path-have-the-websdk-inject-app-indexing-tags-into-your-webpage).** Note that in order for you to get traffic from this feature, your Branch link will need to appear in search results. We've just now supercharged our app indexing feature with AMP tech to leverage Google's new prioritization of these pages.
 {% getstarted %}{% endgetstarted %}
 
 {% elsif page.guide %}

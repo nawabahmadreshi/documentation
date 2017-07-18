@@ -846,6 +846,7 @@ AMP pages by design make it difficult for users to go anywhere except back to Go
 {% prerequisite %}
 
 - To host AMP Journeys and show in Google search as an AMP page, your webpage must be [AMP](https://www.ampproject.org/docs/){:target="_blank"}-compatible.
+- Journeys uses your alternate domain for Universal Links. Make sure you include your `xxxx-alternate.app.link` domain in your [Associated Domains]({{base.url}}/getting-started/universal-app-links/guide/ios/#add-the-associated-domains-entitlement-to-your-project). If you’re unsure of your Branch-assigned app.link subdomain, [contact support](https://support.branch.io/support/tickets/new){:target="_blank"}, and we can provide it.
 
 {% endprerequisite %}
 
