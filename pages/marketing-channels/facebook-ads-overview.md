@@ -13,9 +13,9 @@ sections:
 
 Branch links can be used together with Facebook ads, allowing you to track ad-driven installs on the Branch dashboard and deep link those new users directly to content the first time they open your app.
 
-The Facebook Ad platform has numerous campaign types which support differing combinations of ad formats. We've created this documentation to help break down how to Branch ad links can support each campaign and ad type combination. We'll update this page as needed if the campaign creation flow is updated, or new ad types are supported.
+Facebook's Ad Platform supports numerous campaign types and a shared set of advertisement formats. To navigate Facebook's Advertisement Platform we created a guide to help you find the right documentation.
 
-This documentation supports the following Facebook Campaign types:
+This documentation supports the following Facebook Ad Campaigns:
 
 Facebook Campaign Category | Campaign Type/Objective | Branch Documentation Link | Branch Ad Format
 --- | --- | --- | ---
@@ -23,7 +23,7 @@ Awareness | Brand Awareness | **[link]()** | Cross-platform Display
 Awareness | Reach | **[link]()** | Cross-platform Display
 Consideration | Traffic | **[link]()** | Cross-platform Search
 Consideration | Engagement | **[link]()** | Cross-platform Engagement
-Consideration | App Installs | **[link]()** | App Only: Installs
+Consideration | App Installs | **[link]({{base.url}}/marketing-channels/facebook-app-install/)** | App Only: Installs
 Consideration | Video Views | **[link]()** | Cross-platform Display
 Consideration | Lead Generation | **[link]()** | Cross-platform Search
 Conversion | Conversions | **[link]()** | Cross-platform Engagement
@@ -35,8 +35,6 @@ Conversion | Store Visits | **[link]()** | Cross-platform Product Links
 
 {% ingredient deep-linked-ad-ideas %}{% endingredient %}
 
-{::comment}
-{% getstarted title='Search Mobile App Install' next='features/google-search-install-ad' %}{% endgetstarted %}
-{:/comment}
+{% getstarted title='Facebook Ads: App Installs' next='features/facebook-app-install' %}{% endgetstarted %}
 
 {% endif %}

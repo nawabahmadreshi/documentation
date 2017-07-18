@@ -1,4 +1,4 @@
-## Enable Google as an ad partner
+## Enable Google as an Ad Partner
 
 If you haven't enabled Google as an Ad Partner on the Branch dashboard follow this section to do so.
 
@@ -10,5 +10,5 @@ If you haven't enabled Google as an Ad Partner on the Branch dashboard follow th
 1. Click the `Save and Enable` button in the lower right hand corner.
 {% image src="/img/pages/marketing-channels/deep-linked-ads/google/save-and-enable-google.png" center 3-quarters alt='Save and Enable Google AdWords in Partner Manager' %}
 1. Google AdWords is now enabled as an ad partner.
-1. Finally, to create a Google ads link click the `Create Google AdWords` Link in the top right hand corner.
+1. Finally, to create a Google ads link click the `Create Google AdWords Link` button in the top right hand corner.
 {% image src="/img/pages/marketing-channels/deep-linked-ads/google/create-google-link.png" center 3-quarters alt='Create Google AdWords link' %}
