@@ -11,7 +11,7 @@ sections:
 
 {% if page.overview %}
 
-Branch links can be used together with Facebook ads, allowing you to track ad-driven installs on the Branch dashboard and deep link those new users directly to content the first time they open your app.
+Branch links can be used together with Facebook ads, allowing you to track ad-driven installs on the Branch dashboard and deep link those new users directly to content the first time they open your app. Refer to [Facebook's Ad Guide](https://www.facebook.com/business/ads-guide){:target="_blank"} to learn more.
 
 Facebook's Ad Platform supports numerous campaign types and a shared set of advertisement formats. To navigate Facebook's Advertisement Platform we created a guide to help you find the right documentation.
 
@@ -27,7 +27,7 @@ Consideration | App Installs | **[link]({{base.url}}/marketing-channels/facebook
 Consideration | Video Views | **[link]()** | Cross-platform Display
 Consideration | Lead Generation | **[link]()** | Cross-platform Search
 Conversion | Conversions | **[link]()** | Cross-platform Engagement
-Conversion | Product Catalogue Sales | **[link]()** | Cross-platform Product Links
+Conversion | Product Catalogue Sales | **[link]({{base.url}}/marketing-channels/facebook-dynamic-ads/)** | Cross-platform Product Links
 
 {::comment}
 Conversion | Store Visits | **[link]()** | Cross-platform Product Links

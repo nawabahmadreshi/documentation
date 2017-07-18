@@ -78,7 +78,7 @@
             - facebook-ads-overview
             - facebook-app-install
             - facebook-dynamic-ads
-            - instagram-ads
+            - facebook-platform-ads
         - title: Twitter
           children:
             - twitter-ads
