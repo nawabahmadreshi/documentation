@@ -456,7 +456,7 @@ Branch opens your app by using its URI scheme (`yourapp://`), which should be un
 
 {% highlight xml %}
 <intent-filter>
-  <data android:scheme="yourapp" android:host="open" />
+  <data android:scheme="yourapp" />
   <action android:name="android.intent.action.VIEW" />
   <category android:name="android.intent.category.DEFAULT" />
   <category android:name="android.intent.category.BROWSABLE" />
@@ -686,7 +686,7 @@ Branch opens your app by using its URI scheme (`yourapp://`), which should be un
 
 {% highlight xml %}
 <intent-filter>
-  <data android:scheme="yourapp" android:host="open" />
+  <data android:scheme="yourapp"/>
   <action android:name="android.intent.action.VIEW" />
   <category android:name="android.intent.category.DEFAULT" />
   <category android:name="android.intent.category.BROWSABLE" />
