@@ -66,7 +66,7 @@ Android | Yes | Uses tracking template, must redirect to Google Play store | [li
 
 {% protip title="Dynamic Channel and Campaign Tags" %}
 
-It is recommended to leave the Channel and Campaign Tags empty as Branch will dynamically set those values to their corresponding **Network** and **Campaign Id** values in Adwords. If you fill in these values yourself it may be more difficult to interpret the information between Branch and Adwords.
+It is recommended to leave the `Channel` and `Campaign` Tags empty as Branch will dynamically set those values to their corresponding **Network** and **Campaign Id** values in Adwords. See [Google Adwords Valuetrack Parameters]({{base.url}}/marketing-channels/google-video-ads/support/#google-adwords-valuetrack-parameters) for more information.
 
 {% endprotip %}
 
@@ -141,7 +141,7 @@ As of June 2017, Adwords does not support Tracking Templates on Video discovery 
 
 {% protip title="Dynamic Channel and Campaign Tags" %}
 
-It is recommended to leave the Channel and Campaign Tags empty as Branch will dynamically set those values to their corresponding **Network** and **Campaign Id** values in Adwords. If you fill in these values yourself it may be more difficult to interpret the information between Branch and Adwords.
+It is recommended to leave the `Channel` and `Campaign` Tags empty as Branch will dynamically set those values to their corresponding **Network** and **Campaign Id** values in Adwords. See [Google Adwords Valuetrack Parameters]({{base.url}}/marketing-channels/google-video-ads/support/#google-adwords-valuetrack-parameters) for more information.
 
 {% endprotip %}
 
@@ -200,11 +200,13 @@ As of June 2017, Adwords does not support Tracking Templates on Video discovery 
 
 {% elsif page.support %}
 
+{% ingredient adwords-valuetrack-info %}{% endingredient %}
+
 ## FAQ / Debugging
 
 **Q: Why is my advertisement being disapproved on Adwords?**
 
-**A:** For App Install/Engagement Campaigns, sometimes your ad may be disapproved if the Branch link does not re-direct to Google Play or App Store when clicked on a desktop. Please ensure that for the Branch link you're using to track installs, Deepviews are disabled and a desktop redirect is set to either the App / Play store.
+**A:** For Video Campaigns, sometimes your ad may be disapproved if the Branch link does not re-direct to Google Play or App Store when clicked on a desktop. Please ensure that for the Branch link you're using to track installs, Deepviews are disabled and a desktop redirect is set to either the App / Play store.
 
 For Cross Platform campaigns, sometimes your ad may be disapproved if the Branch link does not re-direct to your Final destination URL specified in the ad. Please ensure that your Branch link redirects to your Final URL specified in your ad. To ensure install tracking is functional please ensure that for the Branch link you're using to track installs, Deepviews are disabled and your Branch link's iOS/Android redirects are set to their respective App / Play Store.
 
