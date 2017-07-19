@@ -1,7 +1,7 @@
 ---
 type: recipe
 directory: marketing-channels
-title: "Search Network Ads"
+title: "Google Search Network Ads"
 page_title: "Advertising with Deep Links: Google Search Network Ads"
 description:
 hide_platform_selector: true

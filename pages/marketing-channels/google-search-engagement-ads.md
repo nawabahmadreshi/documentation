@@ -1,7 +1,7 @@
 ---
 type: recipe
 directory: marketing-channels
-title: "Search App Engagement Ads"
+title: "Google Search App Engagement Ads"
 page_title: "Advertising with Deep Links: Google Search Install Ads"
 description:
 platforms:

@@ -1,7 +1,7 @@
 ---
 type: recipe
 directory: marketing-channels
-title: "App Install Ads"
+title: "Facebook App Install Ads"
 page_title: "Advertising with Deep Links: Facebook Ads"
 description: Learn how to create Facebook ads that are powered by Branch Metrics deep links. It’s simple - configure the dashboard, generate links and set up your app.
 keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Advertising, Ads, Facebook Ads, Facebook Authentication

@@ -1,7 +1,7 @@
 ---
 type: recipe
 directory: marketing-channels
-title: "Video Ads"
+title: "Google Video Ads"
 page_title: "Advertising with Deep Links: Google Video Ads"
 description:
 hide_platform_selector: true

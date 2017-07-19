@@ -1,7 +1,7 @@
 ---
 type: recipe
 directory: marketing-channels
-title: "Dynamic Ads"
+title: "Facebook Dynamic Ads"
 page_title: "Advertising with Deep Links: Facebook Dynamic Ads"
 description: Learn how to create Facebook Dynamic Ads that are powered by Branch Metrics deep links. It’s simple - configure the dashboard, generate links and set up your app.
 keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Advertising, Ads, Facebook Ads, Facebook Authentication

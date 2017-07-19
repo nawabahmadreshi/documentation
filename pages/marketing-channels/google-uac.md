@@ -1,7 +1,7 @@
 ---
 type: recipe
 directory: marketing-channels
-title: "Universal App Campaigns"
+title: "Google Universal App Campaigns"
 page_title: "Advertising with Deep Links: Google Ads - Universal App Campaigns"
 description:
 hide_platform_selector: true
