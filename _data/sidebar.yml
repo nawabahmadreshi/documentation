@@ -63,6 +63,7 @@
       children:
         - title: Google
           children:
+            - doubleclick
             - google-ads-overview
             - google-search-install-ads
             - google-search-engagement-ads
