@@ -104,6 +104,8 @@ Please ensure...
 1. In the `Domains` section, click the `+` icon and add the following entries: (making sure that `xxxx` matches the subdomain prefix you've been assigned or selected for yourself)
    * `applinks:xxxx.app.link`
    * `applinks:xxxx-alternate.app.link`
+   * `applinks:xxxx.test-app.link`
+   * `applinks:xxxx-alternate.test-app.link`
 
 {% image src='/img/pages/getting-started/universal-app-links/add_domain.png' 3-quarters center alt='xcode add domain' %}
 
@@ -131,6 +133,8 @@ If you use a [custom domain or subdomain for your Branch links]({{base.url}}/get
     <ios-team-id value="xxxx"/>
     <host name="xxxx.app.link" scheme="https" />
     <host name="xxxx-alternate.app.link" scheme="https" />
+    <host name="xxxx.test-app.link" scheme="https" />
+    <host name="xxxx-alternate.test-app.link" scheme="https" />
   </branch-config>
   <preference name="AndroidLaunchMode" value="singleInstance" />
 {% endhighlight %}
@@ -177,6 +181,8 @@ If the **Default domain name** box shows the legacy `bnc.lt` domain, you should 
     <array>
         <string>applinks:xxxx.app.link</string>
         <string>applinks:xxxx-alternate.app.link</string>
+        <string>applinks:xxxx.test-app.link</string>
+        <string>applinks:xxxx-alternate.test-app.link</string>
     </array>
 </dict>
 </plist>
@@ -441,6 +447,9 @@ You can insert both your debug and production fingerprints for testing. Simply s
 {% highlight xml %}
 <branch-config>
     <host name="xxxx.app.link" scheme="https" />
+    <host name="xxxx-alternate.app.link" scheme="https" />
+    <host name="xxxx.test-app.link" scheme="https" />
+    <host name="xxxx-alternate.test-app.link" scheme="https" />
 </branch-config>
 {% endhighlight %}
 
@@ -501,6 +510,8 @@ If the **Default domain name** box shows the legacy `bnc.lt` domain, you should 
     <category android:name="android.intent.category.BROWSABLE" />
     <data android:scheme="https" android:host="xxxx.app.link" />
     <data android:scheme="https" android:host="xxxx-alternate.app.link" />
+    <data android:scheme="https" android:host="xxxx.test-app.link" />
+    <data android:scheme="https" android:host="xxxx-alternate.test-app.link" />
 </intent-filter>
 {% endhighlight %}
 
