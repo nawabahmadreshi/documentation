@@ -89,7 +89,8 @@ Once you enable this root domain for Branch links, you will not be able to use i
 1. Work with your domain registrar to make the Branch-provided nameservers listed under the domain field authoritative for your domain. **Note that this means you cannot host anything else on this domain — only Branch links.** {% image src='/img/pages/getting-started/link-domain-subdomain/custom-domain-nameservers.png' full center alt='root domain nameservers' %}
 1. Click `Confirm`.
 {% protip title="Heads Up!" %}
-The nameservers in the above image are for example purposes only. The nameservers you use will be unique to your application.
+1. The nameservers in the above image are for example purposes only. The nameservers you use will be unique to your application.
+2. If you are configuring the domain through AWS's Route 53, make sure you are editing the nameservers under the `"Registered Domains"` tab, and not the `"Hosted zones"` section.
 {% endprotip %}
 
 ## About the legacy bnc.lt domain
