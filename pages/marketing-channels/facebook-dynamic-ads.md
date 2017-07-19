@@ -66,6 +66,8 @@ Branch makes it easy for you to create and manage feeds with Facebook-compatible
 
 ## Upload your feed to Facebook
 
+To set up a Facebook Product Catalogue campaign, you will need to first create your campaign and use a Branch link as the Deep Link URL for the advertisements. Facebook Dynamic Ads information is available **[here](https://www.facebook.com/business/help/455326144628161)**.
+
 1. Navigate to your [Facebook Ads Manager](https://www.facebook.com/ads/manager/){:target="_blank"}.
 1. In the top left hand corner, click into the menu, select **All tools**, and select **Product Catalogues**.
 {% image src='/img/pages/features/facebook-ads/facebook-dynamic-ads/fb-product-catalogs.png' 3-quarters center alt='Facebook Product Catalogs' %}

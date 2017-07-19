@@ -78,8 +78,8 @@
             - facebook-ads-overview
             - facebook-app-install
             - facebook-engagement-ads
-            - facebook-dynamic-ads
             - facebook-platform-ads
+            - facebook-dynamic-ads
         - title: Twitter
           children:
             - twitter-ads

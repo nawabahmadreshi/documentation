@@ -86,7 +86,7 @@ You can specify the attribution windows for your links either at an overall acco
 
 #### Configure an Ad
 
-To set up Facebook Brand Awareness Campaigns, you will need to insert your Branch Ad Link as the Website destination for the created ad.
+To set up Facebook Brand Awareness Campaigns, you will need to insert your Branch Ad Link as the Website destination for the created ad. Facebook's Ad guide for Brand Awareness Campaigns is available **[here](https://www.facebook.com/business/ads-guide/brand-awareness)**.
 
 #### Create Your Campaign
 1. Navigate to [https://www.facebook.com/ads/create](https://www.facebook.com/ads/create) while logged in to the account that owns your Facebook app.
@@ -102,7 +102,7 @@ To set up Facebook Brand Awareness Campaigns, you will need to insert your Branc
 
 {% protip title="Optional: Ad formats with Multiple Links" %}
 
-Some ad formats such as Carousel format can handle multiple deep links. To have link performance data on each image or component of the advertisement, create multiple Branch Ad links to be used in each part of the multiple link advertisement format. This format is useful if you want to drive customers to different content pieces or products.
+Some ad formats such as the Carousel format can handle multiple deep links. To have link performance data on each image or component of the advertisement, create multiple Branch Ad links to be used in each part of the multiple link advertisement format. This format is useful if you want to drive customers to different content pieces or products.
 
 {% endprotip %}
 
@@ -110,7 +110,7 @@ Some ad formats such as Carousel format can handle multiple deep links. To have 
 
 #### Configure an Ad
 
-To set up Facebook Reach Campaigns, you will need to insert your Branch Ad Link as the Website destination for the created ad.
+To set up Facebook Reach Campaigns, you will need to insert your Branch Ad Link as the Website destination for the created ad. Facebook's Ad guide for Reach Campaigns is available **[here](https://www.facebook.com/business/ads-guide/reach)**.
 
 #### Create Your Campaign
 1. Navigate to [https://www.facebook.com/ads/create](https://www.facebook.com/ads/create) while logged in to the account that owns your Facebook app.
@@ -126,7 +126,7 @@ To set up Facebook Reach Campaigns, you will need to insert your Branch Ad Link 
 
 {% protip title="Optional: Ad formats with Multiple Links" %}
 
-Some ad formats such as Carousel format can handle multiple deep links. To have link performance data on each image or component of the advertisement, create multiple Branch Ad links to be used in each part of the multiple link advertisement format. This format is useful if you want to drive customers to different content pieces or products.
+Some ad formats such as the Carousel format can handle multiple deep links. To have link performance data on each image or component of the advertisement, create multiple Branch Ad links to be used in each part of the multiple link advertisement format. This format is useful if you want to drive customers to different content pieces or products.
 
 {% endprotip %}
 
@@ -134,7 +134,7 @@ Some ad formats such as Carousel format can handle multiple deep links. To have 
 
 #### Configure an Ad
 
-To set up Facebook Video Views Campaigns, you will need to insert your Branch Ad Link as the Website destination for the created ad.
+To set up Facebook Video Views Campaigns, you will need to insert your Branch Ad Link as the Website destination for the created ad. Facebook's Ad guide for Video Views Campaigns is available **[here](https://www.facebook.com/business/ads-guide/video-views/)**.
 
 #### Create Your Campaign
 1. Navigate to [https://www.facebook.com/ads/create](https://www.facebook.com/ads/create) while logged in to the account that owns your Facebook app.
@@ -150,7 +150,7 @@ To set up Facebook Video Views Campaigns, you will need to insert your Branch Ad
 
 {% protip title="Optional: Ad formats with Multiple Links" %}
 
-Some ad formats such as Carousel format can handle multiple deep links. To have link performance data on each image or component of the advertisement, create multiple Branch Ad links to be used in each part of the multiple link advertisement format. This format is useful if you want to drive customers to different content pieces or products.
+Some ad formats such as the Carousel format can handle multiple deep links. To have link performance data on each image or component of the advertisement, create multiple Branch Ad links to be used in each part of the multiple link advertisement format. This format is useful if you want to drive customers to different content pieces or products.
 
 {% endprotip %}
 
@@ -158,7 +158,7 @@ Some ad formats such as Carousel format can handle multiple deep links. To have 
 
 #### Configure an Ad
 
-To set up Facebook Lead Generation Campaigns, you will need to insert your Branch Ad Link as the Website destination for the created ad. After users fill out the lead form, they'll be directed to your website or app after through the Branch Ad link.
+To set up Facebook Lead Generation Campaigns, you will need to insert your Branch Ad Link as the Website destination for the created ad. After users fill out the lead form, they'll be directed to your website or app after through the Branch Ad link. Facebook's Ad guide for Lead Generation Campaigns is available **[here](https://www.facebook.com/business/ads-guide/lead-generation)**.
 
 #### Create Your Campaign
 1. Navigate to [https://www.facebook.com/ads/create](https://www.facebook.com/ads/create) while logged in to the account that owns your Facebook app.
