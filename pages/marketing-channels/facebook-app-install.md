@@ -49,9 +49,9 @@ App Installs | ✔︎ | ✔︎ | ✔︎ | ✔︎ |  |  | ✔︎
 
 ## Create a Branch Ad Link
 
-1. Create a Branch Ad link from the [Partner Management page](https://dashboard.branch.io/ads/partner-management)'s `Create Facebook Link` button under the Facebook Partner and select `App Install or Engagement`
+1. Create a Branch Ad link from the [Partner Management page](https://dashboard.branch.io/ads/partner-management){:target="_blank"}'s `Create Facebook Link` button under the Facebook Partner and select `App Install or Engagement`
 {% image src='/img/pages/features/facebook-ads/create-link-install-engagement.png' half center alt='Link Creation' %}
-1. Under the Define Section, pick a Link Name for later reference.
+1. Enter a Link Name for later reference.
 1. Configure the link with the Ad Format set to **App Only**, the Ad Partner set to **Facebook**, and the Secondary Ad Format set to **App Install Ads**.
 {% image src='/img/pages/features/facebook-ads/facebook-app-install/ad-link-setup.png' 3-quarters center alt='Create Ad Link' %}
 1. Under the Configure Options tab, navigate to the Redirects sub section and ensure that the iOS/Android redirect is set to the desired app being promoted by the ad campaign.
@@ -78,10 +78,10 @@ You can specify the attribution windows for your links either at an overall acco
 
 ## Configure an Ad
 
-To set up a Facebook App Install campaign, you will need to first create your campaign and use a Branch link as the Deep Link URL for the advertisements. Facebook App Install Campaign information is available **[here](https://www.facebook.com/business/ads-guide/app-installs)**.
+To set up a Facebook App Install campaign, you will need to first create your campaign and use a Branch link as the Deep Link URL for the advertisements. Facebook App Install Campaign information is available **[here](https://www.facebook.com/business/ads-guide/app-installs){:target="_blank"}**.
 
 #### Create Your Campaign
-1. Navigate to [https://www.facebook.com/ads/create](https://www.facebook.com/ads/create) while logged in to the account that owns your Facebook app.
+1. Navigate to [https://www.facebook.com/ads/create](https://www.facebook.com/ads/create){:target="_blank"} while logged in to the account that owns your Facebook app.
 1. Select **App Installs** as the campaign marketing objective.
 {% image src='/img/pages/features/facebook-ads/facebook-app-install/campaign-selection.png' 3-quarters center alt='Campaign Selection' %}
 1. Continue with campaign creation selecting the app to advertise, audience, placement, and budget. Then press continue to enter the Advert creation step.

@@ -52,11 +52,11 @@ Conversion | ✔︎ | ✔︎ | ✔︎ | ✔︎ |  |  | ✔︎
 
 ## Create a Branch Ad Link
 
-1. Create a Branch Ad link from the [Partner Management page](https://dashboard.branch.io/ads/partner-management)'s `Create Facebook Link` button under the Facebook Partner and select `Create Search Link`
+1. Create a Branch Ad link from the [Partner Management page](https://dashboard.branch.io/ads/partner-management){:target="_blank"}'s `Create Facebook Link` button under the Facebook Partner and select `Create Search Link`
 {% image src='/img/pages/features/facebook-ads/create-link-search.png' half center alt='Link Creation' %}
 1. Under the Define Section, pick a Link Name for later reference.
 1. Configure the link with the Ad Partner set to **Facebook**, and the Ad Format set to **Cross-Platform Search**.
-{% image src='/img/pages/features/facebook-ads/facebook-engagement-ads/ad-link-setup.png' 3-quarters center alt='Create Ad Link' %}
+{% image src='/img/pages/features/facebook-ads/facebook-engagement-ads/link-setup.png' 3-quarters center alt='Create Ad Link' %}
 1. Under the Configure Options tab, navigate to the Redirects sub section and ensure that the iOS/Android and Desktop redirects are set to the desired destinations being promoted by the ad campaign.
 1. Under the Analytics Tags sub section additional tags can be set including Channel, Campaign, and freeform tags
 {% image src='/img/pages/features/ads-analytics/analytics-tags.png' 3-quarters center alt='Analytics Tags' %}
@@ -83,13 +83,13 @@ You can specify the attribution windows for your links either at an overall acco
 
 #### Configure an Ad
 
-To set up a Facebook Traffic campaign, you will need to first create your campaign and use a Branch link as the Deep Link URL for the advertisements. Facebook Traffic Campaign information is available **[here](https://www.facebook.com/business/ads-guide/traffic)**.
+To set up a Facebook Traffic campaign, you will need to first create your campaign and use a Branch link as the Deep Link URL for the advertisements. Facebook Traffic Campaign information is available **[here](https://www.facebook.com/business/ads-guide/traffic){:target="_blank"}**.
 
 #### Create Your Campaign
-1. Navigate to [https://www.facebook.com/ads/create](https://www.facebook.com/ads/create) while logged in to the account that owns your Facebook app.
+1. Navigate to [https://www.facebook.com/ads/create](https://www.facebook.com/ads/create){:target="_blank"} while logged in to the account that owns your Facebook app.
 1. Select **Traffic** as the campaign marketing objective.
 {% image src='/img/pages/features/facebook-ads/facebook-engagement-ads/traffic/campaign-selection.png' 3-quarters center alt='Campaign Selection' %}
-1. Select either to drive traffic to your Website of an App
+1. Select either to drive traffic to your `Website` or your `App`
 1. Continue with campaign creation selecting the app to advertise, audience, placement, and budget. Then press continue to enter the Advert creation step.
 1. Now select an advertisement format and customize your ad
 1. Add your Branch Ad Link to your advertisement
@@ -110,7 +110,7 @@ Some ad formats such as the Carousel format can handle multiple deep links. To h
 
 #### Configure an Ad
 
-To set up a Facebook Conversions campaign, you will need to first create your campaign and use a Branch link as the Deep Link URL for the advertisements. Facebook Conversions Campaign information is available **[here](https://www.facebook.com/business/ads-guide/conversions)**.
+To set up a Facebook Conversions campaign, you will need to first create your campaign and use a Branch link as the Deep Link URL for the advertisements. Facebook Conversions Campaign information is available **[here](https://www.facebook.com/business/ads-guide/conversions){:target="_blank"}**.
 
 {% prerequisite %}
 As a prerequisite, Facebook requires you to report events about your users interacting with your content, for example: viewing, adding to cart, and purchasing. To add the Facebook Pixel to your website, and the Facebook SDK to your app, follow these instructions:
@@ -120,10 +120,10 @@ As a prerequisite, Facebook requires you to report events about your users inter
 {% endprerequisite %}
 
 #### Create Your Campaign
-1. Navigate to [https://www.facebook.com/ads/create](https://www.facebook.com/ads/create) while logged in to the account that owns your Facebook app.
+1. Navigate to [https://www.facebook.com/ads/create](https://www.facebook.com/ads/create){:target="_blank"} while logged in to the account that owns your Facebook app.
 1. Select **Conversions** as the campaign marketing objective.
 {% image src='/img/pages/features/facebook-ads/facebook-engagement-ads/conversions/campaign-selection.png' 3-quarters center alt='Campaign Selection' %}
-1. Select either to have the goal of having conversions on a Website or in an App
+1. Select either to have the goal of having conversions on a `Website` or in an `App`
 1. Continue with campaign creation selecting audience, placement, and budget. Then press continue to enter the Advert creation step.
 1. Now select an advertisement format and customize your ad
 1. Add your Branch Ad Link to your advertisement

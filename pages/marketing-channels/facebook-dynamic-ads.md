@@ -52,7 +52,7 @@ Product Catalogue Sales | ✔︎ |  | ✔︎ |  |  |  |
 
 Branch makes it easy for you to create and manage feeds with Facebook-compatible deep links.
 
-1. Create a Branch Deep Linked Ad Feed from the [Partner Management page](https://dashboard.branch.io/ads/partner-management)'s `Create Facebook Link` button under the Google Adwords Partner and select `Create Product Link`
+1. Create a Branch Deep Linked Ad Feed from the [Partner Management page](https://dashboard.branch.io/ads/partner-management){:target="_blank"}'s `Create Facebook Link` button under the Google Adwords Partner and select `Create Product Link`
 {% image src='/img/pages/features/facebook-ads/create-link-product.png' half center alt='Link Creation' %}
 1. Enter a Deep Linked Feed Name.
 1. Enter a already set up feed source or upload a new source.
@@ -66,7 +66,7 @@ Branch makes it easy for you to create and manage feeds with Facebook-compatible
 
 ## Upload your feed to Facebook
 
-To set up a Facebook Product Catalogue campaign, you will need to first create your campaign and use a Branch link as the Deep Link URL for the advertisements. Facebook Dynamic Ads information is available **[here](https://www.facebook.com/business/help/455326144628161)**.
+To set up a Facebook Product Catalogue campaign, you will need to first create your campaign and use a Branch link as the Deep Link URL for the advertisements. Facebook Dynamic Ads information is available **[here](https://www.facebook.com/business/help/455326144628161){:target="_blank"}**.
 
 1. Navigate to your [Facebook Ads Manager](https://www.facebook.com/ads/manager/){:target="_blank"}.
 1. In the top left hand corner, click into the menu, select **All tools**, and select **Product Catalogues**.

@@ -2,7 +2,7 @@
 
 If you haven't enabled Facebook as an Ad Partner on the Branch dashboard follow this section to do so.
 
-1. Navigate to the [Partner Management tab](https://dashboard.branch.io/ads/partner-management).
+1. Navigate to the [Partner Management tab](https://dashboard.branch.io/ads/partner-management){:target="_blank"}.
 {% image src="/img/pages/marketing-channels/deep-linked-ads/facebook/ads-partner-management.png" center 3-quarters alt='Ads Partner Management' %}
 1. Search for **Facebook**.
 {% image src="/img/pages/marketing-channels/deep-linked-ads/facebook/find-facebook-partner.png" center 3-quarters alt='Find Facebook in Partner Manager' %}

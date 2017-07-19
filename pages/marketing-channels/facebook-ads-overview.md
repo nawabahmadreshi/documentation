@@ -21,7 +21,7 @@ Facebook Campaign Category | Campaign Type/Objective | Branch Documentation Link
 --- | --- | --- | ---
 Awareness | Brand Awareness | **[link]({{base.url}}/marketing-channels/facebook-platform-ads/)** | Cross-platform Display
 Awareness | Reach | **[link]({{base.url}}/marketing-channels/facebook-platform-ads/)** | Cross-platform Display
-Consideration | Traffic | **[link](){{base.url}}/marketing-channels/facebook-engagement-ads/** | Cross-platform Search
+Consideration | Traffic | **[link]({{base.url}}/marketing-channels/facebook-engagement-ads/)** | Cross-platform Search
 Consideration | App Installs | **[link]({{base.url}}/marketing-channels/facebook-app-install/)** | App Only: Installs
 Consideration | Video Views | **[link]({{base.url}}/marketing-channels/facebook-platform-ads/)** | Cross-platform Display
 Consideration | Lead Generation | **[link]({{base.url}}/marketing-channels/facebook-platform-ads/)** | Cross-platform Search

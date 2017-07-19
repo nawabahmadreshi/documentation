@@ -55,7 +55,7 @@ Lead Generation | ✔︎ | ✔︎ | ✔︎ | ✔︎ |  |  |
 
 ## Create a Branch Ad Link
 
-1. Create a Branch Ad link from the [Partner Management page](https://dashboard.branch.io/ads/partner-management)'s `Create Facebook Link` button under the Facebook Partner and select `Create Display Link` or `Create Search Link` depending on your campaign type.
+1. Create a Branch Ad link from the [Partner Management page](https://dashboard.branch.io/ads/partner-management){:target="_blank"}'s `Create Facebook Link` button under the Facebook Partner and select `Create Display Link` or `Create Search Link` depending on your campaign type.
 {% image src='/img/pages/features/facebook-ads/create-link-display.png' half center alt='Link Creation' %}
 1. Pick a Link Name for later reference.
 1. Configure the link the Ad Partner set to **Facebook** and the Ad Format set to **Cross-Platform Display** or **Cross-Platform Search**.
@@ -86,16 +86,16 @@ You can specify the attribution windows for your links either at an overall acco
 
 #### Configure an Ad
 
-To set up Facebook Brand Awareness Campaigns, you will need to insert your Branch Ad Link as the Website destination for the created ad. Facebook's Ad guide for Brand Awareness Campaigns is available **[here](https://www.facebook.com/business/ads-guide/brand-awareness)**.
+To set up Facebook Brand Awareness Campaigns, you will need to insert your Branch Ad Link as the Website destination for the created ad. Facebook's Ad guide for Brand Awareness Campaigns is available **[here](https://www.facebook.com/business/ads-guide/brand-awareness){:target="_blank"}**.
 
 #### Create Your Campaign
-1. Navigate to [https://www.facebook.com/ads/create](https://www.facebook.com/ads/create) while logged in to the account that owns your Facebook app.
+1. Navigate to [https://www.facebook.com/ads/create](https://www.facebook.com/ads/create){:target="_blank"} while logged in to the account that owns your Facebook app.
 1. Select **Brand Awareness** as the campaign marketing objective.
 {% image src='/img/pages/features/facebook-ads/facebook-platform-ads/brand-awareness/campaign-selection.png' 3-quarters center alt='Campaign Selection' %}
 1. Continue with campaign creation selecting the app to advertise, audience, placement, and budget. Then press continue to enter the Advert creation step.
 1. Now select an advertisement format and customize your ad
 1. Now add your Branch link to your advertisement
-    - Select the `Add a Website URL` and copy your Branch Ad Link into the **Website URL** field.
+    - Select the `Add a Website URL` checkbox and copy your Branch Ad Link into the **Website URL** field.
     {% image src='/img/pages/features/facebook-ads/facebook-platform-ads/brand-awareness/ad-deep-link.png' 3-quarters center alt='Deep Link Placement' %}
     - If you selected to add a full screen Canvas advertisement, add your Branch Ad link as the **Destination URL** for your canvas advertisement components
 1. Complete the rest of the ad campaign setup.
@@ -110,16 +110,16 @@ Some ad formats such as the Carousel format can handle multiple deep links. To h
 
 #### Configure an Ad
 
-To set up Facebook Reach Campaigns, you will need to insert your Branch Ad Link as the Website destination for the created ad. Facebook's Ad guide for Reach Campaigns is available **[here](https://www.facebook.com/business/ads-guide/reach)**.
+To set up Facebook Reach Campaigns, you will need to insert your Branch Ad Link as the Website destination for the created ad. Facebook's Ad guide for Reach Campaigns is available **[here](https://www.facebook.com/business/ads-guide/reach){:target="_blank"}**.
 
 #### Create Your Campaign
-1. Navigate to [https://www.facebook.com/ads/create](https://www.facebook.com/ads/create) while logged in to the account that owns your Facebook app.
+1. Navigate to [https://www.facebook.com/ads/create](https://www.facebook.com/ads/create){:target="_blank"} while logged in to the account that owns your Facebook app.
 1. Select **Reach** as the campaign marketing objective.
 {% image src='/img/pages/features/facebook-ads/facebook-platform-ads/reach/campaign-selection.png' 3-quarters center alt='Campaign Selection' %}
 1. Continue with campaign creation selecting the app to advertise, audience, placement, and budget. Then press continue to enter the Advert creation step.
 1. Now select an advertisement format and customize your ad
 1. Now add your Branch link to your advertisement
-    - Select the `Add a Website URL` and copy your Branch Ad Link into the **Website URL** field.
+    - Select the `Add a Website URL` checkbox and copy your Branch Ad Link into the **Website URL** field.
     {% image src='/img/pages/features/facebook-ads/facebook-platform-ads/reach/ad-deep-link.png' 3-quarters center alt='Deep Link Placement' %}
     - If you selected to add a full screen Canvas advertisement, add your Branch Ad link as the **Destination URL** for your canvas advertisement components
 1. Complete the rest of the ad campaign setup.
@@ -134,16 +134,16 @@ Some ad formats such as the Carousel format can handle multiple deep links. To h
 
 #### Configure an Ad
 
-To set up Facebook Video Views Campaigns, you will need to insert your Branch Ad Link as the Website destination for the created ad. Facebook's Ad guide for Video Views Campaigns is available **[here](https://www.facebook.com/business/ads-guide/video-views/)**.
+To set up Facebook Video Views Campaigns, you will need to insert your Branch Ad Link as the Website destination for the created ad. Facebook's Ad guide for Video Views Campaigns is available **[here](https://www.facebook.com/business/ads-guide/video-views/){:target="_blank"}**.
 
 #### Create Your Campaign
-1. Navigate to [https://www.facebook.com/ads/create](https://www.facebook.com/ads/create) while logged in to the account that owns your Facebook app.
+1. Navigate to [https://www.facebook.com/ads/create](https://www.facebook.com/ads/create){:target="_blank"} while logged in to the account that owns your Facebook app.
 1. Select **Video Views** as the campaign marketing objective.
 {% image src='/img/pages/features/facebook-ads/facebook-platform-ads/video-views/campaign-selection.png' 3-quarters center alt='Campaign Selection' %}
 1. Continue with campaign creation selecting the app to advertise, audience, placement, and budget. Then press continue to enter the Advert creation step.
 1. Now select an advertisement format and customize your ad
 1. Now add your Branch link to your advertisement
-    - Select the `Add a Website URL` and copy your Branch Ad Link into the **Website URL** field.
+    - Select the `Add a Website URL` checkbox and copy your Branch Ad Link into the **Website URL** field.
     {% image src='/img/pages/features/facebook-ads/facebook-platform-ads/video-views/ad-deep-link.png' 3-quarters center alt='Deep Link Placement' %}
     - If you selected to add a full screen Canvas advertisement, add your Branch Ad link as the **Destination URL** for your canvas advertisement components
 1. Complete the rest of the ad campaign setup.
@@ -158,10 +158,10 @@ Some ad formats such as the Carousel format can handle multiple deep links. To h
 
 #### Configure an Ad
 
-To set up Facebook Lead Generation Campaigns, you will need to insert your Branch Ad Link as the Website destination for the created ad. After users fill out the lead form, they'll be directed to your website or app after through the Branch Ad link. Facebook's Ad guide for Lead Generation Campaigns is available **[here](https://www.facebook.com/business/ads-guide/lead-generation)**.
+To set up Facebook Lead Generation Campaigns, you will need to insert your Branch Ad Link as the Website destination for the created ad. After users fill out the lead form, they'll be directed to your website or app after through the Branch Ad link. Facebook's Ad guide for Lead Generation Campaigns is available **[here](https://www.facebook.com/business/ads-guide/lead-generation){:target="_blank"}**.
 
 #### Create Your Campaign
-1. Navigate to [https://www.facebook.com/ads/create](https://www.facebook.com/ads/create) while logged in to the account that owns your Facebook app.
+1. Navigate to [https://www.facebook.com/ads/create](https://www.facebook.com/ads/create){:target="_blank"} while logged in to the account that owns your Facebook app.
 1. Select **Lead Generation** as the campaign marketing objective.
 {% image src='/img/pages/features/facebook-ads/facebook-platform-ads/lead-generation/campaign-selection.png' 3-quarters center alt='Campaign Selection' %}
 1. Continue with campaign creation selecting the app to advertise, audience, placement, and budget. Then press continue to enter the Advert creation step.
