@@ -64,7 +64,7 @@ Android | Yes | Uses tracking template, must redirect to Google Play store | [li
 
 {% protip title="Dynamic Channel and Campaign Tags" %}
 
-It is recommended to leave the Channel and Campaign Tags empty as Branch will dynamically set those values to their corresponding **Network** and **Campaign Id** values in Adwords. If you fill in these values yourself it may be more difficult to interpret the information between Branch and Adwords.
+It is recommended to leave the `Channel` and `Campaign` Tags empty as Branch will dynamically set those values to their corresponding **Network** and **Campaign Id** values in Adwords. See [Google Adwords Valuetrack Parameters]({{base.url}}/marketing-channels/google-xplatform-search-ads/support/#google-adwords-valuetrack-parameters) for more information.
 
 {% endprotip %}
 
@@ -134,7 +134,7 @@ Because the **Final URL** for your app install campaigns must match the final de
 
 {% protip title="Dynamic Channel and Campaign Tags" %}
 
-It is recommended to leave the Channel and Campaign Tags empty as Branch will dynamically set those values to their corresponding **Network** and **Campaign Id** values in Adwords. If you fill in these values yourself it may be more difficult to interpret the information between Branch and Adwords.
+It is recommended to leave the `Channel` and `Campaign` Tags empty as Branch will dynamically set those values to their corresponding **Network** and **Campaign Id** values in Adwords. See [Google Adwords Valuetrack Parameters]({{base.url}}/marketing-channels/google-xplatform-search-ads/support/#google-adwords-valuetrack-parameters) for more information.
 
 {% endprotip %}
 
@@ -181,6 +181,8 @@ Because the **Final URL** for your app install campaigns must match the final de
 {% ingredient view-ad-link-data %}{% endingredient %}
 
 {% elsif page.support %}
+
+{% ingredient adwords-valuetrack-info %}{% endingredient %}
 
 ## FAQ / Debugging
 
