@@ -34,7 +34,7 @@ Shopping | Shopping | link here | Cross-platform Product Links
 Video (YouTube TrueView) | Shopping | link here | Cross-platform Product Links
 {:/comment}
 
-For setup instructions for Adwords Conversion tracking with Branch check out **[Google Conversion Setup]({{base.url}}/marketing-channels/google-adwords-conversions)**.
+For setup instructions for Adwords Conversion tracking with Branch check out **[Google Conversion Setup]({{base.url}}/marketing-channels/google-conversions)**.
 
 {% ingredient deep-linked-ad-ideas %}{% endingredient %}
 
