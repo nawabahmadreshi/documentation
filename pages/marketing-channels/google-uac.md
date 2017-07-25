@@ -77,11 +77,11 @@ Set up Google as an Ad Partner and conversion tracking from Adwords on the Branc
 1. Head to the [Branch Dashboard Adwords Settings](https://dashboard.branch.io/ads/partner-management/a_google_adwords?tab=settings){:target="_blank"}.
 1. Paste in the `Conversion ID` and `Conversion label` from your Adwords dashboard into the appropriate fields for either iOS or Android
 1. Click the `Save and Enable` button in the lower right hand corner.
-{% image src="/img/pages/marketing-channels/deep-linked-ads/google-adwords/save-and-enable-google-adwords.png" center 3-quarters alt='Save and Enable Google AdWords in Partner Manager' %}
+{% image src="/img/pages/marketing-channels/deep-linked-ads/google/save-and-enable-google.png" center 3-quarters alt='Save and Enable Google AdWords in Partner Manager' %}
 1. Google AdWords is now enabled as an ad partner.
 1. Click `Done` in your Adwords dashboard.
 1. Finally, to create a Google ads link click the `Create Google AdWords` Link in the top right hand corner.
-{% image src="/img/pages/marketing-channels/deep-linked-ads/google-adwords/create-adwords-link.png" center 3-quarters alt='Create Google AdWords link' %}
+{% image src="/img/pages/marketing-channels/deep-linked-ads/google/create-google-link.png" center 3-quarters alt='Create Google AdWords link' %}
 
 {% protip title="Universal App Campaigns for both Android & iOS" %}
 
@@ -112,7 +112,7 @@ To setup a Universal App Campaign we will place our unique Branch Ad link into a
 #### Create Your Campaign
 
 1. Select `Universal app campaign` on Adwords
-{% image src='/img/pages/features/google-dla/adwords-search-network.png' third center alt='Adwords Network' %}
+{% image src='/img/pages/features/google-dla/adwords-uac-network.png' third center alt='Adwords Network' %}
 1. Complete setting up the campaign completely with your desired app to promote
 
 #### Setup the Branch Link
