@@ -126,12 +126,6 @@ There’s no hard limit to tracking custom events data, but Branch will only all
 
 - *Last-session attribution*: We’ll attribute a custom event to the link click and resulting Branch-referred session that occurs most recently prior to a custom event.
 
-- *Events are reported on the date the attributed Branch-referred session occurred, not the date the the actual event occurred*: In the following sequence of events, Branch will report on the event on Feb 1, although the event itself happened on Feb 3:
-
-
-  1. Feb 1: User clicks on a Branch link and installs app
-  1. Feb 3: User returns to app (not via Branch link) and completes an in-app custom event
-
 For more information on how Branch attributes custom events, see this [FAQ](https://support.branch.io/solution/articles/6000116662-branch-dashboard-custom-events-overview-and-how-to){:target="_blank"}.
 
 {% endprotip %}
