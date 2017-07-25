@@ -19,6 +19,8 @@ alias: [ /features/google-dla/google-uac/overview/, /features/google-dla/google-
 
 If you're running Google's new Universal App Campaign, Branch links can be placed inside your ads. This allows you to track ad-driven installs across Android and iOS on the Branch dashboard and deep link those new users directly to content the first time they open your app.
 
+Branch uses Google Adwords' server to server [App Conversion Confirmation](https://developers.google.com/app-conversion-tracking/api/legacy/confirm) for attribution data which reports on conversion events. Therefore, we only collect **install (conversion) data**. Click data is not supported for this campaign type.
+
 Google Campaign | Campaign Type/Objective | Branch Ad Format
 --- | --- | ---
 Universal App Campaign | Mobile App Install | App Only: Install
@@ -134,6 +136,10 @@ The setup to measure your Universal App Campaign is complete and Adwords will se
 {% elsif page.support %}
 
 ## FAQ / Debugging
+
+**Q: I'm not seeing any click data for my campaign.**
+
+**A:** Branch uses Google Adwords' server to server [App Conversion Confirmation](https://developers.google.com/app-conversion-tracking/api/legacy/confirm) for attribution data which reports on conversion events. Therefore, we only collect **install (conversion) data**. Click data is not supported for this campaign type.
 
 **Q: I'm getting discrepancy between conversion counts in Branch and Google Adwords**
 
