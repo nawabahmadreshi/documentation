@@ -1,7 +1,7 @@
 ---
 type: recipe
 directory: marketing-channels
-title: "Facebook Engagement Ads"
+title: "Facebook Traffic and Conversion Ads"
 page_title: "Advertising with Deep Links: Facebook Ads"
 description: Learn how to create Facebook ads that are powered by Branch Metrics deep links. It’s simple - configure the dashboard, generate links and set up your app.
 keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Advertising, Ads, Facebook Ads, Facebook Authentication
@@ -10,12 +10,12 @@ sections:
 - overview
 - guide
 - support
-alias: [ /features/facebook-engagement-ads/, /features/facebook-engagement-ads/overview/, /features/facebook-engagement-ads/guide/, /features/facebook-engagement-ads/support/ ]
+alias: [ /features/facebook-conversion-ads/, /features/facebook-conversion-ads/overview/, /features/facebook-conversion-ads/guide/, /features/facebook-conversion-ads/support/ ]
 ---
 
 {% if page.overview %}
 
-Branch links can be used together with Facebook Engagement ads, allowing you to track engagement with your advertisements and ad-driven installs which deep link new users directly to content the first time they open your app.
+Branch links can be used together with Facebook Traffic and Conversion ads, allowing you to track engagement with your advertisements and ad-driven installs which deep link new users directly to content the first time they open your app.
 
 Note: This documentation applies for Ad placements across Facebook, Instagram, and the Audience Network.
 
@@ -56,7 +56,7 @@ Conversion | ✔︎ | ✔︎ | ✔︎ | ✔︎ |  |  | ✔︎
 {% image src='/img/pages/features/facebook-ads/create-link-display.png' half center alt='Link Creation' %}
 1. Under the Define Section, pick a Link Name for later reference.
 1. Configure the link with the Ad Partner set to **Facebook**, and the Ad Format set to **Cross-platform Display**.
-{% image src='/img/pages/features/facebook-ads/facebook-engagement-ads/link-setup.png' 3-quarters center alt='Create Ad Link' %}
+{% image src='/img/pages/features/facebook-ads/facebook-conversion-ads/link-setup.png' 3-quarters center alt='Create Ad Link' %}
 1. Under the Configure Options tab, navigate to the Redirects sub section and ensure that the iOS/Android and Desktop redirects are set to the desired destinations being promoted by the ad campaign.
 1. Under the Analytics Tags sub section additional tags can be set including Channel, Campaign, and freeform tags
 {% image src='/img/pages/features/ads-analytics/analytics-tags.png' 3-quarters center alt='Analytics Tags' %}
@@ -88,15 +88,15 @@ To set up a Facebook Traffic campaign, you will need to first create your campai
 #### Create Your Campaign
 1. Navigate to [https://www.facebook.com/ads/create](https://www.facebook.com/ads/create){:target="_blank"} while logged in to the account that owns your Facebook app.
 1. Select **Traffic** as the campaign marketing objective.
-{% image src='/img/pages/features/facebook-ads/facebook-engagement-ads/traffic/campaign-selection.png' 3-quarters center alt='Campaign Selection' %}
+{% image src='/img/pages/features/facebook-ads/facebook-conversion-ads/traffic/campaign-selection.png' 3-quarters center alt='Campaign Selection' %}
 1. Select either to drive traffic to your `Website` or your `App`
 1. Continue with campaign creation selecting the app to advertise, audience, placement, and budget. Then press continue to enter the Advert creation step.
 1. Now select an advertisement format and customize your ad
 1. Add your Branch Ad Link to your advertisement
 	- If you chose to drive traffic to an App, locate the **Deep Link** field and copy and paste your Branch link there.
-	{% image src='/img/pages/features/facebook-ads/facebook-engagement-ads/traffic/link-setup-app.png' 3-quarters center alt='Campaign Selection' %}
+	{% image src='/img/pages/features/facebook-ads/facebook-conversion-ads/traffic/link-setup-app.png' 3-quarters center alt='Campaign Selection' %}
 	- If you chose to drive traffic to a Website, paste your Branch Ad link into the **Website URL** field.
-	{% image src='/img/pages/features/facebook-ads/facebook-engagement-ads/traffic/link-setup-web.png' 3-quarters center alt='Campaign Selection' %}
+	{% image src='/img/pages/features/facebook-ads/facebook-conversion-ads/traffic/link-setup-web.png' 3-quarters center alt='Campaign Selection' %}
 	- If you chose to drive traffic to a Website and are using a full-screen Canvas, add your Branch Ad link as the **Destination URL** for your canvas advertisement components.
 1. Complete the rest of the ad campaign setup.
 
@@ -122,15 +122,15 @@ As a prerequisite, Facebook requires you to report events about your users inter
 #### Create Your Campaign
 1. Navigate to [https://www.facebook.com/ads/create](https://www.facebook.com/ads/create){:target="_blank"} while logged in to the account that owns your Facebook app.
 1. Select **Conversions** as the campaign marketing objective.
-{% image src='/img/pages/features/facebook-ads/facebook-engagement-ads/conversions/campaign-selection.png' 3-quarters center alt='Campaign Selection' %}
+{% image src='/img/pages/features/facebook-ads/facebook-conversion-ads/conversions/campaign-selection.png' 3-quarters center alt='Campaign Selection' %}
 1. Select either to have the goal of having conversions on a `Website` or in an `App`
 1. Continue with campaign creation selecting audience, placement, and budget. Then press continue to enter the Advert creation step.
 1. Now select an advertisement format and customize your ad
 1. Add your Branch Ad Link to your advertisement
 	- If you chose app conversions App, locate the **Deep Link** field and copy and paste your Branch link there.
-	{% image src='/img/pages/features/facebook-ads/facebook-engagement-ads/conversions/link-setup-app.png' 3-quarters center alt='Campaign Selection' %}
+	{% image src='/img/pages/features/facebook-ads/facebook-conversion-ads/conversions/link-setup-app.png' 3-quarters center alt='Campaign Selection' %}
 	- If you chose Website conversions, paste your Branch Ad link into the **Website URL** field.
-	{% image src='/img/pages/features/facebook-ads/facebook-engagement-ads/conversions/link-setup-web.png' 3-quarters center alt='Campaign Selection' %}
+	{% image src='/img/pages/features/facebook-ads/facebook-conversion-ads/conversions/link-setup-web.png' 3-quarters center alt='Campaign Selection' %}
 	- If you chose Website conversions and are using a full-screen Canvas, add your Branch Ad link as the **Destination URL** for your canvas advertisement components.
 1. Complete the rest of the ad campaign setup.
 
