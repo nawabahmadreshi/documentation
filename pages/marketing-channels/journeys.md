@@ -16,6 +16,8 @@ sections:
 contents:
   number:
     - amp
+  hide:
+    - examples
 alias: [ /features/journeys/, /features/journeys/overview/, /features/journeys/guide/, /features/journeys/advanced/, /features/journeys/examples/ ]
 ---
 
@@ -100,7 +102,7 @@ branch.setBranchViewData({
 {% endhighlight %}
 {% endprotip %}
 
-If a user is referred to a page running Journeys via a Branch link, then referring link data will be passed into the Journeys call-to-action by default. If you’re using setBranchViewData() to specify link data for Journeys on that page, the only data from setBranchViewData() that will be used are [dynamic Journeys layout parameters](https://dev.branch.io/marketing-channels/journeys/advanced/#dynamic-journeys-layout-customization); all other data in that call will be ignored, unless `make_new_link` is set to `true` in `branch.init()`. You can find more information [here](https://dev.branch.io/marketing-channels/journeys/guide/#preserve-discard-referring-link-data).
+If a user is referred to a page running Journeys via a Branch link, then referring link data will be passed into the Journeys call-to-action by default. If you’re using setBranchViewData() to specify link data for Journeys on that page, the only data from setBranchViewData() that will be used are [dynamic Journeys layout parameters]({{base.url}}/marketing-channels/journeys/advanced/#dynamic-journeys-layout-customization); all other data in that call will be ignored, unless `make_new_link` is set to `true` in `branch.init()`. You can find more information [here]({{base.url}}/marketing-channels/journeys/advanced/#preserve-or-discard-referring-link-data).
 
 **Note:** You should [integrate the Branch SDK]({{base.url}}/getting-started/sdk-integration-guide) into your app and [configure deep link routing]({{base.url}}/getting-started/deep-link-routing) for deferred deep linking and attribution.
 
@@ -125,7 +127,7 @@ If you have users in many countries, you can create a separate Journey for each 
 | Platform | Branch currently offers Journeys on one platform: **Mobile web**. This will display for mobile users on your website. _More options coming soon._
 | Devices | Which devices would you like to target? For example, if you only have an iOS app, then you might want to show a Journey only to users viewing your mobile website on iOS.
 | Regions {% premiumflag %}{% endpremiumflag %} | Select one or more countries in which to display your Journey. Defaults to **Show to All Regions**
-| Additional Filters {% premiumflag %}{% endpremiumflag %} | Read about advanced filtering criteria [here]({{base.url}}/features/journeys/advanced/#advanced-audience-rules).
+| Additional Filters {% premiumflag %}{% endpremiumflag %} | Read about advanced filtering criteria [here]({{base.url}}/marketing-channels/journeys/advanced/#advanced-audience-rules).
 
 ## Select and style the banner or interstitial
 
@@ -278,25 +280,15 @@ You can also access Journeys analytics by selecting the above filters from the [
 1. Filter by `feature` = `journeys`
 2. Filter by `campaign` = `[Journey Name]`
 
+{% protip title="Attribute Journeys events to referring links" %}
+
+By default, when users arrive on a page running Journeys via a Branch link, then any interaction with the Journey (click/install/re-open) will be attributed to the referring Branch link, rather than to the Journey. [Learn how]({{base.url}}/marketing-channels/journeys/advanced/#preserve-or-discard-referring-link-data) to attribute this data to the Journey instead.
+
+{% endprotip %}
+
 {% getstarted next="true" %}{% endgetstarted %}
 
 {% elsif page.advanced %}
-
-### Preserve/discard referring link data
-
-By default, when users arrive on a page running Journeys via a Branch link and `make_new_link` is not set to `true`, then any interaction with the Journey (click/install/re-open) will be attributed to the referring Branch link, rather than to the Journey. If `make_new_link` is set to `true`, the same events will be attributed to the Journey, instead.
-
-This can help you collect data on how the referring links are contributing to app growth/engagement, even when users aren’t installing from those links directly. For example, if a user clicked a Branch link on Facebook, landed on your website, and installed from a Journey, this would allow you to attribute the install to the link on Facebook. If the original link was also configured to deep link into your app, that deep link would be preserved, too.
-
-Branch will pass the referring link into Journeys by default. In order to discard referring link data, include the `make_new_link flag`, with a value of  `true`, into the options during initialization:
-
-{% highlight javascript %}
-branch.init( ‘BRANCH_KEY’,
-    {
-    	‘make_new_link’ : true
-    }
-);
-{% endhighlight %}
 
 ## Advanced audience rules
 
@@ -357,6 +349,22 @@ Note that if you are planning on just using the free banner, you can skip this s
 - Your total percentage allocation must not equal more than **100%**.
 - Your total percentage allocation may be _less_ than **100%**. In this situation, the remainder of your audience will be shown your standard website without a Journey. This allows you to A/B test against your non-Journeys website experience.
 {% endprotip %}
+
+## Preserve or discard referring link data
+
+By default, when users arrive on a page running Journeys via a Branch link and `make_new_link` is not set to `true`, then any interaction with the Journey (click/install/re-open) will be attributed to the referring Branch link, rather than to the Journey. If `make_new_link` is set to `true`, the same events will be attributed to the Journey, instead.
+
+This can help you collect data on how the referring links are contributing to app growth/engagement, even when users aren’t installing from those links directly. For example, if a user clicked a Branch link on Facebook, landed on your website, and installed from a Journey, this would allow you to attribute the install to the link on Facebook. If the original link was also configured to deep link into your app, that deep link would be preserved, too.
+
+Branch will pass the referring link into Journeys by default. In order to discard referring link data, include the `make_new_link` flag, with a value of  `true`, into the options during initialization:
+
+{% highlight javascript %}
+branch.init( 'BRANCH_KEY',
+    {
+        'make_new_link' : true
+    }
+);
+{% endhighlight %}
 
 ## Prioritization
 
