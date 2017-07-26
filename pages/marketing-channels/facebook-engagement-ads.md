@@ -23,8 +23,8 @@ This documentation supports the following Facebook Ad Campaign types:
 
 Facebook Campaign Category | Campaign Type/Objective | Branch Ad Format
 --- | --- | ---
-Consideration | Traffic | Cross-platform Search
-Conversion | Conversions | Cross-platform Search
+Consideration | Traffic | Cross-platform Display
+Conversion | Conversions | Cross-platform Display
 
 #### Facebook Campaign Advert Format Support Table
 
@@ -52,10 +52,10 @@ Conversion | ✔︎ | ✔︎ | ✔︎ | ✔︎ |  |  | ✔︎
 
 ## Create a Branch Ad Link
 
-1. Create a Branch Ad link from the [Partner Management page](https://dashboard.branch.io/ads/partner-management){:target="_blank"}'s `Create Facebook Link` button under the Facebook Partner and select `Create Search Link`
-{% image src='/img/pages/features/facebook-ads/create-link-search.png' half center alt='Link Creation' %}
+1. Create a Branch Ad link from the [Partner Management page](https://dashboard.branch.io/ads/partner-management){:target="_blank"}'s `Create Facebook Link` button under the Facebook Partner and select `Create Display Link`
+{% image src='/img/pages/features/facebook-ads/create-link-display.png' half center alt='Link Creation' %}
 1. Under the Define Section, pick a Link Name for later reference.
-1. Configure the link with the Ad Partner set to **Facebook**, and the Ad Format set to **Cross-Platform Search**.
+1. Configure the link with the Ad Partner set to **Facebook**, and the Ad Format set to **Cross-platform Display**.
 {% image src='/img/pages/features/facebook-ads/facebook-engagement-ads/link-setup.png' 3-quarters center alt='Create Ad Link' %}
 1. Under the Configure Options tab, navigate to the Redirects sub section and ensure that the iOS/Android and Desktop redirects are set to the desired destinations being promoted by the ad campaign.
 1. Under the Analytics Tags sub section additional tags can be set including Channel, Campaign, and freeform tags
@@ -140,7 +140,7 @@ Some ad formats such as the Carousel format can handle multiple deep links. To h
 
 {% endprotip %}
 
-{% ingredient view-ad-link-data %}{% endingredient %}
+{% ingredient view-fb-link-data %}{% endingredient %}
 
 {% elsif page.support %}
 

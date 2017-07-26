@@ -107,7 +107,7 @@ By default, Facebook sends customers without the app to your mobile website. To 
 Facebook prevents Branch from measuring the number of clicks on their ads for install campaigns, so Branch's **Clicks** numbers for Facebook ads are inaccurate when users are being directed to the App Store to download your app.
 {% endcaution %}
 
-{% ingredient view-ad-link-data %}{% endingredient %}
+{% ingredient view-fb-link-data %}{% endingredient %}
 
 {% elsif page.support %}
 

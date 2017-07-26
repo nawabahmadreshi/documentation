@@ -101,13 +101,7 @@ Some ad formats such as Carousel format can handle multiple deep links. To have 
 
 {% endprotip %}
 
-{% caution %}
-
-Facebook prevents Branch from measuring the number of clicks on their ads, so all **Clicks** numbers for Facebook App Install Ads are inaccurate.
-
-{% endcaution %}
-
-{% ingredient view-ad-link-data %}{% endingredient %}
+{% ingredient view-fb-link-data %}{% endingredient %}
 
 {% elsif page.support %}
 

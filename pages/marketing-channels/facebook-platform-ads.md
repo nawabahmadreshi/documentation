@@ -26,7 +26,7 @@ Facebook Campaign Category | Campaign Type/Objective | Branch Ad Format
 Awareness | Brand Awareness | Cross-platform Display
 Awareness | Reach | Cross-platform Display
 Consideration | Video Views | Cross-platform Display
-Consideration | Lead Generation | Cross-platform Search
+Consideration | Lead Generation | Cross-platform Display
 
 #### Facebook Campaign Advert Format Support Table
 
@@ -55,10 +55,10 @@ Lead Generation | ✔︎ | ✔︎ | ✔︎ | ✔︎ |  |  |
 
 ## Create a Branch Ad Link
 
-1. Create a Branch Ad link from the [Partner Management page](https://dashboard.branch.io/ads/partner-management){:target="_blank"}'s `Create Facebook Link` button under the Facebook Partner and select `Create Display Link` or `Create Search Link` depending on your campaign type.
+1. Create a Branch Ad link from the [Partner Management page](https://dashboard.branch.io/ads/partner-management){:target="_blank"}'s `Create Facebook Link` button under the Facebook Partner and select `Create Display Link` or `Create Display Link` depending on your campaign type.
 {% image src='/img/pages/features/facebook-ads/create-link-display.png' half center alt='Link Creation' %}
 1. Pick a Link Name for later reference.
-1. Configure the link the Ad Partner set to **Facebook** and the Ad Format set to **Cross-Platform Display** or **Cross-Platform Search**.
+1. Configure the link the Ad Partner set to **Facebook** and the Ad Format set to **Cross-Platform Display** or **Cross-platform Display**.
 {% image src='/img/pages/features/facebook-ads/facebook-platform-ads/link-setup.png' 3-quarters center alt='Create Ad Link' %}
 1. Under the Configure Options tab, navigate to the Redirects sub section and ensure that the iOS/Android and Desktop redirects are set to the desired destinations being promoted by the ad campaign.
 1. Under the Analytics Tags sub section additional tags can be set including Channel, Campaign, and freeform tags
@@ -171,7 +171,7 @@ To set up Facebook Lead Generation Campaigns, you will need to insert your Branc
 {% image src='/img/pages/features/facebook-ads/facebook-platform-ads/lead-generation/ad-deep-link.png' 3-quarters center alt='Campaign Selection' %}
 1. Complete the rest of the ad campaign setup.
 
-{% ingredient view-ad-link-data %}{% endingredient %}
+{% ingredient view-fb-link-data %}{% endingredient %}
 
 {% elsif page.support %}
 
