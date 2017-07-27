@@ -7,7 +7,7 @@ description:
 hide_platform_selector: true
 sections:
 - overview
-alias: [ /features/facebook-ads-overview/ ]
+alias: [ /features/facebook-ads-overview/, /features/facebook-ads-overview/overview/ ]
 ---
 
 {% if page.overview %}
