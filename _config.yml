@@ -32,6 +32,3 @@ exclude:
 
 sass:
     sass_dir: css
-
-gems:
-  - jekyll-redirect-from
