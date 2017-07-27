@@ -10,7 +10,7 @@ sections:
 - overview
 - guide
 - support
-alias: [ /features/facebook-app-install/, /features/facebook-app-install/overview/, /features/facebook-app-install/guide/, /features/facebook-ads/support/ ]
+alias: [ /features/facebook-app-install/, /features/facebook-app-install/overview/, /features/facebook-app-install/guide/, /features/facebook-app-install/support/ ]
 ---
 
 {% if page.overview %}

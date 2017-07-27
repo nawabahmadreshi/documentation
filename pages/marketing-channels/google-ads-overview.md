@@ -7,6 +7,7 @@ description:
 hide_platform_selector: true
 sections:
 - overview
+alias: [ /features/google-ads-overview/ ]
 ---
 
 {% if page.overview %}
