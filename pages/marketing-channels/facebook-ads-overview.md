@@ -7,6 +7,10 @@ description:
 hide_platform_selector: true
 sections:
 - overview
+redirect_from:
+  - /features/facebook-ads-overview/
+  - /features/facebook-ads/
+  - /features/facebook-ads/guide/
 ---
 
 {% if page.overview %}
