@@ -25,7 +25,7 @@ alias: [ /third-party-integrations/appboy/, /third-party-integrations/appboy/ove
 1. Ensure that the type of campaign you are running is an **In-App Message** campaign.
 2. From Appboy's Dashboard, **Edit** your campaign.
 3. From the **Compose** tab scroll down to **iOS**.
-4. Within the **On-click Behavior** section, select **Deep Link Into App** or **Redirect to Web URL**.
+4. Within the **On-click Behavior** section, select **Deep Link Into App**.
 5. Insert the Branch Quick Link you would like users to get deep linked to.
 6. **Update** your campaign.
 
