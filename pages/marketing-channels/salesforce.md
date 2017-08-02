@@ -28,6 +28,8 @@ With a script provided by Branch, you can dynamically create Branch links in ema
 
 When a link is clicked by a user without the app, it will route that user to the original web URL (including on desktop). When a link is clicked by a user with your app, it will direct that user into the relevant in-app content regardless of platform or email client.
 
+Throughout this flow you get all the Salesforce click tracking you're used to, as well as Branch's cross-platform analytics.
+
 {% getstarted %}{% endgetstarted %}
 
 {% elsif page.setup %}
@@ -141,7 +143,7 @@ To open the app directly on iOS 9.2+, you must configure your Salesforce Marketi
 
 {% image src="/img/pages/third-party-integrations/salesforce/configure-salesforce-1.png" center full alt='Click tracking domain' %}
 
-You can retrieve your click tracking domain from your Salesforce Marketing Cloud settings. We **highly** recommend using a new click tracking domain for this implementation to ensure that the user experience for pre-Branch links on the same click tracking domain doesn't break. 
+You can retrieve your click tracking domain from your Salesforce Marketing Cloud settings. We **highly** recommend using a new click tracking domain for this implementation to ensure that the user experience for pre-Branch links on the original click tracking domain doesn't break. 
 
 ### Configure your AASA file in Salesforce Marketing Cloud
 
