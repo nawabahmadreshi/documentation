@@ -141,13 +141,20 @@ To open the app directly on iOS 9.2+, you must configure your Salesforce Marketi
 
 {% image src="/img/pages/third-party-integrations/salesforce/configure-salesforce-1.png" center full alt='Click tracking domain' %}
 
-You can retrieve your click tracking domain from your Salesforce Marketing Cloud settings. Enter it in item 1 of this step. On **Done** click, an AASA file - required for Universal Links - specific to that domain will be generated.
+You can retrieve your click tracking domain from your Salesforce Marketing Cloud settings. We **highly** recommend using a new click tracking domain for this implementation to ensure that the user experience for pre-Branch links on the same click tracking domain doesn't break. 
 
-### Send your AASA file to Salesforce
+### Configure your AASA file in Salesforce Marketing Cloud
 
-{% image src="/img/pages/third-party-integrations/salesforce/configure-salesforce-2.png" center full alt='Salesforce account manager' %}
+Your Salesforce account must be configured to correctly handle Universal Links. Configure the settings in Deep Linking under the Admin section in Email Studio. Ensure you're in the account corresponding to the correct click tracking domain [you selected](#tell-us-your-click-tracking-domain) above.
 
-Your AASA file must be uploaded to your click tracking domain by Salesforce. Your Salesforce Account Manager will do this for you - enter their email and click **Send**, and they will receive an email with the file and request to upload.
+{% image src="/img/pages/third-party-integrations/salesforce/salesforce-aasa-toolbar.png" center half alt='Salesforce account manager' %}
+
+1. Enter the AppID value
+1. Check the "Exclude Profile" and "Unsub Center" checkboxes to force links to these items to open in the browser and not the app, if desired.
+1. Click "Save" to save the configuration.
+1. Let Salesforce and Branch know that you've finished this step and your Technical Account Manager will verify that everything looks good.
+
+{% image src="/img/pages/third-party-integrations/salesforce/salesforce-aasa-form.png" center half alt='Salesforce account manager' %}
 
 ### Configure your app for your click tracking domain
 
