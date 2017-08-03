@@ -231,7 +231,7 @@ branch.logout();
 
 {% caution %}
 
-The length of the User ID you use to identify your users should not be more than 127 characters.
+The length of the User ID you assign to identify your users should not be more than 127 characters.
 
 {% endcaution %}
 
