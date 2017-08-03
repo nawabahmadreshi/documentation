@@ -149,14 +149,14 @@ You can retrieve your click tracking domain from your Salesforce Marketing Cloud
 
 Your Salesforce account must be configured to correctly handle Universal Links. Configure the settings in Deep Linking under the Admin section in Email Studio. Ensure you're in the account corresponding to the correct click tracking domain [you selected](#tell-us-your-click-tracking-domain) above.
 
-{% image src="/img/pages/third-party-integrations/salesforce/salesforce-aasa-toolbar.png" center half alt='Salesforce account manager' %}
+{% image src="/img/pages/third-party-integrations/salesforce/salesforce-aasa-toolbar.png" center half alt='Salesforce Account' %}
 
 1. Enter the AppID value
 1. Check the "Exclude Profile" and "Unsub Center" checkboxes to force links to these items to open in the browser and not the app, if desired.
 1. Click "Save" to save the configuration.
 1. Let Salesforce and Branch know that you've finished this step and your Technical Account Manager will verify that everything looks good.
 
-{% image src="/img/pages/third-party-integrations/salesforce/salesforce-aasa-form.png" center half alt='Salesforce account manager' %}
+{% image src="/img/pages/third-party-integrations/salesforce/salesforce-aasa-form.png" center half alt='Salesforce AASA Form' %}
 
 ### Configure your app for your click tracking domain
 
