@@ -55,10 +55,10 @@ Open your **AppDelegate.swift** file and add the following method (if you comple
 func handleAppboyURL(_ url: URL, from channel: ABKChannel, withExtras extras: [AnyHashable : Any]) -> Bool {
     let handleByBranch = Branch.getInstance().handleDeepLinkWithNewSession(url)
     if handleByBranch {
-        return false
+        return true
     }
     // Let Appboy handle links otherwise
-    return true
+    return false
 }
 {% endhighlight %}
 {% endtab %}
