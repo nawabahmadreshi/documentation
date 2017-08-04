@@ -164,7 +164,7 @@ In this step, we'll upload an SDK that makes it very easy to create deep links i
 There is also a [tutorial video](https://www.youtube.com/watch?v=u8h8KlqFvo4){:target="_blank"} that walks through these steps.
 {% endprotip %}
 
-1. Press the **Copy** button to copy your snippet to clipboard: {% image src="/img/pages/third-party-integrations/responsys/configure-responsys-4.png" center 2-thirds alt='Branch Responsys SDK' %}
+1. Work with your Branch account manager to modify the following code snippet, replacing `DOMAIN-HERE` with your Branch base domain: `<#macro deeplink link_to_be_wrapped><#assign branch_base_url="https://DOMAIN-HERE/3p?%243p=e_rs"><#assign final_link=branch_base_url + "&%24original_url=" + link_to_be_wrapped?url("ISO-8859-1")><a href="${final_link}"><#nested></a></#macro> <#macro tracked_deeplink link_to_be_wrapped><#assign branch_base_url="https://DOMAIN-HERE/3p?%243p=e_rs"><#assign deeplink=branch_base_url + "&%24original_url=" + link_to_be_wrapped?url("ISO-8859-1")></#macro>`
 1. Log in to your Responsys account.
 1. In the Responsys Dashboard, open your Content Library. You can also access it via the Shortcuts screen on the main page: {% image src="/img/pages/third-party-integrations/responsys/responsys-shortcuts.png" center third alt='Responsys Shortcuts' %}
 1. Once you are in the Content Manager, you’ll see a list of folders where content is stored. Under **All Content**, create a new folder named `Branch_SDK`: {% image src="/img/pages/third-party-integrations/responsys/responsys-new-folder.png" center 2-thirds alt='Responsys new folder' %}

@@ -28,6 +28,8 @@ With a script provided by Branch, you can dynamically create Branch links in ema
 
 When a link is clicked by a user without the app, it will route that user to the original web URL (including on desktop). When a link is clicked by a user with your app, it will direct that user into the relevant in-app content regardless of platform or email client.
 
+Throughout this flow you get all the Salesforce click tracking you're used to, as well as Branch's cross-platform analytics.
+
 {% getstarted %}{% endgetstarted %}
 
 {% elsif page.setup %}
@@ -141,13 +143,20 @@ To open the app directly on iOS 9.2+, you must configure your Salesforce Marketi
 
 {% image src="/img/pages/third-party-integrations/salesforce/configure-salesforce-1.png" center full alt='Click tracking domain' %}
 
-You can retrieve your click tracking domain from your Salesforce Marketing Cloud settings. Enter it in item 1 of this step. On **Done** click, an AASA file - required for Universal Links - specific to that domain will be generated.
+You can retrieve your click tracking domain from your Salesforce Marketing Cloud settings. We **highly** recommend using a new click tracking domain for this implementation to ensure that the user experience for pre-Branch links on the original click tracking domain doesn't break. 
 
-### Send your AASA file to Salesforce
+### Configure your AASA file in Salesforce Marketing Cloud
 
-{% image src="/img/pages/third-party-integrations/salesforce/configure-salesforce-2.png" center full alt='Salesforce account manager' %}
+Your Salesforce account must be configured to correctly handle Universal Links. Configure the settings in Deep Linking under the Admin section in Email Studio. Ensure you're in the account corresponding to the correct click tracking domain [you selected](#tell-us-your-click-tracking-domain) above.
 
-Your AASA file must be uploaded to your click tracking domain by Salesforce. Your Salesforce Account Manager will do this for you - enter their email and click **Send**, and they will receive an email with the file and request to upload.
+{% image src="/img/pages/third-party-integrations/salesforce/salesforce-aasa-toolbar.png" center half alt='Salesforce Account' %}
+
+1. Enter the AppID value
+1. Check the "Exclude Profile" and "Unsub Center" checkboxes to force links to these items to open in the browser and not the app, if desired.
+1. Click "Save" to save the configuration.
+1. Let Salesforce and Branch know that you've finished this step and your Technical Account Manager will verify that everything looks good.
+
+{% image src="/img/pages/third-party-integrations/salesforce/salesforce-aasa-form.png" center half alt='Salesforce AASA Form' %}
 
 ### Configure your app for your click tracking domain
 
@@ -159,7 +168,7 @@ In this prompt, enter the email of someone on your team who is qualified to modi
 
 In this step, we'll add a new Content Area in Salesforce that makes it very easy to create deep links in your emails.
 
-1. Press the **Copy** button to copy your code snippet to clipboard: {% image src="/img/pages/third-party-integrations/salesforce/configure-salesforce-4.png" center 2-thirds alt='Content Area' %}
+1. Work with your Branch account manager to modify the following code snippet, replacing `DOMAIN-HERE` with your Branch base domain: `%%[ VAR @deeplink, @branch_base_url SET @branch_base_url = "https://DOMAIN-HERE/3p?%243p=e_et" SET @deeplink = CONCAT(@branch_base_url, CONCAT("&%24original_url=", URLEncode(@link_to_be_wrapped, 1, 1))) ]%%`
 1. After logging into Salesforce Marketing Cloud, click on **Email Studio** and then a sub-menu will appear. Click on **Email** in the dropdown menu: {% image src="/img/pages/third-party-integrations/salesforce/salesforce-dropdown.png" center third alt='Salesforce Dropdown' %}
 1. This will take you to the landing page for the Email section. Click on **Content** in the menu bar to navigate to the Content section: {% image src="/img/pages/third-party-integrations/salesforce/salesforce-menu-bar.png" center half alt='Salesforce Menu Bar' %}
 1. In the Content section, you will see a list of folders on the left side. Right click on the **My Contents** folder and choose **New Folder** in the context menu: {% image src="/img/pages/third-party-integrations/salesforce/salesforce-folders.png" center third alt='Salesforce Content Folders' %}
@@ -167,7 +176,7 @@ In this step, we'll add a new Content Area in Salesforce that makes it very easy
 1. Once the folder is created, click on the **Branch** folder. On the right side, you will see a menu bar for the Branch folder. Click on **Create** and in the sub menu, click **Content** to create new content: {% image src="/img/pages/third-party-integrations/salesforce/salesforce-new-content.png" center third alt='Salesforce New Content' %}
 1. In the Create Content window that appears, enter `deeplink` in the text field named Content Name. Click on **Next** after you enter the text: {% image src="/img/pages/third-party-integrations/salesforce/salesforce-deeplink.png" center full alt='Salesforce name deeplink' %}
 1. The next screen will ask you to select the format of the content. Choose **Free Form** and then click **Next**: {% image src="/img/pages/third-party-integrations/salesforce/salesforce-format.png" center full alt='Salesforce content format' %}
-1. In the next screen, paste in the snippet copied in **1**: {% image src="/img/pages/third-party-integrations/salesforce/salesforce-snippet.png" center 2-thirds alt='Salesforce code snippet' %}
+1. In the next screen, paste in the snippet you generated in **1**: {% image src="/img/pages/third-party-integrations/salesforce/salesforce-snippet.png" center 2-thirds alt='Salesforce code snippet' %}
 1. Click **Save**. You will now be back at your list of folders in the Content section with the file **deeplink** listed: {% image src="/img/pages/third-party-integrations/salesforce/salesforce-saved.png" center 2-thirds alt='Salesforce saved' %}
 
 You have now successfully created the deep linking script.  
