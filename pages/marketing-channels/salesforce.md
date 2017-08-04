@@ -168,7 +168,7 @@ In this prompt, enter the email of someone on your team who is qualified to modi
 
 In this step, we'll add a new Content Area in Salesforce that makes it very easy to create deep links in your emails.
 
-1. Press the **Copy** button to copy your code snippet to clipboard: {% image src="/img/pages/third-party-integrations/salesforce/configure-salesforce-4.png" center 2-thirds alt='Content Area' %}
+1. Work with your Branch account manager to modify the following code snippet, replacing `DOMAIN-HERE` with your Branch base domain: `%%[ VAR @deeplink, @branch_base_url SET @branch_base_url = "https://DOMAIN-HERE/3p?%243p=e_et" SET @deeplink = CONCAT(@branch_base_url, CONCAT("&%24original_url=", URLEncode(@link_to_be_wrapped, 1, 1))) ]%%`
 1. After logging into Salesforce Marketing Cloud, click on **Email Studio** and then a sub-menu will appear. Click on **Email** in the dropdown menu: {% image src="/img/pages/third-party-integrations/salesforce/salesforce-dropdown.png" center third alt='Salesforce Dropdown' %}
 1. This will take you to the landing page for the Email section. Click on **Content** in the menu bar to navigate to the Content section: {% image src="/img/pages/third-party-integrations/salesforce/salesforce-menu-bar.png" center half alt='Salesforce Menu Bar' %}
 1. In the Content section, you will see a list of folders on the left side. Right click on the **My Contents** folder and choose **New Folder** in the context menu: {% image src="/img/pages/third-party-integrations/salesforce/salesforce-folders.png" center third alt='Salesforce Content Folders' %}
@@ -176,7 +176,7 @@ In this step, we'll add a new Content Area in Salesforce that makes it very easy
 1. Once the folder is created, click on the **Branch** folder. On the right side, you will see a menu bar for the Branch folder. Click on **Create** and in the sub menu, click **Content** to create new content: {% image src="/img/pages/third-party-integrations/salesforce/salesforce-new-content.png" center third alt='Salesforce New Content' %}
 1. In the Create Content window that appears, enter `deeplink` in the text field named Content Name. Click on **Next** after you enter the text: {% image src="/img/pages/third-party-integrations/salesforce/salesforce-deeplink.png" center full alt='Salesforce name deeplink' %}
 1. The next screen will ask you to select the format of the content. Choose **Free Form** and then click **Next**: {% image src="/img/pages/third-party-integrations/salesforce/salesforce-format.png" center full alt='Salesforce content format' %}
-1. In the next screen, paste in the snippet copied in **1**: {% image src="/img/pages/third-party-integrations/salesforce/salesforce-snippet.png" center 2-thirds alt='Salesforce code snippet' %}
+1. In the next screen, paste in the snippet you generated in **1**: {% image src="/img/pages/third-party-integrations/salesforce/salesforce-snippet.png" center 2-thirds alt='Salesforce code snippet' %}
 1. Click **Save**. You will now be back at your list of folders in the Content section with the file **deeplink** listed: {% image src="/img/pages/third-party-integrations/salesforce/salesforce-saved.png" center 2-thirds alt='Salesforce saved' %}
 
 You have now successfully created the deep linking script.  
