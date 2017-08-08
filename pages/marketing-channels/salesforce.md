@@ -38,7 +38,7 @@ Throughout this flow you get all the Salesforce click tracking you're used to, a
 
 {% prerequisite %}
 - You must have the Salesforce Marketing Cloud Sender Authentication Package (SAP) in order to benefit from Universal Links + click tracking functionality.
-- This guide requires you to have already [integrated the Branch SDK]({{base.url}}/getting-started/sdk-integration-guide) into your app.
+- This guide requires you to have already [integrated the Branch SDK]({{base.url}}/getting-started/sdk-integration-guide) into your app. **Please ensure that you've integrated the most recent version of the Branch SDK into your app. The Salesforce Marketing Cloud Deep Linked Email integration may not work otherwise.**
 {% endprerequisite %}
 
 Contact your Branch Account Manager or [accounts@branch.io](mailto:accounts@branch.io) at any time for assistance with the setup steps.
