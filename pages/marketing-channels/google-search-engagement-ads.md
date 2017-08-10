@@ -56,8 +56,8 @@ Android | Yes | Uses Final URL with ValueTrack Parameters, no tracking template 
 1. Under the Define Section, pick a Link Name for later reference
 1. Configure the link with the Ad Format set to **App Only**, the Ad Partner set to **Google Adwords**, and the Secondary Ad Format set to **Google Search App Engagement Android**, while leaving the Campaign field blank
 {% image src='/img/pages/features/google-dla/google-search-engagement-ads/Android/ad-link-setup.png' 3-quarters center alt='Create Ad Link' %}
-1. Under Configure Options tab, navigate to the sub Analytics Tags sub section to set up additional tags.
-{% image src='/img/pages/features/ads-analytics/analytics-tags.png' 3-quarters center alt='Analytics Tags' %}
+1. Under the Analytics Tags sub section additional tags can be set. It is recommended to fill in these fields as they can be used as filters in Branch's Ads Analytics view. To best connect your ad link with your Adwords Campaign, set the channel field to Google Adwords and set the campaign field to the same ad campaign name used in Adwords.
+{% image src='/img/pages/features/ads-analytics/adwords-analytics-tags.png' 3-quarters center alt='Analytics Tags' %}
 
 {% protip title="Optional: Deep Link Data (Advanced)" %}
 
