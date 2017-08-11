@@ -250,18 +250,20 @@ Open your **Info.plist** file in Xcode, change the `branch_key` entry to a Dicti
 
 {% image src="/img/pages/getting-started/integration-testing/branch-multi-key-plist.png" actual center alt="environment toggle" %}
 
-To trigger the reference to the Test key, you simply need to call `getTestInstance` at runtime as shown below:
+To use your test key with Branch, set the `Branch.useTestBranchKey` class variable to `YES` before initializing Branch, as shown below:
 
 {% tabs %}
 {% tab objective-c %}
 {% highlight objc %}
-Branch *branch = [Branch getTestInstance];
+[Branch setUseTestBranchKey:YES];
+Branch *branch = [Branch getInstance];
 [branch initSession.....
 {% endhighlight %}
 {% endtab %}
 {% tab swift %}
 {% highlight swift %}
-let branch: Branch = Branch.getTestInstance()
+Branch.useTestBranchKey = true
+let branch: Branch = Branch.getInstance()
 branch.initSession.....
 {% endhighlight %}
 {% endtab %}
