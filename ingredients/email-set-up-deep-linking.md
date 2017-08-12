@@ -1,10 +1,4 @@
 
-### One time setup
-
-{% prerequisite %}
-- This guide requires you to have already [integrated the Branch SDK]({{base.url}}/getting-started/sdk-integration-guide) into your app.
-{% endprerequisite %}
-
 Contact your Branch Account Manager or [accounts@branch.io](mailto:accounts@branch.io) at any time for assistance with the setup steps.
 
 ## Choose your email service provider
@@ -35,7 +29,7 @@ If you would like to send users to the App Store or another default you have spe
 
 {% image src="/img/pages/marketing-channels/email/default-redirects.png" center half alt='Select behavior for users without the app' %}
 
-### Enter a web URL
+### Checking your deep linking setup
 
 If you chose **not** to set up deep linking to specific content within your app, then you can [skip this step](#configure-your-esp).
 
@@ -47,57 +41,11 @@ In this step, you will want to enter a web URL that corresponds to a specific sc
 - An article
 - A content page, like a video or image
 
-Once you choose one and click **Submit**, [meta tags that can be used for deep linking](/getting-started/hosted-deep-link-data/guide/) will be retrieved from your webpage. You will see a result indicating the mapping between your web content and your app content:
-
-#### We think you use your web URL for deep linking
-
-{% image src="/img/pages/third-party-integrations/responsys/web-url-result.png" 2-thirds center alt='Using your web URL for deep linking' %}
-
-If your webpage, for instance at the URL `https://shop.com/shoes/brown-loafers`, has a tag like this:
-
-`<meta name="al:ios:url" content="shop://https://shop.com/shoes/brown-loafers" />`
-
-or this:
-
-`<meta name="al:android:url" content="shop://shoes/brown-loafers" />`
-
-Your deep linking setup for email will use all or part of your **web URL** as a deep link value. It can use either the full URL including the protocol (`https://shop.com/shoes/brown-loafers`), the full URL without the protocol (`shop.com/shoes/brown-loafers`), or the path of the URL (`shoes/brown-loafers`).
-
-#### We think you host your deep link data on your website
-
-{% image src="/img/pages/third-party-integrations/responsys/hosted-data-result.png" 2-thirds center alt='Using hosted data for deep linking' %}
-
-If instead, your webpage has a tag like this:
-
-`<meta name="branch:deeplink:product_id" content="123456" />`
-
-or this:
-
-`<meta name="al:ios:url" content="shop://id/123456" />`
-
-Your deep linking setup for email will use the **hosted deep link data** method. This means that no mapping can be made to the URL, and [meta tags that can be used for deep linking](/getting-started/hosted-deep-link-data/guide/) will be retrieved from your webpage on an ongoing basis.
-
-#### We couldn't determine your deep linking setup from your web URL
-
-If there are no meta tags for deep linking on your webpage, or you indicate that the mapping is incorrect, you can try a Branch link instead.
-
-{% image src="/img/pages/third-party-integrations/responsys/enter-branch-link.png" center 2-thirds alt='Enter a Branch link' %}
-
-Here, you will want to enter a Branch link that opens to a page within your app (not the home screen). 
-
-When you click **Submit**, the link's values for `$canonical_url`, `$desktop_url`, and `$fallback_url` will be compared against other values in the link. If there is a mapping between values for the full URL or the path of the URL, your deep linking setup for email will use those methods.
-
-### Test your link
-
-When you submit a web URL or Branch link, you will be prompted with a test link. Click this link on iOS and Android devices, and verify that it will open your app to the right place.
-
-{% image src="/img/pages/third-party-integrations/responsys/test-link.png" center half alt='Test your link' %}
-
-Once you click **Yes**, your deep linking will be set up for email. When a user clicks a link in your emails, we will embed the full web URL, path of the web URL, or retrieved deep link data from the webpage into a Branch version of that link and pass it to your app, so that it will open to the right place.
+Once you choose one and click **Submit**, [meta tags that can be used for deep linking](/getting-started/hosted-deep-link-data/guide/) will be retrieved from your webpage. You will see a result indicating the mapping between your web content and your app content. For a full explanation of the tests run on this page and the possible results, check out our [support page](/marketing-channels/{{page.title}}/support/#deep-linking-setup-messages).
 
 ### We couldn't determine your deep linking setup
 
-If an app deep linking scheme that maps to your web content cannot be successfully detected, a Branch account manager will be in touch to help you set up your deep linking for email. 
+If an app deep linking scheme that maps to your web content cannot be successfully detected, you can [configure your settings manually](#deep-linking-settings-for-email), or you can reach out to your Branch account manager or support for assitance. 
 
 {% image src="/img/pages/third-party-integrations/responsys/failure-result.png" center 2-thirds alt='Could not set up deep linking' %}
 
@@ -134,7 +82,7 @@ The following are all the possible settings you can configure for deep linking w
 | | Translate web URL into Branch link data: <br> URL path for key ______ | **URL:** `https://shop.com/shoes/brown-loafers` <br> **Key:** `$deeplink_path` | `$deeplink_path: shoes/brown-loafers`
 | | Retrieve hosted deep link data from website and translate into Branch link data | **URL:** `https://shop.com/shoes/brown-loafers` <br> **Meta Tags:** `<meta name="branch:deeplink:product_id" content="123456" />` | `product_id: 123456`
 | | Strip protocol (http:// or https://): <br> from $deeplink_path <br> from $ios_deeplink_path <br> from $android_deeplink_path <br> *Note: Typically used with one of the other settings.* | **URL:** `https://shop.com/shoes/brown-loafers` <br> **Other Settings:** Translate web URL into Branch link data: Full URL for key `$deeplink_path` | `$deeplink_path: shop.com/shoes/brown-loafers`
-| | Translate query parameters on URLs into Branch link data from parameter ______ to key ______ <br> *Note: Not configurable in the UI.* | **URL:** `https://shop.com/shoes/brown-loafers&product_id=123456&utm_content=shoes` <br> **Parameter:** `utm_content` <br> **Key:** `category` | `category: shoes`
+| | Translate query parameters on URLs into Branch link data from parameter ______ to key ______ <br> *Note: Not configurable in the UI. [Contact support](https://support.branch.io/support/tickets/new){:target="_blank"} to use this setting.* | **URL:** `https://shop.com/shoes/brown-loafers&product_id=123456&utm_content=shoes` <br> **Parameter:** `utm_content` <br> **Key:** `category` | `category: shoes`
 
 #### Link behavior for users without your app
 
@@ -143,30 +91,8 @@ The following are all the possible settings you can configure for deep linking w
 | Open to specific web content | Route to the original URL specified in the email.
 | Open to default redirects | Route to defaults specified in [Link Settings](https://dashboard.branch.io/link-settings){:target="_blank"}.
 
-UI only setting; defaults "append_all_params" to true
+## Configure your ESP
 
-"append_all_params":true
+To open the app directly on iOS 9.2+, you must configure your {{page.title}} integration to support [Universal Links](/getting-started/universal-app-links/), and configure your app to support {{page.title}} + Universal Links.
 
-"append_full_url_for_key":"$deeplink_path"
-URL path for key ______
-"append_path_for_key":"$deeplink_path"
-Retrieve hosted deep link data from website and translate into Branch link data
-auto_fetch: true
-Strip protocol (http:// or https://)
-UI only setting
-from $deeplink_path
-"strip_protocol_from_deeplink_path":true
-from $ios_deeplink_path
-"strip_protocol_from_ios_deeplink_path":true
-from $android_deeplink_path
-"strip_protocol_from_android_deeplink_path":true
-[not in the UI] Translate query parameters on URLs into Branch link data from parameter __ to key ______
-{"map_query_params_to_deep_link_data":{"utm_campaign":"~campaign"}
-Link behavior for users without your app
-Corresponding setting example
-Open to specific web content
-"link_fallback_method":"ORIGINAL_URL"
-Open to default redirects
-"link_fallback_method":"BRANCH_DEFAULT"
-
-
+### Tell us your click tracking domain

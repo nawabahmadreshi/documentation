@@ -24,13 +24,13 @@ alias: [ /third-party-integrations/sendgrid/, /third-party-integrations/sendgrid
 
 {% elsif page.setup %}
 
+### One time setup
+
+{% prerequisite %}
+- This guide requires you to have already [integrated the Branch SDK]({{base.url}}/getting-started/sdk-integration-guide) into your app.
+{% endprerequisite %}
+
 {% ingredient email-set-up-deep-linking %}{% endingredient %}
-
-## Configure your ESP
-
-To open the app directly on iOS 9.2+, you must configure your Sendgrid integration to support [Universal Links](/getting-started/universal-app-links/), and configure your app to support Sendgrid + Universal Links.
-
-### Tell us your click tracking domain
 
 You can retrieve your click tracking domains from your Sendgrid settings:
 
@@ -42,71 +42,13 @@ You can retrieve your click tracking domains from your Sendgrid settings:
 
 On **Done** click, an AASA file - required for Universal Links - specific to that domain will be generated.
 
-### Configure your app for your click tracking domain
-
-{% image src="/img/pages/third-party-integrations/sendgrid/configure-sendgrid-2.png" center 2-thirds alt='Developer email' %}
-
-In this prompt, enter the email of someone on your team who is qualified to modify your iOS app, and then click **Send**. They will complete the [technical setup](#technical-setup) steps below.
-
 {% ingredient email-technical-setup %}{% endingredient %}
 
-### Set up your click tracking domain
+{% ingredient email-cname %}{% endingredient %}
 
-Only do this step after you've [provided your click tracking domain](#tell-us-your-click-tracking-domain) to Branch.
+{% ingredient email-associated-domains %}{% endingredient %}
 
-1. Create a CNAME for your subdomain and point it to `thirdparty.bnc.lt`
-1. Confirm with your Branch Account Manager that the domain is working correctly.
-
-### Add your click tracking domain to your Associated Domains
-
-To enable Universal Links on your click tracking domain, you'll need to add the click tracking domain to your Associated Domains entitlement. 
-
-1. In Xcode, go to the `Capabilities` tab of your project file.
-1. Scroll down and enable `Associated Domains` if it is not already enabled. {% image src='/img/pages/getting-started/universal-app-links/enable_ass_domains.png' 3-quarters center alt='enable xcode associated domains' %}
-1. Copy your click tracking domain from the [email you received from Branch](#configure-your-app-for-your-click-tracking-domain), or retrieve it from your Sendgrid settings.
-1. In the `Domains` section, click the `+` icon and add your click tracking domain. For example, if your click tracking domain is `email.example.com`, add an entry for `applinks:email.example.com`.
-{% image src='/img/pages/getting-started/universal-app-links/add_domain.png' 3-quarters center alt='xcode add domain' %}
-
-{% protip title="Having trouble or new to Universal Links?" %}
-Follow [these instructions](/getting-started/universal-app-links/guide/ios/) for more details on enabling Universal Links in the Branch dashboard and in Xcode.
-{% endprotip %}
-
-### Handle links for web-only content
-
-If you have links to content that exists only on web, and not in the app (for example, a temporary marketing webpage that isn't in the app) then this code snippet will ensure all links that have not had the deep linking script applied will open in a browser.
-
-You should add this code snippet inside the `deepLinkHandler` code block in `application:didFinishLaunchingWithOptions:`. Note that this uses query `open_web_browser=true`, but you can choose whatever you like. This should match the web URL you enter in the email.
-
-{% tabs %}
-{% tab objective-c %}
-{% highlight objc %}
-if (params[@"+non_branch_link"] && [params[@"+from_email_ctd"] boolValue]) {
-    NSURL *url = [NSURL URLWithString:params[@"+non_branch_link"]];
-    if (url) {
-        [application openURL:url];
-        // check to make sure your existing deep linking logic, if any, is not executed, perhaps by returning early
-    }
-}
-{% endhighlight %}
-{% endtab %}
-
-{% tab swift %}
-{% highlight swift %}
-if let nonBranchLink = params["+non_branch_link"] as? String, let fromEmailCtd = params["+from_email_ctd"] as? Bool {
-    if fromEmailCtd, let url : URL = URL(string: nonBranchLink) {
-        application.openURL(url)
-        // check to make sure your existing deep linking logic, if any, is not executed, perhaps by returning early
-    }
-}
-{% endhighlight %}
-{% endtab %}
-{% endtabs %}
-
-## Validate and send emails
-
-{% image src="/img/pages/third-party-integrations/responsys/validation.png" center full alt='Click tracking domain' %}
-
-The last step of the [Deep Linked Email setup flow](https://dashboard.branch.io/email){:target="_blank"} validates whether you have completed steps 1 and 2 and whether an engineer on your team has completed the [technical setup](#technical-setup) steps. From here you can also access [guides for ongoing use](/third-party-integrations/sendgrid/usage) of Deep Linked Email.
+{% ingredient email-validate-test %}{% endingredient %}
 
 {% getstarted next="true" %}{% endgetstarted %}
 
@@ -166,35 +108,6 @@ Here is how links look before and after (the latter being a Branch deep link).
 
 {% elsif page.support %}
 
-## How does link creation work?
-
-### Three stages of a link
-
-| Link name| Link example | Link description
-| --- | --- | --- | ---
-| Original link | https://www.shop.com/product | This is the original link that you would put in an email. If emails are dynamically personalized, this will be the link that is filled in by the personalization engine.
-| Branch link | https://branch.shop.com/?original_url=https%3A%2F%2Fwww.shop.com%2Fproduct | A Branch deep link, that handles all redirection for users on any platform, with or without the app.
-| Click Tracking URL | https://email.shop.com/click/abcde12345 | A SendGrid generated click tracking URL. The URL doesn’t signify anything, but when clicked, records the click and redirects to a given destination.
-
-{% image src="/img/pages/third-party-integrations/responsys/deep-linked-email-creation-flow.png" center full alt='Deep Linked Email Creation Flow' %}
-
-### Redirect behavior and tracking
-
-When your customer clicks the click tracking link in an email, the browser will generally open. Once in the browser, the click tracking redirect will happen, followed by an instant redirect to the Branch link. At this point, Branch will either stay in the browser, and load the original URL (if the app is not installed, or the customer is on a desktop device), or Branch will open the app and deep link to content. Branch uses the information from the original URL to deep link to the correct in-app content.
-
-{% image src="/img/pages/third-party-integrations/responsys/deep-linked-email-post-click.png" center full alt='Branch Email Deep Linking Redirects' %}
-
-## Universal links and click tracking
-Apple introduced Universal Links starting with iOS 9. Apple introduced Universal Links starting with iOS 9. You must configure your app and your links in a specific way to enable Universal Link functionality. Branch guides developers through this process so that Branch links function as Universal Links.
-
-For Universal Links to work, Apple requires that a file called an “Apple-App-Site-Association” (AASA) file must be hosted on the domain of the link in question. When the link is clicked, Apple will check for the presence of this file to decide whether or not to open the app. All Branch links are Universal Links, because we will host this file securely on your Branch link domain.
-
-When you click a Branch link directly from an email inside the Mail app on iOS 9+, it functions as a Universal Link - it redirects directly into the desired app. However, if you put a Branch Universal Link behind a click tracking URL, it won’t deep link into the app. This is because generally, a click tracking URL is not a Universal Link. If you’re not hosting that AASA file on the click tracking URL’s domain, you aren’t going to get Universal Link behavior for that link.
-
-**Solution**
-
-To solve this, Branch will host the AASA file on your click tracking domain. We’ll help you get set up with this.
-
-{% image src="/img/pages/third-party-integrations/responsys/deep-linked-email-universal-links.png" center full alt='Deep Linked Email Universal Links' %}
+{% ingredient email-support %}{% endingredient %}
 
 {% endif %}
