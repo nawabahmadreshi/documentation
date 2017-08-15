@@ -96,7 +96,6 @@ We're not sure if Cocoapods will support extensions, so in the meantime, just in
     e. Add: **$(PROJECT_DIR)/Branch.framework/Headers**
 1. Import the following frameworks under **Build Phases** for your app target:
     - `AdSupport.framework`
-    - `CoreTelephony.framework`
     - `CoreSpotlight.framework`
     - `MobileCoreServices.framework`
 
@@ -1548,7 +1547,6 @@ Follow these directions install the Branch SDK framework files without using Coc
     e. Add: **$(PROJECT_DIR)/Branch.framework/Headers**
 1. Import the following frameworks under **Build Phases** for your app target:
     - `AdSupport.framework`
-    - `CoreTelephony.framework`
     - `CoreSpotlight.framework`
     - `MobileCoreServices.framework`
     - `iAd.framework`
