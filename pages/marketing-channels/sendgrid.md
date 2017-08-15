@@ -56,55 +56,25 @@ On **Done** click, an AASA file - required for Universal Links - specific to tha
 
 ### Ongoing use of Deep Linked Email
 
-Once you’ve completed the [one time setup steps](/third-party-integrations/sendgrid/setup/), it’s time to send your first email.
+Once you’ve completed the [one time setup steps](/marketing-channels/{{page.title}}/setup/), it’s time to send your first email.
 
-This guide will identify which web links you'd like to open the app and deep link, as well as convert them to Branch links.
+This guide will help you identify which web links you'd like to open the app and deep link, as well as convert them to Branch links.
 
-{% caution title="Flag your Universal Links" %}
-In order for SendGrid to know that the Universal Link should open the app, add `universal="true"` to the HTML, for example:
+## Flag your deep links
+
+In order for {{page.title}} to know that the email link should open the app, add `universal="true"` to the template HTML, for example:
 
 {% highlight html %}
 <a href="links.example.com" universal="true">Link to your app!</a>
 {% endhighlight %}
 
-{% endcaution %}
+## Options for generating Branch links for email
 
-## Making regular Branch links compatible with email
+There are a few different ways you can create Branch links that are compatible with Deep Linked Email + {{ page.title }}. You will need to replace the web URLs in your templates with these. To create Branch links, you can either:
 
-Be sure to add `"$3p":"e_sg"` to the deep link data of any links you use in email to ensure Universal Link and click tracking works as expected.
+1. [Use the Branch SDK](#use-the-branch-script)
 
-## Create email links via API without changing your email templates
-
-To create email links via API, please use the instructions on how to [create links via API](/getting-started/creating-links/other-ways/#http-api), but include the following key value pairs in your call:
-
-1. `"$3p":"e_sg"` This is required for Universal Link and click tracking functionality.
-1. `"$original_url":"{{your web url URI encoded}}"` For each piece of content, include a URI encoded version of your content's web URL. You can also add deep link data as query parameters on that web URL. This ensures accurate Content Analytics reporting. **Example: `"$original_url":"https%3A%2F%2Fshop.com%2Fshoes%2Fbrown-shoes%3Fmy_key%3Dmy_value%26campaign%3Dshoe_discounts"`**
-
-## Convert all web links in your email to deep links
-
-We have provided [a way](/third-party-integrations/remote-deep-links/guide/) of easily converting web links to Branch links, as well as [an example](https://gist.github.com/derrickstaten/f9b1e72e506f79628ab9127dd114dd83#file-sendgrid-demo-js). The example takes an html email (as a string) and applies the script to it.
-
-To use this script, make sure you've set up deep links according to one of the [linking schemas outlined here](/third-party-integrations/sendgrid/setup/#set-up-deep-linking-for-email).
-
-Here is the script:
-{% highlight js %}
-var crypto = require('crypto');
-module.exports = function(original_url, branch_base_url) {
-    if (!original_url) { return new Error('Missing original_url'); }
-    if (typeof original_url != 'string') { return new Error('Invalid original_url'); }
-    if (!branch_base_url) { return new Error('Missing branch_base_url, should be similar to https://bnc.lt/abcd/3p?%243p=xx'); }
-    if (typeof branch_base_url != 'string') { return new Error('Invalid branch_base_url'); }
-
-    return branch_base_url + '&%24original_url=' + encodeURIComponent(original_url);
-};
-{% endhighlight %}
-
-Here is how links look before and after (the latter being a Branch deep link).
-
-1. *Before:* http://example.com/?foo=bar
-2. *After:* https://vza3.app.link/3p?%243p=e_sg&%24original_url=http%3A%2F%2Fexample.com%2F%3Ffoo%3Dbar
-
-(note that these are simplified examples, not actual demo links)
+{% ingredient email-link-options %}{% endingredient %}
 
 {% elsif page.support %}
 

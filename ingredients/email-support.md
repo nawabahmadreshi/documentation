@@ -31,7 +31,7 @@ To solve this, Branch will host the AASA file on your click tracking domain. Weâ
 
 ## Deep linking setup messages
 
-In the **Set up deep linking** step of the email onboarding flow, you will see a result indicating the mapping between your web content and your app content. 
+In the **Set up Deep Linking** step of the email onboarding flow, you will see a result indicating the mapping between your web content and your app content. 
 
 ### We think you use your web URL for deep linking
 

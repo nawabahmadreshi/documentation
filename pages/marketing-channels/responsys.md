@@ -38,9 +38,34 @@ You can retrieve your click tracking domain from your Responsys settings. Enter 
 
 {% ingredient email-send-aasa %}{% endingredient %}
 
-### (Optional) Upload the Branch Responsys SDK
+{% endexample %}
 
-In this step, we'll upload an SDK that makes it very easy to create deep links in your emails. You can decide to put Branch email links directly into your email templates instead.
+{% ingredient email-technical-setup %}{% endingredient %}
+
+{% ingredient email-associated-domains %}{% endingredient %}
+
+{% ingredient email-validate-test %}{% endingredient %}
+
+{% getstarted next="true" %}{% endgetstarted %}
+
+{% elsif page.usage %}
+
+### Ongoing use of Deep Linked Email
+
+Once you’ve completed the [one time setup steps](/third-party-integrations/responsys/setup/), it’s time to send your first email.
+
+This guide will identify which web links you'd like to open the app and deep link, as well as convert them to Branch links.
+
+## Options for generating Branch links for email
+
+There are a few different ways you can create Branch links that are compatible with Deep Linked Email + {{ page.title }}. You will need to replace the web URLs in your templates with these. To create Branch links, you can either:
+
+1. [Use the Branch Responsys SDK](#use-the-branch-responsys-sdk)
+1. [Use the Branch SDK](#use-the-branch-script)
+
+### Use the Branch Responsys SDK
+
+In this step, we'll upload an SDK that makes it very easy to create deep links in your emails.
 
 {% protip title="Watch how to do this instead" %}
 There is also a [tutorial video](https://www.youtube.com/watch?v=u8h8KlqFvo4){:target="_blank"} that walks through these steps.
@@ -65,26 +90,9 @@ The snippet will follow this format: {% highlight html %}
 <#macro deeplink link_to_be_wrapped><#assign branch_base_url="BASE URL FROM BRANCH"><#assign final_link=branch_base_url + "&%24original_url=" + link_to_be_wrapped?url("ISO-8859-1")><a href="${final_link}"><#nested></a></#macro> 
 <#macro tracked_deeplink link_to_be_wrapped><#assign branch_base_url="BASE URL FROM BRANCH"><#assign deeplink=branch_base_url + "&%24original_url=" + link_to_be_wrapped?url("ISO-8859-1")></#macro>
 {% endhighlight %}
-The code above has a placeholder for your base url. Retrieve your snippet from the [Deep Linked Email setup flow](https://dashboard.branch.io/email){:target="_blank"}.
 {% endexample %}
 
-{% ingredient email-technical-setup %}{% endingredient %}
-
-{% ingredient email-associated-domains %}{% endingredient %}
-
-{% ingredient email-validate-test %}{% endingredient %}
-
-{% getstarted next="true" %}{% endgetstarted %}
-
-{% elsif page.usage %}
-
-### Ongoing use of Deep Linked Email
-
-Once you’ve completed the [one time setup steps](/third-party-integrations/responsys/setup/), it’s time to send your first email.
-
-This guide will identify which web links you'd like to open the app and deep link, as well as convert them to Branch links.
-
-## Configure your Responsys email templates
+#### Configure your Responsys email templates
 
 This code is referred to as the "Branch script" - this script will convert your web URLs to deep links.
 
@@ -99,7 +107,7 @@ Copy the following snippet, and using the “Source” view, paste the snippet d
 <#include "cms://contentlibrary/Branch_SDK/branch-sdk.htm">
 {% endhighlight %}
 
-## Create deep links
+#### Create deep links
 
 Wherever you are using `<a>` tags in your email templates, replace those with `<@deeplink>` tags, or add `<@tracked_deeplink />` for web URLs that you would like to deep link.
 
@@ -132,7 +140,9 @@ This latter example pulls from a Link Table. In the link table, set the `IOS Lin
 
 {% image src="/img/pages/third-party-integrations/responsys/deep-linked-email-template.png" center full alt='Deep Linked Email Responsys Example' %}
 
-### Handle links for web-only content
+{% ingredient email-link-options %}{% endingredient %}
+
+## Handle links for web-only content
 
 In some cases you may have content on web that isn’t in the app - for example, a temporary Mother’s Day promotion or an unsubscribe button. You can designate links to only open on web if you use the Responsys Link Table feature. There are three URL fields in the link table when creating a new link: `LINK_URL`, `IOS_LINK_URL`, and `ANDROID_LINK_URL`. If you only enter the link in the `LINK_URL` field, the path of the final click-wrapped url will begin with `/pub/cc`, whereas if you input an `IOS_LINK_URL`, then the path of the final click-wrapped url will begin with `pub/acc`. You should set up your AASA file to whitelist only the path `/pub/acc*` in order to not launch the app from web-only links.
 

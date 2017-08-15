@@ -41,7 +41,7 @@ In this step, you will want to enter a web URL that corresponds to a specific sc
 - An article
 - A content page, like a video or image
 
-Once you choose one and click **Submit**, [meta tags that can be used for deep linking](/getting-started/hosted-deep-link-data/guide/) will be retrieved from your webpage. You will see a result indicating the mapping between your web content and your app content. For a full explanation of the tests run on this page and the possible results, check out our [support page](/marketing-channels/{{page.title}}/support/#deep-linking-setup-messages).
+Once you choose one and click **Submit**, [meta tags that can be used for deep linking](/getting-started/hosted-deep-link-data/guide/) will be retrieved from your webpage. You will see a result indicating the mapping between your web content and your app content. For a full explanation of the tests run on this page and the possible results, check out our [support page](/marketing-channels/{{ page.title | downcase }}/support/#deep-linking-setup-messages).
 
 ### We couldn't determine your deep linking setup
 
