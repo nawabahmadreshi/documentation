@@ -40,6 +40,8 @@ Deepviews are discoverable in all search portals (Google, Apple Spotlight, Bing,
 {% prerequisite %}
 
 - For Deepviews to function as intended, you should [integrate the Branch SDK]({{base.url}}/getting-started/sdk-integration-guide) into your app and [configure deep link routing]({{base.url}}/getting-started/deep-link-routing).
+- Deepviews uses your alternate domain for Universal Links. Make sure you include your `xxxx-alternate.app.link` domain in your [Associated Domains]({{base.url}}/getting-started/universal-app-links/guide/ios/#add-the-associated-domains-entitlement-to-your-project).
+- If you use a custom domain or subdomain for your Branch links, you should instead add entries for `applinks:[mycustomdomainorsubdomain]` and `XXXX-alternate.app.link`. If you’re unsure of your Branch-assigned app.link subdomain, [contact support](https://support.branch.io), and we can provide it.
 
 {% endprerequisite %}
 
