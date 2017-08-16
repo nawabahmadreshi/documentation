@@ -47,7 +47,7 @@ Once you choose one and click **Submit**, [meta tags that can be used for deep l
 
 If an app deep linking scheme that maps to your web content cannot be successfully detected, you can [configure your settings manually](#deep-linking-settings-for-email), or you can reach out to your Branch account manager or support for assitance. 
 
-{% image src="/img/pages/third-party-integrations/responsys/failure-result.png" center 2-thirds alt='Could not set up deep linking' %}
+{% image src="/img/pages/marketing-channels/email/failure-result.png" center 2-thirds alt='Could not set up deep linking' %}
 
 We will help you set up one of the following methods:
 

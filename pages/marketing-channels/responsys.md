@@ -38,8 +38,6 @@ You can retrieve your click tracking domain from your Responsys settings. Enter 
 
 {% ingredient email-send-aasa %}{% endingredient %}
 
-{% endexample %}
-
 {% ingredient email-technical-setup %}{% endingredient %}
 
 {% ingredient email-associated-domains %}{% endingredient %}
@@ -61,7 +59,8 @@ This guide will identify which web links you'd like to open the app and deep lin
 There are a few different ways you can create Branch links that are compatible with Deep Linked Email + {{ page.title }}. You will need to replace the web URLs in your templates with these. To create Branch links, you can either:
 
 1. [Use the Branch Responsys SDK](#use-the-branch-responsys-sdk)
-1. [Use the Branch SDK](#use-the-branch-script)
+1. [Create email links via API without changing your email templates](#create-email-links-via-API-without-changing-your-email-templates)
+1. [Convert all web links in your email to deep links](#convert-all-web-links-in-your-email-to-deep-links)
 
 ### Use the Branch Responsys SDK
 
@@ -86,10 +85,14 @@ You have now successfully created the deep linking script. Your file structure s
 {% image src="/img/pages/third-party-integrations/responsys/deep-linked-email-manage-content.png" full center alt='Example Manage Content' %}
 
 {% example title="Code snippet" %}
-The snippet will follow this format: {% highlight html %}
+
+The snippet will follow this format: 
+
+{% highlight html %}
 <#macro deeplink link_to_be_wrapped><#assign branch_base_url="BASE URL FROM BRANCH"><#assign final_link=branch_base_url + "&%24original_url=" + link_to_be_wrapped?url("ISO-8859-1")><a href="${final_link}"><#nested></a></#macro> 
 <#macro tracked_deeplink link_to_be_wrapped><#assign branch_base_url="BASE URL FROM BRANCH"><#assign deeplink=branch_base_url + "&%24original_url=" + link_to_be_wrapped?url("ISO-8859-1")></#macro>
 {% endhighlight %}
+
 {% endexample %}
 
 #### Configure your Responsys email templates
@@ -171,7 +174,7 @@ If you include style tags within your `<a>` tags, you’ll need to separate thos
 <@deeplink "https://branch.io/"><div style="color:#000001; text-decoration:none;">Branch Website</div></@deeplink>
 {% endhighlight %}
 
-{% endexample%}
+{% endexample %}
 
 ## Launch failed error
 You’ll see this error if you haven’t included the `<#import >` snippet in your template.
@@ -180,12 +183,12 @@ You’ll see this error if you haven’t included the `<#import >` snippet in yo
 {% highlight objc %}
 Launch Failed: Launch failed: Template /contentlibrary/branch test campaign/My Default Template.htm caused an execution error: on line 183, column 92 in cms://contentlibrary/branch test campaign/Content.htm: deeplink is not a user-defined directive. It is a freemarker.template.SimpleScalar
 {% endhighlight %}
-{% endexample%}
+{% endexample %}
 
 ## Using dynamic data from profile extension tables
 {% example %}
 The `<@deeplink >` and `<@tracked_deeplink />` tags even work with dynamic links injected via RPL.
 {% highlight html %}<@deeplink "${latestProduct.url}">${latestProduct.name}</@deeplink>{% endhighlight %}
-{% endexample%}
+{% endexample %}
 
 {% endif %}

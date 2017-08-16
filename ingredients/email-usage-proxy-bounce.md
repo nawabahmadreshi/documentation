@@ -4,13 +4,17 @@ Once you’ve completed the [one time setup steps](/marketing-channels/{{page.ti
 
 This guide will identify which web links you'd like to open the app and deep link, as well as convert them to Branch links.
 
-## Flag your deep links
+## Flag your web-only links
 
-In order for {{page.title}} to know that the email link should open the app, add `deeplink="true"` to the HTML, for example:
+With {{page.title}}, all email links will open the app by default. In order for your app to know that the email link should bounce to web after opening the app, add `$web_only=true` to your links as a query parameter, for example:
 
 {% highlight html %}
-<a href="links.example.com" deeplink="true">Link to your app!</a>
+<a href="links.example.com?$web_only=true" >Link to your app!</a>
 {% endhighlight %}
+
+{% caution title="Handle links for web-only content" %}
+Make sure you have completed the [technical setup steps](/marketing-channels/{{page.title}}/setup/#handle-links-for-web-only-content) to handle web-only links within your app.
+{% endcaution %}
 
 This will also ensure that your links are converted to Branch links that will open the app on Android as well, with full tracking and attribution.
 

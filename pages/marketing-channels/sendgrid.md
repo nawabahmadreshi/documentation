@@ -72,7 +72,8 @@ In order for {{page.title}} to know that the email link should open the app, add
 
 There are a few different ways you can create Branch links that are compatible with Deep Linked Email + {{ page.title }}. You will need to replace the web URLs in your templates with these. To create Branch links, you can either:
 
-1. [Use the Branch SDK](#use-the-branch-script)
+1. [Create email links via API without changing your email templates](#create-email-links-via-API-without-changing-your-email-templates)
+1. [Convert all web links in your email to deep links](#convert-all-web-links-in-your-email-to-deep-links)
 
 {% ingredient email-link-options %}{% endingredient %}
 
