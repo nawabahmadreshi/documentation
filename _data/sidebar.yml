@@ -92,11 +92,16 @@
         - deep-linked-feeds
     - title: Email
       children:
+        - appboy
+        - blueshift
+        - epsilon
+        - mailgun
+        - postup
         - responsys
+        - sailthru
         - salesforce
         - sendgrid
-        - sailthru
-        - appboy-with-sendgrid
+        - zeta
         # - title: Self Serve (MISSING)
     - title: Referrals
       children:
