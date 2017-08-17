@@ -229,6 +229,12 @@ branch.logout();
 {% endhighlight %}
 {% endif %}
 
+{% caution %}
+
+The length of the User ID you assign to identify your users should not be more than 127 characters.
+
+{% endcaution %}
+
 {% protip title="Retroactive event attribution" %}
 The **first** time an identity is set for each unique user ID, it will retroactively associate any previously recorded events from the current device with that user ID. This only occurs once.
 {% endprotip %}

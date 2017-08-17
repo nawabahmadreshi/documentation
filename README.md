@@ -65,6 +65,14 @@ If you run into trouble with either `bundle` or `npm` commands, you may need to 
 > 2. Think before you type.
 > 3. With great power comes great responsibility.
 
+### Running out of memory errors
+
+If you begin to hit errors involving running out of memory when running `jekyll serve` or `jekyll build`, first try to cleanup any old docs pages that aren't in use. If the problem continues to persist navigate to `_plugins/_utils.rb` to adjust the memory limit from the node execution command argument `--max_old_space_size` :
+
+```
+exec 'node', '--max_old_space_size=4096'
+```
+
 ### Using the --trace option
 
 The output of Jekyll's `--trace` option can often be useful for debugging build problems:

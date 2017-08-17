@@ -96,7 +96,6 @@ We're not sure if Cocoapods will support extensions, so in the meantime, just in
     e. Add: **$(PROJECT_DIR)/Branch.framework/Headers**
 1. Import the following frameworks under **Build Phases** for your app target:
     - `AdSupport.framework`
-    - `CoreTelephony.framework`
     - `CoreSpotlight.framework`
     - `MobileCoreServices.framework`
 
@@ -366,21 +365,10 @@ Occasionally, Android will barf after you add our library due to generic issues 
 {% if page.ios or page.react or page.mparticle_ios or page.ios_imessage %}
 ## {% if page.react %}iOS: {% endif %}Configure Xcode Project
 
+{% if page.ios or page.react or page.ios_message %}
 ### Add your Branch key
 
 1. Retrieve your Branch Key on the [Settings](https://dashboard.branch.io/#/settings){:target="_blank"} page of the Branch dashboard.
-{% if page.mparticle_ios %}
-1. In Xcode, open your project's Info.plist file in the Navigator (on the left side).
-1. Mouse hover "Information Property List" (the root item under the Key column).
-1. After about half a second, you will see a `+` sign appear. Click it.
-1. Add a new row to your info.plist file with the following value.
-
-| Key | Type | Value |
-| :--- | --- | --- |
-| Branch Key | String | [key_live_xxxxxxxxxxxxxxx] |
-
-{% else %}
-
 1. Add new rows to your info.plist file with the following values, with the `String` entry inside the `Dictionary`:
 
 | Key | Type | Value |
@@ -1559,7 +1547,6 @@ Follow these directions install the Branch SDK framework files without using Coc
     e. Add: **$(PROJECT_DIR)/Branch.framework/Headers**
 1. Import the following frameworks under **Build Phases** for your app target:
     - `AdSupport.framework`
-    - `CoreTelephony.framework`
     - `CoreSpotlight.framework`
     - `MobileCoreServices.framework`
     - `iAd.framework`

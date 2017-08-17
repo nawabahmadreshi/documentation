@@ -7,6 +7,7 @@ description:
 hide_platform_selector: true
 sections:
 - overview
+alias: [ /features/google-ads-overview/ ]
 ---
 
 {% if page.overview %}
@@ -20,13 +21,13 @@ Google Campaign | Campaign Type/Objective | Branch Documentation Link | Branch A
 --- | --- | --- | ---
 Search Network | Mobile app installs | **[link]({{base.url}}/marketing-channels/google-search-install-ads)** | App Only: Install
 Search Network | Mobile app engagement | **[link]({{base.url}}/marketing-channels/google-search-engagement-ads)** | App Only: Engagement
-Search Network | Standard  | **[link]({{base.url}}/marketing-channels/google-xplatform-search-ads)** | Cross-platform Search
-Search Network | Dynamic Search Ads  | **[link]({{base.url}}/marketing-channels/google-xplatform-search-ads)** | Cross-platform Search
-Display Network | Install your mobile app | **[link]({{base.url}}/marketing-channels/google-display-install-ads)** | App Only: Install
+Search Network | Standard  | **[link]({{base.url}}/marketing-channels/google-xplatform-search-ads/standard/)** | Cross-platform Search
+Search Network | Dynamic Search Ads  | **[link]({{base.url}}/marketing-channels/google-xplatform-search-ads/dynamic/)** | Cross-platform Search
+Display Network | Install your mobile app | **[link]({{base.url}}/marketing-channels/google-display-install-ads/)** | App Only: Install
 Display Network | Engage with your mobile app | **[link]({{base.url}}/marketing-channels/google-display-engagement-ads)** | App Only: Engagement
 Display Network | Others (Visit your website, Influence, etc.)  | **[link]({{base.url}}/marketing-channels/google-xplatform-display-ads)** | Cross-platform Display
-Video | Mobile App Installs | **[link]({{base.url}}/marketing-channels/google-video-ads)** | App Only: Install
-Video | Standard | **[link]({{base.url}}/marketing-channels/google-video-ads)**  | Cross-platform Display
+Video | Mobile App Installs | **[link]({{base.url}}/marketing-channels/google-video-ads/install/)** | App Only: Install
+Video | Standard | **[link]({{base.url}}/marketing-channels/google-video-ads/standard/)** | Cross-platform Display
 Universal App Campaigns | Universal App Campaigns | **[link]({{base.url}}/marketing-channels/google-uac)** | App Only: Install
 
 {::comment}

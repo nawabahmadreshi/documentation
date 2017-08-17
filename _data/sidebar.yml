@@ -76,9 +76,11 @@
             - google-conversions
         - title: Facebook
           children:
-            - facebook-ads
+            - facebook-ads-overview
+            - facebook-app-install
+            - facebook-conversion-ads
+            - facebook-platform-ads
             - facebook-dynamic-ads
-            - instagram-ads
         - title: Twitter
           children:
             - twitter-ads

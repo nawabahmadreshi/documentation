@@ -1,7 +1,7 @@
 ---
 type: recipe
 directory: marketing-channels
-title: "Display App Install Ads"
+title: "Google Display App Install Ads"
 page_title: "Advertising with Deep Links: Google Display Install Ads"
 description:
 platforms:

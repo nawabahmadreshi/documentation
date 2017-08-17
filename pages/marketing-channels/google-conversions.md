@@ -1,7 +1,7 @@
 ---
 type: recipe
 directory: marketing-channels
-title: "Adwords Conversions Setup"
+title: "Google Adwords Conversions Setup"
 page_title: "Advertising with Deep Links: Google Ads - Conversion Setup"
 description:
 hide_platform_selector: true
