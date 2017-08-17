@@ -17,6 +17,7 @@ contents:
     - setup
     - usage
 alias: [ /third-party-integrations/responsys/, /third-party-integrations/responsys/overview/, /third-party-integrations/responsys/setup/, /third-party-integrations/responsys/usage/, /third-party-integrations/responsys/support/ ]
+machine_name: e_rs
 ---
 
 {% if page.overview %}
@@ -48,18 +49,15 @@ You can retrieve your click tracking domain from your Responsys settings. Enter 
 
 {% elsif page.usage %}
 
-### Ongoing use of Deep Linked Email
-
-Once you’ve completed the [one time setup steps](/third-party-integrations/responsys/setup/), it’s time to send your first email.
-
-This guide will identify which web links you'd like to open the app and deep link, as well as convert them to Branch links.
+{% ingredient email-usage %}{% endingredient %}
 
 ## Options for generating Branch links for email
 
 There are a few different ways you can create Branch links that are compatible with Deep Linked Email + {{ page.title }}. You will need to replace the web URLs in your templates with these. To create Branch links, you can either:
 
 1. [Use the Branch Responsys SDK](#use-the-branch-responsys-sdk)
-1. [Create email links via API without changing your email templates](#create-email-links-via-API-without-changing-your-email-templates)
+1. [Making-regular-branch-links-compatible-with-email](#making-regular-branch-links-compatible-with-email)
+1. [Create email links via API without changing your email templates](#create-email-links-via-api-without-changing-your-email-templates)
 1. [Convert all web links in your email to deep links](#convert-all-web-links-in-your-email-to-deep-links)
 
 ### Use the Branch Responsys SDK

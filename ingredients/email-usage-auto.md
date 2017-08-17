@@ -1,9 +1,3 @@
-### Ongoing use of Deep Linked Email
-
-Once you’ve completed the [one time setup steps](/marketing-channels/{{page.title}}/setup/), it’s time to send your first email.
-
-This guide will identify which web links you'd like to open the app and deep link, as well as convert them to Branch links.
-
 ## Flag your deep links
 
 In order for {{page.title}} to know that the email link should open the app, add `deeplink="true"` to the HTML, for example:
@@ -25,7 +19,7 @@ http://example.com/?foo=bar
 When a user clicks your link, Branch processes the link and converts it to something like this:
 
 {% highlight html %}
-https://vza3.app.link/3p?%243p=e_sg&%24original_url=http%3A%2F%2Fexample.com%2F%3Ffoo%3Dbar
+https://vza3.app.link/3p?%243p={{ page.machine_name }}&%24original_url=http%3A%2F%2Fexample.com%2F%3Ffoo%3Dbar
 {% endhighlight %}
 
 Where `vza3.app.link` is your Branch domain.

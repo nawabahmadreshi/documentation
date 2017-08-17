@@ -15,7 +15,7 @@ sections:
 contents:
   number:
     - setup
-alias: [ /third-party-integrations/sendgrid/, /third-party-integrations/sendgrid/overview/, /third-party-integrations/sendgrid/setup/, /third-party-integrations/sendgrid/usage/, /third-party-integrations/sendgrid/support/ ] 
+machine_name: e_bs
 ---
 
 {% if page.overview %}
@@ -46,7 +46,9 @@ You can retrieve your click tracking domains from your {{page.title}} settings. 
 
 {% elsif page.usage %}
 
-{% ingredient email-usage-proxy-auto %}{% endingredient %}
+{% ingredient email-usage %}{% endingredient %}
+
+{% ingredient email-usage-auto %}{% endingredient %}
 
 {% elsif page.support %}
 

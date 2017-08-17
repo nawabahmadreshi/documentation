@@ -16,6 +16,7 @@ contents:
   number:
     - setup
 alias: [ /third-party-integrations/sendgrid/, /third-party-integrations/sendgrid/overview/, /third-party-integrations/sendgrid/setup/, /third-party-integrations/sendgrid/usage/, /third-party-integrations/sendgrid/support/ ] 
+machine_name: e_sg
 ---
 
 {% if page.overview %}
@@ -54,28 +55,19 @@ On **Done** click, an AASA file - required for Universal Links - specific to tha
 
 {% elsif page.usage %}
 
-### Ongoing use of Deep Linked Email
+{% ingredient email-usage %}{% endingredient %}
 
-Once you’ve completed the [one time setup steps](/marketing-channels/{{page.title}}/setup/), it’s time to send your first email.
+{% ingredient email-link-options-menu %}{% endingredient %}
 
-This guide will help you identify which web links you'd like to open the app and deep link, as well as convert them to Branch links.
+{% ingredient email-link-options %}{% endingredient %}
 
 ## Flag your deep links
 
 In order for {{page.title}} to know that the email link should open the app, add `universal="true"` to the template HTML, for example:
 
 {% highlight html %}
-<a href="links.example.com" universal="true">Link to your app!</a>
+<a href="https://vza3.app.link/3p?%243p={{ page.machine_name }}&%24original_url=http%3A%2F%2Fexample.com%2F%3Ffoo%3Dbar" universal="true">Link to your app!</a>
 {% endhighlight %}
-
-## Options for generating Branch links for email
-
-There are a few different ways you can create Branch links that are compatible with Deep Linked Email + {{ page.title }}. You will need to replace the web URLs in your templates with these. To create Branch links, you can either:
-
-1. [Create email links via API without changing your email templates](#create-email-links-via-API-without-changing-your-email-templates)
-1. [Convert all web links in your email to deep links](#convert-all-web-links-in-your-email-to-deep-links)
-
-{% ingredient email-link-options %}{% endingredient %}
 
 {% elsif page.support %}
 

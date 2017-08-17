@@ -1,7 +1,7 @@
 ---
 type: recipe
 directory: marketing-channels
-title: MailGun
+title: Zeta
 page_title: Automatically convert your email links into multi-platform deep links.
 description: Add powerful, best in class deep linking to your email campaigns.
 keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Deep Linked Email
@@ -15,7 +15,7 @@ sections:
 contents:
   number:
     - setup
-alias: [ /third-party-integrations/sendgrid/, /third-party-integrations/sendgrid/overview/, /third-party-integrations/sendgrid/setup/, /third-party-integrations/sendgrid/usage/, /third-party-integrations/sendgrid/support/ ] 
+machine_name: e_zt
 ---
 
 {% if page.overview %}
@@ -48,7 +48,13 @@ You can retrieve your click tracking domains from your {{page.title}} settings. 
 
 {% elsif page.usage %}
 
-{% ingredient email-usage-proxy-bounce %}{% endingredient %}
+{% ingredient email-usage %}{% endingredient %}
+
+{% ingredient email-link-options-menu %}{% endingredient %}
+
+{% ingredient email-link-options %}{% endingredient %}
+
+{% ingredient email-usage-bounce %}{% endingredient %}
 
 {% elsif page.support %}
 

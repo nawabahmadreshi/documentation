@@ -1,7 +1,7 @@
 ---
 type: recipe
 directory: marketing-channels
-title: MailGun
+title: PostUp
 page_title: Automatically convert your email links into multi-platform deep links.
 description: Add powerful, best in class deep linking to your email campaigns.
 keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, Deeplinking, Deferred Deep Linking, Deferred Deeplinking, Google App Indexing, Google App Invites, Apple Universal Links, Apple Spotlight Search, Facebook App Links, AppLinks, Deepviews, Deep views, Deep Linked Email
@@ -15,7 +15,7 @@ sections:
 contents:
   number:
     - setup
-machine_name: e_mg
+machine_name: e_pu
 ---
 
 {% if page.overview %}
@@ -40,6 +40,8 @@ You can retrieve your click tracking domains from your {{page.title}} settings. 
 
 {% ingredient email-associated-domains %}{% endingredient %}
 
+{% ingredient email-bounce-web %}{% endingredient %}
+
 {% ingredient email-validate-test %}{% endingredient %}
 
 {% getstarted next="true" %}{% endgetstarted %}
@@ -48,7 +50,11 @@ You can retrieve your click tracking domains from your {{page.title}} settings. 
 
 {% ingredient email-usage %}{% endingredient %}
 
-{% ingredient email-usage-auto %}{% endingredient %}
+{% ingredient email-link-options-menu %}{% endingredient %}
+
+{% ingredient email-link-options %}{% endingredient %}
+
+{% ingredient email-usage-bounce %}{% endingredient %}
 
 {% elsif page.support %}
 
