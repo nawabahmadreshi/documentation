@@ -7,7 +7,7 @@ With {{page.title}}, all email links will open the app by default. In order for 
 {% endhighlight %}
 
 {% caution title="Handle links for web-only content" %}
-Make sure you have completed the [technical setup steps](/marketing-channels/{{page.title}}/setup/#handle-links-for-web-only-content) to handle web-only links within your app.
+Make sure you have completed the [technical setup steps](/marketing-channels/{{ page.title | downcase }}/setup/#handle-links-for-web-only-content) to handle web-only links within your app.
 {% endcaution %}
 
 This will also ensure that your links are converted to Branch links that will open the app on Android as well, with full tracking and attribution.
