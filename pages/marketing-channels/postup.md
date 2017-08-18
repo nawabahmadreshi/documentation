@@ -15,6 +15,7 @@ sections:
 contents:
   number:
     - setup
+alias: [ /third-party-integrations/postup/, /third-party-integrations/postup/overview/, /third-party-integrations/postup/setup/, /third-party-integrations/postup/usage/, /third-party-integrations/postup/support/, /other/postup/, /other/postup/overview/, /other/postup/setup/, /other/postup/usage/, /other/postup/support/ ]
 machine_name: e_pu
 ---
 
