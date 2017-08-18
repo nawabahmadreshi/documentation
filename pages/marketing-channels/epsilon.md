@@ -15,7 +15,7 @@ sections:
 contents:
   number:
     - setup
-alias: [ /other/postup/, /other/postup/overview/, /other/postup/setup/, /other/postup/usage/, /other/postup/support/ ]
+alias: [ /other/epsilon-harmony/, /other/epsilon-harmony/overview/, /other/epsilon-harmony/setup/, /other/epsilon-harmony/usage/, /other/epsilon-harmony/support/ ]
 machine_name: e_ep
 ---
 
