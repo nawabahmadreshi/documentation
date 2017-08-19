@@ -195,7 +195,7 @@ cordova plugin add branch-cordova-sdk --variable BRANCH_KEY=key_live_xxxxxxxxxxx
 
 ### Overriding OnNewIntent for Android
 
-The Branch SDK contains an custom activity that is extended from UnityPlayerActivity. This is required in order to fix Android's OnNewIntent() to allow the app retrieves right link when app is in background.
+The Branch SDK contains a custom activity that is extended from UnityPlayerActivity. This is required in order to fix Android's OnNewIntent() to allow the app retrieves right link when app is in background.
 
 In the manifest file, you will need to replace:
 
