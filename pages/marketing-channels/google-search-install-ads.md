@@ -1,7 +1,7 @@
 ---
 type: recipe
 directory: marketing-channels
-title: "Search App Install Ads"
+title: "Google Search App Install Ads"
 page_title: "Advertising with Deep Links: Google Search Install Ads"
 description:
 platforms:
@@ -74,7 +74,7 @@ Ensure the application being promoted by the Ad campaign has the SDK version of 
 
 {% protip title="Dynamic Channel and Campaign Tags" %}
 
-It is recommended to leave the Channel and Campaign Tags empty as Branch will dynamically set those values to their corresponding **Network** and **Campaign Id** values in Adwords. If you fill in these values yourself it may be more difficult to interpret the information between Branch and Adwords.
+It is recommended to leave the `Channel` and `Campaign` Tags empty as Branch will dynamically set those values to their corresponding **Network** and **Campaign Id** values in Adwords. See [Google Adwords Valuetrack Parameters]({{base.url}}/marketing-channels/google-search-install-ads/support/#google-adwords-valuetrack-parameters) for more information.
 
 {% endprotip %}
 
@@ -131,7 +131,7 @@ Because the **Final URL** for your app install campaigns must match your app sto
 
 {% protip title="Dynamic Channel and Campaign Tags" %}
 
-It is recommended to leave the Channel and Campaign Tags empty as Branch will dynamically set those values to their corresponding **Network** and **Campaign Id** values in Adwords. If you fill in these values yourself it may be more difficult to interpret the information between Branch and Adwords.
+It is recommended to leave the `Channel` and `Campaign` Tags empty as Branch will dynamically set those values to their corresponding **Network** and **Campaign Id** values in Adwords. See [Google Adwords Valuetrack Parameters]({{base.url}}/marketing-channels/google-search-install-ads/support/#google-adwords-valuetrack-parameters) for more information.
 
 {% endprotip %}
 
@@ -186,6 +186,8 @@ As of June 2017, due to the current Adwords Search Network Mobile App Install Ca
 {% ingredient view-ad-link-data %}{% endingredient %}
 
 {% elsif page.support %}
+
+{% ingredient adwords-valuetrack-info %}{% endingredient %}
 
 ## FAQ / Debugging
 

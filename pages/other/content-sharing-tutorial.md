@@ -38,7 +38,6 @@ The tutorial is broken up into six parts: integrating the Branch SDK, setting up
 8. Import the following frameworks by clicking the `+` button:
 
 > * AdSupport.framework
-* CoreTelephony.framework
 * CoreSpotlight.framework
 * MobileCoreServices.framework
 * SafariServices.framework

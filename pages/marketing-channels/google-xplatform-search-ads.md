@@ -1,7 +1,7 @@
 ---
 type: recipe
 directory: marketing-channels
-title: "Search Network Ads"
+title: "Google Search Network Ads"
 page_title: "Advertising with Deep Links: Google Search Network Ads"
 description:
 hide_platform_selector: true
@@ -64,7 +64,7 @@ Android | Yes | Uses tracking template, must redirect to Google Play store | [li
 
 {% protip title="Dynamic Channel and Campaign Tags" %}
 
-It is recommended to leave the Channel and Campaign Tags empty as Branch will dynamically set those values to their corresponding **Network** and **Campaign Id** values in Adwords. If you fill in these values yourself it may be more difficult to interpret the information between Branch and Adwords.
+It is recommended to leave the `Channel` and `Campaign` Tags empty as Branch will dynamically set those values to their corresponding **Network** and **Campaign Id** values in Adwords. See [Google Adwords Valuetrack Parameters]({{base.url}}/marketing-channels/google-xplatform-search-ads/support/#google-adwords-valuetrack-parameters) for more information.
 
 {% endprotip %}
 
@@ -95,11 +95,18 @@ To set up a Search Network Campaign, you will need to first create your campaign
 #### Ad Creation
 
 1. For Standard Search Ads first copy your generated Branch Ad link from the previous section.
-1. In the Ad editor, paste the Branch Ad link into the **Final URL** field.
+1. In the ad editor, locate the `Ad URL options (advanced)` section and expand it. Now paste your link into the **Tracking Template** field.
+*Note: The `Ad URL options (advanced)` may not be available in the campaign set up procedure. In this case, finish setting up the campaign and then access the ad editor after for access to the advanced URL options.*
 
 {% image src="/img/pages/features/google-dla/google-xplatform-search-ads/full-branch-link.png" 3-quarters center alt='Example Link' %}
 
 {% image src="/img/pages/features/google-dla/google-xplatform-search-ads/standard/adwords-configuration.png" 3-quarters center alt='Example Adwords Config' %}
+
+{% protip %}
+
+Because the **Final URL** for your app install campaigns must match the final destination website, you cannot put a Branch link in that box. However, capturing installs and deep linking users through content is still possible due to the **Tracking template** configuration.
+
+{% endprotip %}
 
 {% ingredient view-ad-link-data %}{% endingredient %}
 
@@ -127,7 +134,7 @@ To set up a Search Network Campaign, you will need to first create your campaign
 
 {% protip title="Dynamic Channel and Campaign Tags" %}
 
-It is recommended to leave the Channel and Campaign Tags empty as Branch will dynamically set those values to their corresponding **Network** and **Campaign Id** values in Adwords. If you fill in these values yourself it may be more difficult to interpret the information between Branch and Adwords.
+It is recommended to leave the `Channel` and `Campaign` Tags empty as Branch will dynamically set those values to their corresponding **Network** and **Campaign Id** values in Adwords. See [Google Adwords Valuetrack Parameters]({{base.url}}/marketing-channels/google-xplatform-search-ads/support/#google-adwords-valuetrack-parameters) for more information.
 
 {% endprotip %}
 
@@ -174,6 +181,8 @@ Because the **Final URL** for your app install campaigns must match the final de
 {% ingredient view-ad-link-data %}{% endingredient %}
 
 {% elsif page.support %}
+
+{% ingredient adwords-valuetrack-info %}{% endingredient %}
 
 ## FAQ / Debugging
 

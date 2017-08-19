@@ -1,7 +1,7 @@
 ---
 type: recipe
 directory: marketing-channels
-title: "Adwords Conversions Setup"
+title: "Google Adwords Conversions Setup"
 page_title: "Advertising with Deep Links: Google Ads - Conversion Setup"
 description:
 hide_platform_selector: true
@@ -40,9 +40,9 @@ Setting up Adwords conversion events with Branch allows Branch to get direct con
 Set up Google as an Ad Partner and conversion tracking from Adwords on the Branch dashboard. If you already have Google enabled as an ad partner, continue with the _Enable Adwords Conversions_ instructions.
 
 1. Navigate to the [Partner Management tab](https://dashboard.branch.io/ads/partner-management).
-{% image src="/img/pages/marketing-channels/deep-linked-ads/google-adwords/ads-partner-management.png" center 3-quarters alt='Ads Partner Management' %}
+{% image src="/img/pages/marketing-channels/deep-linked-ads/google/ads-partner-management.png" center 3-quarters alt='Ads Partner Management' %}
 1. Search for **Google AdWords**.
-{% image src="/img/pages/marketing-channels/deep-linked-ads/google-adwords/find-google-adwords.png" center 3-quarters alt='Find Google AdWords in Partner Manager' %}
+{% image src="/img/pages/marketing-channels/deep-linked-ads/google/find-google-partner.png" center 3-quarters alt='Find Google AdWords in Partner Manager' %}
 1. We will now fill in the conversion ID and Label fields.
 
 #### Enable Adwords Conversions
@@ -68,7 +68,7 @@ Set up Google as an Ad Partner and conversion tracking from Adwords on the Branc
 1. Head to the [Branch Dashboard Adwords Settings](https://dashboard.branch.io/ads/partner-management/a_google_adwords?tab=settings){:target="_blank"}.
 1. Paste in the `Conversion ID` and `Conversion label` from your Adwords dashboard into the appropriate fields for either iOS or Android
 1. Click the `Save and Enable` button in the lower right hand corner.
-{% image src="/img/pages/marketing-channels/deep-linked-ads/google-adwords/save-and-enable-google-adwords.png" center 3-quarters alt='Save and Enable Google AdWords in Partner Manager' %}
+{% image src="/img/pages/marketing-channels/deep-linked-ads/google/save-and-enable-google.png" center 3-quarters alt='Save and Enable Google AdWords in Partner Manager' %}
 1. Google AdWords is now enabled as an ad partner.
 1. Click `Done` in your Adwords dashboard.
 

@@ -96,7 +96,6 @@ We're not sure if Cocoapods will support extensions, so in the meantime, just in
     e. Add: **$(PROJECT_DIR)/Branch.framework/Headers**
 1. Import the following frameworks under **Build Phases** for your app target:
     - `AdSupport.framework`
-    - `CoreTelephony.framework`
     - `CoreSpotlight.framework`
     - `MobileCoreServices.framework`
 
@@ -196,7 +195,7 @@ cordova plugin add branch-cordova-sdk --variable BRANCH_KEY=key_live_xxxxxxxxxxx
 
 ### Overriding OnNewIntent for Android
 
-The Branch SDK contains an custom activity that is extended from UnityPlayerActivity. This is required in order to fix Android's OnNewIntent() to allow the app retrieves right link when app is in background.
+The Branch SDK contains a custom activity that is extended from UnityPlayerActivity. This is required in order to fix Android's OnNewIntent() to allow the app retrieves right link when app is in background.
 
 In the manifest file, you will need to replace:
 
@@ -366,21 +365,10 @@ Occasionally, Android will barf after you add our library due to generic issues 
 {% if page.ios or page.react or page.mparticle_ios or page.ios_imessage %}
 ## {% if page.react %}iOS: {% endif %}Configure Xcode Project
 
+{% if page.ios or page.react or page.ios_message %}
 ### Add your Branch key
 
 1. Retrieve your Branch Key on the [Settings](https://dashboard.branch.io/#/settings){:target="_blank"} page of the Branch dashboard.
-{% if page.mparticle_ios %}
-1. In Xcode, open your project's Info.plist file in the Navigator (on the left side).
-1. Mouse hover "Information Property List" (the root item under the Key column).
-1. After about half a second, you will see a `+` sign appear. Click it.
-1. Add a new row to your info.plist file with the following value.
-
-| Key | Type | Value |
-| :--- | --- | --- |
-| Branch Key | String | [key_live_xxxxxxxxxxxxxxx] |
-
-{% else %}
-
 1. Add new rows to your info.plist file with the following values, with the `String` entry inside the `Dictionary`:
 
 | Key | Type | Value |
@@ -788,14 +776,11 @@ Branch *branch = [Branch getInstance];
 
 {% tab swift %}
 {% highlight swift %}
-let branch: Branch = Branch.getInstance()
-branch.initSession(launchOptions: launchOptions, andRegisterDeepLinkHandler: {params, error in
-    if error == nil {
-        // params are the deep linked params associated with the link that the user clicked -> was re-directed to this app
-        // params will be empty if no data found
-        // ... insert custom logic here ...
-        print(params as! [String: Any])
-    }
+Branch.getInstance().initSession(launchOptions: launchOptions) { params, error in
+    // params are the deep linked params associated with the link that the user clicked -> was re-directed to this app
+    // params will be empty if no data found
+    // ... insert custom logic here ...
+    print(params as? [String: AnyObject] ?? {})
 })
 {% endhighlight %}
 {% endtab %}
@@ -823,14 +808,11 @@ Branch *branch = [Branch getInstance];
 
 {% tab swift %}
 {% highlight swift %}
-let branch: Branch = Branch.getInstance()
-branch?.initSession(launchOptions: launchOptions, andRegisterDeepLinkHandler: {params, error in
-    if error == nil {
-        // params are the deep linked params associated with the link that the user clicked -> was re-directed to this app
-        // params will be empty if no data found
-        // ... insert custom logic here ...
-        print("params: %@", params.description)
-    }
+Branch.getInstance().initSession(launchOptions: launchOptions) { params, error in
+    // params are the deep linked params associated with the link that the user clicked -> was re-directed to this app
+    // params will be empty if no data found
+    // ... insert custom logic here ...
+    print(params as? [String: AnyObject] ?? {})
 })
 {% endhighlight %}
 {% endtab %}
@@ -1565,7 +1547,6 @@ Follow these directions install the Branch SDK framework files without using Coc
     e. Add: **$(PROJECT_DIR)/Branch.framework/Headers**
 1. Import the following frameworks under **Build Phases** for your app target:
     - `AdSupport.framework`
-    - `CoreTelephony.framework`
     - `CoreSpotlight.framework`
     - `MobileCoreServices.framework`
     - `iAd.framework`

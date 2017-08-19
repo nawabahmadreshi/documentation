@@ -1,4 +1,4 @@
- ---
+---
 type: recipe
 directory: data-exchange
 title: Fabric Answers
@@ -9,7 +9,7 @@ android_keywords: Contextual Deep Linking, Deep links, Deeplinks, Deep Linking, 
 hide_platform_selector: true
 sections:
 - guide
-alias: [ /third-party-integrations/fabric-answers/guide/ ] 
+alias: [ /third-party-integrations/fabric-answers/guide/ ]
 ---
 
 {% prerequisite %}

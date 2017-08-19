@@ -63,6 +63,7 @@
       children:
         - title: Google
           children:
+            - doubleclick
             - google-ads-overview
             - google-search-install-ads
             - google-search-engagement-ads
@@ -75,9 +76,11 @@
             - google-conversions
         - title: Facebook
           children:
-            - facebook-ads
+            - facebook-ads-overview
+            - facebook-app-install
+            - facebook-conversion-ads
+            - facebook-platform-ads
             - facebook-dynamic-ads
-            - instagram-ads
         - title: Twitter
           children:
             - twitter-ads
@@ -89,11 +92,16 @@
         - deep-linked-feeds
     - title: Email
       children:
+        - appboy
+        - blueshift
+        - epsilon
+        - mailgun
+        - postup
         - responsys
+        - sailthru
         - salesforce
         - sendgrid
-        - sailthru
-        - appboy-with-sendgrid
+        - zeta
         # - title: Self Serve (MISSING)
     - title: Referrals
       children:

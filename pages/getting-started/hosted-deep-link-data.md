@@ -43,7 +43,7 @@ Product page | https://shop.com/shoes/brown-loafers | `productId=1234`, `product
 Category page | https://shop.com/shoes | `categoryId=5678`
 Mother's day promotion | https://shop.com/your-mother-is-great | [No corresponding app content]*
 
-\* If you don't have corresponding app content, you can add the `$web_only=true` parameter to your site. Depending on the link creation mechanism, this means that either the link [will not open the app](/getting-started/configuring-links/guide/#web-only-links), or if it opens the app, you can [write logic to redirect the user to a browser](/third-party-integrations/sailthru/advanced/#handle-links-for-web-only-content).
+\* If you don't have corresponding app content, you can add the `$web_only=true` parameter to your site. Depending on the link creation mechanism, this means that either the link [will not open the app](/getting-started/configuring-links/guide/#web-only-links), or if it opens the app, you can [write logic to redirect the user to a browser](/getting-started/configuring-links/guide/#link-control-parameters).
 
 {% protip title="Setting up deep linking?"%}
 If you're just getting started with deep linking, you have a chance to keep things simple! If you choose one key, and a consistent value that easily maps from the web URL, you can easily create metatags and save yourself work down the line.
