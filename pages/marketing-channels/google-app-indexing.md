@@ -104,10 +104,12 @@ branchUniversalObject.userCompletedAction(BNCRegisterViewEvent)
                 .setContentDescription("My Content Description")
                 .setContentImageUrl("https://example.com/mycontent-12345.png")
                 .setContentIndexingMode(BranchUniversalObject.CONTENT_INDEX_MODE.PUBLIC)
+                .setLocalIndexingMode(BranchUniversalObject.CONTENT_INDEX_MODE.PUBLIC)
                 .addContentMetadata("property1", "blue")
                 .addContentMetadata("property2", "red");
 
-// call list on Google Search to add the item to the index
+// call list on Google Search to add the item to the index. This will index your contents with Google and with on device content indexing. 
+// This will use Firebase App indexing if the Firebase app indexing dependencies are added to the application
 branchUniversalObject.listOnGoogleSearch();
 {% endhighlight %}
 
@@ -223,7 +225,7 @@ If you'd like to view all associated customizations with the Branch Universal Ob
 
 ## Enable App Indexing for Google on Branch
 
-If you have completed the prerequisites, you've done the hard part! Now you should go enable automatic sitemap generation on the [Organic Search](https://dashboard.branch.io/search) page of the Branch Dashboard. Check the `Automatic sitemap generation` checkbox.
+If you have completed the prerequisites, you've done the hard part! Now you should go enable automatic sitemap generation on the [Organic Search](https://dashboard.branch.io/search) page of the Branch Dashboard. Check the `Automatic sitemap generation` checkbox. Alternatively you can index your BranchUniversalObjects on Google search and local private content indesing using "BranchUniversalObject#listOnGoogleSeach" API. 
 
 {% image src="/img/pages/features/google-app-indexing/db-settings.png" 2-thirds center alt="Settings page" %}
 
