@@ -41,7 +41,12 @@ On **Done** click, an AASA file - required for Universal Links - specific to tha
 
 {% ingredient email-technical-setup %}{% endingredient %}
 
-{% ingredient email-cname %}{% endingredient %}
+### Set up your click tracking domain
+
+Only do this step after you've [provided your click tracking domain](#tell-us-your-click-tracking-domain) to Branch.
+
+1. Create a CNAME for your subdomain and point it to `epsilon.thirdparty.bnc.lt`
+1. Confirm with your Branch Account Manager that the domain is working correctly.
 
 {% ingredient email-associated-domains %}{% endingredient %}
 
