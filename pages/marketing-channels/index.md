@@ -34,7 +34,7 @@ Branch is your linking infrastructure that deep links from every single marketin
 
 <h3 style="margin-top:0;">Email</h3>
 
-- Plug Branch into your favorite email service provider: **[Responsys](responsys)**, **[Salesforce Marketing Cloud](salesforce)**, **[Sendgrid](sendgrid)**, **[Sailthru](sailthru)**, **[Appboy](appboy)**, **[PostUp](postup)**, **[Epsilon](epsilon)**, **[MailGun](mailgun)**, **[Blueshift](blueshift)**, and **[Zeta](zeta)**
+- Plug Branch into your favorite email service provider: **[Responsys](responsys)**, **[Salesforce Marketing Cloud](salesforce)**, **[Sendgrid](sendgrid)**, **[Sailthru](sailthru)**, **[Appboy](appboy)**, **[PostUp](postup)**, **[Epsilon](epsilon)**, **[MailGun](mailgun)**, **[Blueshift](blueshift)**, **[Mailjet](mailjet)**, and **[Zeta](zeta)**
 
 {% endprotip %}
 

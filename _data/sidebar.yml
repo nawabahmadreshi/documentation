@@ -96,6 +96,7 @@
         - blueshift
         - epsilon
         - mailgun
+        - mailjet
         - postup
         - responsys
         - sailthru
