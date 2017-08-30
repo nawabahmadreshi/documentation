@@ -102,6 +102,7 @@
         - sailthru
         - salesforce
         - sendgrid
+        - vero
         - zeta
         # - title: Self Serve (MISSING)
     - title: Referrals
