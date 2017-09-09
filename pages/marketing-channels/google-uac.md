@@ -44,7 +44,9 @@ Universal App Campaigns don’t use traditional ads and ad groups. Instead diffe
 
 {% prerequisite %}
 - To track installs from Google Ads you should [integrate the Branch SDK]({{base.url}}/getting-started/sdk-integration-guide) into your app.
-- If you want to deep link from your ads directly to content, you should [configure deep link routing]({{base.url}}/getting-started/deep-link-routing).
+- If you want to deep link from your ads directly to 
+
+, you should [configure deep link routing]({{base.url}}/getting-started/deep-link-routing).
 - Ads is a premium product priced on Monthly Active Users. Sign up for the Ads product to enable this functionality.
 {% endprerequisite %}
 
@@ -107,7 +109,7 @@ You can use this configuration section to specify custom link parameters that wi
 
 {% endprotip %}
 
-## Configure an Add
+## Configure an Ad
 
 To setup a Universal App Campaign we will place our unique Branch Ad link into a Adwords Conversion Postback setting. Adwords campaign documentation is available **[here](https://support.google.com/adwords/answer/6247380?hl=en)**.
 
