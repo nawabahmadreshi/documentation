@@ -94,14 +94,17 @@
       children:
         - appboy
         - blueshift
+        - bronto
         - epsilon
         - mailgun
         - mailjet
+        - mandrill
         - postup
         - responsys
         - sailthru
         - salesforce
         - sendgrid
+        - sparkpost
         - vero
         - zeta
         # - title: Self Serve (MISSING)
