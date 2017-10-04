@@ -242,6 +242,8 @@ We enforce the following rate limits when sending SMS through Branch:
     1. 5 texts to the same number within an hour.
     1. 100 texts from the same IP within an hour.
 
+Branch reserves the right to limit your use of the Text Me The App service and charge for SMS costs at its own discretion. To understand Branch's policies in this regard, please contact your Branch Account Manager or accounts@branch.io at any time for assistance.
+
 ##### Q: I've sent myself multiple texts just now and only received the first few, what's going on?
 
 A: This occurs when a carrier filters you SMS out due to spam. We try our hardest to rate limit a specific user, however, if bypassed, carriers may block your SMS. The reason is that carriers will agressively block content if it's similar and repeatedly sent to the same number. The solution is to wait 24-48 hours.
