@@ -77,10 +77,6 @@
         - title: Facebook
           children:
             - facebook-ads-overview
-            - facebook-app-install
-            - facebook-conversion-ads
-            - facebook-platform-ads
-            - facebook-dynamic-ads
         - title: Twitter
           children:
             - twitter-ads
