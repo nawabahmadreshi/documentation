@@ -19,9 +19,9 @@ alias: [ /features/facebook-app-invites/, /features/facebook-app-invites/overvie
 
 {% if page.overview %}
 
-To help you grow your app, Facebook offers a feature called App Invites as an alternative to sharing on the Facebook wall. It is a private, friend-to-friend invite, similar to a direct SMS message.
-
-{% image src='/img/pages/features/facebook-app-invites/appinvite.png' 2-thirds center alt='app invite' %}
+{% caution %}
+Please note that Facebook has notified us that they no longer plan to support deferred deep linking for Facebook App Invites. We have observed that it still works but with a few side effects (a referred user continue to receive deep link data for 24-48 hours after accepting invites) and may stop working entirely in the future. Use at your own risk.
+{% endcaution %}
 
 {% getstarted %}{% endgetstarted %}
 
