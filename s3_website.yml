@@ -9,6 +9,13 @@ cloudfront_invalidate_root: true
 max_age:
   "*": 6000
 
+redirects:
+
+  data-exchange/adobe-analytics/overview/index.html: https://docs.branch.io/pages/integrations/adobe-analytics/
+  data-exchange/adobe-analytics/guide/index.html: https://docs.branch.io/pages/integrations/adobe-analytics/
+  data-exchange/adobe-analytics/advanced/index.html: https://docs.branch.io/pages/integrations/adobe-analytics/
+  data-exchange/adobe-analytics/support/index.html: https://docs.branch.io/pages/integrations/adobe-analytics/
+
 gzip:
   - .html
   - .css
