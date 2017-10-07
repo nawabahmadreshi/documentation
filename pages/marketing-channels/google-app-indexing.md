@@ -225,7 +225,7 @@ If you'd like to view all associated customizations with the Branch Universal Ob
 
 ## Enable App Indexing for Google on Branch
 
-If you have completed the prerequisites, you've done the hard part! Now you should go enable automatic sitemap generation on the [Organic Search](https://dashboard.branch.io/search) page of the Branch Dashboard. Check the `Automatic sitemap generation` checkbox. Alternatively you can index your BranchUniversalObjects on Google search and local private content indesing using "BranchUniversalObject#listOnGoogleSeach" API. 
+If you have completed the prerequisites, you've done the hard part! Now you should go enable automatic sitemap generation on the [Organic Search](https://dashboard.branch.io/search) page of the Branch Dashboard. Check the `Automatic sitemap generation` checkbox. Note that if you're using the "BranchUniversalObject#listOnGoogleSeach" API, your content will automatically appear in the local search index but not in public Google search for new users until you check this box.
 
 {% image src="/img/pages/features/google-app-indexing/db-settings.png" 2-thirds center alt="Settings page" %}
 
